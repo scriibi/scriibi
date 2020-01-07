@@ -19,24 +19,24 @@ cache:
     - vendor
     - public
 
-test:
-  stage: test
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]tests?\]/i
-  services:
-    - mysql:5.7
-  image: mjsarfatti/gitlab-ci-pipeline-php-aws:latest
-  script:
-    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
-    - php artisan key:generate
-    - php artisan migrate:refresh --seed
-    - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
-  artifacts:
-    paths:
-      - ./storage/logs # for debugging
-    expire_in: 7 days
-    when: always
+# test:
+#   stage: test
+#   except:
+#     variables:
+#       - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]tests?\]/i
+#   services:
+#     - mysql:5.7
+#   image: mjsarfatti/gitlab-ci-pipeline-php-aws:latest
+#   script:
+#     - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+#     - php artisan key:generate
+#     - php artisan migrate:refresh --seed
+#     - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors=never --stderr
+#   artifacts:
+#     paths:
+#       - ./storage/logs # for debugging
+#     expire_in: 7 days
+#     when: always
 
 deploy to staging:
   stage: deploy
