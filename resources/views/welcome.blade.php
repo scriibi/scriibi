@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Scriibi - Testing Dev Branch Pipeline (Test-Chamath)
+                    Scriibi - Testing Dev Branch Pipeline-DARA
                 </div>
 
                 <div class="links">
