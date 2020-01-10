@@ -1,0 +1,28 @@
+branch-defaults:
+  master:
+    environment: scriibi-sydney-dev
+    group_suffix: null
+environment-defaults:
+  laravel-env:
+    branch: null
+    repository: null
+  scriibi-dev-2:
+    branch: null
+    repository: null
+  scriibi-sydney-dev:
+    branch: null
+    repository: null
+global:
+  application_name: scriibi-dev
+  branch: null
+  default_ec2_keyname: scriibi-dev
+  default_platform: PHP 7.3
+  default_region: ap-southeast-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application
