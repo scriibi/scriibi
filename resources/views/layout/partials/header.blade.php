@@ -6,7 +6,7 @@
   </div>
   <div class="col-sm-4">
     <ul class="nav">
-      <li class="nav-item" href="#">Assessment</li>
+      <li class="nav-item" href="#">Assessment hooto</li>
       <li class="nav-item" href="#">Rubrics</li>
       <li class="nav-item" href="#">Support Material</li>
       <li class="nav-item" href="#">Logout</li>
