@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: null
+    environment: scriibi-sydney-dev
     group_suffix: null
 environment-defaults:
   laravel-env:
