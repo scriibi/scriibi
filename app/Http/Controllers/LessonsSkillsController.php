@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\lessons_skills;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class LessonsSkillsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\lessons_skills  $lessons_skills
+     * @return \Illuminate\Http\Response
+     */
+    public function show(lessons_skills $lessons_skills)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\lessons_skills  $lessons_skills
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(lessons_skills $lessons_skills)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\lessons_skills  $lessons_skills
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, lessons_skills $lessons_skills)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\lessons_skills  $lessons_skills
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(lessons_skills $lessons_skills)
+    {
+        //
+    }
+}
