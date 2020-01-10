@@ -11,7 +11,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-
+not_env
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
