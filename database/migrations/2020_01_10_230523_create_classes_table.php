@@ -15,10 +15,10 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('class_Id');
-            $table->string('class_Name', 45);
-            $table->string('start_date', 45);
-            $table->string('finish_date', 45);
-            $table->bigInteger('schools_school_Id')->unsigned();
+            $table->string('class_Name', 45)->nullable();
+            $table->string('start_date', 45)->nullable();
+            $table->string('finish_date', 45)->nullable();
+            $table->bigInteger('schools_school_Id')->unsigned()->nullable();
 
             $table->unique('class_Id');
             $table->index('schools_school_Id');
