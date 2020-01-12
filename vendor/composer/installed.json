@@ -346,17 +346,17 @@
     },
     {
         "name": "egulias/email-validator",
-        "version": "2.1.13",
-        "version_normalized": "2.1.13.0",
+        "version": "2.1.14",
+        "version_normalized": "2.1.14.0",
         "source": {
             "type": "git",
             "url": "https://github.com/egulias/EmailValidator.git",
-            "reference": "834593d5900615639208417760ba6a17299e2497"
+            "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/834593d5900615639208417760ba6a17299e2497",
-            "reference": "834593d5900615639208417760ba6a17299e2497",
+            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/c4b8d12921999d8a561004371701dbc2e05b5ece",
+            "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece",
             "shasum": ""
         },
         "require": {
@@ -371,7 +371,7 @@
         "suggest": {
             "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
         },
-        "time": "2019-12-30T08:14:25+00:00",
+        "time": "2020-01-05T14:11:20+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1040,27 +1040,27 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.63",
-        "version_normalized": "1.0.63.0",
+        "version": "1.0.46",
+        "version_normalized": "1.0.46.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "8132daec326565036bc8e8d1876f77ec183a7bd6"
+            "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8132daec326565036bc8e8d1876f77ec183a7bd6",
-            "reference": "8132daec326565036bc8e8d1876f77ec183a7bd6",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+            "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
             "shasum": ""
         },
         "require": {
-            "ext-fileinfo": "*",
             "php": ">=5.5.9"
         },
         "conflict": {
             "league/flysystem-sftp": "<1.0.6"
         },
         "require-dev": {
+            "ext-fileinfo": "*",
             "phpspec/phpspec": "^3.4",
             "phpunit/phpunit": "^5.7.10"
         },
@@ -1080,7 +1080,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2020-01-04T16:30:31+00:00",
+        "time": "2018-08-22T07:45:22+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2272,17 +2272,17 @@
     },
     {
         "name": "phpunit/phpunit",
-        "version": "7.5.19",
-        "version_normalized": "7.5.19.0",
+        "version": "7.5.20",
+        "version_normalized": "7.5.20.0",
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "4263f76a3fc65385e242ef7357b99f3bed36707e"
+            "reference": "9467db479d1b0487c99733bb1e7944d32deded2c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4263f76a3fc65385e242ef7357b99f3bed36707e",
-            "reference": "4263f76a3fc65385e242ef7357b99f3bed36707e",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9467db479d1b0487c99733bb1e7944d32deded2c",
+            "reference": "9467db479d1b0487c99733bb1e7944d32deded2c",
             "shasum": ""
         },
         "require": {
@@ -2321,7 +2321,7 @@
             "ext-xdebug": "*",
             "phpunit/php-invoker": "^2.0"
         },
-        "time": "2020-01-06T16:53:05+00:00",
+        "time": "2020-01-08T08:45:45+00:00",
         "bin": [
             "phpunit"
         ],
