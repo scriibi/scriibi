@@ -11356,7 +11356,65 @@ a.text-dark:focus {
   }
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 .nav-brand img {
   width: 100px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "header" "content" "footer";
+}
+
+.nav-header {
+  grid-area: header;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  border-bottom: 5px solid green;
+}
+
+.nav-header img.logo {
+  height: 50px;
+}
+
+.nav-header ul {
+  -webkit-box-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-header ul a {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 20px;
+}
+
+.nav-header ul a:hover {
+  background-color: yellow;
+}
+
+.nav-header ul .nav-header-logout-link {
+  -webkit-box-flex: 1;
+          flex: 1;
+  text-align: right;
+}
+
+.album {
+  grid-area: content;
+  padding: 20px 40px;
 }
 

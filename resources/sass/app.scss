@@ -7,7 +7,56 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
+html, body {
+  height: 100%;
+  margin: 0;
+}
 .nav-brand img {
     width: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+}
+.nav-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  border-bottom: 5px solid green;
+
+  img.logo {
+    height: 50px;
+  }
+  ul {
+    flex: 1;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      display: inline-block;
+      line-height: 50px;
+      padding: 0 20px;
+
+      &:hover {
+        background-color: yellow;
+      }
+    }
+    .nav-header-logout-link {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}
+.album {
+  grid-area: content;
+  padding: 20px 40px;
 }

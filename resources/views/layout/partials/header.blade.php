@@ -1,3 +1,4 @@
+<!--
 <div class="row">
     <nav class="navbar navbar-expand-sm navbar-light .bg-transparent p-2 w-100">
       <div class="nav-brand">
@@ -17,7 +18,18 @@
       </ul>
     </nav>
 </div>
-<hr class="bg-success">
+-->
+<!-- <hr class="bg-success"> -->
+
+<nav class="nav-header">
+  <img class="logo" src="https://www.scriibi.com/wp-content/uploads/2018/04/scriibi-logo-tight-e1525256307991.png" />
+  <ul class="nav-header-menu">
+    <li><a href="#">Assessment</a></li>
+    <li><a href="#">Rubircs</a></li>
+    <li><a href="#">Support Material</a></li>
+    <li class="nav-header-logout-link"><a href="#">Logout</a></li>
+  </ul>
+</nav>
 
 
 

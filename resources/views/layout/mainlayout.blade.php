@@ -3,8 +3,8 @@
  <head>
     @include('layout.partials.head')
  </head>
- <body class="container-fluid">
-  
+ <body>
+
     @include('layout.partials.header')
     @yield('content')
     @include('layout.partials.footer')
