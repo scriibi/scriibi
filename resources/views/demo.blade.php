@@ -12,25 +12,6 @@
           </ul>
        </div>
 
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
-       <p>test</p>
     </div>
   </div>
 @endsection
