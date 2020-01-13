@@ -14,13 +14,11 @@ html, body {
     margin: 0;
 }
 
-body {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-    "header"
-    "content"
-    "footer";
+footer {
+    border-top: 30px solid #6A6B6F;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 //---------- Partials -------------------------
@@ -63,10 +61,6 @@ body {
         }
     }//end of ul
 }//end of nav-header
-
-footer {
-    border-top: 30px solid #6A6B6F;
-}
 
 //---------- Page Specific --------------------
 
