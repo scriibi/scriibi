@@ -11,7 +11,8 @@
 
        <div class="grid_middle">
          <p id="list_title">This is a master list of all your students</p>
-         <p>The information below will be used to populate assessments and will appear when the data is viewed</p>
+         <p>The information below will be used to populate assessments</p>
+         <p>and will appear when the data is viewed</p>
 
 
 
