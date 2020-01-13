@@ -14,25 +14,26 @@
          <p>and will appear when the data is viewed</p>
          <div class="card">
            <div class="card-body">
-             <h5 class="card-title">Add students to your list</h5>
+             <h5 class="card-title">Student List</h5>
              <form class="form-row" action="#" method="post">
-               <table class="table card-body">
+               <table class="table card-body ">
                  <thead>
-                   <tr>
+                   <tr class="table-head">
                      <th>First name</th>
                      <th>Last name</th>
                      <th>ID</th>
                      <th>Grade</th>
-                     <th >Assessemnt Level</th>
+                     <th>Assessemnt Level</th>
                      <th></th>
+                  </tr>
                  </thead>
-                 <tbody class="form-group">
+                 <tbody >
                    <tr>
-                     <td><input type="text" class="form-control" id="inputEmail"></td>
-                     <td><input type="text" class="form-control" id="inputPassword4"></td>
-                     <td><input type="text" class="form-control" id="inputPassword4"></td>
+                     <td class="form-group "><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
+                     <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                     <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
                      <td>
-                       <select class="form-control" id="selectGrade">
+                       <select class="form-control form-control-sm" id="selectGrade">
                          <option>Grade 1</option>
                          <option>Grade 2</option>
                          <option>Grade 3</option>
@@ -41,7 +42,7 @@
                        </select>
                      </td>
                      <td>
-                       <select class="form-control" id="selectAssessmentLevel">
+                       <select class="form-control form-control-sm" id="selectAssessmentLevel">
                          <option>Grade 1</option>
                          <option>Grade 2</option>
                          <option>Grade 3</option>
@@ -49,7 +50,7 @@
                          <option>Grade 5</option>
                        </select>
                      </td>
-                     <td><button type="submit" class="btn btn-primary">Add</button></td>
+                     <td><button type="submit" class="btn btn-primary btn-sm">Add</button></td>
                    </tr>
 
                  </tbody>
