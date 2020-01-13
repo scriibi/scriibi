@@ -9,79 +9,27 @@
         Leftmost---rubrics
        </div>
        <div class="grid_middle">
-         <p id="list_title">This is a master list of all your students</p>
-         <p>The information below will be used to populate assessments</p>
-         <p>and will appear when the data is viewed</p>
+         <p id="RubricBuilder_title">RubricBuilder</p>
          <div class="card">
            <div class="card-body">
-             <h5 class="card-title">Student List</h5>
+             <p>Step 1.Choose Rubric Option</p>
              <form class="form-row" action="#" method="post">
-               <table class="table card-body ">
-                 <thead>
-                   <tr class="table-head">
-                     <th>First name</th>
-                     <th>Last name</th>
-                     <th>ID</th>
-                     <th>Grade</th>
-                     <th>Assessemnt Level</th>
-                     <th></th>
-                  </tr>
-                 </thead>
-                 <tbody >
-                   <tr>
-                     <td class="form-group "><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
-                     <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
-                     <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
-                     <td>
-                       <select class="form-control form-control-sm" id="selectGrade">
-                         <option>Grade 1</option>
-                         <option>Grade 2</option>
-                         <option>Grade 3</option>
-                         <option>Grade 4</option>
-                         <option>Grade 5</option>
-                       </select>
-                     </td>
-                     <td>
-                       <select class="form-control form-control-sm" id="selectAssessmentLevel">
-                         <option>Grade 1</option>
-                         <option>Grade 2</option>
-                         <option>Grade 3</option>
-                         <option>Grade 4</option>
-                         <option>Grade 5</option>
-                       </select>
-                     </td>
-                     <td><button type="submit" class="btn btn-primary btn-sm">Add</button></td>
-                   </tr>
-                   <td class="form-group "><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
-                   <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
-                   <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
-                   <td>
-                     <select class="form-control form-control-sm" id="selectGrade">
-                       <option>Grade 1</option>
-                       <option>Grade 2</option>
-                       <option>Grade 3</option>
-                       <option>Grade 4</option>
-                       <option>Grade 5</option>
-                     </select>
-                   </td>
-                   <td>
-                     <select class="form-control form-control-sm" id="selectAssessmentLevel">
-                       <option>Grade 1</option>
-                       <option>Grade 2</option>
-                       <option>Grade 3</option>
-                       <option>Grade 4</option>
-                       <option>Grade 5</option>
-                     </select>
-                   </td>
-                   <td><button type="submit" class="btn btn-primary btn-sm">Edit</button></td>
+               <div class="card">
+                 <div class="card card-title">
 
+                 </div>
 
-                   <tr>
+               </div>
+               <button type="button" name="T12">
+                 <p>Create Rubrics</p>
+                 <p>T1 & T2</p>
+               </button>
+               <button type="button" name="T34">
+                 <p>Create Rubrics</p>
+                 <p>T3 & T4</p>
+               </button>
+               <button type="button" name="next">next</button>
 
-                   </tr>
-
-                 </tbody>
-               </table>
              </form>
            </div>
          </div>
