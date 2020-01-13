@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\CurriculumController' => $baseDir . '/app/Http/Controllers/CurriculumController.php',
     'App\\Http\\Controllers\\CurriculumScriibiLevelsController' => $baseDir . '/app/Http/Controllers/CurriculumScriibiLevelsController.php',
     'App\\Http\\Controllers\\CurriculumScriibiLevelsCriteriaController' => $baseDir . '/app/Http/Controllers/CurriculumScriibiLevelsCriteriaController.php',
+    'App\\Http\\Controllers\\FormativeAssessmentResultsController' => $baseDir . '/app/Http/Controllers/FormativeAssessmentResultsController.php',
     'App\\Http\\Controllers\\FormativeAssessmentsController' => $baseDir . '/app/Http/Controllers/FormativeAssessmentsController.php',
     'App\\Http\\Controllers\\GeneralWritingProblemLessonsController' => $baseDir . '/app/Http/Controllers/GeneralWritingProblemLessonsController.php',
     'App\\Http\\Controllers\\GeneralWritingProblemsController' => $baseDir . '/app/Http/Controllers/GeneralWritingProblemsController.php',
