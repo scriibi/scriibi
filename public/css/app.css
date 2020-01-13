@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -11362,20 +11362,25 @@ body {
   margin: 0;
 }
 
-body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas: "header" "content" "footer";
-}
-
 .nav-brand img {
   width: 100px;
   margin: 0;
   padding: 0;
 }
 
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "header" "content" "footer";
+}
+
 .nav-header {
-  border-bottom: 3px solid #33A849;
+  grid-area: header;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  border-bottom: 5px solid green;
   box-shadow: 0 -10px 10px 10px #888888;
 }
 
@@ -11384,46 +11389,44 @@ body {
 }
 
 .nav-header ul {
+  -webkit-box-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.nav-header ul li {
-  float: left;
 }
 
 .nav-header ul a {
   display: inline-block;
   line-height: 50px;
   padding: 0 20px;
-  color: #4C4D4F;
-  font-weight: bold;
 }
 
 .nav-header ul a:hover {
-  color: #33A849;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  text-decoration: none;
+  background-color: yellow;
 }
 
-footer {
-  border-top: 30px solid #6A6B6F;
+.nav-header ul .nav-header-logout-link {
+  -webkit-box-flex: 1;
+          flex: 1;
+  text-align: right;
 }
 
-.album {
+.content {
   grid-area: content;
   padding: 20px 40px;
 }
 
-/* Extra small devices (phones, 600px and down) */
+.content-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 4fr auto 4fr;
+  grid-template-areas: "content-container_grid_3" "grid_middle" "content-container_grid_3";
+}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-
-/* Medium devices (landscape tablets, 768px and up) */
-
-/* Large devices (laptops/desktops, 992px and up) */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+.content-container_grid_3 {
+  background-color: yellow;
+}
 
