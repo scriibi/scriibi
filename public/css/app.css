@@ -11430,3 +11430,8 @@ body {
   background-color: yellow;
 }
 
+#list_title {
+  font-size: large;
+  font-weight: bold;
+}
+

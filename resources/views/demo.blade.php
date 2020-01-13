@@ -10,7 +10,7 @@
        </div>
 
        <div class="grid_middle">
-         <h1>This is a master list of all your students</h1>
+         <p id="list_title">This is a master list of all your students</p>
          <p>The information below will be used to populate assessments and will appear when the data is viewed</p>
 
 
@@ -23,7 +23,7 @@
     </div>
 
 
-  
+
 
 
 

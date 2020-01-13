@@ -34,6 +34,8 @@ body {
 
   img.logo {
     height: 50px;
+
+
   }
   ul {
     flex: 1;
@@ -75,4 +77,9 @@ body {
 
 .content-container_grid_3{
   background-color: yellow;
+}
+
+#list_title{
+  font-size: large;
+  font-weight: bold;
 }
