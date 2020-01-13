@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class text_types_skills extends Model
 {
+    protected $primaryKey = 'text_types_skills_Id';
+
     public function text_types(){
         return $this->belongTo('App\text_types', 'text_types_skills_text_type_Id', 'text_type_Id');
     }

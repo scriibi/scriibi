@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class teachers extends Model
 {
+    protected $primaryKey = 'user_Id';
+
     public function schools(){
         return $this->hasOne('App\schools');
     }
