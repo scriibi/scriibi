@@ -68,7 +68,7 @@ body {
 
   height: 100%;
   display: grid;
-  grid-template-columns: 3fr 600px 3fr;
+  grid-template-columns: 3fr 70% 3fr;
   grid-template-areas:
     "content-container_grid_3"
     "grid_middle"
