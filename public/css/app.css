@@ -11381,6 +11381,7 @@ body {
   -webkit-box-align: center;
           align-items: center;
   border-bottom: 5px solid green;
+  box-shadow: 0 -10px 10px 10px #888888;
 }
 
 .nav-header img.logo {
