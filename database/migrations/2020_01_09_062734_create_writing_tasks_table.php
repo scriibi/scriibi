@@ -20,6 +20,7 @@ class CreateWritingTasksTable extends Migration
             $table->bigInteger('created_By_Teacher_User_Id')->unsigned();
             $table->bigInteger('teaching_period_Id')->unsigned();
             $table->string('task_name', 45);
+
             $table->unique('writing_task_Id');
             $table->index('created_By_Teacher_User_Id');
             $table->index('teaching_period_Id');
@@ -35,6 +36,7 @@ class CreateWritingTasksTable extends Migration
                 ->on('teaching_periods')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+                
             $table->timestamps();
         });
     }
