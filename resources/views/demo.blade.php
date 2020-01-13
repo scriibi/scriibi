@@ -35,20 +35,41 @@
                     <input type="text" class="form-control" id="inputPassword4">
                   </div>
                   <div class="form-group col-md-2">
-                    <label for="inputPassword4">Assessemnt Level</label>
+                    <label for="inputPassword4">Assessemnt Level<span>&#8505;</span></label>
                     <input type="text" class="form-control" id="inputPassword4">
                   </div>
                   <div class="form-group col-md-2">
                     <label for="inputPassword4"></label>
-                    <input type="button" class="form-control" id="inputPassword4">
+                    <button type="submit" class="btn btn-primary">Add</button>
                   </div>
-                  
                 </div>
+              </form>
+              <table class="table">
+                <thead>
 
+                  <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>ID</th>
+                    <th>Grade</th>
+                    <th>Assessemnt Level</th>
+                    <th></th>
+
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+
+                </tbody>
+              </table>
            </div>
-
          </div>
-
        </div>
 
        <div class="content-container_grid_3">
