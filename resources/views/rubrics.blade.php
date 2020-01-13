@@ -1,12 +1,12 @@
 @extends('layout.mainlayout')
-@section('title', 'Demo')
+@section('title', 'Rubrics')
 @section('content')
 
 
    <div class="content">
      <div class="content-container">
        <div class="content-container_grid_3">
-        Leftmost
+        Leftmost---rubrics
        </div>
        <div class="grid_middle">
          <p id="list_title">This is a master list of all your students</p>
