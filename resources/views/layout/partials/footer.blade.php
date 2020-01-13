@@ -5,7 +5,7 @@
                 <p class="text-light">
                  Scriibi takes privacy seriously. Visit Our <a href="#" class="text-white-50">privacy policy</a> to learn more
                 </p>
-                <p class="text-light">&copy; 2019 scriibi.All rights reserved<p>
+                <p class="text-light">&copy; 2019 Scriibi. All rights reserved<p>
             </div>
         </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
