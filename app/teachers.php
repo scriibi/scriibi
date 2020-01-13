@@ -9,7 +9,7 @@ class teachers extends Model
     protected $primaryKey = 'user_Id';
 
     public function schools(){
-        return $this->hasOne('App\schools');
+        return $this->hasOne('App\schools', 'primary_Contact_Id', 'user_Id');
     }
 
     public function lessons(){
