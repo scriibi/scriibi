@@ -16,9 +16,8 @@
              <form class="form-row" action="#" method="post">
                <div class="card">
                  <div class="card card-title">
-
+                   <p>Step 1. Choose Rubric Option</p>
                  </div>
-
                </div>
                <button type="button" name="T12">
                  <p>Create Rubrics</p>
@@ -29,12 +28,10 @@
                  <p>T3 & T4</p>
                </button>
                <button type="button" name="next">next</button>
-
              </form>
            </div>
          </div>
        </div>
-
        <div class="content-container_grid_3">
         Rightmost
        </div>
