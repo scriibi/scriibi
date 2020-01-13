@@ -34,6 +34,8 @@ body {
 
   img.logo {
     height: 50px;
+
+
   }
   ul {
     flex: 1;
@@ -66,7 +68,7 @@ body {
 
   height: 100%;
   display: grid;
-  grid-template-columns: 4fr auto 4fr;
+  grid-template-columns: 3fr 70% 3fr;
   grid-template-areas:
     "content-container_grid_3"
     "grid_middle"
@@ -76,3 +78,17 @@ body {
 .content-container_grid_3{
   background-color: yellow;
 }
+
+#list_title{
+  font-size: large;
+  font-weight: bold;
+}
+
+.table{
+  text-align: left;
+}
+
+// .table-head{
+//   text-overflow: clip;
+//
+// }
