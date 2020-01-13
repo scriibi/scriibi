@@ -57,7 +57,21 @@ body {
     }
   }
 }
-.album {
+.content{
   grid-area: content;
   padding: 20px 40px;
+}
+
+.content-container{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 4fr auto 4fr;
+  grid-template-areas:
+    "content-container_grid_3"
+    "grid_middle"
+    "content-container_grid_3";
+}
+
+.content-container_grid_3{
+  background-color: yellow;
 }
