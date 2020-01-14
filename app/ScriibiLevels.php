@@ -19,4 +19,8 @@ class ScriibiLevels extends Model
     public function students_enrolled_level(){
         return $this->hasOne('App\students', 'enrolled_Level_Id', 'scriibi_Level_Id');
     }
+
+    public function lessons(){
+        return $this->belongsToMany('App\lessons', 'lessons_scriibi_levels', 'scriibi_levels_scriibi_Level_Id', 'lessons_lesson_Id');
+    }
 }
