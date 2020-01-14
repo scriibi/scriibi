@@ -15,4 +15,7 @@ class formative_assessments extends Model
         return $this->belongsToMany('App\classes_students', 'formative_assessment_results', 'formative_assessments_formative_assessment_Id', 'classes_students_classes_students_Id');
     }
 
+    public function teaching_period(){
+        return $this->belongsTo('App\teaching_periods', 'teaching_period', 'teaching_period_Id');
+    }
 }

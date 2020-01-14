@@ -36,4 +36,8 @@ class students extends Model
     public function school(){
         return $this->belongsTo('App\schools', 'schools_school_Id', 'school_Id');
     }
+
+    public function task_student(){
+        return $this->hasMany('App\tasks_students', 'student_Id', 'student_Id');
+    }
 }

@@ -23,4 +23,8 @@ class curriculum extends Model
     public function curriculum_scriibi_levels(){
         return $this->hasMany('App\curriculum_scriibi_levels', 'curriculum_Id', 'curriculum_Id');
     }
+
+    public function schools(){
+        return $this->hasOne('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
+    }
 }

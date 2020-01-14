@@ -26,4 +26,8 @@ class schools extends Model
     public function student(){
         return $this->hasMany('App\students', 'schools_school_Id', 'school_Id');
     }
+
+    public function curriculum(){
+        return $this->belongsTo('App\curriculum', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
+    }
 }
