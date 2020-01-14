@@ -40,4 +40,8 @@ class students extends Model
     public function task_student(){
         return $this->hasMany('App\tasks_students', 'student_Id', 'student_Id');
     }
+
+    public function student_rubrik_level_changelog(){
+        return $this->hasMany('App\student_rubrik_level_changelog', 'students_student_Id', 'student_Id');
+    }
 }

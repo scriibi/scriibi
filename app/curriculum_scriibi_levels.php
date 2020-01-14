@@ -25,4 +25,8 @@ class curriculum_scriibi_levels extends Model
         return $this->belongsTo('App\ScriibiLevels', 'global_level', 'scriibi_Level_Id');
     }
 
+    public function curriculum_scriibi_levels_criteria(){
+        return $this->hasMany('App\curriculum_scriibi_levels_criteria', 'fk_curriculum_scriibi_levels_Id', 'curriculum_scriibi_levels_Id');
+    }
+
 }

@@ -19,4 +19,8 @@ class curriculum_scriibi_levels_criteria extends Model
     public function local_criteria(){
         return $this->belongsTo('App\local_criteria', 'local_criteria_criteria_Id', 'criteria_Id');
     }
+
+    public function curriculum_scriibi_levels(){
+        return $this->belongsTo('App\curriculum_scriibi_levels', 'fk_curriculum_scriibi_levels_Id', 'curriculum_scriibi_levels_Id');
+    }
 }

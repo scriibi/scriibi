@@ -40,4 +40,8 @@ class ScriibiLevels extends Model
     public function curriculum_scriibi_levels_global(){
         return $this->hasMany('App\curriculum_scriibi_levels', 'global_level', 'scriibi_Level_Id');
     }
+
+    public function scriibi_level(){
+        return $this->hasMany('App\skills_levels', 'scriibi_levels_scriibi_Level_Id', 'scriibi_Level_Id');
+    }
 }

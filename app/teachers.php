@@ -47,4 +47,8 @@ class teachers extends Model
     public function formative_assessment(){
         return $this->hasMany('App\formative_assessments', 'created_by', 'user_Id');
     }
+
+    public function student_rubrik_level_changelog(){
+        return $this->hasMany('App\student_rubrik_level_changelog', 'teachers_user_Id', 'user_Id');
+    }
 }

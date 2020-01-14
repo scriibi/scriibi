@@ -25,4 +25,12 @@ class skills_levels extends Model
     public function goal(){
         return $this->hasMany('App\goals', 'skills_levels_skills_levels_Id', 'skills_levels_Id');
     }
+
+    public function skills(){
+        return $this->belongsTo('App\skills', 'skills_levels_skills_skill_Id', 'skill_Id');
+    }
+
+    public function scriibi_level(){
+        return $this->belongsTo('App\ScriibiLevels', 'scriibi_levels_scriibi_Level_Id', 'scriibi_Level_Id');
+    }
 }
