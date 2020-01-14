@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+a Class is a grouping of students that are taught by a teacher.
+*/
+
 class classes extends Model
 {
     protected $primaryKey = 'class_Id';

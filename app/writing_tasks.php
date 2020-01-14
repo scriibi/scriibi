@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ *
+ * a writing task is created by a teacher in order to asses the skill level of students.
+ *
+ */
 class writing_tasks extends Model
 {
     protected $primaryKey = 'writing_task_Id';

@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+this is the scriibi-defined writing skill that serves as the basis of assessment.
+*/
 class skills extends Model
 {
     protected $primaryKey = 'skill_Id';

@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+this associates particular students with a particular record from "tasks_skills_results", thereby recording a student's result from a writing task.
+*/
+
 class tasks_students extends Model
 {
     protected $primaryKey = 'tasks_students_Id';
