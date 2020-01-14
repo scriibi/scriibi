@@ -10,5 +10,4 @@ this class records the result of a formative assessment by associating a particu
 class formative_assessment_results extends Model
 {
     protected $primaryKey = 'formative_assessment_results_Id';
-
 }
