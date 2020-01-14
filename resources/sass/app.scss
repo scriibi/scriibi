@@ -16,9 +16,10 @@ html, body {
 
 footer {
     border-top: 30px solid #6A6B6F;
-    width: 100%;
-    position: absolute;
+    width: 100%vw;
+    position: bottom;
     bottom: 0;
+
 }
 
 //---------- Partials -------------------------
@@ -97,6 +98,28 @@ footer {
   width: 100%;
 }
 
+#text-type-title{
+  padding-left: 40px;
+}
+#checkbox-group{
+  padding-left: 40px;
+}
+
+#term1-savebtn{
+  float: right;
+}
+
+#btn-reviewRubric{
+  float: right;
+}
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xs) {
+    column-count: 2;
+  }
+}
 //---------- Media Queries --------------------
 
 /* Extra small devices (phones, 600px and down) */

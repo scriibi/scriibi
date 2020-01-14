@@ -47,28 +47,265 @@
           </div>
           <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-              <div class="form d-inline-flex p-2 bd-highlight"  id="step2-form">
-                <div class="col d-flex justify-content-around">
-                  <input type="text" class="form-control" name="" value="Term 1 Rubric">
+                <div class="form-group d-inline-flex p-2 bd-highlight"  id="step2-form">
+                  <div class="col d-flex justify-content-around">
+                    <input type="text" class="form-control" name="" value="Term 1 Rubric">
+                  </div>
+                  <div class="col input-group">
+                      <div class="input-group-prepend">
+                        <select class="" name="">
+                          <option value="Code value">Curriculum Codes</option>
+                          <option value="">Level 1</option>
+                          <option value="">Level 2</option>
+                          <option value="">Level 3</option>
+                          <option value="">Level 4</option>
+                          <option value="">Level 5</option>
+                        </select>
+                      </div>
+                      <input type="text" name="" value="21" readonly >
+                  </div>
                 </div>
-                <div class="col input-group">
-                    <div class="input-group-prepend">
-                      <select class="" name="">
-                        <option value="Code value">Curriculum Codes</option>
-                        <option value="">Level 1</option>
-                        <option value="">Level 2</option>
-                        <option value="">Level 3</option>
-                        <option value="">Level 4</option>
-                        <option value="">Level 5</option>
-                      </select>
+                <div class="form-group row">
+                  <p id="text-type-title">Optional: Select 1 or more text types to guide skills selection</p>
+                </div>
+                <div class="form-group row" id="checkbox-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Description</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox1">Discussion</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox1">Explanation</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <label class="form-check-label" for="inlineCheckbox1">Historical Narrative</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                    <label class="form-check-label" for="inlineCheckbox1">Information Report</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                    <label class="form-check-label" for="inlineCheckbox1">Narrative</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                    <label class="form-check-label" for="inlineCheckbox1">Persuasive</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                    <label class="form-check-label" for="inlineCheckbox1">Poetry</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                    <label class="form-check-label" for="inlineCheckbox1">Procedure</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                    <label class="form-check-label" for="inlineCheckbox1">Recount</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                    <label class="form-check-label" for="inlineCheckbox1">Response</label>
+                  </div>
+                </div>
+                <div class="card-columns">
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Ideas</h5>
                     </div>
-                    <input type="text" name="" value="21" readonly >
+                    <div class="card-body">
+                      <p>1</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Organisation</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>2</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Word Choice</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>3</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Conventions</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>4</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Sentence Fluency</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>5</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Voice</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>6</p>
+                    </div>
+                  </div>
+                  <div class="card h-auto d-inline-block">
+                    <div class="card-header">
+                      <h5>Other Skills</h5>
+                    </div>
+                    <div class="card-body">
+                      <p>7</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row" id="term1-savebtn">
+                  <button type="button" name="button" class="btn btn-success btn-sm">Save</button>
+
                 </div>
 
-              </div>
+                <fieldset id="term2-form" hidden>
+                  <div class="form-group d-inline-flex p-2 bd-highlight"  id="step2-form">
+                    <div class="col d-flex justify-content-around">
+                      <input type="text" class="form-control" name="" value="Term 2 Rubric">
+                    </div>
+                    <div class="">
+                      <button type="button" name="button" class="btn btn-success ">Auto-pop term 2 skills</button>
+
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <p id="text-type-title">Optional: Select 1 or more text types to guide skills selection</p>
+                  </div>
+                  <div class="form-group row" id="checkbox-group">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                      <label class="form-check-label" for="inlineCheckbox1">Description</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                      <label class="form-check-label" for="inlineCheckbox1">Discussion</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                      <label class="form-check-label" for="inlineCheckbox1">Explanation</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                      <label class="form-check-label" for="inlineCheckbox1">Historical Narrative</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                      <label class="form-check-label" for="inlineCheckbox1">Information Report</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                      <label class="form-check-label" for="inlineCheckbox1">Narrative</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                      <label class="form-check-label" for="inlineCheckbox1">Persuasive</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                      <label class="form-check-label" for="inlineCheckbox1">Poetry</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                      <label class="form-check-label" for="inlineCheckbox1">Procedure</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                      <label class="form-check-label" for="inlineCheckbox1">Recount</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                      <label class="form-check-label" for="inlineCheckbox1">Response</label>
+                    </div>
+                  </div>
+                  <div class="card-columns">
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Ideas</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>1</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Organisation</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>2</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Word Choice</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>3</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Conventions</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>4</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Sentence Fluency</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>5</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Voice</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>6</p>
+                      </div>
+                    </div>
+                    <div class="card h-auto d-inline-block">
+                      <div class="card-header">
+                        <h5>Other Skills</h5>
+                      </div>
+                      <div class="card-body">
+                        <p>7</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row" id="term1-savebtn">
+                    <button type="button" name="button" class="btn btn-success btn-sm">Save</button>
+                  </div>
+
+                </fieldset>
             </div>
+
           </div>
 
+        </div>
+        <div class="" id="btn-reviewRubric">
+          <button type="button" name="button" class="btn btn-success btn-md" >Review</button>
         </div>
       </div>
    </div>
