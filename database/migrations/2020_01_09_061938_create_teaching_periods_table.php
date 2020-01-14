@@ -16,6 +16,7 @@ class CreateTeachingPeriodsTable extends Migration
         Schema::create('teaching_periods', function (Blueprint $table) {
             $table->bigIncrements('teaching_period_Id');
             $table->string('period_Name', 45);
+            
             $table->unique('teaching_period_Id');
             $table->unique('period_Name');
             $table->timestamps();
