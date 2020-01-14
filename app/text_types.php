@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * a text type is scriibi-defined categorisation of a peice of writing.
+ */
 class text_types extends Model
 {
     protected $primaryKey = 'text_type_Id';

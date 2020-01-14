@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        Auth0\Login\LoginServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -226,6 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Auth0' => Auth0\Login\Facade\Auth0::class,
+
 
     ],
 

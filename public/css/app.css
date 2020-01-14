@@ -11359,14 +11359,15 @@ a.text-dark:focus {
 html,
 body {
   height: 100%;
+  width: 100vw;
+  overflow-x: hidden;
   margin: 0;
 }
 
 footer {
   border-top: 30px solid #6A6B6F;
-  width: 100% vw;
-  position: bottom;
-  bottom: 0;
+  width: 100vw;
+  margin-top: 50px;
 }
 
 .nav-brand img {
@@ -11504,7 +11505,7 @@ footer {
 /* active state */
 
 input:focus ~ .bar:before {
-  width: 100%;
+  width: 90%;
 }
 
 input:focus {
@@ -11555,21 +11556,12 @@ input:focus {
   margin-top: 50px;
 }
 
-.btn-term {
-  -webkit-box-align: stretch;
-          align-items: stretch;
-}
-
 .table {
   text-align: left;
 }
 
 .table-head {
   white-space: nowrap;
-}
-
-#rubric-accordion {
-  margin: 5%;
 }
 
 #step1-next {
@@ -11594,46 +11586,6 @@ input:focus {
 
 #btn-reviewRubric {
   float: right;
-}
-
-.border-for-checkbox {
-  border-bottom: 1px solid grey;
-  width: 100%;
-}
-
-.body-list {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  text-indent: 5%;
-  vertical-align: middle;
-  border-radius: 7px;
-}
-
-.form-check-label {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.card-ideas {
-  border-radius: 7px;
-  background-color: yellow;
-  border: 3px solid yellow;
-}
-
-.card-header {
-  border-radius: 7px 7px 0px 0px;
-  white-space: nowrap;
-}
-
-.card-body {
-  padding: 0;
-}
-
-.skill-cat {
-  text-indent: 10%;
-  vertical-align: middle;
-  font-size: 0.8rem;
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -11661,4 +11613,3 @@ input:focus {
 /* Large devices (laptops/desktops, 992px and up) */
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-

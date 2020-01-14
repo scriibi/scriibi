@@ -4,8 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+this class associates a global and local criteria with a particular instance of curriculum-scriibi_levels
+*/
+
 class curriculum_scriibi_levels_criteria extends Model
-{   
+{
     protected $primaryKey = 'curriculum_scriibi_levels_criteria_Id';
 
     public function global_criteria(){
@@ -14,5 +18,9 @@ class curriculum_scriibi_levels_criteria extends Model
 
     public function local_criteria(){
         return $this->belongsTo('App\local_criteria', 'local_criteria_criteria_Id', 'criteria_Id');
+    }
+
+    public function curriculum_scriibi_levels(){
+        return $this->belongsTo('App\curriculum_scriibi_levels', 'fk_curriculum_scriibi_levels_Id', 'curriculum_scriibi_levels_Id');
     }
 }

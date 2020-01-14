@@ -1,4 +1,6 @@
 branch-defaults:
+  development:
+    environment: scriibi-sydney-dev
   master:
     environment: scriibi-sydney-dev
     group_suffix: null

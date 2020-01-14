@@ -14,13 +14,15 @@ class CreateGeneralWritingProblemLessonsTable extends Migration
     public function up()
     {
         Schema::create('general_writing_problem_lessons', function (Blueprint $table) {
-            $table->bigIncrements('lessons_categories_Id');
+            $table->bigIncrements('lessons_general_writing_problem_Id');
             $table->bigInteger('lessons_lesson_Id')->unsigned();
-            $table->bigInteger('categories_lesson_categories_Id')->unsigned();
+            $table->bigInteger('general_writing_problems_Id')->unsigned();
 
-            $table->unique('lessons_categories_Id');
+            $table->unique('lessons_general_writing_problem_Id', 'lessons-general');
+
             $table->index('lessons_lesson_Id');
-            $table->index('categories_lesson_categories_Id', 'general_writing_problem_lessons_categories_lesson_cat_id_index');
+            $table->index('general_writing_problems_Id', 'lessons-general-index');
+
 
             $table->foreign('lessons_lesson_Id')
                 ->references('lesson_Id')
@@ -28,12 +30,12 @@ class CreateGeneralWritingProblemLessonsTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('categories_lesson_categories_Id', 'general_writing_problem_lessons_categories_lesson_cat_id_foreign')
-                ->references('lesson_categories_Id')
+            $table->foreign('general_writing_problems_Id', 'lessons-general-fk')
+                ->references('general_writing_problems_Id')
                 ->on('general_writing_problems')
                 ->onDelete('no action')
-                ->onUpdate('no action');    
-                
+                ->onUpdate('no action');
+
             $table->timestamps();
         });
     }

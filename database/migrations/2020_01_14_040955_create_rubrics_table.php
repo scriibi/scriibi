@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateRubricsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('rubrics', function (Blueprint $table) {
+            $table->bigIncrements('rubric_Id');
+            $table->bigInteger('scriibi_levels_scriibi_level_Id')->unsigned();
+            $table->string('rubric_Name', 45);
+            $table->string('rubric_Description', 150);
+
+            $table->unique('rubric_Id');
+
+            $table->foreign('scriibi_levels_scriibi_level_Id')
+                ->references('skill_Id')
+                ->on('skills')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('rubrics');
+    }
+}
