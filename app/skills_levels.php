@@ -19,7 +19,7 @@ class skills_levels extends Model
     }
 
     public function strategies(){
-        return $this->belongsTo('App/strategies', 'strategies_strategies_Id', 'strategies_Id');
+        return $this->belongsTo('App\strategies', 'strategies_strategies_Id', 'strategies_Id');
     }
 
     public function goal(){
