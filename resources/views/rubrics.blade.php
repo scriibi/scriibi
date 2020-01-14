@@ -18,19 +18,17 @@
           </div>
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-              <div class="card-body">
-                <div class="card-text">
-                  <button type="button" name="button" class="btn btn-outline-secondary">
-                    <p>Create Rubric</p>
-                    <p>T1&T2</p>
-                  </button>
-                  <button type="button" name="button" class="btn btn-outline-secondary">
-                    <p>Create Rubric</p>
-                    <p>T3&T4</p>
-                  </button>
-                  <div class="">
-                    <button type="button" name="button" class="btn btn-primary btn-sm btn-success" id="step1-next"  disabled>next</button>
-                  </div>
+              <div class="card-text d-flex justify-content-between">
+                <button type="button" name="button" class="btn btn-outline-secondary">
+                  <p>Create Rubric</p>
+                  <p>T1&T2</p>
+                </button>
+                <button type="button" name="button" class="btn btn-outline-secondary ">
+                  <p>Create Rubric</p>
+                  <p>T3&T4</p>
+                </button>
+                <div class="">
+                  <button type="button" name="button" class="btn btn-primary btn-sm btn-success" id="step1-next"  disabled>next</button>
                 </div>
               </div>
             </div>
@@ -62,7 +60,7 @@
                           <option value="">Level 5</option>
                         </select>
                       </div>
-                      <input type="text" name="" value="21" readonly >
+                      <input type="text" name="" value="" readonly >
                   </div>
                 </div>
                 <div class="form-group row">
@@ -115,17 +113,27 @@
                   </div>
                 </div>
                 <div class="card-columns">
-                  <div class="card h-auto d-inline-block">
-                    <div class="card-header">
-                      <h5>Ideas</h5>
-                    </div>
-                    <div class="card-body">
-                      <p>1</p>
+                  <div class="card card-ideas h-auto d-inline-block ">
+                    <div class="card-body idea-body">
+                      <div class="card-text skill-cat">
+                        <h5 class="skill-cat text-white">Ideas</h5>
+                      </div>
+
+                      <div class="form-check body-list bg-white">
+                        <div class="d-block border-for-checkbox">
+                          <input class="form-check-input" type="checkbox" name="" value="">
+                          <label class="form-check-label" for="">12</label>
+                        </div>
+                        <div class="">
+                          <input class="form-check-input"type="checkbox" name="" value="">
+                          <label class="form-check-label" for="">56</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Organisation</h5>
+                      <h5 class="skill-cat">Organisation</h5>
                     </div>
                     <div class="card-body">
                       <p>2</p>
@@ -133,7 +141,7 @@
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Word Choice</h5>
+                      <h5 class="skill-cat">Word Choice</h5>
                     </div>
                     <div class="card-body">
                       <p>3</p>
@@ -141,7 +149,7 @@
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Conventions</h5>
+                      <h5 class="skill-cat">Conventions</h5>
                     </div>
                     <div class="card-body">
                       <p>4</p>
@@ -149,7 +157,7 @@
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Sentence Fluency</h5>
+                      <h5 class="skill-cat">Sentence Fluency</h5>
                     </div>
                     <div class="card-body">
                       <p>5</p>
@@ -157,7 +165,7 @@
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Voice</h5>
+                      <h5 class="skill-cat">Voice</h5>
                     </div>
                     <div class="card-body">
                       <p>6</p>
@@ -165,7 +173,7 @@
                   </div>
                   <div class="card h-auto d-inline-block">
                     <div class="card-header">
-                      <h5>Other Skills</h5>
+                      <h5 class="skill-cat">Other Skills</h5>
                     </div>
                     <div class="card-body">
                       <p>7</p>

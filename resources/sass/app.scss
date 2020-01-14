@@ -142,20 +142,20 @@ footer {
     opacity: 1;
 }
 
-.bar  { 
-    position: relative; 
-    display: block; 
+.bar  {
+    position: relative;
+    display: block;
     width: 100%;
 }
 
 .bar:before {
     content: '';
-    height: 2px; 
+    height: 2px;
     width: 0;
-    bottom: 0px; 
+    bottom: 0px;
     position: absolute;
-    background: #33A849; 
-    transition: 0.2s ease all; 
+    background: #33A849;
+    transition: 0.2s ease all;
 }
 
 .bar:before {
@@ -218,6 +218,9 @@ input:focus {
   margin-top: 50px;
 }
 
+.btn-term{
+  align-items: stretch;
+}
 .table{
   text-align: left;
 }
@@ -228,6 +231,9 @@ input:focus {
 
 //Rubric Page
 
+#rubric-accordion{
+  margin: 5%;
+}
 #step1-next{
   float: right;
 }
@@ -251,7 +257,42 @@ input:focus {
   float: right;
 }
 
+.border-for-checkbox{
+  border-bottom: 1px solid grey;
+  width: 100%;
 
+}
+
+.body-list{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  text-indent: 5%;
+  vertical-align: middle;
+  border-radius:7px;
+}
+
+.form-check-label{
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-ideas {
+  border-radius: 7px;
+  background-color: yellow;
+  border: 3px solid yellow;
+}
+.card-header{
+  border-radius: 7px 7px 0px 0px;
+  white-space: nowrap;
+}
+.card-body{
+  padding: 0;
+}
+.skill-cat{
+  text-indent: 10%;
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
 .card-columns {
   @include media-breakpoint-only(sm) {
     column-count: 3;
