@@ -14,10 +14,10 @@ class CreateGeneralWritingProblemsTable extends Migration
     public function up()
     {
         Schema::create('general_writing_problems', function (Blueprint $table) {
-            $table->bigIncrements('lesson_categories_Id');
-            $table->string('lesson_category_Name', 45);
+            $table->bigIncrements('general_writing_problems_Id');
+            $table->string('general_writing_problem_name', 45);
 
-            $table->unique('lesson_categories_Id');
+            $table->unique('general_writing_problems_Id');
             $table->timestamps();
         });
     }

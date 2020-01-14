@@ -10,9 +10,9 @@ a general writing problem is a way of categorising a particlar lesson. a lesson 
 
 class general_writing_problems extends Model
 {
-    protected $primaryKey = 'lesson_categories_Id';
+    protected $primaryKey = 'general_writing_problems_Id';
 
     public function lessons(){
-        return $this->belongsToMany('App\lessons', 'general_writing_problem_lessons', 'categories_lesson_categories_Id', 'lessons_lesson_Id');
+        return $this->belongsToMany('App\lessons', 'general_writing_problem_lessons', 'general_writing_problems_Id', 'lessons_lesson_Id');
     }
 }
