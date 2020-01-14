@@ -18,4 +18,8 @@ class formative_assessments extends Model
     public function teaching_period(){
         return $this->belongsTo('App\teaching_periods', 'teaching_period', 'teaching_period_Id');
     }
+
+    public function teacher(){
+        return $this->belongsTo('App\teachers', 'created_by', 'user_Id');
+    }
 }
