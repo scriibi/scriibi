@@ -25,6 +25,7 @@ class CreateSchoolsTable extends Migration
                 ->on('teachers')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+                
             $table->foreign('curriculum_details_curriculum_details_Id')
                 ->references('curriculum_Id')
                 ->on('curriculum')

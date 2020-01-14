@@ -1,8 +1,108 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//---------- Element Overrides ----------------
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+footer {
+    border-top: 30px solid #6A6B6F;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+//---------- Partials -------------------------
+
+.nav-brand img {
+    width: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-header {//start of nav-header
+    border-bottom: 3px solid #33A849;
+    box-shadow: 0 -10px 10px 10px #888888;
+
+    img.logo {
+        height: 50px;
+    }
+
+    ul {//start of ul
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        li {
+            float: left;
+        }
+
+        a {
+            display: inline-block;
+            line-height: 50px;
+            padding: 0 20px;
+            color: #4C4D4F;
+            font-weight: bold;
+
+            &:hover {
+            color: #33A849;
+            transition: 0.2s;
+            text-decoration: none;
+            }
+        }
+    }//end of ul
+}//end of nav-header
+
+//---------- Page Specific --------------------
+
+//Student List
+
+#list_title{
+  font-size: large;
+  font-weight: bold;
+}
+
+.table{
+  text-align: left;
+}
+
+.table-head{
+  white-space:nowrap;
+
+}
+
+//---------- Media Queries --------------------
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+}

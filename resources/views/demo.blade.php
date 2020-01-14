@@ -1,15 +1,84 @@
 @extends('layout.mainlayout')
+@section('title', 'Demo')
 @section('content')
-   <div class="album text-muted">
-     <div class="container">
-       <div class="row">
-         <h1>Student list</h1>
-          <ul>
-            <li>Student 1</li>
-            <li>Student 2</li>
-            <li>Student 3</li>
-          </ul>
-       </div>
-    </div>
-  </div>
+
+
+<div class="row">
+   <div class="d-none d-sm-block col-sm-1 col-md-2">
+   </div>
+   <div class="col-12 col-sm-10 col-md-8">
+       <p id="list_title">This is a master list of all your students</p>
+       <p>Once you populate this list, these students will appear in the rubric forms you access.<br />
+        Note: These students will not be visible to other teachers.</p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Student List</h5>
+                <form class="form-row" action="#" method="post">
+                    <table class="table card-body ">
+                        <thead>
+                            <tr class="table-head">
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>ID</th>
+                                <th>Grade</th>
+                                <th>Assessemnt Level</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="form-group"><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
+                                <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                                <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                                <td>
+                                    <select class="form-control form-control-sm" id="selectGrade">
+                                        <option>Grade 1</option>
+                                        <option>Grade 2</option>
+                                        <option>Grade 3</option>
+                                        <option>Grade 4</option>
+                                        <option>Grade 5</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm" id="selectAssessmentLevel">
+                                        <option>Grade 1</option>
+                                        <option>Grade 2</option>
+                                        <option>Grade 3</option>
+                                        <option>Grade 4</option>
+                                        <option>Grade 5</option>
+                                    </select>
+                                </td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">Add</button></td>
+                            </tr>
+                            <td class="form-group "><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
+                            <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                            <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                            <td>
+                             <select class="form-control form-control-sm" id="selectGrade">
+                               <option>Grade 1</option>
+                               <option>Grade 2</option>
+                               <option>Grade 3</option>
+                               <option>Grade 4</option>
+                               <option>Grade 5</option>
+                             </select>
+                            </td>
+                            <td>
+                             <select class="form-control form-control-sm" id="selectAssessmentLevel">
+                                <option>Grade 1</option>
+                               <option>Grade 2</option>
+                               <option>Grade 3</option>
+                               <option>Grade 4</option>
+                               <option>Grade 5</option>
+                             </select>
+                            </td>
+                            <td><button type="submit" class="btn btn-primary btn-sm">Edit</button></td>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+   </div>
+   <div class="d-none d-sm-block col-sm-1 col-md-2">
+   </div>
+</div>
 @endsection
