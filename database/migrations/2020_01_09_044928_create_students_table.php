@@ -21,7 +21,7 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('enrolled_Level_Id')->unsigned();
             $table->bigInteger('rubrik_level')->unsigned();
             $table->bigInteger('schools_school_Id')->unsigned();
-            $table->double('suggested level');
+            $table->double('suggested level');                  // a relationship has not been set to this yet
             
             $table->unique('Student_Gov_Id');
             $table->unique('student_Id');

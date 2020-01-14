@@ -7,9 +7,10 @@
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
    <div class="col-12 col-sm-10 col-md-8">
-        <h4 class="top-divider mb-3"><strong>Add Students</strong></h4>
+       
+       <!-- Add students -->
+        <h4 class="top-divider mb-3 header-text"><strong>Add Students</strong></h4>
         <div class="add-student-card p-2">
-            <!-- Add students list -->
            <form method="post">
                 <div class="row ml-2 mr-2">
                     <div class="col-11">
@@ -56,14 +57,16 @@
                     </div>
                </div>
            </form>
-            <!-- /Add Students list -->
         </div>
-        <div class="card mt-5">
-            <h5><strong>Student List</strong></h5>
+       <!-- /Add Students -->
+       
+       <!-- Student List -->
+       <h5 class="mt-5 header-text"><strong>Student List</strong></h5>
+        <div class="card mt-3">
             <div class="card-body">
                 <form class="form-row" action="#" method="post">
-                    <table class="table card-body ">
-                        <thead>
+                    <table class="card-body">
+                        <thead class="border-bottom mb-3">
                             <tr class="table-head">
                                 <th>First name</th>
                                 <th>Last name</th>
@@ -101,6 +104,7 @@
                 </form>
             </div>
         </div>
+    <!-- /Student List -->
    </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>

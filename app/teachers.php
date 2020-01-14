@@ -35,4 +35,12 @@ class teachers extends Model
     public function students(){
         return $this->belongsToMany('App\students', 'teacher_students', 'teachers_user_Id', 'students_student_Id');
     }
+
+    public function scriibi_level(){
+        return $this->belongsToMany('App\ScriibiLevels', 'teachers_scriibi_levels', 'teachers_user_Id', 'scriibi_levels_scriibi_Level_Id');
+    }
+
+    public function writing_task(){
+        return $this->hasMany('App\writing_tasks', 'created_By_Teacher_User_Id', 'user_Id');
+    }
 }

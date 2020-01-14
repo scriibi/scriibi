@@ -13,6 +13,10 @@ class teaching_periods extends Model
     protected $primaryKey = 'teaching_period_Id';
 
     public function writing_tasks(){
-        return $this->hasOne('App/writing_tasks', 'teaching_period_Id', 'teaching_period_Id');
+        return $this->hasOne('App\writing_tasks', 'teaching_period_Id', 'teaching_period_Id');
+    }
+
+    public function formative_assessment(){
+        return $this->hasMany('App\formative_assessments', 'teaching_period', 'teaching_period_Id');
     }
 }

@@ -32,4 +32,12 @@ class students extends Model
     public function teachers(){
         return $this->belongsToMany('App\teachers', 'teacher_students', 'students_student_Id', 'teachers_user_Id');
     }
+
+    public function school(){
+        return $this->belongsTo('App\schools', 'schools_school_Id', 'school_Id');
+    }
+
+    public function task_student(){
+        return $this->hasMany('App\tasks_students', 'student_Id', 'student_Id');
+    }
 }
