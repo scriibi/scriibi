@@ -4,8 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+for any given skill at any given level, there exists a corresponding "student definition" that describes the skill in students terms. this is used in goalsheets.
+*/
+
 class student_definitions extends Model
-{   
+{
     protected $primaryKey = 'student_definitions_Id';
 
     public function skills_level(){

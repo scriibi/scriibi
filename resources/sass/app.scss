@@ -11,18 +11,20 @@
 
 html, body {
     height: 100%;
+    width: 100vw;
+    overflow-x: hidden;
     margin: 0;
 }
 
 footer {
     border-top: 30px solid #6A6B6F;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+    width: 100vw;
+    margin-top: 50px;
 }
 
 //---------- Partials -------------------------
 
+//Navigation Bar
 .nav-brand img {
     width: 100px;
     margin: 0;
@@ -41,11 +43,11 @@ footer {
         list-style: none;
         margin: 0;
         padding: 0;
-        
+
         li {
             float: left;
         }
-
+        
         a {
             display: inline-block;
             line-height: 50px;
@@ -60,15 +62,169 @@ footer {
             }
         }
     }//end of ul
+    
+    .nav-logo {
+        padding-left: 0px;
+    }
+    
 }//end of nav-header
+
+//Utility classes
+.card {
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+}
+
+.scriibi-primary-btn {
+    border: none;
+    background-color: #33A849;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.scriibi-primary-btn:hover {
+    background-color: #33A849;
+}
+
+.top-divider {
+    margin-top: 50px;
+}
+
+.header-text {
+    font-size: 1.2rem;
+}
 
 //---------- Page Specific --------------------
 
 //Student List
 
+.add-student-card {
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    height: 66px;
+}
+
+.student-form-inputs {
+    display: block;
+    float: left;
+    margin-right: 3%;
+    position: relative;
+    width: 17%;
+    margin-top: 15px;
+}
+
+//Student text form
+.text-input {
+    border: none;
+    border-bottom:1px solid rgba(130, 130, 130, 1);
+    width: 100%;
+    padding-top: 5px;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+.student-form-label {
+    opacity: 0.3;
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:0px;
+    top:0px;
+    transition:0.2s ease all;
+}
+
+/* active state */
+.text-input:focus ~ .student-form-label, .text-input:valid ~ .student-form-label {
+    top:-20px;
+    font-size:12px;
+    opacity: 1;
+}
+
+.bar  { 
+    position: relative; 
+    display: block; 
+    width: 100%;
+}
+
+.bar:before {
+    content: '';
+    height: 2px; 
+    width: 0;
+    bottom: 0px; 
+    position: absolute;
+    background: #33A849; 
+    transition: 0.2s ease all; 
+}
+
+.bar:before {
+    left: 0;
+}
+
+/* active state */
+input:focus ~ .bar:before {
+    width: 100%;
+}
+
+input:focus {
+    border-bottom: 1px solid rgba(51, 168, 73, 0);
+}
+// End of Student Text input
+
+//Student Select drop down
+
+.select-input {
+    border: none;
+    border-bottom:1px solid rgba(130, 130, 130, 1);
+    padding: 10px 10px 0px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+}
+
+.select-input:focus {
+    outline: none;
+    border-bottom:1px solid rgba(130, 130, 130, 1);
+}
+
+.select-input:hover {
+    background-color: #e8e8e8;
+    cursor: pointer;
+}
+
+/* active state */
+.select-input:focus ~ .student-form-label, .select-input:valid ~ .student-form-label {
+    top:-20px;
+    font-size:12px;
+    opacity: 1;
+}
+
+.select-input::expand:hover {
+    background-color: white;
+}
+
+// End of Select drop down
+
 #list_title{
   font-size: large;
   font-weight: bold;
+}
+
+#RubricBuilder_title{
+  font-size: large;
+  font-weight: bold;
+  color: green;
+  margin-top: 50px;
 }
 
 .table{
@@ -77,32 +233,63 @@ footer {
 
 .table-head{
   white-space:nowrap;
-
 }
 
+//Rubric Page
+
+#step1-next{
+  float: right;
+}
+
+#step2-form{
+  width: 100%;
+}
+
+#text-type-title{
+  padding-left: 40px;
+}
+#checkbox-group{
+  padding-left: 40px;
+}
+
+#term1-savebtn{
+  float: right;
+}
+
+#btn-reviewRubric{
+  float: right;
+}
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xs) {
+    column-count: 2;
+  }
+}
 //---------- Media Queries --------------------
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    
+
 }

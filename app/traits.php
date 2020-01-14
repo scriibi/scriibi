@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ * writing traits are the top-level categorisation of writing skills. all skills belong to a trait
+ */
 class traits extends Model
 {
     protected $primaryKey = 'trait_Id';
