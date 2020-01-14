@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Auth0\\Login\\' => array($vendorDir . '/auth0/login/src'),
 );

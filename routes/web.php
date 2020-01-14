@@ -18,6 +18,8 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+Route::resource('user', 'UserController');
+
 
 // Route::get('/', function () {
 //     return view('welcome');
