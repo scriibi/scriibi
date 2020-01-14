@@ -4,8 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/*
+global criteria is a the scriibi defined writing criteria that a particular curriculum may have at a particular scriibi level.
+*/
+
 class global_criteria extends Model
-{   
+{
     protected $primaryKey = 'global_criteria_Id';
 
     public function curriculum_scriibi_levels_criteria(){

@@ -4,8 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+scriibilevels is the global value that can be assigned to a student, a teacher, an assesment, a curriculum etc.
+this provides a way of normalising data across different curriculums.
+*/
+
 class ScriibiLevels extends Model
-{   
+{
     protected $primaryKey = 'scriibi_Level_Id';
 
     public function tasks_students(){

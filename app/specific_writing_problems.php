@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+a lesson may target 0 or more specific writing problems. this a way of further categorising lessons
+*/
 class specific_writing_problems extends Model
 {
     protected $primaryKey = 'specific_writing_problem_Id';

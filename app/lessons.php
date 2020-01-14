@@ -4,6 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+a lesson is a teaching tool that is defined by scriibi. it contains teaching content, and is target at a specific level for a specific skill.
+*/
+
+
 class lessons extends Model
 {
     protected $primaryKey = 'lesson_Id';

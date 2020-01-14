@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * teachers is the main "user" entity.
+ * we records, firstname, lastname and email address.
+ */
 class teachers extends Model
 {
     protected $primaryKey = 'user_Id';
