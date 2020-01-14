@@ -15,4 +15,8 @@ class classes extends Model
     public function students(){
         return $this->belongsToMany('App\students', 'classes_students', 'classes_class_Id', 'students_student_Id');
     }
+
+    public function school(){
+        return $this->belongsTo('App\schools', 'schools_school_Id', 'school_Id');
+    }
 }

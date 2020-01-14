@@ -15,4 +15,7 @@ class curriculum extends Model
 
     protected $table = 'curriculum';     
 
+    public function curriculum_scriibi_levels(){
+        return $this->hasMany('App\curriculum_scriibi_levels', 'curriculum_Id', 'curriculum_Id');
+    }
 }

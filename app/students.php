@@ -23,4 +23,8 @@ class students extends Model
     public function teachers(){
         return $this->belongsToMany('App\teachers', 'teacher_students', 'students_student_Id', 'teachers_user_Id');
     }
+
+    public function school(){
+        return $this->belongsTo('App\schools', 'schools_school_Id', 'school_Id');
+    }
 }
