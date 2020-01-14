@@ -43,4 +43,8 @@ class teachers extends Model
     public function writing_task(){
         return $this->hasMany('App\writing_tasks', 'created_By_Teacher_User_Id', 'user_Id');
     }
+
+    public function formative_assessment(){
+        return $this->hasMany('App\formative_assessments', 'created_by', 'user_Id');
+    }
 }

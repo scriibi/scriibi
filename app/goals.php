@@ -16,4 +16,8 @@ class goals extends Model
     public function skills_level(){
         return $this->belongsTo('App\skills_levels', 'skills_levels_skills_levels_Id', 'skills_levels_Id');
     }
+
+    public function classes_student(){
+        return $this->belongsTo('App\classes_students', 'classes_students_classes_students_Id', 'classes_students_Id');
+    }
 }   
