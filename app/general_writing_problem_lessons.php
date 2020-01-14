@@ -10,6 +10,6 @@ this class associates general writing problems with their corresponding lessons.
 
 class general_writing_problem_lessons extends Model
 {
-    protected $primaryKey = 'lessons_categories_Id';
+    protected $primaryKey = 'lessons_general_writing_problem_Id';
 
 }
