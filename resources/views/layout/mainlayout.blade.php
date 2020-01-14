@@ -9,9 +9,11 @@
             @include('layout.partials.header')
         </header>
         
-        <!-- content goes here -->
-        @yield('content')
-        <!-- /content -->
+        <main>
+            <!-- content goes here -->
+            @yield('content')
+            <!-- /content -->
+        </main>
         
         @include('layout.partials.footer')
         @include('layout.partials.footer-scripts')
