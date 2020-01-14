@@ -19,6 +19,7 @@ Route::get('/rubrics', function(){
 });
 
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

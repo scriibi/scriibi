@@ -174,10 +174,9 @@
                 </div>
                 <div class="form-group row" id="term1-savebtn">
                   <button type="button" name="button" class="btn btn-success btn-sm">Save</button>
-
                 </div>
 
-                <fieldset id="term2-form" hidden>
+                <fieldset id="term2-form" class="form-group row" hidden>
                   <div class="form-group d-inline-flex p-2 bd-highlight"  id="step2-form">
                     <div class="col d-flex justify-content-around">
                       <input type="text" class="form-control" name="" value="Term 2 Rubric">
