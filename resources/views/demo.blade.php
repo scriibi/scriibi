@@ -77,11 +77,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td class="form-group "><input type="text" class="form-control form-control-sm" id="inputEmail"></td>
-                            <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
-                            <td><input type="text" class="form-control form-control-sm" id="inputPassword4"></td>
+                            <td class="form-group "><input type="text" class="text-input" id="inputEmail"><span class="bar"></span></td>
+                            <td><input type="text" class="text-input" id="inputPassword4"><span class="bar"></span></td>
+                            <td><input type="text" class="text-input" id="inputPassword4"><span class="bar"></span></td>
                             <td>
-                             <select class="form-control form-control-sm" id="selectGrade">
+                             <select class="select-input" id="selectGrade">
                                <option>Grade 1</option>
                                <option>Grade 2</option>
                                <option>Grade 3</option>
@@ -90,7 +90,7 @@
                              </select>
                             </td>
                             <td>
-                             <select class="form-control form-control-sm" id="selectAssessmentLevel">
+                             <select class="select-input" id="selectAssessmentLevel">
                                 <option>Grade 1</option>
                                <option>Grade 2</option>
                                <option>Grade 3</option>
