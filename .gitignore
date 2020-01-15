@@ -4,6 +4,7 @@
 /public/*
 /storage/*.key
 /vendor
+/vendor/*
 /config/database.php
 .env
 .env.backup
@@ -17,3 +18,4 @@ yarn-error.log
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+public/css/app.css
