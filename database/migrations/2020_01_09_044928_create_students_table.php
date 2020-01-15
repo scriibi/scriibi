@@ -18,10 +18,10 @@ class CreateStudentsTable extends Migration
             $table->string('student_First_Name', 45);
             $table->string('student_Last_Name', 45);
             $table->string('Student_Gov_Id', 45);
-            $table->bigInteger('enrolled_Level_Id')->unsigned();
-            $table->bigInteger('rubrik_level')->unsigned();
+            $table->bigInteger('enrolled_Level_Id')->unsigned();            // grade
+            $table->bigInteger('rubrik_level')->unsigned();                 // assignment level
             $table->bigInteger('schools_school_Id')->unsigned();
-            $table->double('suggested level');                  // a relationship has not been set to this yet
+            $table->double('suggested_level')->nullable();                  // a relationship has not been set to this yet
             
             $table->unique('Student_Gov_Id');
             $table->unique('student_Id');
@@ -42,7 +42,7 @@ class CreateStudentsTable extends Migration
             
             $table->foreign('schools_school_Id')
                 ->references('school_Id')
-                ->on('schools')
+                ->on('schools') 
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

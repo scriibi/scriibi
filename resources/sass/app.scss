@@ -87,6 +87,18 @@ footer {
     background-color: #33A849;
 }
 
+.icon-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+}
+
+.icon-btn:focus {
+    outline: none;
+}
+
 .top-divider {
     margin-top: 50px;
 }
@@ -101,6 +113,7 @@ footer {
     -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     height: 66px;
+    background-color: white;
 }
 
 //---------- Page Specific --------------------
@@ -112,16 +125,35 @@ footer {
     float: left;
     margin-right: 3%;
     position: relative;
-    width: 17%;
-    margin-top: 15px;
+    margin-top: 18px;
+}
+
+.student-icon-group {
+    margin-left: 5px;
+}
+
+.fname-input {
+    width: 19%;
+}
+
+.lname-input {
+    width: 25%;
+}
+
+.id-input {
+    width: 15%;
+}
+
+.grade-input {
+    width: 13%;
 }
 
 //Student text form
 .text-input {
     border: none;
     border-bottom:1px solid rgba(130, 130, 130, 1);
-    width: 90%;
     padding-top: 5px;
+    width: 100%;
 }
 
 .text-input:focus {
@@ -137,6 +169,11 @@ footer {
     left:0px;
     top:0px;
     transition:0.2s ease all;
+}
+
+.student-table-label {
+    font-size: 0.7rem;
+    opacity: 0.7;
 }
 
 /* active state */
@@ -168,7 +205,7 @@ footer {
 
 /* active state */
 input:focus ~ .bar:before {
-    width: 90%;
+    width: 100%;
 }
 
 input:focus {
@@ -276,23 +313,28 @@ input:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
 .card-ideas {
   border-radius: 7px;
   background-color: yellow;
   border: 3px solid yellow;
 }
+
 .card-header{
   border-radius: 7px 7px 0px 0px;
   white-space: nowrap;
 }
+
 .card-body{
   padding: 0;
 }
+
 .skill-cat{
   text-indent: 10%;
   vertical-align: middle;
   font-size: 0.8rem;
 }
+
 .card-columns {
   @include media-breakpoint-only(sm) {
     column-count: 3;
