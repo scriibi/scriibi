@@ -19,7 +19,7 @@ class CreateGradeLabelsTable extends Migration
             $table->string('grade_label', 45);
 
             $table->unique('grade_label_id');
-            $table->unique('fk_school_type_id');
+            $table->index('fk_school_type_id');
 
             $table->foreign('fk_school_type_id')
                 ->references('school_type_id')

@@ -24,7 +24,7 @@ class CreateSchoolTypesTable extends Migration
             $table->foreign('fk_curriculum_id')
                 ->references('curriculum_Id')
                 ->on('curriculum');
-
+            
             $table->timestamps();
         });
     }
