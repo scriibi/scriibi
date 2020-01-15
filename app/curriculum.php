@@ -31,4 +31,8 @@ class curriculum extends Model
     public function label(){
         return $this->hasMany('App\labels', 'fk_curriculum_id', 'curriculum_Id');
     }
+
+    public function school_type(){
+        return $this->hasMany('App\school_type', 'fk_curriculum_id', 'curriculum_Id');
+    }
 }
