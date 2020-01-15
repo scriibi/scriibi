@@ -47,7 +47,7 @@ footer {
         li {
             float: left;
         }
-        
+
         a {
             display: inline-block;
             line-height: 50px;
@@ -62,17 +62,15 @@ footer {
             }
         }
     }//end of ul
-    
+
     .nav-logo {
         padding-left: 0px;
     }
-    
+
 }//end of nav-header
 
 //Utility classes
-.card {
-    border-radius: 20px;
-}
+
 
 .scriibi-primary-btn {
     border: none;
@@ -274,17 +272,6 @@ input:focus {
 
 //Rubric Page
 
-#rubric-accordion{
-  margin: 5%;
-}
-#step1-next{
-  float: right;
-}
-
-#step2-form{
-  width: 100%;
-}
-
 #text-type-title{
   padding-left: 40px;
 }
@@ -298,6 +285,13 @@ input:focus {
 
 #btn-reviewRubric{
   float: right;
+}
+
+.term-title-box{
+    padding: 0;
+}
+.btn-text-type{
+    border-radius: 20px,20px,20px,20px;
 }
 
 .border-for-checkbox{
