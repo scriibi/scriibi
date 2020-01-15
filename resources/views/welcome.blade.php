@@ -82,6 +82,9 @@
                         <li>
                             <p> env AUTH0_CLIENT_SECRET = {{env('AUTH0_CLIENT_SECRET')}}</p>
                         </li>
+                        <li>
+                            <p> {{phpinfo();}}</p>
+                        </li>
                     </ul>
 
                 </div>
