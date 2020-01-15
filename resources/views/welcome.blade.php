@@ -69,7 +69,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <ul>
+                        <li>
+                            <p> env APP_URL = {{env('APP_URL')}}</p>
+                        </li>
+                    </ul>
+
                 </div>
 
                 <div class="links">
