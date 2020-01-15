@@ -25,7 +25,7 @@ class curriculum extends Model
     }
 
     public function schools(){
-        return $this->hasOne('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
+        return $this->hasMany('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
     }
 
     public function label(){
