@@ -438,6 +438,7 @@ class ComposerStaticInitae22a8db1821f6617e311b32e6600ede
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Auth\\Auth0IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/Auth0IndexController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -505,6 +506,7 @@ class ComposerStaticInitae22a8db1821f6617e311b32e6600ede
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Repositories\\CustomUserRepository' => __DIR__ . '/../..' . '/app/Repositories/CustomUserRepository.php',
         'App\\Rubrics' => __DIR__ . '/../..' . '/app/Rubrics.php',
         'App\\Rubrics_skills' => __DIR__ . '/../..' . '/app/Rubrics_skills.php',
         'App\\Rubrics_teachers' => __DIR__ . '/../..' . '/app/Rubrics_teachers.php',
@@ -522,6 +524,7 @@ class ComposerStaticInitae22a8db1821f6617e311b32e6600ede
         'App\\general_writing_problems' => __DIR__ . '/../..' . '/app/general_writing_problems.php',
         'App\\global_criteria' => __DIR__ . '/../..' . '/app/global_criteria.php',
         'App\\goals' => __DIR__ . '/../..' . '/app/goals.php',
+        'App\\labels' => __DIR__ . '/../..' . '/app/labels.php',
         'App\\lessons' => __DIR__ . '/../..' . '/app/lessons.php',
         'App\\lessons_scriibi_levels' => __DIR__ . '/../..' . '/app/lessons_scriibi_levels.php',
         'App\\lessons_skills' => __DIR__ . '/../..' . '/app/lessons_skills.php',

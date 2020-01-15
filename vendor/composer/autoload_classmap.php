@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Auth\\Auth0IndexController' => $baseDir . '/app/Http/Controllers/Auth/Auth0IndexController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -75,6 +76,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\Repositories\\CustomUserRepository' => $baseDir . '/app/Repositories/CustomUserRepository.php',
     'App\\Rubrics' => $baseDir . '/app/Rubrics.php',
     'App\\Rubrics_skills' => $baseDir . '/app/Rubrics_skills.php',
     'App\\Rubrics_teachers' => $baseDir . '/app/Rubrics_teachers.php',
@@ -92,6 +94,7 @@ return array(
     'App\\general_writing_problems' => $baseDir . '/app/general_writing_problems.php',
     'App\\global_criteria' => $baseDir . '/app/global_criteria.php',
     'App\\goals' => $baseDir . '/app/goals.php',
+    'App\\labels' => $baseDir . '/app/labels.php',
     'App\\lessons' => $baseDir . '/app/lessons.php',
     'App\\lessons_scriibi_levels' => $baseDir . '/app/lessons_scriibi_levels.php',
     'App\\lessons_skills' => $baseDir . '/app/lessons_skills.php',

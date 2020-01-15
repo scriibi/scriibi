@@ -44,4 +44,8 @@ class ScriibiLevels extends Model
     public function scriibi_level(){
         return $this->hasMany('App\skills_levels', 'scriibi_levels_scriibi_Level_Id', 'scriibi_Level_Id');
     }
+
+    public function label(){
+        return $this->hasMany('App\labels', 'fk_local_scriibi_level', 'scriibi_Level_Id');
+    }
 }

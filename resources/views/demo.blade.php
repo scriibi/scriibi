@@ -15,22 +15,22 @@
                 <div class="row ml-2 mr-2">
                     <div class="col-11">
                         <div class="student-form-inputs">
-                            <input type="text" class="text-input" id="firstName" required />
+                            <input type="text" class="text-input" id="firstName" name="first_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="firstName">First Name</label>
                         </div>
                         <div class="student-form-inputs">
-                            <input type="text" class="text-input" id="lastName" required />
+                            <input type="text" class="text-input" id="lastName" name="last_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="lastName">Last Name</label><br />
                         </div>
                         <div class="student-form-inputs">
-                            <input type="text" class="text-input" id="id" required />
+                            <input type="text" class="text-input" id="id" name="student_gov_id" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="id">ID</label><br />
                         </div>
                         <div class="student-form-inputs">
-                            <select class="select-input" id="grade" required>
+                            <select class="select-input" id="grade" name="grade" required>
                                 <option>Grade 1</option>
                                 <option>Grade 2</option>
                                 <option>Grade 3</option>
@@ -41,7 +41,7 @@
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs">
-                            <select class="select-input" id="assignmentLevel" required>
+                            <select class="select-input" id="assignmentLevel" name="assignment_level" required>
                                 <option>Grade 1</option>
                                 <option>Grade 2</option>
                                 <option>Grade 3</option>
