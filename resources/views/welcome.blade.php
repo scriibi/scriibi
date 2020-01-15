@@ -72,6 +72,7 @@
                     <ul>
                         <li>
                             <p> env APP_URL = {{env('APP_URL')}}</p>
+                            <p> {{Auth::user()}}
                         </li>
                     </ul>
 
