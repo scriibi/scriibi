@@ -13,10 +13,14 @@
 Route::get('/welcome', function () {
    return view('welcome');
 });
-// Route::get('/', function () {
-//     return view('studentlist');
-//  });
 
+Route::get('/', function () {
+    return view('studentlist');
+ });
+
+ Route::get('/demo', function () {
+   return view('demo');
+});
 
 Route::get('/rubrics', function(){
    return view('rubrics');
