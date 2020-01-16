@@ -9,7 +9,7 @@
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
    <div class="col-12 col-sm-10 col-md-8">
-       
+
        <!-- Add students -->
         <h4 class="top-divider mb-3 header-text"><strong>Add Students</strong></h4>
         <div class="universal-card p-2">
@@ -58,7 +58,7 @@
            </form>
         </div>
        <!-- /Add Students -->
-       
+
        <!-- Student List -->
        <h5 class="mt-5 mb-5 header-text"><strong>Student List</strong></h5>
        <div class="row">
@@ -71,7 +71,7 @@
            </div>
            <div class="col-2"></div>
        </div>
-       
+
        <!-- Student detail card -->
         <div class="universal-card mt-2">
             <div class="student-details row ml-2 mr-2 pt-2">
@@ -100,7 +100,7 @@
                 </div>
            </div>
             <!-- /student details -->
-            
+
             <!-- Edit student form -->
             <form class="edit-form" method="post">
                 <div class="row ml-2 mr-2 pt-2 d-none">
