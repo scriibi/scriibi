@@ -1,6 +1,6 @@
 <?php
 
-define('APP_NAME', $_SERVER['APP_NAME']);
+
 return [
 
     /*
@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'name' => APP_NAME,
-    //'name' => env('APP_NAME', 'Laravel'),
+
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
