@@ -15,8 +15,8 @@ class CreateSchoolTypeIdentifiersTable extends Migration
     {
         Schema::create('school_type_identifiers', function (Blueprint $table) {
             $table->bigIncrements('school_type_identifier_id');
-            $table->string('school_type_identifier_name', 45)->unsigned();
-            $table->string('school_type_identifier_description', 45)->unsigned();
+            $table->string('school_type_identifier_name', 45);
+            $table->string('school_type_identifier_description', 45);
 
             $table->unique('school_type_identifier_id');
             $table->index('school_type_identifier_name');
