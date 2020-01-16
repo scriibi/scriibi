@@ -2,118 +2,167 @@
 @section('title', 'Rubrics')
 @section('content')
 
+<?php
+$color_class ='blue';
+?>
 
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
-
+   <!-- middle section of main content -->
    <div class="col-12 col-sm-10 col-md-8">
 
         <!-- Rubric Builder -->
         <h4 class="top-divider mb-3 header-text" id="RubricBuilder_title"><strong>Rubric Builder</strong></h4>
 
         <!-- card contains 2 forms in one form -->
-        <div class="card universal-card-rubric p-2">
+        <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
-                <form action="index.html" method="post" class="p-2">
-                    <!-- term-title+Curriculum -->
-                    <div class="card-text">
-                        <div class=" form-group d-flex justify-content-around ">
-                            <input type="text" class="col-9 input-group-sm rubric-border-box pr-1" name="" value="Term 1 Rubric">
-                            <select class="col-2.5 input-group-sm rubric-border-box" name="">
-                                <option value="Code value">Curriculum Codes</option>
-                                <option value="">Level 1</option>
-                                <option value="">Level 2</option>
-                                <option value="">Level 3</option>
-                                <option value="">Level 4</option>
-                                <option value="">Level 5</option>
-                            </select>
-                        </div>
+                <form action="index.html" method="post" class="mb-0 p-0">
+                    <form action="index.html" method="post">
+                        <!-- term-title+Curriculum -->
+                        <div class="card-text m-0">
+                            <div class=" form-group d-flex justify-content-between ">
+                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="" value="Term 1 Rubric">
+                                <div class="d-none d-xs-block">
 
-                        <!-- pop txt-types checkboxs from DB-->
-                        <div class="d-flex flex-wrap btn-group-toggle px-2" datat-toggle="buttons">
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button-" name="" value="description">Description
-                                </label>
+                                </div>
+                                <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="">
+                                    <option value="Code value">Curriculum Codes</option>
+                                    <!-- load curriculum codes from teacher's table  -->
+                                    <option value="">this text will be load from DB</option>
+                                </select>
                             </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="discussion">Discussion
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="explanation">Explanation
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="historical-narrative">Historical Narrative
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="information-report">Information Report
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="narrative">Narrative
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="persuasive">Persuasive
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="poetry">Poetry
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="procedure">Procedure
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type ">
-                                    <input type="checkbox" role="button" name="" value="recount">Recount
-                                </label>
-                            </div>
-                            <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                    <input type="checkbox" role="button" name="" value="response">Response
-                                </label>
-                            </div>
-                        </div>
-                        <!-- skills cards-->
-                        <div class="card-columns pt-5 col-11">
-                            <!-- load cards from skill-categories DB; each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
-                            <div class="card h-auto d-inline-block skill-card-style">
-                                <!-- content inside each skillcategory -->
-                                <div class="card-body ">
-                                    <div class="card-text">
-                                        <!-- load icon address -->
-                                        <span class="align-middle">icon</span>
-                                        <!-- load skill title -->
-                                        <span class="skill-title align-middle w-100 pl-0">ideas</span>
-                                    </div>
-                                    <!-- load each skill item from DB -->
-                                    <div class="card-text form-check body-list bg-white d-block border-for-checkbox">
-                                        <input class="form-check-input checkbox-circle" type="checkbox" name="" value="">
-                                        <label class="form-check-label" for="">12</label>
-                                    </div>
+
+                            <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
+                            <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
+                                <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
+                                        <input type="checkbox" role="button-" name="" value="description" class="">load text type from DB
+                                    </label>
                                 </div>
                             </div>
-                        </div>
+
+                            <!-- skills cards deck-->
+                            <div class="card-deck row inline-block p-0 mt-5" >
+
+                                <!-- load cards from skill-categories DB; you should see 7 of them;
+                                each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
+
+                                <!-- content inside each skill card -->
+                                <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($color_class); ?>">
+                                    <ul class="list-group list-group-flush ">
+                                        <li class="text-white ">
+                                            <!-- load icon address; we dont have this yet;wait for Talia -->
+                                            <span class="align-middle">icon</span>
+                                            <!-- load skill title -->
+                                            <span class="skill-title align-middle w-100 pl-0">title</span>
+                                        </li>
+                                        <div class="list-group-box">
+                                            <li class="list-group-item">
+                                                <!-- load each skill item in the skills category;
+                                                the number of skills items in the skill category vary -->
+                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
+                                                </label>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <!-- load each skill item in the skills category;
+                                                the number of skills items in the skill category vary -->
+                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
+                                                </label>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <!-- end of each skill card -->
+                            </div>
                             <!-- end of skill cards columns -->
-                    </div>
+                        </div>
+                        <!-- clear button for form term 1 -->
+                        <div class="col-12 row justify-content-end align-self-end p-0 m-0">
+                            <button class="btn btn-clear" type="reset" name="button-clear1">Clear</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end of form 1 -->
+
+                <!-- divider between form 1 and 2 -->
+                <div class="d-none d-sm-block form-break mt-2 mb-0 p-0">
+                </div>
+
+                <!-- beginning of form 2 -->
+                <div class="card-body pb-0">
+                    <form class="" action="index.html" method="post">
+                        <div class="card-text m-0">
+                            <!-- input for rubric name and curriculum code -->
+                            <div class="form-group d-flex justify-content-between">
+                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="" value="Term 2 Rubric">
+                                <div class="d-none d-xs-block">
+                                </div>
+                                <div class="col-sm-3 input-group-sm rubric-border-box text-nowrap p-0 m-0">
+                                    <button class="btn" type="button" name="button">Auto-populate term 2 skills</button>
+                                </div>
+                            </div>
+
+                            <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
+                            <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
+                                <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
+                                        <input type="checkbox" name="" value="description">load text type from DB
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- skills cards deck-->
+                            <div class="card-deck row inline-block p-0 mt-5" >
+
+                                <!-- load cards from skill-categories DB; you should see 7 of them;
+                                each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
+
+                                <!-- content inside each skill card -->
+                                <div class="card col-sm-3 border-0 p-0 skillset-box ">
+
+                                    <ul class="list-group list-group-flush frm_checkbox ">
+                                        <li class="text-white ">
+                                            <!-- load icon address; we dont have this yet;wait for Talia -->
+                                            <span class="align-middle">icon</span>
+                                            <!-- load skill title -->
+                                            <span class="skill-title align-middle w-100 pl-0">title</span>
+                                        </li>
+                                        <div class="list-group-box">
+                                            <li class="list-group-item">
+                                                <!-- load each skill item in the skills category;
+                                                the number of skills items in the skill category vary -->
+                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
+                                                </label>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <!-- load each skill item in the skills category;
+                                                the number of skills items in the skill category vary -->
+                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
+                                                </label>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <!-- end of each skill card -->
+
+                            </div>
+                            <!-- end of skill cards columns -->
+                        </div>
+                        <!-- clear button for form term 2 -->
+                        <div class="col-12 row justify-content-end p-0 m-0">
+                            <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
+                        </div>
+                    </form>
+                    <!-- end of form 2 -->
                 </form>
             </div>
         </div>
-   <div class="d-none d-sm-block col-sm-1 col-md-2">
+        <div class="d-flex row justify-content-end mt-4 p-0">
+            <button class="btn btn-rubric-save" type="submit" name="button">Save</button>
+        </div>
+   <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
    </div>
 </div>
 @endsection
