@@ -1,11 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
-<<<<<<< HEAD
-=======
 /public/css
 /public/js
->>>>>>> master
 /storage/*.key
 /vendor
 /config/database.php
@@ -16,11 +13,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-<<<<<<< HEAD
-/public/css/*
-/public/js/*
-=======
->>>>>>> master
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
