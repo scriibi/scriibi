@@ -31,58 +31,58 @@
                         </div>
 
                         <!-- txt-types checkboxs -->
-                        <div class="d-flex flex-wrap p-2 btn-group-toggle col-11" datat-toggle="buttons">
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                        <div class="d-flex flex-wrap btn-group-toggle col-11" datat-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button-" name="" value="description">Description
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="discussion">Discussion
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="explanation">Explanation
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="historical-narrative">Historical Narrative
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="information-report">Information Report
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="narrative">Narrative
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="persuasive">Persuasive
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="poetry">Poetry
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="procedure">Procedure
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type ">
                                     <input type="checkbox" role="button" name="" value="recount">Recount
                                 </label>
                             </div>
-                            <div class="btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group-toggle p-1" data-toggle="buttons">
                                 <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
                                     <input type="checkbox" role="button" name="" value="response">Response
                                 </label>
