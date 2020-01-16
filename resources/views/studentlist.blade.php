@@ -33,7 +33,7 @@
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="grade" required>
-                                <option></option>
+                                <option>{{Auth::user()->name}}</option>
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
