@@ -91,25 +91,19 @@
                         <!-- skills cards-->
                         <div class="card-columns pt-5 col-11">
                             <!-- load cards from skill-categories DB; each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
-                            <div class="card h-auto d-inline-block">
+                            <div class="card h-auto d-inline-block skill-card-style">
                                 <!-- content inside each skillcategory -->
-                                <div class="card-body skill-card-style">
+                                <div class="card-body ">
                                     <div class="card-text">
                                         <!-- load icon address -->
                                         <span class="align-middle">icon</span>
                                         <!-- load skill title -->
                                         <span class="skill-title align-middle w-100 pl-0">ideas</span>
                                     </div>
-
-                                    <div class="card-text form-check body-list bg-white">
-                                      <div class="d-block border-for-checkbox">
+                                    <!-- load each skill item from DB -->
+                                    <div class="card-text form-check body-list bg-white d-block border-for-checkbox">
                                         <input class="form-check-input checkbox-circle" type="checkbox" name="" value="">
                                         <label class="form-check-label" for="">12</label>
-                                      </div>
-                                      <div class="">
-                                        <input class="form-check-input"type="checkbox" name="" value="">
-                                        <label class="form-check-label" for="">56</label>
-                                      </div>
                                     </div>
                                 </div>
                             </div>
