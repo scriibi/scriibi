@@ -1,7 +1,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/*
 /storage/*.key
 /vendor
 /config/database.php
@@ -12,10 +11,12 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/public/*
+/public/css/*
+/public/js/*
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 .ebextensions/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-public/css/app.css
+
