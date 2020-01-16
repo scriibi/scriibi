@@ -68,14 +68,29 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="links">
                     <ul>
                         <li>
                             <p> env APP_URL = {{env('APP_URL')}}</p>
                         </li>
+                        <li>
+                            @auth
+                                <p>name:{{Auth::user()->name}}</p>
+                                <p>email: {{Auth::user()->teacher_Email}}</p>
+                            @endauth
+                            @guest
+                                <p>You are not logged in</p>
+                            @endguest
+                        </li>
                     </ul>
                 </div>
-
+                <div>
+                    <ul>
+                        <li>
+                            <p><!-- content for env test {{phpinfo()}}--></p>
+                        </li>
+                    </ul>
+                </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -90,3 +105,5 @@
         </div>
     </body>
 </html>
+
+

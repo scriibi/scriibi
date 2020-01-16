@@ -16,6 +16,7 @@ class CreateGradeLabelsTable extends Migration
         Schema::create('grade_labels', function (Blueprint $table) {
             $table->bigIncrements('grade_label_id');
             $table->bigInteger('fk_school_type_id')->unsigned();
+            $table->bigInteger('fk_scriibi_level_id')->unsigned();
             $table->string('grade_label', 45);
 
             $table->unique('grade_label_id');
@@ -24,6 +25,10 @@ class CreateGradeLabelsTable extends Migration
             $table->foreign('fk_school_type_id')
                 ->references('school_type_id')
                 ->on('school_types');
+
+            $table->foreign('fk_scriibi_level_id')
+                ->references('scriibi_Level_Id')
+                ->on('scriibi_levels');
                 
             $table->timestamps();
         });

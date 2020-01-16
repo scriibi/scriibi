@@ -33,18 +33,14 @@
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="grade" required>
-                            <!--@foreach($grade_label as $grade)  -->
-                                <option>{{$grade->grade_label}}</option>
-                            <!--@endforeach  -->
+                                <option></option>
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="assessedLevel" required>
-                           <!-- @foreach($assessed_label as $assesed)  -->
-                                <option>{{$assesed->assessed_level_label}}</option>
-                           <!-- @endforeach  -->
+                                <option></option>
                                 <option></option>
                             </select>
                             <span class="bar"></span>

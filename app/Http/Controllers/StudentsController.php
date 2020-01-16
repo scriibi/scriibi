@@ -37,35 +37,18 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {   
-        $student_first_name = $request->input('first_name');
-        $student_last_name = $request->input('last_name');
-        $student_gov_id = $request->input('student_gov_id');
-        $student_grade = $request->input('grade');
-        $student_assignment_level = $request->input('assignment_level');
+        // $student_first_name = $request->input('first_name');
+        // $student_last_name = $request->input('last_name');
+        // $student_gov_id = $request->input('student_gov_id');
+        // $student_grade = $request->input('grade');
+        // $student_assignment_level = $request->input('assignment_level');
 
-        $scriibi_enrolled_level = 0;
-        $scriibi_rubrik_level = 0;
+        // $scriibi_enrolled_level = 0;
+        // $scriibi_rubrik_level = 0;
 
-        $student_record = array('student_First_Name' => '', 'student_Last_Name' => '', 'Student_Gov_Id' => '', 'enrolled_Level_Id' => '', 'rubrik_level' => '', 'schools_school_Id' => '', 'suggested_level' => '');
+        // $student_record = array('student_First_Name' => '', 'student_Last_Name' => '', 'Student_Gov_Id' => '', 'enrolled_Level_Id' => '', 'rubrik_level' => '', 'schools_school_Id' => '', 'suggested_level' => '');
         
-        DB::table('students')->insert($student_record);
-    }
-
-    public function retrieveEnrolledLevel($studentGrade){
-        $enrolled_level = 0;
-        switch (studentGrade){
-            case 'Grade 1':
-                $enrolled_level = 1;
-                break;
-            case 'Grade 2':
-                $enrolled_level = 2;
-                break;
-            case 'Grade 3':
-                $enrolled_level = 3;
-                break;
-            case 'Grade 4':
-                
-        }
+        // DB::table('students')->insert($student_record);
     }
 
     public function retrieveRubrikLevel($studentAssignmentLevel){
