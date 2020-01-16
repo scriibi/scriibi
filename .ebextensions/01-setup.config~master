@@ -6,6 +6,14 @@
 # processed in alphabetical order by name, and they run before the application
 # and web server are set up and the application version file is extracted.
 # ------------------------------------------------------------------------------
+files:
+    "/etc/httpd/conf.d/ssl_rewrite.conf":
+        mode: "000644"
+        owner: root
+        group: root
+        content: |
+            RewriteEngine On
+
 commands:
   01updateComposer:
     command: export COMPOSER_HOME=/root && /usr/bin/composer.phar self-update
@@ -45,7 +53,7 @@ container_commands:
   03express:
     command: "echo Composer install completed"
   04clear_config_cache:
-    command: "php artisan config:clear"
+    command: "php artisan view:clear"
     cwd: "/var/app/ondeck"
     leader_only: false
   05migrations:

@@ -11,7 +11,7 @@ class PostsController extends Controller
     // }
     // dd($post);
 
-    public function show(){
-      return "hello";
+    public function index(){
+      return "hello, you are authenticated.";
     }
 }

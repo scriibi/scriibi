@@ -41,35 +41,19 @@ class StudentsController extends Controller
         $student_last_name = $request->input('last_name');
         $student_gov_id = $request->input('student_gov_id');
         $student_grade = $request->input('grade');
-        $student_assignment_level = $request->input('assignment_level');
+        $student_assignment_level = $request->input('assessed_level');
 
-        $scriibi_enrolled_level = 0;
-        $scriibi_rubrik_level = 0;
+        $teacher_email = Auth::user()->email;
+        $teacher_data = teachers::where('teacher_Email', '=', $teacher_data)->get();
+        $school_id = school_teacher::where('teachers_user_Id', '=', $teacher_data->user_Id);
 
-        $student_record = array('student_First_Name' => '', 'student_Last_Name' => '', 'Student_Gov_Id' => '', 'enrolled_Level_Id' => '', 'rubrik_level' => '', 'schools_school_Id' => '', 'suggested_level' => '');
+        $student_record = array('student_First_Name' => $student_gov_id, 'student_Last_Name' => $student_last_name,
+         'Student_Gov_Id' => $student_gov_id, 'enrolled_Level_Id' => $student_grade,
+         'rubrik_level' => $student_assignment_level, 'schools_school_Id' => $school_id, 'suggested_level' => null);
         
         DB::table('students')->insert($student_record);
-    }
 
-    public function retrieveEnrolledLevel($studentGrade){
-        $enrolled_level = 0;
-        switch (studentGrade){
-            case 'Grade 1':
-                $enrolled_level = 1;
-                break;
-            case 'Grade 2':
-                $enrolled_level = 2;
-                break;
-            case 'Grade 3':
-                $enrolled_level = 3;
-                break;
-            case 'Grade 4':
-                
-        }
-    }
-
-    public function retrieveRubrikLevel($studentAssignmentLevel){
-
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 
     /**

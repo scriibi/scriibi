@@ -2,7 +2,7 @@
 // app/Repositories/CustomUserRepository.php
 namespace App\Repositories;
 
-use App\User;
+use App\teachers;
 
 use Auth0\Login\Auth0User;
 use Auth0\Login\Auth0JWTUser;
@@ -16,13 +16,12 @@ class CustomUserRepository extends Auth0UserRepository
      *
      * @param array $profile - Auth0 profile
      *
-     * @return User
+     * @return teachers
      */
     protected function upsertUser( $profile ) {
-        return User::firstOrCreate(['sub' => $profile['sub']], [
-            'email' => $profile['email'] ?? '',
-            'name' => $profile['name'] ?? '',
-        ]);
+        return teachers::firstOrCreate(
+            ['sub' => $profile['sub']],
+            ['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
     }
 
     /**
