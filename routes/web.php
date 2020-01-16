@@ -19,6 +19,7 @@ Route::get('/', function () {
    return view('demo');
 });
 
+
 Route::get('/rubrics', function(){
    return view('rubrics');
 });
