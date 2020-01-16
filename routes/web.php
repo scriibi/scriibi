@@ -13,10 +13,14 @@
 Route::get('/welcome', function () {
    return view('welcome');
 });
+
 Route::get('/', function () {
-    return view('demo');
+    return view('studentlist');
  });
 
+ Route::get('/demo', function () {
+   return view('demo');
+});
 
 Route::get('/rubrics', function(){
    return view('rubrics');
@@ -27,7 +31,7 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
-
+// Route::get('/www', 'GradeLabelController@index');      route set up for testing the student add grade and assed level name selection
 
 // Route::get('/', function () {
 //     return view('welcome');

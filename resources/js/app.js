@@ -30,3 +30,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+function displayEditForm(e) {
+    var form = document.getElementByClassName("edit-form"); 
+    var details = document.getElementsByClassName("student-details");
+    dump(details);
+    form.classList.removeClass("d-none");
+    details.classList.addClass("d-none");
+}
