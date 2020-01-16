@@ -73,20 +73,7 @@
                         <li>
                             <p> env APP_URL = {{env('APP_URL')}}</p>
                         </li>
-                        <li>
-                            <p> env AUTH0_DOMAIN = {{env('AUTH0_DOMAIN')}}</p>
-                        </li>
-                        <li>
-                            <p> env AUTH0_CLIENT_ID = {{env('AUTH0_CLIENT_ID')}}</p>
-                        </li>
-                        <li>
-                            <p> env AUTH0_CLIENT_SECRET = {{env('AUTH0_CLIENT_SECRET')}}</p>
-                        </li>
-                        <li>
-                            <p> {{phpinfo()}}</p>
-                        </li>
                     </ul>
-
                 </div>
 
                 <div class="links">
