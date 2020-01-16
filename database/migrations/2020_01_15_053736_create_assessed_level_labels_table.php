@@ -19,7 +19,7 @@ class CreateAssessedLevelLabelsTable extends Migration
             $table->string('assessed_level_label', 45);
 
             $table->unique('assessed_level_label_id');
-            $table->unique('school_type_id_fk');
+            $table->index('school_type_id_fk');
 
             $table->foreign('school_type_id_fk')
                 ->references('school_type_id')
