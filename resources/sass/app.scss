@@ -10,16 +10,23 @@
 //---------- Element Overrides ----------------
 
 html, body {
-    height: 100%;
+    height: 100vw;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
+    padding: 0;
 }
 
 footer {
     border-top: 30px solid #6A6B6F;
     width: 100vw;
     margin-top: 50px;
+    bottom: 0;
+}
+
+#app{
+min-height: 100%;
+position: relative;
 }
 
 //---------- Partials -------------------------
@@ -70,8 +77,6 @@ footer {
 }//end of nav-header
 
 //Utility classes
-
-
 .scriibi-primary-btn {
     border: none;
     background-color: #33A849;
@@ -116,6 +121,14 @@ footer {
     background-color: white;
 }
 
+.universal-card-rubrics{
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    background-color: white;
+
+}
 //---------- Page Specific --------------------
 
 //Student List
@@ -247,18 +260,29 @@ input:focus {
 
 // End of Select drop down
 
+
+//Rubric Page
+
 #list_title{
   font-size: large;
   font-weight: bold;
 }
 
 #RubricBuilder_title{
-  font-size: large;
+  font-family: Raleway;
+  font-style: normal;
   font-weight: bold;
-  color: green;
-  margin-top: 50px;
+  font-size: 30px;
+  line-height: 35px;
+  color: #33A849;
+
 }
 
+.rubric-border-box{
+    border: 2px solid #4C4D4F;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
 .btn-term{
   align-items: stretch;
 }
@@ -269,8 +293,6 @@ input:focus {
 .table-head{
   white-space:nowrap;
 }
-
-//Rubric Page
 
 #text-type-title{
   padding-left: 40px;
@@ -287,17 +309,11 @@ input:focus {
   float: right;
 }
 
-.term-title-box{
-    padding: 0;
-}
+
 .btn-text-type{
-    border-radius: 20px,20px,20px,20px;
-}
-
-.border-for-checkbox{
-  border-bottom: 1px solid grey;
-  width: 100%;
-
+    border: 2px solid #33A849;
+    box-sizing: border-box;
+    border-radius: 20px;
 }
 
 .body-list{
