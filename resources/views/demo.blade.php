@@ -7,7 +7,7 @@
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
    <div class="col-12 col-sm-10 col-md-8">
-       
+
        <!-- Add students -->
         <h4 class="top-divider mb-3 header-text"><strong>Add Students</strong></h4>
         <div class="add-student-card p-2">
@@ -59,7 +59,7 @@
            </form>
         </div>
        <!-- /Add Students -->
-       
+
        <!-- Student List -->
        <h5 class="mt-5 header-text"><strong>Student List</strong></h5>
         <div class="card mt-3">

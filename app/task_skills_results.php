@@ -22,4 +22,9 @@ class task_skills_results extends Model
     public function writing_task(){
         return $this->belongsTo('App\writing_tasks', 'writing_tasks_writing_task_Id', 'writing_task_Id');
     }
+
+    public function skills(){
+        return $this->belongsTo('App\skills', 'skills_skill_Id', 'skill_Id');
+    }
+}
 }

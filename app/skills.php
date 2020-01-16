@@ -22,4 +22,12 @@ class skills extends Model
     public function text_types(){
         return $this->belongsToMany('App\text_types', 'text_types_skills', 'text_types_skills_skill_Id', 'text_types_skills_text_type_Id');
     }
+
+    public function skills_level(){
+        return $this->hasMany('App\skills_levels', 'skills_levels_skills_skill_Id', 'skill_Id');
+    }
+
+    public function task_skills_result(){
+        return $this->hasMany('App\task_skills_results', 'skills_skill_Id', 'skill_Id');
+    }
 }
