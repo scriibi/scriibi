@@ -263,11 +263,6 @@ input:focus {
 
 //Rubric Page
 
-#list_title{
-  font-size: large;
-  font-weight: bold;
-}
-
 #RubricBuilder_title{
   font-family: Raleway;
   font-style: normal;
@@ -283,32 +278,6 @@ input:focus {
     box-sizing: border-box;
     border-radius: 7px;
 }
-.btn-term{
-  align-items: stretch;
-}
-.table{
-  text-align: left;
-}
-
-.table-head{
-  white-space:nowrap;
-}
-
-#text-type-title{
-  padding-left: 40px;
-}
-#checkbox-group{
-  padding-left: 40px;
-}
-
-#term1-savebtn{
-  float: right;
-}
-
-#btn-reviewRubric{
-  float: right;
-}
-
 
 .btn-text-type{
     border: 2px solid #33A849;
@@ -330,7 +299,7 @@ input:focus {
   vertical-align: middle;
 }
 
-.card-ideas {
+.skill-card-style {
   border-radius: 7px;
   background-color: yellow;
   border: 3px solid yellow;
@@ -341,14 +310,11 @@ input:focus {
   white-space: nowrap;
 }
 
-.card-body{
-  padding: 0;
-}
+.skill-title{
+  padding-left: 10%;
 
-.skill-cat{
-  text-indent: 10%;
-  vertical-align: middle;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  text-decoration-color: color: #FFFFFF;
 }
 
 .card-columns {
