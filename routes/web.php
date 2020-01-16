@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/welcome', function () {
-   return view('welcome');
-});
 
 Route::get('/', function () {
     return view('studentlist');
@@ -25,6 +22,11 @@ Route::get('/', function () {
 Route::get('/rubrics', function(){
    return view('rubrics');
 });
+
+//testing auth0 function
+Route::get('/testauth', function () {
+    return view('auth/welcome');
+ });
 
 //auth0 routes
 Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
