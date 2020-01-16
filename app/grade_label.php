@@ -11,4 +11,8 @@ class grade_label extends Model
     public function school_type(){
         return $this->belongsTo('App\school_type', 'fk_school_type_id', 'school_type_id');
     }
+
+    public function ScriibiLevels(){
+        return $this->belongsTo('App\ScriibiLevels', 'fk_scriibi_level_id', 'scriibi_Level_Id');
+    }
 }

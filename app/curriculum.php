@@ -28,10 +28,6 @@ class curriculum extends Model
         return $this->hasMany('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
     }
 
-    public function label(){
-        return $this->hasMany('App\labels', 'fk_curriculum_id', 'curriculum_Id');
-    }
-
     public function school_type(){
         return $this->hasMany('App\school_type', 'fk_curriculum_id', 'curriculum_Id');
     }
