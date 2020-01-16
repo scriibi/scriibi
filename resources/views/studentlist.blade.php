@@ -13,35 +13,43 @@
        <!-- Add students -->
         <h4 class="top-divider mb-3 header-text"><strong>Add Students</strong></h4>
         <div class="universal-card p-2">
-           <form method="post">
+           <form method="post" action="/www">
                 <div class="row ml-2 mr-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
-                            <input type="text" class="text-input" id="firstName" required />
+                            <input type="text" class="text-input" id="firstName" name="first_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="firstName">First Name</label>
                         </div>
                         <div class="student-form-inputs lname-input">
-                            <input type="text" class="text-input" id="lastName" required />
+                            <input type="text" class="text-input" id="lastName" name="last_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="lastName">Last Name</label><br />
                         </div>
                         <div class="student-form-inputs id-input">
-                            <input type="text" class="text-input" id="id" required />
+                            <input type="text" class="text-input" id="id" name="student_gov_id" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="id">ID</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
+<<<<<<< Updated upstream
                             <select class="select-input" id="grade" required>
                                 <option>{{Auth::user()->name}}</option>
+=======
+                            <select class="select-input" id="grade" name="grade" required>
+                                @foreach($vars as $var)
+                                    <option value={{}}>{{}}</option>
+                                @endforeach
+>>>>>>> Stashed changes
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel" required>
-                                <option></option>
-                                <option></option>
+                            <select class="select-input" id="assessedLevel" name="assessed_level" required>
+                            @foreach($vars as $var)
+                                <option value={{}}>{{}}</option>
+                            @endforeach
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="assignmentLevel">Assessed Level</label><br />

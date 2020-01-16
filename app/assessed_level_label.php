@@ -15,4 +15,8 @@ class assessed_level_label extends Model
     public function ScriibiLevels(){
         return $this->belongsTo('App\ScriibiLevels', 'school_scriibi_level_id', 'scriibi_Level_Id');
     }
+
+    public function scopeGetAssessedLevelLabels($query, $schoolType){
+        return $query->where('school_type_id_fk', $schoolType);
+    }
 }
