@@ -30,4 +30,8 @@ class schools extends Model
     public function curriculum(){
         return $this->belongsTo('App\curriculum', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
     }
+
+    public function school_type_identifier(){
+        return $this->belongsTo('App\school_type_identifier', 'school_type_id', 'school_type_identifier_id');
+    }
 }

@@ -19,4 +19,8 @@ class school_type extends Model
     public function assessed_level_label(){
         return $this->hasMany('App\assessed_level_label', 'school_type_id_fk', 'school_type_id');
     }
+
+    public function school_type_identifier(){
+        return $this->belongsTo('App\school_type_identifier', 'fk_school_type_id', 'school_type_identifier_id');
+    }
 }
