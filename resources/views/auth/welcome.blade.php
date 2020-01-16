@@ -68,10 +68,19 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="links">
                     <ul>
                         <li>
                             <p> env APP_URL = {{env('APP_URL')}}</p>
+                        </li>
+                        <li>
+                            @auth
+                                <p>name:{{Auth::user()->name}}</p>
+                                <p>email: {{Auth::user()->teacher_Email}}</p>
+                            @endauth
+                            @guest
+                                <p>You are not logged in</p>
+                            @endguest
                         </li>
                     </ul>
                 </div>

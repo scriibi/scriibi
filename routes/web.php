@@ -12,13 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('studentlist');
+    return view('auth/welcome');
  });
 
  Route::get('/demo', function () {
    return view('demo');
 });
 
+Route::get('/studentlist', function () {
+    return view('studentlist');
+ });
 
 Route::get('/rubrics', function(){
    return view('rubrics');
@@ -28,6 +31,11 @@ Route::get('/rubrics', function(){
 Route::get('/testauth', function () {
     return view('auth/welcome');
  });
+
+ //testing auth0 function
+Route::get('/posts', 'PostsController@index')
+            ->name('home')
+            ->middleware('auth');
 
 //auth0 routes
 Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
