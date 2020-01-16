@@ -3,8 +3,9 @@
 /public/storage
 /public/css
 /public/js
+
 /storage/*.key
-/vendor
+/vendor/*
 /config/database.php
 .env
 .env.backup
@@ -19,4 +20,3 @@ yarn-error.log
 .ebextensions/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
