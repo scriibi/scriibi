@@ -32,24 +32,15 @@
                             <label class="student-form-label" for="id">ID</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-<<<<<<< Updated upstream
                             <select class="select-input" id="grade" required>
-                                <option>{{Auth::user()->name}}</option>
-=======
-                            <select class="select-input" id="grade" name="grade" required>
-                                @foreach($vars as $var)
-                                    <option value={{}}>{{}}</option>
-                                @endforeach
->>>>>>> Stashed changes
+                                <option></option>
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel" name="assessed_level" required>
-                            @foreach($vars as $var)
-                                <option value={{}}>{{}}</option>
-                            @endforeach
+                            <select class="select-input" id="assessedLevel" name="assessed_level" required>  
+                                <option></option>
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="assignmentLevel">Assessed Level</label><br />
