@@ -11,7 +11,7 @@ local criteria is a the locally (curriculum specific) defined writing criteria t
 
 class local_criteria extends Model
 {
-    protected $primaryKey = 'criteria_Id';
+    protected $primaryKey = 'local_criteria_Id';
 
     public function curriculum_scriibi_levels_criteria(){
         return $this->hasOne('App\curriculum_scriibi_levels_criteria', 'local_criteria_criteria_Id', 'criteria_Id');

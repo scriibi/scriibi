@@ -14,13 +14,11 @@ class CreateLocalCriteriasTable extends Migration
     public function up()
     {
         Schema::create('local_criterias', function (Blueprint $table) {
-            $table->bigIncrements('criteria_Id');
+            $table->bigIncrements('local_criteria_Id');
             $table->string('curriculum_code', 45)->nullable();
-            $table->string('description', 400)->nullable();
-            $table->string('elaboration', 400)->nullable();
-            $table->string('achievement', 400)->nullable();
+            $table->string('description_elaboration', 400)->nullable();
 
-            $table->unique('criteria_Id');
+            $table->unique('local_criteria_Id');
             $table->timestamps();
         });
     }
