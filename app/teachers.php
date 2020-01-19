@@ -4,13 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * teachers is the main "user" entity.
  * we records, firstname, lastname and email address.
  */
-class teachers extends Model
+class teachers extends Authenticatable
 {
     protected $primaryKey = 'user_Id';
+
+    protected $fillable = [
+        'name',
+        'teacher_Email',
+        'sub'
+    ];
 
     public function schools_primary_contact(){
         return $this->hasOne('App\schools', 'primary_Contact_Id', 'user_Id');
@@ -30,10 +39,6 @@ class teachers extends Model
 
     public function schools(){
         return $this->belongsToMany('App\schools', 'school_teachers', 'teachers_user_Id', 'schools_school_Id');
-    }
-
-    public function students(){
-        return $this->belongsToMany('App\students', 'teacher_students', 'teachers_user_Id', 'students_student_Id');
     }
 
     public function scriibi_level(){

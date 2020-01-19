@@ -10,16 +10,23 @@
 //---------- Element Overrides ----------------
 
 html, body {
-    height: 100%;
+    height: 100vw;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
+    padding: 0;
 }
 
 footer {
     border-top: 30px solid #6A6B6F;
     width: 100vw;
     margin-top: 50px;
+    bottom: 0;
+}
+
+#app{
+min-height: 100%;
+position: relative;
 }
 
 //---------- Partials -------------------------
@@ -70,8 +77,6 @@ footer {
 }//end of nav-header
 
 //Utility classes
-
-
 .scriibi-primary-btn {
     border: none;
     background-color: #33A849;
@@ -117,6 +122,84 @@ footer {
 }
 
 //---------- Page Specific --------------------
+
+// Home-page: dashboard
+
+
+#main-panel{
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-template-areas:
+        "sl-panel btn-panel";
+    height: 50vh;
+
+}
+
+.btn-panel{
+    display: grid;
+    grid-auto-rows: 4fr 3fr 2fr 2fr;
+}
+
+#student-list-panel{
+    overflow-y: auto;
+}
+
+#teaching-lesson-card{
+    border-radius: 7px;
+    background-color: #33A88C;
+
+}
+
+#teaching-lesson-list {
+    border: 2px solid #33A88C;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+
+#peer-assessment-card{
+    border-radius: 7px;
+    background-color: #6EB4DC;
+
+}
+
+#peer-assessment-list {
+    border: 2px solid #6EB4DC;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+#scriibi-support-card{
+    border-radius: 7px;
+    background-color: #4E76C3;
+
+
+}
+
+#scriibi-support-list {
+    border: 2px solid #4E76C3;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+.support-card-label{
+    display: inline-block;
+    vertical-align: middle;
+}
+.card-home-style{
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.go-to-student-btn{
+    background: #33A849;
+    border-radius: 7px;
+}
+
 
 //Student List
 
@@ -247,92 +330,137 @@ input:focus {
 
 // End of Select drop down
 
-#list_title{
-  font-size: large;
-  font-weight: bold;
-}
-
-#RubricBuilder_title{
-  font-size: large;
-  font-weight: bold;
-  color: green;
-  margin-top: 50px;
-}
-
-.btn-term{
-  align-items: stretch;
-}
-.table{
-  text-align: left;
-}
-
-.table-head{
-  white-space:nowrap;
-}
 
 //Rubric Page
-
-#text-type-title{
-  padding-left: 40px;
-}
-#checkbox-group{
-  padding-left: 40px;
-}
-
-#term1-savebtn{
-  float: right;
+#RubricBuilder_title{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #33A849;
 }
 
-#btn-reviewRubric{
-  float: right;
+.universal-card-rubric{
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    background-color: white;
 }
 
-.term-title-box{
-    padding: 0;
+.rubric-border-box{
+    border: 2px solid #4C4D4F;
+    box-sizing: border-box;
+    border-radius: 7px;
 }
+
 .btn-text-type{
-    border-radius: 20px,20px,20px,20px;
-}
-
-.border-for-checkbox{
-  border-bottom: 1px solid grey;
-  width: 100%;
-
+    border: 2px solid #33A849;
+    box-sizing: border-box;
+    border-radius: 20px;
 }
 
 .body-list{
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  text-indent: 5%;
-  vertical-align: middle;
-  border-radius:7px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    text-indent: 5%;
+    vertical-align: middle;
+    border-radius:7px;
 }
+
+
 
 .form-check-label{
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.card-ideas {
-  border-radius: 7px;
-  background-color: yellow;
-  border: 3px solid yellow;
+
+.skillset-box {
+    border-radius: 7px;
+    background-color: #FFD12D;
+    width: 1rem;
+}
+.list-group-box{
+    border: 2px solid #FFD12D;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+label.frm_checkbox {
+  position: relative;
+  line-height: 19px;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  span::before {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 2px solid #E2E6EC;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+  }
+
+  input[type="checkbox"]:checked + span::before {
+    background-color: #FC8585;
+    border-color: #FC8585;
+  }
+}
+
+$skillset-colors-map: (
+    yellow: #FFD12D,
+    red: #FC8585,
+    green: #41D798,
+    pink: #F370BF,
+    blue: #5995F0,
+    grey: #C4C4C4,
+    purple: #B975FD
+);
+@each $name, $color in $skillset-colors-map {
+    .skillset-box-#{$name} {
+        background-color: $color;
+        .list-group-box {
+            border-color: $color;
+        }
+        label.frm_checkbox input[type="checkbox"]:checked + span::before {
+            background-color: $color;
+            border-color: $color;
+        }
+    }
+}
+
+.form-break{
+    border-bottom: 1px solid #C4C4C4;
+}
+.btn-clear{
+    background: #33A849;
+    border-radius: 7px;
+    width: 124px;
+    height: 45px;
+}
+.btn-rubric-save{
+    background: #33A849;
+    border-radius: 7px;
+    width: 263px;
+    height: 45px;
 }
 
 .card-header{
-  border-radius: 7px 7px 0px 0px;
-  white-space: nowrap;
+    border-radius: 7px 7px 0px 0px;
+    white-space: nowrap;
 }
 
-.card-body{
-  padding: 0;
-}
-
-.skill-cat{
-  text-indent: 10%;
-  vertical-align: middle;
-  font-size: 0.8rem;
+.skill-title{
+    padding-left: 10%;
+    font-size: 0.875rem;
+    text-decoration-color: #FFFFFF;
 }
 
 .card-columns {

@@ -17,13 +17,9 @@ class CreateSkillsLevelsTable extends Migration
             $table->bigIncrements('skills_levels_Id');
             $table->bigInteger('skills_levels_skills_skill_Id')->unsigned();
             $table->bigInteger('scriibi_levels_scriibi_Level_Id')->unsigned();
-            $table->bigInteger('strategies_strategies_Id')->unsigned();
-            $table->bigInteger('student_definitions_student_definitions_Id')->unsigned();
 
             $table->index('skills_levels_skills_skill_Id');
             $table->index('scriibi_levels_scriibi_Level_Id');
-            $table->index('strategies_strategies_Id');
-            $table->index('student_definitions_student_definitions_Id');
 
             $table->foreign('skills_levels_skills_skill_Id')
                 ->references('skill_Id')
@@ -34,18 +30,6 @@ class CreateSkillsLevelsTable extends Migration
             $table->foreign('scriibi_levels_scriibi_Level_Id')
                 ->references('scriibi_Level_Id')
                 ->on('scriibi_levels')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->foreign('strategies_strategies_Id')
-                ->references('strategies_Id')
-                ->on('strategies')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->foreign('student_definitions_student_definitions_Id')
-                ->references('student_definitions_Id')
-                ->on('student_definitions')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

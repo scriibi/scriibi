@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
+use Exception;
+use App\teachers;
 use App\students;
+use App\grade_label;
+use App\assessed_level_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -40,36 +45,23 @@ class StudentsController extends Controller
         $student_first_name = $request->input('first_name');
         $student_last_name = $request->input('last_name');
         $student_gov_id = $request->input('student_gov_id');
-        $student_grade = $request->input('grade');
-        $student_assignment_level = $request->input('assignment_level');
-
-        $scriibi_enrolled_level = 0;
-        $scriibi_rubrik_level = 0;
-
-        $student_record = array('student_First_Name' => '', 'student_Last_Name' => '', 'Student_Gov_Id' => '', 'enrolled_Level_Id' => '', 'rubrik_level' => '', 'schools_school_Id' => '', 'suggested_level' => '');
+        $student_grade = $request->input('student_grade');
+        $student_assignment_level = $request->input('assessed_level');
+        $school = teachers::find(Auth::user()->user_Id)->schools->first();
+        $grade_scriibi_level = grade_label::find($request->input('student_grade'))->ScriibiLevels->scriibi_Level_Id;
+        $assessed_scriibi_level = assessed_level_label::find($request->input('assessed_level'))->ScriibiLevels->scriibi_Level_Id;
         
-        DB::table('students')->insert($student_record);
-    }
+        $class = teachers::find(Auth::user()->user_Id)->classes->first()->class_Id;
 
-    public function retrieveEnrolledLevel($studentGrade){
-        $enrolled_level = 0;
-        switch (studentGrade){
-            case 'Grade 1':
-                $enrolled_level = 1;
-                break;
-            case 'Grade 2':
-                $enrolled_level = 2;
-                break;
-            case 'Grade 3':
-                $enrolled_level = 3;
-                break;
-            case 'Grade 4':
-                
-        }
-    }
+        $student_record = array('student_First_Name' => $student_first_name, 'student_Last_Name' => $student_last_name,
+        'Student_Gov_Id' => $student_gov_id, 'enrolled_Level_Id' => $grade_scriibi_level,
+        'rubrik_level' => $assessed_scriibi_level, 'schools_school_Id' => $school->school_Id, 'suggested_level' => null);
+        
+        $newStudentId = DB::table('students')->insertGetId($student_record);
 
-    public function retrieveRubrikLevel($studentAssignmentLevel){
+        $newStudentClass = DB::table('classes_students')->insert(['classes_class_Id' => $class, 'students_student_Id' => $newStudentId]);
 
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 
     /**

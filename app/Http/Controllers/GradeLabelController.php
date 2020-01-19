@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\grade_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,7 @@ class GradeLabelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         //
     }
 

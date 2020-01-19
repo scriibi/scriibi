@@ -18,6 +18,7 @@ class CreateSchoolsTable extends Migration
             $table->string('name', 45);
             $table->bigInteger('primary_Contact_Id')->unsigned();   
             $table->bigInteger('curriculum_details_curriculum_details_Id')->unsigned();
+            $table->bigInteger('school_type_id')->unsigned();
             $table->unique('school_Id');
 
             $table->foreign('primary_Contact_Id')
@@ -31,6 +32,13 @@ class CreateSchoolsTable extends Migration
                 ->on('curriculum')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->foreign('school_type_id')
+                ->references('school_type_identifier_id')
+                ->on('school_type_identifiers')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
             $table->timestamps();
         });
     }

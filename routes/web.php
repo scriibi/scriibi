@@ -10,23 +10,47 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/welcome', function () {
-   return view('welcome');
-});
+
 Route::get('/', function () {
-    return view('studentlist');
+    return view('auth/welcome');
  });
 
+ Route::get('/demo', function () {
+   return view('demo');
+});
 
 Route::get('/rubrics', function(){
    return view('rubrics');
 });
+
+Route::get('/home', function(){
+    return view('home');
+});
+//testing auth0 function
+Route::get('/testauth', function () {
+    return view('auth/welcome');
+ });
+
+ //testing auth0 function
+Route::get('/posts', 'PostsController@index')
+            ->name('home')
+            ->middleware('auth');
 
 //auth0 routes
 Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
+Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
+Route::post('/StudentPost', 'StudentsController@store');
+
+Route::get('/rubric', function(){
+   return view('rubric');
+});
+
+Route::get('/rubrics', function(){
+   return view('rubrics');
+});
 
 
 // Route::get('/', function () {

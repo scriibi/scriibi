@@ -27,4 +27,4 @@ class task_skills_results extends Model
         return $this->belongsTo('App\skills', 'skills_skill_Id', 'skill_Id');
     }
 }
-}
+

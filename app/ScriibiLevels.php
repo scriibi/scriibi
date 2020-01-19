@@ -18,11 +18,11 @@ class ScriibiLevels extends Model
     }
 
     public function students_rubrik_level(){
-        return $this->hasOne('App\students', 'rubrik_level', 'scriibi_Level_Id');
+        return $this->hasMany('App\students', 'rubrik_level', 'scriibi_Level_Id');
     }
 
     public function students_enrolled_level(){
-        return $this->hasOne('App\students', 'enrolled_Level_Id', 'scriibi_Level_Id');
+        return $this->hasMany('App\students', 'enrolled_Level_Id', 'scriibi_Level_Id');
     }
 
     public function lessons(){
@@ -45,7 +45,11 @@ class ScriibiLevels extends Model
         return $this->hasMany('App\skills_levels', 'scriibi_levels_scriibi_Level_Id', 'scriibi_Level_Id');
     }
 
-    public function label(){
-        return $this->hasMany('App\labels', 'fk_local_scriibi_level', 'scriibi_Level_Id');
+    public function grade_label(){
+        return $this->hasMany('App\grade_label', 'fk_scriibi_level_id', 'scriibi_Level_Id');
+    }
+
+    public function assessed_level_label(){
+        return $this->hasMany('App\assessed_level_label', 'school_scriibi_level_id', 'scriibi_Level_Id');
     }
 }
