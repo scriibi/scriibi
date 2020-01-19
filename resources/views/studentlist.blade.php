@@ -13,7 +13,8 @@
        <!-- Add students -->
         <h4 class="top-divider mb-3 header-text"><strong>Add Students</strong></h4>
         <div class="universal-card p-2">
-           <form method="post" action="/www">
+           <form method="post" action="/StudentPost">
+                @csrf
                 <div class="row ml-2 mr-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
@@ -32,24 +33,19 @@
                             <label class="student-form-label" for="id">ID</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-<<<<<<< Updated upstream
-                            <select class="select-input" id="grade" required>
-                                <option>{{Auth::user()->name}}</option>
-=======
-                            <select class="select-input" id="grade" name="grade" required>
-                                @foreach($vars as $var)
-                                    <option value={{}}>{{}}</option>
+                            <select class="select-input" id="grade" required name='student_grade'>
+                                @foreach ($grade as $g)
+                                    <option value={{$g->grade_label_id}}>{{$g->grade_label}}</option>
                                 @endforeach
->>>>>>> Stashed changes
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel" name="assessed_level" required>
-                            @foreach($vars as $var)
-                                <option value={{}}>{{}}</option>
-                            @endforeach
+                            <select class="select-input" id="assessedLevel" name="assessed_level" required>  
+                                @foreach ($assessed as $a)
+                                    <option value={{$a->assessed_level_label_id}}>{{$a->assessed_level_label}}</option>
+                                @endforeach
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="assignmentLevel">Assessed Level</label><br />
@@ -78,31 +74,33 @@
 
        <!-- Student detail card -->
         <div class="universal-card mt-2">
-            <div class="student-details row ml-2 mr-2 pt-2">
-                <div class="col-10">
-                    <div class="student-form-inputs fname-input">
-                        <p>Joseph</p>
+            @foreach ($students as $s)
+                <div class="student-details row ml-2 mr-2 pt-2">
+                    <div class="col-10">
+                        <div class="student-form-inputs fname-input">
+                            <p>{{$s->student_First_Name}}</p>
+                        </div>
+                        <div class="student-form-inputs lname-input">
+                            <p>{{$s->student_Last_Name}}</p>
+                        </div>
+                        <div class="student-form-inputs id-input">
+                            <p>{{$s->Student_Gov_Id}}</p>
+                        </div>
+                        <div class="student-form-inputs grade-input">
+                            <p>{{$s->enrolled_Level_Id}}</p>
+                        </div>
+                        <div class="student-form-inputs grade-input">
+                            <p>{{$s->rubrik_level}}</p>
+                        </div>
                     </div>
-                    <div class="student-form-inputs lname-input">
-                        <p>Josepherson</p>
+                    <div class="col-2">
+                        <div class="student-icon-group">
+                            <button action="displayEditForm(this)" class="icon-btn">✏</button>
+                            <button class="icon-btn">🗑</button>
+                        </div>
                     </div>
-                    <div class="student-form-inputs id-input">
-                        <p>J1239</p>
-                    </div>
-                    <div class="student-form-inputs grade-input">
-                        <p>Grade 4</p>
-                    </div>
-                    <div class="student-form-inputs grade-input">
-                        <p>Grade 4</p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="student-icon-group">
-                        <button action="displayEditForm(this)" class="icon-btn">✏</button>
-                        <button class="icon-btn">🗑</button>
-                    </div>
-                </div>
-           </div>
+            </div>
+           @endforeach
             <!-- /student details -->
 
             <!-- Edit student form -->

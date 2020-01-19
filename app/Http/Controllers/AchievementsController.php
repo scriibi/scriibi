@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\grade_label;
+use App\achievements;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class GradeLabelController extends Controller
+class AchievementsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class GradeLabelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         //
     }
 
@@ -43,10 +41,10 @@ class GradeLabelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function show(grade_label $grade_label)
+    public function show(achievements $achievements)
     {
         //
     }
@@ -54,10 +52,10 @@ class GradeLabelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function edit(grade_label $grade_label)
+    public function edit(achievements $achievements)
     {
         //
     }
@@ -66,10 +64,10 @@ class GradeLabelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, grade_label $grade_label)
+    public function update(Request $request, achievements $achievements)
     {
         //
     }
@@ -77,10 +75,10 @@ class GradeLabelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(grade_label $grade_label)
+    public function destroy(achievements $achievements)
     {
         //
     }

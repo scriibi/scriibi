@@ -24,6 +24,10 @@ class curriculum extends Model
         return $this->hasMany('App\curriculum_scriibi_levels', 'curriculum_Id', 'curriculum_Id');
     }
 
+    public function curriculum_scriibi_levels_skills(){
+        return $this->hasMany('App\curriculum-scriibi_levels-skills', 'curriculum-scriibi_level-skills-Id', 'curriculum_Id');
+    }
+
     public function schools(){
         return $this->hasMany('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
     }
@@ -32,3 +36,5 @@ class curriculum extends Model
         return $this->hasMany('App\school_type', 'fk_curriculum_id', 'curriculum_Id');
     }
 }
+
+

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\grade_label;
+use App\skills_levels_global_criteria;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class GradeLabelController extends Controller
+class SkillsLevelsGlobalCriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class GradeLabelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         //
     }
 
@@ -43,10 +41,10 @@ class GradeLabelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\skills_levels_global_criteria  $skills_levels_global_criteria
      * @return \Illuminate\Http\Response
      */
-    public function show(grade_label $grade_label)
+    public function show(skills_levels_global_criteria $skills_levels_global_criteria)
     {
         //
     }
@@ -54,10 +52,10 @@ class GradeLabelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\skills_levels_global_criteria  $skills_levels_global_criteria
      * @return \Illuminate\Http\Response
      */
-    public function edit(grade_label $grade_label)
+    public function edit(skills_levels_global_criteria $skills_levels_global_criteria)
     {
         //
     }
@@ -66,10 +64,10 @@ class GradeLabelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\skills_levels_global_criteria  $skills_levels_global_criteria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, grade_label $grade_label)
+    public function update(Request $request, skills_levels_global_criteria $skills_levels_global_criteria)
     {
         //
     }
@@ -77,10 +75,10 @@ class GradeLabelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\grade_label  $grade_label
+     * @param  \App\skills_levels_global_criteria  $skills_levels_global_criteria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(grade_label $grade_label)
+    public function destroy(skills_levels_global_criteria $skills_levels_global_criteria)
     {
         //
     }
