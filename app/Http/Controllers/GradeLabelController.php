@@ -16,13 +16,7 @@ class GradeLabelController extends Controller
      */
     public function index()
     {   
-        /**
-         * code for testing initial db integration
-         */
-        // $gl = DB::table('grade_labels')->where('fk_school_type_id', '=', 1)->get();
-        // $al = DB::table('assessed_level_labels')->where('school_type_id_fk', '=', 1)->get();
-
-        return view('studentlist', ['grade_label' => $gl, 'assessed_label' => $al]);
+        //
     }
 
     /**
