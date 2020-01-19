@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-2">
                     <div class="student-icon-group">
-                        <button action="displayEditForm(this)" class="icon-btn">✏</button>
+                        <button onclick="displayEditForm(this)" class="icon-btn">✏</button>
                         <button class="icon-btn">🗑</button>
                     </div>
                 </div>
