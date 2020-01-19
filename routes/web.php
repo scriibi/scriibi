@@ -41,6 +41,15 @@ Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->m
 Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 
+Route::get('/rubric', function(){
+   return view('rubric');
+});
+
+Route::get('/rubrics', function(){
+   return view('rubrics');
+});
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

@@ -65,22 +65,17 @@ class StudentInputController extends Controller
      * returns an array of students who belong to the currently logged in teacher
      */
     public function GetStudents(){
-        $classes = [];
         $students = [];
         try{
-            $classList = DB::table('classes_teachers')
+            $class = DB::table('classes_teachers')
                 ->select('classes_teachers_classes_class_Id')
                 ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-                ->get();
+                ->first();
 
-            foreach($classList as $c){
-                array_push($classes, $c->classes_teachers_classes_class_Id);
-            }
-            
             $students = DB::table('classes_students')
                 ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
                 ->select('students.*')
-                ->whereIn('classes_students.classes_class_Id', $classes)
+                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
                 ->get();
         }
         catch(Exception $e){
