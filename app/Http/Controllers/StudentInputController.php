@@ -69,7 +69,7 @@ class StudentInputController extends Controller
         try{
             $classes = DB::table('classes_teachers')
                 ->select('classes_teachers_classes_class_Id')
-                ->where('teachers_user_Id', '=', Auth::user()->user_Id);
+                ->where('teachers_user_Id', '=', Auth::user()->user_Id)->get();
 
             $students = DB::table('classes_students')
                 ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
