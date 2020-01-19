@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\teacher_student;
+use App\skills_levels_strategies;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class TeacherStudentController extends Controller
+class SkillsLevelsStrategiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class TeacherStudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\teacher_student  $teacher_student
+     * @param  \App\skills_levels_strategies  $skills_levels_strategies
      * @return \Illuminate\Http\Response
      */
-    public function show(teacher_student $teacher_student)
+    public function show(skills_levels_strategies $skills_levels_strategies)
     {
         //
     }
@@ -53,10 +52,10 @@ class TeacherStudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\teacher_student  $teacher_student
+     * @param  \App\skills_levels_strategies  $skills_levels_strategies
      * @return \Illuminate\Http\Response
      */
-    public function edit(teacher_student $teacher_student)
+    public function edit(skills_levels_strategies $skills_levels_strategies)
     {
         //
     }
@@ -65,10 +64,10 @@ class TeacherStudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\teacher_student  $teacher_student
+     * @param  \App\skills_levels_strategies  $skills_levels_strategies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, teacher_student $teacher_student)
+    public function update(Request $request, skills_levels_strategies $skills_levels_strategies)
     {
         //
     }
@@ -76,10 +75,10 @@ class TeacherStudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\teacher_student  $teacher_student
+     * @param  \App\skills_levels_strategies  $skills_levels_strategies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(teacher_student $teacher_student)
+    public function destroy(skills_levels_strategies $skills_levels_strategies)
     {
         //
     }

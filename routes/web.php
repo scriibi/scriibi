@@ -42,8 +42,15 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
+<<<<<<< HEAD
 Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
+=======
+// Route::get('/www', 'GradeLabelController@index');      route set up for testing the student add grade and assed level name selection
+
+Route::get('/www', 'StudentInputController@ReturnStudentListPage');
+// Route::post('/www', StudentsController@store);
+>>>>>>> da0adc73aeaa89e5e0b84fd6d310ca56a3c8db29
 
 // Route::get('/', function () {
 //     return view('welcome');

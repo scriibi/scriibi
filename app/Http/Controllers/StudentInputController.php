@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use Exception;
 use App\teachers;
+use App\classes_teachers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -66,9 +67,14 @@ class StudentInputController extends Controller
     public function GetStudents(){
         $students = [];
         try{
-            $students = DB::table('teacher_students')
-                ->join('students', 'teacher_students.students_student_Id', 'students.student_Id')
-                ->where('teacher_students.teachers_user_Id', '=', Auth::user()->user_Id)->get();
+            $classes = DB::table('classes_teachers')
+                ->select('classes_teachers_classes_class_Id')
+                ->where('teachers_user_Id', '=', Auth::user()->user_Id);
+
+            $students = DB::table('classes_students')
+                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
+                ->select('students.*')
+                ->whereIn('classes_students.classes_class_Id', $classes);
         }
         catch(Exception $e){
             abort(403, 'Please log in to view this page!');

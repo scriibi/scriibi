@@ -77,6 +77,7 @@
                             @auth
                                 <p>name:{{Auth::user()->name}}</p>
                                 <p>email: {{Auth::user()->teacher_Email}}</p>
+                                <p>user_Id: {{Auth::user()->user_Id}}</p>
                             @endauth
                             @guest
                                 <p>You are not logged in</p>

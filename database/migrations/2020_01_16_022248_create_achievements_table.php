@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrategiesTable extends Migration
+class CreateAchievementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateStrategiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('strategies', function (Blueprint $table) {
-            $table->bigIncrements('strategies_Id');
-            $table->longText('strategy_Desc', 400);
+        Schema::create('achievements', function (Blueprint $table) {
+            $table->bigIncrements('achievement_Id');
+            $table->text('description', 200);
 
-            $table->unique('strategies_Id');
+            $table->unique('achievement_Id');
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateStrategiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strategies');
+        Schema::dropIfExists('achievements');
     }
 }
