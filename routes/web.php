@@ -27,6 +27,9 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+Route::get('/home', function(){
+    return view('home');
+});
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');

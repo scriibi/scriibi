@@ -6,6 +6,8 @@
 $color_class ='blue';
 ?>
 
+<!-- able to change curriculum code and skills refresh -->
+<!-- tooltip for each skill item ex. description of each skill item -->
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
@@ -15,7 +17,7 @@ $color_class ='blue';
         <!-- Rubric Builder -->
         <h4 class="top-divider mb-3 header-text" id="RubricBuilder_title"><strong>Rubric Builder</strong></h4>
 
-        <!-- card contains 2 forms in one form -->
+        <!-- card contains 2 forms in 1 form -->
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
                 <form action="index.html" method="post" class="mb-0 p-0">
@@ -23,7 +25,7 @@ $color_class ='blue';
                         <!-- term-title+Curriculum -->
                         <div class="card-text m-0">
                             <div class=" form-group d-flex justify-content-between ">
-                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="" value="Term 1 Rubric">
+                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="" value="Term 1 Rubric" required>
                                 <div class="d-none d-xs-block">
 
                                 </div>
@@ -52,11 +54,11 @@ $color_class ='blue';
                                 <!-- content inside each skill card -->
                                 <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($color_class); ?>">
                                     <ul class="list-group list-group-flush ">
-                                        <li class="text-white ">
+                                        <li class="text-white m-0">
                                             <!-- load icon address; we dont have this yet;wait for Talia -->
-                                            <span class="align-middle">icon</span>
+                                            <span class="fas fa-lightbulb px-2"></span>
                                             <!-- load skill title -->
-                                            <span class="skill-title align-middle w-100 pl-0">title</span>
+                                            <span class="skill-title align-middle w-100 pl-0">Ideas</span>
                                         </li>
                                         <div class="list-group-box">
                                             <li class="list-group-item">
