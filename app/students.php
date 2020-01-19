@@ -29,10 +29,6 @@ class students extends Model
         return $this->belongsToMany('App\classes', 'classes_students', 'students_student_Id', 'classes_class_Id');
     }
 
-    public function teachers(){
-        return $this->belongsToMany('App\teachers', 'teacher_students', 'students_student_Id', 'teachers_user_Id');
-    }
-
     public function school(){
         return $this->belongsTo('App\schools', 'schools_school_Id', 'school_Id');
     }

@@ -44,7 +44,7 @@ Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->m
 
 // Route::get('/www', 'GradeLabelController@index');      route set up for testing the student add grade and assed level name selection
 
-// Route::get('/www', 'StudentInputController@ReturnStudentListPage');
+Route::get('/www', 'StudentInputController@ReturnStudentListPage');
 // Route::post('/www', StudentsController@store);
 
 // Route::get('/', function () {
