@@ -33,14 +33,18 @@
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="grade" required>
+                           
                                 <option></option>
+                           
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="assessedLevel" name="assessed_level" required>  
+                          
                                 <option></option>
+                           
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="assignmentLevel">Assessed Level</label><br />
