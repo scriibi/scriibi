@@ -17,11 +17,11 @@ class CreateTeachersScriibiLevelsTable extends Migration
             $table->bigIncrements('teachers_scriibi_levels_Id');
             $table->bigInteger('teachers_user_Id')->unsigned();
             $table->bigInteger('scriibi_levels_scriibi_Level_Id')->unsigned();
-            
+
             $table->unique('teachers_scriibi_levels_Id');
             $table->index('teachers_user_Id');
-            $table->index('scriibi_levels_scriibi_Level_Id');   
-            
+            $table->index('scriibi_levels_scriibi_Level_Id');
+
             $table->foreign('teachers_user_Id')
                 ->references('user_Id')
                 ->on('teachers')
