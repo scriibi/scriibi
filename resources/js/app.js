@@ -32,6 +32,8 @@ const app = new Vue({
 });
 
 function displayEditForm(e) {
+    alert("works!");
+    var parent = e.parentNode();
     var form = document.getElementByClassName("edit-form"); 
     var details = document.getElementsByClassName("student-details");
     dump(details);
