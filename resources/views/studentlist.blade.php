@@ -93,12 +93,13 @@
                             <p>{{$s->rubrik_level}}</p>
                         </div>
                     </div>
-                    <div class="col-2">
-                        <div class="student-icon-group">
-                            <button action="displayEditForm(this)" class="icon-btn">✏</button>
-                            <button class="icon-btn">🗑</button>
-                        </div>
+                </div>
+                <div class="col-2">
+                    <div class="student-icon-group">
+                        <button onclick="displayEditForm(this)" class="icon-btn">✏</button>
+                        <button class="icon-btn">🗑</button>
                     </div>
+                </div>
             </div>
            @endforeach
             <!-- /student details -->
