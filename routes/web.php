@@ -26,6 +26,10 @@ Route::get('/rubrics', function(){
 Route::get('/home', function(){
     return view('home');
 });
+
+Route::get('/assessment-setup', function(){
+    return view('assessment-setup');
+});
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');

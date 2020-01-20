@@ -9,7 +9,7 @@
       <p id="RubricBuilder_title">Rubric Builder</p>
       <div class="accordion" id="rubric-accordion">
         <div class="card">
-          <div class="card-header" id="headingOne">
+          <div class="card-header">
             <h2 class="mb-0">
               <button class="btn btn-link" type="button" data-toggle="collapse"
               data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
