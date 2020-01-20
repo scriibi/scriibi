@@ -95,8 +95,8 @@
                     </div>
                     <div class="col-2">
                         <div class="student-icon-group">
-                            <button action="displayEditForm(this)" class="icon-btn">✏</button>
-                            <button class="icon-btn">🗑</button>
+                            <button action="displayEditForm(this)" class="icon-btn" type="button">✏</button>
+                            <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
                     </div>
             </div>
