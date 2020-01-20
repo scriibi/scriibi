@@ -93,12 +93,21 @@
                             <p>{{$s->rubrik_level}}</p>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-2">
                         <div class="student-icon-group">
                             <button action="displayEditForm(this)" class="icon-btn" type="button">✏</button>
                             <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
+=======
+                </div>
+                <div class="col-2">
+                    <div class="student-icon-group">
+                        <button onclick="displayEditForm(this)" class="icon-btn">✏</button>
+                        <button class="icon-btn">🗑</button>
+>>>>>>> 4ac964e2e5cee8f920951f28d5f123072013c213
                     </div>
+                </div>
             </div>
            @endforeach
             <!-- /student details -->

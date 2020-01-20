@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /*
-a Class is a grouping of students that are taught by a teacher. this is logically equivalent to a teacher's "student list".
-first release fof scriibi web app only allows teachers to see/create ONE "student list/class", but in future a teacher may have more than ONE.
+a Class is a grouping of students that are taught by a teacher.
+this is logically equivalent to a teacher's "student list".
+first release fof scriibi web app only allows teachers to see/create
+ONE "student list/class", but in future a teacher may have more than ONE.]
 */
 
 class classes extends Model

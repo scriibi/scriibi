@@ -22,6 +22,21 @@ class CustomUserRepository extends Auth0UserRepository
         return teachers::firstOrCreate(
             ['sub' => $profile['sub']],
             ['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+
+
+        /**
+         * check if teacher is already in teacher table and if not, create new entry
+         * create an entry in classes for the new teacher
+         *
+         */
+        // return $teacher = teachers::firstOrCreate(
+        //     ['sub' => $profile['sub']],
+        //     ['name' => $profile['name'] ?? '',
+        //     'teacher_Email' => $profile['email'] ?? '']);
+
+        // $class = classesDB::insert(
+        //     'insert into classes (class_Name, schools_school_Id) values (?, ?)',
+        //      [$teacher->name.'_'.date("Y-m-d"), $school->school_Id])
     }
 
     /**
