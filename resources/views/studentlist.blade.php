@@ -99,8 +99,8 @@
                             <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
                     </div>
-            </div>
-           @endforeach
+                </div>
+            @endforeach
             <!-- /student details -->
 
             <!-- Edit student form -->
@@ -154,7 +154,7 @@
                </div>
            </form>
             <!-- /Edit student form -->
-       </div>
+        </div>
        <!-- /Student detail card -->
     <!-- /student list -->
    </div>
