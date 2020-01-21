@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaskSkillsResultsTable extends Migration
+class CreateTaskSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateTaskSkillsResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_skills_results', function (Blueprint $table) {
-            $table->bigIncrements('result_Id');
+        Schema::create('tasks_skills', function (Blueprint $table) {
+            $table->bigIncrements('tasks_skills_Id');
             $table->bigInteger('writing_tasks_writing_task_Id')->unsigned();
             $table->bigInteger('skills_skill_Id')->unsigned();
-            $table->double('result');
 
-            $table->unique('result_Id');
+            $table->unique('tasks_skills_Id');
             $table->index('writing_tasks_writing_task_Id');
             $table->index('skills_skill_Id');
-            
+
             $table->foreign('writing_tasks_writing_task_Id')
                 ->references('writing_task_Id')
                 ->on('writing_tasks')
