@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\traitObject;
+use App\skillObject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RubricBuilder extends Controller
 {
-
+    private $traits_skills_array = array();
 
     public function test(){
-        // $array = array();
 
-        // foreach($traitsCollection as $trait){
+        // $traitsList = TraitsController::index();
+        // $skillsList = SkillsTraitsController::index();
 
-        //     $traitSkills = $skillsTraitsCollection->filter(function($value, $trait){return $value->skills_traits_traits_trait_Id == $trait['trait_Id']->trait_Id;});
+        // foreach($$traitsList as $trait){
+
+        //     //$traitSkills = $skillsTraitsCollection->filter(function($value, $trait){return $value->skills_traits_traits_trait_Id == $trait['trait_Id']->trait_Id;});
 
         //     array_push($array, $traitSkills);
-
-        //     //$traitCollection[] = new traitObject($trait->name, $trait->colour, $trait->icon, $traitSkills);
         // }
+        
+        $temptrait = new traitObject('trait 1', 'red', 'red icon');
+        $tempskill = new skillObject('skill 1', 'skill 1 def');
 
-        return view('traits');
+        $temptrait->setSkills([$tempskill]);
+        
+        return view('traits', ['trait' => $temptrait]);
     }
 
 //this function returns
@@ -33,6 +40,6 @@ class RubricBuilder extends Controller
     //$level == scriibi_level that the teacher chooses at the top of rubric bulder
     //function should return 1 if a flag exists, 0 if not.
     public function CheckFlag($curriculum, $levels){
-
+        
     }
 }
