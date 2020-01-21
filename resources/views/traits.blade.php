@@ -1,4 +1,9 @@
     hello
-
+    
+     
+      {{dd($trait->getName())}}
+    
+    
+   
 
 

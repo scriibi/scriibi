@@ -14,7 +14,7 @@ class TraitsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index()
     {
         //
     }
