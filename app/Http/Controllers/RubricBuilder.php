@@ -10,7 +10,6 @@ class RubricBuilder extends Controller
 
 
     public function test(){
-        // $skillsTraitsCollection = DB::table('skills_traits')->get();
         // $array = array();
 
         // foreach($traitsCollection as $trait){

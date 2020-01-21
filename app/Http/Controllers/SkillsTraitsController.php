@@ -15,7 +15,7 @@ class SkillsTraitsController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('skills_traits')->get();
     }
 
     /**
