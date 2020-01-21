@@ -28,7 +28,7 @@
 
         </div> -->
 
-        <!-- show list of rubric created -->
+        <!-- show list of assessment created -->
         <div class="has-rubric">
             <form class="mt-5" action="index.html" method="post" visibility="false">
                 <div class="">
@@ -41,16 +41,16 @@
                         <p class="col-2 text-left px-0">Date Created</p>
                         <p class="col-2 text-left px-0">Rubric</p>
                         <p class="col-2 text-left px-0">Status</p>
-
                     </div>
 
-                    <!-- populate more cells as per rubric -->
+                    <!-- populate more cells as per assessment -->
                     <div class="body-cells row ">
                         <button type="button" name="button" class="row btn btn-block rubric-list-row d-flex justify-content-between pl-3 m-0">
                             <p class="col-4 rubric-list-text text-truncate align-self-center text-left px-0">Cold Write - Narrative - What I did on the weekend</p>
                             <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-1">20 - Feb - 2020</p>
                             <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-0">Cold Write - Narrative - What I did on the weekend</p>
                             <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2">In Progress</p>
+                        </button>
                     </div>
                 </div>
             </form>
