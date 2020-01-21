@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 class RubricBuilder extends Controller
 {
+
+
     public function test(){
         // $skillsTraitsCollection = DB::table('skills_traits')->get();
         // $array = array();
@@ -21,5 +23,17 @@ class RubricBuilder extends Controller
         // }
 
         return view('traits');
+    }
+
+//this function returns
+    public function someFunction(){
+        $currScriibiSkillsCollection = DB::table('curriculum_scriibi_level_skills')->select('curriculum-scriibi_levels-skills_Id')->where('curriculum_Id', '=', $curriculum)->where('scriibi_level_Id', '=', $level)->get();
+    }
+
+    //$curriculum == current user's curriculum_Id
+    //$level == scriibi_level that the teacher chooses at the top of rubric bulder
+    //function should return 1 if a flag exists, 0 if not.
+    public function CheckFlag($curriculum, $levels){
+
     }
 }

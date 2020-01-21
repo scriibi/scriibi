@@ -28,7 +28,7 @@ class CreateLocalCriteriaCurriculumScriibiLevelSkillsTable extends Migration
 
 
             $table->foreign('curriculum-scriibi_levels-skills_Id', 'fk_local_critera-curriculum-scriibi_level-skills_curriculum-s1')
-            ->references('curriculum-scriibi_levels-skills_Id')
+            ->references('curriculum_scriibi_levels_skills_Id')
             ->on('curriculum_scriibi_level_skills')
             ->onDelete('no action')
             ->onUpdate('no action');

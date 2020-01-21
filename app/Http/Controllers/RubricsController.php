@@ -16,13 +16,9 @@ class RubricsController extends Controller
      */
     public function returnTraits()
     {
-<<<<<<< HEAD
-        $traitsArray = TraitsController::GetTraits();
-=======
         //$traitsArray = TraitsController::GetTraits();
 
 
->>>>>>> e824b536fddb749e58b105ab159462618b183c10
     }
 
 
