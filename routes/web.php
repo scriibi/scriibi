@@ -31,7 +31,7 @@ Route::get('/testauth', function () {
     return view('auth/welcome');
  });
 
-Route::get('/traits', 'TraitsController@GetTraits');
+Route::get('/traits', 'RubricBuilder@test');
 
 
  //testing auth0 function

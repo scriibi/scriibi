@@ -1,3 +1,3 @@
 @foreach ($traitskill as $ts)
-    {{dd($ts)}}
+    hello
 @endforeach

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Auth:
+use Auth;
 use App\Rubrics;
 use Illuminate\Http\Request;
 
@@ -17,8 +17,6 @@ class RubricsController extends Controller
     public function returnTraits()
     {
         $traitsArray = TraitsController::GetTraits();
-
-
     }
 
 
