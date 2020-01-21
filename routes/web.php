@@ -27,6 +27,11 @@ Route::get('/home', function(){
     return view('home');
 });
 
+
+Route::get('/studentlist', function(){
+    return view('studentlist');
+});
+
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });

@@ -54,27 +54,30 @@
                 </div>
                 <div class="card-footer student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
-                        <button type="button" name="button" class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</button>
+                        <a href="/studentlist">
+                            <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
+                        </a>
+
                 </div>
             </div>
 
             <!-- btn-panel -->
             <div class="btn-panel">
-                <!-- assessments btn -->
+                <!-- assessments btn link-->
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
                         <span class="align-self-center">Assessments</span>
                     </div>
                 </a>
-                <!-- rubric template btn -->
+                <!-- rubric template btn link -->
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
                         <span class="align-self-center">Rubric Template</span>
                     </div>
                 </a>
-                <!-- Goal setting btn -->
+                <!-- Goal setting btn link-->
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center" src="/images/goal-setting.png" alt="rubric-template">
