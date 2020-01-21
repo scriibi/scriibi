@@ -16,6 +16,9 @@ class CreateTraitsTable extends Migration
         Schema::create('traits', function (Blueprint $table) {
             $table->bigIncrements('trait_Id');
             $table->string('trait_Name', 45);
+            $table->string('colour', 45);
+            $table->string('icon', 45);
+
             $table->unique('trait_Id');
             $table->unique('trait_Name');
             $table->timestamps();

@@ -48,3 +48,16 @@ class CreateTeachersPositionsTable extends Migration
         Schema::dropIfExists('teachers_positions');
     }
 }
+
+
+// separate class for traitObject
+
+// protected attributes for name, colour, icon, skillObject
+
+
+
+
+
+
+
+

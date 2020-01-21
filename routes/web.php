@@ -31,6 +31,9 @@ Route::get('/testauth', function () {
     return view('auth/welcome');
  });
 
+Route::get('/traits', 'TraitsController@GetTraits');
+
+
  //testing auth0 function
 Route::get('/posts', 'PostsController@index')
             ->name('home')
