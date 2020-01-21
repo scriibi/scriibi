@@ -124,8 +124,6 @@ position: relative;
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
-
-
 #main-panel{
     display: grid;
     grid-template-columns: 5fr 3fr;
@@ -140,65 +138,119 @@ position: relative;
     grid-auto-rows: 4fr 3fr 2fr 2fr;
 }
 
-#student-list-panel{
+
+.student-list-scroll{
     overflow-y: auto;
+    position: relative;
 }
 
-#teaching-lesson-card{
+.teaching-lesson-title{
     border-radius: 7px;
     background-color: #33A88C;
 
 }
 
-#teaching-lesson-list {
-    border: 2px solid #33A88C;
-    box-sizing: border-box;
-    border-radius: 7px;
+.teaching-lesson-title:hover{
+    border:2px, solid,#33A88C;
 }
 
-
-#peer-assessment-card{
+.peer-assessment-title {
     border-radius: 7px;
     background-color: #6EB4DC;
-
 }
 
-#peer-assessment-list {
-    border: 2px solid #6EB4DC;
-    box-sizing: border-box;
-    border-radius: 7px;
-}
 
-#scriibi-support-card{
+.scriibi-support-title{
     border-radius: 7px;
     background-color: #4E76C3;
-
-
 }
 
-#scriibi-support-list {
-    border: 2px solid #4E76C3;
-    box-sizing: border-box;
-    border-radius: 7px;
-}
-
-.support-card-label{
-    display: inline-block;
-    vertical-align: middle;
-}
-.card-home-style{
+.student-list-card-style{
     border-radius: 20px;
     overflow: hidden;
-    border: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    background-color:#FAFAFA;
+}
+.studet-list-cell-style{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+.student-list-footer-style{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 20px 20px;
+}
+.extra-card-style{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.extra-support-card-list{
+    border-radius: 20px;
+    overflow: hidden;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 
+}
 
+.list-group-item:last-child {
+border-bottom-right-radius: 25px;
+border-bottom-left-radius: 25px;
 }
 
 .go-to-student-btn{
     background: #33A849;
     border-radius: 7px;
 }
+
+.teaching-lessons-list:hover{
+    border: 2px solid #33A88C;
+    box-shadow:none;
+
+}
+
+.peer-assessment-list:hover{
+    border: 2px solid #6EB4DC;
+    box-shadow:none;
+}
+
+.scriibi-support-list{
+    border-radius: 20px;
+}
+.scriibi-support-list:hover{
+    border: 2px solid #4E76C3;
+    box-shadow:none;
+}
+
+// Assessment setup Page
+
+#create-assessment-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color:  #33A849;
+}
+
+#description-for-assessment{
+    height: 30vh;
+}
+
+.assessment-btn{
+    background: #33A849;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+.card-assessment-style{
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+
 
 
 //Student List
