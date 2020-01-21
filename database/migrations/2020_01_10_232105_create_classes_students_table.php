@@ -25,14 +25,14 @@ class CreateClassesStudentsTable extends Migration
             $table->foreign('classes_class_Id')
                 ->references('class_Id')
                 ->on('classes')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             
             $table->foreign('students_student_Id')
                 ->references('student_Id')
                 ->on('students')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
                 
             $table->timestamps();
         });

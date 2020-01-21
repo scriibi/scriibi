@@ -1,8 +1,12 @@
 <?php
 // app/Repositories/CustomUserRepository.php
+
 namespace App\Repositories;
 
 use App\teachers;
+use Auth;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 use Auth0\Login\Auth0User;
 use Auth0\Login\Auth0JWTUser;
@@ -19,10 +23,52 @@ class CustomUserRepository extends Auth0UserRepository
      * @return teachers
      */
     protected function upsertUser( $profile ) {
-        return teachers::firstOrCreate(
-            ['sub' => $profile['sub']],
-            ['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+
+        //checks if teacher is available
+        $teacherExists = DB::table('teachers')->select('teachers.*')->where('teacher_Email', '=', $profile['email'])->first();
+
+        //creates teacher entry regardless
+        $teacher = teachers::firstOrCreate(['sub' => $profile['sub']],['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+
+        //creates class, class-teacher, teacher-scriibi-level and teacher-school relationships if this is the first time logging in!
+        if(!$teacherExists){
+            CustomUserRepository::someFunction($teacher);
+        }
+
+        return $teacher;
     }
+
+    protected function someFunction($teacher){
+
+        //insert a new record in teachers-scriibi-levels according to auth0 metadata(level)
+            DB::table('teachers_scriibi_levels')->insert(
+                ['teachers_user_Id' => $teacher->user_Id,
+                'scriibi_levels_scriibi_Level_Id' => 3]);
+        //insert a new record in schools-teachers according to auth0 metadata(school)
+            DB::table('school_teachers')->insert(
+                ['teachers_user_Id' => $teacher->user_Id,  'schools_school_Id' => 1]);
+
+        //insert a new record in classes according with default values
+            $classId = DB::table('classes')->insertGetId(
+                ['class_Name' => $teacher->name.'_'.date("Y-m-d"),
+                'schools_school_Id' => 1]);
+
+        //associate that class with the logged in user
+            DB::table('classes_teachers')->insert(
+                ['classes_teachers_classes_class_Id' => $classId,
+                'teachers_user_Id' => $teacher->user_Id]);
+
+        //similuate array of positions from auth0metadata
+            $auth0positions = array(1,2);
+
+            //check if array length is greater than 1
+                foreach($auth0positions as $pos){
+                    DB::table('teachers_positions')->insert(
+                        ['teachers_user_Id' => $teacher->user_Id,
+                         'positions_position_Id' => $pos]);
+                }
+    }
+
 
     /**
      * Authenticate a user with a decoded ID Token

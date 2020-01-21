@@ -35,6 +35,9 @@ Route::get('/testauth', function () {
     return view('auth/welcome');
  });
 
+Route::get('/traits', 'RubricBuilder@test');
+
+
  //testing auth0 function
 Route::get('/posts', 'PostsController@index')
             ->name('home')
@@ -47,6 +50,8 @@ Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->m
 
 Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
+
+Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
 Route::get('/rubric', function(){
    return view('rubric');

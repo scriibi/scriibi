@@ -104,8 +104,16 @@ class StudentsController extends Controller
      * @param  \App\students  $students
      * @return \Illuminate\Http\Response
      */
-    public function destroy(students $students)
+    public function destroy($student_id, Request $request)
     {
-        //
+        //$student_Id = $request->input('delete_Id');
+        DB::table('students')->where('student_Id', '=', $student_id)->delete();
+        //DB::table('classes_students')->where('students_student_Id', '=', $student_Id)->delete();
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
+    }
+
+    public function deleteStudent($student_id){
+        DB::table('students')->where('student_Id', '=', $student_id)->delete();
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 }

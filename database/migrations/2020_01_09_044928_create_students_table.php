@@ -31,20 +31,20 @@ class CreateStudentsTable extends Migration
             $table->foreign('enrolled_Level_Id')
                 ->references('scriibi_Level_Id')
                 ->on('scriibi_levels')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->foreign('rubrik_level')
                 ->references('scriibi_Level_Id')
                 ->on('scriibi_levels')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             
             $table->foreign('schools_school_Id')
                 ->references('school_Id')
                 ->on('schools') 
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->timestamps();
         });

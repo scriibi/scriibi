@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use App\Rubrics;
 use Illuminate\Http\Request;
 
@@ -12,10 +14,13 @@ class RubricsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function returnTraits()
     {
-        //
+        //$traitsArray = TraitsController::GetTraits();
+
+
     }
+
 
     /**
      * Show the form for creating a new resource.
