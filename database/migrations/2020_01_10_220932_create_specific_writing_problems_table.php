@@ -15,7 +15,7 @@ class CreateSpecificWritingProblemsTable extends Migration
     {
         Schema::create('specific_writing_problems', function (Blueprint $table) {
             $table->bigIncrements('specific_writing_problem_Id');
-            $table->string('specific_problem_name', 45);
+            $table->string('specific_problem_name', 150);
 
             $table->unique('specific_writing_problem_Id');
             $table->timestamps();
