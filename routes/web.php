@@ -30,6 +30,10 @@ Route::get('/home', function(){
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });
+
+Route::get('/rubric-list',function(){
+    return view('rubric-list');
+});
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');

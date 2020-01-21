@@ -15,7 +15,7 @@ $color_class ='blue';
    <div class="col-12 col-sm-10 col-md-8">
 
         <!-- Rubric Builder -->
-        <h4 class="top-divider mb-3 header-text" id="RubricBuilder_title"><strong>Rubric Builder</strong></h4>
+        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Rubric Builder</strong></h4>
 
         <!-- card contains 2 forms in 1 form -->
         <div class="card universal-card-rubric p-0  row">
@@ -54,11 +54,11 @@ $color_class ='blue';
                                 <!-- content inside each skill card -->
                                 <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($color_class); ?>">
                                     <ul class="list-group list-group-flush ">
-                                        <li class="text-white m-0">
+                                        <li class="text-white m-0 d-flex justify-content-start px-2">
                                             <!-- load icon address; we dont have this yet;wait for Talia -->
-                                            <span class="fas fa-lightbulb px-2"></span>
+                                            <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
                                             <!-- load skill title -->
-                                            <span class="skill-title align-middle w-100 pl-0">Ideas</span>
+                                            <span class="skill-title w-100 pl-0 align-self-center px-2">Ideas</span>
                                         </li>
                                         <div class="list-group-box">
                                             <li class="list-group-item">
@@ -67,12 +67,7 @@ $color_class ='blue';
                                                 <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
                                                 </label>
                                             </li>
-                                            <li class="list-group-item">
-                                                <!-- load each skill item in the skills category;
-                                                the number of skills items in the skill category vary -->
-                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
-                                                </label>
-                                            </li>
+
                                         </div>
                                     </ul>
                                 </div>
@@ -138,12 +133,6 @@ $color_class ='blue';
                                                 <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
                                                 </label>
                                             </li>
-                                            <li class="list-group-item">
-                                                <!-- load each skill item in the skills category;
-                                                the number of skills items in the skill category vary -->
-                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
-                                                </label>
-                                            </li>
                                         </div>
                                     </ul>
                                 </div>
@@ -162,7 +151,7 @@ $color_class ='blue';
             </div>
         </div>
         <div class="d-flex row justify-content-end mt-4 p-0">
-            <button class="btn btn-rubric-save" type="submit" name="button">Save</button>
+            <button class="btn btn-rubric-save" type="submit" name="button">Review</button>
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
    </div>
