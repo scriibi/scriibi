@@ -34,6 +34,11 @@ Route::get('/assessment-setup', function(){
 Route::get('/rubric-list',function(){
     return view('rubric-list');
 });
+
+Route::get('/assessment-list',function(){
+    return view('assessment-list');
+});
+
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');

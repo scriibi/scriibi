@@ -61,14 +61,14 @@
             <!-- btn-panel -->
             <div class="btn-panel">
                 <!-- assessments btn -->
-                <a href="/rubric-list" class="card extra-card-style list-group-item-action ">
+                <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
                         <span class="align-self-center">Assessments</span>
                     </div>
                 </a>
                 <!-- rubric template btn -->
-                <a href="#" class="card extra-card-style list-group-item-action mt-2">
+                <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
                         <span class="align-self-center">Rubric Template</span>
