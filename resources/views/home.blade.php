@@ -51,9 +51,6 @@
                         <p class="studet-list-text">Click the green button below to start adding your students!</p>
                     </div>
 
-
-
-
                     <!-- popultae student list cell per row-->
                     <!-- <div class="studet-list-cell-style list-group list-group-flush mb-2">
                         <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
@@ -76,7 +73,7 @@
                     </div> -->
                     <!-- end of each stuednt cell -->
                 </div>
-                <div class="card-footer student-list-footer-style d-flex justify-content-between p-2">
+                <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
                         <a href="/studentlist">
                             <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
