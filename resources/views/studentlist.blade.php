@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-2">
                         <div class="student-icon-group">
-                            <button class="icon-btn editStudentBtn" type="button">✏</button>
+                            <button class="icon-btn edit-student-button" type="button">✏</button>
                             <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                     <div class="col-2">
                         <div class="student-icon-group">
                             <input type="submit" class="icon-btn" value="✔" />
-                            <input type="button" class="icon-btn " value="❌" />
+                            <input type="button" class="icon-btn close-edit-button" value="❌" />
                         </div>
                     </div>
                </div>
