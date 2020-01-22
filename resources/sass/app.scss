@@ -458,7 +458,7 @@ input:focus {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 25px;
     text-align: center;
     color: #000000;
 }
@@ -603,6 +603,14 @@ $skillset-colors-map: (
     padding-left: 10%;
     font-size: 0.875rem;
     text-decoration-color: #FFFFFF;
+}
+
+// assessment set-up page
+
+.back-btn{
+    border: 2px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 7px;
 }
 
 .card-columns {
