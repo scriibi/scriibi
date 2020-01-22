@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -31,12 +33,53 @@ const app = new Vue({
     el: '#app',
 });
 
-function displayEditForm(e) {
-    alert("works!");
-    var parent = e.parentNode();
-    var form = document.getElementByClassName("edit-form"); 
-    var details = document.getElementsByClassName("student-details");
-    dump(details);
-    form.classList.removeClass("d-none");
-    details.classList.addClass("d-none");
+
+//Student List scripts
+function openEditForm(event) {
+    const element = event.currentTarget;
+    
+    var iconGroup = element.parentNode,
+        iconColumn = iconGroup.parentNode,
+        studentContainer = iconColumn.parentNode,
+        parent = studentContainer.parentNode,
+        form = parent.querySelector(".edit-form");
+    
+    form
+        .classList
+        .remove("d-none");
+    
+    studentContainer
+        .classList
+        .add("d-none");
+}
+
+function closeEditForm(event) {
+    const element = event.currentTarget;
+    
+    var iconGroup = element.parentNode,
+        iconColumn = iconGroup.parentNode,
+        row = iconColumn.parentNode,
+        formContainer = row.parentNode,
+        parent = formContainer.parentNode,
+        studentContainer = parent.querySelector(".student-details");
+    console.log();
+        
+    formContainer
+        .classList
+        .add("d-none");
+    
+    studentContainer
+        .classList
+        .remove("d-none");
+}
+
+var editStudentButtons = document.getElementsByClassName("edit-student-button");
+var closeStudentButtons = document.getElementsByClassName("close-edit-button"); 
+
+for (const openStudentButton of editStudentButtons) {
+    openStudentButton.addEventListener('click', openEditForm, true);
+}
+
+for (const closeStudentButton of closeStudentButtons) {
+    closeStudentButton.addEventListener('click', closeEditForm, true);
 }
