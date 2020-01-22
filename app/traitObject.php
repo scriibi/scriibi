@@ -52,13 +52,11 @@ class traitObject
 
     public function populateSkills(){
 
-        $skills = traits::find(1)->skills;
+        $skills = traits::find($this->id)->skills;
 
         foreach($skills as $skill){
             array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
         }
-
-
     }
 
     public function calcFlag(Request $request){

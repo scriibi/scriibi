@@ -69,13 +69,15 @@ Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
+Route::get('/rubrics', 'RubricBuilder@test');
+
 Route::get('/rubric', function(){
    return view('rubric');
 });
 
-Route::get('/rubrics', function(){
-   return view('rubrics');
-});
+// Route::get('/rubrics', function(){
+//    return view('rubrics');
+// });
 
 
 // Route::get('/', function () {

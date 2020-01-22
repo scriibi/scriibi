@@ -17,6 +17,16 @@ class RubricBuilder extends Controller
 
     public function test(){
 
+        $traits = traits::get();
+
+        foreach($traits as $trait){
+            array_push($this->traits_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
+        }
+
+        RubricBuilder::populate();
+
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array]);
+
         // $traitsList = TraitsController::index();
         // $skillsList = SkillsTraitsController::index();
 
@@ -33,17 +43,6 @@ class RubricBuilder extends Controller
          * foreach trait create a new traitObject with the attirbutes of the current trait and the assocaited skills.
          *
         */
-
-        $traits = traits::get();
-
-        foreach($traits as $trait){
-            array_push($this->traits_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
-        }
-
-        RubricBuilder::populate();
-
-
-        return view('traits', ['traitObjects' => $this->traits_skills_array]);
     }
 
     public function populate(){
