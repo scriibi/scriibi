@@ -55,7 +55,7 @@ $color_class ='blue';
                                 <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($color_class); ?>">
                                     <ul class="list-group list-group-flush ">
                                         <li class="text-white m-0 d-flex justify-content-start px-2">
-                                            <!-- load icon address; we dont have this yet;wait for Talia -->
+                                            <!-- load icon address-->
                                             <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
                                             <!-- load skill title -->
                                             <span class="skill-title w-100 pl-0 align-self-center px-2">Ideas</span>

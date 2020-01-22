@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +22,16 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+
 Route::get('/home', function(){
-    return view('home');
+   $stdController = new App\Http\Controllers\StudentsController();
+   $students = $stdController->indexStudentsByClass();
+   return view('home', ['students' => $students]);
+});
+
+
+Route::get('/studentlist', function(){
+    return view('studentlist');
 });
 
 Route::get('/assessment-setup', function(){
@@ -34,6 +41,11 @@ Route::get('/assessment-setup', function(){
 Route::get('/rubric-list',function(){
     return view('rubric-list');
 });
+
+Route::get('/assessment-list',function(){
+    return view('assessment-list');
+});
+
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');
@@ -52,7 +64,7 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
-Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
+Route::get('/listCall', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');

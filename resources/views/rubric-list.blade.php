@@ -6,9 +6,8 @@
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
     <div class="col-12 col-sm-10 col-md-8">
-
         <!-- show no rubric created message -->
-        <!-- <div class="no-rubric">
+        <div class="no-rubric">
             <form class="mt-5" action="index.html" method="post">
                 <div class="d-flex justify-content-between mx-5">
                     <h5 class="rubric-list-title">Rubric List</h5>
@@ -17,19 +16,19 @@
                 <div class="mt-3">
 
                 </div>
+                @if(count($rubric-list)===0)
                 <div class="mt-5 rubric-instruction d-flex justify-content-center">
                     <div class="">
                         <p>You currently do not have any rubric templates.</p>
                         <p>Click the <button ype="button" name="button" class="btn new-rubric px-4">New Rubric+</button> to create your first rubric</p>
                         <p>and using them for your assessments!</p>
                     </div>
-
                 </div>
             </form>
-
-        </div> -->
+        </div>
 
         <!-- show list of rubric created -->
+        @elseif($rubric-list)>=1)
         <div class="has-rubric">
             <form class="mt-5" action="index.html" method="post" visibility="false">
                 <div class="">
@@ -54,7 +53,7 @@
                 </div>
             </form>
         </div>
-
+        @endif
    </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>

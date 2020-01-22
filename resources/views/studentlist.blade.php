@@ -71,92 +71,12 @@
            </div>
            <div class="col-2"></div>
        </div>
-
-       <!-- Student detail card -->
-        <div class="universal-card mt-2">
-            @foreach ($students as $s)
-                <div class="student-details row ml-2 mr-2 pt-2">
-                    <div class="col-10">
-                        <div class="student-form-inputs fname-input">
-                            <p>{{$s->student_First_Name}}</p>
-                        </div>
-                        <div class="student-form-inputs lname-input">
-                            <p>{{$s->student_Last_Name}}</p>
-                        </div>
-                        <div class="student-form-inputs id-input">
-                            <p>{{$s->Student_Gov_Id}}</p>
-                        </div>
-                        <div class="student-form-inputs grade-input">
-                            <p>{{$s->enrolled_Level_Id}}</p>
-                        </div>
-                        <div class="student-form-inputs grade-input">
-                            <p>{{$s->rubrik_level}}</p>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="student-icon-group">
-                            <button action="displayEditForm(this)" class="icon-btn" type="button">✏</button>
-                            <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-            <!-- /student details -->
-
-            <!-- Edit student form -->
-            <form class="edit-form" method="post">
-                <div class="row ml-2 mr-2 pt-2 d-none">
-                    <div class="col-10">
-                        <div class="student-form-inputs fname-input">
-                            <input type="text" class="text-input" id="firstName" required />
-                            <span class="bar"></span>
-                            <label class="student-form-label" for="firstName">First Name</label>
-                        </div>
-                        <div class="student-form-inputs lname-input">
-                            <input type="text" class="text-input" id="lastName" required />
-                            <span class="bar"></span>
-                            <label class="student-form-label" for="lastName">Last Name</label><br />
-                        </div>
-                        <div class="student-form-inputs id-input">
-                            <input type="text" class="text-input" id="id" required />
-                            <span class="bar"></span>
-                            <label class="student-form-label" for="id">ID</label><br />
-                        </div>
-                        <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="grade" required>
-                                <option>Grade 1</option>
-                                <option>Grade 2</option>
-                                <option>Grade 3</option>
-                                <option>Grade 4</option>
-                                <option>Grade 5</option>
-                            </select>
-                            <span class="bar"></span>
-                            <label class="student-form-label" for="grade">Grade</label><br />
-                        </div>
-                        <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel" required>
-                                <option>Grade 1</option>
-                                <option>Grade 2</option>
-                                <option>Grade 3</option>
-                                <option>Grade 4</option>
-                                <option>Grade 5</option>
-                            </select>
-                            <span class="bar"></span>
-                            <label class="student-form-label" for="assignmentLevel">Assessed Level</label><br />
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="student-icon-group">
-                            <input type="submit" class="icon-btn" id="submitBtn" value="✔" />
-                            <input type="button" class="icon-btn " id="submitBtn" value="❌" />
-                        </div>
-                    </div>
-               </div>
-           </form>
-            <!-- /Edit student form -->
-        </div>
-       <!-- /Student detail card -->
-    <!-- /student list -->
+       
+       <!-- AJAX list display of students -->
+       <div id="listDisplay">
+       
+       </div>   
+        <!-- /AJAX student list -->
    </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>

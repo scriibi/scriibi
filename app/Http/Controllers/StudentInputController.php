@@ -13,14 +13,15 @@ use App\Http\Controllers\Controller;
 class StudentInputController extends Controller
 {
     /**
-     * returns a studenlist view back with 
-     * teacher specific grade and assessed 
+     * returns a studenlist view back with
+     * teacher specific grade and assessed
      * level labels and their student data
      */
     public function ReturnStudentListPage(){
         try{
             $labels = StudentInputController::GetLabels();
-            $students = StudentInputController::GetStudents();
+            $stdController = new StudentsController();
+            $students = $stdController->indexStudentsByClass();
         }catch(Exception $e){
             abort(403, 'You do not have authorization to access this page!');
         }
@@ -55,33 +56,10 @@ class StudentInputController extends Controller
             ->get();
         }
         catch(Exception $e){
+            throw $e;
             abort(403, 'Please log in to view this page!');
         }
 
         return ['grades' => $grade_label_list, 'assessed' => $assessed_label_list];
     }
-
-    /**
-     * returns an array of students who belong to the currently logged in teacher
-     */
-    public function GetStudents(){
-        $students = [];
-        try{
-            $class = DB::table('classes_teachers')
-                ->select('classes_teachers_classes_class_Id')
-                ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-                ->first();
-
-            $students = DB::table('classes_students')
-                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
-                ->select('students.*')
-                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
-                ->get();
-        }
-        catch(Exception $e){
-            abort(403, 'Please log in to view this page!');
-        }
-        return $students;
-    }
-
 }

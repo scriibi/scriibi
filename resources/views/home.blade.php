@@ -15,66 +15,69 @@
                 <p>What would you like to do today?</p>
             </div>
         </div>
-
         <!-- main panel row -->
         <div class="row m-0 p-0 " id="main-panel">
             <!-- student list panel -->
-            <div class="card sl-panel mr-3 student-list-card-style p-0" id="student-list-panel">
-                <!-- start of the list -->
-                <div class="student-list-scroll card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1 d-flex justify-content-center">
-                    <div class="align-self-center">
-                        <p class="studet-list-text">You currently have no students registered.</p>
-                        <p class="studet-list-text">Click the green button below to start adding your students!</p>
-                    </div>
+            <div class="card sl-panel mr-3 student-list-card-style px-0" id="student-list-panel">
+                <div class="student-list-scroll px-0 mx-0">
+                        <div class="card-body px-2 pt-3">
+                            @foreach($students as $student)
+                            <div class="studet-list-cell-style list-group list-group-flush mb-1">
 
+                                <ul class="d-flex justify-content-between row mb-2 mt-2">
+                                    <div class="col-7 row d-flex justify-content-start px-0">
+                                        <div class="col-4 align-self-center text-truncate pl-1">
+                                            <span>{{$student->student_First_Name}}</span>
+                                        </div>
+                                        <div class="col-5 align-self-center text-truncate pl-1">
+                                            <span>{{$student->student_Last_Name}}</span>
+                                        </div>
+                                        <div class="col-3 align-self-center text-truncate pl-1">
+                                            <span>{{$student->Student_Gov_Id}}</span>
+                                        </div>
 
+                                    </div>
+                                    <div class="col-5 row d-flex justify-content-start px-0">
+                                        <div class="col-4 align-self-center text-truncate px-0">
+                                            <span>{{$student->grade_label}}</span>
+                                        </div>
+                                        <div class="col-4 align-self-center text-nowrap px-0">
+                                            <span>{{$student->assessed_level_label}}</span>
+                                        </div>
+                                    </div>
 
+                                </ul>
 
-                    <!-- popultae student list cell per row-->
-                    <!-- <div class="studet-list-cell-style list-group list-group-flush mb-2">
-                        <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                            <div class="align-self-center">
-                                <span>student</span>
                             </div>
-                            <div class="align-self-center">
-                                <span>Name</span>
-                            </div>
-                            <div class="align-self-center">
-                                <span>ID</span>
-                            </div>
-                            <div class="align-self-center">
-                                <span>grade</span>
-                            </div>
-                            <div class="align-self-center">
-                                <span>grade</span>
-                            </div>
-                        </ul>
-                    </div> -->
-                    <!-- end of each stuednt cell -->
+                            @endforeach
+                        </div>
                 </div>
-                <div class="card-footer student-list-footer-style d-flex justify-content-between p-2">
+                <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
-                        <button type="button" name="button" class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</button>
+                        <a href="/studentlist">
+                            <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
+                        </a>
+
                 </div>
             </div>
 
             <!-- btn-panel -->
             <div class="btn-panel">
-                <!-- assessments btn -->
-                <a href="/rubric-list" class="card extra-card-style list-group-item-action ">
+                <!-- assessments btn link-->
+                <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
                         <span class="align-self-center">Assessments</span>
                     </div>
                 </a>
-                <!-- rubric template btn -->
-                <a href="#" class="card extra-card-style list-group-item-action mt-2">
+                <!-- rubric template btn link -->
+                <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
                         <span class="align-self-center">Rubric Template</span>
                     </div>
                 </a>
-                <!-- Goal setting btn -->
+                <!-- Goal setting btn link-->
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center" src="/images/goal-setting.png" alt="rubric-template">
