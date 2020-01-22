@@ -543,6 +543,7 @@ class ComposerStaticInitae22a8db1821f6617e311b32e6600ede
         'App\\lessons_scriibi_levels' => __DIR__ . '/../..' . '/app/lessons_scriibi_levels.php',
         'App\\lessons_skills' => __DIR__ . '/../..' . '/app/lessons_skills.php',
         'App\\local_criteria' => __DIR__ . '/../..' . '/app/local_criteria.php',
+        'App\\local_criteria_curriculum_scriibi_level_skills' => __DIR__ . '/../..' . '/app/local_criteria_curriculum_scriibi_level_skills.php',
         'App\\positions' => __DIR__ . '/../..' . '/app/positions.php',
         'App\\school_teacher' => __DIR__ . '/../..' . '/app/school_teacher.php',
         'App\\school_type' => __DIR__ . '/../..' . '/app/school_type.php',

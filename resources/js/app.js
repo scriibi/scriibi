@@ -54,17 +54,17 @@ $(function(){
 function openEditForm(event) {
     alert("works");
     const element = event.currentTarget;
-    
+
     var iconGroup = element.parentNode,
         iconColumn = iconGroup.parentNode,
         studentContainer = iconColumn.parentNode,
         parent = studentContainer.parentNode,
         form = parent.querySelector(".edit-form");
-    
+
     form
         .classList
         .remove("d-none");
-    
+
     studentContainer
         .classList
         .add("d-none");
@@ -72,7 +72,7 @@ function openEditForm(event) {
 
 function closeEditForm(event) {
     const element = event.currentTarget;
-    
+
     var iconGroup = element.parentNode,
         iconColumn = iconGroup.parentNode,
         row = iconColumn.parentNode,
@@ -80,18 +80,18 @@ function closeEditForm(event) {
         parent = formContainer.parentNode,
         studentContainer = parent.querySelector(".student-details");
     console.log();
-        
+
     formContainer
         .classList
         .add("d-none");
-    
+
     studentContainer
         .classList
         .remove("d-none");
 }
 
 var editStudentButtons = document.getElementsByClassName("edit-student-button");
-var closeStudentButtons = document.getElementsByClassName("close-edit-button"); 
+var closeStudentButtons = document.getElementsByClassName("close-edit-button");
 
 for (const openStudentButton of editStudentButtons) {
     openStudentButton.addEventListener('click', openEditForm, true);
@@ -99,4 +99,40 @@ for (const openStudentButton of editStudentButtons) {
 
 for (const closeStudentButton of closeStudentButtons) {
     closeStudentButton.addEventListener('click', closeEditForm, true);
+}
+
+// rubric-list Page
+
+
+// rubric builder page
+
+// assessment setup Page
+var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+
+function closeAssessmentForm(event){
+    document.getElementById("assessment-template").classList.remove("d-none","d-block");
+    document.getElementById("assessment-template").classList.toggle("d-none",true);
+}
+
+function openRubricForm(event){
+    document.getElementById("rubric-template").classList.remove("d-block","d-block");
+    document.getElementById("rubric-template").classList.toggle("d-block",true);
+}
+
+
+
+var backBTN = document.getElementById("backBTN");
+backBTN.addEventListener('click',openAssessmentForm, true);
+backBTN.addEventListener('click', closeRubricForm, true);
+
+function openAssessmentForm(event){
+    document.getElementById("assessment-template").classList.toggle("d-none",false);
+    document.getElementById("assessment-template").classList.toggle("d-block",true);
+}
+
+function closeRubricForm(event){
+    document.getElementById("rubric-template").classList.toggle("d-block",false);
+    document.getElementById("rubric-template").classList.toggle("d-none",true);
 }

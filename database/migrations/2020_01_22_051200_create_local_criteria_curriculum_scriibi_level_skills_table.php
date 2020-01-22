@@ -13,21 +13,21 @@ class CreateLocalCriteriaCurriculumScriibiLevelSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('local_criteria_curriculum_scriibi_level-skills', function (Blueprint $table) {
+        Schema::create('local_criteria_curriculum_scriibi_level_skills', function (Blueprint $table) {
             $table->bigIncrements('criteria_curr_level_skill_Id');
-            $table->bigInteger('local_criteria_Id')->unsigned();
-            $table->bigInteger('curriculum-scriibi_levels-skills_Id')->unsigned();
+            $table->bigInteger('local_criteria_Id')->unsigned()->nullable();
+            $table->bigInteger('curriculum_scriibi_levels_skills_Id')->unsigned();
 
             $table->unique('criteria_curr_level_skill_id', 'criteria_curr_level_skill_id');
 
-            $table->foreign('local_criteria_Id', 'fk_local_critera-curriculum-scriibi_level-skills_scr')
+            $table->foreign('local_criteria_Id', 'fk1')
             ->references('local_criteria_Id')
             ->on('local_criterias')
             ->onDelete('no action')
             ->onUpdate('no action');
 
 
-            $table->foreign('curriculum-scriibi_levels-skills_Id', 'fk_local_critera-curriculum-scriibi_level-skills_curriculum-s1')
+            $table->foreign('curriculum_scriibi_levels_skills_Id', 'fk2')
             ->references('curriculum_scriibi_levels_skills_Id')
             ->on('curriculum_scriibi_level_skills')
             ->onDelete('no action')
@@ -44,6 +44,6 @@ class CreateLocalCriteriaCurriculumScriibiLevelSkillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('local_criteria_curriculum_scriibi_level-skills');
+        Schema::dropIfExists('local_criteria_curriculum_scriibi_level_skills');
     }
 }

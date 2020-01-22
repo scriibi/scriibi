@@ -22,6 +22,7 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+
 Route::get('/home', function(){
    $stdController = new App\Http\Controllers\StudentsController();
    $students = $stdController->indexStudentsByClass();

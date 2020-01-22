@@ -1,9 +1,8 @@
     hello
-    
-     
-      {{dd($trait->getName())}}
-    
-    
-   
+
+      {{dd($traitObjects)}}
+
+
+
 
 
