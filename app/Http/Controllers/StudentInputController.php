@@ -23,7 +23,6 @@ class StudentInputController extends Controller
             $stdController = new StudentsController();
             $students = $stdController->indexStudentsByClass();
         }catch(Exception $e){
-            throw $e;
             abort(403, 'You do not have authorization to access this page!');
         }
 
