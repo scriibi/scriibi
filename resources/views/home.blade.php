@@ -21,7 +21,6 @@
             <!-- student list panel -->
             <div class="card sl-panel mr-3 student-list-card-style p-0" id="student-list-panel">
                 <!-- start of the list -->
-<<<<<<< HEAD
                 <div class="student-list-scroll">
                     @foreach($students as $student)
                         <div class="card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1">
@@ -46,7 +45,6 @@
                             </div>
                         </div>
                     @endforeach
-=======
                 <div class="student-list-scroll card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1 d-flex justify-content-center">
                     <div class="align-self-center">
                         <p class="studet-list-text">You currently have no students registered.</p>
@@ -77,7 +75,6 @@
                         </ul>
                     </div> -->
                     <!-- end of each stuednt cell -->
->>>>>>> 7e9d9883bdb66e9e738bcf990ba517dfb3d38b5f
                 </div>
                 <div class="card-footer student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
