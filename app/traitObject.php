@@ -2,19 +2,28 @@
 
 namespace App;
 
+use App\skills;
+use App\skills_traits;
+use App\skillObject;
+use DB;
+use Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Database\Eloquent\Model;
 
 class traitObject
 {
-
+    private $id;
     private $name;
     private $colour;
     private $icon;
     private $skills = array();
 
 
-    public function __construct($name, $colour, $icon, $skill = []){
+    public function __construct($id, $name, $colour, $icon, $skill = []){
 
+        $this->id = $id;
         $this->name = $name;
         $this->colour  = $colour;
         $this->icon  = $icon;
@@ -41,6 +50,30 @@ class traitObject
         return $this->skills[$index];
     }
 
+    public function populateSkills(){
+
+        $skills = traits::find(1)->skills;
+
+        foreach($skills as $skill){
+            array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
+        }
+
+
+    }
+
+    public function calcFlag(Request $request){
+
+        // $curriculum = schools::find(Auth::user()->school_Id)->curriculum->first();
+        $curriculum = schools::find(1)->curriculum->first();
+
+        // $level = $request->input('level'); // check name of level laterrrrrr
+        $level = 4;
+
+        foreach($skills as $skill){
+            $skill->setFlag($curriculum, $level);
+        }
+    }
+
     public function setName($newName){
         $this->name = $newName;
     }
@@ -53,8 +86,8 @@ class traitObject
         $this->icon = $newIcon;
     }
 
-    public function setSkills($newSkilList){
-        foreach($newSkilList as $newSkill){
+    public function setSkills($newSkillList){
+        foreach($newSkillList as $newSkill){
             array_push($this->skills, $newSkill);
         }
     }
