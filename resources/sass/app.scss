@@ -132,7 +132,7 @@ position: relative;
 // Home-page: dashboard
 #main-panel{
     display: grid;
-    grid-template-columns: 5fr 3fr;
+    grid-template-columns: 7fr 3fr;
     grid-template-areas:
         "sl-panel btn-panel";
     height: 50vh;
