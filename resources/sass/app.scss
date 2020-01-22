@@ -173,10 +173,6 @@ position: relative;
 
 }
 
-.teaching-lesson-title:hover{
-    border:2px, solid,#33A88C;
-}
-
 .peer-assessment-title {
     border-radius: 7px;
     background-color: #6EB4DC;
@@ -228,23 +224,8 @@ border-bottom-left-radius: 25px;
     border-radius: 7px;
 }
 
-.teaching-lessons-list:hover{
-    border: 2px solid #33A88C;
-    box-shadow:none;
-
-}
-
-.peer-assessment-list:hover{
-    border: 2px solid #6EB4DC;
-    box-shadow:none;
-}
-
 .scriibi-support-list{
     border-radius: 20px;
-}
-.scriibi-support-list:hover{
-    border: 2px solid #4E76C3;
-    box-shadow:none;
 }
 
 // Assessment setup Page
