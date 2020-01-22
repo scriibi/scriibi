@@ -22,247 +22,29 @@
             <div class="card sl-panel mr-3 student-list-card-style p-0" id="student-list-panel">
                 <!-- start of the list -->
                 <div class="student-list-scroll">
-                    <div class="card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
+                    @foreach($students as $student)
+                        <div class="card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1">
+                            <div class="studet-list-cell-style list-group list-group-flush">
+                                <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
+                                    <div class="align-self-center">
+                                        <span>{{$student->student_First_Name}}</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <span>{{$student->student_Last_Name}}</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <span>{{$student->Student_Gov_Id}}</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <span>{{$student->grade_label}}</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <span>{{$student->assessed_level_label}}</span>
+                                    </div>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="card-body mb-0 mx-2 px-1 pb-1 pt-1">
-                        <div class="studet-list-cell-style list-group list-group-flush">
-                            <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
-                                <div class="align-self-center">
-                                    <span>student</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>Name</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>ID</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                                <div class="align-self-center">
-                                    <span>grade</span>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <!-- end of list -->

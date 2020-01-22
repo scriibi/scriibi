@@ -19,4 +19,12 @@ class classes_students extends Model
     public function goal(){
         return $this->hasMany('App\goals', 'classes_students_classes_students_Id', 'classes_students_Id');
     }
+
+    public function grade_labels(){
+        return $this->belongsTo('App\grade_labels', 'student_grade_label_id', 'grade_label_id');
+    }
+
+    public function assessed_level_label(){
+        return $this->belongsTo('App\assessed_level_label', 'student_assessed_label_id', 'assessed_level_label_id');
+    }
 }

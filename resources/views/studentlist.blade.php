@@ -87,10 +87,10 @@
                             <p>{{$s->Student_Gov_Id}}</p>
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <p>{{$s->enrolled_Level_Id}}</p>
+                            <p>{{$s->grade_label}}</p>
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <p>{{$s->rubrik_level}}</p>
+                            <p>{{$s->assessed_level_label}}</p>
                         </div>
                     </div>
                     <div class="col-2">

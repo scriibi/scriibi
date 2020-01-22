@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +23,9 @@ Route::get('/rubrics', function(){
 });
 
 Route::get('/home', function(){
-    return view('home');
+   $stdController = new App\Http\Controllers\StudentsController();
+   $students = $stdController->indexStudentsByClass();
+   return view('home', ['students' => $students]);
 });
 
 Route::get('/assessment-setup', function(){
