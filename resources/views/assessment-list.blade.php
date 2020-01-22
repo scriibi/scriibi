@@ -7,7 +7,7 @@
    </div>
     <div class="col-12 col-sm-10 col-md-8">
         <!-- show no assessment created message -->
-        <!-- <div class="no-assessment">
+        <div class="no-assessment">
             <form class="mt-5" action="index.html" method="post">
                 <div class="d-flex justify-content-between mx-5">
                     <h5 class="rubric-list-title">Assessments</h5>
@@ -26,7 +26,7 @@
                 </div>
             </form>
 
-        </div> -->
+        </div>
 
         <!-- show list of assessment created -->
         <div class="has-rubric">
