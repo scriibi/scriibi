@@ -248,6 +248,23 @@ border-bottom-left-radius: 25px;
     line-height: 35px;
     color:  #33A849;
 }
+.assessment-settings-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color:#4C4D4F;
+}
+
+.assessment-settings-btn{
+    background: #FFFFFF;
+    border: 2px solid rgba(180, 180, 180, 0.33);
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+.assessment-settings-btn:active{
+    border: 2px solid #33A849;
+}
 
 #description-for-assessment{
     height: 30vh;
