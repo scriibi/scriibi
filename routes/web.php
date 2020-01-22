@@ -28,9 +28,23 @@ Route::get('/home', function(){
    return view('home', ['students' => $students]);
 });
 
+
+Route::get('/studentlist', function(){
+    return view('studentlist');
+});
+
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });
+
+Route::get('/rubric-list',function(){
+    return view('rubric-list');
+});
+
+Route::get('/assessment-list',function(){
+    return view('assessment-list');
+});
+
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');

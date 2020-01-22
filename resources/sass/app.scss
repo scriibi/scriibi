@@ -10,7 +10,7 @@
 //---------- Element Overrides ----------------
 
 html, body {
-    height: 100vw;
+    height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
@@ -144,6 +144,21 @@ position: relative;
     position: relative;
 }
 
+.studet-list-text{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    color:  #3D3D3D;
+
+
+;
+
+
+
+}
+
 .teaching-lesson-title{
     border-radius: 7px;
     background-color: #33A88C;
@@ -249,7 +264,6 @@ border-bottom-left-radius: 25px;
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 }
-
 
 
 
@@ -383,6 +397,74 @@ input:focus {
 // End of Select drop down
 
 
+// Rubric List Page
+.rubric-list-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
+}
+
+.new-rubric{
+    background: #33A849;
+    border-radius: 7px;
+    border:none;
+    color: #FFFFFF;
+}
+
+.rubric-instruction{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    align-items: center;
+    color: #6B6B6B;
+
+}
+
+.rubric-list-row{
+    height: 42px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    border: none;
+}
+
+.rubric-list-row:hover{
+    border: 2px solid blue;
+    box-shadow:none;
+
+}
+
+.header-cells{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.body-cells{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
+}
+
+
+.rubric-list-skills{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #909090;
+}
 //Rubric Page
 #RubricBuilder_title{
   font-family: Raleway;
@@ -492,7 +574,8 @@ $skillset-colors-map: (
     border-bottom: 1px solid #C4C4C4;
 }
 .btn-clear{
-    background: #33A849;
+    border: 2px solid #33A849;
+    box-sizing: border-box;
     border-radius: 7px;
     width: 124px;
     height: 45px;

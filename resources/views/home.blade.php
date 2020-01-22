@@ -21,6 +21,7 @@
             <!-- student list panel -->
             <div class="card sl-panel mr-3 student-list-card-style p-0" id="student-list-panel">
                 <!-- start of the list -->
+<<<<<<< HEAD
                 <div class="student-list-scroll">
                     @foreach($students as $student)
                         <div class="card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1">
@@ -45,32 +46,65 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
+=======
+                <div class="student-list-scroll card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <p class="studet-list-text">You currently have no students registered.</p>
+                        <p class="studet-list-text">Click the green button below to start adding your students!</p>
+                    </div>
 
-                <!-- end of list -->
-                <div class="card-footer student-list-footer-style position-sticky-bottom d-flex justify-content-between p-2">
-                        <p class="align-self-center p-0 m-0"><strong>you have registered <span></span> students</strong></p>
-                        <button type="button" name="button" class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</button>
+
+
+
+                    <!-- popultae student list cell per row-->
+                    <!-- <div class="studet-list-cell-style list-group list-group-flush mb-2">
+                        <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
+                            <div class="align-self-center">
+                                <span>student</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>Name</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>ID</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>grade</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>grade</span>
+                            </div>
+                        </ul>
+                    </div> -->
+                    <!-- end of each stuednt cell -->
+>>>>>>> 7e9d9883bdb66e9e738bcf990ba517dfb3d38b5f
+                </div>
+                <div class="card-footer student-list-footer-style d-flex justify-content-between p-2">
+                        <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
+                        <a href="/studentlist">
+                            <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
+                        </a>
+
                 </div>
             </div>
 
             <!-- btn-panel -->
             <div class="btn-panel">
-                <!-- assessments btn -->
-                <a href="#" class="card extra-card-style list-group-item-action ">
+                <!-- assessments btn link-->
+                <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
                         <span class="align-self-center">Assessments</span>
                     </div>
                 </a>
-                <!-- rubric template btn -->
-                <a href="#" class="card extra-card-style list-group-item-action mt-2">
+                <!-- rubric template btn link -->
+                <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
                         <span class="align-self-center">Rubric Template</span>
                     </div>
                 </a>
-                <!-- Goal setting btn -->
+                <!-- Goal setting btn link-->
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center" src="/images/goal-setting.png" alt="rubric-template">
