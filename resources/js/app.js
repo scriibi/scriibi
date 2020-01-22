@@ -33,8 +33,23 @@ const app = new Vue({
     el: '#app',
 });
 
-
 //Student List scripts
+
+//AJAX display students jquery
+$(function(){
+   //loads the list of students and displays it onto the listDisplay Div
+   $.ajax({
+       type:'POST',
+       url: '/listCall',
+       datatype: 'html',
+       async: false,
+       cache: false,
+       success: function(response){
+           $("#listDisplay").html(data);
+       }
+   })
+});
+
 function openEditForm(event) {
     const element = event.currentTarget;
 
