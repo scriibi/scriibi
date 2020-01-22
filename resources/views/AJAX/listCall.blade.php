@@ -30,6 +30,7 @@
 
             <!-- Edit student form -->
             <form class="edit-form d-none" method="post">
+            @csrf
                 <div class="row ml-2 mr-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">

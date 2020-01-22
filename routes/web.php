@@ -63,9 +63,9 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
-Route::get('/listCall', 'StudentInputController@ReturnStudentListPage');
+Route::get('/AJAX/listCall', 'listCallController@generateList');
+Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
-
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
 Route::get('/rubric', function(){

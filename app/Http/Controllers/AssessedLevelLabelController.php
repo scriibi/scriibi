@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\assessed_level_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -82,5 +83,9 @@ class AssessedLevelLabelController extends Controller
     public function destroy(assessed_level_label $assessed_level_label)
     {
         //
+    }
+
+    public static function indexBySchoolType($school_type){
+        return DB::table('assessed_level_labels')->select('assessed_level_label', 'assessed_level_label_id')->where('school_type_id_fk', '=', $school_type->school_type_id)->get();
     }
 }
