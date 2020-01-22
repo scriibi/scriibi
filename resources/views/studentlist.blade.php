@@ -73,8 +73,8 @@
        </div>
 
        <!-- Student detail card -->
-        <div class="universal-card mt-2">
-            @foreach ($students as $s)
+       @foreach ($students as $s)
+        <div class="universal-card mt-2">        
                 <div class="student-details row ml-2 mr-2 pt-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-2">
                         <div class="student-icon-group">
-                            <button action="displayEditForm(this)" class="icon-btn" type="button">✏</button>
+                            <button class="icon-btn" type="button">✏</button>
                             <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
                     </div>
