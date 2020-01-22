@@ -104,7 +104,7 @@
 
             <!-- Edit student form -->
             <form class="edit-form d-none" method="post">
-                <div class="row ml-2 mr-2 pt-2">
+                <div class="row ml-2 mr-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
                             <input type="text" class="text-input" id="{{$s->student_First_Name}}{{$s->Student_Gov_Id}}" value="{{$s->student_First_Name}}" required />
@@ -123,29 +123,25 @@
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="grade{{$s->Student_Gov_Id}}" value="{{$s->grade_label}}" required>
-                                <option>Grade 1</option>
-                                <option>Grade 2</option>
-                                <option>Grade 3</option>
-                                <option>Grade 4</option>
-                                <option>Grade 5</option>
+                                @foreach ($grade as $g)
+                                    <option value={{$g->grade_label_id}}>{{$g->grade_label}}</option>
+                                @endforeach
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="grade{{$s->Student_Gov_Id}}"></label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
                             <select class="select-input" id="assessedLevel{{$s->Student_Gov_Id}}" value="{{$s->assessed_level_label}}" required>
-                                <option>Grade 1</option>
-                                <option>Grade 2</option>
-                                <option>Grade 3</option>
-                                <option>Grade 4</option>
-                                <option>Grade 5</option>
+                                @foreach ($assessed as $a)
+                                    <option value={{$a->assessed_level_label_id}}>{{$a->assessed_level_label}}</option>
+                                @endforeach
                             </select>
                             <span class="bar"></span>
                             <label class="student-form-label" for="assignmentLevel{{$s->Student_Gov_Id}}"></label><br />
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="student-icon-group">
+                        <div class="student-icon-group pt-2">
                             <input type="submit" class="icon-btn" value="✔" />
                             <input type="button" class="icon-btn close-edit-button" value="❌" />
                         </div>
