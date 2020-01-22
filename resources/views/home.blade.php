@@ -20,6 +20,7 @@
         <div class="row m-0 p-0 " id="main-panel">
             <!-- student list panel -->
             <div class="card sl-panel mr-3 student-list-card-style p-0" id="student-list-panel">
+                <!-- start of the list -->
                 <div class="student-list-scroll">
                     @foreach($students as $student)
                         <div class="card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1">
@@ -44,6 +45,33 @@
                             </div>
                         </div>
                     @endforeach
+                <div class="student-list-scroll card-body mt-3 mb-0 mx-2 px-1 pb-1 pt-1 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <p class="studet-list-text">You currently have no students registered.</p>
+                        <p class="studet-list-text">Click the green button below to start adding your students!</p>
+                    </div>
+
+                    <!-- popultae student list cell per row-->
+                    <!-- <div class="studet-list-cell-style list-group list-group-flush mb-2">
+                        <ul class="d-flex justify-content-around m-0 pt-1 pb-2 px-2">
+                            <div class="align-self-center">
+                                <span>student</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>Name</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>ID</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>grade</span>
+                            </div>
+                            <div class="align-self-center">
+                                <span>grade</span>
+                            </div>
+                        </ul>
+                    </div> -->
+                    <!-- end of each stuednt cell -->
                 </div>
                 <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>

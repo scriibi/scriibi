@@ -13,8 +13,8 @@ use App\Http\Controllers\Controller;
 class StudentInputController extends Controller
 {
     /**
-     * returns a studenlist view back with 
-     * teacher specific grade and assessed 
+     * returns a studenlist view back with
+     * teacher specific grade and assessed
      * level labels and their student data
      */
     public function ReturnStudentListPage(){
@@ -23,7 +23,6 @@ class StudentInputController extends Controller
             $stdController = new StudentsController();
             $students = $stdController->indexStudentsByClass();
         }catch(Exception $e){
-            throw $e;
             abort(403, 'You do not have authorization to access this page!');
         }
 
@@ -57,6 +56,7 @@ class StudentInputController extends Controller
             ->get();
         }
         catch(Exception $e){
+            throw $e;
             abort(403, 'Please log in to view this page!');
         }
 
