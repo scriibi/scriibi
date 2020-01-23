@@ -36,8 +36,15 @@
                 </div>
                 <h5 class="assessment-settings-title mt-5">Assessment Settings</h5>
                 <div class="d-flex justify-content-start mt-3">
-                    <button type="button" name="button" class="btn assessment-settings-btn">Assess <strong>my</strong> students </button>
-                    <button type="button" name="button" class="btn assessment-settings-btn ml-4">Assess <strong>all</strong> students </button>
+                    <label class="assessment-settings-btn">
+                        <input type="radio" name="access" value="mine">
+                        <span class="btn">Assess<strong>my</strong> students</span>
+                    </label>
+                    <label class="assessment-settings-btn ml-4">
+                        <input type="radio" name="access" value="all">
+                        <span class="btn">Assess <strong>all</strong> students</span>
+                    </label>
+
                 </div>
                 <div class="d-flex justify-content-end mt-4 mb-2">
                     <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn border-0">Rubric Selection</button>

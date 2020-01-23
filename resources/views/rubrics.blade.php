@@ -29,31 +29,34 @@ $color_class ='blue';
                                 <div class="d-none d-xs-block">
 
                                 </div>
-                                <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="">
-                                    <option value="Code value">Curriculum Codes</option>
-                                    <!-- load curriculum codes from teacher's table  -->
-                                    <option value="">this text will be load from DB</option>
+                                <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="" placeholder="x">
+                                        <option value="" disabled selected hidden>Select your option</option>
+                                    @foreach($assessed_labels as $al)
+                                        <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
                             <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
-                                <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                    <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                        <input type="checkbox" role="button-" name="" value="description" class="">load text type from DB
-                                    </label>
-                                </div>
+                                @foreach($text_types as $tt)
+                                    <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
+                                        <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
+                                            <input type="checkbox" role="button-" name="" value={{$tt->text_type_Id}} class="">{{$tt->text_type_Name}}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <!-- skills cards deck-->
-                            <div class="card-deck row inline-block p-0 mt-5" >
+                            <div class="card-columns row inline-block p-0 mt-5" >
 
                                 <!-- load cards from skill-categories DB; you should see 7 of them;
                                 each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                                 <!-- content inside each skill card -->
                                 @foreach($traitObjects as $to)
-                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>">
+                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
@@ -67,7 +70,7 @@ $color_class ='blue';
                                                 <li class="list-group-item">
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
-                                                    <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>{{$skill->getName()}}</span>
+                                                    <label class="frm_checkbox"><input type="checkbox" name="skill" value={{$skill->getId()}}><span>{{$skill->getName()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
@@ -80,7 +83,7 @@ $color_class ='blue';
                             <!-- end of skill cards columns -->
                         </div>
                         <!-- clear button for form term 1 -->
-                        <div class="col-12 row justify-content-end align-self-end p-0 m-0">
+                        <div class="col-12 row justify-content-end align-self-end p-0 m-0 mt-3">
                             <button class="btn btn-clear" type="reset" name="button-clear1">Clear</button>
                         </div>
                     </form>
@@ -107,11 +110,13 @@ $color_class ='blue';
 
                             <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
                             <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
-                                <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                                    <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                        <input type="checkbox" name="" value="description">load text type from DB
-                                    </label>
-                                </div>
+                                @foreach($text_types as $tt)
+                                    <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
+                                        <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
+                                            <input type="checkbox" name="" value="description">{{$tt->text_type_Name}}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <!-- skills cards deck-->
@@ -150,7 +155,7 @@ $color_class ='blue';
                             <!-- end of skill cards columns -->
                         </div>
                         <!-- clear button for form term 2 -->
-                        <div class="col-12 row justify-content-end p-0 m-0">
+                        <div class="col-12 row justify-content-end p-0 m-0 mt-3">
                             <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
                         </div>
                     </form>

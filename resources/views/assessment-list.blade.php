@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- do a student count; if 0 count then display below div -->
-                    @if(count($assessment-list===0))
+                    @if(count($assessment-list) === 0)
                     <div class="mt-5 rubric-instruction d-flex justify-content-center">
                         <div class="">
                             <p>You currently do not have any assessments.</p>
@@ -29,7 +29,7 @@
 
                     </div>
                     <!-- if student count >0 then display below-->
-                    @elseif($assessment-list>0))
+                    @elseif(count($assessment-list) > 0)
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
                         <p class="col-4 text-left px-0">Title</p>
                         <p class="col-2 text-left px-0">Date Created</p>

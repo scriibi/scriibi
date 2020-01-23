@@ -22,6 +22,17 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+Route::get('/single-rubric', function(){
+   return view('single-rubric');
+});
+
+Route::get('/assessment-studentlist', function(){
+   return view('assessment-studentlist');
+});
+
+Route::get('/assessment-marking', function(){
+   return view('assessment-marking');
+});
 
 Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();
@@ -68,7 +79,7 @@ Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
-Route::get('/rubrics', 'RubricBuilder@test');
+Route::get('/rubrics', 'RubricBuilder@populateTraits');
 
 Route::get('/rubric', function(){
    return view('rubric');

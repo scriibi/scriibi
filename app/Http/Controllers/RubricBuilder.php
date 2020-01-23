@@ -7,6 +7,7 @@ use App\skillObject;
 use App\traits;
 use App\skills;
 use App\skills_traits;
+use App\text_types;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,10 @@ class RubricBuilder extends Controller
 {
     private $traits_skills_array = array();
 
-    public function test(){
+    /**
+     * returns a trait collection with the underlying corresponding skills collections
+     */
+    public function populateTraits(){
 
         $traits = traits::get();
 
@@ -23,24 +27,42 @@ class RubricBuilder extends Controller
             array_push($this->traits_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
         }
 
-        RubricBuilder::populate();
+        RubricBuilder::populateSkillsInTraits();
+        //RubricBuilder::calculateFlagsForSkills();
 
-        RubricBuilder::calculate();
+        $text_types = RubricBuilder::getTextTypes();
 
-        return view('rubrics', ['traitObjects' => $this->traits_skills_array]);
+        $school_type_controller = new SchoolTypeController();
+       
+        $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
+
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types, 'assessed_labels' => $assessed_label_list]);
 
     }
 
-    public function populate(){
+    /**
+     * populates the skills collection with the skills corresponding to this trait
+     */
+    public function populateSkillsInTraits(){
         foreach($this->traits_skills_array as $tsa){
             $tsa->populateSkills();
         }
     }
 
-    public function calculate(){
+    /**
+     * calculates the flags for all of the skills in the skills collection of this trait object
+    */
+    public function calculateFlagsForSkills(){
         foreach($this->traits_skills_array as $tsa){
                 $tsa->calcFlag();
             }
+    }
+
+    /**
+     * 
+     */
+    public function getTextTypes(){
+        return text_types::get();
     }
 }
 
