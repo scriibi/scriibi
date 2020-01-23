@@ -18,7 +18,7 @@ class traitObject
     private $name;
     private $colour;
     private $icon;
-    private $skills = array();
+    public $skills = array();
 
 
     public function __construct($id, $name, $colour, $icon, $skill = []){
@@ -52,23 +52,24 @@ class traitObject
 
     public function populateSkills(){
 
-        $skills = traits::find($this->id)->skills;
+        $popSkills = traits::find($this->id)->skills;
 
-        foreach($skills as $skill){
+        foreach($popSkills as $skill){
             array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
         }
     }
 
-    public function calcFlag(Request $request){
+
+    public function calcFlag(){
 
         // $curriculum = schools::find(Auth::user()->school_Id)->curriculum->first();
         $curriculum = schools::find(1)->curriculum->first();
 
         // $level = $request->input('level'); // check name of level laterrrrrr
-        $level = 4;
+        $level = 3;
 
-        foreach($skills as $skill){
-            $skill->setFlag($curriculum, $level);
+        foreach($this->skills as $skill){
+            $skill->setFlag($curriculum->curriculum_Id, $level);
         }
     }
 
