@@ -23,7 +23,7 @@ class skillObject
         $this->id = $id;
         $this->name = $name;
         $this->definition = $definition;
-        $this->flag = 0;
+        $this->flag = '';
     }
 
     public function getName(){
@@ -63,7 +63,7 @@ class skillObject
          */
          for($i = 0; $i < count($plucked); $i++){
             if($criteriaCurrLevelSkills->contains('curriculum_scriibi_levels_skills_Id', $plucked[$i])){
-                $this->flag = 1;
+                $this->flag = '/images/flag.php';
             }
          }
     }
