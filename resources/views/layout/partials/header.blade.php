@@ -8,7 +8,13 @@
             <li><a href="/assessment-list">ASSESSMENT</a></li>
             <li><a href="/rubric-list">RUBRIC</a></li>
             <li><a href="#">SUPPORT MATERIAL</a></li>
-            <li class="float-right"><a href="#">LOG OUT</a></li>
+            @if (Route::has('login'))
+                @auth
+                <li class="float-right"><a href="{{ route('logout') }}"">LOG OUT</a></li>
+                @else
+                <li class="float-right"><a href="{{ route('logout') }}"">LOG IN</a></li>
+                @endauth
+            @endif
         </ul>
     </div>
     <!-- /navbar content -->

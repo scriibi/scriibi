@@ -10,9 +10,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth/welcome');
- });
+// Route::get('/', function () {
+//     return view('auth/welcome');
+//  });
 
  Route::get('/demo', function () {
    return view('demo');
@@ -34,11 +34,11 @@ Route::get('/assessment-marking', function(){
    return view('assessment-marking');
 });
 
-Route::get('/home', function(){
+Route::get('/', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
     return view('home', ['students' => $students]);
-});
+})->middleware('auth');
 
 Route::get('/studentlist', function(){
     return view('studentlist');
