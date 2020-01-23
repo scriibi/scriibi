@@ -23,6 +23,7 @@ class skillObject
         $this->id = $id;
         $this->name = $name;
         $this->definition = $definition;
+        $this->flag = 0;
     }
 
     public function getName(){
@@ -54,26 +55,18 @@ class skillObject
         $filtered = $currLevelSkills->where('skill_Id', $this->id)->where('curriculum_Id', $curriculum_Id)->where('scriibi_level_Id', $level);
 
         //pluck the primary keys from those rows
-        $plucked = $filtered->pluck('curriculum_scriibi_levels_skills_Id');
+        $plucked = $filtered->pluck('curriculum_scriibi_levels_skills_Id')->toArray();
 
         /**
          * not all rows from currLevelSkills will exist in criteriasCurrLevelSkills
          * we need to first check if criteriasCurrLevelSkills contains our currLevelSkills_ID
-         * if it doesn't, return 0
          */
-
-        foreach($plucked as $pluck){
-            if(!($criteriaCurrLevelSkills->contains('curriculum_scriibi_levels_skills_Id', $pluck))){
-                return 0;
-            }
-            else{
+         for($i = 0; $i < count($plucked); $i++){
+            if($criteriaCurrLevelSkills->contains('curriculum_scriibi_levels_skills_Id', $plucked[$i])){
                 $this->flag = 1;
             }
-        }
+         }
     }
 
-    public function newFunc(){
-        $skills = App\curriculum_scriibi_level_skills::find()->LocalCriterias->all();
-    }
 
 }

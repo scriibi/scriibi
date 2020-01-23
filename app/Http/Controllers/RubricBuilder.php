@@ -25,24 +25,10 @@ class RubricBuilder extends Controller
 
         RubricBuilder::populate();
 
+        RubricBuilder::calculate();
+
         return view('rubrics', ['traitObjects' => $this->traits_skills_array]);
 
-        // $traitsList = TraitsController::index();
-        // $skillsList = SkillsTraitsController::index();
-
-        // foreach($$traitsList as $trait){
-
-
-        //$skillsTraitsCollection->filter(function($value, $trait){return $value->skills_traits_traits_trait_Id == $trait['trait_Id']->trait_Id;});
-
-        //     array_push($array, $traitSkills);
-        // }
-
-        /**
-         * iterate through array of skills_traits objects
-         * foreach trait create a new traitObject with the attirbutes of the current trait and the assocaited skills.
-         *
-        */
     }
 
     public function populate(){
@@ -53,9 +39,8 @@ class RubricBuilder extends Controller
 
     public function calculate(){
         foreach($this->traits_skills_array as $tsa){
-            foreach($tsa->getSkills as $skill){
-                $skill->calcFlag();
+                $tsa->calcFlag();
             }
-        }
     }
 }
+

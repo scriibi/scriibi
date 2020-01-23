@@ -5,7 +5,7 @@
 /public/js
 
 /storage/*.key
-/vendor/*
+/vendor
 /config/database.php
 .env
 .env.backup
