@@ -24,9 +24,9 @@ Route::get('/rubrics', function(){
 
 
 Route::get('/home', function(){
-   $stdController = new App\Http\Controllers\StudentsController();
-   $students = $stdController->indexStudentsByClass();
-   return view('home', ['students' => $students]);
+    $stdController = new App\Http\Controllers\StudentsController();
+    $students = $stdController->indexStudentsByClass();
+    return view('home', ['students' => $students]);
 });
 
 

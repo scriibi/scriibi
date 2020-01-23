@@ -1,7 +1,7 @@
 @extends('layout.mainlayout')
 @section('title', 'Home')
 @section('content')
-
+@csrf
 
 <div class="row mx-4">
     <div class="d-none d-sm-block col-sm-1 col-md-2">
