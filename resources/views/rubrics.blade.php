@@ -64,8 +64,10 @@ $color_class ='blue';
                                             <li class="list-group-item">
                                                 <!-- load each skill item in the skills category;
                                                 the number of skills items in the skill category vary -->
-                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span>load skill name</span>
+                                                <label class="frm_checkbox"><input type="checkbox" name="" value=""><span class="mr-3">load skill name</span>
+                                                    <img src="/images/flag.png" alt="" >
                                                 </label>
+
                                             </li>
 
                                         </div>

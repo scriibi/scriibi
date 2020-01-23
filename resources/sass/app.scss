@@ -159,12 +159,6 @@ position: relative;
     font-size: 15px;
     line-height: 18px;
     color:  #3D3D3D;
-
-
-;
-
-
-
 }
 
 .teaching-lesson-title{
@@ -215,8 +209,8 @@ position: relative;
 }
 
 .list-group-item:last-child {
-border-bottom-right-radius: 25px;
-border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
 .go-to-student-btn{
@@ -238,6 +232,7 @@ border-bottom-left-radius: 25px;
     line-height: 35px;
     color:  #33A849;
 }
+
 .assessment-settings-title{
     font-family: Raleway;
     font-style: normal;
@@ -248,16 +243,38 @@ border-bottom-left-radius: 25px;
 
 .assessment-settings-btn{
     background: #FFFFFF;
-    border: 2px solid rgba(180, 180, 180, 0.33);
+    border: 2px solid #33A849;
     box-sizing: border-box;
     border-radius: 7px;
 }
+
+label.assessment-settings-btn {
+  position: relative;
+  line-height: 19px;
+
+  input[type="radio"] {
+    display: none;
+  }
+}
+
+label.assessment-settings-btn:hover{
+    background:#33A849;
+}
+
+
 .assessment-settings-btn:active{
     border: 2px solid #33A849;
 }
 
 #description-for-assessment{
     height: 30vh;
+}
+
+
+.back-btn{
+    border: 2px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 7px;
 }
 
 .assessment-btn{
@@ -273,6 +290,83 @@ border-bottom-left-radius: 25px;
 }
 
 
+// assessment-student-list page
+
+.Assessment-Studentlist-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.Assessment-Student-list-cell{
+
+    box-shadow: 0px, 0px,rgba(0, 0, 0, 0.25);
+    radius: 5px;
+    border-color: #FBFBFB;
+}
+.Assessment-Student-list-cell:hover{
+    border-color:#0078ff ;
+}
+
+.save-exit-btn{
+    background-color: #33A849;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+
+// assessement marking Page
+.main-panel{
+    position: relative;
+    width: 75vw;
+    margin: 0;
+    padding: 0;
+
+}
+
+.scroll-panel{
+    position: relative;
+    width: 75vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.side-info{
+    position: relative;
+    width: 25vw;
+    height:100vh;
+    margin: 0;
+    padding: 0;
+}
+
+label.score-radio{
+    position: relative;
+    line-height: 22px;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    span::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #C4C4C4;
+      border-radius: 50%;
+      background-color:#C4C4C4;
+      margin-right: 10px;
+      vertical-align: text-bottom;
+    }
+
+    input[type="radio"]:checked + span::before {
+      background-color: #4CB25F;
+      border-color: #4CB25F;
+    }
+
+}
 
 //Student List
 
@@ -472,7 +566,7 @@ input:focus {
     line-height: 16px;
     color: #909090;
 }
-//Rubric Page
+//Rubric builder Page
 #RubricBuilder_title{
   font-family: Raleway;
   font-style: normal;
@@ -605,13 +699,6 @@ $skillset-colors-map: (
     text-decoration-color: #FFFFFF;
 }
 
-// assessment set-up page
-
-.back-btn{
-    border: 2px solid #D2D2D2;
-    box-sizing: border-box;
-    border-radius: 7px;
-}
 
 .card-columns {
   @include media-breakpoint-only(sm) {
@@ -621,6 +708,8 @@ $skillset-colors-map: (
     column-count: 2;
   }
 }
+
+
 //---------- Media Queries --------------------
 
 /* Extra small devices (phones, 600px and down) */

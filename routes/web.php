@@ -22,6 +22,17 @@ Route::get('/rubrics', function(){
    return view('rubrics');
 });
 
+Route::get('/single-rubric', function(){
+   return view('single-rubric');
+});
+
+Route::get('/assessment-studentlist', function(){
+   return view('assessment-studentlist');
+});
+
+Route::get('/assessment-marking', function(){
+   return view('assessment-marking');
+});
 
 Route::get('/home', function(){
    $stdController = new App\Http\Controllers\StudentsController();
