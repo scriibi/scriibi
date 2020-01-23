@@ -318,27 +318,30 @@ label.assessment-settings-btn:hover{
 }
 
 // assessement marking Page
-.main-panel{
-    position: relative;
-    width: 75vw;
-    margin: 0;
-    padding: 0;
-
-}
-
-.scroll-panel{
-    position: relative;
-    width: 75vw;
+#assessment-marking-panel {
+    display: grid;
+    grid-template-columns: 1fr 40px auto;
+    grid-template-areas:
+        "marking-panel btn-panel info-panel";
     height: 100vh;
-    margin: 0;
-    padding: 0;
+
 }
-.side-info{
-    position: relative;
-    width: 25vw;
-    height:100vh;
-    margin: 0;
-    padding: 0;
+
+.hide-info-panel #info-panel {
+    width: 0;
+}
+.hide-info-panel #btn-panel .fa-arrow-right {
+    transform: rotate(180deg);
+}
+#btn-panel .btn {
+    box-shadow: none;
+}
+#btn-panel .fa-arrow-right {
+    transition: transform 0.3s;
+}
+#info-panel {
+    width: 250px;
+    transition: width 0.3s;
 }
 
 label.score-radio{
@@ -367,6 +370,7 @@ label.score-radio{
     }
 
 }
+
 
 //Student List
 

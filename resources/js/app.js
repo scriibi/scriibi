@@ -106,8 +106,10 @@ for (const closeStudentButton of closeStudentButtons) {
 
 // assessment setup Page
 var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+/* TODO: fix this...
 rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
 rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+*/
 
 function closeAssessmentForm(event){
     document.getElementById("assessment-template").classList.remove("d-none","d-block");
@@ -122,8 +124,10 @@ function openRubricForm(event){
 
 
 var backBTN = document.getElementById("backBTN");
+/* TODO: not working
 backBTN.addEventListener('click',openAssessmentForm, true);
 backBTN.addEventListener('click', closeRubricForm, true);
+*/
 
 function openAssessmentForm(event){
     document.getElementById("assessment-template").classList.toggle("d-none",false);
@@ -134,3 +138,11 @@ function closeRubricForm(event){
     document.getElementById("rubric-template").classList.toggle("d-block",false);
     document.getElementById("rubric-template").classList.toggle("d-none",true);
 }
+
+$(document).ready(function () {
+    console.log('READY');
+    $('#sidebar-collapse').on('click', function () {
+        console.log('TOGGLE INFO PANEL');
+        $('#assessment-marking-panel').toggleClass('hide-info-panel');
+    });
+});

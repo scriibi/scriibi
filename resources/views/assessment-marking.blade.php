@@ -2,35 +2,41 @@
 @section('title', 'Assessments-Marking')
 @section('content')
 
-<div class="row">
-    <div class="main-panel">
-        <div class="score-label bg-warning row">
+<div class="row" id="assessment-marking-panel">
+
+    <div class="marking-panel bg-warning" id="marking-panel">
+        <div class="score-label d-flex justify-content-end" id="score-label">
             <!-- here goes the calculated score section in the value bit -->
-            <div class="col-5 mx-0 px-0 text-right">
+            <div class="mx-0 px-0 text-right">
+                <input type="text" name="" value="">
+            </div>
+            <div class="mx-0 px-0 text-right">
                 <input type="text" name="" value="score1" readonly>
             </div>
-            <div class="col-2 mx-0 px-0 text-left">
+            <div class="mx-0 px-0 text-left">
                 <input type="text" name="" value="score2" readonly>
             </div>
-            <div class="col-2 mx-0 px-0 text-left">
+            <div class="mx-0 px-0 text-left">
                 <input type="text" name="" value="score3" readonly>
             </div>
-            <div class="col-2 mx-0 px-0 text-left">
+            <div class="mx-0 px-0 text-left">
                 <input type="text" name="" value="score4" readonly>
             </div>
-            <div class="col-1 mx-0 px-0 text-left">
+            <div class="mx-0 px-0 text-left">
                 <input type="text" name="" value="score5" readonly>
             </div>
         </div>
-        <div class="scroll-panel bg-info">
-            <div class="accordion">
-                <!-- pop how many skills from DB -->
+
+        <div class="scroll-panel">
+            <div class="accordion d-flex justify-content-end" id="accordion">
+                <!-- pop each skill from DB -->
                 <div class="card">
-                    <div class="card-header row">
+
+                    <div class="card-header row" id="headingOne">
                         <!-- skill trait name -->
                         <div class="d-flex justify-content-between col-3">
                             <span>skill trait name</span>
-                            <div class="btn">
+                            <div class="btn btn-link" data-toggle="collapse" data-target="#criteria&code" aria-expanded="true" aria-controls="criteria&code">
                                 <img src="/images/VectorClose.png" alt="closeBTN">
                             </div>
                         </div>
@@ -57,40 +63,43 @@
                     </div>
                     <!-- score criteria + milestone codes -->
 
-                    <div class="card-body">
-                        <div class="3">
+                    <div class="card-body row collapse" id="criteria&code" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="col-3">
 
                         </div>
-                        <div class="card-text col-2">
-                            <p>dehjf</p>
+                        <div class="card-text col-9 d-flex justify-content-between px-0">
+                            <div class="col-3 px-0">
+                                <p>dehjf</p>
 
-                        </div>
-                        <div class="col-2">
+                            </div>
+                            <div class="col-2">
 
-                        </div>
-                        <div class="col-2">
-                            <p>dehjf</p>
-                        </div>
-                        <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                <p>dehjf</p>
+                            </div>
+                            <div class="col-2">
 
+                            </div>
+                            <div class="col-1">
+                                <p>dehjf</p>
+                            </div>
                         </div>
-                        <div class="col-1">
-                            <p>dehjf</p>
-                        </div>
+
 
                     </div>
 
                 </div>
-                <div class="card">
-
-                </div>
-
             </div>
         </div>
     </div>
-
-    <div class="side-info bg-primary">
-        <p class="">ff</p>
+    <div class="btn-panel" id="btn-panel">
+        <button type="button" name="button" class="btn align-self-start" id="sidebar-collapse"><i class="fas fa-arrow-right"></i></button>
     </div>
+
+    <div class=" mCustomScrollbar info-panel bg-info" id="info-panel">
+
+    </div>
+
 </div>
 @endsection
