@@ -49,14 +49,14 @@ $color_class ='blue';
                             </div>
 
                             <!-- skills cards deck-->
-                            <div class="card-deck row inline-block p-0 mt-5" >
+                            <div class="card-columns row inline-block p-0 mt-5" >
 
                                 <!-- load cards from skill-categories DB; you should see 7 of them;
                                 each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                                 <!-- content inside each skill card -->
                                 @foreach($traitObjects as $to)
-                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>">
+                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
