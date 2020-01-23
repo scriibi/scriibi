@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\traitObject;
 use App\skillObject;
 use App\traits;
@@ -28,7 +29,6 @@ class RubricBuilder extends Controller
         }
 
         RubricBuilder::populateSkillsInTraits();
-        //RubricBuilder::calculateFlagsForSkills();
 
         $text_types = RubricBuilder::getTextTypes();
 
@@ -59,10 +59,20 @@ class RubricBuilder extends Controller
     }
 
     /**
-     * 
+     * return all the text types available
      */
     public function getTextTypes(){
         return text_types::get();
+    }
+
+    public function getRubricsByTeacher(){
+        $teacher_rubrics = DB::table('rubrics_teachers')
+            ->join('rubrics', 'rubrics_teachers.rubrics_rubric_Id', 'rubrics.rubric_Id')
+            ->join('rubrics_skills', 'rubrics.rubric_Id', 'rubrics_skills.rubrics_rubric_Id')
+            ->select('rubrics.*', 'rubrics_skills.*')
+            ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id);
+
+        return $teacher_rubrics;
     }
 }
 

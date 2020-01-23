@@ -25,11 +25,11 @@ $color_class ='blue';
                         <!-- term-title+Curriculum -->
                         <div class="card-text m-0">
                             <div class=" form-group d-flex justify-content-between ">
-                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="" value="Term 1 Rubric" required>
+                                <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric_name" value="Term 1 Rubric" required>
                                 <div class="d-none d-xs-block">
 
                                 </div>
-                                <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="" placeholder="x">
+                                <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="assessed_level">
                                         <option value="" disabled selected hidden>Select your option</option>
                                     @foreach($assessed_labels as $al)
                                         <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
@@ -70,7 +70,7 @@ $color_class ='blue';
                                                 <li class="list-group-item">
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
-                                                    <label class="frm_checkbox"><input type="checkbox" name="skill" value={{$skill->getId()}}><span>{{$skill->getName()}}</span>
+                                                    <label class="frm_checkbox"><input type="checkbox" name="skill[]" value={{$skill->getId()}}><span>{{$skill->getName()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
