@@ -59,7 +59,6 @@ class traitObject
         }
     }
 
-
     public function calcFlag(){
 
         // $curriculum = schools::find(Auth::user()->school_Id)->curriculum->first();
