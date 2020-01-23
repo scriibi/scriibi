@@ -42,23 +42,23 @@
                         </div>
                         <!-- score 1 -->
                         <div class="col-2 form-check">
-                            <label for="score1" class="score-radio form-check-label"><input class="form-check-input" type="radio" id="score1" name="score1" value=""><span></span></label>
+                            <label class="score-radio form-check-label"><input class="form-check-input" type="radio" id="score1" name="score" value="score1"><span></span></label>
                         </div>
                         <!-- score 2 -->
                         <div class="col-2 form-check">
-                            <label for="score2" class="score-radio form-check-label"><input class="form-check-input" type="radio" id="score2" name="score2" value=""><span></span></label>
+                            <label class="score-radio form-check-label"><input class="form-check-input" type="radio" id="score2" name="score" value="score2"><span></span></label>
                         </div>
                         <!-- score 3 -->
                         <div class="col-2 form-check">
-                            <label for="score3" class="score-radio"><input type="radio" id="score3" name="score3" value=""><span></span></label>
+                            <label  class="score-radio"><input type="radio" id="score3" name="score" value="score3"><span></span></label>
                         </div>
                         <!-- score 4 -->
                         <div class="col-2 form-check">
-                            <label for="score4" class="score-radio"><input type="radio" id="score4" name="score4" value=""><span></span></label>
+                            <label class="score-radio"><input type="radio" id="score4" name="score" value="score4"><span></span></label>
                         </div>
                         <!-- score 5 -->
                         <div class="col-1 form-check">
-                            <label for="score5" class="score-radio"><input type="radio" id="score5" name="score5" value=""><span></span></label>
+                            <label  class="score-radio"><input type="radio" id="score5" name="score" value="score5"><span></span></label>
                         </div>
                     </div>
                     <!-- score criteria + milestone codes -->
@@ -85,7 +85,6 @@
                                 <p>dehjf</p>
                             </div>
                         </div>
-
 
                     </div>
 

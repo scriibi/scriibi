@@ -241,29 +241,20 @@ position: relative;
     color:#4C4D4F;
 }
 
-.assessment-settings-btn{
-    background: #FFFFFF;
-    border: 2px solid #33A849;
-    box-sizing: border-box;
-    border-radius: 7px;
-}
-
-label.assessment-settings-btn {
-  position: relative;
-  line-height: 19px;
-
-  input[type="radio"] {
-    display: none;
-  }
-}
-
-label.assessment-settings-btn:hover{
-    background:#33A849;
-}
-
-
-.assessment-settings-btn:active{
-    border: 2px solid #33A849;
+.assessment-settings-btn {
+    input {
+        display: none;
+    }
+    span {
+        background: #FFFFFF;
+        border: 2px solid #33A849;
+        box-sizing: border-box;
+        border-radius: 7px;
+        line-height: 19px;
+    }
+    &:hover span, input:checked + span {
+        background:#33A849;
+    }
 }
 
 #description-for-assessment{

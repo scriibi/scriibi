@@ -36,11 +36,13 @@
                 </div>
                 <h5 class="assessment-settings-title mt-5">Assessment Settings</h5>
                 <div class="d-flex justify-content-start mt-3">
-                    <label for="" class="btn assessment-settings-btn">
-                        <input type="radio" name="" value="">Assess<strong>my</strong> students
+                    <label class="assessment-settings-btn">
+                        <input type="radio" name="access" value="mine">
+                        <span class="btn">Assess<strong>my</strong> students</span>
                     </label>
-                    <label for="" class="btn assessment-settings-btn ml-4">
-                        <input type="radio" name="" value="">Assess <strong>all</strong> students
+                    <label class="assessment-settings-btn ml-4">
+                        <input type="radio" name="access" value="all">
+                        <span class="btn">Assess <strong>all</strong> students</span>
                     </label>
 
                 </div>

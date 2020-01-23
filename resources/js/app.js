@@ -105,11 +105,8 @@ for (const closeStudentButton of closeStudentButtons) {
 // rubric builder page
 
 // assessment setup Page
-var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-/* TODO: fix this...
-rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-rubricSelectionBTN.addEventListener('click', openRubricForm, true);
-*/
+
+
 
 function closeAssessmentForm(event){
     document.getElementById("assessment-template").classList.remove("d-none","d-block");
@@ -123,11 +120,7 @@ function openRubricForm(event){
 
 
 
-var backBTN = document.getElementById("backBTN");
-/* TODO: not working
-backBTN.addEventListener('click',openAssessmentForm, true);
-backBTN.addEventListener('click', closeRubricForm, true);
-*/
+
 
 function openAssessmentForm(event){
     document.getElementById("assessment-template").classList.toggle("d-none",false);
@@ -141,6 +134,17 @@ function closeRubricForm(event){
 
 $(document).ready(function () {
     console.log('READY');
+
+    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+    if (rubricSelectionBTN) {
+        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+    }
+    var backBTN = document.getElementById("backBTN");
+    if (backBTN) {
+        backBTN.addEventListener('click',openAssessmentForm, true);
+        backBTN.addEventListener('click', closeRubricForm, true);
+    }
     $('#sidebar-collapse').on('click', function () {
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
