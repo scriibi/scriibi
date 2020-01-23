@@ -6,7 +6,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -43,7 +43,7 @@ $(function(){
        url: '/AJAX/listCall',
        success: function(data){
            $("#listDisplay").html(data);
-       }, 
+       },
        error:function(data){
            console.log('error');
            console.log(data);
@@ -120,10 +120,6 @@ function openRubricForm(event){
     document.getElementById("rubric-template").classList.toggle("d-block",true);
 }
 
-
-
-
-
 function openAssessmentForm(event){
     document.getElementById("assessment-template").classList.toggle("d-none",false);
     document.getElementById("assessment-template").classList.toggle("d-block",true);
@@ -151,4 +147,6 @@ $(document).ready(function () {
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
+
+
 });
