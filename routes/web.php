@@ -29,7 +29,6 @@ Route::get('/home', function(){
     return view('home', ['students' => $students]);
 });
 
-
 Route::get('/studentlist', function(){
     return view('studentlist');
 });

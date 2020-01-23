@@ -35,6 +35,7 @@ class CustomUserRepository extends Auth0UserRepository
             CustomUserRepository::someFunction($teacher, $profile);
         }
 
+
         return $teacher;
     }
 
