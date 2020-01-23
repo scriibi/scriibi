@@ -5,6 +5,7 @@ namespace App;
 use App\skills;
 use App\skills_traits;
 use App\skillObject;
+use App\school_teachers;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
@@ -59,13 +60,14 @@ class traitObject
         }
     }
 
-
     public function calcFlag(){
 
-        // $curriculum = schools::find(Auth::user()->school_Id)->curriculum->first();
-        $curriculum = schools::find(1)->curriculum->first();
 
-        // $level = $request->input('level'); // check name of level laterrrrrr
+        $schoolId = DB::table('school_teachers')->select('schools_school_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
+
+        $curriculum = schools::find($schoolId)->curriculum;
+
+        //$level = $request->input('level'); // check name of level laterrrrrr
         $level = 3;
 
         foreach($this->skills as $skill){
