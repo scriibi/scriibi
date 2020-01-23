@@ -6,7 +6,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -43,7 +43,7 @@ $(function(){
        url: '/AJAX/listCall',
        success: function(data){
            $("#listDisplay").html(data);
-       }, 
+       },
        error:function(data){
            console.log('error');
            console.log(data);
@@ -107,9 +107,8 @@ for (const closeStudentButton of closeStudentButtons) {
 // rubric builder page
 
 // assessment setup Page
-var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+
+
 
 function closeAssessmentForm(event){
     document.getElementById("assessment-template").classList.remove("d-none","d-block");
@@ -121,12 +120,6 @@ function openRubricForm(event){
     document.getElementById("rubric-template").classList.toggle("d-block",true);
 }
 
-
-
-var backBTN = document.getElementById("backBTN");
-backBTN.addEventListener('click',openAssessmentForm, true);
-backBTN.addEventListener('click', closeRubricForm, true);
-
 function openAssessmentForm(event){
     document.getElementById("assessment-template").classList.toggle("d-none",false);
     document.getElementById("assessment-template").classList.toggle("d-block",true);
@@ -136,3 +129,24 @@ function closeRubricForm(event){
     document.getElementById("rubric-template").classList.toggle("d-block",false);
     document.getElementById("rubric-template").classList.toggle("d-none",true);
 }
+
+$(document).ready(function () {
+    console.log('READY');
+
+    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+    if (rubricSelectionBTN) {
+        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+    }
+    var backBTN = document.getElementById("backBTN");
+    if (backBTN) {
+        backBTN.addEventListener('click',openAssessmentForm, true);
+        backBTN.addEventListener('click', closeRubricForm, true);
+    }
+    $('#sidebar-collapse').on('click', function () {
+        console.log('TOGGLE INFO PANEL');
+        $('#assessment-marking-panel').toggleClass('hide-info-panel');
+    });
+
+
+});

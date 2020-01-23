@@ -35,6 +35,7 @@ class CustomUserRepository extends Auth0UserRepository
             CustomUserRepository::someFunction($teacher, $profile);
         }
 
+
         return $teacher;
     }
 
@@ -59,16 +60,14 @@ class CustomUserRepository extends Auth0UserRepository
                 ['classes_teachers_classes_class_Id' => $classId,
                 'teachers_user_Id' => $teacher->user_Id]);
 
-        //similuate array of positions from auth0metadata
-            $auth0positions = array(1,2);
-
-            //check if array length is greater than 1
-                foreach($auth0positions as $pos){
-                    DB::table('teachers_positions')->insert(
-                        ['teachers_user_Id' => $teacher->user_Id,
-                         'positions_position_Id' => $pos]);
-                }
+        //insert teacher into relevant positions into teacher_positions according to metadata.
+            foreach($profile['https://scriibi.com/positions'] as $pos){
+                DB::table('teachers_positions')->insert(
+                    ['teachers_user_Id' => $teacher->user_Id,
+                        'positions_position_Id' => $pos]);
+            }
     }
+
 
 
     /**
