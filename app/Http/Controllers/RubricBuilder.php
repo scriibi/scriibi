@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\traitObject;
 use App\skillObject;
+use App\traits;
+use App\skills;
+use App\skills_traits;
+use App\text_types;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,35 +16,53 @@ class RubricBuilder extends Controller
 {
     private $traits_skills_array = array();
 
-    public function test(){
+    /**
+     * returns a trait collection with the underlying corresponding skills collections
+     */
+    public function populateTraits(){
 
-        // $traitsList = TraitsController::index();
-        // $skillsList = SkillsTraitsController::index();
+        $traits = traits::get();
 
-        // foreach($$traitsList as $trait){
+        foreach($traits as $trait){
+            array_push($this->traits_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
+        }
 
-        //     //$traitSkills = $skillsTraitsCollection->filter(function($value, $trait){return $value->skills_traits_traits_trait_Id == $trait['trait_Id']->trait_Id;});
+        RubricBuilder::populateSkillsInTraits();
+        //RubricBuilder::calculateFlagsForSkills();
 
-        //     array_push($array, $traitSkills);
-        // }
-        
-        $temptrait = new traitObject('trait 1', 'red', 'red icon');
-        $tempskill = new skillObject('skill 1', 'skill 1 def');
+        $text_types = RubricBuilder::getTextTypes();
 
-        $temptrait->setSkills([$tempskill]);
-        
-        return view('traits', ['trait' => $temptrait]);
+        $school_type_controller = new SchoolTypeController();
+       
+        $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
+
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types, 'assessed_labels' => $assessed_label_list]);
+
     }
 
-//this function returns
-    public function someFunction(){
-        $currScriibiSkillsCollection = DB::table('curriculum_scriibi_level_skills')->select('curriculum-scriibi_levels-skills_Id')->where('curriculum_Id', '=', $curriculum)->where('scriibi_level_Id', '=', $level)->get();
+    /**
+     * populates the skills collection with the skills corresponding to this trait
+     */
+    public function populateSkillsInTraits(){
+        foreach($this->traits_skills_array as $tsa){
+            $tsa->populateSkills();
+        }
     }
 
-    //$curriculum == current user's curriculum_Id
-    //$level == scriibi_level that the teacher chooses at the top of rubric bulder
-    //function should return 1 if a flag exists, 0 if not.
-    public function CheckFlag($curriculum, $levels){
-        
+    /**
+     * calculates the flags for all of the skills in the skills collection of this trait object
+    */
+    public function calculateFlagsForSkills(){
+        foreach($this->traits_skills_array as $tsa){
+                $tsa->calcFlag();
+            }
+    }
+
+    /**
+     * 
+     */
+    public function getTextTypes(){
+        return text_types::get();
     }
 }
+

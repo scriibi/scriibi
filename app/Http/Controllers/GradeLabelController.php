@@ -84,4 +84,11 @@ class GradeLabelController extends Controller
     {
         //
     }
+
+    /**
+     * returns a list of grade labels for a passed in school type
+     */
+    public static function indexBySchoolType($school_type){
+        return DB::table('grade_labels')->select('grade_label', 'grade_label_id')->where('fk_school_type_id', '=', $school_type->school_type_id)->get();
+    }
 }

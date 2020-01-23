@@ -13,27 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class StudentsController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+{   
     /**
      * Store a newly created resource in storage.
      *
@@ -62,6 +42,66 @@ class StudentsController extends Controller
         $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
 
         return redirect()->action('StudentInputController@ReturnStudentListPage');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\students  $students
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteStudent($student_id){
+        try{
+            DB::table('students')->where('student_Id', '=', $student_id)->delete();
+            DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
+    }
+
+    /**
+     * return all of the students of the currently logged in teachers class 
+     * note: for version 1 a teacher can have only one class
+     */
+    public function indexStudentsByClass(){
+        $students = [];
+        try{
+            $class = DB::table('classes_teachers')->select('classes_teachers_classes_class_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
+
+            $students = DB::table('classes_students')
+                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
+                ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
+                ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
+                ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
+                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
+                ->get();
+        }
+        catch(Exception $e){
+            abort(403, 'Please log in to view this page!');
+        }
+        return $students;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -96,44 +136,5 @@ class StudentsController extends Controller
     public function update(Request $request, students $students)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteStudent($student_id){
-        DB::table('students')->where('student_Id', '=', $student_id)->delete();
-        DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
-
-        return redirect()->action('StudentInputController@ReturnStudentListPage');
-    }
-
-    /**
-     * return all of the students of the currently logged in teachers class 
-     * note: for version 1 a teacher can have only one class
-     */
-    public function indexStudentsByClass(){
-        $students = [];
-        try{
-            $class = DB::table('classes_teachers')
-                ->select('classes_teachers_classes_class_Id')
-                ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-                ->first();
-
-            $students = DB::table('classes_students')
-                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
-                ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
-                ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
-                ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
-                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
-                ->get();
-        }
-        catch(Exception $e){
-            abort(403, 'Please log in to view this page!');
-        }
-        return $students;
     }
 }

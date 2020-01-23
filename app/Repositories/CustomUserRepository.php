@@ -32,26 +32,27 @@ class CustomUserRepository extends Auth0UserRepository
 
         //creates class, class-teacher, teacher-scriibi-level and teacher-school relationships if this is the first time logging in!
         if(!$teacherExists){
-            CustomUserRepository::someFunction($teacher);
+            CustomUserRepository::someFunction($teacher, $profile);
         }
 
         return $teacher;
     }
 
-    protected function someFunction($teacher){
+    protected function someFunction($teacher, $profile){
 
         //insert a new record in teachers-scriibi-levels according to auth0 metadata(level)
             DB::table('teachers_scriibi_levels')->insert(
                 ['teachers_user_Id' => $teacher->user_Id,
-                'scriibi_levels_scriibi_Level_Id' => 3]);
+                'scriibi_levels_scriibi_Level_Id' => $profile['https://scriibi.com/level']]);
+
         //insert a new record in schools-teachers according to auth0 metadata(school)
             DB::table('school_teachers')->insert(
-                ['teachers_user_Id' => $teacher->user_Id,  'schools_school_Id' => 1]);
+                ['teachers_user_Id' => $teacher->user_Id,  'schools_school_Id' => $profile['https://scriibi.com/school']]);
 
         //insert a new record in classes according with default values
             $classId = DB::table('classes')->insertGetId(
                 ['class_Name' => $teacher->name.'_'.date("Y-m-d"),
-                'schools_school_Id' => 1]);
+                'schools_school_Id' => $profile['https://scriibi.com/school']]);
 
         //associate that class with the logged in user
             DB::table('classes_teachers')->insert(

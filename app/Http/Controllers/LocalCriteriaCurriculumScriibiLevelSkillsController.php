@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\assessed_level_label;
+use App\local_criteria_curriculum_scriibi_level_skills;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class AssessedLevelLabelController extends Controller
+class LocalCriteriaCurriculumScriibiLevelSkillsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,10 +41,10 @@ class AssessedLevelLabelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\assessed_level_label  $assessed_level_label
+     * @param  \App\local_criteria_curriculum_scriibi_level_skills  $local_criteria_curriculum_scriibi_level_skills
      * @return \Illuminate\Http\Response
      */
-    public function show(assessed_level_label $assessed_level_label)
+    public function show(local_criteria_curriculum_scriibi_level_skills $local_criteria_curriculum_scriibi_level_skills)
     {
         //
     }
@@ -54,10 +52,10 @@ class AssessedLevelLabelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\assessed_level_label  $assessed_level_label
+     * @param  \App\local_criteria_curriculum_scriibi_level_skills  $local_criteria_curriculum_scriibi_level_skills
      * @return \Illuminate\Http\Response
      */
-    public function edit(assessed_level_label $assessed_level_label)
+    public function edit(local_criteria_curriculum_scriibi_level_skills $local_criteria_curriculum_scriibi_level_skills)
     {
         //
     }
@@ -66,10 +64,10 @@ class AssessedLevelLabelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\assessed_level_label  $assessed_level_label
+     * @param  \App\local_criteria_curriculum_scriibi_level_skills  $local_criteria_curriculum_scriibi_level_skills
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, assessed_level_label $assessed_level_label)
+    public function update(Request $request, local_criteria_curriculum_scriibi_level_skills $local_criteria_curriculum_scriibi_level_skills)
     {
         //
     }
@@ -77,15 +75,11 @@ class AssessedLevelLabelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\assessed_level_label  $assessed_level_label
+     * @param  \App\local_criteria_curriculum_scriibi_level_skills  $local_criteria_curriculum_scriibi_level_skills
      * @return \Illuminate\Http\Response
      */
-    public function destroy(assessed_level_label $assessed_level_label)
+    public function destroy(local_criteria_curriculum_scriibi_level_skills $local_criteria_curriculum_scriibi_level_skills)
     {
         //
-    }
-
-    public static function indexBySchoolType($school_type){
-        return DB::table('assessed_level_labels')->select('assessed_level_labels.*')->where('school_type_id_fk', '=', $school_type->school_type_id)->get();
     }
 }

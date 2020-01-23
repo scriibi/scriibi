@@ -39,18 +39,20 @@ const app = new Vue({
 $(function(){
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
-       type:'POST',
-       url: '/listCall',
-       datatype: 'html',
-       async: false,
-       cache: false,
-       success: function(response){
+       type:'GET',
+       url: '/AJAX/listCall',
+       success: function(data){
            $("#listDisplay").html(data);
+       }, 
+       error:function(data){
+           console.log('error');
+           console.log(data);
        }
    })
 });
 
 function openEditForm(event) {
+    alert("works");
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,

@@ -113,6 +113,7 @@ return array(
     'App\\lessons_scriibi_levels' => $baseDir . '/app/lessons_scriibi_levels.php',
     'App\\lessons_skills' => $baseDir . '/app/lessons_skills.php',
     'App\\local_criteria' => $baseDir . '/app/local_criteria.php',
+    'App\\local_criteria_curriculum_scriibi_level_skills' => $baseDir . '/app/local_criteria_curriculum_scriibi_level_skills.php',
     'App\\positions' => $baseDir . '/app/positions.php',
     'App\\school_teacher' => $baseDir . '/app/school_teacher.php',
     'App\\school_type' => $baseDir . '/app/school_type.php',
