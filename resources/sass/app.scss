@@ -290,11 +290,11 @@ position: relative;
     transition: 0.2s;
     width: 100%;
     text-align: left;
-    
+
     input {
         display: none;
     }
-    
+
     span {
         text-align: left;
     }
@@ -351,19 +351,22 @@ position: relative;
 .hide-info-panel #info-panel {
     width: 0;
 }
+
 .hide-info-panel #btn-panel .fa-arrow-right {
     transform: rotate(180deg);
 }
+
 #btn-panel .btn {
     box-shadow: none;
 }
+
 #btn-panel .fa-arrow-right {
     transition: transform 0.3s;
 }
-#info-panel {
-    width: 300px;
-    transition: width 0.3s;
 
+#info-panel {
+    width: 250px;
+    transition: width 0.3s;
     input{
         border:none;
     }
@@ -464,7 +467,7 @@ label.score-radio{
     color: #FFFFFF;
     width: 184px;
     height: 50px;
-    position: bottom;
+
 }
 
 .text-area-style{

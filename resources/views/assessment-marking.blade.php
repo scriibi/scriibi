@@ -193,7 +193,7 @@
         <button type="button" name="button" class="btn align-self-start px-0" id="sidebar-collapse"><i class="fas fa-arrow-right px-0"></i></button>
     </div>
     <!-- sidebar with assessment info -->
-    <div class="info-panel d-block justify-content-end h-100 w-100" id="info-panel">
+    <div class="info-panel d-block justify-content-end h-100" id="info-panel">
 
         <div class="">
             <!-- value attribute: Status -->

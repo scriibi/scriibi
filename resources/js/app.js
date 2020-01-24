@@ -157,7 +157,6 @@ $(document).ready(function () {
     });
     
     // arrow rotate function
-
     $(".arrow-up-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
     });
