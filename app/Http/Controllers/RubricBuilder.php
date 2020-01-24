@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 class RubricBuilder extends Controller
 {
     private $traits_skills_array = array();
+    private $rubric_specific_trait_skills_array = array();
 
     /**
      * returns a trait collection with the underlying corresponding skills collections
@@ -45,7 +46,7 @@ class RubricBuilder extends Controller
      */
     public function populateSkillsInTraits(){
         foreach($this->traits_skills_array as $tsa){
-            $tsa->populateSkills();
+            $tsa->populateAllSkills();
         }
     }
 
@@ -63,16 +64,6 @@ class RubricBuilder extends Controller
      */
     public function getTextTypes(){
         return text_types::get();
-    }
-
-    public function getRubricsByTeacher(){
-        $teacher_rubrics = DB::table('rubrics_teachers')
-            ->join('rubrics', 'rubrics_teachers.rubrics_rubric_Id', 'rubrics.rubric_Id')
-            ->join('rubrics_skills', 'rubrics.rubric_Id', 'rubrics_skills.rubrics_rubric_Id')
-            ->select('rubrics.*', 'rubrics_skills.*')
-            ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id);
-
-        return $teacher_rubrics;
     }
 }
 

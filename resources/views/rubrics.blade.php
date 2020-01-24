@@ -62,11 +62,14 @@ $color_class ='blue';
                                                 <!-- load icon address-->
                                                 <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
-                                                <span class="skill-title w-100 pl-0 align-self-center px-2">{{$to->getName()}}</span>
+                                                <span class="skill-title w-100 pl-0 align-self-center px-2">
+                                                <input type="text" name="trait_id" value={{$to->getId()}} hidden>
+                                                {{$to->getName()}}</span>
+
                                             </li>
                                             <?php $skills = $to->getSkills()?>
-                                            @foreach($skills as $skill)
                                             <div class="list-group-box">
+                                            @foreach($skills as $skill)
                                                 <li class="list-group-item">
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->

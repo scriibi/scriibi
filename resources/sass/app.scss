@@ -247,13 +247,14 @@ position: relative;
     }
     span {
         background: #FFFFFF;
-        border: 2px solid #33A849;
+        border: 2px solid #b8b8b8;
         box-sizing: border-box;
         border-radius: 7px;
         line-height: 19px;
+        transition: 0.2s;
     }
     &:hover span, input:checked + span {
-        background:#33A849;
+        border: 2px solid #33A849;
     }
 }
 
@@ -278,6 +279,35 @@ position: relative;
     overflow: hidden;
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.rubric-settings-btn {
+    background: #FFFFFF;
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 7px;
+    line-height: 19px;
+    transition: 0.2s;
+    width: 100%;
+    text-align: left;
+
+    input {
+        display: none;
+    }
+
+    span {
+        text-align: left;
+    }
+}
+
+.rubric-settings-btn:hover{
+    border: 2px solid #33A849;
+}
+
+.rubric-settings-btn input:checked {
+    .rubric-settings-btn {
+        border: 2px solid #33A849;
+    }
 }
 
 
@@ -321,22 +351,30 @@ position: relative;
 .hide-info-panel #info-panel {
     width: 0;
 }
+
 .hide-info-panel #btn-panel .fa-arrow-right {
     transform: rotate(180deg);
 }
+
 #btn-panel .btn {
     box-shadow: none;
 }
+
 #btn-panel .fa-arrow-right {
     transition: transform 0.3s;
 }
+
 #info-panel {
     width: 250px;
     transition: width 0.3s;
-
     input{
         border:none;
     }
+}
+
+.image-rotate{
+    transform:rotate(180deg);
+    transition-duration: 0.3s;
 }
 
 .lable-input{
@@ -392,8 +430,6 @@ label.score-radio{
 .score-items{
     display: grid;
     grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr;
-
-
 }
 
 .milestone{
@@ -401,12 +437,43 @@ label.score-radio{
 }
 
 .radioBTNs-section{
-    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px, 0px, rgba(0, 0, 0, 0.25);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    box-sizing: border-box;
+}
+
+.level-example-btn{
+    border-radius: 7px;
+    border-color: #ABABAB;
+    font-family:Raleway;
+    font-weight: Bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #1E1E1E;
+    width: 184px;
+    height: 50px;
+}
+
+
+.save-marking-btn{
+    border-radius: 7px;
+    border-color: #33A849;
+    background: #33A849;
+    font-family:Raleway;
+    font-weight: Bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    width: 184px;
+    height: 50px;
 
 }
 
+.text-area-style{
+    border-radius: 7px;
+
+}
 //Student List
 
 .student-form-inputs {

@@ -95,6 +95,7 @@ var closeStudentButtons = document.getElementsByClassName("close-edit-button");
 
 for (const openStudentButton of editStudentButtons) {
     openStudentButton.addEventListener('click', openEditForm, true);
+    console.log(openStudentButton);
 }
 
 for (const closeStudentButton of closeStudentButtons) {
@@ -107,8 +108,6 @@ for (const closeStudentButton of closeStudentButtons) {
 // rubric builder page
 
 // assessment setup Page
-
-
 
 function closeAssessmentForm(event){
     document.getElementById("assessment-template").classList.remove("d-none","d-block");
@@ -130,6 +129,13 @@ function closeRubricForm(event){
     document.getElementById("rubric-template").classList.toggle("d-none",true);
 }
 
+function addDefaultDate(event) {
+    var today = new Date();
+    event.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+}
+
+
+
 $(document).ready(function () {
     console.log('READY');
 
@@ -143,10 +149,26 @@ $(document).ready(function () {
         backBTN.addEventListener('click',openAssessmentForm, true);
         backBTN.addEventListener('click', closeRubricForm, true);
     }
+
+    // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
+    
+    // arrow rotate function
+    $(".arrow-up-btn").click(function(){
+        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+    });
+});//End of jquery
 
+//init function (only executes when onload)
+function init() {
+    var assessmentDateField = document.getElementById("assessment_date");
+    if (assessmentDateField) {
+        console.log(assessmentDateField);
+        addDefaultDate(assessmentDateField);
+    }
+}
 
-});
+window.onload = init();
