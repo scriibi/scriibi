@@ -4,7 +4,7 @@
 
 <div class="row" id="assessment-marking-panel">
 
-    <div class="marking-panel mx-0 px-0 mt-2" id="marking-panel">
+    <div class="marking-panel col-12 mx-0 px-0 mt-2" id="marking-panel">
         <div class="score-label pl-0 pr-2 mx-0" id="score-label">
             <!-- here goes the calculated score section in the value bit -->
 
