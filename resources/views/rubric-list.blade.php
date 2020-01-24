@@ -8,7 +8,7 @@
     <div class="col-12 col-sm-10 col-md-8">
     @csrf
         <!-- show no rubric created message -->
-        <div class="no-rubric">
+        <div class="no-rubric mt-5">
             <div class="row d-flex justify-content-between mb-3">
                 <h5 class="rubric-list-title">Rubric List</h5>
                 <a href="/rubrics" class="btn new-rubric px-4">New Rubric+</a>
