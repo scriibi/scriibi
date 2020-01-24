@@ -17,7 +17,6 @@ class CreateRubricsTable extends Migration
             $table->bigIncrements('rubric_Id');
             $table->bigInteger('scriibi_levels_scriibi_level_Id')->unsigned();
             $table->string('rubric_Name', 45);
-            $table->string('rubric_Description', 150);
 
             $table->unique('rubric_Id');
 
