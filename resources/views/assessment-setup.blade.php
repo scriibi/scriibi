@@ -13,21 +13,19 @@
         <!-- step 1: assessment detail -->
         <div class="card card-assessment-style" id="assessment-template">
             <div class="card-body">
-                <div class="card-title mb-0">
-                    <h5>Assessment Details</h5>
+                <div class="card-title mb-5 mt-3">
+                    <h5><strong>Assessment Details</strong></h5>
                 </div>
-                <div class="card-text mb-0 mt-4 row" id=>
+                <div class="card-text mb-5 mt-4 row">
                     <div class="col-sm-8">
-                        <label class="" >
-                            Assessment Title
-                            <input type="text" name="" value="" id="assessment-title" class="">
-                        </label>
+                        <input type="text" class="text-input" id="assessment_name" name="assessment_name" required />
+                        <span class="bar"></span>
+                        <label class="student-form-label ml-3" for="assessment_name">Title</label>
                     </div>
                     <div class="col-sm-4">
-                        <label for="assessment-date ">
-                            Date
-                            <input type="date" name="" value="" id="assessment-date">
-                        </label>
+                        <input type="date" class="text-input" id="assessment_date" name="assessment_date" required/>
+                        <span class="bar"></span>
+                        <label class="student-form-label ml-3" for="assessment_date">Date</label>
                     </div>
                 </div>
                 <div class="mt-2">
@@ -38,13 +36,12 @@
                 <div class="d-flex justify-content-start mt-3">
                     <label class="assessment-settings-btn">
                         <input type="radio" name="access" value="mine">
-                        <span class="btn">Assess<strong>my</strong> students</span>
+                        <span class="btn">Assess <strong>my</strong> students</span>
                     </label>
                     <label class="assessment-settings-btn ml-4">
                         <input type="radio" name="access" value="all">
                         <span class="btn">Assess <strong>all</strong> students</span>
                     </label>
-
                 </div>
                 <div class="d-flex justify-content-end mt-4 mb-2">
                     <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn border-0">Rubric Selection</button>
@@ -55,21 +52,22 @@
         <div id="rubric-template" hidden>
             <div class="pt-1 pb-0 " >
                 <div>
-                    <h5>Rubric Selection</h5>
+                    <h5><strong>Rubric Selection</strong></h5>
                 </div>
 
                 <div>
                     <form class="mt-5" action="index.html" method="post">
                         <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                            <p class="col-5 text-left px-0">Rubric Title</p>
-                            <p class="col-6 text-left px-0">Skills</p>
+                            <p class="col-4 text-left px-0">Rubric Title</p>
+                            <p class="col-8 text-left px-0">Skills</p>
                         </div>
                         <!-- populate more cells as per rubric -->
                         <div class="body-cells row mt-2 mx-0">
-                            <button type="button" name="button" class="row btn btn-block rubric-list-row d-flex justify-content-between pl-3 px-0 mx-0">
-                                <p class="col-5 rubric-list-text text-truncate align-self-center text-left px-0">Cold Write - Narrative - What I did on the weekend</p>
-                                <p class="col-6 rubric-list-text text-truncate align-self-center text-left px-0">Paragraphing, Sequencing, Text Pattern, Ending, Sentence Length, Modality, Vocabulary, Figurative language, Writer’s voice (Tone), Fluency...</p>
-                            </button>
+                            <label class="rubric-settings-btn row">
+                                <input type="radio" name="access" value="all">
+                                <span class="btn col-4">Rubric name goes here</span>
+                                <span class="btn col-8">Skill 1, skill 2, skill 3, skill 4, skill 5, skill 6, skill 7</span>
+                            </label>
                         </div>
                         <div class="d-flex justify-content-between mt-5 mb-2">
                             <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>

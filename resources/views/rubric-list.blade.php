@@ -9,14 +9,14 @@
         <!-- show no rubric created message -->
         <div class="no-rubric">
             <form class="mt-5" action="index.html" method="post">
-                <div class="d-flex justify-content-between mx-5">
+                <div class="d-flex justify-content-between">
                     <h5 class="rubric-list-title">Rubric List</h5>
                     <button type="button" name="button" class="btn new-rubric px-4">New Rubric+</button>
                 </div>
                 <div class="mt-3">
 
                 </div>
-                @if(count($rubric-list)===0)
+                @if(count($rubricList)===0)
                 <div class="mt-5 rubric-instruction d-flex justify-content-center">
                     <div class="">
                         <p>You currently do not have any rubric templates.</p>
@@ -28,7 +28,7 @@
         </div>
 
         <!-- show list of rubric created -->
-        @elseif($rubric-list)>=1)
+        @elseif($rubricList)>=1)
         <div class="has-rubric">
             <form class="mt-5" action="index.html" method="post" visibility="false">
                 <div class="">
