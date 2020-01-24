@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 class RubricListController extends Controller
 {   
     private $rubrics_list = array();
+    
     /**
      * creates rubric objects for all rubrics of the currently logged in user
      */
