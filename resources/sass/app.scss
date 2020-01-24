@@ -341,20 +341,36 @@ position: relative;
 // assessement marking Page
 #assessment-marking-panel {
     display: grid;
-    grid-template-columns: 1fr 30px auto;
+    grid-template-columns: 1fr 44px auto;
     grid-template-areas:
         "marking-panel btn-panel info-panel";
     height: 100vh;
-
 }
 
 .hide-info-panel #info-panel {
     width: 0;
+    opacity:0;
+}
+
+.hide-info-panel #marking-panel{
+    width: 97vw;
 }
 
 .hide-info-panel #btn-panel .fa-arrow-right {
     transform: rotate(180deg);
 }
+
+.marking-panel{
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+
+}
+
+.sidebar-btn{
+    height: 44px;
+}
+
 
 #btn-panel .btn {
     box-shadow: none;
@@ -388,6 +404,9 @@ position: relative;
 
 }
 
+.marking-text-area{
+    width: 50px;
+}
 label.score-radio{
     position: relative;
     line-height: 25px;
@@ -417,9 +436,6 @@ label.score-radio{
 
 }
 
-.scroll-panel{
-    overflow-y: auto;
-}
 
 .score-label {
     display: grid;
@@ -451,8 +467,7 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #1E1E1E;
-    width: 184px;
-    height: 50px;
+
 }
 
 
@@ -465,13 +480,14 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #FFFFFF;
-    width: 184px;
-    height: 50px;
+
 
 }
 
 .text-area-style{
     border-radius: 7px;
+
+    width: 100%;
 
 }
 //Student List
