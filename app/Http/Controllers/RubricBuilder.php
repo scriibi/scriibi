@@ -65,20 +65,5 @@ class RubricBuilder extends Controller
     public function getTextTypes(){
         return text_types::get();
     }
-
-    public function getRubricsByTeacher(){
-
-        $traits = traits::get();
-
-        foreach($traits as $trait){
-            array_push($this->rubric_specific_trait_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
-        }
-
-        foreach($this->rubric_specific_trait_skills_array as $tsa){
-            $tsa->populateRubricSpecificSkills();
-        }
-
-        return $this->rubric_specific_trait_skills_array;
-    }
 }
 

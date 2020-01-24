@@ -43,7 +43,6 @@ class RubricsController extends Controller
         $rubric_description = $request->input('rubric_description');
         $trait_id = $request->input('trait_id');
         $skills = $request->input('skills');
-        
         $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name, 'rubric_Description' => $rubric_description);
         $newStudentId = DB::table('rubrics')->insertGetId($new_rubric);
 
@@ -54,9 +53,10 @@ class RubricsController extends Controller
 
         $new_teacher_rubric = array('rubrics_rubric_Id' => $new_rubric, 'teachers_user_Id' => Auth::user()->user_Id);
         DB::table('rubrics_teachers')->insert($new_teacher_rubric);
-
         $rubricBuilder = new RubricBuilder();
         $teacher_rubrics = $rubricBuilder->getRubricsByTeacher();
+
+        
 
         return view('rublic-list', ['rubrics' => $teacher_rubrics]);
     }

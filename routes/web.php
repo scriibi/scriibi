@@ -49,7 +49,7 @@ Route::get('/assessment-setup', function(){
 });
 
 Route::get('/rubric-list',function(){
-    $dummyAssessments = [];
+    $dummyAssessments = ['bruh'];
     return view('rubric-list', ['rubricList' => $dummyAssessments]);
 });
 
