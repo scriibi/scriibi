@@ -4,7 +4,7 @@
 
 <div class="row" id="assessment-marking-panel">
 
-    <div class="marking-panel col-12 mx-0 px-0 mt-2" id="marking-panel">
+    <div class="marking-panel mx-0 px-0 mt-2" id="marking-panel">
         <div class="score-label pl-0 pr-2 mx-0" id="score-label">
             <!-- here goes the calculated score section in the value bit -->
 
@@ -193,7 +193,7 @@
         <button type="button" name="button" class="btn align-self-start px-0" id="sidebar-collapse"><i class="fas fa-arrow-right px-0"></i></button>
     </div>
     <!-- sidebar with assessment info -->
-    <div class="info-panel d-block justify-content-end h-100 w-100" id="info-panel">
+    <div class="info-panel d-block justify-content-end h-100" id="info-panel">
 
         <div class="">
             <!-- value attribute: Status -->
