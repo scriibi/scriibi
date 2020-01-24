@@ -73,6 +73,9 @@ class traitObject
         }
     }
 
+    /**
+     * populates the built in skills array with trait specific skills
+     */
     public function populateAllSkills(){
 
         $popSkills = traits::find($this->id)->skills;
@@ -82,6 +85,9 @@ class traitObject
         }
     }
 
+    /**
+     * populate the built in skills array with rubric specific skills
+     */
     public function populateRubricSpecificSkills(){
         $rubric_specific_skills = DB::table('rubrics_teachers')
             ->join('rubrics', 'rubrics_teachers.rubrics_rubric_Id', 'rubrics.rubric_Id')
@@ -100,9 +106,7 @@ class traitObject
 
     public function calcFlag(){
 
-
         $schoolId = DB::table('school_teachers')->select('schools_school_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
-
         $curriculum = schools::find($schoolId)->curriculum;
 
         //$level = $request->input('level'); // check name of level laterrrrrr

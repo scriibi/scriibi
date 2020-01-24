@@ -45,14 +45,17 @@ class Rubric
         }
     }
 
-    public function getSkillsByRubric(){
-
+    public function populateTraits(){
         $traits = traits::get();
-
         foreach($traits as $trait){
             array_push($this->rubic_trait_skills, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
         }
+    }
 
+    /**
+     * populates the private array with trait objects which contain rubric specific skills
+    */
+    public function getSkillsByRubric(){
         foreach($this->rubic_trait_skills as $tsa){
             $tsa->populateRubricSpecificSkills();
         }
