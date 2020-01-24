@@ -16,7 +16,7 @@
                 <div class="mt-3">
 
                 </div>
-                @if(count($rubric-list)===0)
+                @if(count($rubric_list)===0)
                 <div class="mt-5 rubric-instruction d-flex justify-content-center">
                     <div class="">
                         <p>You currently do not have any rubric templates.</p>
@@ -28,7 +28,7 @@
         </div>
 
         <!-- show list of rubric created -->
-        @elseif($rubric-list)>=1)
+        @elseif($rubric_list)>=1)
         <div class="has-rubric">
             <form class="mt-5" action="index.html" method="post" visibility="false">
                 <div class="">

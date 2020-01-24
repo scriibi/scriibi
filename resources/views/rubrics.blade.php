@@ -68,8 +68,8 @@ $color_class ='blue';
 
                                             </li>
                                             <?php $skills = $to->getSkills()?>
-                                            @foreach($skills as $skill)
                                             <div class="list-group-box">
+                                            @foreach($skills as $skill)
                                                 <li class="list-group-item">
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->

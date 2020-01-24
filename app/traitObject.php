@@ -93,9 +93,9 @@ class traitObject
             ->where('skills_traits.skills_traits_traits_trait_Id', '=', $this->id)
             ->get();
 
-            foreach($rubric_specific_skills as $skill){
-                array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
-            }
+        foreach($rubric_specific_skills as $skill){
+            array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
+        }
     }
 
     public function calcFlag(){
