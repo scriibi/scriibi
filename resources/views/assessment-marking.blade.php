@@ -186,8 +186,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /skill card -->
-
+            </div><!-- end skill card -->
 
         </div>
     </div>
