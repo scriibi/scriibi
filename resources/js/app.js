@@ -1,42 +1,9 @@
 "use strict";
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
-// require('./bootstrap');
-
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-});
-
-//Student List scripts
-
-//AJAX display students jquery
+//Start of Jquery
 $(function(){
+    //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
        type:'GET',
@@ -48,9 +15,32 @@ $(function(){
            console.log('error');
            console.log(data);
        }
-   })
+   });
+    // the rubric selection button
+    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+    if (rubricSelectionBTN) {
+        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+    }
+    var backBTN = document.getElementById("backBTN");
+    if (backBTN) {
+        backBTN.addEventListener('click',openAssessmentForm, true);
+        backBTN.addEventListener('click', closeRubricForm, true);
+    }
+
+    // side-bar collapse function
+    $('#sidebar-collapse').on('click', function () {
+        console.log('TOGGLE INFO PANEL');
+        $('#assessment-marking-panel').toggleClass('hide-info-panel');
+    });
+    
+    // arrow rotate function
+    $(".arrow-up-btn").click(function(){
+        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+    });
 });
 
+//Student List scripts
 function openEditForm(event) {
     alert("works");
     const element = event.currentTarget;
@@ -70,7 +60,7 @@ function openEditForm(event) {
         .add("d-none");
 }
 
-function closeEditForm(event) {
+function closeEditForm(event) {    
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -90,22 +80,17 @@ function closeEditForm(event) {
         .remove("d-none");
 }
 
-var editStudentButtons = document.getElementsByClassName("edit-student-button");
-var closeStudentButtons = document.getElementsByClassName("close-edit-button");
+let editStudentButtons = document.getElementsByClassName("edit-student-button"),
+    closeStudentButtons = document.getElementsByClassName("close-edit-button");
 
 for (const openStudentButton of editStudentButtons) {
-    openStudentButton.addEventListener('click', openEditForm, true);
     console.log(openStudentButton);
+    openStudentButton.addEventListener('click', openEditForm, true);
 }
 
 for (const closeStudentButton of closeStudentButtons) {
     closeStudentButton.addEventListener('click', closeEditForm, true);
 }
-
-// rubric-list Page
-
-
-// rubric builder page
 
 // assessment setup Page
 
@@ -133,34 +118,6 @@ function addDefaultDate(event) {
     var today = new Date();
     event.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 }
-
-
-
-$(document).ready(function () {
-    console.log('READY');
-
-    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-    if (rubricSelectionBTN) {
-        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
-    }
-    var backBTN = document.getElementById("backBTN");
-    if (backBTN) {
-        backBTN.addEventListener('click',openAssessmentForm, true);
-        backBTN.addEventListener('click', closeRubricForm, true);
-    }
-
-    // side-bar collapse function
-    $('#sidebar-collapse').on('click', function () {
-        console.log('TOGGLE INFO PANEL');
-        $('#assessment-marking-panel').toggleClass('hide-info-panel');
-    });
-    
-    // arrow rotate function
-    $(".arrow-up-btn").click(function(){
-        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
-    });
-});//End of jquery
 
 //init function (only executes when onload)
 function init() {
