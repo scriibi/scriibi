@@ -41,6 +41,7 @@ class RubricsController extends Controller
         $rubric_name = $request->input('rubric_name');
         $assessed_level = $request->input('assessed_level');
         $rubric_description = $request->input('rubric_description');
+        $trait_id = $request->input('trait_id');
         $skills = $request->input('skills');
         
         $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name, 'rubric_Description' => $rubric_description);
