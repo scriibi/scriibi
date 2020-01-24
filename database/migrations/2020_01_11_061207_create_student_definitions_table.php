@@ -15,7 +15,7 @@ class CreateStudentDefinitionsTable extends Migration
     {
         Schema::create('student_definitions', function (Blueprint $table) {
             $table->bigIncrements('student_definitions_Id');
-            $table->string('description', 100);
+            $table->text('description', 200);
 
             $table->unique('student_definitions_Id');
             $table->timestamps();

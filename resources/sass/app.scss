@@ -10,7 +10,7 @@
 //---------- Element Overrides ----------------
 
 html, body {
-    height: 100vw;
+    height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
@@ -121,15 +121,291 @@ position: relative;
     background-color: white;
 }
 
-.universal-card-rubrics{
-    border-radius: 20px;
-    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
-    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
-    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
-    background-color: white;
+.put-full-width-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+//---------- Page Specific --------------------
+
+// Home-page: dashboard
+#main-panel{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-areas:
+        "sl-panel btn-panel";
+    height: 50vh;
 
 }
-//---------- Page Specific --------------------
+
+.btn-panel{
+    display: grid;
+    grid-auto-rows: 4fr 3fr 2fr 2fr;
+}
+
+
+.student-list-scroll{
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+
+}
+
+.studet-list-text{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    color:  #3D3D3D;
+}
+
+.teaching-lesson-title{
+    border-radius: 7px;
+    background-color: #33A88C;
+
+}
+
+.peer-assessment-title {
+    border-radius: 7px;
+    background-color: #6EB4DC;
+}
+
+
+.scriibi-support-title{
+    border-radius: 7px;
+    background-color: #4E76C3;
+}
+
+.student-list-card-style{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    background-color:#FAFAFA;
+}
+.studet-list-cell-style{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+
+}
+.student-list-footer-style{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 20px 20px;
+}
+.extra-card-style{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.extra-support-card-list{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+
+}
+
+.list-group-item:last-child {
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.go-to-student-btn{
+    background: #33A849;
+    border-radius: 7px;
+}
+
+.scriibi-support-list{
+    border-radius: 20px;
+}
+
+// Assessment setup Page
+
+#create-assessment-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color:  #33A849;
+}
+
+.assessment-settings-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color:#4C4D4F;
+}
+
+.assessment-settings-btn {
+    input {
+        display: none;
+    }
+    span {
+        background: #FFFFFF;
+        border: 2px solid #33A849;
+        box-sizing: border-box;
+        border-radius: 7px;
+        line-height: 19px;
+    }
+    &:hover span, input:checked + span {
+        background:#33A849;
+    }
+}
+
+#description-for-assessment{
+    height: 30vh;
+}
+
+
+.back-btn{
+    border: 2px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+.assessment-btn{
+    background: #33A849;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+.card-assessment-style{
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+// assessment-student-list page
+
+.Assessment-Studentlist-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.Assessment-Student-list-cell{
+
+    box-shadow: 0px, 0px,rgba(0, 0, 0, 0.25);
+    radius: 5px;
+    border-color: #FBFBFB;
+}
+.Assessment-Student-list-cell:hover{
+    border-color:#0078ff ;
+}
+
+.save-exit-btn{
+    background-color: #33A849;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+
+// assessement marking Page
+#assessment-marking-panel {
+    display: grid;
+    grid-template-columns: 1fr 30px auto;
+    grid-template-areas:
+        "marking-panel btn-panel info-panel";
+    height: 100vh;
+
+}
+
+.hide-info-panel #info-panel {
+    width: 0;
+}
+.hide-info-panel #btn-panel .fa-arrow-right {
+    transform: rotate(180deg);
+}
+#btn-panel .btn {
+    box-shadow: none;
+}
+#btn-panel .fa-arrow-right {
+    transition: transform 0.3s;
+}
+#info-panel {
+    width: 250px;
+    transition: width 0.3s;
+
+    input{
+        border:none;
+    }
+}
+
+.lable-input{
+    border: none;
+
+}
+.criteria-section{
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+
+}
+
+label.score-radio{
+    position: relative;
+    line-height: 25px;
+
+
+    input[type="radio"] {
+      display: none;
+
+    }
+
+    span::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #C4C4C4;
+      border-radius: 50%;
+      background-color:#C4C4C4;
+      margin-right: 10px;
+      vertical-align: text-bottom;
+    }
+
+    input[type="radio"]:checked + span::before {
+      background-color: #4CB25F;
+      border-color: #4CB25F;
+    }
+
+}
+
+.scroll-panel{
+    overflow-y: auto;
+}
+
+.score-label {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr;
+
+}
+
+.score-items{
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr;
+
+
+}
+
+.milestone{
+    text-decoration: underline;
+}
+
+.radioBTNs-section{
+    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, 0.25);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
 
 //Student List
 
@@ -261,13 +537,75 @@ input:focus {
 // End of Select drop down
 
 
-//Rubric Page
-
-#list_title{
-  font-size: large;
-  font-weight: bold;
+// Rubric List Page
+.rubric-list-title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
 }
 
+.new-rubric{
+    background: #33A849;
+    border-radius: 7px;
+    border:none;
+    color: #FFFFFF;
+}
+
+.rubric-instruction{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    align-items: center;
+    color: #6B6B6B;
+
+}
+
+.rubric-list-row{
+    height: 42px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    border: none;
+}
+
+.rubric-list-row:hover{
+    border: 2px solid blue;
+    box-shadow:none;
+
+}
+
+.header-cells{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.body-cells{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    color: #000000;
+}
+
+
+.rubric-list-skills{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #909090;
+}
+//Rubric builder Page
 #RubricBuilder_title{
   font-family: Raleway;
   font-style: normal;
@@ -275,7 +613,14 @@ input:focus {
   font-size: 30px;
   line-height: 35px;
   color: #33A849;
+}
 
+.universal-card-rubric{
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
+    background-color: white;
 }
 
 .rubric-border-box{
@@ -283,32 +628,6 @@ input:focus {
     box-sizing: border-box;
     border-radius: 7px;
 }
-.btn-term{
-  align-items: stretch;
-}
-.table{
-  text-align: left;
-}
-
-.table-head{
-  white-space:nowrap;
-}
-
-#text-type-title{
-  padding-left: 40px;
-}
-#checkbox-group{
-  padding-left: 40px;
-}
-
-#term1-savebtn{
-  float: right;
-}
-
-#btn-reviewRubric{
-  float: right;
-}
-
 
 .btn-text-type{
     border: 2px solid #33A849;
@@ -317,39 +636,108 @@ input:focus {
 }
 
 .body-list{
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  text-indent: 5%;
-  vertical-align: middle;
-  border-radius:7px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    text-indent: 5%;
+    vertical-align: middle;
+    border-radius:7px;
 }
+
+
 
 .form-check-label{
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.card-ideas {
-  border-radius: 7px;
-  background-color: yellow;
-  border: 3px solid yellow;
+
+.skillset-box {
+    border-radius: 7px;
+    background-color: #FFD12D;
+    width: 1rem;
+}
+.list-group-box{
+    border: 2px solid #FFD12D;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+label.frm_checkbox {
+  position: relative;
+  line-height: 19px;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  span::before {
+    content: '';
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 2px solid #E2E6EC;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+  }
+
+  input[type="checkbox"]:checked + span::before {
+    background-color: #FC8585;
+    border-color: #FC8585;
+  }
+}
+
+$skillset-colors-map: (
+    yellow: #FFD12D,
+    red: #FC8585,
+    green: #41D798,
+    pink: #F370BF,
+    blue: #5995F0,
+    grey: #C4C4C4,
+    purple: #B975FD
+);
+@each $name, $color in $skillset-colors-map {
+    .skillset-box-#{$name} {
+        background-color: $color;
+        .list-group-box {
+            border-color: $color;
+        }
+        label.frm_checkbox input[type="checkbox"]:checked + span::before {
+            background-color: $color;
+            border-color: $color;
+        }
+    }
+}
+
+.form-break{
+    border-bottom: 1px solid #C4C4C4;
+}
+.btn-clear{
+    border: 2px solid #33A849;
+    box-sizing: border-box;
+    border-radius: 7px;
+    width: 124px;
+    height: 45px;
+}
+.btn-rubric-save{
+    background: #33A849;
+    border-radius: 7px;
+    width: 263px;
+    height: 45px;
 }
 
 .card-header{
-  border-radius: 7px 7px 0px 0px;
-  white-space: nowrap;
+    border-radius: 7px 7px 0px 0px;
+    white-space: nowrap;
 }
 
-.card-body{
-  padding: 0;
+.skill-title{
+    padding-left: 10%;
+    font-size: 0.875rem;
+    text-decoration-color: #FFFFFF;
 }
 
-.skill-cat{
-  text-indent: 10%;
-  vertical-align: middle;
-  font-size: 0.8rem;
-}
 
 .card-columns {
   @include media-breakpoint-only(sm) {
@@ -359,6 +747,8 @@ input:focus {
     column-count: 2;
   }
 }
+
+
 //---------- Media Queries --------------------
 
 /* Extra small devices (phones, 600px and down) */

@@ -1,10 +1,12 @@
+"use strict";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -31,10 +33,120 @@ const app = new Vue({
     el: '#app',
 });
 
-function displayEditForm(e) {
-    var form = document.getElementByClassName("edit-form"); 
-    var details = document.getElementsByClassName("student-details");
-    dump(details);
-    form.classList.removeClass("d-none");
-    details.classList.addClass("d-none");
+//Student List scripts
+
+//AJAX display students jquery
+$(function(){
+   //loads the list of students and displays it onto the listDisplay Div
+   $.ajax({
+       type:'GET',
+       url: '/AJAX/listCall',
+       success: function(data){
+           $("#listDisplay").html(data);
+       },
+       error:function(data){
+           console.log('error');
+           console.log(data);
+       }
+   })
+});
+
+function openEditForm(event) {
+    alert("works");
+    const element = event.currentTarget;
+
+    var iconGroup = element.parentNode,
+        iconColumn = iconGroup.parentNode,
+        studentContainer = iconColumn.parentNode,
+        parent = studentContainer.parentNode,
+        form = parent.querySelector(".edit-form");
+
+    form
+        .classList
+        .remove("d-none");
+
+    studentContainer
+        .classList
+        .add("d-none");
 }
+
+function closeEditForm(event) {
+    const element = event.currentTarget;
+
+    var iconGroup = element.parentNode,
+        iconColumn = iconGroup.parentNode,
+        row = iconColumn.parentNode,
+        formContainer = row.parentNode,
+        parent = formContainer.parentNode,
+        studentContainer = parent.querySelector(".student-details");
+    console.log();
+
+    formContainer
+        .classList
+        .add("d-none");
+
+    studentContainer
+        .classList
+        .remove("d-none");
+}
+
+var editStudentButtons = document.getElementsByClassName("edit-student-button");
+var closeStudentButtons = document.getElementsByClassName("close-edit-button");
+
+for (const openStudentButton of editStudentButtons) {
+    openStudentButton.addEventListener('click', openEditForm, true);
+}
+
+for (const closeStudentButton of closeStudentButtons) {
+    closeStudentButton.addEventListener('click', closeEditForm, true);
+}
+
+// rubric-list Page
+
+
+// rubric builder page
+
+// assessment setup Page
+
+
+
+function closeAssessmentForm(event){
+    document.getElementById("assessment-template").classList.remove("d-none","d-block");
+    document.getElementById("assessment-template").classList.toggle("d-none",true);
+}
+
+function openRubricForm(event){
+    document.getElementById("rubric-template").classList.remove("d-block","d-block");
+    document.getElementById("rubric-template").classList.toggle("d-block",true);
+}
+
+function openAssessmentForm(event){
+    document.getElementById("assessment-template").classList.toggle("d-none",false);
+    document.getElementById("assessment-template").classList.toggle("d-block",true);
+}
+
+function closeRubricForm(event){
+    document.getElementById("rubric-template").classList.toggle("d-block",false);
+    document.getElementById("rubric-template").classList.toggle("d-none",true);
+}
+
+$(document).ready(function () {
+    console.log('READY');
+
+    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+    if (rubricSelectionBTN) {
+        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+    }
+    var backBTN = document.getElementById("backBTN");
+    if (backBTN) {
+        backBTN.addEventListener('click',openAssessmentForm, true);
+        backBTN.addEventListener('click', closeRubricForm, true);
+    }
+    $('#sidebar-collapse').on('click', function () {
+        console.log('TOGGLE INFO PANEL');
+        $('#assessment-marking-panel').toggleClass('hide-info-panel');
+    });
+
+
+});

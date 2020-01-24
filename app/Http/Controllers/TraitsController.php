@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\traits;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,7 +14,7 @@ class TraitsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index()
     {
         //
     }
@@ -26,6 +27,11 @@ class TraitsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function GetTraits()
+    {
+        return DB::table('traits')->get();
     }
 
     /**

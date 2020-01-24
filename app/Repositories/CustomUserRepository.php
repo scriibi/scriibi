@@ -1,8 +1,12 @@
 <?php
 // app/Repositories/CustomUserRepository.php
+
 namespace App\Repositories;
 
 use App\teachers;
+use Auth;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 use Auth0\Login\Auth0User;
 use Auth0\Login\Auth0JWTUser;
@@ -19,10 +23,52 @@ class CustomUserRepository extends Auth0UserRepository
      * @return teachers
      */
     protected function upsertUser( $profile ) {
-        return teachers::firstOrCreate(
-            ['sub' => $profile['sub']],
-            ['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+
+        //checks if teacher is available
+        $teacherExists = DB::table('teachers')->select('teachers.*')->where('teacher_Email', '=', $profile['email'])->first();
+
+        //creates teacher entry regardless
+        $teacher = teachers::firstOrCreate(['sub' => $profile['sub']],['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+
+        //creates class, class-teacher, teacher-scriibi-level and teacher-school relationships if this is the first time logging in!
+        if(!$teacherExists){
+            CustomUserRepository::someFunction($teacher, $profile);
+        }
+
+
+        return $teacher;
     }
+
+    protected function someFunction($teacher, $profile){
+
+        //insert a new record in teachers-scriibi-levels according to auth0 metadata(level)
+            DB::table('teachers_scriibi_levels')->insert(
+                ['teachers_user_Id' => $teacher->user_Id,
+                'scriibi_levels_scriibi_Level_Id' => $profile['https://scriibi.com/level']]);
+
+        //insert a new record in schools-teachers according to auth0 metadata(school)
+            DB::table('school_teachers')->insert(
+                ['teachers_user_Id' => $teacher->user_Id,  'schools_school_Id' => $profile['https://scriibi.com/school']]);
+
+        //insert a new record in classes according with default values
+            $classId = DB::table('classes')->insertGetId(
+                ['class_Name' => $teacher->name.'_'.date("Y-m-d"),
+                'schools_school_Id' => $profile['https://scriibi.com/school']]);
+
+        //associate that class with the logged in user
+            DB::table('classes_teachers')->insert(
+                ['classes_teachers_classes_class_Id' => $classId,
+                'teachers_user_Id' => $teacher->user_Id]);
+
+        //insert teacher into relevant positions into teacher_positions according to metadata.
+            foreach($profile['https://scriibi.com/positions'] as $pos){
+                DB::table('teachers_positions')->insert(
+                    ['teachers_user_Id' => $teacher->user_Id,
+                        'positions_position_Id' => $pos]);
+            }
+    }
+
+
 
     /**
      * Authenticate a user with a decoded ID Token

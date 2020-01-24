@@ -16,4 +16,6 @@ class traits extends Model
         return $this->belongsToMany('App\skills', 'skills_traits', 'skills_traits_traits_trait_Id', 'skills_traits_skills_skill_Id');
     }
 
+
 }
+
