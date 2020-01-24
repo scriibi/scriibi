@@ -143,10 +143,18 @@ $(document).ready(function () {
         backBTN.addEventListener('click',openAssessmentForm, true);
         backBTN.addEventListener('click', closeRubricForm, true);
     }
+
+    // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
 
+    // arrow rotate function
 
-});
+    $(".arrow-up-btn").click(function(){
+        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+    });
+
+
+});//End of jquery
