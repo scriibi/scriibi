@@ -21,7 +21,7 @@ class RubricListController extends Controller
             ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id)->get();
 
         foreach($rubrics as $r){
-            array_push($this->rubrics_list, new Rubric($r->rubric_Id, $r->rubric_Name, $r->rubric_Description));
+            array_push($this->rubrics_list, new Rubric($r->rubric_Id, $r->rubric_Name));
         }
 
         foreach($this->rubrics_list as $rl){
