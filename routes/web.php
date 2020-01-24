@@ -49,11 +49,13 @@ Route::get('/assessment-setup', function(){
 });
 
 Route::get('/rubric-list',function(){
-    return view('rubric-list');
+    $dummyAssessments = [];
+    return view('rubric-list', ['rubricList' => $dummyAssessments]);
 });
 
 Route::get('/assessment-list',function(){
-    return view('assessment-list');
+    $dummyAssessments = [];
+    return view('assessment-list', ['assessmentList' => $dummyAssessments]);
 });
 
 //testing auth0 function
