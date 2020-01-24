@@ -45,6 +45,9 @@ class Rubric
         }
     }
 
+    /**
+     * populates the private array with trait objects which contain rubric specific skills
+    */
     public function getSkillsByRubric(){
 
         $traits = traits::get();
