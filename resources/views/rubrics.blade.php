@@ -123,15 +123,14 @@ $color_class ='blue';
                             </div>
 
                             <!-- skills cards deck-->
-                            <div class="card-deck row inline-block p-0 mt-5" >
+                            <div class="card-columns row inline-block p-0 mt-5" >
 
                                 <!-- load cards from skill-categories DB; you should see 7 of them;
                                 each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                                 <!-- content inside each skill card -->
                                 @foreach($traitObjects as $to)
-                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>">
-
+                                    <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
                                         <ul class="list-group list-group-flush frm_checkbox ">
                                             <li class="text-white ">
                                                 <!-- load icon address; we dont have this yet;wait for Talia -->
@@ -139,6 +138,7 @@ $color_class ='blue';
                                                 <!-- load skill title -->
                                                 <span class="skill-title align-middle w-100 pl-0">{{$to->getName()}}</span>
                                             </li>
+                                            <?php $skills = $to->getSkills()?>
                                             @foreach($skills as $skill)
                                                 <div class="list-group-box">
                                                     <li class="list-group-item">
