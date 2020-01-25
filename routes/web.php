@@ -87,6 +87,4 @@ Route::get('/rubric', function(){
 //
 // Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::post('RubricConfirm', function(){
-//     return view('test');
-// });
+Route::post('/RubricConfirm', 'RubricsController@store');

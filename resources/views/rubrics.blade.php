@@ -29,12 +29,13 @@ $color_class ='blue';
                         </div>
                     @endforeach
                 </div> -->
-                <form action="index.html" method="post" class="mt-5 mb-0 p-0">
-
+                <form action="/RubricConfirm" method="post" class="mt-5 mb-0 p-0" id="rubricform">
+                    @csrf
                     <!-- term-title+Curriculum -->
                     <div class="card-text m-0">
                         <div class=" form-group d-flex justify-content-between ">
-                            <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric_name" value="Term 1 Rubric" required>
+                            <input type="text" class="col-sm-9 text-input" name="rubric_name" value="Term 1 Rubric" required>
+                            <span class="bar"></span>
                             <div class="d-none d-xs-block">
 
                             </div>
@@ -147,14 +148,26 @@ $color_class ='blue';
                     <div class="col-12 row justify-content-end p-0 m-0 mt-3 mb-3">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
                     </div>
+                    <div class="d-flex row justify-content-end mt-4 p-0">
+                        <input class="btn btn-rubric-save" type="submit" name="button" id="rubric_save">Save and Exit</input>
+                    </div>
+
 
                 </form>
+
+                <div id="dialog" title="Basic dialog">
+                    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+                </div>
             </div>
         </div>
-        <div class="d-flex row justify-content-end mt-4 p-0">
-            <button class="btn btn-rubric-save" type="submit" name="button" id="rubric-save">Save and Exit</button>
+<!--
+        <div class="alert alert-success"> <a href="#" class="close" data-dismiss="alert" id="alert-saving"></a>
+            <h4>Success</h4>
+            <br />
+            <div>All records were processed correctly!</div>
+        </div> -->
+
+        <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
         </div>
-   <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
-   </div>
-</div>
+    </div>
 @endsection
