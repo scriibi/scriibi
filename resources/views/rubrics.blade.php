@@ -118,8 +118,8 @@ $color_class ='blue';
                                 <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
                                         <li class="text-white ">
-                                            <!-- load icon address; we dont have this yet;wait for Talia -->
-                                            <span class="align-middle">icon</span>
+
+                                            <span class="align-middle"><img src="/icon-trait/{{$to->getIcon()}}" alt=""> </span>
                                             <!-- load skill title -->
                                             <span class="skill-title align-middle w-100 pl-0">{{$to->getName()}}</span>
                                         </li>
