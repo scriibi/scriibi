@@ -20,7 +20,7 @@ $color_class ='blue';
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
                 <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
-                <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
+                <!-- <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
                     @foreach($text_types as $tt)
                         <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
                             <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
@@ -28,7 +28,7 @@ $color_class ='blue';
                             </label>
                         </div>
                     @endforeach
-                </div>
+                </div> -->
                 <form action="index.html" method="post" class="mt-5 mb-0 p-0">
 
                     <!-- term-title+Curriculum -->
@@ -38,11 +38,12 @@ $color_class ='blue';
                             <div class="d-none d-xs-block">
 
                             </div>
-                            <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="assessed_level">
+                            <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="assessed_level" id="select_curriculum_code">
                                     <option value="" disabled selected hidden>Select your option</option>
                                 @foreach($assessed_labels as $al)
                                     <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
                                 @endforeach
+
                             </select>
                         </div>
 

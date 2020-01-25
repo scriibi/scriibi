@@ -33,10 +33,19 @@ $(function(){
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
-    
+
     // arrow rotate function
     $(".arrow-up-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+    });
+
+    // rubric builder curriculum code on change function
+    $('#select_curriculum_code').change(function(){
+        $(this).val();
+        console.log($(this).val());
+        console.log("/RubricFlag/" + $(this).val());
+        window.location.href="RubricFlag/"+$(this).val();
+        // return "/RubricFlag/" + $(this).val();
     });
 });
 
@@ -60,7 +69,7 @@ function openEditForm(event) {
         .add("d-none");
 }
 
-function closeEditForm(event) {    
+function closeEditForm(event) {
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -91,6 +100,8 @@ for (const openStudentButton of editStudentButtons) {
 for (const closeStudentButton of closeStudentButtons) {
     closeStudentButton.addEventListener('click', closeEditForm, true);
 }
+
+
 
 // assessment setup Page
 
