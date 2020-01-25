@@ -100,6 +100,7 @@ $color_class ='blue';
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
                         <div class="form-group d-flex justify-content-between">
+                            <!-- <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric_name" value="Term 1 Rubric" required> -->
                             <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="" value="Term 2 Rubric">
                             <div class="d-none d-xs-block">
                             </div>
@@ -151,7 +152,7 @@ $color_class ='blue';
             </div>
         </div>
         <div class="d-flex row justify-content-end mt-4 p-0">
-            <button class="btn btn-rubric-save" type="submit" name="button">Save and Exit</button>
+            <button class="btn btn-rubric-save" type="submit" name="button" id="rubric-save">Save and Exit</button>
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
    </div>
