@@ -54,7 +54,7 @@ Route::get('/rubric-list',function(){
 });
 
 Route::get('/assessment-list',function(){
-    $dummyAssessments = [];
+    $dummyAssessments = ['a'];
     return view('assessment-list', ['assessmentList' => $dummyAssessments]);
 });
 
@@ -81,7 +81,7 @@ Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
-Route::get();
+Route::get('/assessed_level', );
 
 Route::get('/rubrics', 'RubricBuilder@populateTraits');
 
