@@ -6,6 +6,8 @@ use DB;
 use Auth;
 use App\Rubrics;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class RubricsController extends Controller
 {
@@ -44,19 +46,19 @@ class RubricsController extends Controller
         $rubric1_skills = $request->input('rubric1_skills');
         $rubric2_skills = $request->input('rubric2_skills');
 
-        $new_rubric_1 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric1_name);
-        $new_rubric_2 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric2_name);
+        $new_rubric_1 = array('scriibi_levels_scriibi_level_Id' => 1, 'rubric_Name' => $rubric1_name);
+        $new_rubric_2 = array('scriibi_levels_scriibi_level_Id' => 1, 'rubric_Name' => $rubric2_name);
         
         $newRubricId1 = DB::table('rubrics')->insertGetId($new_rubric_1);
         $newRubricId2 = DB::table('rubrics')->insertGetId($new_rubric_2);
 
         foreach($rubric1_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $new_rubric_1);
+            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId1);
             DB::table('rubrics_skills')->insert($new_rubric_skill);
         }
 
         foreach($rubric2_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $new_rubric_2);
+            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId2);
             DB::table('rubrics_skills')->insert($new_rubric_skill);
         }
 

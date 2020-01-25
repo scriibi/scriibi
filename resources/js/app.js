@@ -45,27 +45,8 @@ $(function(){
         window.location.href="RubricFlag/"+$(this).val();
         // return "/RubricFlag/" + $(this).val();
     });
-
-    $('#rubric-save').click(function(){
-
-        alert("you are leaving rubric builder!");
-        setTimeout(redirect, 1000);
-
-
-    });
-
-    function redirect(){
-        window.location.href="/RubricConfirm";
-    }
-
-
-
-
-
-
-
-
 });
+
 
 //Student List scripts
 function openEditForm(event) {

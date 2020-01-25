@@ -5,7 +5,6 @@
 <?php
 $color_class ='blue';
 ?>
-
 <!-- able to change curriculum code and skills refresh -->
 <!-- tooltip for each skill item ex. description of each skill item -->
 <div class="row">
@@ -29,8 +28,8 @@ $color_class ='blue';
                         </div>
                     @endforeach
                 </div> -->
-                <form action="index.html" method="post" class="mt-5 mb-0 p-0">
-
+                <form action="/RubricConfirm" method="POST" class="mt-5 mb-0 p-0" id="rubricform">
+                @csrf
                     <!-- term-title+Curriculum -->
                     <div class="card-text m-0">
                         <div class=" form-group d-flex justify-content-between ">
@@ -100,12 +99,7 @@ $color_class ='blue';
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
                         <div class="form-group d-flex justify-content-between">
-<<<<<<< HEAD
                             <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric">
-=======
-                            <!-- <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric_name" value="Term 1 Rubric" required> -->
-                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="" value="Term 2 Rubric">
->>>>>>> b50835b67c280004a113d1bfc4f70c51ee0cdff1
                             <div class="d-none d-xs-block">
                             </div>
 
@@ -151,15 +145,11 @@ $color_class ='blue';
                     <div class="col-12 row justify-content-end p-0 m-0 mt-3 mb-3">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
                     </div>
+                    <div class="d-flex row justify-content-end mt-4 p-0">
+                        <input class="btn btn-rubric-save" type="submit" name="button" id="rubric-save" value="Save my Rubric"></button>
+                    </div>
                 </form>
             </div>
-        </div>
-        <div class="d-flex row justify-content-end mt-4 p-0">
-<<<<<<< HEAD
-            <button class="btn btn-rubric-save text-white" type="submit" name="button">Save my Rubrics</button>
-=======
-            <button class="btn btn-rubric-save" type="submit" name="button" id="rubric-save">Save and Exit</button>
->>>>>>> b50835b67c280004a113d1bfc4f70c51ee0cdff1
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
    </div>
