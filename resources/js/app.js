@@ -95,6 +95,7 @@ $(function(){
 
 });
 
+
 //Student List scripts
 function openEditForm(event) {
     alert("works");

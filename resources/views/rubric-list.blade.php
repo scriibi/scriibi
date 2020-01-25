@@ -1,12 +1,11 @@
 @extends('layout.mainlayout')
 @section('title', 'Rubric-List')
 @section('content')
-
+@csrf
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
     <div class="col-12 col-sm-10 col-md-8">
-    @csrf
         <div class="row d-flex justify-content-between mb-3 mt-5">
             <h5 class="rubric-list-title">Rubric List</h5>
             <a href="/rubrics" class="btn new-rubric p-3">New Rubric +</a>
