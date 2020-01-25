@@ -100,7 +100,12 @@ $color_class ='blue';
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
                         <div class="form-group d-flex justify-content-between">
+<<<<<<< HEAD
                             <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric">
+=======
+                            <!-- <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric_name" value="Term 1 Rubric" required> -->
+                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="" value="Term 2 Rubric">
+>>>>>>> b50835b67c280004a113d1bfc4f70c51ee0cdff1
                             <div class="d-none d-xs-block">
                             </div>
 
@@ -118,8 +123,8 @@ $color_class ='blue';
                                 <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
                                         <li class="text-white ">
-                                            <!-- load icon address; we dont have this yet;wait for Talia -->
-                                            <span class="align-middle">icon</span>
+
+                                            <span class="align-middle"><img src="/icon-trait/{{$to->getIcon()}}" alt=""> </span>
                                             <!-- load skill title -->
                                             <span class="skill-title align-middle w-100 pl-0">{{$to->getName()}}</span>
                                         </li>
@@ -150,7 +155,11 @@ $color_class ='blue';
             </div>
         </div>
         <div class="d-flex row justify-content-end mt-4 p-0">
+<<<<<<< HEAD
             <button class="btn btn-rubric-save text-white" type="submit" name="button">Save my Rubrics</button>
+=======
+            <button class="btn btn-rubric-save" type="submit" name="button" id="rubric-save">Save and Exit</button>
+>>>>>>> b50835b67c280004a113d1bfc4f70c51ee0cdff1
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
    </div>

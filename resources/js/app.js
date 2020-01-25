@@ -42,11 +42,29 @@ $(function(){
     // rubric builder curriculum code on change function
     $('#select_curriculum_code').change(function(){
         $(this).val();
-        console.log($(this).val());
-        console.log("/RubricFlag/" + $(this).val());
         window.location.href="RubricFlag/"+$(this).val();
         // return "/RubricFlag/" + $(this).val();
     });
+
+    $('#rubric-save').click(function(){
+
+        alert("you are leaving rubric builder!");
+        setTimeout(redirect, 1000);
+
+
+    });
+
+    function redirect(){
+        window.location.href="/RubricConfirm";
+    }
+
+
+
+
+
+
+
+
 });
 
 //Student List scripts
