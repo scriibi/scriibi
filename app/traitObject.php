@@ -88,7 +88,7 @@ class traitObject
     /**
      * populate the built in skills array with rubric specific skills
      */
-    public function populateRubricSpecificSkills(){
+    public function populateRubricSpecificSkills($rubricId){
         $rubric_specific_skills = DB::table('rubrics_teachers')
             ->join('rubrics', 'rubrics_teachers.rubrics_rubric_Id', 'rubrics.rubric_Id')
             ->join('rubrics_skills', 'rubrics.rubric_Id', 'rubrics_skills.rubrics_rubric_Id')
@@ -97,6 +97,7 @@ class traitObject
             ->select('skills.*')
             ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id)
             ->where('skills_traits.skills_traits_traits_trait_Id', '=', $this->id)
+            ->where('rubrics.rubric_Id', '=', $rubricId)
             ->get();
 
         foreach($rubric_specific_skills as $skill){

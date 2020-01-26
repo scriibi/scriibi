@@ -54,7 +54,6 @@
                 <div>
                     <h5><strong>Rubric Selection</strong></h5>
                 </div>
-
                 <div>
                     <form class="mt-5" action="index.html" method="post">
                         <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
@@ -62,11 +61,25 @@
                             <p class="col-8 text-left px-0">Skills</p>
                         </div>
                         <!-- populate more cells as per rubric -->
-                        <div class="body-cells row mt-2 mx-0">
+                        <div class="body-cells row mt-2 mx-0 ">
                             <label class="rubric-settings-btn row">
                                 <input type="radio" name="access" value="all">
                                 <span class="btn col-4">Rubric name goes here</span>
                                 <span class="btn col-8">Skill 1, skill 2, skill 3, skill 4, skill 5, skill 6, skill 7</span>
+                            </label>
+                        </div>
+                        <div class="body-cells row mt-2 mx-0 ">
+                            <label class="rubric-settings-btn row">
+                                <input class="btn rubric-selection" type="radio" name="access" value="all">
+                                <span class="col-4">Rubric name goes here</span>
+                                <span class="col-8">Skill 1, skill 2, skill 3, skill 4, skill 5, skill 6, skill 7</span>
+                            </label>
+                        </div>
+                        <div class="body-cells row mt-2 mx-0 ">
+                            <label class="btn rubric-settings-btn row">
+                                <input type="radio" name="access" value="all">
+                                <span class="col-4">Rubric name goes here</span>
+                                <span class="col-8">Skill 1, skill 2, skill 3, skill 4, skill 5, skill 6, skill 7</span>
                             </label>
                         </div>
                         <div class="d-flex justify-content-between mt-5 mb-2">

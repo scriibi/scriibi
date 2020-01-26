@@ -22,12 +22,68 @@ $(function(){
         console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
-    
+
     // arrow rotate function
     $(".arrow-up-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
     });
+
+    // rubric builder curriculum code on change function
+    $('#select_curriculum_code').change(function(){
+        $(this).val();
+        // window.location.href="RubricFlag/"+$(this).val();
+        return "/RubricFlag/" + $(this).val();
+    });
+
+    //on click save rubric; prevent default submit, show dialog->once dialog closed, send through default submit
+    $('#rubric_save').click(function(e){
+        var anyBoxesChecked = false;
+        $('#rubricform input[type ="checkbox"]').each(function(){
+            if ($(this).is(":checked")) {
+                anyBoxesChecked = true;
+                e.preventDefault();
+                $('#dialog').dialog();
+
+                $('#dialog').on('dialogclose', function() {
+                    $('#rubric').submit();
+                });
+            }
+        })
+        if (anyBoxesChecked == false) {
+          alert("please select at least on one skill in this rubric!");
+        }
+
+
+    });
+
+
+
+    //
+    // $('#alert-saving').hide();
+    //
+    // $('#rubric_save').click(function(){
+    //     $('#alert-saving').delay(4000).slideUp(200);
+    //     $(this).alert('close');
+    // });
+
+    // $('#rubric_save').click(setTimeout(function(){
+    //     $("#dialog").dialog();
+    //     $("#rubricform").submit();
+    // },2000),true);
+    //
+    //
+
+
+
+
+
+
+
+
+
+
 });
+
 
 //Student List scripts
 function openEditForm(event) {
@@ -49,7 +105,7 @@ function openEditForm(event) {
         .add("d-none");
 }
 
-function closeEditForm(event) {    
+function closeEditForm(event) {
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -80,6 +136,8 @@ for (const openStudentButton of editStudentButtons) {
 for (const closeStudentButton of closeStudentButtons) {
     closeStudentButton.addEventListener('click', closeEditForm, true);
 }
+
+
 
 // assessment setup Page
 

@@ -298,14 +298,14 @@ position: relative;
     span {
         text-align: left;
     }
+    &:hover{
+        border: 2px solid #33A849;
+    }
+
 }
 
-.rubric-settings-btn:hover{
-    border: 2px solid #33A849;
-}
-
-.rubric-settings-btn input:checked {
-    .rubric-settings-btn {
+.rubric-selection:checked{
+    .label {
         border: 2px solid #33A849;
     }
 }
