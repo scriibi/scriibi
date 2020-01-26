@@ -10,6 +10,17 @@ $(function(){
        url: '/AJAX/listCall',
        success: function(data){
            $("#listDisplay").html(data);
+           let editStudentButtons = document.getElementsByClassName("edit-student-button"),
+            closeStudentButtons = document.getElementsByClassName("close-edit-button");
+
+            for (const openStudentButton of editStudentButtons) {
+                console.log(openStudentButton);
+                openStudentButton.addEventListener('click', openEditForm, true);
+            }
+
+            for (const closeStudentButton of closeStudentButtons) {
+                closeStudentButton.addEventListener('click', closeEditForm, true);
+            }
        },
        error:function(data){
            console.log('error');
@@ -87,7 +98,6 @@ $(function(){
 
 //Student List scripts
 function openEditForm(event) {
-    alert("works");
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -123,18 +133,6 @@ function closeEditForm(event) {
     studentContainer
         .classList
         .remove("d-none");
-}
-
-let editStudentButtons = document.getElementsByClassName("edit-student-button"),
-    closeStudentButtons = document.getElementsByClassName("close-edit-button");
-
-for (const openStudentButton of editStudentButtons) {
-    console.log(openStudentButton);
-    openStudentButton.addEventListener('click', openEditForm, true);
-}
-
-for (const closeStudentButton of closeStudentButtons) {
-    closeStudentButton.addEventListener('click', closeEditForm, true);
 }
 
 
