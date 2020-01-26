@@ -35,7 +35,6 @@
                 <p class="col-2 rubric-list-text text-left">{{$r->getDate()}}</p>
 
                 <?php $skills_array = array();
-                //dd($rubrics);
                     $traits_skills = $r->getRubricTraitSkills();
                     foreach($traits_skills as $ts){
                         $skillObjects = $ts->getSkills();
@@ -45,14 +44,14 @@
                     };
                  ?>
                 <p class="col-6 rubric-list-skills text-left">
-               <?php
-                $final_skill = end($skills_array);
-                foreach($skills_array as $sa)
-                if($sa != $final_skill)
-                    echo($sa . ", ");
-                else
-                    echo($sa);
-               ?>
+                    <?php
+                        $final_skill = end($skills_array);
+                        foreach($skills_array as $sa)
+                        if($sa != $final_skill)
+                            echo($sa . ", ");
+                        else
+                            echo($sa);
+                    ?>
                 </p>
             </a>
         @endforeach

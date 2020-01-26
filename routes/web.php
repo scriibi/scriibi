@@ -67,6 +67,8 @@ Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 Route::get('/rubrics', 'RubricBuilder@populateTraits');
 Route::post('/RubricConfirm', 'RubricsController@store');
 
+Route::get('/assessment-setup', 'AssessementSetup@GenerateAssessmentSetup');
+
 Route::get('/rubric', function(){
    return view('rubric');
 });
