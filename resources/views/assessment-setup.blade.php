@@ -11,7 +11,7 @@
         <p class=" mt-5" id="create-assessment-title">Creating Assessment</p>
         <!-- accordion for assessment setup -->
         <!-- step 1: assessment detail -->
-    <form class="mt-5" action="index.html" method="post">
+    <form class="mt-5" action="/assessment-submit" method="post">
         <div class="card card-assessment-style" id="assessment-template">
             <div class="card-body">
                 <div class="card-title mb-5 mt-3">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="mt-2">
                     <label for="" class="col-sm-12 m-0 p-0">Description</label>
-                    <input type="textarea" name="" value="" class="col-sm-12 mt-1" id="description-for-assessment">
+                    <input type="textarea" name="assessment_description" value="" class="col-sm-12 mt-1" id="description-for-assessment">
                 </div>
                 <h5 class="assessment-settings-title mt-5">Assessment Settings</h5>
                 <div class="d-flex justify-content-start mt-3">
@@ -64,7 +64,7 @@
                         @foreach($rubrics as $r)
                             <div class="body-cells row mt-2 mx-0 ">
                                 <label class="rubric-settings-btn row">
-                                    <input type="radio" name="access" value="all">
+                                    <input type="radio" name="access" value={{$r->getId()}}>
                                     <span class="btn col-4">{{$r->getName()}}</span>
                                     <span class="btn col-8">
                                     <?php 
@@ -92,7 +92,7 @@
                         @endforeach
                         <div class="d-flex justify-content-between mt-5 mb-2">
                             <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
-                            <a href="/assessment-list"><button type="button" name="button" class="btn assessment-btn border-0" id="createAxBTN">Create Assessment</button></a>
+                            <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
                         </div>
                 </div>
             </div>
