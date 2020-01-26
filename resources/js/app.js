@@ -15,18 +15,7 @@ $(function(){
            console.log('error');
            console.log(data);
        }
-   });
-    // the rubric selection button
-    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-    if (rubricSelectionBTN) {
-        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
-    }
-    var backBTN = document.getElementById("backBTN");
-    if (backBTN) {
-        backBTN.addEventListener('click',openAssessmentForm, true);
-        backBTN.addEventListener('click', closeRubricForm, true);
-    }
+   });    
 
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
@@ -117,6 +106,18 @@ function closeRubricForm(event){
 function addDefaultDate(event) {
     var today = new Date();
     event.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+}
+
+// the rubric selection button
+var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+if (rubricSelectionBTN) {
+    rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+    rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+}
+var backBTN = document.getElementById("backBTN");
+if (backBTN) {
+    backBTN.addEventListener('click',openAssessmentForm, true);
+    backBTN.addEventListener('click', closeRubricForm, true);
 }
 
 //init function (only executes when onload)
