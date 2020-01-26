@@ -11,6 +11,7 @@
         <p class=" mt-5" id="create-assessment-title">Creating Assessment</p>
         <!-- accordion for assessment setup -->
         <!-- step 1: assessment detail -->
+    <form class="mt-5" action="index.html" method="post">
         <div class="card card-assessment-style" id="assessment-template">
             <div class="card-body">
                 <div class="card-title mb-5 mt-3">
@@ -55,7 +56,6 @@
                     <h5><strong>Rubric Selection</strong></h5>
                 </div>
                 <div>
-                    <form class="mt-5" action="index.html" method="post">
                         <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
                             <p class="col-4 text-left px-0">Rubric Title</p>
                             <p class="col-8 text-left px-0">Skills</p>
@@ -85,12 +85,11 @@
                         <div class="d-flex justify-content-between mt-5 mb-2">
                             <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
                             <a href="/assessment-list"><button type="button" name="button" class="btn assessment-btn border-0" id="createAxBTN">Create Assessment</button></a>
-
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
+    </form>
    </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
