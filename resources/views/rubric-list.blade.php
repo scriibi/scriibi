@@ -30,7 +30,7 @@
 
         <!-- populate more cells as per rubric -->
         @foreach($rubrics as $r)
-            <a href="#" class="row btn btn-block rubric-list-row d-flex pl-3 m-0">
+            <a href="#" class="row btn btn-block rubric-list-row d-flex pl-3 m-0 mb-2">
                 <p class="col-4 rubric-list-text text-left pl-0">{{$r->getName()}}</p>
                 <p class="col-2 rubric-list-text text-left">{{$r->getDate()}}</p>
 
@@ -46,8 +46,12 @@
                  ?>
                 <p class="col-6 rubric-list-skills text-left">
                <?php
+                $final_skill = end($skills_array);
                 foreach($skills_array as $sa)
-                echo ($sa . ", ");
+                if($sa != $final_skill)
+                    echo($sa . ", ");
+                else
+                    echo($sa);
                ?>
                 </p>
             </a>

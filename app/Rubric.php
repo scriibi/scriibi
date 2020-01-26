@@ -9,8 +9,8 @@ class Rubric
     private $dateCreated;
     private $rubic_trait_skills = array();
 
-    public function __construct($id, $name, $date = 01/01/2020){
-        $this->id - $id;
+    public function __construct($id, $name, $date = '01/01/2020'){
+        $this->id = $id;
         $this->name = $name;
         $this->dateCreated = $date;
     }
@@ -45,6 +45,9 @@ class Rubric
         }
     }
 
+    /**
+     * return all the tratis for the rubric
+     */
     public function populateTraits(){
         $traits = traits::get();
         foreach($traits as $trait){
@@ -57,7 +60,7 @@ class Rubric
     */
     public function getSkillsByRubric(){
         foreach($this->rubic_trait_skills as $tsa){
-            $tsa->populateRubricSpecificSkills();
+            $tsa->populateRubricSpecificSkills($this->id);
         }
     }
 }
