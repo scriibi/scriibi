@@ -149,6 +149,10 @@ $color_class ='blue';
                         <input class="btn btn-rubric-save" type="submit" name="button" id="rubric-save" value="Save my Rubric"></button>
                     </div>
                 </form>
+
+                <div id="dialog" title="Basic dialog">
+                    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+                </div>
             </div>
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">

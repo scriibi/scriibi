@@ -42,9 +42,57 @@ $(function(){
     // rubric builder curriculum code on change function
     $('#select_curriculum_code').change(function(){
         $(this).val();
-        window.location.href="RubricFlag/"+$(this).val();
-        // return "/RubricFlag/" + $(this).val();
+        // window.location.href="RubricFlag/"+$(this).val();
+        return "/RubricFlag/" + $(this).val();
     });
+
+    //on click save rubric; prevent default submit, show dialog->once dialog closed, send through default submit
+    $('#rubric_save').click(function(e){
+        var anyBoxesChecked = false;
+        $('#rubricform input[type ="checkbox"]').each(function(){
+            if ($(this).is(":checked")) {
+                anyBoxesChecked = true;
+                e.preventDefault();
+                $('#dialog').dialog();
+
+                $('#dialog').on('dialogclose', function() {
+                    $('#rubric').submit();
+                });
+            }
+        })
+        if (anyBoxesChecked == false) {
+          alert("please select at least on one skill in this rubric!");
+        }
+
+
+    });
+
+
+
+    //
+    // $('#alert-saving').hide();
+    //
+    // $('#rubric_save').click(function(){
+    //     $('#alert-saving').delay(4000).slideUp(200);
+    //     $(this).alert('close');
+    // });
+
+    // $('#rubric_save').click(setTimeout(function(){
+    //     $("#dialog").dialog();
+    //     $("#rubricform").submit();
+    // },2000),true);
+    //
+    //
+
+
+
+
+
+
+
+
+
+
 });
 
 
