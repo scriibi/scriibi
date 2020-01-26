@@ -22,7 +22,7 @@ class RubricListController extends Controller
             ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id)->get();
 
         foreach($rubrics as $r){
-            array_push($this->rubrics_list, new Rubric($r->rubric_Id, $r->rubric_Name));
+            array_push($this->rubrics_list, new Rubric($r->rubric_Id, $r->rubric_Name, $r->created_at));
         }
 
         foreach($this->rubrics_list as $rl){
@@ -30,6 +30,6 @@ class RubricListController extends Controller
             $rl->getSkillsByRubric();
         }
 
-        return view('rubric-list', ['rubrics' => $rubrics_list]);
+        return view('rubric-list', ['rubrics' => $this->rubrics_list]);
     }
 }

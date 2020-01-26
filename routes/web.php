@@ -38,10 +38,9 @@ Route::get('/studentlist', function(){
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });
-Route::get('/rubric-list',function(){
-    $dummyAssessments = ['bruh'];
-    return view('rubric-list', ['rubricList' => $dummyAssessments]);
-});
+
+Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
+
 Route::get('/assessment-list',function(){
     $dummyAssessments = ['a'];
     return view('assessment-list', ['assessmentList' => $dummyAssessments]);
