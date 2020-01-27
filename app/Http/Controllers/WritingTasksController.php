@@ -22,7 +22,7 @@ class WritingTasksController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->get();
     }
 
     /**
