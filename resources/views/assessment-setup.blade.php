@@ -12,6 +12,7 @@
         <!-- accordion for assessment setup -->
         <!-- step 1: assessment detail -->
     <form class="mt-5" action="/assessment-submit" method="post">
+        @csrf
         <div class="card card-assessment-style" id="assessment-template">
             <div class="card-body">
                 <div class="card-title mb-5 mt-3">

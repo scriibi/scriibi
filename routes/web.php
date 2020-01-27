@@ -41,10 +41,6 @@ Route::get('/assessment-setup', function(){
 
 Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
 
-Route::get('/assessment-list',function(){
-    $dummyAssessments = ['a'];
-    return view('assessment-list', ['assessmentList' => $dummyAssessments]);
-});
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');
@@ -69,6 +65,7 @@ Route::post('/RubricConfirm', 'RubricsController@store');
 
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
 Route::post('/assessment-submit', 'WritingTasksController@store');
+Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
 
 Route::get('/rubric', function(){
    return view('rubric');
