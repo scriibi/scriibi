@@ -1,58 +1,103 @@
 "use strict";
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
-// require('./bootstrap');
-
-window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-});
-
-//Student List scripts
-
-//AJAX display students jquery
+//Start of Jquery
 $(function(){
+    //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
        type:'GET',
        url: '/AJAX/listCall',
        success: function(data){
            $("#listDisplay").html(data);
+           let editStudentButtons = document.getElementsByClassName("edit-student-button"),
+            closeStudentButtons = document.getElementsByClassName("close-edit-button");
+
+            for (const openStudentButton of editStudentButtons) {
+                console.log(openStudentButton);
+                openStudentButton.addEventListener('click', openEditForm, true);
+            }
+
+            for (const closeStudentButton of closeStudentButtons) {
+                closeStudentButton.addEventListener('click', closeEditForm, true);
+            }
        },
        error:function(data){
            console.log('error');
            console.log(data);
        }
-   })
+   });    
+
+    // side-bar collapse function
+    $('#sidebar-collapse').on('click', function () {
+        console.log('TOGGLE INFO PANEL');
+        $('#assessment-marking-panel').toggleClass('hide-info-panel');
+    });
+
+    // arrow rotate function
+    $(".arrow-up-btn").click(function(){
+        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+    });
+
+    // rubric builder curriculum code on change function
+    $('#select_curriculum_code').change(function(){
+        $(this).val();
+        // window.location.href="RubricFlag/"+$(this).val();
+        return "/RubricFlag/" + $(this).val();
+    });
+
+    //on click save rubric; prevent default submit, show dialog->once dialog closed, send through default submit
+    $('#rubric_save').click(function(e){
+        var anyBoxesChecked = false;
+        $('#rubricform input[type ="checkbox"]').each(function(){
+            if ($(this).is(":checked")) {
+                anyBoxesChecked = true;
+                e.preventDefault();
+                $('#dialog').dialog();
+
+                $('#dialog').on('dialogclose', function() {
+                    $('#rubric').submit();
+                });
+            }
+        })
+        if (anyBoxesChecked == false) {
+          alert("please select at least on one skill in this rubric!");
+        }
+
+
+    });
+
+
+
+    //
+    // $('#alert-saving').hide();
+    //
+    // $('#rubric_save').click(function(){
+    //     $('#alert-saving').delay(4000).slideUp(200);
+    //     $(this).alert('close');
+    // });
+
+    // $('#rubric_save').click(setTimeout(function(){
+    //     $("#dialog").dialog();
+    //     $("#rubricform").submit();
+    // },2000),true);
+    //
+    //
+
+
+
+
+
+
+
+
+
+
 });
 
+
+//Student List scripts
 function openEditForm(event) {
-    alert("works");
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -90,22 +135,7 @@ function closeEditForm(event) {
         .remove("d-none");
 }
 
-var editStudentButtons = document.getElementsByClassName("edit-student-button");
-var closeStudentButtons = document.getElementsByClassName("close-edit-button");
 
-for (const openStudentButton of editStudentButtons) {
-    openStudentButton.addEventListener('click', openEditForm, true);
-    console.log(openStudentButton);
-}
-
-for (const closeStudentButton of closeStudentButtons) {
-    closeStudentButton.addEventListener('click', closeEditForm, true);
-}
-
-// rubric-list Page
-
-
-// rubric builder page
 
 // assessment setup Page
 
@@ -134,33 +164,17 @@ function addDefaultDate(event) {
     event.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 }
 
-
-
-$(document).ready(function () {
-    console.log('READY');
-
-    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-    if (rubricSelectionBTN) {
-        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
-    }
-    var backBTN = document.getElementById("backBTN");
-    if (backBTN) {
-        backBTN.addEventListener('click',openAssessmentForm, true);
-        backBTN.addEventListener('click', closeRubricForm, true);
-    }
-
-    // side-bar collapse function
-    $('#sidebar-collapse').on('click', function () {
-        console.log('TOGGLE INFO PANEL');
-        $('#assessment-marking-panel').toggleClass('hide-info-panel');
-    });
-    
-    // arrow rotate function
-    $(".arrow-up-btn").click(function(){
-        $(this).find(".collapsable-arrow").toggleClass("image-rotate");
-    });
-});//End of jquery
+// the rubric selection button
+var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+if (rubricSelectionBTN) {
+    rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+    rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+}
+var backBTN = document.getElementById("backBTN");
+if (backBTN) {
+    backBTN.addEventListener('click',openAssessmentForm, true);
+    backBTN.addEventListener('click', closeRubricForm, true);
+}
 
 //init function (only executes when onload)
 function init() {

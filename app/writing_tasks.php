@@ -25,4 +25,8 @@ class writing_tasks extends Model
     public function teacher(){
         return $this->belongsTo('App\teachers', 'created_By_Teacher_User_Id', 'user_Id');
     }
+
+    public function students(){
+        return $this->belongsToMany('App\students', 'writting_task_students', 'fk_writting_task_id', 'fk_student_id');
+    }
 }

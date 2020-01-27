@@ -6,13 +6,13 @@ class Rubric
 {
     private $id;
     private $name;
-    private $description;
+    private $dateCreated;
     private $rubic_trait_skills = array();
 
-    public function __construct($id, $name, $desc){
-        $this->id - $id;
+    public function __construct($id, $name, $date = '01/01/2020'){
+        $this->id = $id;
         $this->name = $name;
-        $this->description = $desc;
+        $this->dateCreated = $date;
     }
 
     public function getId(){
@@ -23,8 +23,8 @@ class Rubric
         return $this->name;
     }
 
-    public function getDescription(){
-        return $this->description;
+    public function getDate(){
+        return $this->dateCreated;
     }
 
     public function getRubricTraitSkills(){
@@ -33,28 +33,34 @@ class Rubric
 
     public function setName($name){
         $this->name = $name;
+    }  
+
+    public function setDate($date){
+        $this->dateCreated = $date; 
     }
-
-    public function setDescription($desc){
-        $this->description = $desc;
-    }   
-
+    
     public function setTraitSkills($trait_skills){
         foreach($trait_skills as $ts){
             array_push($this->rubic_trait_skills, $ts);
         }
     }
 
-    public function getSkillsByRubric(){
-
+    /**
+     * return all the tratis for the rubric
+     */
+    public function populateTraits(){
         $traits = traits::get();
-
         foreach($traits as $trait){
             array_push($this->rubic_trait_skills, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
         }
+    }
 
+    /**
+     * populates the private array with trait objects which contain rubric specific skills
+    */
+    public function getSkillsByRubric(){
         foreach($this->rubic_trait_skills as $tsa){
-            $tsa->populateRubricSpecificSkills();
+            $tsa->populateRubricSpecificSkills($this->id);
         }
     }
 }
