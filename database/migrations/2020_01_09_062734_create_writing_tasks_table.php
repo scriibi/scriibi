@@ -19,6 +19,7 @@ class CreateWritingTasksTable extends Migration
             $table->string('writing_Task_Description', 100);
             $table->bigInteger('created_By_Teacher_User_Id')->unsigned();
             $table->bigInteger('teaching_period_Id')->unsigned();
+            $table->bigInteger('fk_rubric_id')->unsigned();
             $table->string('task_name', 45);
 
             $table->unique('writing_task_Id');
@@ -34,6 +35,12 @@ class CreateWritingTasksTable extends Migration
             $table->foreign('teaching_period_Id')
                 ->references('teaching_period_Id')
                 ->on('teaching_periods')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('fk_rubric_id')
+                ->references('rubric_Id')
+                ->on('rubrics')
                 ->onDelete('no action')
                 ->onUpdate('no action');
                 

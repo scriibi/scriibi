@@ -12,5 +12,7 @@ class Rubrics extends Model
 {
     protected $primaryKey = 'rubric_Id';
 
-    //
+    public function writing_tasks(){
+        return $this->hasMany('App\writing_tasks', 'fk_rubric_id', 'rubric_Id');
+    }
 }

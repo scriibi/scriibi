@@ -61,7 +61,7 @@ class WritingTasksController extends Controller
             foreach($students as $student){
                 array_push($students_list, $student);
             }
-            $writing_task_record = array('writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date, 'created_By_Teacher_User_Id' => Auth::user()->user_Id, 'teaching_period_Id' => 1, 'task_name' => $assessment_title);
+            $writing_task_record = array('writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date, 'created_By_Teacher_User_Id' => Auth::user()->user_Id, 'teaching_period_Id' => 1, 'task_name' => $assessment_title, 'fk_rubric_id' => $assessment_rubric);
             $newWritingTaskId = DB::table('writing_tasks')->insertGetId($writing_task_record);
             $allTraits = $rubric->getRubricTraitSkills();
             
