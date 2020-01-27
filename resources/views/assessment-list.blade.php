@@ -1,7 +1,7 @@
 @extends('layout.mainlayout')
 @section('title', 'Assessment-List')
 @section('content')
-
+@csrf
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
@@ -23,7 +23,7 @@
                     <div class="">
                         <p>You currently do not have any assessments.</p>
                         <p>Create assessment for your students by</p>
-                        <p>clicking<button type="button" name="button" class="btn new-rubric px-4 mx-2">New Assessment +</button></p>
+                        <p>clicking<a href="/assessment-setup" class="btn new-rubric p-3 mx-3">New Assessment+</a></p>
                     </div>
 
                 </div>

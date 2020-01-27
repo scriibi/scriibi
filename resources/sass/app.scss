@@ -298,14 +298,14 @@ position: relative;
     span {
         text-align: left;
     }
+    &:hover{
+        border: 2px solid #33A849;
+    }
+
 }
 
-.rubric-settings-btn:hover{
-    border: 2px solid #33A849;
-}
-
-.rubric-settings-btn input:checked {
-    .rubric-settings-btn {
+.rubric-selection:checked{
+    .label {
         border: 2px solid #33A849;
     }
 }
@@ -341,20 +341,36 @@ position: relative;
 // assessement marking Page
 #assessment-marking-panel {
     display: grid;
-    grid-template-columns: 1fr 30px auto;
+    grid-template-columns: 1fr 44px auto;
     grid-template-areas:
         "marking-panel btn-panel info-panel";
     height: 100vh;
-
 }
 
 .hide-info-panel #info-panel {
     width: 0;
+    opacity:0;
+}
+
+.hide-info-panel #marking-panel{
+    width: 97vw;
 }
 
 .hide-info-panel #btn-panel .fa-arrow-right {
     transform: rotate(180deg);
 }
+
+.marking-panel{
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+
+}
+
+.sidebar-btn{
+    height: 44px;
+}
+
 
 #btn-panel .btn {
     box-shadow: none;
@@ -388,6 +404,9 @@ position: relative;
 
 }
 
+.marking-text-area{
+    width: 50px;
+}
 label.score-radio{
     position: relative;
     line-height: 25px;
@@ -417,9 +436,6 @@ label.score-radio{
 
 }
 
-.scroll-panel{
-    overflow-y: auto;
-}
 
 .score-label {
     display: grid;
@@ -451,8 +467,7 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #1E1E1E;
-    width: 184px;
-    height: 50px;
+
 }
 
 
@@ -465,13 +480,14 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #FFFFFF;
-    width: 184px;
-    height: 50px;
+
 
 }
 
 .text-area-style{
     border-radius: 7px;
+
+    width: 100%;
 
 }
 //Student List
@@ -530,6 +546,7 @@ label.score-radio{
 .student-table-label {
     font-size: 0.7rem;
     opacity: 0.7;
+    color: #909090;
 }
 
 /* active state */
@@ -606,8 +623,6 @@ input:focus {
 
 // Rubric List Page
 .rubric-list-title{
-    font-family: Raleway;
-    font-style: normal;
     font-weight: bold;
     font-size: 30px;
     line-height: 35px;
@@ -623,8 +638,6 @@ input:focus {
 }
 
 .rubric-instruction{
-    font-family: Raleway;
-    font-style: normal;
     font-weight: bold;
     align-items: center;
     color: #6B6B6B;
@@ -632,21 +645,31 @@ input:focus {
 }
 
 .rubric-list-row{
-    height: 42px;
     background: #FFFFFF;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     border: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    border: 2px solid white;
+    height: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .rubric-list-row:hover{
-    border: 2px solid blue;
-    box-shadow:none;
+    border: 2px solid #33A849;
 
 }
 
+.rubric-list-text {
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .header-cells{
-    font-family: Raleway;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -654,7 +677,6 @@ input:focus {
     color: rgba(0, 0, 0, 0.5);
 }
 .body-cells{
-    font-family: Raleway;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -665,16 +687,18 @@ input:focus {
 
 
 .rubric-list-skills{
-    font-family: Raleway;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
     color: #909090;
+    height: 100%;
+    overflow: hidden;
 }
+
+
 //Rubric builder Page
 #RubricBuilder_title{
-  font-family: Raleway;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;

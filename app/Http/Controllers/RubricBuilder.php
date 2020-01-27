@@ -30,11 +30,8 @@ class RubricBuilder extends Controller
         }
 
         RubricBuilder::populateSkillsInTraits();
-
         $text_types = RubricBuilder::getTextTypes();
-
         $school_type_controller = new SchoolTypeController();
-       
         $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
 
         return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types, 'assessed_labels' => $assessed_label_list]);

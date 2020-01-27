@@ -40,4 +40,8 @@ class students extends Model
     public function student_rubrik_level_changelog(){
         return $this->hasMany('App\student_rubrik_level_changelog', 'students_student_Id', 'student_Id');
     }
+
+    public function writing_tasks(){
+        return $this->belongsToMany('App\writing_tasks', 'writting_task_students', 'fk_student_id', 'fk_writting_task_id');
+    }
 }
