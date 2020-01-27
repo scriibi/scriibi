@@ -36,11 +36,11 @@
                 <h5 class="assessment-settings-title mt-5">Assessment Settings</h5>
                 <div class="d-flex justify-content-start mt-3">
                     <label class="assessment-settings-btn">
-                        <input type="radio" name="access" value="mine">
+                        <input type="radio" name="assess" value="mine">
                         <span class="btn">Assess <strong>my</strong> students</span>
                     </label>
                     <label class="assessment-settings-btn ml-4">
-                        <input type="radio" name="access" value="all">
+                        <input type="radio" name="assess" value="all">
                         <span class="btn">Assess <strong>all</strong> students</span>
                     </label>
                 </div>
@@ -64,7 +64,7 @@
                         @foreach($rubrics as $r)
                             <div class="body-cells row mt-2 mx-0 ">
                                 <label class="rubric-settings-btn row">
-                                    <input type="radio" name="access" value={{$r->getId()}}>
+                                    <input type="radio" name="rubric" value={{$r->getId()}}>
                                     <span class="btn col-4">{{$r->getName()}}</span>
                                     <span class="btn col-8">
                                     <?php 

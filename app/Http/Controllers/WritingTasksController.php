@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
+use Exception;
 use App\writing_tasks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,7 +39,17 @@ class WritingTasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $assessment_title = $request->input('assessment_name');
+            $assessment_date = $request->input('assessment_date');
+            $assessment_description = $request->input('assessment_description');
+            $assessment_setting = $request->input('assess');
+            $assessment_rubric = $request->input('rubric');
+
+            
+        }catch(Exception $e){
+            // todo
+        }
     }
 
     /**

@@ -68,7 +68,7 @@ Route::get('/rubrics', 'RubricBuilder@populateTraits');
 Route::post('/RubricConfirm', 'RubricsController@store');
 
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
-//Route::post('/assessment-submit', '');
+Route::post('/assessment-submit', 'WritingTasksController@store');
 
 Route::get('/rubric', function(){
    return view('rubric');
