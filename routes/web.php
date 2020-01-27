@@ -30,7 +30,7 @@ Route::get('/assessment-marking', function(){
 Route::get('/', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
-    return view('home', ['students' => $students]);
+    return view('home', ['students' => $students, 'user' => Auth::user()->name]);
 })->middleware('auth');
 Route::get('/studentlist', function(){
     return view('studentlist');
