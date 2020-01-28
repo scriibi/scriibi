@@ -127,6 +127,20 @@ position: relative;
     bottom: 0;
 }
 
+.disabled {
+    cursor: no-drop !important;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: 0.3s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: 0.3s ease-in;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -225,8 +239,6 @@ position: relative;
 // Assessment setup Page
 
 #create-assessment-title{
-    font-family: Raleway;
-    font-style: normal;
     font-weight: bold;
     font-size: 30px;
     line-height: 35px;
@@ -234,10 +246,7 @@ position: relative;
 }
 
 .assessment-settings-title{
-    font-family: Raleway;
-    font-style: normal;
     font-weight: bold;
-    font-size: 22px;
     color:#4C4D4F;
 }
 
@@ -258,8 +267,14 @@ position: relative;
     }
 }
 
-#description-for-assessment{
-    height: 30vh;
+.assessment-description {
+    overflow: auto;
+    width: 100%;
+    border-radius: 7px;
+}
+
+.assessment-description:focus {
+    outline: none;
 }
 
 
@@ -269,11 +284,26 @@ position: relative;
     border-radius: 7px;
 }
 
+.back-btn-disabled {
+    border: 2px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 7px;
+    position: absolute;
+    top: 450px;
+}
+
 .assessment-btn{
     background: #33A849;
     border-radius: 7px;
     color: #FFFFFF;
 }
+
+.assessment-btn:hover{
+    text-decoration: none;
+    color: white;
+    background: #138028;
+}
+
 .card-assessment-style{
     border-radius: 20px;
     overflow: hidden;
@@ -641,7 +671,9 @@ input:focus {
     font-weight: bold;
     align-items: center;
     color: #6B6B6B;
-
+    left: 37%;
+    margin-left: -50px;
+    position: absolute;
 }
 
 .rubric-list-row{
@@ -698,6 +730,11 @@ input:focus {
 
 
 //Rubric builder Page
+
+.skill_card_set{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+}
 #RubricBuilder_title{
   font-style: normal;
   font-weight: bold;
@@ -829,15 +866,13 @@ $skillset-colors-map: (
     text-decoration-color: #FFFFFF;
 }
 
-
 .card-columns {
   @include media-breakpoint-only(sm) {
-    column-count: 3;
+    column-count: 4;
   }
-  @include media-breakpoint-only(xs) {
-    column-count: 2;
-  }
+
 }
+
 
 
 //---------- Media Queries --------------------
