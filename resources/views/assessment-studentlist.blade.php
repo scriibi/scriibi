@@ -20,7 +20,7 @@
         <div class="row mt-2 ">
             <div class="col-10">
                 <h5 class="Assessment-Studentlist-title">Date :</h5>
-                <p>{{$writingTask->getCreatedAt()}}</p>
+                <p><?php echo (date("d-m-Y", strtotime($writingTask->getAssessedAt()))); ?></p>
             </div>
         </div>
         <div class="row mt-3">
@@ -49,7 +49,7 @@
                     $students = $writingTask->getStudents();
                 ?>
             @foreach($students as $s)
-                <a href="/assessment-marking" class="row btn btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
+                <a href="/assessment-marking/{{$s->student_Id}}/{{$writingTask->getId()}}" class="row btn btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
                     <!-- here goes the full name, id, grade, assessed level, status -->
                     <p class="col-4 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->student_First_Name}} {{$s->student_Last_Name}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->Student_Gov_Id}}</p>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-12 d-flex justify-content-end mt-3 pr-4">
-                <button type="button" name="button" class="btn save-exit-btn col-2">Save and Exit</button>
+                <button type="button" name="button" class="btn save-exit-btn col-2"  onclick="location.href='{{ url('/assessment-list') }}'">Save and Exit</button>
 
             </div>
 

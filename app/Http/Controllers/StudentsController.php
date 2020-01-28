@@ -56,7 +56,7 @@ class StudentsController extends Controller
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
         }
         catch(Exception $e){
-            throw $e;
+            return redirect()->action('StudentInputController@ReturnStudentListPage');
         }
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
