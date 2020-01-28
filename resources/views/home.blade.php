@@ -158,7 +158,7 @@
                     <img class="align-self-center mx-2 px-3" src="/images/help.png" alt="logo7">
                     <span class="align-self-center mx-2 text-nowrap">Help</span>
                 </a>
-                <a href="#" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                <a href="mailto:info@scriibi.com" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3" src="/images/contact us.png" alt="logo8">
                     <span class="align-self-center mx-2 text-nowrap">Contact Us</span>
                 </a>
