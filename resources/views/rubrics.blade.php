@@ -11,7 +11,7 @@
    <div class="col-12 col-sm-10 col-md-8">
 
         <!-- Rubric Builder -->
-        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Rubric Builder</strong></h4>
+        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Select skills for the rubric</strong></h4>
 
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
@@ -29,31 +29,33 @@
                 @csrf
                     <!-- term-title+Curriculum -->
                     <div class="card-text m-0">
-                        <div class=" form-group d-flex justify-content-between ">
-                            <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric1_name" value="Term 1 Rubric" required>
-                            <div class="d-none d-xs-block">
-
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" class="text-input" id="assessment_name" name="assessment_name" value="Term 1 Rubric" required />
+                                <span class="bar"></span>
+                                <label class="student-form-label ml-3" for="assessment_name">Title</label>
                             </div>
-                            <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="assessed_level" id="select_curriculum_code">
-                                    <option value="" disabled selected hidden>Select your option</option>
-                                @foreach($assessed_labels as $al)
-                                    <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
-                                @endforeach
-
-                            </select>
+                            <div class="col-4">
+                                <select class="select-input" name="assessed_level" id="select_curriculum_code">
+                                        <option value="" disabled selected hidden>Select your option</option>
+                                    @foreach($assessed_labels as $al)
+                                        <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="bar"></span>
+                                <label class="ml-3 student-form-label" for="grade">Assessment Level</label><br />
+                            </div>  
                         </div>
-
-
-
+                                    
                         <!-- skills cards deck-->
-                        <div class="card-columns p-0 mt-5" >
+                        <div class="card-columns p-0 mt-3" >
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
+                                <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
                                     <ul class="list-group list-group-flush ">
                                         <li class="text-white m-0 d-flex justify-content-start px-2">
                                             <!-- load icon address-->
@@ -95,13 +97,14 @@
                 <div class="card-body pb-0">
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
-                        <div class="form-group d-flex justify-content-between">
-
-                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric" required>
-                            <div class="d-none d-xs-block">
+                            <div class="row mt-4">
+                                <div class="col-8">
+                                    <input type="text" class="text-input" id="assessment_name" name="assessment_name" value="Term 2 Rubric" required />
+                                    <span class="bar"></span>
+                                    <label class="student-form-label ml-3" for="assessment_name">Title</label>
+                                </div>
+                                <div class="col-4"></div>
                             </div>
-
-                        </div>
 
 
                         <!-- skills cards deck-->
@@ -112,9 +115,9 @@
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
+                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
-                                        <li class="text-white ">
+                                        <li class="text-white">
 
                                             <span class="align-middle"><img src="/icon-trait/{{$to->getIcon()}}" alt=""> </span>
                                             <!-- load skill title -->
@@ -142,17 +145,14 @@
                         <!-- end of skill cards columns -->
                     </div>
                     <!-- clear button for form -->
-                    <div class="col-12 row justify-content-end p-0 m-0 mt-3 mb-3">
+                    <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
                     </div>
-                    <div class="d-flex row justify-content-end mt-4 p-0">
+                    <div class="d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
                         <input class="btn btn-rubric-save" type="submit" name="button" id="rubric-save" value="Save my Rubric"></button>
                     </div>
                 </form>
 
-                <div id="dialog" title="Basic dialog">
-                    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-                </div>
             </div>
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">
