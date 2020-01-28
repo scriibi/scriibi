@@ -10,23 +10,23 @@ $(function(){
        url: '/AJAX/listCall',
        success: function(data){
            $("#listDisplay").html(data);
+           let editStudentButtons = document.getElementsByClassName("edit-student-button"),
+            closeStudentButtons = document.getElementsByClassName("close-edit-button");
+
+            for (const openStudentButton of editStudentButtons) {
+                console.log(openStudentButton);
+                openStudentButton.addEventListener('click', openEditForm, true);
+            }
+
+            for (const closeStudentButton of closeStudentButtons) {
+                closeStudentButton.addEventListener('click', closeEditForm, true);
+            }
        },
        error:function(data){
            console.log('error');
            console.log(data);
        }
-   });
-    // the rubric selection button
-    var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
-    if (rubricSelectionBTN) {
-        rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
-        rubricSelectionBTN.addEventListener('click', openRubricForm, true);
-    }
-    var backBTN = document.getElementById("backBTN");
-    if (backBTN) {
-        backBTN.addEventListener('click',openAssessmentForm, true);
-        backBTN.addEventListener('click', closeRubricForm, true);
-    }
+   });    
 
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
@@ -85,7 +85,6 @@ $(function(){
 
 //Student List scripts
 function openEditForm(event) {
-    alert("works");
     const element = event.currentTarget;
 
     var iconGroup = element.parentNode,
@@ -123,18 +122,6 @@ function closeEditForm(event) {
         .remove("d-none");
 }
 
-let editStudentButtons = document.getElementsByClassName("edit-student-button"),
-    closeStudentButtons = document.getElementsByClassName("close-edit-button");
-
-for (const openStudentButton of editStudentButtons) {
-    console.log(openStudentButton);
-    openStudentButton.addEventListener('click', openEditForm, true);
-}
-
-for (const closeStudentButton of closeStudentButtons) {
-    closeStudentButton.addEventListener('click', closeEditForm, true);
-}
-
 
 
 // assessment setup Page
@@ -162,6 +149,18 @@ function closeRubricForm(event){
 function addDefaultDate(event) {
     var today = new Date();
     event.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+}
+
+// the rubric selection button
+var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
+if (rubricSelectionBTN) {
+    rubricSelectionBTN.addEventListener('click', closeAssessmentForm, true);
+    rubricSelectionBTN.addEventListener('click', openRubricForm, true);
+}
+var backBTN = document.getElementById("backBTN");
+if (backBTN) {
+    backBTN.addEventListener('click',openAssessmentForm, true);
+    backBTN.addEventListener('click', closeRubricForm, true);
 }
 
 //init function (only executes when onload)

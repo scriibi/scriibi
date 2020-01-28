@@ -11,7 +11,7 @@
             <a href="/rubrics" class="btn new-rubric p-3">New Rubric +</a>
         </div>
         <!-- show no rubric created message -->
-        @if(count($rubricList)===0)
+        @if(count($rubrics)===0)
         <div class="mt-5 rubric-instruction d-flex justify-content-center">
             <div class="">
                 <p>You currently do not have any rubric templates.</p>
@@ -29,11 +29,32 @@
         </div>
 
         <!-- populate more cells as per rubric -->
-        <a href="#" class="row btn btn-block rubric-list-row d-flex pl-3 m-0">
-            <p class="col-4 rubric-list-text text-left pl-0">Cold Write - Narrative - What I did on the weekend</p>
-            <p class="col-2 rubric-list-text text-left">20 - Feb - 2020</p>
-            <p class="col-6 rubric-list-skills text-left">Paragraphing, Sequencing, Text Pattern, Ending, Sentence Length, Modality, Vocabulary, Figurative language, Writer’s voice (Tone), Fluency, Paragraphing, Sequencing, Text Pattern, Ending, Sentence Length, Modality, Vocabulary, Figurative language, Writer’s voice (Tone), Fluency, Paragraphing, Sequencing, Text Pattern, Ending, Sentence Length, Modality, Vocabulary, Figurative language, Writer’s voice (Tone), Fluency</p>
-        </a>
+        @foreach($rubrics as $r)
+            <a href="#" class="row btn btn-block rubric-list-row d-flex pl-3 m-0 mb-2">
+                <p class="col-4 rubric-list-text text-left pl-0">{{$r->getName()}}</p>
+                <p class="col-2 rubric-list-text text-left">{{$r->getDate()}}</p>
+
+                <?php $skills_array = array();
+                    $traits_skills = $r->getRubricTraitSkills();
+                    foreach($traits_skills as $ts){
+                        $skillObjects = $ts->getSkills();
+                        foreach($skillObjects as $so){
+                            array_push($skills_array, $so->getName());    
+                        }
+                    };
+                 ?>
+                <p class="col-6 rubric-list-skills text-left">
+                    <?php
+                        $final_skill = end($skills_array);
+                        foreach($skills_array as $sa)
+                        if($sa != $final_skill)
+                            echo($sa . ", ");
+                        else
+                            echo($sa);
+                    ?>
+                </p>
+            </a>
+        @endforeach
         @endif
    </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2">

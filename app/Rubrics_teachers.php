@@ -11,5 +11,4 @@ class Rubrics_teachers extends Model
 {
     //
     protected $primaryKey = 'rubrics_teachers_Id';
-
 }

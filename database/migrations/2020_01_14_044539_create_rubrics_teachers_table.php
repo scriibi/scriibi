@@ -19,8 +19,7 @@ class CreateRubricsTeachersTable extends Migration
             $table->bigInteger('teachers_user_Id')->unsigned();
 
             $table->unique('rubrics_teachers_Id');
-
-
+            
             $table->foreign('teachers_user_Id')
             ->references('user_Id')
             ->on('teachers')

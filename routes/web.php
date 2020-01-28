@@ -30,7 +30,7 @@ Route::get('/assessment-marking', function(){
 Route::get('/', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
-    return view('home', ['students' => $students]);
+    return view('home', ['students' => $students, 'user' => Auth::user()->name]);
 })->middleware('auth');
 Route::get('/studentlist', function(){
     return view('studentlist');
@@ -38,14 +38,9 @@ Route::get('/studentlist', function(){
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });
-Route::get('/rubric-list',function(){
-    $dummyAssessments = ['bruh'];
-    return view('rubric-list', ['rubricList' => $dummyAssessments]);
-});
-Route::get('/assessment-list',function(){
-    $dummyAssessments = ['a'];
-    return view('assessment-list', ['assessmentList' => $dummyAssessments]);
-});
+
+Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
+
 //testing auth0 function
 Route::get('/testauth', function () {
     return view('auth/welcome');
@@ -67,6 +62,10 @@ Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
 Route::get('/rubrics', 'RubricBuilder@populateTraits');
 Route::post('/RubricConfirm', 'RubricsController@store');
+
+Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
+Route::post('/assessment-submit', 'WritingTasksController@store');
+Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
 
 Route::get('/rubric', function(){
    return view('rubric');
