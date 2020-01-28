@@ -780,12 +780,14 @@ input:focus {
 }
 
 label.frm_checkbox {
-  position: relative;
-  line-height: 19px;
+    position: relative;
+    line-height: 19px;
+    width: 100%;
+    height: 100%;
 
-  input[type="checkbox"] {
-    display: none;
-  }
+    input[type="checkbox"] {
+        display: none;
+    }
 
   span::before {
     content: '';

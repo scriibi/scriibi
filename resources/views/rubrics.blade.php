@@ -62,8 +62,9 @@
                                             <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
                                             <!-- load trait title -->
                                             <span class="skill-title w-100 pl-0 align-self-center px-2">
-                                            <input type="text" name="trait_id" value={{$to->getId()}} hidden>
-                                            {{$to->getName()}}</span>
+                                                <input type="text" name="trait_id" value={{$to->getId()}} hidden />
+                                                {{$to->getName()}}
+                                            </span>
 
                                         </li>
                                         <?php $skills = $to->getSkills()?>
@@ -72,7 +73,9 @@
                                             <li class="list-group-item">
                                                 <!-- load each skill item in the skills category;
                                                 the number of skills items in the skill category vary -->
-                                                <label class="frm_checkbox"><input type="checkbox" name="rubric1_skills[]" value={{$skill->getId()}}><span>{{$skill->getName()}}</span>
+                                                <label class="frm_checkbox">
+                                                    <input type="checkbox" name="rubric1_skills[]" value={{$skill->getId()}} / >
+                                                    <span>{{$skill->getName()}}</span>
                                                 </label>
                                             </li>
                                         @endforeach
