@@ -47,47 +47,34 @@ $(function(){
     });
 
     //on click save rubric; prevent default submit, show dialog->once dialog closed, send through default submit
-    $('#rubric_save').click(function(e){
-        var anyBoxesChecked = false;
-        $('#rubricform input[type ="checkbox"]').each(function(){
-            if ($(this).is(":checked")) {
-                anyBoxesChecked = true;
-                e.preventDefault();
-                $('#dialog').dialog();
-
-                $('#dialog').on('dialogclose', function() {
-                    $('#rubric').submit();
-                });
-            }
-        })
-        if (anyBoxesChecked == false) {
-          alert("please select at least on one skill in this rubric!");
-        }
-
-
-    });
-
-
-
+    // $('#rubric_save').click(function(e){
+    //     var anyBoxesChecked = false;
+    //     var curriculum_code_selected = false;
     //
-    // $('#alert-saving').hide();
+    //     $('#rubricform input[type ="checkbox"]').each(function(){
+    //         if ($(this).is(":checked")) {
+    //             anyBoxesChecked = true;
+    //         } else {
+    //             alert("please select at least on one skill in this rubric!");
+    //         }
+    //     };
     //
-    // $('#rubric_save').click(function(){
-    //     $('#alert-saving').delay(4000).slideUp(200);
-    //     $(this).alert('close');
-    // });
-
-    // $('#rubric_save').click(setTimeout(function(){
-    //     $("#dialog").dialog();
-    //     $("#rubricform").submit();
-    // },2000),true);
+    //     $('#select_curriculum_code option').each(function() {
+    //         if($(this).is(':selected')){
+    //             curriculum_code_selected=true;
+    //         } else{
+    //             alert("please select curriculum code!");
+    //         }
+    //     };
     //
+    //     if(anyBoxesChecked == true&&curriculum_code_selected == true){
+    //         e.preventDefault();
+    //         $('#dialog').dialog();
     //
-
-
-
-
-
+    //         $('#dialog').on('dialogclose', function() {
+    //             $('#rubric').submit();
+    //         });
+    //     };
 
 
 

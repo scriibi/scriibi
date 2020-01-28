@@ -698,6 +698,11 @@ input:focus {
 
 
 //Rubric builder Page
+
+.skill_card_set{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+}
 #RubricBuilder_title{
   font-style: normal;
   font-weight: bold;
@@ -829,15 +834,13 @@ $skillset-colors-map: (
     text-decoration-color: #FFFFFF;
 }
 
-
 .card-columns {
   @include media-breakpoint-only(sm) {
-    column-count: 3;
+    column-count: 4;
   }
-  @include media-breakpoint-only(xs) {
-    column-count: 2;
-  }
+
 }
+
 
 
 //---------- Media Queries --------------------
