@@ -184,7 +184,7 @@ saveBTN.addEventListener('click',check_input_filled, true);
 //
 // });
 
-// check curriculum code is selected
+// validate input from all fields in rubric-form
 function check_input_filled(e){
 
     e.preventDefault();
