@@ -174,16 +174,6 @@ var saveBTN= document.getElementById("rubric-save");
 saveBTN.addEventListener('click',check_input_filled, true);
 
 
-// saveBTN.addEventListener('click',function(e){
-//
-//     // check_cirriculum_code_selected();
-//     // check_skill_checked();
-//     // if(check_cirriculum_code_selected()&&check_required_inputs()&&check_skill_checked()){
-//     //
-//     // }e.currentTarget.submit();
-//
-// });
-
 // validate input from all fields in rubric-form
 function check_input_filled(e){
 
@@ -258,11 +248,6 @@ function check_input_filled(e){
     }
 }
 
-// check at least one skill- radio is selected
-// function check_skill_checked(){
-//     var error="";
-//
-// }
 
 //init function (only executes when onload)
 function init() {
