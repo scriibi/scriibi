@@ -30,14 +30,14 @@
                     <!-- term-title+Curriculum -->
                     <div class="card-text m-0">
                         <div class=" form-group d-flex justify-content-between ">
-                            <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1" name="rubric1_name" value="Term 1 Rubric" required>
+                            <input type="text" class="col-sm-9 input-group-sm rubric-border-box mr-1 required" name="rubric1_name" value="Term 1 Rubric" required>
                             <div class="d-none d-xs-block">
 
                             </div>
                             <select class="col-sm-3 input-group-sm rubric-border-box custom-select" name="assessed_level" id="select_curriculum_code">
                                     <option value="" disabled selected hidden>Select your option</option>
                                 @foreach($assessed_labels as $al)
-                                    <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
+                                    <option class="required"value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
                                 @endforeach
 
                             </select>
@@ -97,7 +97,7 @@
                         <!-- input for rubric name and curriculum code -->
                         <div class="form-group d-flex justify-content-between">
 
-                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric" required>
+                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1 required" name="rubric2_name" value="Term 2 Rubric">
                             <div class="d-none d-xs-block">
                             </div>
 
