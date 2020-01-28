@@ -2,6 +2,8 @@
 
 namespace App;
 
+use DB;
+use Auth;
 use App\Rubrics;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,21 +19,22 @@ class WritingTask
     private $rubric_id;
     private $rubric;
     private $status;
+    private $students = array();
 
     public function __construct($id, $name, $desc, $created, $assessed, $teacher, $teaching_period, $rubric_id){
         $this->id = $id;
         $this->name = $name;
         $this->description = $desc;
         $this->created_at = date('d-m-Y', strtotime($created));
-        $this->assessed_at = date('YYYY-MM-DD', strtotime($assessed));
+        $this->assessed_at = date('Y-m-d', strtotime($assessed));
         $this->teacher_created = $teacher;
         $this->teaching_period = $teaching_period;
         $this->rubric_id = $rubric_id;
         $this->rubric = Rubrics::find($this->rubric_id);
 
-        if ($this->assessed_at > date("YYYY-MM-DD")){
+        if ($this->assessed_at > date("Y-m-d")){
             $this->status = 'In Progress';
-        }else{
+        }else if ($this->assessed_at <= date("Y-m-d")){
             $this->status = 'Completed';
         }
     }
@@ -76,6 +79,10 @@ class WritingTask
         return $this->status;
     }
 
+    public function getStudents(){
+        return $this->students;
+    }
+
     public function setName($name){
         $this->name = $name;
     }
@@ -110,5 +117,20 @@ class WritingTask
 
     public function setStatus($status){
         $this->status = $status;
+    }
+
+    /**
+     * populate all the students who are taking the current writing test
+     */
+    public function populateStudents(){
+        $students = DB::table('students')
+        ->join('writting_task_students', 'students.student_Id', 'writting_task_students.fk_student_id')
+        ->select('students.*', 'writting_task_students.status')
+        ->where('writting_task_students.fk_writting_task_id', '=', $this->id)
+        ->get();
+
+        foreach($students as $s){
+            array_push($this->students, $s);
+        }
     }
 }
