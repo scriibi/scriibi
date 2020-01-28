@@ -44,9 +44,9 @@
                                 </select>
                                 <span class="bar"></span>
                                 <label class="ml-3 student-form-label" for="grade">Assessment Level</label><br />
-                            </div>  
+                            </div>
                         </div>
-                                    
+
                         <!-- skills cards deck-->
                         <div class="card-columns p-0 mt-3" >
 

@@ -63,6 +63,7 @@ Route::post('/RubricConfirm', 'RubricsController@store');
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
 Route::post('/assessment-submit', 'WritingTasksController@store');
 Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
+Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');
 
 Route::get('/rubric', function(){
    return view('rubric');
