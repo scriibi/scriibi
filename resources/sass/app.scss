@@ -253,6 +253,28 @@ position: relative;
     color:#4C4D4F;
 }
 
+.assessment-rubric-settings-btn {
+
+    input {
+        display: none;
+    }
+
+    span {
+        background: #FFFFFF;
+        border: 2px solid white;
+        box-sizing: border-box;
+        border-radius: 7px;
+        line-height: 19px;
+        transition: 0.2s;
+        width: 100%;
+        text-align: left;
+
+    }
+    &:hover span, input:checked + span{
+        border: 2px solid #33A849;
+    }
+}
+
 .assessment-settings-btn {
     position: relative;
     border: 2px solid #b8b8b8;
