@@ -31,7 +31,7 @@
                     <div class="card-text m-0">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="text-input" id="assessment_name" name="assessment_name" value="Term 1 Rubric" required />
+                                <input type="text" class="text-input" id="assessment_name" name="rubric1_name" value="Term 1 Rubric" required />
                                 <span class="bar"></span>
                                 <label class="student-form-label ml-3" for="assessment_name">Title</label>
                             </div>
@@ -102,7 +102,7 @@
                         <!-- input for rubric name and curriculum code -->
                             <div class="row mt-4">
                                 <div class="col-8">
-                                    <input type="text" class="text-input" id="assessment_name" name="assessment_name" value="Term 2 Rubric" required />
+                                    <input type="text" class="text-input" id="assessment_name" name="rubric2_name" value="Term 2 Rubric" required />
                                     <span class="bar"></span>
                                     <label class="student-form-label ml-3" for="assessment_name">Title</label>
                                 </div>
@@ -138,7 +138,7 @@
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
-                                                        <input type="checkbox" name="rubric1_skills[]" value={{$skill->getId()}} / >
+                                                        <input type="checkbox" name="rubric2_skills[]" value={{$skill->getId()}} / >
                                                         <span>{{$skill->getName()}}</span>
                                                     </label>
                                                 </li>
