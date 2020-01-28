@@ -48,7 +48,7 @@ $(function(){
         // window.location.href="RubricFlag/"+$(this).val();
         return "/RubricFlag/" + $(this).val();
     });
-    
+
     $("#assessed-marking-level").change(function(){
         if (this.value == "F"){
             $("#level-examples div").addClass("d-none");
