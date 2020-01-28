@@ -25,11 +25,11 @@ class CreateAssessedLevelLabelsTable extends Migration
             $table->foreign('school_type_id_fk')
                 ->references('school_type_id')
                 ->on('school_types');
-                
+
             $table->foreign('school_scriibi_level_id')
                 ->references('scriibi_Level_Id')
                 ->on('scriibi_levels');
-                
+
 
             $table->timestamps();
         });
