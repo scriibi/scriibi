@@ -3,7 +3,7 @@
     <!-- Navbar content -->
     <div class="d-inline-block col-12 col-sm-10 col-md-8 pt-2 pb-2">
         <ul class="nav-header-menu">
-            <li><a class="nav-logo" href="/home"><img class="logo" src="https://www.scriibi.com/wp-content/uploads/2018/04/scriibi-logo-tight-e1525256307991.png" /></a></li>
+            <li><a class="nav-logo" href="/"><img class="logo" src="https://www.scriibi.com/wp-content/uploads/2018/04/scriibi-logo-tight-e1525256307991.png" /></a></li>
             <li><a href="/">HOME</a></li>
             <li><a href="/assessment-list">ASSESSMENT</a></li>
             <li><a href="/rubric-list">RUBRIC</a></li>

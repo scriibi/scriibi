@@ -112,7 +112,7 @@
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
+                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
                                         <li class="text-white ">
 
@@ -142,17 +142,14 @@
                         <!-- end of skill cards columns -->
                     </div>
                     <!-- clear button for form -->
-                    <div class="col-12 row justify-content-end p-0 m-0 mt-3 mb-3">
+                    <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
                     </div>
-                    <div class="d-flex row justify-content-end mt-4 p-0">
+                    <div class="d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
                         <input class="btn btn-rubric-save" type="submit" name="button" id="rubric-save" value="Save my Rubric"></button>
                     </div>
                 </form>
 
-                <div id="dialog" title="Basic dialog">
-                    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-                </div>
             </div>
         </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2 m-0">

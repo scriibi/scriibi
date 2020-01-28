@@ -101,6 +101,7 @@ return array(
     'App\\Rubrics_teachers' => $baseDir . '/app/Rubrics_teachers.php',
     'App\\ScriibiLevels' => $baseDir . '/app/ScriibiLevels.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\WritingTask' => $baseDir . '/app/WritingTask.php',
     'App\\achievements' => $baseDir . '/app/achievements.php',
     'App\\assessed_level_label' => $baseDir . '/app/assessed_level_label.php',
     'App\\classes' => $baseDir . '/app/classes.php',
