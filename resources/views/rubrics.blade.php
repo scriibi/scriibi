@@ -108,7 +108,7 @@
 
 
                         <!-- skills cards deck-->
-                        <div class="card-columns p-0 mx-0 mt-5" >
+                        <div class="card-columns p-0 mx-0 mt-5" id="check-array2">
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
