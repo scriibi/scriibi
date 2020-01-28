@@ -253,11 +253,33 @@ position: relative;
     color:#4C4D4F;
 }
 
+.assessment-rubric-settings-btn {
+
+    input {
+        display: none;
+    }
+
+    span {
+        background: #FFFFFF;
+        border: 2px solid white;
+        box-sizing: border-box;
+        border-radius: 7px;
+        line-height: 19px;
+        transition: 0.2s;
+        width: 100%;
+        text-align: left;
+
+    }
+    &:hover span, input:checked + span{
+        border: 2px solid #33A849;
+    }
+}
+
 .assessment-settings-btn {
     position: relative;
     border: 2px solid #b8b8b8;
     height: 100%;
-    padding: 5px 20px 5px 40px;
+    padding: 5px 15px 5px 30px;
     border-radius: 7px;
     cursor: pointer;
     transition: 0.3s;
@@ -269,14 +291,15 @@ position: relative;
         box-sizing: border-box;
         background-color: #b8b8b8;
         border-radius: 100%;
-        width: 5px;
-        height: 25px;
+        width: 15px;
+        height: 15px;
         transition: 0.2s;
         position: absolute;
         left: 0;
-        top: 0;
+        top: 5px;
         margin-top: 4px;
         margin-left: 5px;
+        padding: 0;
     }
 }
 
@@ -784,6 +807,7 @@ label.frm_checkbox {
     line-height: 19px;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 
     input[type="checkbox"] {
         display: none;
@@ -832,12 +856,12 @@ $skillset-colors-map: (
     border-bottom: 1px solid #C4C4C4;
 }
 .btn-clear{
-    border: 2px solid #33A849;
     box-sizing: border-box;
     border-radius: 7px;
-    width: 124px;
-    height: 45px;
+    width: 80px;
+    height: 44px;
 }
+
 .btn-rubric-save{
     background: #33A849;
     border-radius: 7px;

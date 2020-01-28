@@ -65,7 +65,7 @@
                     <!-- populate more cells as per rubric -->
                     @foreach($rubrics as $r)
                         <div class="body-cells row mt-2 mx-0 ">
-                            <label class="assessment-settings-btn w-100">
+                            <label class="assessment-rubric-settings-btn w-100">
                                 <input type="radio" name="rubric" value={{$r->getId()}}>
                                 <span class="row px-0 mx-0">
                                     <span class="btn col-4 border-0">{{$r->getName()}}</span>
