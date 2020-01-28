@@ -17,8 +17,8 @@
             <div class="card-body">
                 <div class="card-title mb-5 mt-3">
                     <h5><strong>Assessment Details</strong></h5>
-                </div>                            
-                <div class="card-text mb-5 mt-4 row">    
+                </div>
+                <div class="card-text mb-5 mt-4 row">
                     <div class="col-sm-8">
                         <input type="text" class="text-input" id="assessment_name" name="assessment_name" required />
                         <span class="bar"></span>
@@ -44,38 +44,38 @@
                 <div class="mt-3">
                     <label for="assessment_description" class="col-sm-12 m-0 p-0">Additional Notes</label>
                     <textarea id="assessment_description" name="assessment_description" placeholder="e.g. Jason was absent, Over the holiday assessment, etc." class="assessment-description mt-1"></textarea>
-                </div>    
+                </div>
                 <div class="d-flex justify-content-end mt-4 mb-2">
                     <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn border-0">Rubric Selection</button>
                 </div>
             </div>
         </div>
-        <!-- step 2:Rubric Template -->
+        <!-- step 2:Rubric Template to select which rubric to use for assessment-->
         <div id="rubric-template" hidden>
             <div class="pt-1 pb-0 " >
                 <div>
                     <h5><strong>Rubric Selection</strong></h5>
                 </div>
-                <div>    
-                    <!-- populate more cells as per rubric -->
-                    @if(count($rubrics) > 0)
+                <div>
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                        <p class="col-4 text-left px-0">Rubric Title</p>
+                        <p class="col-4 text-left pr-2">Rubric Title</p>
                         <p class="col-8 text-left px-0">Skills</p>
                     </div>
-                        @foreach($rubrics as $r)
-                            <div class="body-cells row mt-2 mx-0 ">
-                                <label class="rubric-settings-btn row">
-                                    <input type="radio" name="rubric" value={{$r->getId()}}>
-                                    <span class="btn col-4">{{$r->getName()}}</span>
-                                    <span class="btn col-8">
-                                    <?php 
+                    <!-- populate more cells as per rubric -->
+                    @foreach($rubrics as $r)
+                        <div class="body-cells row mt-2 mx-0 ">
+                            <label class="assessment-settings-btn w-100">
+                                <input type="radio" name="rubric" value={{$r->getId()}}>
+                                <span class="row px-0 mx-0">
+                                    <span class="btn col-4 border-0">{{$r->getName()}}</span>
+                                    <span class="btn col-8 border-0 pl-1">
+                                    <?php
                                         $skills_array = array();
                                         $traits_skills = $r->getRubricTraitSkills();
                                         foreach($traits_skills as $ts){
                                             $skillObjects = $ts->getSkills();
                                             foreach($skillObjects as $so){
-                                                array_push($skills_array, $so->getName());    
+                                                array_push($skills_array, $so->getName());
                                             }
                                         };
                                     ?>
@@ -105,7 +105,7 @@
                         <p>and using them for your assessments!</p>
                     </div>
                     <button type="button" name="button" class="btn back-btn-disabled" id="backBTN">back</button>
-                    @endif    
+                    @endif
                 </div>
             </div>
         </div>

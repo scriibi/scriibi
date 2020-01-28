@@ -37,7 +37,7 @@
                     foreach($traits_skills as $ts){
                         $skillObjects = $ts->getSkills();
                         foreach($skillObjects as $so){
-                            array_push($skills_array, $so->getName());    
+                            array_push($skills_array, $so->getName());
                         }
                     };
                  ?>
