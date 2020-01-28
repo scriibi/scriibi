@@ -20,7 +20,7 @@
         <div class="row mt-2 ">
             <div class="col-10">
                 <h5 class="Assessment-Studentlist-title">Date :</h5>
-                <p>{{$writingTask->getCreatedAt()}}</p>
+                <p><?php echo (date("d-m-Y", strtotime($writingTask->getAssessedAt()))); ?></p>
             </div>
         </div>
         <div class="row mt-3">
