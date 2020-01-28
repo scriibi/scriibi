@@ -2,9 +2,6 @@
 @section('title', 'Rubrics')
 @section('content')
 
-<?php
-$color_class ='blue';
-?>
 <!-- able to change curriculum code and skills refresh -->
 <!-- tooltip for each skill item ex. description of each skill item -->
 <div class="row">
@@ -49,14 +46,14 @@ $color_class ='blue';
 
 
                         <!-- skills cards deck-->
-                        <div class="card-columns row inline-block p-0 mt-5" >
+                        <div class="card-columns p-0 mt-5" >
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
+                                <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mx-1 mt-1">
                                     <ul class="list-group list-group-flush ">
                                         <li class="text-white m-0 d-flex justify-content-start px-2">
                                             <!-- load icon address-->
@@ -99,7 +96,8 @@ $color_class ='blue';
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
                         <div class="form-group d-flex justify-content-between">
-                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric">
+
+                            <input type="text" class="col-sm-12 input-group-sm rubric-border-box mr-1" name="rubric2_name" value="Term 2 Rubric" required>
                             <div class="d-none d-xs-block">
                             </div>
 
@@ -107,14 +105,14 @@ $color_class ='blue';
 
 
                         <!-- skills cards deck-->
-                        <div class="card-columns row inline-block p-0 mt-5" >
+                        <div class="card-columns p-0 mx-0 mt-5" >
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 col-sm-3 p-0 mb-0 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
+                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
                                         <li class="text-white ">
 
@@ -123,16 +121,18 @@ $color_class ='blue';
                                             <span class="skill-title align-middle w-100 pl-0">{{$to->getName()}}</span>
                                         </li>
                                         <?php $skills = $to->getSkills()?>
-                                        @foreach($skills as $skill)
+
                                             <div class="list-group-box">
+                                                @foreach($skills as $skill)
                                                 <li class="list-group-item">
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox"><input type="checkbox" name="rubric2_skills[]" value={{$skill->getId()}}><span>{{$skill->getName()}}</span>
                                                     </label>
                                                 </li>
+                                                @endforeach
                                             </div>
-                                        @endforeach
+
                                     </ul>
                                 </div>
                             @endforeach
