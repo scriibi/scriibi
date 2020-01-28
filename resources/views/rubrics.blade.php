@@ -138,7 +138,8 @@
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
                                                         <input type="checkbox" name="rubric2_skills[]" value={{$skill->getId()}} / >
-                                                        <span>{{$skill->getName()}}</span>
+                                                        <span class="skill-name">{{$skill->getName()}}</span>
+                                                        <span class="skill-tooltip">{{$skill->getDefinition()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
