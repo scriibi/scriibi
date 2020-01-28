@@ -48,6 +48,37 @@ $(function(){
         // window.location.href="RubricFlag/"+$(this).val();
         return "/RubricFlag/" + $(this).val();
     });
+    
+    $("#assessed-marking-level").change(function(){
+        if (this.value == "F"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-f").removeClass("d-none");
+        }
+        else if (this.value == "1"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-1").removeClass("d-none");
+        }
+        else if (this.value == "2"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-2").removeClass("d-none");
+        }
+        else if (this.value == "3"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-3").removeClass("d-none");
+        }
+        else if (this.value == "4"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-4").removeClass("d-none");
+        }
+        else if (this.value == "5"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-5").removeClass("d-none");
+        }
+        else if (this.value == "6"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-6").removeClass("d-none");
+        }
+    });
 
 });
 
@@ -143,8 +174,12 @@ function toggleRadioBorder(event) {
     }
 }
 
-assessClass.addEventListener("click", toggleRadioBorder, true);
-assessGrade.addEventListener("click", toggleRadioBorder, true);
+if(assessClass !== null) {
+    assessClass.addEventListener("click", toggleRadioBorder, true);  
+}
+if(assessGrade !== null) {
+    assessGrade.addEventListener("click", toggleRadioBorder, true);
+}
 //end of radio button script
 
 // the rubric selection button
@@ -161,25 +196,6 @@ if (backBTN) {
 
 
 // rubric builder page
-
-var saveBTN= document.getElementById("rubric-save");
-console.log(saveBTN);
-var form = document.getElementById("#rubricform");
-
-saveBTN.addEventListener('click',check_skill_checked,true);
-// check if curriculum code is selected
-saveBTN.addEventListener('click',check_cirriculum_code_selected, true);
-
-
-saveBTN.addEventListener('click',function(e){
-    e.preventDefault();
-    check_cirriculum_code_selected();
-    check_skill_checked();
-    if(check_cirriculum_code_selected()&&check_required_inputs()&&check_skill_checked()){
-        e.currentTarget.submit();
-    }
-
-});
 
 // check curriculum code is selected
 function check_cirriculum_code_selected(){
