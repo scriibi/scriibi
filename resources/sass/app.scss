@@ -141,6 +141,10 @@ position: relative;
     transition: 0.3s ease-in;
 }
 
+.checked {
+    border:2px solid #33A849 !important;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -251,20 +255,34 @@ position: relative;
 }
 
 .assessment-settings-btn {
+    position: relative;
+    border: 2px solid #b8b8b8;
+    height: 100%;
+    padding: 5px 20px 5px 40px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s;
+    
     input {
         display: none;
     }
     span {
-        background: #FFFFFF;
-        border: 2px solid #b8b8b8;
         box-sizing: border-box;
-        border-radius: 7px;
-        line-height: 19px;
+        background-color: #b8b8b8;
+        border-radius: 100%;
+        width: 5px;
+        height: 25px;
         transition: 0.2s;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-top: 4px;
+        margin-left: 5px;
     }
-    &:hover span, input:checked + span {
-        border: 2px solid #33A849;
-    }
+}
+
+.assessment-settings-btn input:checked ~ .btn{
+    background-color: #33A849;
 }
 
 .assessment-description {

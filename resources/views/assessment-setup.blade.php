@@ -27,18 +27,18 @@
                     <div class="col-sm-4">
                         <input type="date" class="text-input" id="assessment_date" name="assessment_date" required/>
                         <span class="bar"></span>
-                        <label class="student-form-label ml-3" for="assessment_date">Date</label>
+                        <label class="student-form-label ml-3" for="assessment_date">Writing task completion date</label>
                     </div>
                 </div>
                 <h5 class="assessment-settings-title mt-3">Assessment Settings</h5>
                 <div class="d-flex mt-3 mb-5">
-                    <label class="assessment-settings-btn">
-                        <input type="radio" name="assess" value="mine" checked required />
-                        <span class="btn">Assess <strong>my class</strong></span>
+                    <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
+                        <input type="radio" id="assess-class" class="assess-input" name="assess" value="mine" checked required />
+                        <span class="btn"></span>
                     </label>
-                    <label class="assessment-settings-btn ml-4">
-                        <input type="radio" name="assess" value="all" required />
-                        <span class="btn">Assess <strong>whole grade level</strong></span>
+                    <label for="assess-grade" class="assessment-settings-btn ml-4">Assess <strong>whole grade level</strong>
+                        <input type="radio" id="assess-grade" class="assess-input" name="assess" value="all" required />
+                        <span class="btn"></span>
                     </label>
                 </div>
                 <div class="mt-3">
