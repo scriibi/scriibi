@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Hi,</h3>
+                <h3>Hi {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
@@ -53,7 +53,7 @@
                         </div>
                 </div>
                 <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
-                        <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
+                        <p class="align-self-center p-0 m-0">Your student count: <span></span><strong>{{count($students)}}</strong></p>
                         <a href="/studentlist">
                             <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
                         </a>
@@ -100,23 +100,23 @@
             <!-- Teaching lessons card -->
             <div class="card border-0">
                 <div class="teaching-lesson-title p-2">
-                    <a href="#">
+                    <a href="https://dev.scriibi.com/search-lessons/">
                         <li class="list-group list-group-flush">
                             <span class="pl-2 text-white text-align-middle">Teaching Lessons</span>
                         </li>
                     </a>
                 </div>
-                <a href="#" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
+                <a href="https://dev.scriibi.com/additional-support-material/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
                     <img class="align-self-center mx-2 px-3" src="/images/support-material.png" alt="logo1">
                     <span class="align-self-center mx-2">Support Material</span>
                 </a>
 
-                <a href="#" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                <a href="https://dev.scriibi.com/search-lessons/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3" src="/images/lessons.png" alt="logo2">
                     <span class="align-self-center mx-2">Lessons</span>
                 </a>
 
-                <a href="#" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                <a href="https://dev.scriibi.com/point-of-need-tool/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3" src="/images/point-of-need.png" alt="logo3">
                     <span class="align-self-center mx-2">Point of Need</span>
                 </a>

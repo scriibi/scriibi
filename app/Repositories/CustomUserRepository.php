@@ -94,3 +94,5 @@ class CustomUserRepository extends Auth0UserRepository
         return new Auth0User( $user->getAttributes(), $userinfo['accessToken'] );
     }
 }
+
+

@@ -27,54 +27,56 @@
                     <div class="col-sm-4">
                         <input type="date" class="text-input" id="assessment_date" name="assessment_date" required/>
                         <span class="bar"></span>
-                        <label class="student-form-label ml-3" for="assessment_date">Date</label>
+                        <label class="student-form-label ml-3" for="assessment_date">Writing task completion date</label>
                     </div>
                 </div>
-                <div class="mt-2">
-                    <label for="" class="col-sm-12 m-0 p-0">Description</label>
-                    <input type="textarea" name="assessment_description" value="" class="col-sm-12 mt-1" id="description-for-assessment">
+                <h5 class="assessment-settings-title mt-3">Assessment Settings</h5>
+                <div class="d-flex mt-3 mb-5">
+                    <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
+                        <input type="radio" id="assess-class" class="assess-input" name="assess" value="mine" checked required />
+                        <span class="btn"></span>
+                    </label>
+                    <label for="assess-grade" class="assessment-settings-btn ml-4">Assess <strong>whole grade level</strong>
+                        <input type="radio" id="assess-grade" class="assess-input" name="assess" value="all" required />
+                        <span class="btn"></span>
+                    </label>
                 </div>
-                <h5 class="assessment-settings-title mt-5">Assessment Settings</h5>
-                <div class="d-flex justify-content-start mt-3">
-                    <label class="assessment-settings-btn">
-                        <input type="radio" name="assess" value="mine">
-                        <span class="btn">Assess <strong>my</strong> students</span>
-                    </label>
-                    <label class="assessment-settings-btn ml-4">
-                        <input type="radio" name="assess" value="all">
-                        <span class="btn">Assess <strong>all</strong> students</span>
-                    </label>
+                <div class="mt-3">
+                    <label for="assessment_description" class="col-sm-12 m-0 p-0">Additional Notes</label>
+                    <textarea id="assessment_description" name="assessment_description" placeholder="e.g. Jason was absent, Over the holiday assessment, etc." class="assessment-description mt-1"></textarea>
                 </div>
                 <div class="d-flex justify-content-end mt-4 mb-2">
                     <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn border-0">Rubric Selection</button>
                 </div>
             </div>
         </div>
-        <!-- step 2:Rubric Template -->
+        <!-- step 2:Rubric Template to select which rubric to use for assessment-->
         <div id="rubric-template" hidden>
+            @if (count($rubrics) > 0) 
             <div class="pt-1 pb-0 " >
                 <div>
                     <h5><strong>Rubric Selection</strong></h5>
                 </div>
                 <div>
-                        <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                            <p class="col-4 text-left px-0">Rubric Title</p>
-                            <p class="col-8 text-left px-0">Skills</p>
-                        </div>
-                        <!-- populate more cells as per rubric -->
-                        @foreach($rubrics as $r)
-                            <div class="body-cells row mt-2 mx-0 ">
-                                <label class="rubric-settings-btn row">
-                                    <input type="radio" name="rubric" value={{$r->getId()}}>
-                                    <span class="btn col-4">{{$r->getName()}}</span>
-                                    <span class="btn col-8">
-                                    <?php 
+                    <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
+                        <p class="col-4 text-left pr-2">Rubric Title</p>
+                        <p class="col-8 text-left px-0">Skills</p>
+                    </div>
+                    <!-- populate more cells as per rubric -->
+                    @foreach($rubrics as $r)
+                        <div class="body-cells row mt-2 mx-0 ">
+                            <label class="assessment-settings-btn w-100">
+                                <input type="radio" name="rubric" value={{$r->getId()}}>
+                                <span class="row px-0 mx-0">
+                                    <span class="btn col-4 border-0">{{$r->getName()}}</span>
+                                    <span class="btn col-8 border-0 pl-1">
+                                    <?php
                                         $skills_array = array();
                                         $traits_skills = $r->getRubricTraitSkills();
                                         foreach($traits_skills as $ts){
                                             $skillObjects = $ts->getSkills();
                                             foreach($skillObjects as $so){
-                                                array_push($skills_array, $so->getName());    
+                                                array_push($skills_array, $so->getName());
                                             }
                                         };
                                     ?>
@@ -91,10 +93,20 @@
                                 </label>
                             </div>
                         @endforeach
-                        <div class="d-flex justify-content-between mt-5 mb-2">
-                            <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
-                            <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
-                        </div>
+                    <div class="d-flex justify-content-between mt-5 mb-2">
+                        <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
+
+                        <!-- Has a test inside the input to see if a rubric has been made. Else, disable the submit button -->
+                        <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
+                    </div>
+                    @else
+                    <div class="mt-5 rubric-instruction">
+                        <p>You currently do not have any rubric templates.</p>
+                        <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Rubric+</a> to create your first rubric</p>
+                        <p>and using them for your assessments!</p>
+                    </div>
+                    <button type="button" name="button" class="btn back-btn-disabled" id="backBTN">back</button>
+                    @endif
                 </div>
             </div>
         </div>
