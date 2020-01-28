@@ -1076,6 +1076,7 @@
         {
             "name": "league/flysystem",
             "version": "1.0.46",
+            "version": "1.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",

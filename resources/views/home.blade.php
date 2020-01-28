@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Hi, {{$user}}</h3>
+                <h3>Hi {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
@@ -53,7 +53,7 @@
                         </div>
                 </div>
                 <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
-                        <p class="align-self-center p-0 m-0"><strong>you registered <span></span> students</strong></p>
+                        <p class="align-self-center p-0 m-0">Your student count: <span></span><strong>{{count($students)}}</strong></p>
                         <a href="/studentlist">
                             <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
                         </a>

@@ -9,6 +9,7 @@ use App\Rubrics;
 use App\Rubric;
 use App\classes;
 use App\teachers;
+use App\WritingTask;
 use App\writing_tasks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -102,6 +103,13 @@ class WritingTasksController extends Controller
         return $students_list;
     }
 
+    public function ShowWritingTask($assessment_id){
+        $writing_task_details = writing_tasks::find($assessment_id);
+        $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
+        $newWritingTask->populateStudents();
+        return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -110,7 +118,7 @@ class WritingTasksController extends Controller
      */
     public function show(writing_tasks $writing_tasks)
     {
-        //
+        
     }
 
     /**
