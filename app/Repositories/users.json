@@ -1,16 +1,14 @@
 [
     {
-        "email": "testImport6@scriibi.com",
+        "email": "michael.jack.tonini@gmail.com",
         "email_verified": true,
-        "username": "testImport6",
-        "given_name": "Test6",
-        "family_name": "Import6",
-        "name": "Test Import6",
-        "nickname": "testy6",
+        "given_name": "Test",
+        "family_name": "Scriibi",
+        "name": "Test Scriibi",
         "user_metadata": {
             "school": 1,
             "level": 2,
-            "positions": [1,2]
+            "positions": [1]
         }
     }
 

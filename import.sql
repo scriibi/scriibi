@@ -1,14 +1,10 @@
 insert into curriculum(country, state, description) values('Australia', 'NSW', 'NSW State Language Curriculum');
 insert into curriculum(country, state, description) values('Australia','QLD','Queensland English Curriculum');
 insert into curriculum(country, state, description) values('Australia','VIC','VIC English Curriculum');
-
-
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Primary School', 'Australian Primary School - Level 0 to 6');
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Secondary School', 'Australian Secondary School - Level 7 to 10');
 select * from school_type_identifiers;
-insert into teachers(name, teacher_Email, sub) values('Dave', 'davidnic@gmail.com', 'sub-1');
-select * from teachers;
-insert into schools(name, primary_Contact_Id, curriculum_details_curriculum_details_Id, school_type_id) values('Hawthorn Primary', 1, 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_id) values('Hawthorn Primary', 1, 1);
 select * from schools;
 insert into school_teachers(teachers_user_Id, schools_school_Id) values(1, 1);
 /**insert into school_teachers(teachers_user_Id, schools_school_Id) values(2, 1);*/
