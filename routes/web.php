@@ -15,26 +15,33 @@
  Route::get('/demo', function () {
    return view('demo');
 });
+
 Route::get('/rubrics', function(){
    return view('rubrics');
 });
+
 Route::get('/single-rubric', function(){
    return view('single-rubric');
 });
+
 Route::get('/assessment-studentlist', function(){
    return view('assessment-studentlist');
 });
+
 Route::get('/assessment-marking', function(){
    return view('assessment-marking');
 });
+
 Route::get('/', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
     return view('home', ['students' => $students]);
 })->middleware('auth');
+
 Route::get('/studentlist', function(){
     return view('studentlist');
 });
+
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
 });

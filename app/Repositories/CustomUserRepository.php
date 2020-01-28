@@ -41,6 +41,7 @@ class CustomUserRepository extends Auth0UserRepository
 
     protected function someFunction($teacher, $profile){
 
+    try{
         //insert a new record in teachers-scriibi-levels according to auth0 metadata(level)
             DB::table('teachers_scriibi_levels')->insert(
                 ['teachers_user_Id' => $teacher->user_Id,
@@ -66,6 +67,9 @@ class CustomUserRepository extends Auth0UserRepository
                     ['teachers_user_Id' => $teacher->user_Id,
                         'positions_position_Id' => $pos]);
             }
+        } catch (Exception $e){
+            echo 'Caught exception: ', $e->getMessage(), "\n";
+        }
     }
 
 
