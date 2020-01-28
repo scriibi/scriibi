@@ -1,7 +1,8 @@
 insert into curriculum(country, state, description) values('Australia', 'NSW', 'NSW State Language Curriculum');
 insert into curriculum(country, state, description) values('Australia','QLD','Queensland English Curriculum');
 insert into curriculum(country, state, description) values('Australia','VIC','VIC English Curriculum');
-select * from curriculum;
+
+
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Primary School', 'Australian Primary School - Level 0 to 6');
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Secondary School', 'Australian Secondary School - Level 7 to 10');
 select * from school_type_identifiers;

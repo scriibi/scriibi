@@ -7,8 +7,8 @@
             <li><a href="/">HOME</a></li>
             <li><a href="/assessment-list">ASSESSMENT</a></li>
             <li><a href="/rubric-list">RUBRIC</a></li>
-            <li><a href="https://beta.scriibi.com/search-lessons/">LESSONS</a></li>
-            <li><a href="https://beta.scriibi.com/additional-support-material/">SUPPORT MATERIAL</a></li>
+            <li><a href="https://dev.scriibi.com/search-lessons/">LESSONS</a></li>
+            <li><a href="https://dev.scriibi.com/additional-support-material/">SUPPORT MATERIAL</a></li>
             @if (Route::has('login'))
                 @auth
                 <li class="float-right"><a href="{{ route('logout') }}"">LOG OUT</a></li>
