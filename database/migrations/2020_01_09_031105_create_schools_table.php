@@ -16,7 +16,7 @@ class CreateSchoolsTable extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->bigIncrements('school_Id');
             $table->string('name', 45);
-            $table->bigInteger('primary_Contact_Id')->unsigned();   
+            $table->bigInteger('primary_Contact_Id')->unsigned()->nullable();
             $table->bigInteger('curriculum_details_curriculum_details_Id')->unsigned();
             $table->bigInteger('school_type_id')->unsigned();
             $table->unique('school_Id');
@@ -26,7 +26,7 @@ class CreateSchoolsTable extends Migration
                 ->on('teachers')
                 ->onDelete('no action')
                 ->onUpdate('no action');
-                
+
             $table->foreign('curriculum_details_curriculum_details_Id')
                 ->references('curriculum_Id')
                 ->on('curriculum')

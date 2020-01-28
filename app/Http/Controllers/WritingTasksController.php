@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use Exception;
+use App\Rubrics;
 use App\Rubric;
 use App\classes;
 use App\teachers;
+use App\WritingTask;
 use App\writing_tasks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,7 +23,7 @@ class WritingTasksController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->get();
     }
 
     /**
@@ -46,17 +48,11 @@ class WritingTasksController extends Controller
         try{
             $assessment_title = $request->input('assessment_name');
             $assessment_date = $request->input('assessment_date');
-            //dd($assessment_date);
             $assessment_description = $request->input('assessment_description');
             $assessment_setting = $request->input('assess');
             $assessment_rubric = $request->input('rubric');
             
-            $rubric_details = DB::table('rubrics_teachers')
-                ->join('rubrics', 'rubrics_teachers.rubrics_rubric_Id', 'rubrics.rubric_Id')
-                ->select('rubrics.*')
-                ->where('rubrics_teachers.teachers_user_Id', '=', Auth::user()->user_Id)
-                ->where('rubrics_teachers.rubrics_rubric_Id', '=', $assessment_rubric)->first();
-                
+            $rubric_details = Rubrics::find($assessment_rubric);
             $rubric = new Rubric($rubric_details->rubric_Id, $rubric_details->rubric_Name, $rubric_details->created_at);
             $rubric->populateTraits();
             $rubric->getSkillsByRubric();
@@ -66,10 +62,10 @@ class WritingTasksController extends Controller
             foreach($students as $student){
                 array_push($students_list, $student);
             }
-            $writing_task_record = array('writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date, 'created_By_Teacher_User_Id' => Auth::user()->user_Id, 'teaching_period_Id' => 1, 'task_name' => $assessment_title);
+            $writing_task_record = array('writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date, 'created_By_Teacher_User_Id' => Auth::user()->user_Id, 'teaching_period_Id' => 1, 'task_name' => $assessment_title, 'fk_rubric_id' => $assessment_rubric);
             $newWritingTaskId = DB::table('writing_tasks')->insertGetId($writing_task_record);
             $allTraits = $rubric->getRubricTraitSkills();
-
+            
             foreach($allTraits as $trait){
                 $skills = $trait->getSkills();
                 foreach($skills as $skill){
@@ -91,7 +87,10 @@ class WritingTasksController extends Controller
         if($assessment_setting == 'mine'){
             $classes = teachers::find(Auth::user()->user_Id)->classes;
             foreach($classes as $class){
-                array_push($students_list, DB::table('classes_students')->select('students_student_Id')->where('classes_students.classes_class_Id', '=', $class->class_Id)->get());
+                $students_in_class = DB::table('classes_students')->select('students_student_Id')->where('classes_students.classes_class_Id', '=', $class->class_Id)->get();
+                foreach($students_in_class as $sic){
+                    array_push($students_list, $sic->students_student_Id);
+                }
             }
         }else{
             $teacher_grade = DB::table('teachers_scriibi_levels')->select('teachers_scriibi_levels.scriibi_levels_scriibi_Level_Id')->where('teachers_scriibi_levels.teachers_user_Id', '=', Auth::user()->user_Id)->first();
@@ -104,6 +103,13 @@ class WritingTasksController extends Controller
         return $students_list;
     }
 
+    public function ShowWritingTask($assessment_id){
+        $writing_task_details = writing_tasks::find($assessment_id);
+        $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
+        $newWritingTask->populateStudents();
+        return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -112,7 +118,7 @@ class WritingTasksController extends Controller
      */
     public function show(writing_tasks $writing_tasks)
     {
-        //
+        
     }
 
     /**

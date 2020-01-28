@@ -12,12 +12,10 @@
         </div>
         <!-- show no rubric created message -->
         @if(count($rubrics)===0)
-        <div class="mt-5 rubric-instruction d-flex justify-content-center">
-            <div class="">
-                <p>You currently do not have any rubric templates.</p>
-                <p>Click the <button ype="button" name="button" class="btn new-rubric px-4">New Rubric+</button> to create your first rubric</p>
-                <p>and using them for your assessments!</p>
-            </div>
+        <div class="mt-5 rubric-instruction">
+            <p>You currently do not have any rubric templates.</p>
+            <p>Click the <a href="/rubrics" class="btn new-rubric px-4">New Rubric +</a> to create your first rubric</p>
+            <p>and using them for your assessments!</p>
         </div>
 
         <!-- show list of rubric created -->
@@ -39,7 +37,7 @@
                     foreach($traits_skills as $ts){
                         $skillObjects = $ts->getSkills();
                         foreach($skillObjects as $so){
-                            array_push($skills_array, $so->getName());    
+                            array_push($skills_array, $so->getName());
                         }
                     };
                  ?>
