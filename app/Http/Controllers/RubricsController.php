@@ -49,8 +49,8 @@ class RubricsController extends Controller
         $rubric1_skills = $request->input('rubric1_skills');
         $rubric2_skills = $request->input('rubric2_skills');
 
-        $new_rubric_1 = array('scriibi_levels_scriibi_level_Id' => 1, 'rubric_Name' => $rubric1_name);
-        $new_rubric_2 = array('scriibi_levels_scriibi_level_Id' => 1, 'rubric_Name' => $rubric2_name);
+        $new_rubric_1 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric1_name);
+        $new_rubric_2 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric2_name);
         
         $newRubricId1 = DB::table('rubrics')->insertGetId($new_rubric_1);
         $newRubricId2 = DB::table('rubrics')->insertGetId($new_rubric_2);

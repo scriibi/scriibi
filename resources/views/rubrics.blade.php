@@ -31,9 +31,9 @@
                     <div class="card-text m-0">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="text-input" id="assessment_name" name="rubric1_name" value="Term 1 Rubric" required />
+                                <input type="text" class="text-input" id="assessment_name1" name="rubric1_name" value="Term 1 Rubric" required/>
                                 <span class="bar"></span>
-                                <label class="student-form-label ml-3" for="assessment_name">Title</label>
+                                <label class="student-form-label ml-3" for="assessment_name1">Title</label>
                             </div>
                             <div class="col-4">
                                 <select class="select-input" name="assessed_level" id="select_curriculum_code">
@@ -48,7 +48,7 @@
                         </div>
 
                         <!-- skills cards deck-->
-                        <div class="card-columns p-0 mt-3" >
+                        <div class="card-columns p-0 mt-3" id="check-array1">
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
@@ -60,7 +60,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -75,8 +75,9 @@
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
-                                                        <input type="checkbox" name="rubric1_skills[]" value={{$skill->getId()}} / >
-                                                        <span>{{$skill->getName()}}</span>
+                                                        <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
+                                                        <span class="skill-name">{{$skill->getName()}}</span>
+                                                        <span class="skill-tooltip">{{$skill->getDefinition()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
@@ -100,9 +101,9 @@
                         <!-- input for rubric name and curriculum code -->
                             <div class="row mt-4">
                                 <div class="col-8">
-                                    <input type="text" class="text-input" id="assessment_name" name="rubric2_name" value="Term 2 Rubric" required />
+                                    <input type="text" class="text-input" id="assessment_name2" name="rubric2_name" value="Term 2 Rubric" required/>
                                     <span class="bar"></span>
-                                    <label class="student-form-label ml-3" for="assessment_name">Title</label>
+                                    <label class="student-form-label ml-3" for="assessment_name2">Title</label>
                                 </div>
                                 <div class="col-4"></div>
                             </div>
@@ -121,7 +122,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -136,8 +137,9 @@
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
-                                                        <input type="checkbox" name="rubric2_skills[]" value={{$skill->getId()}} / >
-                                                        <span>{{$skill->getName()}}</span>
+                                                        <input type="checkbox"class="skill-checkbox2" name="rubric2_skills[]" value={{$skill->getId()}} / >
+                                                        <span class="skill-name">{{$skill->getName()}}</span>
+                                                        <span class="skill-tooltip">{{$skill->getDefinition()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
