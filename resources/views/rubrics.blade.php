@@ -105,14 +105,14 @@
 
 
                         <!-- skills cards deck-->
-                        <div class="card-columns p-0 mt-5" >
+                        <div class="card-columns p-0 mx-0 mt-5" >
 
                             <!-- load cards from skill-categories DB; you should see 7 of them;
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                <div class="card border-0 p-0  mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
+                                <div class="card border-0 p-0 mx-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?>  mx-1 mt-1">
                                     <ul class="list-group list-group-flush frm_checkbox ">
                                         <li class="text-white ">
 
