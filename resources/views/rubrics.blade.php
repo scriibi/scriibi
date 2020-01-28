@@ -52,22 +52,45 @@
                             <!-- skills cards deck-->
                             <div class="card-columns p-0 mt-3" >
 
-                                <!-- load cards from skill-categories DB; you should see 7 of them;
-                                each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
+                        <!-- skills cards deck-->
+                        <div class="card-columns p-0 mx-0 mt-5" id="check-array2">
 
-                                <!-- content inside each skill card -->
-                                @foreach($traitObjects as $to)
-                                    @if (count($to->getSkills()) > 0)
-                                        <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
-                                            <ul class="list-group list-group-flush ">
-                                                <li class="text-white m-0 d-flex justify-content-start px-2">
-                                                    <!-- load icon address-->
-                                                    <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
-                                                    <!-- load trait title -->
-                                                    <span class="skill-title w-100 pl-0 align-self-center px-2">
-                                                        <input type="text" name="trait_id" value={{$to->getId()}} hidden />
-                                                        {{$to->getName()}}
-                                                    </span>
+                            <!-- load cards from skill-categories DB; you should see 7 of them;
+                            each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
+
+                            <!-- content inside each skill card -->
+                            @foreach($traitObjects as $to)
+                                @if (count($to->getSkills()) > 0)
+                                    <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
+                                        <ul class="list-group list-group-flush ">
+                                            <li class="text-white m-0 d-flex justify-content-start px-2">
+                                                <!-- load icon address-->
+                                                <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
+                                                <!-- load trait title -->
+                                                <span class="skill-title w-100 pl-0 align-self-center px-2">
+                                                    <input type="text" name="trait_id" value={{$to->getId()}} hidden />
+                                                    {{$to->getName()}}
+                                                </span>
+
+                                            </li>
+                                            <?php $skills = $to->getSkills()?>
+                                            <div class="list-group-box">
+                                            @foreach($skills as $skill)
+                                                <li class="list-group-item">
+                                                    <!-- load each skill item in the skills category;
+                                                    the number of skills items in the skill category vary -->
+                                                    <label class="frm_checkbox">
+                                                        <input type="checkbox" name="rubric2_skills[]" value={{$skill->getId()}} / >
+                                                        <span>{{$skill->getName()}}</span>
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                            </div>
+                                        </ul>
+                                    </div>
+                                @endif
+                            @endforeach
+                            <!-- end of each skill card -->
 
                                                 </li>
                                                 <?php $skills = $to->getSkills()?>

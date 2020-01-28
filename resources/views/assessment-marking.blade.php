@@ -81,7 +81,7 @@
 
                         <div class="text-center">
                             <p>Here is the criteria
-                             </p>
+                            </p>
                             <p class="milestone">VCEAL20548, ACLE25487</p>
 
                         </div>
