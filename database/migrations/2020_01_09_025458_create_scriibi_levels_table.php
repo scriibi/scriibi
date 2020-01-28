@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use DB;
 
 class CreateScriibiLevelsTable extends Migration
 {
@@ -19,6 +20,8 @@ class CreateScriibiLevelsTable extends Migration
             $table->timestamps();
 
             $table->unique('scriibi_Level_Id');
+
+            DB::statement("ALTER TABLE scriibi_levels AUTO_INCREMENT = 100;");
         });
     }
 

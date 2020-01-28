@@ -1,16 +1,18 @@
 [
     {
-        "email": "michael.jack.tonini@gmail.com",
+        "email": "",
         "email_verified": true,
-        "given_name": "Test",
-        "family_name": "Scriibi",
-        "name": "Test Scriibi",
+        "given_name": "",
+        "family_name": "",
+        "name": " ",
         "user_metadata": {
             "school": 1,
             "level": 2,
             "positions": [1]
         }
-    }
+    },
+
+
 
 ]
 

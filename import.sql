@@ -3,12 +3,10 @@ insert into curriculum(country, state, description) values('Australia','QLD','Qu
 insert into curriculum(country, state, description) values('Australia','VIC','VIC English Curriculum');
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Primary School', 'Australian Primary School - Level 0 to 6');
 insert into school_type_identifiers(school_type_identifier_name, school_type_identifier_description) values('Secondary School', 'Australian Secondary School - Level 7 to 10');
-select * from school_type_identifiers;
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_id) values('Hawthorn Primary', 1, 1);
-select * from schools;
-insert into school_teachers(teachers_user_Id, schools_school_Id) values(1, 1);
-/**insert into school_teachers(teachers_user_Id, schools_school_Id) values(2, 1);*/
-select * from school_teachers;
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_id) values('Mount Elwood Primary', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_id) values('River Primary', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_id) values('Armadale Primary', 1, 1);
 insert into school_types(fk_curriculum_id, fk_school_type_id, type_name) values(1, 1, 'primary');
 insert into school_types(fk_curriculum_id, fk_school_type_id, type_name) values(2, 1, 'secondary');
 select * from school_types;
