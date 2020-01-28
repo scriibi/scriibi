@@ -52,6 +52,7 @@
         </div>
         <!-- step 2:Rubric Template to select which rubric to use for assessment-->
         <div id="rubric-template" hidden>
+            @if (count($rubrics) > 0) 
             <div class="pt-1 pb-0 " >
                 <div>
                     <h5><strong>Rubric Selection</strong></h5>
