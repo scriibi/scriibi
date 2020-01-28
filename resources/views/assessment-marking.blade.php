@@ -211,14 +211,57 @@
         </div>
         <div class="d-flex justify-content-end mt-1  mx-2">
             <!-- value attribute: Assessed level -->
-            <input class="w-100 mx-2 text-right "type="text" name="assessed-level" value="LEVEL 2" readonly>
+            <select id="assessed-marking-level">
+                <option value="F">Foundation</option>
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4</option>
+                <option value="5">Level 5</option>
+                <option value="6">Level 6</option>
+            </select>
         </div>
         <div class="mt-5" >
             <textarea class="text-area-style"name="name" rows="8" cols="80" placeholder="Comments/Notes" id="text-area-style"></textarea>
         </div>
 
         <div class="d-flex justify-content-center mt-5 ">
-            <a href="/level-example" target="_blank" class="btn level-example-btn px-4"type="button" name="button">Level Example</a>
+            <h5><strong>Student Leveled Samples</strong></h5>
+        </div>
+        <div id="level-examples" class="d-flex justify-content-center mt-5 ">
+            <div id="level-f" class="">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%20F.pdf">Foundation Level</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%201.pdf">Level 1</a>
+            </div>
+            <div id="level-1" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%20F.pdf">Foundation Level</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%201.pdf">Level 1</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%202.pdf">Level 2</a>
+            </div>
+            <div id="level-2" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%201.pdf">Level 1</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%202.pdf">Level 2</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%203.pdf">Level 3</a>
+            </div>
+            <div id="level-3" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%202.pdf">Level 2</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%203.pdf">Level 3</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%204.pdf">Level 4</a>
+            </div>
+            <div id="level-4" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%203.pdf">Level 3</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%204.pdf">Level 4</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%205.pdf">Level 5</a>
+            </div>
+            <div id="level-5" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%204.pdf">Level 4</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%205.pdf">Level 5</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%206.pdf">Level 6</a>
+            </div>
+            <div id="level-6" class="d-none">
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%205.pdf">Level 5</a>
+                <a target="_blank" class="d-block mb-3" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%206.pdf">Level 6</a>
+            </div>
         </div>
         <div class="d-flex justify-content-center mt-5 ">
             <button class="btn save-marking-btn px-4"type="button" name="button">Save Marking</button>

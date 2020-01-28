@@ -48,6 +48,37 @@ $(function(){
         // window.location.href="RubricFlag/"+$(this).val();
         return "/RubricFlag/" + $(this).val();
     });
+    
+    $("#assessed-marking-level").change(function(){
+        if (this.value == "F"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-f").removeClass("d-none");
+        }
+        else if (this.value == "1"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-1").removeClass("d-none");
+        }
+        else if (this.value == "2"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-2").removeClass("d-none");
+        }
+        else if (this.value == "3"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-3").removeClass("d-none");
+        }
+        else if (this.value == "4"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-4").removeClass("d-none");
+        }
+        else if (this.value == "5"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-5").removeClass("d-none");
+        }
+        else if (this.value == "6"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-6").removeClass("d-none");
+        }
+    });
 
 });
 
@@ -148,9 +179,6 @@ if (assessClass !== null) {
 if (assessGrade !== null) {
     assessGrade.addEventListener("click", toggleRadioBorder, true);
 }//end of radio button script
-
-
-
 
 // the rubric selection button
 var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");
