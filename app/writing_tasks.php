@@ -33,4 +33,8 @@ class writing_tasks extends Model
     public function Rubrics(){
         return $this->belongsTo('App\Rubrics', 'fk_rubric_id', 'rubric_Id');
     }
+
+    public function skills(){
+        return $this->belongsToMany('App\skills', 'tasks_skills', 'writing_tasks_writing_task_Id', 'skills_skill_Id');
+    }
 }
