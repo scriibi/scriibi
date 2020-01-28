@@ -192,13 +192,14 @@ function check_required_inputs() {
 }
 
 // check at least one skill- radio is selected
-// function check_skill_checked(){
-//     var atLeastOneIsChecked = $("input[name=""check_array[]""]:checked").length > 0;
-//     if(!atLeastOneIsChecked){
-//          alert("Please select at least one skill");
-//     }
-//
-// }
+function check_skill_checked(){
+    var atLeastOneIsChecked_rubric1 = $('input[name="rubric1_skills[]"]:checked');
+    var atLeastOneIsChecked_rubric2 = $('input[name="rubric2_skills[]"]:checked');
+    if(atLeastOneIsChecked_rubric1.length()==0 && atLeastOneIsChecked_rubric2.length()== 0){
+         alert("Please select at least one skill");
+    }
+
+}
 
 //init function (only executes when onload)
 function init() {

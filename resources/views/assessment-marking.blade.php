@@ -218,7 +218,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5 ">
-            <a href="/level-example-{1}}" target="_blank" class="btn level-example-btn px-4"type="button" name="button">Level Example</a>
+            <a href="/level-example" target="_blank" class="btn level-example-btn px-4"type="button" name="button">Level Example</a>
         </div>
         <div class="d-flex justify-content-center mt-5 ">
             <button class="btn save-marking-btn px-4"type="button" name="button">Save Marking</button>

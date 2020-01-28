@@ -60,7 +60,11 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
+<<<<<<< HEAD
                                                 <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
+=======
+                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+>>>>>>> 095886c5d1ac7920d48be80e3621e94a40d89c05
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -76,7 +80,8 @@
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
                                                         <input type="checkbox" name="rubric1_skills[]" value={{$skill->getId()}} / >
-                                                        <span>{{$skill->getName()}}</span>
+                                                        <span class="skill-name">{{$skill->getName()}}</span>
+                                                        <span class="skill-tooltip">{{$skill->getDefinition()}}</span>
                                                     </label>
                                                 </li>
                                             @endforeach
@@ -121,7 +126,11 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
+<<<<<<< HEAD
                                                 <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
+=======
+                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+>>>>>>> 095886c5d1ac7920d48be80e3621e94a40d89c05
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -157,7 +166,7 @@
                     </div>
                     <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
-                    </div>        
+                    </div>
                 </form>
 
             </div>
