@@ -30,4 +30,8 @@ class skills extends Model
     public function task_skills_result(){
         return $this->hasMany('App\task_skills_results', 'skills_skill_Id', 'skill_Id');
     }
+
+    public function writing_tasks(){
+        return $this->belongsToMany('App\writing_tasks', 'tasks_skills', 'skills_skill_Id', 'writing_tasks_writing_task_Id');
+    }
 }
