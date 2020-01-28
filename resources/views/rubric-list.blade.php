@@ -8,13 +8,13 @@
     <div class="col-12 col-sm-10 col-md-8">
         <div class="row d-flex justify-content-between mb-3 mt-5">
             <h5 class="rubric-list-title">Rubric List</h5>
-            <a href="/rubrics" class="btn new-rubric p-3">New Rubric +</a>
+            <a href="/rubrics" class="btn assessment-btn p-2">New Rubric +</a>
         </div>
         <!-- show no rubric created message -->
         @if(count($rubrics)===0)
         <div class="mt-5 rubric-instruction">
             <p>You currently do not have any rubric templates.</p>
-            <p>Click the <a href="/rubrics" class="btn new-rubric px-4">New Rubric +</a> to create your first rubric</p>
+            <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Rubric +</a> to create your first rubric</p>
             <p>and using them for your assessments!</p>
         </div>
 
