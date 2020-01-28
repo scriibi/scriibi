@@ -28,6 +28,7 @@ $(function(){
            console.log('error');
            console.log(data);
        }
+
    });
 
     // side-bar collapse function
@@ -162,42 +163,40 @@ if (backBTN) {
 // rubric builder page
 
 var saveBTN= document.getElementById("rubric-save");
-if(saveBTN){
-    saveBTN.addEventListener('click',check_required_inputs,true);
-    saveBTN.addEventListener('click',check_skill_checked,true);
-    saveBTN.addEventListener('click',check_cirriculum_code_selected, true);
-}
+console.log(saveBTN);
+var form = document.getElementById("#rubricform");
 
+saveBTN.addEventListener('click',check_skill_checked,true);
+// check if curriculum code is selected
+saveBTN.addEventListener('click',check_cirriculum_code_selected, true);
+
+
+saveBTN.addEventListener('click',function(e){
+    e.preventDefault();
+    check_cirriculum_code_selected();
+    check_skill_checked();
+    if(check_cirriculum_code_selected()&&check_required_inputs()&&check_skill_checked()){
+        e.currentTarget.submit();
+    }
+
+});
+
+// check curriculum code is selected
 function check_cirriculum_code_selected(){
-    var selected_option = $('#select_curriculum_code option:selected');
-    $("#select_curriculum_code option").each(function(){
-        if(this.selected){
+    var error = "";
+    var curriculum_code = document.getElementById("select_curriculum_code").value;
+    if (curriculum_code == " "){
+        error += "You need a curriculum_code \n";
+    }
 
-        }
-        else{
-            alert("please select a cirriculum code!");
-        }
-    });
+    var skill_items = document.getElementById("check-array2").querySelector(".skill-checkbox2");
+    console.log(skill_items);
 
-}
-// check required fields filled before save
-function check_required_inputs() {
-    $('.required').each(function(){
-        if( $(this).val() == "" ){
-          alert("Please give a rubric title");
-          return false;
-        }
-    });
-    return true;
 }
 
 // check at least one skill- radio is selected
 function check_skill_checked(){
-    var atLeastOneIsChecked_rubric1 = $('input[name="rubric1_skills[]"]:checked');
-    var atLeastOneIsChecked_rubric2 = $('input[name="rubric2_skills[]"]:checked');
-    if(atLeastOneIsChecked_rubric1.length()==0 && atLeastOneIsChecked_rubric2.length()== 0){
-         alert("Please select at least one skill");
-    }
+    var error="";
 
 }
 

@@ -60,7 +60,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -122,7 +122,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getIcon()}}" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
