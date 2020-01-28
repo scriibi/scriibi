@@ -60,7 +60,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -121,7 +121,7 @@
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
-                                                <img src="/trait-icon/Ideas.png" alt="ideas" class="align-self-center">
+                                                <img src="/trait-icon/{{$to->getName()}}.png" alt="ideas" class="align-self-center">
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
                                                     <input type="text" name="trait_id" value={{$to->getId()}} hidden />
@@ -157,7 +157,7 @@
                     </div>
                     <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
-                    </div>        
+                    </div>
                 </form>
 
             </div>
