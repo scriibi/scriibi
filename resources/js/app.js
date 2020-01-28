@@ -160,27 +160,46 @@ if (backBTN) {
 
 
 // rubric builder page
-//
-// var saveBTN= document.getElementById("rubric-save");
-// if(saveBTN){
-//     saveBTN.addEventListener('click',check_required_inputs,true);
-//     saveBTN.addEventListener('click',check_skill_checked,true);
-// }
-//check each fields filled before save
-// function check_required_inputs() {
-//     $('.required').each(function(){
-//         if( $(this).val() == "" ){
-//           alert('Please give a rubric title');
-//           return false;
-//         }
-//     });
-//     return true;
-// }
-//check at least one skill- radio is selected
+
+var saveBTN= document.getElementById("rubric-save");
+if(saveBTN){
+    saveBTN.addEventListener('click',check_required_inputs,true);
+    saveBTN.addEventListener('click',check_skill_checked,true);
+    saveBTN.addEventListener('click',check_cirriculum_code_selected, true);
+}
+
+function check_cirriculum_code_selected(){
+    var selected_option = $('#select_curriculum_code option:selected');
+    $("#select_curriculum_code option").each(function(){
+        if(this.selected){
+
+        }
+        else{
+            alert("please select a cirriculum code!");
+        }
+    });
+
+}
+// check required fields filled before save
+function check_required_inputs() {
+    $('.required').each(function(){
+        if( $(this).val() == "" ){
+          alert("Please give a rubric title");
+          return false;
+        }
+    });
+    return true;
+}
+
+// check at least one skill- radio is selected
 // function check_skill_checked(){
-//     var atLeastOneIsChecked = $('input[name="check_array[]"]:checked').length > 0;
+//     var atLeastOneIsChecked = $("input[name=""check_array[]""]:checked").length > 0;
+//     if(!atLeastOneIsChecked){
+//          alert("Please select at least one skill");
+//     }
 //
 // }
+
 //init function (only executes when onload)
 function init() {
     var assessmentDateField = document.getElementById("assessment_date");

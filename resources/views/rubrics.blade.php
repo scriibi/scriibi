@@ -84,16 +84,12 @@
                         </div>
                         <!-- end of skill cards columns -->
                     </div>
-
-
                 </div>
                 <!-- end of form 1 -->
 
                 <!-- divider between form 1 and 2 -->
                 <div class="d-none d-sm-block form-break mt-2 mb-0 p-0">
                 </div>
-
-
                 <div class="card-body pb-0">
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
