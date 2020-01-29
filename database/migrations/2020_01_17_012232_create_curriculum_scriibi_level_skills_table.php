@@ -29,8 +29,8 @@ class CreateCurriculumScriibiLevelSkillsTable extends Migration
                 ->onUpdate('no action');
 
             $table->foreign('skill_Id', 'fk_curriculum-scriibi-level-skills_scr-skills1')
-                ->references('curriculum_Id')
-                ->on('curriculum')
+                ->references('skill_Id')
+                ->on('skills')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

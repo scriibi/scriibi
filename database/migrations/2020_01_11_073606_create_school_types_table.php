@@ -17,7 +17,6 @@ class CreateSchoolTypesTable extends Migration
             $table->bigIncrements('school_type_id');
             $table->bigInteger('fk_curriculum_id')->unsigned();
             $table->bigInteger('fk_school_type_id')->unsigned();
-            $table->string('type_name', 45);
 
             $table->unique('school_type_id');
             $table->unique(['fk_curriculum_id', 'fk_school_type_id']);
@@ -30,7 +29,7 @@ class CreateSchoolTypesTable extends Migration
             $table->foreign('fk_school_type_id')
                 ->references('school_type_identifier_id')
                 ->on('school_type_identifiers');
-            
+
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateLocalCriteriasTable extends Migration
         Schema::create('local_criterias', function (Blueprint $table) {
             $table->bigIncrements('local_criteria_Id');
             $table->string('curriculum_code', 45)->nullable();
-            $table->string('description_elaboration', 400)->nullable();
+            $table->text('description_elaboration', 1500)->nullable();
 
             $table->unique('local_criteria_Id');
             $table->timestamps();
