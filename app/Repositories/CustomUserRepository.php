@@ -67,7 +67,7 @@ class CustomUserRepository extends Auth0UserRepository
 
             } catch (\Exception $e){
                 DB::rollback();
-                return redirect('/')->withErrors($e);
+                return redirect('https://scriibi.com/');
             }
         }
         else{

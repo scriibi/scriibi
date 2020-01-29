@@ -21,8 +21,8 @@ class CreateRubricsTable extends Migration
             $table->unique('rubric_Id');
 
             $table->foreign('scriibi_levels_scriibi_level_Id')
-                ->references('skill_Id')
-                ->on('skills')
+                ->references('scriibi_Level_Id')
+                ->on('scriibi_levels')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
