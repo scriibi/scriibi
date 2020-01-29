@@ -33,83 +33,89 @@
         <div class="scroll-panel mx-0 px-0">
 
             <!-- pop the first skill card -->
-            <div class="card px-0 mx-0 mb-1 border-0">
-                <div class="card-body p-0">
-                    <div class="card-title score-items mb-0 radioBTNs-section ml-3">
-                        <div class="w-100 d-flex justify-content-between arrow-up-btn">
-                            <!-- load the first trait name -->
-                            <span class="align-self-center">first skill trait name</span>
-                            <a class="btn btn-link align-self-center criteria-btn" href="#load-skill-id" data-toggle="collapse">
-                                <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
-                            </a>
+            @foreach($skillCards as $sc)
+                <div class="card px-0 mx-0 mb-1 border-0">
+                    <div class="card-body p-0">
+                        <div class="card-title score-items mb-0 radioBTNs-section ml-3">
+                            <div class="w-100 d-flex justify-content-between arrow-up-btn">
+                                <!-- load the first trait name -->
+                                <span class="align-self-center">{{$sc->getName()}}</span>
+                                <a class="btn btn-link align-self-center criteria-btn" href="#load-skill-id" data-toggle="collapse">
+                                    <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
+                                </a>
+                            </div>
+                            <div class="w-100 text-center align-self-center">
+                                <label class="score-radio m-0 p-0 ">
+                                    <!-- please load skill id in the name attribute -->
+                                    <input class="m-0 p-0" type="radio" name="score" value="score1"><span></span>
+                                </label>
+                            </div>
+                            <div class="w-100 text-center align-self-center">
+                                <label class="score-radio m-0 p-0">
+                                    <!-- please load skill id in the name attribute -->
+                                    <input class="" type="radio" name="score" value="score2"><span></span>
+                                </label>
+                            </div>
+                            <div class="w-100 text-center align-self-center">
+                                <label class="score-radio m-0 p-0">
+                                    <!-- please load skill id in the name attribute -->
+                                    <input class="" type="radio" name="score" value="score3"><span></span>
+                                </label>
+                            </div>
+                            <div class="w-100 text-center align-self-center">
+                                <label class="score-radio m-0 p-0">
+                                    <!-- please load skill id in the name attribute -->
+                                    <input class="" type="radio" name="score" value="score4"><span></span>
+                                </label>
+                            </div>
+                            <div class="w-100 text-center align-self-center">
+                                <label class="score-radio m-0 p-0">
+                                    <!-- please load skill id in the name attribute -->
+                                    <input class="" type="radio" name="score" value="score5"><span></span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0 ">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="m-0 p-0" type="radio" name="score" value="score1"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" name="score" value="score2"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" name="score" value="score3"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" name="score" value="score4"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" name="score" value="score5"><span></span>
-                            </label>
-                        </div>
-                    </div>
-                    <!-- criteria details section-->
-                    <div class="card-text score-items collapse show criteria-section " id="load-skill-id">
-                        <div class="">
-                        </div>
+                        <!-- criteria details section-->
+                        <div class="card-text score-items collapse show criteria-section " id="load-skill-id">
+                            <div class="">
+                            </div>
+                            <?php
+                                $global = $sc->getGlobalCriteria();
+                                $local = $sc->getLocalCriteria();
+                            ?>
+                            <div class="text-center">
+                                <p>{{$global[0]}}
+                                </p>
+                                
+                                <p class="milestone"></p>
+                                
+                            </div>
+                            <div class="">
 
-                        <div class="text-center">
-                            <p>Here is the criteria
-                            </p>
-                            <p class="milestone">VCEAL20548, ACLE25487</p>
+                            </div>
+                            <div class="text-center">
+                                <p>{{$global[1]}}
+                                </p>
+                               
+                                <p class="milestone"></p>
+                              
 
-                        </div>
-                        <div class="">
+                            </div>
+                            <div class="">
 
-                        </div>
-                        <div class="text-center">
-                            <p>Here is the criteria
-                            </p>
-                            <p class="milestone">VCEAL6844</p>
-
-                        </div>
-                        <div class="">
-
-                        </div>
-                        <div class="text-center">
-                            <p>Here is the criteria
-
-                            </p>
-                            <p class="milestone">
-
-                            </p>
+                            </div>
+                            <div class="text-center">
+                                <p>{{$global[2]}}</p>
+                               
+                                <p class="milestone"></p>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
             <!-- /end of first skill card -->
-            
+
         </div>
     </div>
     <!-- sidebar btn to close or open -->
@@ -121,11 +127,11 @@
 
         <div class="d-flex justify-content-end mx-2">
             <!-- value attribute: Status -->
-            <input class="w-100 mx-2 text-right"type="text-end" name="" value="Status" readonly>
+            <input class="w-100 mx-2 text-right"type="text-end" name="" value={{$status}} readonly>
         </div>
         <div class="d-flex justify-content-end mt-2  mx-2">
             <!-- value attribute: Full name -->
-            <input class="w-100 mx-2 text-right"type="text" name="" value="Full Name" readonly>
+            <input class="w-100 mx-2 text-right"type="text" name="" value="{{"$firstName $lastName"}}" readonly>
         </div>
 
         <div class="d-flex justify-content-end mt-5  mx-2">
