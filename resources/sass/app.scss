@@ -872,7 +872,7 @@ $skillset-colors-map: (
     width: 250px;
 }
 
-.list-group-item:hover.skill-tooltip {
+.list-group-item:hover .skill-tooltip {
     visibility: visible;
     opacity: 1;
 }
