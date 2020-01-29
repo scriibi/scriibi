@@ -16,7 +16,7 @@ class CreateWritingTasksTable extends Migration
         Schema::create('writing_tasks', function (Blueprint $table) {
             $table->bigIncrements('writing_task_Id');
             $table->dateTime('created_Date');
-            $table->string('writing_Task_Description', 100);
+            $table->text('writing_Task_Description', 100);
             $table->bigInteger('created_By_Teacher_User_Id')->unsigned();
             $table->bigInteger('teaching_period_Id')->unsigned();
             $table->bigInteger('fk_rubric_id')->unsigned();

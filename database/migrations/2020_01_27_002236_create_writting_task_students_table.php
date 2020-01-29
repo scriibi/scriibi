@@ -24,8 +24,8 @@ class CreateWrittingTaskStudentsTable extends Migration
             $table->foreign('fk_student_id')
                 ->references('student_Id')
                 ->on('students')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->foreign('fk_writting_task_id')
                 ->references('writing_task_Id')
