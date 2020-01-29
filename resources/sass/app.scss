@@ -144,6 +144,10 @@ position: relative;
     border:2px solid #33A849 !important;
 }
 
+.sub-heading {
+    font-size: 0.7rem;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -439,7 +443,7 @@ position: relative;
 
 }
 .criteria-section{
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.05);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 
@@ -451,7 +455,7 @@ position: relative;
 label.score-radio{
     position: relative;
     line-height: 25px;
-
+    cursor: pointer;
 
     input[type="radio"] {
       display: none;
@@ -854,18 +858,23 @@ $skillset-colors-map: (
 
 .skill-tooltip {
     opacity: 0;
+    visibility: hidden;
     transition: 0.1s;
     position: absolute;
-    background-color: #2b2b2b;
+    background: rgba(0,0,0,0.85);
     color: white;
     border-radius: 0px 7px 7px 7px;
     top: 15px;
+    left: 200px;
     margin-left: 15px;
     padding: 5px 10px;
     z-index: 2;
+    width: 250px;
+    font-size: 0.75rem;
 }
 
-label.frm_checkbox:hover .skill-tooltip {
+.list-group-item:hover .skill-tooltip {
+    visibility: visible;
     opacity: 1;
 }
 
@@ -904,7 +913,7 @@ label.frm_checkbox:hover .skill-tooltip {
 
 }
 
-
+//data view page
 
 //---------- Media Queries --------------------
 
