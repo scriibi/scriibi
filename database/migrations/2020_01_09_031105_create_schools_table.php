@@ -18,7 +18,7 @@ class CreateSchoolsTable extends Migration
             $table->string('name', 45);
             $table->bigInteger('primary_Contact_Id')->unsigned()->nullable();
             $table->bigInteger('curriculum_details_curriculum_details_Id')->unsigned();
-            $table->bigInteger('school_type_id')->unsigned();
+            $table->bigInteger('school_type_identifier_id')->unsigned();
             $table->unique('school_Id');
 
             $table->foreign('primary_Contact_Id')
