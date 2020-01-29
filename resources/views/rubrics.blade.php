@@ -137,7 +137,7 @@
                                                     <!-- load each skill item in the skills category;
                                                     the number of skills items in the skill category vary -->
                                                     <label class="frm_checkbox">
-                                                        <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
+                                                        <input type="checkbox" class="skill-checkbox2" name="rubric2_skills[]" value={{$skill->getId()}} / >
                                                         <span class="skill-name">{{$skill->getName()}}</span>
                                                     </label>
                                                     <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
