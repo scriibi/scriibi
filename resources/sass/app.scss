@@ -144,6 +144,10 @@ position: relative;
     border:2px solid #33A849 !important;
 }
 
+.sub-heading {
+    font-size: 0.7rem;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -439,7 +443,7 @@ position: relative;
 
 }
 .criteria-section{
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.05);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 
@@ -451,7 +455,7 @@ position: relative;
 label.score-radio{
     position: relative;
     line-height: 25px;
-
+    cursor: pointer;
 
     input[type="radio"] {
       display: none;
@@ -904,7 +908,7 @@ label.frm_checkbox:hover .skill-tooltip {
 
 }
 
-
+//data view page
 
 //---------- Media Queries --------------------
 
