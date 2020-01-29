@@ -14,19 +14,19 @@
             </div>
             <!-- pop each score point(calculated) in the value attribute (5 times) -->
             <div>
-                <p class="w-100 text-center lable-input ml-2">1</p>
+                <p class="w-100 text-center lable-input ml-2">{{$rubrics[0]}}</p>
             </div>
             <div >
-                <p class="w-100 text-center lable-input ml-1">2</p>
+                <p class="w-100 text-center lable-input ml-1">{{$rubrics[1]}}</p>
             </div>
             <div class="text-center">
-                <p class="w-100 text-center lable-input">3</p>
+                <p class="w-100 text-center lable-input">{{$rubrics[2]}}</p>
             </div>
             <div class="text-center">
-                <p class="w-100 text-center lable-input">4</p>
+                <p class="w-100 text-center lable-input">{{$rubrics[3]}}</p>
             </div>
             <div class="text-center">
-                <p class="w-100 text-center lable-input">5</p>
+                <p class="w-100 text-center lable-input">{{$rubrics[4]}}</p>
             </div>
             <!-- end of score points -->
         </div>
@@ -109,85 +109,7 @@
                 </div>
             </div>
             <!-- /end of first skill card -->
-
-            <!-- pop from second skill to the last skill -->
-            <div class="card px-0 mx-0 mb-1 border-0">
-                <div class="card-body p-0">
-                    <div class="card-title score-items mb-0 radioBTNs-section ml-3">
-                        <div class="w-100 text-center d-flex justify-content-between arrow-up-btn">
-                            <span class="align-self-center">second skill trait name</span>
-                            <!-- look at href attribute: please load skill id there-->
-                            <a class="btn btn-link align-self-center" href="#load-skill-id-1" data-toggle="collapse">
-                                <img src="/images/open-down-arrow.png" alt="closeBTN" class="collapsable-arrow">
-                            </a>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0 ">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="m-0 p-0" type="radio" name="skill-id-1" value="score1"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" id="" name="skill-id-1" value="score2"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" id="" name="skill-id-1" value="score3"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" id="" name="skill-id-1" value="score4"><span></span>
-                            </label>
-                        </div>
-                        <div class="w-100 text-center align-self-center">
-                            <label class="score-radio m-0 p-0">
-                                <!-- please load skill id in the name attribute -->
-                                <input class="" type="radio" id="" name="skill-id-1" value="score5"><span></span>
-                            </label>
-                        </div>
-                    </div>
-                    <!-- look at id attribute: please load skill-id-->
-                    <div class="card-text score-items collapse criteria-section" id="load-skill-id-1">
-                        <div class="">
-
-                        </div>
-
-                        <div class="text-center">
-                            <p>Here is the criteria
-                             </p>
-                            <p class="milestone">VCEAL20548, ACLE25487</p>
-
-                        </div>
-                        <div class="">
-
-                        </div>
-                        <div class="text-center">
-                            <p>Here is the criteria
-                            </p>
-                            <p class="milestone">VCEAL6844</p>
-
-                        </div>
-                        <div class="">
-
-                        </div>
-                        <div class="text-center">
-                            <p>Here is the criteria
-
-                            </p>
-                            <p class="milestone">
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end skill card -->
-
+            
         </div>
     </div>
     <!-- sidebar btn to close or open -->

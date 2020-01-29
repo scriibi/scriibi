@@ -90,8 +90,15 @@ class SchoolTypeController extends Controller
      * return the school type based on the currently logged in user
      */
     public function getSchoolTypeOfCurrentUser(){
-        $school_details = DB::table('school_teachers')->join('schools', 'school_teachers.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id', 'schools.school_type_identifier_id')->where('school_teachers.teachers_user_Id','=', Auth::user()->user_Id)->first();
+        $school_details = DB::table('school_teachers')
+        ->join('schools', 'school_teachers.schools_school_Id', 'schools.school_Id')
+        ->select('schools.curriculum_details_curriculum_details_Id', 'schools.school_type_identifier_id')
+        ->where('school_teachers.teachers_user_Id','=', Auth::user()->user_Id)
+        ->first();
 
-        return DB::table('school_types')->where('fk_curriculum_id', '=', $school_details->curriculum_details_curriculum_details_Id)->where('fk_school_type_identifier_id', '=', $school_details->school_type_identifier_id)->first();
+        return DB::table('school_types')
+        ->where('fk_curriculum_id', '=', $school_details->curriculum_details_curriculum_details_Id)
+        ->where('fk_school_type_identifier_id', '=', $school_details->school_type_identifier_id)
+        ->first();
 }
 }
