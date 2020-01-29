@@ -33,9 +33,9 @@ class CreateSchoolsTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('school_type_id')
-                ->references('school_type_id')
-                ->on('school_types')
+            $table->foreign('school_type_identifier_id')
+                ->references('school_type_identifier_id')
+                ->on('school_type_identifiers')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
