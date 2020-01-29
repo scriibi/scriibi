@@ -67,7 +67,7 @@ class CustomUserRepository extends Auth0UserRepository
 
             } catch (\Exception $e){
                 DB::rollback();
-                abort(404);
+                return redirect('/')->withErrors($e);
             }
         }
         else{
