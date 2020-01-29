@@ -77,8 +77,8 @@
                                                     <label class="frm_checkbox">
                                                         <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
                                                         <span class="skill-name">{{$skill->getName()}}</span>
-                                                        <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
                                                     </label>
+                                                    <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
                                                 </li>
                                             @endforeach
                                             </div>

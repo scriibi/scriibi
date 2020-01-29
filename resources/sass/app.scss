@@ -858,19 +858,22 @@ $skillset-colors-map: (
 
 .skill-tooltip {
     opacity: 0;
+    visibility: hidden;
     transition: 0.1s;
     position: absolute;
     background-color: #2b2b2b;
     color: white;
     border-radius: 0px 7px 7px 7px;
     top: 15px;
+    left: 200px;
     margin-left: 15px;
     padding: 5px 10px;
     z-index: 2;
     width: 250px;
 }
 
-label.frm_checkbox:hover .skill-tooltip {
+.list-group-item:hover.skill-tooltip {
+    visibility: visible;
     opacity: 1;
 }
 
