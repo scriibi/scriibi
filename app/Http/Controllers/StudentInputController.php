@@ -25,7 +25,7 @@ class StudentInputController extends Controller
             abort(403, 'You do not have authorization to access this page!');
         }
         return view('/studentlist', ['grade' => $labels['grades'], 'assessed' => $labels['assessed']]);
-        
+
     }
     /**
      * returns an array of grade and assessed label values

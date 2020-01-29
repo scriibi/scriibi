@@ -79,6 +79,19 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }
     });
+    
+    $("#overall-assessment-table").DataTable({
+        scrollX: true,
+        paging: false,
+        fixedColumns:   {
+            leftColumns: 1,
+        },
+        columnDefs: [
+        {width: "220px", targets: 0},
+        {width: "50px", targets: 1},
+        {width: "50px", targets: 2}
+        ],
+    });
 
 });
 
@@ -199,7 +212,10 @@ var saveBTN= document.getElementById("rubric-save");
 
 // saveBTN.addEventListener('click',check_skill_checked,true);
 // check if curriculum code is selected
-saveBTN.addEventListener('click',check_input_filled, true);
+if (saveBTN !== null) {
+    saveBTN.addEventListener('click',check_input_filled, true);
+}
+
 
 
 // validate input from all fields in rubric-form

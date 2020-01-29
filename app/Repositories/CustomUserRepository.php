@@ -11,6 +11,8 @@ use Exception;
 use Auth0\Login\Auth0User;
 use Auth0\Login\Auth0JWTUser;
 use Auth0\Login\Repository\Auth0UserRepository;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class CustomUserRepository extends Auth0UserRepository
 {
@@ -22,19 +24,21 @@ class CustomUserRepository extends Auth0UserRepository
      *
      * @return teachers
      */
-    protected function upsertUser( $profile ) {
+   protected function upsertUser( $profile ) {
 
         //checks if teacher exists
         $teacherExists = teachers::where('teacher_Email', '=', $profile['email'])->first();
 
-        if($teacherExists === null){
+        //$profile = array("sub"=>"auth0|5e1e7d91a994a40dd400bb09","nickname"=>"michael.tonini","name" => "Michael Tonini","picture" => "https://s.gravatar.com/avatar/56e96fe3c3330d899f3c1dfaa17436fb?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fmi.png","updated_at" => "2020-01-29T07:57:59.854Z","email" => "michael.tonini@icloud.com","email_verified" => false, "https://scriibi.com/school" => 1,"https://scriibi.com/level" =>137,"https://scriibi.com/positions" => [1,2]);
+
+        if($teacherExists == null){
             //transaction to insert new teacher into all relevant tables.
             DB::beginTransaction();
 
-            try{
-                //creates teacher entry using auth0 metadata
-                    $teacher = teachers::firstOrCreate(['sub' => $profile['sub']],['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
+                            //creates teacher entry using auth0 metadata
+                $teacher = teachers::firstOrCreate(['sub' => $profile['sub']],['name' => $profile['name'] ?? '', 'teacher_Email' => $profile['email'] ?? '']);
 
+            try{
                 //insert a new record in teachers-scriibi-levels according to auth0 metadata(level)
                     DB::table('teachers_scriibi_levels')->insert(
                         ['teachers_user_Id' => $teacher->user_Id,
@@ -63,11 +67,12 @@ class CustomUserRepository extends Auth0UserRepository
                 // data is valid and working.
                 // Commit the queries!
                 DB::commit();
+
                 return $teacher;
 
             } catch (\Exception $e){
                 DB::rollback();
-                abort(404);
+                \Redirect::to('/')->withErrors($e->getMessage());
             }
         }
         else{
@@ -96,6 +101,18 @@ class CustomUserRepository extends Auth0UserRepository
      */
     public function getUserByUserInfo( $userinfo ) {
         $user = $this->upsertUser( $userinfo['profile'] );
+
+        if($user === null){
+                //this to forget cookies "laravel_session"
+            \Cookie::queue(
+                \Cookie::forget('laravel_session')
+            );
+
+            \Cookie::queue(
+                \Cookie::forget('XSRF-TOKEN')
+            );
+            abort('403', 'There\'s an issue with your credentials. Please contact info@scriibi.com');
+        }
         return new Auth0User( $user->getAttributes(), $userinfo['accessToken'] );
     }
 }

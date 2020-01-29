@@ -1,5 +1,17 @@
 [
     {
+        "email": "michael.jack.tonini@gmail.com",
+        "email_verified": true,
+        "given_name": "Test",
+        "family_name": "Scriibi",
+        "name": "Test Scriibi",
+        "user_metadata": {
+            "school": 5,
+            "level": 129,
+            "positions": [1]
+        }
+    },
+    {
         "email": "mcrae.genevieve.g@edumail.vic.gov.au",
         "email_verified": true,
         "given_name": "Genevieve",
@@ -228,62 +240,74 @@
         }
     },
     {
-        "email": "",
+        "email": "wilson.clint.e@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": " ",
+        "given_name": "Clint",
+        "family_name": "Wilson",
+        "name": "Clint Wilson",
         "user_metadata": {
-            "school": 1,
-            "level": 2,
+            "school": 5,
+            "level": 137,
             "positions": [1]
         }
     },
     {
-        "email": "",
+        "email": "mesic.irene.i@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": " ",
+        "given_name": "Irene",
+        "family_name": "Mesic",
+        "name": "Irene Mesic",
         "user_metadata": {
-            "school": 1,
-            "level": 2,
+            "school": 5,
+            "level": 137,
             "positions": [1]
         }
     },
     {
-        "email": "",
+        "email": "vandijk.karin.k@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": " ",
+        "given_name": "Karin",
+        "family_name": "Van Dijk",
+        "name": "Karin Van Dijk",
         "user_metadata": {
-            "school": 1,
-            "level": 2,
+            "school": 5,
+            "level": 137,
             "positions": [1]
         }
     },
     {
-        "email": "",
+        "email": "taylor.andrea.j@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": " ",
+        "given_name": "Andrea",
+        "family_name": "Taylor",
+        "name": "Andrea Taylor",
         "user_metadata": {
             "school": 1,
-            "level": 2,
+            "level": 129,
             "positions": [1]
         }
     },
     {
-        "email": "",
+        "email": "robinson.claire.m@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": " ",
+        "given_name": "Claire",
+        "family_name": "Robinson",
+        "name": "Claire Robinson",
         "user_metadata": {
-            "school": 1,
-            "level": 2,
+            "school": 5,
+            "level": 129,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "andrews.christopher.c@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Christopher",
+        "family_name": "Andrews",
+        "name": "Christopher Andrews",
+        "user_metadata": {
+            "school": 5,
+            "level": 129,
             "positions": [1]
         }
     }
