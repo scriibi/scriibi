@@ -16,17 +16,17 @@ class CreateSchoolTypesTable extends Migration
         Schema::create('school_types', function (Blueprint $table) {
             $table->bigIncrements('school_type_id');
             $table->bigInteger('fk_curriculum_id')->unsigned();
-            $table->bigInteger('fk_school_type_id')->unsigned();
+            $table->bigInteger('fk_school_type_identifier_id')->unsigned();
 
             $table->unique('school_type_id');
-            $table->unique(['fk_curriculum_id', 'fk_school_type_id']);
+            $table->unique(['fk_curriculum_id', 'fk_school_type_identifier_id'], 'unique_school_type_identifier_id');
             $table->index('fk_curriculum_id');
 
             $table->foreign('fk_curriculum_id')
                 ->references('curriculum_Id')
                 ->on('curriculum');
 
-            $table->foreign('fk_school_type_id')
+            $table->foreign('fk_school_type_identifier_id', 'fk_school_type_identifier_id')
                 ->references('school_type_identifier_id')
                 ->on('school_type_identifiers');
 
