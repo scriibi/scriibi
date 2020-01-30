@@ -41,7 +41,7 @@
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>
-                                <label class="ml-3 student-form-label" for="grade">Show curriculum  milestone for</label><br />
+                                <label class="ml-3 student-form-label" for="grade">Show skills and curriculum  milestones for:</label><br />
                             </div>
                         </div>
 
