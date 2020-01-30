@@ -67,14 +67,14 @@
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
-                        <span class="align-self-center">Assessments</span>
+                        <span class="align-self-center">My Assessments</span>
                     </div>
                 </a>
                 <!-- rubric template btn link -->
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
-                        <span class="align-self-center">Rubric Template</span>
+                        <span class="align-self-center">My Rubrics</span>
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
@@ -88,7 +88,7 @@
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center" src="/images/data-view.png" alt="data-view">
-                        <span class="align-self-center">Data View</span>
+                        <span class="align-self-center">View Student Data</span>
                     </div>
                 </a>
             </div>

@@ -11,7 +11,7 @@
    <div class="col-12 col-sm-10 col-md-8">
 
         <!-- Rubric Builder -->
-        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Select skills for the rubric</strong></h4>
+        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Select skills to build my rubric</strong></h4>
 
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
@@ -43,7 +43,7 @@
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>
-                                <label class="ml-3 student-form-label" for="grade">Assessment Level</label><br />
+                                <label class="ml-3 student-form-label" for="grade">Show curriculum  milestone for</label><br />
                             </div>
                         </div>
 
@@ -155,7 +155,7 @@
                     </div>
                     <!-- clear button for form -->
                     <div class="d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
-                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="Save my Rubric" />
+                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="save this rubric" />
                     </div>
                     <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
