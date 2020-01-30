@@ -33,7 +33,6 @@ $(function(){
 
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
-        console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
 
@@ -41,6 +40,7 @@ $(function(){
     $(".arrow-up-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
     });
+
 
     // rubric builder curriculum code on change function
     $('#select_curriculum_code').change(function(){
@@ -79,7 +79,7 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }
     });
-    
+
     $("#overall-assessment-table").DataTable({
         scrollX: true,
         paging: false,
