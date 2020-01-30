@@ -915,8 +915,21 @@ $skillset-colors-map: (
 
 //data view page
 
+.header-style{
+    background: #F6F6F6;
+    border-radius: 7px;
+}
+.clickable-cell-text_style{
+    color: #04A020;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+}
 .table-grid-size{
-    
+
 }
 .assignment-result {
     width: 150px;
@@ -924,7 +937,7 @@ $skillset-colors-map: (
 
 }
 
-.table-header-style{
+.overall-assessment-table th {
     background-color: #f2f2f2;
     width: 200px;
 }
