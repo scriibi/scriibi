@@ -914,14 +914,21 @@ $skillset-colors-map: (
 }
 
 //data view page
+
+.table-grid-size{
+    
+}
 .assignment-result {
     width: 150px;
     text-align: center;
+
 }
 
-.table-header {
+.table-header-style{
     background-color: #f2f2f2;
+    width: 200px;
 }
+
 
 //---------- Media Queries --------------------
 
