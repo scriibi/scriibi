@@ -33,9 +33,13 @@ class RubricBuilder extends Controller
         $text_types = RubricBuilder::getTextTypes();
         $school_type_controller = new SchoolTypeController();
         $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
+        
+        return ['text_types' => $text_types, 'assessed_labels' => $assessed_label_list];
+    }
 
-        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types, 'assessed_labels' => $assessed_label_list]);
-
+    public function generateRubricsView(){
+        $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels']]);
     }
 
     /**
@@ -50,10 +54,12 @@ class RubricBuilder extends Controller
     /**
      * calculates the flags for all of the skills in the skills collection of this trait object
     */
-    public function calculateFlagsForSkills(){
+    public function generateRubricsViewWithFlags($level){
+        $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
         foreach($this->traits_skills_array as $tsa){
-                $tsa->calcFlag();
-            }
+            $tsa->calcFlag($level);
+        }
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels']]);
     }
 
     /**
