@@ -134,7 +134,7 @@
                     <img class="align-self-center mx-2 px-3" src="/images/peer-obvs.png" alt="logo4">
                     <span class="align-self-center text-nowrap mx-2">Peer Observation</span>
                 </a>
-                <a href="#" class="peer-assessment-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
+                <a href="https://writing.scriibi.com/observations-ive-completed/" class="peer-assessment-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
                     <img class="align-self-center mx-2 px-3" src="/images/view-obvs.png" alt="logo5">
                     <span class="align-self-center mx-2 text-nowrap">View Observation</span>
                 </a>

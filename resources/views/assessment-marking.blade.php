@@ -192,7 +192,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5 ">
-            <button class="btn save-marking-btn px-4"type="button" name="button">Save Marking</button>
+            <button class="btn save-marking-btn px-4"type="button" name="button" onclick="window.location.href = '/assessment-list';">Save Marking</button>
         </div>
 
     </div>
