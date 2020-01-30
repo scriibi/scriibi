@@ -105,13 +105,11 @@ class traitObject
         }
     }
 
-    public function calcFlag(){
+    public function calcFlag($level){
 
         $schoolId = DB::table('school_teachers')->select('schools_school_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
         $curriculum = schools::find($schoolId->schools_school_Id)->curriculum;
 
-        //$level = $request->input('level'); // check name of level laterrrrrr
-        $level = 133;
         foreach($this->skills as $skill){
             $skill->setFlag($curriculum->curriculum_Id, $level);
         }

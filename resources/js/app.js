@@ -33,7 +33,6 @@ $(function(){
 
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
-        console.log('TOGGLE INFO PANEL');
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
     });
 
@@ -42,13 +41,17 @@ $(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
     });
 
-    // rubric builder curriculum code on change function
-    $('#select_curriculum_code').change(function(){
-        $(this).val();
-        // window.location.href="RubricFlag/"+$(this).val();
-        return "/RubricFlag/" + $(this).val();
+    //on change of the drop down, redirect the user to the page with the value appeneded to the url
+    $("#select_curriculum_code").change(function(){
+        //getting the curriculum level value
+        let curriculum_level = $(this).val();
+        //get the origin url and apply the rubrics page to it and the value
+        let url_origin = window.location.origin;
+        url_origin += "/rubricsFlag/";
+        url_origin += curriculum_level;
+        window.location.href = url_origin;
     });
-
+    
     $("#assessed-marking-level").change(function(){
         if (this.value == "F"){
             $("#level-examples div").addClass("d-none");
@@ -79,12 +82,13 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }
     });
-    
-    $("#overall-assessment-table").DataTable({
-        scrollX: true,
-        paging: false,
+
+    let table = $("#overall-assessment-table").DataTable({
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
         fixedColumns:   {
-            leftColumns: 1,
+            leftColumns: 3,
         },
         columnDefs: [
         {width: "220px", targets: 0},

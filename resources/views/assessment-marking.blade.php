@@ -37,41 +37,41 @@
                 <div class="card px-0 mx-0 mb-1 border-0">
                     <div class="card-body p-0">
                         <div class="card-title score-items mb-0 radioBTNs-section ml-3">
-                            <div class="w-100 d-flex justify-content-between arrow-up-btn">
+                            <div class="w-100 d-flex justify-content-between">
                                 <!-- load the first trait name -->
                                 <span class="align-self-center">{{$sc->getName()}}</span>
-                                <a class="btn btn-link align-self-center criteria-btn" href="#load-skill-id" data-toggle="collapse">
+                                <a class="btn btn-link align-self-center criteria-btn arrow-up-btn" href="#load-skill-id" data-toggle="collapse">
                                     <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                 </a>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0 ">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="m-0 p-0" type="radio" name="score" value="score1"><span></span>
+                                    <input class="m-0 p-0" type="radio" name="score{{$sc->getName()}}" value="score1"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score2"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score2"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score3"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score3"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score4"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score4"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score5"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score5"><span></span>
                                 </label>
                             </div>
                         </div>
@@ -83,32 +83,32 @@
                                 $global = $sc->getGlobalCriteria();
                                 $local = $sc->getLocalCriteria();
                             ?>
-                            <div class="text-center">
+                            <div class="text-left">
                                 <p>{{$global[0]}}
                                 </p>
-                                
-                                <p class="milestone"></p>
-                                
+
+                                <pclass="milestone"></p>
+
                             </div>
                             <div class="">
 
                             </div>
-                            <div class="text-center">
+                            <div class="text-left">
                                 <p>{{$global[1]}}
                                 </p>
-                               
+
                                 <p class="milestone"></p>
-                              
+
 
                             </div>
                             <div class="">
 
                             </div>
-                            <div class="text-center">
+                            <div class="text-left">
                                 <p>{{$global[2]}}</p>
-                               
+
                                 <p class="milestone"></p>
-                                
+
                             </div>
                         </div>
                     </div>
