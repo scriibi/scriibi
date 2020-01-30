@@ -15,7 +15,7 @@ class CreateGlobalCriteriasTable extends Migration
     {
         Schema::create('global_criterias', function (Blueprint $table) {
             $table->bigIncrements('global_criteria_Id');
-            $table->string('description', 200);
+            $table->string('description', 500);
 
             $table->unique('global_criteria_Id');
             $table->timestamps();

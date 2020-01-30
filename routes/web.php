@@ -25,8 +25,12 @@ Route::get('/assessment-studentlist', function(){
    return view('assessment-studentlist');
 });
 
-Route::get('/assessment-marking', function(){
-   return view('assessment-marking');
+// Route::get('/assessment-marking', function(){
+//    return view('assessment-marking');
+// });
+
+Route::get('/data-view', function(){
+    return view('data-view');
 });
 
 Route::get('/', function(){
