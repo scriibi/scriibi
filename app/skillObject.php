@@ -23,7 +23,7 @@ class skillObject
         $this->id = $id;
         $this->name = $name;
         $this->definition = $definition;
-        $this->flag = '';
+        $this->flag = false;
     }
 
     public function getId(){
@@ -59,10 +59,7 @@ class skillObject
          * we need to first check if criteriasCurrLevelSkills contains our currLevelSkills_ID
          */
             if(DB::table('local_criteria_curriculum_scriibi_level_skills')->where('curriculum_scriibi_levels_skills_Id', $currLevelSkillsId->curriculum_scriibi_levels_skills_Id)->exists()){
-                $this->flag = '/images/flag.png';
-            }
-            else{
-                $this->flag = 'nope';
+                $this->flag = true;
             }
     }
 
