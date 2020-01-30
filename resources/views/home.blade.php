@@ -57,7 +57,6 @@
                         <a href="/studentlist">
                             <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
                         </a>
-
                 </div>
             </div>
 
@@ -67,7 +66,7 @@
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
-                        <span class="align-self-center">My Assessments</span>
+                        <span class="align-self-center text-nowrap">My Assessments</span>
                     </div>
                 </a>
                 <!-- rubric template btn link -->
