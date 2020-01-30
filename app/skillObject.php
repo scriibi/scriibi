@@ -53,7 +53,7 @@ class skillObject
     public function setFlag($curriculum_Id, $level){
 
         //grab the row from currLevelSkills where skill_Id matches this->ID, level = our level_Id and curriculum = current curriculum_Id
-        $currLevelSkillsId = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('skill_Id', '=', 32)->where('curriculum_Id', '=', $curriculum_Id)->where('scriibi_level_Id', '=', $level)->first();
+        $currLevelSkillsId = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('skill_Id', '=', $this->id)->where('curriculum_Id', '=', $curriculum_Id)->where('scriibi_level_Id', '=', $level)->first();
         /**
          * not all rows from currLevelSkills will exist in criteriasCurrLevelSkills
          * we need to first check if criteriasCurrLevelSkills contains our currLevelSkills_ID
