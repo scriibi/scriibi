@@ -58,9 +58,8 @@ $(function(){
         url_origin += "/rubrics?curriculumLevel=";
         url_origin += curriculum_level;
         window.location.href = url_origin;
-        
     });
-
+    
     $("#assessed-marking-level").change(function(){
         if (this.value == "F"){
             $("#level-examples div").addClass("d-none");
