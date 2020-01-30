@@ -4,6 +4,8 @@
 
 <!-- able to change curriculum code and skills refresh -->
 <!-- tooltip for each skill item ex. description of each skill item -->
+
+<!-- {{dd($traitObjects)}} -->
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
