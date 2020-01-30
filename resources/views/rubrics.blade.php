@@ -2,8 +2,6 @@
 @section('title', 'Rubrics')
 @section('content')
 
-<!-- able to change curriculum code and skills refresh -->
-<!-- tooltip for each skill item ex. description of each skill item -->
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
@@ -31,7 +29,7 @@
                     <div class="card-text m-0">
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="text-input" id="assessment_name1" name="rubric1_name" value="Term 1 Rubric" required/>
+                                <input type="text" class="text-input" id="assessment_name1" name="rubric1_name" value="Term 1 Skills Template" required/>
                                 <span class="bar"></span>
                                 <label class="student-form-label ml-3" for="assessment_name1">Title</label>
                             </div>
@@ -39,7 +37,7 @@
                                 <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                         <option value="" disabled selected hidden>Select your option</option>
                                     @foreach($assessed_labels as $al)
-                                        <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
+                                        <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>
@@ -101,7 +99,7 @@
                         <!-- input for rubric name and curriculum code -->
                             <div class="row mt-4">
                                 <div class="col-8">
-                                    <input type="text" class="text-input" id="assessment_name2" name="rubric2_name" value="Term 2 Rubric" required/>
+                                    <input type="text" class="text-input" id="assessment_name2" name="rubric2_name" value="Term 2 Skills Template" required/>
                                     <span class="bar"></span>
                                     <label class="student-form-label ml-3" for="assessment_name2">Title</label>
                                 </div>
