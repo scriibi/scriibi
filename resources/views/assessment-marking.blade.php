@@ -104,7 +104,7 @@
                             <div class="">
 
                             </div>
-                            <div class="text-center">
+                            <div class="text-left">
                                 <p>{{$global[2]}}</p>
 
                                 <p class="milestone"></p>
