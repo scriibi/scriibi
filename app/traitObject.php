@@ -108,7 +108,7 @@ class traitObject
     public function calcFlag($level){
 
         $schoolId = DB::table('school_teachers')->select('schools_school_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
-        $curriculum = schools::find($schoolId)->curriculum;
+        $curriculum = schools::find($schoolId->schools_school_Id)->curriculum;
 
         foreach($this->skills as $skill){
             $skill->setFlag($curriculum->curriculum_Id, $level);
