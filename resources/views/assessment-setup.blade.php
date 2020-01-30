@@ -101,9 +101,9 @@
                     </div>
                     @else
                     <div class="mt-5 rubric-instruction">
-                        <p>You currently do not have any skill templates.</p>
+                        <p>You currently do not have any rubric templates.</p>
                         <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Template +</a> to create your first template</p>
-                        <p>and using them for your assessments!</p>
+                        <p>and begin using them for your assessments!</p>
                     </div>
                     <button type="button" name="button" class="btn back-btn-disabled" id="backBTN">back</button>
                     @endif

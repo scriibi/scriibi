@@ -13,9 +13,9 @@
         <!-- show no rubric created message -->
         @if(count($rubrics)===0)
         <div class="mt-5 rubric-instruction">
-            <p>You currently do not have any skills template.</p>
+            <p>You currently do not have any rubric templates.</p>
             <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Template +</a> to create your first template</p>
-            <p>and using them for your assessments!</p>
+            <p>and begin using them for your assessments!</p>
         </div>
 
         <!-- show list of rubric created -->

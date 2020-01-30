@@ -73,7 +73,7 @@
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center" src="/images/rubric-template.png" alt="rubric-template">
-                        <span class="align-self-center">Skills Template</span>
+                        <span class="align-self-center">Assessment Rubrics</span>
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
