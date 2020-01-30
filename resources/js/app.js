@@ -47,7 +47,7 @@ $(function(){
         let curriculum_level = $(this).val();
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
-        url_origin += "/rubrics?curriculumLevel=";
+        url_origin += "/rubricsFlag/";
         url_origin += curriculum_level;
         window.location.href = url_origin;
     });

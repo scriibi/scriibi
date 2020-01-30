@@ -13,9 +13,9 @@
    return view('demo');
 });
 
-Route::get('/rubrics', function(){
-   return view('rubrics');
-});
+// Route::get('/rubrics', function(){
+//    return view('rubrics');
+// });
 
 Route::get('/single-rubric', function(){
    return view('single-rubric');
@@ -61,8 +61,8 @@ Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
 
+Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');
 Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
-Route::get('/rubrics/{level}', 'RubricBuilder@generateRubricsViewWithFlags');
 Route::post('/RubricConfirm', 'RubricsController@store');
 
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
