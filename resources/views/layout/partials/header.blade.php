@@ -8,7 +8,7 @@
             <li><a href="/assessment-list">ASSESSMENT</a></li>
             <li><a href="/rubric-list">RUBRIC</a></li>
             <li><a href="https://writing.scriibi.com/search-lessons/">LESSONS</a></li>
-            <li><a href="https://writing.scriibi.com/additional-support-material/">SUPPORT MATERIAL</a></li>
+            
             @if (Route::has('login'))
                 @auth
                 <li class="float-right"><a href="{{ route('logout') }}"">LOG OUT</a></li>
