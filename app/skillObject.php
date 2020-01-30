@@ -52,24 +52,19 @@ class skillObject
 
     public function setFlag($curriculum_Id, $level){
 
-        $currLevelSkills = curriculum_scriibi_level_skills::all();
-        $criteriaCurrLevelSkills = local_criteria_curriculum_scriibi_level_skills::all();
-
-        //grab the rows from currLevelSkills where skill_Id matches this->ID, level = our level_Id and curriculum = current curriculum_Id
-        $filtered = $currLevelSkills->where('skill_Id', $this->id)->where('curriculum_Id', $curriculum_Id)->where('scriibi_level_Id', $level);
-
-        //pluck the primary keys from those rows
-        $plucked = $filtered->pluck('curriculum_scriibi_levels_skills_Id')->toArray();
+        //grab the row from currLevelSkills where skill_Id matches this->ID, level = our level_Id and curriculum = current curriculum_Id
+        $currLevelSkillsId = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('skill_Id', '=', $this->id)->where('curriculum_Id', '=', $curriculum_Id)->where('scriibi_level_Id', '=', $level)->first();
 
         /**
          * not all rows from currLevelSkills will exist in criteriasCurrLevelSkills
          * we need to first check if criteriasCurrLevelSkills contains our currLevelSkills_ID
          */
-         for($i = 0; $i < count($plucked); $i++){
-            if($criteriaCurrLevelSkills->contains('curriculum_scriibi_levels_skills_Id', $plucked[$i])){
-                $this->flag = '/images/flag.php';
+            if(DB::table('local_criteria_curriculum_scriibi_level_skills')->where('curriculum_scriibi_levels_skills_Id', $currLevelSkillsId)->exists()){
+                $this->flag = '/images/flag.png';
             }
-         }
+            else{
+                $this->flag = 'nope';
+            }
     }
 
 

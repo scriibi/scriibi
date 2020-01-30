@@ -47,31 +47,31 @@
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0 ">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="m-0 p-0" type="radio" name="score" value="score1"><span></span>
+                                    <input class="m-0 p-0" type="radio" name="score{{$sc->getName()}}" value="score1"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score2"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score2"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score3"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score3"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score4"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score4"><span></span>
                                 </label>
                             </div>
                             <div class="w-100 text-center align-self-center">
                                 <label class="score-radio m-0 p-0">
                                     <!-- please load skill id in the name attribute -->
-                                    <input class="" type="radio" name="score" value="score5"><span></span>
+                                    <input class="" type="radio" name="score{{$sc->getName()}}" value="score5"><span></span>
                                 </label>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5 ">
-            <button class="btn save-marking-btn px-4"type="button" name="button">Save Marking</button>
+            <button class="btn save-marking-btn px-4"type="button" name="button" onclick="window.location.href = '/assessment-list';">Save Marking</button>
         </div>
 
     </div>
