@@ -30,7 +30,7 @@
                         <label class="student-form-label ml-3" for="assessment_date">Writing task completion date</label>
                     </div>
                 </div>
-                <h5 class="assessment-settings-title mt-3">Assessment Settings</h5>
+                <h5 class="assessment-settings-title mt-3">Fill in details for your assessement.</h5>
                 <div class="d-flex mt-3 mb-5">
                     <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
                         <input type="radio" id="assess-class" class="assess-input" name="assess" value="mine" checked required />

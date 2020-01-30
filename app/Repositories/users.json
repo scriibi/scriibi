@@ -1,50 +1,14 @@
 [
     {
-        "email": "dev@scriibi.com",
+        "email": "",
         "email_verified": true,
-        "given_name": "Dev",
-        "family_name": "Scriibi",
-        "name": "Dev Scriibi",
+        "given_name": "",
+        "family_name": "",
+        "name": "",
         "user_metadata": {
             "school": 1,
             "level": 133,
             "positions": [1]
-        }
-    },
-    {
-        "email": "test@scriibi.com",
-        "email_verified": true,
-        "given_name": "Test",
-        "family_name": "Scriibi",
-        "name": "Test Scriibi",
-        "user_metadata": {
-            "school": 1,
-            "level": 133,
-            "positions": [1,2]
-        }
-    },
-    {
-        "email": "bagsforshops@gmail.com",
-        "email_verified": true,
-        "given_name": "Big",
-        "family_name": "Small",
-        "name": "Big Small",
-        "user_metadata": {
-            "school": 1,
-            "level": 133,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "samtheartofwriting@gmail.com",
-        "email_verified": true,
-        "given_name": "Sam",
-        "family_name": "Nicolaides",
-        "name": "Sam Nicolaides",
-        "user_metadata": {
-            "school": 1,
-            "level": 133,
-            "positions": [1,2]
         }
     }
 ]
