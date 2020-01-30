@@ -37,10 +37,10 @@
                 <div class="card px-0 mx-0 mb-1 border-0">
                     <div class="card-body p-0">
                         <div class="card-title score-items mb-0 radioBTNs-section ml-3">
-                            <div class="w-100 d-flex justify-content-between arrow-up-btn">
+                            <div class="w-100 d-flex justify-content-between">
                                 <!-- load the first trait name -->
                                 <span class="align-self-center">{{$sc->getName()}}</span>
-                                <a class="btn btn-link align-self-center criteria-btn" href="#load-skill-id" data-toggle="collapse">
+                                <a class="btn btn-link align-self-center criteria-btn arrow-up-btn" href="#load-skill-id" data-toggle="collapse">
                                     <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                 </a>
                             </div>
