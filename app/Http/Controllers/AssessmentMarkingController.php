@@ -11,7 +11,7 @@ use App\students;
 use Illuminate\Http\Request;
 
 class AssessmentMarkingController extends Controller
-{       
+{
     public function GenerateStudentMarkingPage($student_id, $writing_task_id){
         $rangeAsScriibiValue = array();
         $skillCards = array();
@@ -39,10 +39,12 @@ class AssessmentMarkingController extends Controller
             array_push($skillCards, new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id));
         }
 
-        foreach($skillCards as $sk){  
+        foreach($skillCards as $sk){
             $sk->populateScriibiLevelglobalCriteria();
             //$sk->populateScriibiLevelLocaCriteria();
         }
+
+
         return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'status' => $status[0]->status]);
     }
 
@@ -57,14 +59,14 @@ class AssessmentMarkingController extends Controller
             array_push($range, $student_scriibi_level - 1);
             array_push($range, $student_scriibi_level);
             array_push($range, $student_scriibi_level + 1);
-            array_push($range, $student_scriibi_level + 2); 
+            array_push($range, $student_scriibi_level + 2);
         }else{
             array_push($range, $student_scriibi_level - 4);
             array_push($range, $student_scriibi_level - 2);
             array_push($range, $student_scriibi_level);
             array_push($range, $student_scriibi_level + 2);
-            array_push($range, $student_scriibi_level + 4); 
-        }     
+            array_push($range, $student_scriibi_level + 4);
+        }
         return $range;
     }
 }

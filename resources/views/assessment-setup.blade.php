@@ -52,14 +52,14 @@
         </div>
         <!-- step 2:Rubric Template to select which rubric to use for assessment-->
         <div id="rubric-template" hidden>
-            @if (count($rubrics) > 0) 
+            @if (count($rubrics) > 0)
             <div class="pt-1 pb-0 " >
                 <div>
-                    <h5><strong>Rubric Selection</strong></h5>
+                    <h5><strong>Skill Template Selection</strong></h5>
                 </div>
                 <div>
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                        <p class="col-4 text-left pr-2">Rubric Title</p>
+                        <p class="col-4 text-left pr-2">Temaplate Title</p>
                         <p class="col-8 text-left px-0">Skills</p>
                     </div>
                     <!-- populate more cells as per rubric -->
@@ -101,8 +101,8 @@
                     </div>
                     @else
                     <div class="mt-5 rubric-instruction">
-                        <p>You currently do not have any rubric templates.</p>
-                        <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Rubric+</a> to create your first rubric</p>
+                        <p>You currently do not have any skill templates.</p>
+                        <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Template +</a> to create your first template</p>
                         <p>and using them for your assessments!</p>
                     </div>
                     <button type="button" name="button" class="btn back-btn-disabled" id="backBTN">back</button>
