@@ -75,6 +75,9 @@
                                                     <label class="frm_checkbox">
                                                         <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
                                                         <span class="skill-name">{{$skill->getName()}}</span>
+                                                        @if ($skill->getFlag() === true)
+                                                            <img class="skill-flag-icon float-right" src="/images/flag.png" />
+                                                        @endif
                                                     </label>
                                                     <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
                                                 </li>
@@ -137,6 +140,9 @@
                                                     <label class="frm_checkbox">
                                                         <input type="checkbox" class="skill-checkbox2" name="rubric2_skills[]" value={{$skill->getId()}} / >
                                                         <span class="skill-name">{{$skill->getName()}}</span>
+                                                        @if ($skill->getFlag() === true)
+                                                            <img class="skill-flag-icon float-right" src="/images/flag.png" />
+                                                        @endif
                                                     </label>
                                                     <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
                                                 </li>
