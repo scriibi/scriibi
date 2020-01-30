@@ -1,94 +1,34 @@
 [
     {
-        "email": "michael.jack.tonini@gmail.com",
+        "email": "dev@scriibi.com",
+        "email_verified": true,
+        "given_name": "Dev",
+        "family_name": "Scriibi",
+        "name": "Dev Scriibi",
+        "user_metadata": {
+            "school": 1,
+            "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "test@scriibi.com",
         "email_verified": true,
         "given_name": "Test",
         "family_name": "Scriibi",
         "name": "Test Scriibi",
         "user_metadata": {
-            "school": 5,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "mcrae.genevieve.g@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Genevieve",
-        "family_name": "McRae",
-        "name": "Genevieve McRae",
-        "user_metadata": {
             "school": 1,
-            "level": 121,
-            "positions": [1]
+            "level": 133,
+            "positions": [1,2]
         }
     },
     {
-        "email": "zeneli.zaim.z@edumail.vic.gov.au",
+        "email": "bagsforshops@gmail.com",
         "email_verified": true,
-        "given_name": "Zaim",
-        "family_name": "Zeneli",
-        "name": "Zaim Zeneli",
-        "user_metadata": {
-            "school": 1,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "brown.gillian.r@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Gillian",
-        "family_name": "Brown",
-        "name": "Gillian Brown",
-        "user_metadata": {
-            "school": 1,
-            "level": 145,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "coleman.nikita.n@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Nikita",
-        "family_name": "Coleman",
-        "name": "Nikita Coleman",
-        "user_metadata": {
-            "school": 1,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "kourkouvelis.jenny.j@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Jenny",
-        "family_name": "Kourkouvelis",
-        "name": "Jenny Kourkouvelis",
-        "user_metadata": {
-            "school": 1,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "zeneli.allira.a@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Allira",
-        "family_name": "Zeneli",
-        "name": "Allira Zeneli",
-        "user_metadata": {
-            "school": 1,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "evans.jocelyn.j@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Jocelyn",
-        "family_name": "Evans",
-        "name": "Jocelyn Evans",
+        "given_name": "Big",
+        "family_name": "Small",
+        "name": "Big Small",
         "user_metadata": {
             "school": 1,
             "level": 133,
@@ -96,219 +36,15 @@
         }
     },
     {
-        "email": "caruso.rosanna.r@edumail.vic.gov.au",
+        "email": "samtheartofwriting@gmail.com",
         "email_verified": true,
-        "given_name": "Rosanna",
-        "family_name": "Caruso",
-        "name": "Rosanna Caruso",
-        "user_metadata": {
-            "school": 1,
-            "level": 125,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "eldredge.pauline.g@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Pauline",
-        "family_name": "Eldredge",
-        "name": "Pauline Eldredge",
-        "user_metadata": {
-            "school": 1,
-            "level": 125,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "gorman.lucy.l@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Lucy",
-        "family_name": "Gorman",
-        "name": "Lucy Gorman",
-        "user_metadata": {
-            "school": 1,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "Davidson.jade.e@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Jade",
-        "family_name": "Davidson",
-        "name": "Jade Davidson",
-        "user_metadata": {
-            "school": 1,
-            "level": 121,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "sozzi.angela.a@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Angela",
-        "family_name": "Sozzi",
-        "name": "Angela Sozzi",
-        "user_metadata": {
-            "school": 1,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "morley.nina.m@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Nina",
-        "family_name": "Morley",
-        "name": "Nina Morley",
-        "user_metadata": {
-            "school": 1,
-            "level": 121,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "apostolos.connie.k@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Connie",
-        "family_name": "Apostolos",
-        "name": "Connie Apostolos",
-        "user_metadata": {
-            "school": 1,
-            "level": 145,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "Brown.Jennifer.A2@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Jennifer",
-        "family_name": "Brown",
-        "name": "Jennifer Brown",
+        "given_name": "Sam",
+        "family_name": "Nicolaides",
+        "name": "Sam Nicolaides",
         "user_metadata": {
             "school": 1,
             "level": 133,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "Cornell.Richard.J@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Richard",
-        "family_name": "Cornell",
-        "name": "Richard Cornell",
-        "user_metadata": {
-            "school": 1,
-            "level": 141,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "cukier.rochelle.a@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Rochelle",
-        "family_name": "Cukier",
-        "name": "Rochelle Cukier",
-        "user_metadata": {
-            "school": 1,
-            "level": 145,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "talialanza07@gmail.com",
-        "email_verified": true,
-        "given_name": "Talia",
-        "family_name": "Lanza",
-        "name": "Talia Lanza",
-        "user_metadata": {
-            "school": 1,
-            "level": 145,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "davidnicau@gmail.com",
-        "email_verified": true,
-        "given_name": "Davo",
-        "family_name": "Nico",
-        "name": "Davo Nico",
-        "user_metadata": {
-            "school": 1,
-            "level": 145,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "wilson.clint.e@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Clint",
-        "family_name": "Wilson",
-        "name": "Clint Wilson",
-        "user_metadata": {
-            "school": 5,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "mesic.irene.i@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Irene",
-        "family_name": "Mesic",
-        "name": "Irene Mesic",
-        "user_metadata": {
-            "school": 5,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "vandijk.karin.k@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Karin",
-        "family_name": "Van Dijk",
-        "name": "Karin Van Dijk",
-        "user_metadata": {
-            "school": 5,
-            "level": 137,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "taylor.andrea.j@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Andrea",
-        "family_name": "Taylor",
-        "name": "Andrea Taylor",
-        "user_metadata": {
-            "school": 1,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "robinson.claire.m@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Claire",
-        "family_name": "Robinson",
-        "name": "Claire Robinson",
-        "user_metadata": {
-            "school": 5,
-            "level": 129,
-            "positions": [1]
-        }
-    },
-    {
-        "email": "andrews.christopher.c@edumail.vic.gov.au",
-        "email_verified": true,
-        "given_name": "Christopher",
-        "family_name": "Andrews",
-        "name": "Christopher Andrews",
-        "user_metadata": {
-            "school": 5,
-            "level": 129,
-            "positions": [1]
+            "positions": [1,2]
         }
     }
 ]

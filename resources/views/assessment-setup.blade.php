@@ -8,7 +8,7 @@
    <!-- main panel -->
     <div class="col-12 col-sm-10 col-md-8">
         <!-- create assessment title -->
-        <p class=" mt-5" id="create-assessment-title">Creating Assessment</p>
+        <p class=" mt-5" id="create-assessment-title">Fill in details for your assessment</p>
         <!-- accordion for assessment setup -->
         <!-- step 1: assessment detail -->
     <form class="mt-5" action="/assessment-submit" method="post">
