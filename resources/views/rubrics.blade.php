@@ -36,7 +36,7 @@
                                 <label class="student-form-label ml-3" for="assessment_name1">Title</label>
                             </div>
                             <div class="col-4">
-                                <select id="curriculum-milestone" class="select-input" name="assessed_level" id="select_curriculum_code">
+                                <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                         <option value="" disabled selected hidden>Select your option</option>
                                     @foreach($assessed_labels as $al)
                                         <option value={{$al->school_scriibi_level_id}}>{{$al->assessed_level_label}}</option>
