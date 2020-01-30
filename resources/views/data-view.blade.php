@@ -6,14 +6,14 @@
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
     <div class="col-12 col-sm-10 col-md-8">
         <!-- the container for the table holding student data -->
-        <table id="overall-assessment-table" class="overall-assessment-table row-border order-column">
+        <table id="overall-assessment-table" class="overall-assessment-table order-column">
             <!-- Table headers -->
             <thead>
                 <tr>
                     <th rowspan="2" id="fullName">Full Name</th>
-                    <th colspan="2">Levels</th>
-                    <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE-->
-                    <th rowspan="2" id="date">dd-mm-yy</th>
+                    <th colspan="2" class="text-center">Levels</th>
+                    <!-- replace ID with studentId+date to keep it unique -->
+                    <th class="text-center" rowspan="2" id="date">dd-mm-yy</th>
                     <th rowspan="2" id="date2">dd-mm-yy</th>
                     <th rowspan="2" id="date3">dd-mm-yy</th>
                     <th rowspan="2" id="date4">dd-mm-yy</th>
@@ -38,7 +38,8 @@
                     </td>
                     <td headers="grade">3</td>
                     <td headers="assessed">5</td>
-                    <td headers="date">4.2</td>
+                    <!-- replace ID with studentId+date to keep it unique -->
+                    <td class="assignment-result" headers="date">4.2</td>
                     <td headers="date2">4.2</td>
                     <td headers="date3">4.2</td>
                     <td headers="date4">4.2</td>

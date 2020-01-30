@@ -86,9 +86,9 @@
                             <div class="text-left">
                                 <p>{{$global[0]}}
                                 </p>
-                                
-                                <p class="milestone"></p>
-                                
+
+                                <pclass="milestone"></p>
+
                             </div>
                             <div class="">
 
@@ -96,9 +96,9 @@
                             <div class="text-left">
                                 <p>{{$global[1]}}
                                 </p>
-                               
+
                                 <p class="milestone"></p>
-                              
+
 
                             </div>
                             <div class="">
@@ -106,9 +106,9 @@
                             </div>
                             <div class="text-left">
                                 <p>{{$global[2]}}</p>
-                               
+
                                 <p class="milestone"></p>
-                                
+
                             </div>
                         </div>
                     </div>
