@@ -19,7 +19,8 @@ class traitObject
     private $name;
     private $colour;
     private $icon;
-    public $skills = array();
+    private $skills = array();
+    private $assessed_level_range = array();
 
 
     public function __construct($id, $name, $colour, $icon, $skill = []){
@@ -84,6 +85,22 @@ class traitObject
             array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
         }
     }
+
+    /**
+     * populates the built in skills array with trait specific skills which belong to three scriibi levels
+     * which are the currently selected rubric scriibi level, one level above and one level below
+     */
+    public function populateLevelSpecificSkills($level, $skills){
+        $scriibi_levels = ScriibiLevels::get();
+        $level_below = 0;
+        $level_above = 0;
+        $scriibi_level = ScriibiLevels::find($level)->scriibi_Level;
+        if($scriibi_level == 0.0){
+            $level_below = 
+        }else{
+
+        }
+    } 
 
     /**
      * populate the built in skills array with rubric specific skills

@@ -29,8 +29,6 @@ class RubricBuilder extends Controller
             array_push($this->traits_skills_array, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
         }
 
-        RubricBuilder::populateSkillsInTraits();
-
         $text_types = RubricBuilder::getTextTypes();
         $school_type_controller = new SchoolTypeController();
         $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
@@ -39,25 +37,32 @@ class RubricBuilder extends Controller
         return ['text_types' => $text_types, 'assessed_labels' => $assessed_label_list];
     }
 
+    /**
+     * populates the skills collection with the skills corresponding to this trait
+     */
+    public function populateSkillsInTraits($level){
+        $skills = skills::get();
+        foreach($this->traits_skills_array as $tsa){
+            $tsa->populateLevelSpecificSkills($level, $skills);
+        }
+    }
+
+    /**
+     * generates the initial rubric builder page without any skills populated
+     */
     public function generateRubricsView(){
         $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
         return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null]);
     }
 
     /**
-     * populates the skills collection with the skills corresponding to this trait
-     */
-    public function populateSkillsInTraits(){
-        foreach($this->traits_skills_array as $tsa){
-            $tsa->populateAllSkills();
-        }
-    }
-
-    /**
-     * calculates the flags for all of the skills in the skills collection of this trait object
+     * populates all the skills in all traits which belong to the selected rubric level, the level above 
+     * and the level below and calculates the flags for all of the skills in the skills collection 
     */
     public function generateRubricsViewWithFlags($level){
         $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+        RubricBuilder::populateSkillsInTraits($level);
+
         foreach($this->traits_skills_array as $tsa){
             $tsa->calcFlag($level);
         }
