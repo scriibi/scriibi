@@ -41,9 +41,8 @@ class RubricBuilder extends Controller
      * populates the skills collection with the skills corresponding to this trait
      */
     public function populateSkillsInTraits($level){
-        $skills = skills::get();
         foreach($this->traits_skills_array as $tsa){
-            $tsa->populateLevelSpecificSkills($level, $skills);
+            $tsa->filterLevelSpecificSkills($level);
         }
     }
 
