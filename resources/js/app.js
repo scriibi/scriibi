@@ -37,8 +37,10 @@ $(function(){
     });
 
     // arrow rotate function
-    $(".arrow-up-btn").click(function(){
+    $(".criteria-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+        let criteria_section = $(this).parents().find(".criteria-section");
+        criteria_section.toggleClass("hide-up");
     });
 
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
