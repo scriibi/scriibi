@@ -94,11 +94,9 @@ class AssessmentMarkingController extends Controller
         foreach($writingTaskSkills as $wts){
             if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
                 $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
-                $new_task_student = DB::table('tasks_students')->insert($student_task);
+                $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
             }
         }
         
-        foreach($skillsAssessedArray as $key => $value){
-        }
     }
 }
