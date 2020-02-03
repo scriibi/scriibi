@@ -443,7 +443,7 @@ header {
 }
 
 #info-panel {
-    width: 250px;
+    width: 300px;
     height: 100%;
     transition: width 0.3s;
     box-shadow: -5px 0px 5px rgb(0,0,0,0.05);
@@ -592,11 +592,11 @@ label.score-radio{
 }
 
 .marking-padding-right {
-    width: 84.6% !important;
+    width: 90% !important;
 }
 
 .arrow-move {
-    right: 240px;
+    right: 280px;
     animation: arrow-transition 0.4s ease-out;
 }
 
@@ -605,7 +605,7 @@ label.score-radio{
         right: 10px;
     }
     to {
-        right: 240px;
+        right: 280px;
     }
 }
 
