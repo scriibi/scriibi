@@ -653,7 +653,7 @@ label.score-radio{
 }
 
 .marking-padding-right {
-    width: 90% !important;
+    width: 79% !important;
 }
 
 .arrow-move {
@@ -838,13 +838,13 @@ input:focus {
     text-overflow: ellipsis;
     text-decoration: none;
     transition: 0.3s;
+    height: 70px;
     
-    p {
+    .rubric-list-text {
         color: black;
     }
     
-    p:hover {
-        text-decoration: none;
+    .rubric-list-text:hover {
         color: black;
     }
 }

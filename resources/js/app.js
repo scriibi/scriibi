@@ -106,7 +106,8 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }
     });
-
+    
+    //Table to display student grade data
     let table = $("#overall-assessment-table").DataTable({
         scrollX:        true,
         scrollCollapse: true,
@@ -119,6 +120,16 @@ $(function(){
         {width: "50px", targets: 1},
         {width: "50px", targets: 2}
         ],
+    });
+    
+    //If assessment form is incomplete, display the assessment form again
+    $("#createAxBTN").on("click", function(){
+        if (document.getElementById("assessment-name") === null) {
+            $("#assessment-template").addClass("d-block");
+            $("#assessment-template").removeClass("d-none");
+            $("#rubric-template").addClass("d-none");
+            $("#rubric-template").removeClass("d-block");
+        } 
     });
 
 }); 

@@ -66,7 +66,7 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
@@ -78,7 +78,7 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
@@ -104,14 +104,14 @@
                                 foreach($global as $g){
                                         if($g != end($global)){
                                             echo '<div class="text-left">
-                                            <p>'.$g.'</p>
-                                            <pclass="milestone"></p>
+                                            <p class="pt-2">'.$g.'</p>
+                                            <p class="milestone"></p>
                                             </div>
                                             <div class="">
                                             </div>';
                                         }else{
                                             echo '<div class="text-left">
-                                            <p>'.$g.'</p>
+                                            <p class="pt-2">'.$g.'</p>
                                             <p class="milestone"></p>
                                             </div>';
                                         }
