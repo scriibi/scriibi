@@ -149,21 +149,9 @@ position: relative;
 }
 
 .hide-up {
-    animation: hide-up;
-}
-
-@keyframes hide-up {
-    0% {
-        height: 100%;
-    }
-    
-    99% {
-        height: 0;
-    }
-    
-    100% {
-        display: none;
-    }
+    visibility: hidden;
+    height: 0 !important;
+    transition: 0.2s ease-in;
 }
 
 //---------- Page Specific --------------------

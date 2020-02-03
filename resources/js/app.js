@@ -39,7 +39,8 @@ $(function(){
     // arrow rotate function
     $(".criteria-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
-        let criteria_section = $(this).parents().find(".criteria-section");
+        let criteria_section = $(this).parent().parent().parent().parent().find(".criteria-section");
+        console.log(criteria_section);
         criteria_section.toggleClass("hide-up");
     });
 
