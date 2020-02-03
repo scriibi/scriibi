@@ -34,6 +34,8 @@ $(function(){
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
+        $(".marking-panel").toggleClass("marking-padding-right");
+        $(this).toggleClass("arrow-move");
     });
 
     // arrow rotate function
@@ -41,7 +43,7 @@ $(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
         let criteria_section = $(this).parent().parent().parent().parent().find(".criteria-section");
         console.log(criteria_section);
-        criteria_section.toggleClass("hide-up");
+        criteria_section.toggleClass("accordion-display");
     });
 
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
@@ -54,7 +56,13 @@ $(function(){
         url_origin += curriculum_level;
         window.location.href = url_origin;
     });
-
+    
+    //setting the default examples
+    const assessed_level = "#level-".concat($("#assessed-marking-level").value);
+    console.log($("#assessed-marking-level").value);
+    $("#level-examples div").addClass("d-none");
+    $(assessed_level).removeClass("d-none");
+    
     $("#assessed-marking-level").change(function(){
         if (this.value == "F"){
             $("#level-examples div").addClass("d-none");

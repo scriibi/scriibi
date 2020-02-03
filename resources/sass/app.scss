@@ -25,8 +25,14 @@ footer {
 }
 
 #app{
-min-height: 100%;
-position: relative;
+    min-height: 100%;
+    position: relative;
+}
+
+header {
+    position: relative;
+    z-index: 3;
+    background-color: white;
 }
 //---------- Partials -------------------------
 
@@ -148,10 +154,12 @@ position: relative;
     font-size: 0.7rem;
 }
 
-.hide-up {
-    visibility: hidden;
-    height: 0 !important;
-    transition: 0.2s ease-in;
+.incomplete-style {
+    color: #D86918;
+}
+
+.complete-style {
+    color: #159E09;
 }
 
 //---------- Page Specific --------------------
@@ -390,7 +398,7 @@ position: relative;
 }
 
 // assessement marking Page
-#assessment-marking-panel {
+.assessment-marking-panel {
     display: grid;
     grid-template-columns: 1fr 44px auto;
     grid-template-areas:
@@ -400,7 +408,7 @@ position: relative;
 
 .hide-info-panel #info-panel {
     width: 0;
-    opacity:0;
+    opacity: 0;
 }
 
 .hide-info-panel #marking-panel{
@@ -415,7 +423,8 @@ position: relative;
     overflow: hidden;
     overflow-y: auto;
     height: 100%;
-
+    width: 100%;
+    
 }
 
 .sidebar-btn{
@@ -425,6 +434,8 @@ position: relative;
 
 #btn-panel .btn {
     box-shadow: none;
+    position: fixed;
+    z-index: 3;
 }
 
 #btn-panel .fa-arrow-right {
@@ -432,19 +443,30 @@ position: relative;
 }
 
 #info-panel {
-    width: 250px;
+    width: 300px;
+    height: 100%;
     transition: width 0.3s;
+    box-shadow: -5px 0px 5px rgb(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    right: 16px;
+    z-index: 2;
+    background-color: white;
+    padding-top: 150px;
+    padding-right: 20px;
+    padding-left: 20px;
     input{
         border:none;
     }
 }
 
 .collapsable-arrow {
-    transition: 0.3s;
+    transition: 0.2s;
+    transform:rotate(180deg);
 }
 
 .image-rotate{
-    transform:rotate(180deg);
+    transform:rotate(0deg);
 }
 
 .lable-input{
@@ -455,7 +477,27 @@ position: relative;
     background-color: rgba(0, 0, 0, 0.05);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    height: 0;
+    overflow: hidden;
+}
+
+//accordion content when the arrow button is clicked
+.accordion-display {
     height: 100%;
+    -moz-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -webkit-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -o-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -ms-animation: accordion-display-animation 1s ease 3.5s infinite;
+    animation: accordion-display-animation 1s ease 3.5s infinite;
+}
+
+@keyframes accordion-display-animation {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
 }
 
 .marking-text-area{
@@ -493,8 +535,10 @@ label.score-radio{
 
 .score-label {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr;
-
+    grid-template-columns: 2.9fr 2.2fr 2fr 2fr 2fr 2.2fr;
+    font-weight: bold;
+    position: sticky;
+    z-index: 1;
 }
 
 .score-items{
@@ -507,9 +551,8 @@ label.score-radio{
 }
 
 .radioBTNs-section{
-    box-shadow: 0px, 0px, rgba(0, 0, 0, 0.25);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
     box-sizing: border-box;
 }
 
@@ -534,16 +577,38 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #FFFFFF;
+    padding: 7px;
+}
 
-
+.save-marking-btn:hover {
+    background: #138028;
+    transition: 0.2s;
 }
 
 .text-area-style{
     border-radius: 7px;
-
     width: 100%;
-
+    height: 70px;
 }
+
+.marking-padding-right {
+    width: 90% !important;
+}
+
+.arrow-move {
+    right: 280px;
+    animation: arrow-transition 0.4s ease-out;
+}
+
+@keyframes arrow-transition {
+    from {
+        right: 10px;
+    }
+    to {
+        right: 280px;
+    }
+}
+
 //Student List
 
 .student-form-inputs {
