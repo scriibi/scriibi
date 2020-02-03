@@ -19,8 +19,7 @@ class traitObject
     private $name;
     private $colour;
     private $icon;
-    public $skills = array();
-
+    private $skills = array();
 
     public function __construct($id, $name, $colour, $icon, $skill = []){
 
@@ -77,13 +76,46 @@ class traitObject
      * populates the built in skills array with trait specific skills
      */
     public function populateAllSkills(){
-
         $popSkills = traits::find($this->id)->skills;
-
         foreach($popSkills as $skill){
             array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
         }
     }
+
+    /**
+     * populates the built in skills array with trait specific skills which belong to three scriibi levels
+     * which are the currently selected rubric scriibi level, one level above and one level below
+     */
+    public function filterLevelSpecificSkills($level){
+        $assessed_level_range = array();
+        $temp_array = array();
+
+        $this->populateAllSkills();
+        $scriibi_level = ScriibiLevels::find($level)->scriibi_Level;
+
+        if($scriibi_level == 0.0){
+            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 0.5, $scriibi_level])->get(); 
+        }else{
+            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 2.0, $scriibi_level - 1.0, $scriibi_level])->get(); 
+        }
+
+        foreach($scriibi_value_ids as $svi){
+            array_push($assessed_level_range, $svi->scriibi_Level_Id);
+        }
+
+        $popSkills = traits::find($this->id)->skills;
+        $skills_levels = DB::table('skills_levels')->select('skills_levels.skills_levels_skills_skill_Id')->whereIn('skills_levels.scriibi_levels_scriibi_Level_Id', $assessed_level_range)->get()->unique();
+        
+        foreach($skills_levels as $sl){
+            array_push($temp_array, $sl->skills_levels_skills_skill_Id);
+        }
+        
+        foreach($this->skills as $skill){
+            if(!(in_array($skill->getId(), $temp_array))){
+                unset($this->skills[array_search($skill, $this->skills)]);
+            }
+        }
+    } 
 
     /**
      * populate the built in skills array with rubric specific skills

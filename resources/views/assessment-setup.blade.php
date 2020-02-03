@@ -8,7 +8,7 @@
    <!-- main panel -->
     <div class="col-12 col-sm-10 col-md-8">
         <!-- create assessment title -->
-        <p class=" mt-5" id="create-assessment-title">Creating Assessment</p>
+        <p class=" mt-5" id="create-assessment-title">Fill in details for your assessment</p>
         <!-- accordion for assessment setup -->
         <!-- step 1: assessment detail -->
     <form class="mt-5" action="/assessment-submit" method="post">
@@ -30,7 +30,7 @@
                         <label class="student-form-label ml-3" for="assessment_date">Writing task completion date</label>
                     </div>
                 </div>
-                <h5 class="assessment-settings-title mt-3">Assessment Settings</h5>
+                <h5 class="assessment-settings-title mt-3">Fill in details for your assessement.</h5>
                 <div class="d-flex mt-3 mb-5">
                     <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
                         <input type="radio" id="assess-class" class="assess-input" name="assess" value="mine" checked required />

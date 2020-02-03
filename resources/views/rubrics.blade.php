@@ -53,7 +53,6 @@
 
                             <!-- content inside each skill card -->
                             @foreach($traitObjects as $to)
-                                @if (count($to->getSkills()) > 0)
                                     <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
@@ -68,24 +67,29 @@
                                             </li>
                                             <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
-                                            @foreach($skills as $skill)
-                                                <li class="list-group-item">
-                                                    <!-- load each skill item in the skills category;
-                                                    the number of skills items in the skill category vary -->
-                                                    <label class="frm_checkbox">
-                                                        <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
-                                                        <span class="skill-name">{{$skill->getName()}}</span>
-                                                        @if ($skill->getFlag() === true)
-                                                            <img class="skill-flag-icon float-right" src="/images/flag.png" />
-                                                        @endif
-                                                    </label>
-                                                    <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                            @if(count($skills) > 0)
+                                                @foreach($skills as $skill)
+                                                    <li class="list-group-item">
+                                                        <!-- load each skill item in the skills category;
+                                                        the number of skills items in the skill category vary -->
+                                                        <label class="frm_checkbox">
+                                                            <input type="checkbox" class="skill-checkbox1" name="rubric1_skills[]" value={{$skill->getId()}} / >
+                                                            <span class="skill-name">{{$skill->getName()}}</span>
+                                                            @if ($skill->getFlag() === true)
+                                                                <img class="skill-flag-icon float-right" src="/images/flag.png" />
+                                                            @endif
+                                                        </label>
+                                                        <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                <li class="list-group-item">          
+                                                    <label class="frm_checkbox"></label>
                                                 </li>
-                                            @endforeach
+                                            @endif
                                             </div>
                                         </ul>
                                     </div>
-                                @endif
                             @endforeach
                             <!-- end of each skill card -->
                         </div>
@@ -117,8 +121,7 @@
                             each card has icon address, skill-title, skillset-items, color code, ex: #FFD12D -->
 
                             <!-- content inside each skill card -->
-                            @foreach($traitObjects as $to)
-                                @if (count($to->getSkills()) > 0)
+                            @foreach($traitObjects as $to)      
                                     <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
@@ -133,24 +136,29 @@
                                             </li>
                                             <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
-                                            @foreach($skills as $skill)
-                                                <li class="list-group-item">
-                                                    <!-- load each skill item in the skills category;
-                                                    the number of skills items in the skill category vary -->
-                                                    <label class="frm_checkbox">
-                                                        <input type="checkbox" class="skill-checkbox2" name="rubric2_skills[]" value={{$skill->getId()}} / >
-                                                        <span class="skill-name">{{$skill->getName()}}</span>
-                                                        @if ($skill->getFlag() === true)
-                                                            <img class="skill-flag-icon float-right" src="/images/flag.png" />
-                                                        @endif
-                                                    </label>
-                                                    <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                            @if(count($skills) > 0)
+                                                @foreach($skills as $skill)
+                                                    <li class="list-group-item">
+                                                        <!-- load each skill item in the skills category;
+                                                        the number of skills items in the skill category vary -->
+                                                        <label class="frm_checkbox">
+                                                            <input type="checkbox" class="skill-checkbox2" name="rubric2_skills[]" value={{$skill->getId()}} / >
+                                                            <span class="skill-name">{{$skill->getName()}}</span>
+                                                            @if ($skill->getFlag() === true)
+                                                                <img class="skill-flag-icon float-right" src="/images/flag.png" />
+                                                            @endif
+                                                        </label>
+                                                        <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                <li class="list-group-item">          
+                                                    <label class="frm_checkbox"></label>
                                                 </li>
-                                            @endforeach
+                                            @endif
                                             </div>
                                         </ul>
-                                    </div>
-                                @endif
+                                    </div>      
                             @endforeach
                             <!-- end of each skill card -->
 
