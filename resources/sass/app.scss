@@ -158,11 +158,11 @@ header {
 }
 
 .incomplete-style {
-    color: #D86918;
+    color: #D86918 !important;
 }
 
 .complete-style {
-    color: #159E09;
+    color: #159E09 !important;
 }
 
 .margin-top-6 {
@@ -436,13 +436,20 @@ header {
 }
 
 .Assessment-Student-list-cell{
-
-    box-shadow: 0px, 0px,rgba(0, 0, 0, 0.25);
-    radius: 5px;
-    border-color: #FBFBFB;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    height: 50px;
+    padding: 12px 0px;
+    border: 2px solid #FBFBFB;
+    color: black;
+    transition: 0.2s;
 }
+
 .Assessment-Student-list-cell:hover{
-    border-color:#0078ff ;
+    border: 2px solid #33A849;
+    text-decoration: none;
+    color: black;
+    
 }
 
 .save-exit-btn{
