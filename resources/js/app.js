@@ -3,6 +3,19 @@
 
 //Start of Jquery
 $(function(){
+    var prevScrollPos = $(document).scrollTop();
+    //home page navbar scrolling function
+    $(window).scroll(function(){
+        let currentScrollPos = $(document).scrollTop();
+        const main_nav = document.getElementById("main-nav");
+        if (prevScrollPos < currentScrollPos) {
+            main_nav.classList.add("hide-up");
+        } else {
+            main_nav.classList.remove("hide-up");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+    
     //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
@@ -108,8 +121,7 @@ $(function(){
         ],
     });
 
-});
-
+}); 
 
 //Student List scripts
 

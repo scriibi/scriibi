@@ -1,4 +1,4 @@
-<nav class="row nav-header pt-2 pb-2">
+<nav class="row nav-header pt-2 pb-2" id="main-nav">
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
     <!-- Navbar content -->
     <div class="d-inline-block col-12 col-sm-10 col-md-8 pt-2 pb-2">
