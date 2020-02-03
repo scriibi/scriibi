@@ -39,12 +39,12 @@
                 <!-- populate more cells as per assessment -->
                     @foreach($assessmentList as $al)
                         <div class="body-cells row mb-2">
-                            <button type="button" name="button" class="row btn btn-block rubric-list-row d-flex justify-content-between pl-3 m-0" onclick="location.href='{{ url('/single-assessment/' . $al->getId()) }}'">
+                            <a href="{{ url('/single-assessment/' . $al->getId()) }}" class="row btn-block rubric-list-row d-flex justify-content-between pl-3 m-0">
                                 <p class="col-4 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getName()}}</p>
                                 <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-1">{{$al->getCreatedAt()}}</p>
                                 <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getRubric()->rubric_Name}}</p>
                                 <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2">{{$al->getStatus()}}</p>
-                            </button>
+                            </a>
                         </div>
                     @endforeach
                 @endif
