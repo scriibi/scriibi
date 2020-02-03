@@ -2,7 +2,8 @@
 @section('title', 'Assessments-Marking')
 @section('content')
 
-<form method="POST">
+<form method="POST" action="/assessment-save">
+@csrf
     <div class="row assessment-marking-panel" id="assessment-marking-panel">
 
         <div class="marking-panel ml-0 mr-1 px-0 mt-3 marking-padding-right" id="marking-panel">
@@ -14,7 +15,7 @@
                 </div>
                 <!-- pop each score point(calculated) in the value attribute (5 times) -->
                 <div>
-                    <p class="w-100 text-center lable-input">{{$rubrics[0]->scriibi_Level}</p>
+                    <p class="w-100 text-center lable-input">{{$rubrics[0]->scriibi_Level}}</p>
                 </div>
                 <div >
                     <p class="w-100 text-center lable-input">{{$rubrics[1]->scriibi_Level}}</p>
@@ -33,7 +34,7 @@
             <div class="scroll-panel mx-0 px-0">
             
                 <!-- pop the first skill card -->
-                @csrf
+               
                 <?php
                     $counter = 0;
                 ?>
@@ -49,14 +50,17 @@
                                 <div class="w-100 d-flex justify-content-between">
                                     <!-- load the first trait name -->
                                     <span class="align-self-center ml-3">{{$sc->getName()}}</span>
+                                    @if (!empty($global))
                                     <a class="btn btn-link align-self-center criteria-btn">
                                         <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                     </a>
+                                    @endif
                                 </div>
+                                @if (!empty($global))
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="m-0 p-0" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[0] . "/" . $sc->getId()}}><span></span>
+                                        <input class="m-0 p-0" type="radio" name="skill_{{$counter}}" value={{$rubrics[0]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
@@ -80,9 +84,15 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[4] . "/" . $sc->getId()}}><span></span>
+                                        <input class="" type="radio" name="skill_{{$counter}}" value={{$rubrics[4]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
+                                @else
+                                <div class="w-100 text-center align-self-center">
+                                    <input type='radio' name="skill_{{$counter}}" value='na' hidden>
+                                    <p>NA</p>
+                                </div>
+                                @endif
                             </div>
                             <!-- criteria details section-->
                             <div class="card-text score-items criteria-section">
@@ -91,34 +101,23 @@
                                 <?php
                                     $global = $sc->getGlobalCriteria();
                                     $local = $sc->getLocalCriteria();
-                                ?>
-                                <div class="text-left pl-1 pt-2">
-                                    <p>{{$global[0]}}
-                                    </p>
-
-                                    <p class="milestone"></p>
-
-                                </div>
-                                <div class="">
-
-                                </div>
-                                <div class="text-left pt-2">
-                                    <p>{{$global[1]}}
-                                    </p>
-
-                                    <p class="milestone"></p>
-
-
-                                </div>
-                                <div class="">
-
-                                </div>
-                                <div class="text-left pr-2 pt-2">
-                                    <p>{{$global[2]}}</p>
-
-                                    <p class="milestone"></p>
-
-                                </div>
+                                
+                                foreach($global as $g){
+                                        if($g != end($global)){
+                                            echo '<div class="text-left">
+                                            <p>'.$g.'</p>
+                                            <pclass="milestone"></p>
+                                            </div>
+                                            <div class="">
+                                            </div>';
+                                        }else{
+                                            echo '<div class="text-left">
+                                            <p>'.$g.'</p>
+                                            <p class="milestone"></p>
+                                            </div>';
+                                        }
+                                    }
+                                    ?>
                             </div>
                         </div>
                     </div>
@@ -207,7 +206,7 @@
         </div>
         <div class="d-flex justify-content-center mt-5 ">
             ,<input type="text" name="skillCount" id="" value = {{count($skillCards)}} hidden>
-            <button class="btn save-marking-btn px-4"type="button" name="button" onclick="window.location.href ='{{ url('/assessment-save/')}}'">Save Marking</button>
+            <button class="btn save-marking-btn px-4" type="submit" name="button">Save Marking</button>
         </div>
 
     </div>

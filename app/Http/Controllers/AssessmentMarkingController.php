@@ -81,7 +81,7 @@ class AssessmentMarkingController extends Controller
                 array_push($skillsAssessedArray, $student_skill);
             }
         }
-        //dd($skillsAssessedArray);
+        dd($skillsAssessedArray);
     }
 
     public function seperateSkills(){
