@@ -31,6 +31,7 @@
             <!-- end of score points -->
         </div>
         <div class="scroll-panel mx-0 px-0">
+            <form method="POST">
 
             <!-- pop the first skill card -->
             <?php
@@ -46,7 +47,7 @@
                             <div class="w-100 d-flex justify-content-between">
                                 <!-- load the first trait name -->
                                 <span class="align-self-center">{{$sc->getName()}}</span>
-                                <a class="btn btn-link align-self-center criteria-btn arrow-up-btn" href="#load-skill-id" data-toggle="collapse">
+                                <a class="btn btn-link align-self-center criteria-btn arrow-up-btn">
                                     <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                 </a>
                             </div>
@@ -82,7 +83,7 @@
                             </div>
                         </div>
                         <!-- criteria details section-->
-                        <div class="card-text score-items collapse show criteria-section " id="load-skill-id">
+                        <div class="card-text score-items criteria-section hide-up">
                             <div class="">
                             </div>
                             <?php
@@ -121,7 +122,7 @@
                 </div>
             @endforeach
             <!-- /end of first skill card -->
-
+            </form>
         </div>
     </div>
     <!-- sidebar btn to close or open -->
