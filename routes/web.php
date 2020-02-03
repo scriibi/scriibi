@@ -70,6 +70,7 @@ Route::post('/assessment-submit', 'WritingTasksController@store');
 Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
 Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');
 Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');
+Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
 
 Route::get('/rubric', function(){
    return view('rubric');

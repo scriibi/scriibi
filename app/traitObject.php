@@ -94,9 +94,9 @@ class traitObject
         $scriibi_level = ScriibiLevels::find($level)->scriibi_Level;
 
         if($scriibi_level == 0.0){
-            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 0.5, $scriibi_level])->get(); 
+            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 0.5, $scriibi_level, $scriibi_level + 1.0])->get(); 
         }else{
-            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 2.0, $scriibi_level - 1.0, $scriibi_level])->get(); 
+            $scriibi_value_ids = DB::table('scriibi_levels')->select('scriibi_Level_Id')->whereIn('scriibi_Level', [$scriibi_level - 1.0, $scriibi_level, $scriibi_level + 1.0])->get(); 
         }
 
         foreach($scriibi_value_ids as $svi){

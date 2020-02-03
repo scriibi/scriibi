@@ -31,10 +31,15 @@
                 <!-- end of score points -->
             </div>
             <div class="scroll-panel mx-0 px-0">
-
-
+            
                 <!-- pop the first skill card -->
+                <?php
+                    $counter = 0;
+                ?>
                 @foreach($skillCards as $sc)
+                    <?php
+                        $counter++;
+                    ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
                             <div class="card-title score-items mb-0 radioBTNs-section">
@@ -48,31 +53,31 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="m-0 p-0" type="radio" name="score{{$sc->getName()}}" value="score1"><span></span>
+                                        <input class="m-0 p-0" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[0] . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="score{{$sc->getName()}}" value="score2"><span></span>
+                                        <input class="" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[1] . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="score{{$sc->getName()}}" value="score3"><span></span>
+                                        <input class="" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[2] . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="score{{$sc->getName()}}" value="score4"><span></span>
+                                        <input class="" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[3] . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="score{{$sc->getName()}}" value="score5"><span></span>
+                                        <input class="" type="radio" name="score{{$sc->getName()}}" value={{$rubrics[4] . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                             </div>
@@ -88,7 +93,7 @@
                                     <p>{{$global[0]}}
                                     </p>
 
-                                    <pclass="milestone"></p>
+                                    <p class="milestone"></p>
 
                                 </div>
                                 <div class="">
@@ -196,8 +201,13 @@
             <div class="d-flex justify-content-center mt-5 ">
                 <input type="submit" class="save-marking-btn px-4" name="assessment-marking-submit" value="Save Marking" />
             </div>
-
         </div>
+        <div class="d-flex justify-content-center mt-5 ">
+            ,<input type="text" name="skillCount" id="" value = {{count($skillCards)}} hidden>
+            <button class="btn save-marking-btn px-4"type="button" name="button" onclick="window.location.href ='{{ url('/assessment-save/')}}'">Save Marking</button>
+        </div>
+
+    </div>
 
 
     </div>
