@@ -9,7 +9,6 @@ use App\ScriibiLevels;
 use App\writing_tasks;
 use App\students;
 use App\text_types_skills;
-use App\tasks_students;
 use Illuminate\Http\Request;
 
 class AssessmentMarkingController extends Controller
@@ -94,12 +93,8 @@ class AssessmentMarkingController extends Controller
         $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get();
         foreach($writingTaskSkills as $wts){
             if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
-                $student_skill = tasks_students::where('student_Id', '=', $studentId)->where('tasks_skills_Id' ,'=', )->first();
-                    if ($user === null) {
-                    // user doesn't exist
-                    }
                 $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
-                $new_task_student = DB::table('tasks_students')->insert($student_task);
+                $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
             }
         }
         
