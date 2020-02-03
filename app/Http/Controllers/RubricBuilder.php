@@ -61,11 +61,9 @@ class RubricBuilder extends Controller
     public function generateRubricsViewWithFlags($level){
         $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
         RubricBuilder::populateSkillsInTraits($level);
-
         foreach($this->traits_skills_array as $tsa){
             $tsa->calcFlag($level);
         }
-
         return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => $level]);
     }
 
