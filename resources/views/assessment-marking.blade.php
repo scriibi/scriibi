@@ -89,8 +89,8 @@
                                 </div>
                                 @else
                                 <div class="w-100 text-center align-self-center">
-                                    <input type='radio' name="skill_{{$counter}}" value='na' hidden>
-                                    <p>Not Applicable at the this students level</p>
+                                    <input type='radio' name="skill_{{$counter}}" value='na' hidden checked>
+                                    <p>Not Applicable at student's level</p>
                                 </div>
                                 @endif
                             </div>
@@ -101,7 +101,6 @@
                                 <?php
                                     $global = $sc->getGlobalCriteria();
                                     $local = $sc->getLocalCriteria();
-                                
                                 foreach($global as $g){
                                         if($g != end($global)){
                                             echo '<div class="text-left">
@@ -205,7 +204,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5 ">
-            ,<input type="text" name="skillCount" id="" value = {{count($skillCards)}} hidden>
+            <!-- hidden fileds for server side use -->
+            <input type="text" name="skillCount" id="" value = {{count($skillCards)}} hidden>
+            <input type="text" name="studentId" id="" value = {{$student_id}} hidden>
+            <input type="text" name="writingTask" id="" value = {{$writting_task_id}} hidden>
+
+
             <button class="btn save-marking-btn px-4" type="submit" name="button">Save Marking</button>
         </div>
 

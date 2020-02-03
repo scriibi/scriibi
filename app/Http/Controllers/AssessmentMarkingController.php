@@ -8,6 +8,7 @@ use App\SkillCard;
 use App\ScriibiLevels;
 use App\writing_tasks;
 use App\students;
+use App\text_types_skills;
 use Illuminate\Http\Request;
 
 class AssessmentMarkingController extends Controller
@@ -42,7 +43,7 @@ class AssessmentMarkingController extends Controller
         }
 
         //dd($skillCards);
-        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'status' => $status[0]->status]);
+        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status]);
     }
 
     /**
@@ -73,18 +74,31 @@ class AssessmentMarkingController extends Controller
     }
 
     public function saveAssessment(Request $request){
+        // stores the values passed in through the form as key value pairs
         $skillsAssessedArray = array();
-        $skillCount = $request->input('skillCount');
+        // stores the reference values from the table 'task_skills' in order to find the 'writing_tasks_writing_task_Id'
+        $task_skills = array();
+        $skillCount = $request->input('skillCount');     
+        $studentId = $request->input('studentId');
+        $writingTask = $request->input('writingTask');
         for($i = 1; $i <= $skillCount; $i++){
             $student_skill = $request->input('skill_' . (string)$i);
-            if($student_skill != 'na'){
-                array_push($skillsAssessedArray, $student_skill);
+            if(isset($student_skill)){
+                if($student_skill != 'na'){
+                    $skill_pointer = explode("/", $student_skill);
+                    $skillsAssessedArray[$skill_pointer[1]] = $skill_pointer[0];
+                }
             }
         }
-        dd($skillsAssessedArray);
-    }
-
-    public function seperateSkills(){
+        $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get();
+        foreach($writingTaskSkills as $wts){
+            if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
+                $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
+                $new_task_student = DB::table('tasks_students')->insert($student_task);
+            }
+        }
         
+        foreach($skillsAssessedArray as $key => $value){
+        }
     }
 }
