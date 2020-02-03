@@ -200,22 +200,14 @@
                 <textarea class="text-area-style" placeholder="Comments" id="text-area-style"></textarea>
             </div>
             <div class="d-flex justify-content-center mt-5 ">
+                <!-- hidden fileds for server side use -->
+                <input type="text" name="skillCount" value = {{count($skillCards)}} hidden>
+                <input type="text" name="studentId" value = {{$student_id}} hidden>
+                <input type="text" name="writingTask" value = {{$writting_task_id}} hidden>
+                <!-- Form submit button -->
                 <input type="submit" class="save-marking-btn px-4" name="assessment-marking-submit" value="Save Marking" />
             </div>
         </div>
-        <div class="d-flex justify-content-center mt-5 ">
-            <!-- hidden fileds for server side use -->
-            <input type="text" name="skillCount" id="" value = {{count($skillCards)}} hidden>
-            <input type="text" name="studentId" id="" value = {{$student_id}} hidden>
-            <input type="text" name="writingTask" id="" value = {{$writting_task_id}} hidden>
-
-
-            <button class="btn save-marking-btn px-4" type="submit" name="button">Save Marking</button>
-        </div>
-
-    </div>
-
-
     </div>
 </form> <!-- end of form -->
 @endsection
