@@ -26,6 +26,7 @@
         <div class="row mt-3">
             <!-- this is where the description of assessment task goes -->
             <div class="col-10">
+                <p>Additional Notes:</p>
                 <p>{{$writingTask->getDescription()}}</p>
             </div>
         </div>
@@ -49,13 +50,13 @@
                     $students = $writingTask->getStudents();
                 ?>
             @foreach($students as $s)
-                <a href="/assessment-marking/{{$s->student_Id}}/{{$writingTask->getId()}}" class="row btn btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
+                <a href="/assessment-marking/{{$s->student_Id}}/{{$writingTask->getId()}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
                     <!-- here goes the full name, id, grade, assessed level, status -->
                     <p class="col-4 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->student_First_Name}} {{$s->student_Last_Name}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->Student_Gov_Id}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->enrolled_Level_Id}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->rubrik_level}}</p>
-                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->status}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0 @if($s->status == "completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s->status}}</p>
                 </a>
             @endforeach
             </div>

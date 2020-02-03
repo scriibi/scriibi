@@ -43,7 +43,7 @@
                                 <p class="col-4 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getName()}}</p>
                                 <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-1">{{$al->getCreatedAt()}}</p>
                                 <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getRubric()->rubric_Name}}</p>
-                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2">{{$al->getStatus()}}</p>
+                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2 @if($al->getStatus() == "Completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif ">{{$al->getStatus()}}</p>
                             </a>
                         </div>
                     @endforeach
