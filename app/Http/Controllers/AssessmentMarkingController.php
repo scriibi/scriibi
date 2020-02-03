@@ -32,7 +32,7 @@ class AssessmentMarkingController extends Controller
             ->get();
 
         foreach($range as $r){
-            array_push($rangeAsScriibiValue, ScriibiLevels::find($r)->scriibi_Level);
+            array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
         }
 
         foreach($skills as $s){
@@ -74,8 +74,17 @@ class AssessmentMarkingController extends Controller
 
     public function saveAssessment(Request $request){
         $skillsAssessedArray = array();
-        for($i = 1; i <= $skillCount; $i++){
-            array_push($skillsAssessedArray, $request->input('skill_' . (string)$i));
+        $skillCount = $request->input('skillCount');
+        for($i = 1; $i <= $skillCount; $i++){
+            $student_skill = $request->input('skill_' . (string)$i);
+            if($student_skill != 'na'){
+                array_push($skillsAssessedArray, $student_skill);
+            }
         }
+        //dd($skillsAssessedArray);
+    }
+
+    public function seperateSkills(){
+        
     }
 }
