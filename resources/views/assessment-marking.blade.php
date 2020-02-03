@@ -90,7 +90,7 @@
                                 @else
                                 <div class="w-100 text-center align-self-center">
                                     <input type='radio' name="skill_{{$counter}}" value='na' hidden checked>
-                                    <p>Not Applicable at the this students level</p>
+                                    <p>Not Applicable at student's level</p>
                                 </div>
                                 @endif
                             </div>
