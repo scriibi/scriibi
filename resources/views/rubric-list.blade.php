@@ -28,7 +28,7 @@
 
         <!-- populate more cells as per rubric -->
         @foreach($rubrics as $r)
-            <a href="#" class="row btn btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
+            <a href="#" class="row btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
                 <p class="col-4 rubric-list-text text-left pl-0 mb-0">{{$r->getName()}}</p>
                 <p class="col-2 rubric-list-text text-left ">{{$r->getDate()}}</p>
 

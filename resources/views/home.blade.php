@@ -3,7 +3,7 @@
 @section('content')
 @csrf
 
-<div class="row mx-4">
+<div class="row mx-4 pb-5">
     <div class="d-none d-sm-block col-sm-1 col-md-2">
     </div>
     <div class="col-12 col-sm-10 col-md-8">
@@ -65,28 +65,28 @@
                 <!-- assessments btn link-->
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
-                        <img class="align-self-center "src="/images/Assessment Logo.png" alt="assessment">
+                        <img class="align-self-center home-assessment-icon"src="/images/Assessment Logo.png" alt="assessment">
                         <span class="align-self-center text-nowrap">My Assessments</span>
                     </div>
                 </a>
                 <!-- rubric template btn link -->
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
-                        <img class="align-self-center home-second-icon" src="/images/rubric-template.png" alt="rubric-template">
+                        <img class="align-self-center home-rubric-icon" src="/images/rubric-template.png" alt="rubric-template">
                         <span class="align-self-center">Skills Template</span>
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
-                        <img class="align-self-center" src="/images/goal-setting.png" alt="rubric-template">
+                        <img class="align-self-center home-goal-icon" src="/images/goal-setting.png" alt="rubric-template">
                         <span class="align-self-center">Goal Settings</span>
                     </div>
                 </a>
                 <!-- Data View btn -->
                 <a href="#" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
-                        <img class="align-self-center" src="/images/data-view.png" alt="data-view">
+                        <img class="align-self-center home-data-icon" src="/images/data-view.png" alt="data-view">
                         <span class="align-self-center">View Student Data</span>
                     </div>
                 </a>
@@ -106,17 +106,17 @@
                     </a>
                 </div>
                 <a href="https://writing.scriibi.com/additional-support-material/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
-                    <img class="align-self-center mx-2 px-3" src="/images/support-material.png" alt="logo1">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/support-material.png" alt="logo1">
                     <span class="align-self-center mx-2">Support Material</span>
                 </a>
 
                 <a href="https://writing.scriibi.com/search-lessons/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
-                    <img class="align-self-center mx-2 px-3" src="/images/lessons.png" alt="logo2">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/lessons.png" alt="logo2">
                     <span class="align-self-center mx-2">Lessons</span>
                 </a>
 
                 <a href="https://writing.scriibi.com/point-of-need-tool/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
-                    <img class="align-self-center mx-2 px-3" src="/images/point-of-need.png" alt="logo3">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/point-of-need.png" alt="logo3">
                     <span class="align-self-center mx-2">Point of Need</span>
                 </a>
             </div>
@@ -131,15 +131,15 @@
                     </a>
                 </div>
                 <a href="https://writing.scriibi.com/observations-ive-completed/" class="peer-assessment-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
-                    <img class="align-self-center mx-2 px-3" src="/images/peer-obvs.png" alt="logo4">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/peer-obvs.png" alt="logo4">
                     <span class="align-self-center text-nowrap mx-2">Peer Observation</span>
                 </a>
                 <a href="https://writing.scriibi.com/observations-ive-completed/" class="peer-assessment-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
-                    <img class="align-self-center mx-2 px-3" src="/images/view-obvs.png" alt="logo5">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/view-obvs.png" alt="logo5">
                     <span class="align-self-center mx-2 text-nowrap">View Observation</span>
                 </a>
                 <a href="https://writing.scriibi.com/peer-observations/" class="peer-assessment-list list-group-item list-group-item-action extra-support-card-list mt-2 mb-2 p-1 d-flex justify-content-start" >
-                    <img class="align-self-center mx-2 px-3" src="/images/feedback.png" alt="logo6">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/feedback.png" alt="logo6">
                     <span class="align-self-center mx-2 text-nowrap">Feedback for Me</span>
                 </a>
             </div>
@@ -154,11 +154,11 @@
                     </a>
                 </div>
                 <a href="#" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1  d-flex justify-content-start">
-                    <img class="align-self-center mx-2 px-3" src="/images/help.png" alt="logo7">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/help.png" alt="logo7">
                     <span class="align-self-center mx-2 text-nowrap">Help</span>
                 </a>
                 <a href="mailto:info@scriibi.com" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
-                    <img class="align-self-center mx-2 px-3" src="/images/contact us.png" alt="logo8">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/contact us.png" alt="logo8">
                     <span class="align-self-center mx-2 text-nowrap">Contact Us</span>
                 </a>
 

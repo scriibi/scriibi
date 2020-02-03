@@ -121,7 +121,7 @@ header {
 }
 
 .universal-card {
-    border-radius: 20px;
+    border-radius: 7px;
     -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
@@ -226,7 +226,7 @@ header {
 }
 
 .student-list-card-style{
-    border-radius: 20px;
+    border-radius: 7px;
     overflow: hidden;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
     background-color:#FAFAFA;
@@ -234,13 +234,13 @@ header {
 .studet-list-cell-style{
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+    border-radius: 7px;
 
 }
 .student-list-footer-style{
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 7px 7px;
 }
 .extra-card-style{
     border-radius: 20px;
@@ -269,8 +269,31 @@ header {
     border-radius: 20px;
 }
 
-.home-second-icon {
+.home-assessment-icon {
+    height: 70px;
+    width: auto;
+}
+
+.home-rubric-icon {
     height: 40px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-goal-icon {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-data-icon {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-etc-icons {
+    height: 30px;
     width: auto;
     margin-left: 10px;
 }
@@ -290,7 +313,11 @@ header {
 }
 
 .assessment-rubric-settings-btn {
-
+    
+    box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.25);
+    border-radius: 7px;
+    height: 70px;
+    
     input {
         display: none;
     }
@@ -304,10 +331,18 @@ header {
         transition: 0.2s;
         width: 100%;
         text-align: left;
+        padding: 5px 2px;
 
     }
     &:hover span, input:checked + span{
         border: 2px solid #33A849;
+        height: 100%;
+    }
+    
+    .assessment-rubric-skills {
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -382,6 +417,7 @@ header {
 
 .card-assessment-style{
     border-radius: 20px;
+    margin-bottom: 20px;
     overflow: hidden;
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
@@ -786,19 +822,29 @@ input:focus {
 .rubric-list-row{
     background: #FFFFFF;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+    border-radius: 7px;
     border: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
     position: relative;
     border: 2px solid white;
-    height: 85px;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-decoration: none;
+    transition: 0.3s;
+    
+    p {
+        color: black;
+    }
+    
+    p:hover {
+        text-decoration: none;
+        color: black;
+    }
 }
 
 .rubric-list-row:hover{
     border: 2px solid #33A849;
+    text-decoration: none;
 
 }
 

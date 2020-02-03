@@ -59,7 +59,7 @@
                 </div>
                 <div>
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                        <p class="col-4 text-left pr-2">Temaplate Title</p>
+                        <p class="col-4 text-left pr-2">Template Title</p>
                         <p class="col-8 text-left px-0">Skills</p>
                     </div>
                     <!-- populate more cells as per rubric -->
@@ -68,8 +68,8 @@
                             <label class="assessment-rubric-settings-btn w-100">
                                 <input type="radio" name="rubric" value={{$r->getId()}}>
                                 <span class="row px-0 mx-0">
-                                    <span class="btn col-4 border-0">{{$r->getName()}}</span>
-                                    <span class="btn col-8 border-0 pl-1">
+                                    <span class="btn col-4 border-0 assessment-rubric-title">{{$r->getName()}}</span>
+                                    <span class="btn col-8 border-0 pl-1 assessment-rubric-skills">
                                     <?php
                                         $skills_array = array();
                                         $traits_skills = $r->getRubricTraitSkills();
