@@ -11,7 +11,9 @@
             <a href="/rubrics" class="btn assessment-btn p-2">New Template +</a>
         </div>
         <!-- show no rubric created message -->
+
         @if(count($rubrics)===0)
+
         <div class="mt-5 rubric-instruction">
             <p>You currently do not have any skills template.</p>
             <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Template +</a> to create your first template</p>
@@ -25,7 +27,6 @@
             <p class="col-2 text-left">Date Created</p>
             <p class="col-4 text-left">Skills</p>
         </div>
-
         <!-- populate more cells as per rubric -->
         @foreach($rubrics as $r)
             <a href="#" class="row btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
@@ -63,7 +64,7 @@
                                 if ($count == 10){
                                     echo($sa."...");
                                     break;
-                                }  
+                                }
                             }//end of foreach
                         ?>
                     </p>
