@@ -42,7 +42,7 @@
                             <label class="student-form-label" for="grade">Grade</label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel" name="assessed_level" required>  
+                            <select class="select-input" id="assessedLevel" name="assessed_level" required>
                                 @foreach ($assessed as $a)
                                     <option value={{$a->assessed_level_label_id}}>{{$a->assessed_level_label}}</option>
                                 @endforeach
@@ -71,11 +71,11 @@
            </div>
            <div class="col-2"></div>
        </div>
-       
+
        <!-- AJAX list display of students -->
        <div id="listDisplay">
-       
-       </div>   
+
+       </div>
         <!-- /AJAX student list -->
    </div>
    <div class="d-none d-sm-block col-sm-1 col-md-2">
