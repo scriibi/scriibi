@@ -110,7 +110,9 @@
                                     <span class="bar"></span>
                                     <label class="student-form-label ml-3" for="assessment_name2">Title</label>
                                 </div>
-                                <div class="col-4"></div>
+                                <div class="col-4">
+                                    <button type="button" class="auto-populate-button" id="autopopulate-term2-rubric">Auto-populate term 2</button>
+                                </div>
                             </div>
 
 

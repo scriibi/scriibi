@@ -40,10 +40,10 @@
                     @foreach($assessmentList as $al)
                         <div class="body-cells row mb-2">
                             <a href="{{ url('/single-assessment/' . $al->getId()) }}" class="row btn-block rubric-list-row d-flex justify-content-between pl-3 m-0">
-                                <p class="col-4 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getName()}}</p>
-                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-1">{{$al->getCreatedAt()}}</p>
-                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-0">{{$al->getRubric()->rubric_Name}}</p>
-                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2 @if($al->getStatus() == "Completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif ">{{$al->getStatus()}}</p>
+                                <p class="col-4 rubric-list-text text-truncate align-self-center text-left px-0 mt-2">{{$al->getName()}}</p>
+                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-1 mt-2">{{$al->getCreatedAt()}}</p>
+                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-0 mt-2">{{$al->getRubric()->rubric_Name}}</p>
+                                <p class="col-2 rubric-list-text text-truncate align-self-center text-left px-2 mt-2 @if($al->getStatus() == "Completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif ">{{$al->getStatus()}}</p>
                             </a>
                         </div>
                     @endforeach
