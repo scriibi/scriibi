@@ -135,6 +135,26 @@ class StudentsController extends Controller
      */
     public function update(Request $request)
     {
-        dump(request()->all());
+        dd($request);
+        $student_Id = $request->input('studentId');
+        $student_first_name = $request->input('first_name');
+        $student_last_name = $request->input('last_name');
+        $student_gov_id = $request->input('student_gov_id');
+        $student_grade = $request->input('student_grade');
+        $student_assignment_level = $request->input('assessed_level');
+        $school_Id =  $request->input('schoolId');
+
+        DB::table('students')
+            ->updateOrInsert(
+                ['student_Id' => $student_Id],
+                ['student_First_Name' => $student_first_name,
+                'student_Last_Name' => $student_last_name,
+                'Student_Gov_Id' => $student_gov_id,
+                'enrolled_Level_Id' => $student_grade,
+                'rubrik_level' => $student_assignment_level,
+                'schools_school_Id' => $school_Id]
+            );
+
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 }

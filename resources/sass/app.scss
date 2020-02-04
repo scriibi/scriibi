@@ -321,7 +321,7 @@ header {
 }
 
 .assessment-rubric-settings-btn {
-    
+
     input {
         display: none;
     }
@@ -331,7 +331,7 @@ header {
         line-height: 19px;
         text-align: left;
     }
-    
+
     .assessment-rubric-skills {
         height: 100%;
         overflow: hidden;
@@ -449,7 +449,7 @@ header {
     border: 2px solid #33A849;
     text-decoration: none;
     color: black;
-    
+
 }
 
 .save-exit-btn{
@@ -485,7 +485,7 @@ header {
     overflow-y: auto;
     height: 100%;
     width: 100%;
-    
+
 }
 
 .sidebar-btn{
@@ -817,7 +817,7 @@ input:focus {
     color: #FFFFFF;
 }
 
-.rubric-instruction{
+.notice-styling{
     font-weight: bold;
     align-items: center;
     color: #6B6B6B;
@@ -839,11 +839,11 @@ input:focus {
     text-decoration: none;
     transition: 0.3s;
     height: 70px;
-    
+
     .rubric-list-text {
         color: black;
     }
-    
+
     .rubric-list-text:hover {
         color: black;
     }
