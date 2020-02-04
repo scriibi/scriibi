@@ -169,7 +169,7 @@
                     </div>
                     <!-- clear button for form -->
                     <div class="d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
-                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="save this rubric" />
+                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="Save this rubric" />
                     </div>
                     <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
