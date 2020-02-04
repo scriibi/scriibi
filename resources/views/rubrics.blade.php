@@ -41,7 +41,7 @@
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>
-                                <label class="ml-3 student-form-label" for="grade">Show curriculum  milestone for</label><br />
+                                <label class="ml-3 student-form-label" for="grade">Show skills and curriculum  milestones for:</label><br />
                             </div>
                         </div>
 
@@ -67,6 +67,7 @@
                                             </li>
                                             <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
+
                                             @if(count($skills) > 0)
                                                 @foreach($skills as $skill)
                                                     <li class="list-group-item">
@@ -85,7 +86,7 @@
                                             @else
                                                 <li class="list-group-item">          
                                                     <label class="frm_checkbox"></label>
-                                                </li>
+
                                             @endif
                                             </div>
                                         </ul>
@@ -169,7 +170,7 @@
                     </div>
                     <!-- clear button for form -->
                     <div class="d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
-                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="save this rubric" />
+                        <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="Save templates" />
                     </div>
                     <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
                         <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
