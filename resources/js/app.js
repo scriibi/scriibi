@@ -3,6 +3,19 @@
 
 //Start of Jquery
 $(function(){
+    var prevScrollPos = $(document).scrollTop();
+    //home page navbar scrolling function
+    $(window).scroll(function(){
+        let currentScrollPos = $(document).scrollTop();
+        const main_nav = document.getElementById("main-nav");
+        if (prevScrollPos < currentScrollPos) {
+            main_nav.classList.add("hide-up");
+        } else {
+            main_nav.classList.remove("hide-up");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+    
     //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
@@ -34,11 +47,16 @@ $(function(){
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
+        $(".marking-panel").toggleClass("marking-padding-right");
+        $(this).toggleClass("arrow-move");
     });
 
     // arrow rotate function
-    $(".arrow-up-btn").click(function(){
+    $(".criteria-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
+        let criteria_section = $(this).parent().parent().parent().parent().find(".criteria-section");
+        console.log(criteria_section);
+        criteria_section.toggleClass("accordion-display");
     });
 
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
@@ -51,7 +69,12 @@ $(function(){
         url_origin += curriculum_level;
         window.location.href = url_origin;
     });
-
+    
+    //setting the default examples for the assessment-marking-page blade
+    const assessed_level = "#level-".concat($("#assessed-marking-level").value);
+    $("#level-examples div").addClass("d-none");
+    $(assessed_level).removeClass("d-none");
+    
     $("#assessed-marking-level").change(function(){
         if (this.value == "F"){
             $("#level-examples div").addClass("d-none");
@@ -82,7 +105,8 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }
     });
-
+    
+    //Table to display student grade data
     let table = $("#overall-assessment-table").DataTable({
         scrollX:        true,
         scrollCollapse: true,
@@ -96,9 +120,34 @@ $(function(){
         {width: "50px", targets: 2}
         ],
     });
+    
+    //If assessment form is incomplete, display the assessment form again
+    $("#createAxBTN").on("click", function(){
+        if (document.getElementById("assessment-name") === null) {
+            $("#assessment-template").addClass("d-block");
+            $("#assessment-template").removeClass("d-none");
+            $("#rubric-template").addClass("d-none");
+            $("#rubric-template").removeClass("d-block");
+        } 
+    });
+    
+    //rubric builder autopopulate function
+    $("#autopopulate-term2-rubric").on("click", function(){
+        let form1_skills = $(".skill-checkbox1"),
+            form2_skills = $(".skill-checkbox2"),
+            unchecked_skills = [];
+        
+        for(var i = 0; i < form1_skills.length; i++){
+            if (!(form1_skills[i].checked) && !(form2_skills[i].checked)) {
+               form2_skills[i].checked = true;
+            }
+            else {
+                form2_skills[i].checked = false;
+            }
+        }
+    });
 
-});
-
+}); 
 
 //Student List scripts
 

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class StudentsController extends Controller
-{   
+{
     /**
      * Store a newly created resource in storage.
      *
@@ -21,7 +21,7 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $student_first_name = $request->input('first_name');
         $student_last_name = $request->input('last_name');
         $student_gov_id = $request->input('student_gov_id');
@@ -32,9 +32,9 @@ class StudentsController extends Controller
         $class = teachers::find(Auth::user()->user_Id)->classes->first()->class_Id;
         $grade_scriibi_level = grade_label::find($student_grade)->ScriibiLevels->scriibi_Level_Id;
         $assessed_scriibi_level = assessed_level_label::find($student_assignment_level)->ScriibiLevels->scriibi_Level_Id;
-        
+
         $student_record = array('student_First_Name' => $student_first_name, 'student_Last_Name' => $student_last_name, 'Student_Gov_Id' => $student_gov_id, 'enrolled_Level_Id' => $grade_scriibi_level, 'rubrik_level' => $assessed_scriibi_level, 'schools_school_Id' => $school->school_Id, 'suggested_level' => null);
-        
+
         $newStudentId = DB::table('students')->insertGetId($student_record);
 
         $student_classes_record = array('classes_class_Id' => $class, 'students_student_Id' => $newStudentId, 'student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level);
@@ -62,7 +62,7 @@ class StudentsController extends Controller
     }
 
     /**
-     * return all of the students of the currently logged in teachers class 
+     * return all of the students of the currently logged in teachers class
      * note: for version 1 a teacher can have only one class
      */
     public function indexStudentsByClass(){
@@ -123,7 +123,7 @@ class StudentsController extends Controller
      */
     public function edit(students $students)
     {
-        //
+
     }
 
     /**
@@ -133,8 +133,8 @@ class StudentsController extends Controller
      * @param  \App\students  $students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, students $students)
+    public function update(Request $request)
     {
-        //
+        dump(request()->all());
     }
 }

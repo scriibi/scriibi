@@ -56,20 +56,25 @@ Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 
 Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
 Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
 
+//student list routes
 Route::get('/AJAX/listCall', 'listCallController@generateList');
 Route::get('/studentlist', 'StudentInputController@ReturnStudentListPage');
 Route::post('/StudentPost', 'StudentsController@store');
 Route::get('/studentDelete/{student_id}', 'StudentsController@deleteStudent');
+Route::put('/studentlist', 'StudentsController@update');
 
+//rubric routes
 Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');
 Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
 
+//assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
 Route::post('/assessment-submit', 'WritingTasksController@store');
 Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
 Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');
 Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');
+Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
 
 Route::get('/rubric', function(){
    return view('rubric');

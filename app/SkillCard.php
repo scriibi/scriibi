@@ -30,6 +30,10 @@ class SkillCard
         $this->writingTask = $writingTask;
     }
 
+    public function getId(){
+        return $this->skillId;
+    }
+
     public function getName(){
         return $this->skillName;
     }
@@ -59,7 +63,7 @@ class SkillCard
                 array_push($this->scriibiLevelglobalCriteria, $global_criteria_description[0]->description);
             }
             catch(Exception $e){
-                array_push($this->scriibiLevelglobalCriteria, "");
+               // do something
             }
         }
     }

@@ -11,7 +11,9 @@
             <a href="/rubrics" class="btn assessment-btn p-2">New Rubric +</a>
         </div>
         <!-- show no rubric created message -->
+
         @if(count($rubrics)===0)
+
         <div class="mt-5 rubric-instruction">
             <p>You currently do not have any rubric templates.</p>
             <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Rubric +</a> to create your first template</p>
@@ -25,14 +27,18 @@
             <p class="col-2 text-left">Date Created</p>
             <p class="col-4 text-left">Skills</p>
         </div>
-
         <!-- populate more cells as per rubric -->
         @foreach($rubrics as $r)
-            <a href="#" class="row btn btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
-                <p class="col-4 rubric-list-text text-left pl-0 mb-0">{{$r->getName()}}</p>
-                <p class="col-2 rubric-list-text text-left ">{{$r->getDate()}}</p>
-
-                <?php $skills_array = array();
+            <a href="#" class="row btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
+                <div class="col-4 rubric-list-text text-left pl-0 mb-0">
+                    <p>{{$r->getName()}}</p>
+                </div>
+                <div class="col-2 rubric-list-text text-left">
+                    <p>{{$r->getDate()}}</p>
+                </div>
+                <div class="col-6 rubric-list-skills text-left align-middle">
+                    <!-- get each skill from the rubric and display it into the p tag -->
+                    <?php $skills_array = array();
                     $traits_skills = $r->getRubricTraitSkills();
                     foreach($traits_skills as $ts){
                         $skillObjects = $ts->getSkills();
@@ -40,17 +46,29 @@
                             array_push($skills_array, $so->getName());
                         }
                     };
-                 ?>
-                <p class="col-6 rubric-list-skills text-left align-middle">
-                    <?php
-                        $final_skill = end($skills_array);
-                        foreach($skills_array as $sa)
-                        if($sa != $final_skill)
-                            echo($sa . ", ");
-                        else
-                            echo($sa);
-                    ?>
-                </p>
+                     ?>
+                    <p>
+                        <!-- Applying a comma after each skill -->
+                        <?php
+                            $final_skill = end($skills_array);
+                            $count = 0;
+                            foreach($skills_array as $sa) {
+                                if($sa != $final_skill) {
+                                    echo($sa . ", ");
+                                    $count++;
+                                }
+                                else {
+                                    echo($sa);
+                                }
+                                //apply an ellipses if reached 11 skills
+                                if ($count == 10){
+                                    echo($sa."...");
+                                    break;
+                                }
+                            }//end of foreach
+                        ?>
+                    </p>
+                </div>
             </a>
         @endforeach
         @endif

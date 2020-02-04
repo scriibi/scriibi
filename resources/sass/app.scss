@@ -10,7 +10,6 @@
 //---------- Element Overrides ----------------
 
 html, body {
-    height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
@@ -25,8 +24,14 @@ footer {
 }
 
 #app{
-min-height: 100%;
-position: relative;
+    min-height: 100%;
+    position: relative;
+}
+
+header {
+    position: relative;
+    z-index: 3;
+    background-color: white;
 }
 //---------- Partials -------------------------
 
@@ -40,7 +45,11 @@ position: relative;
 .nav-header {//start of nav-header
     border-bottom: 3px solid #33A849;
     box-shadow: 0 -10px 10px 10px #888888;
-
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+    transition: 0.3s;
     img.logo {
         height: 50px;
     }
@@ -112,7 +121,7 @@ position: relative;
 }
 
 .universal-card {
-    border-radius: 20px;
+    border-radius: 7px;
     -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
     box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.30);
@@ -146,6 +155,23 @@ position: relative;
 
 .sub-heading {
     font-size: 0.7rem;
+}
+
+.incomplete-style {
+    color: #D86918 !important;
+}
+
+.complete-style {
+    color: #159E09 !important;
+}
+
+.margin-top-6 {
+    margin-top: 6em;
+}
+
+.hide-up {
+    top: -100px;
+    transition: 0.3s;
 }
 
 //---------- Page Specific --------------------
@@ -200,7 +226,7 @@ position: relative;
 }
 
 .student-list-card-style{
-    border-radius: 20px;
+    border-radius: 7px;
     overflow: hidden;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
     background-color:#FAFAFA;
@@ -208,13 +234,13 @@ position: relative;
 .studet-list-cell-style{
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+    border-radius: 7px;
 
 }
 .student-list-footer-style{
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 7px 7px;
 }
 .extra-card-style{
     border-radius: 20px;
@@ -243,6 +269,35 @@ position: relative;
     border-radius: 20px;
 }
 
+.home-assessment-icon {
+    height: 70px;
+    width: auto;
+}
+
+.home-rubric-icon {
+    height: 40px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-goal-icon {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-data-icon {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.home-etc-icons {
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+}
+
 // Assessment setup Page
 
 #create-assessment-title{
@@ -258,7 +313,11 @@ position: relative;
 }
 
 .assessment-rubric-settings-btn {
-
+    
+    box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.25);
+    border-radius: 7px;
+    height: 70px;
+    
     input {
         display: none;
     }
@@ -272,10 +331,18 @@ position: relative;
         transition: 0.2s;
         width: 100%;
         text-align: left;
+        padding: 5px 2px;
 
     }
     &:hover span, input:checked + span{
         border: 2px solid #33A849;
+        height: 100%;
+    }
+    
+    .assessment-rubric-skills {
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -350,6 +417,7 @@ position: relative;
 
 .card-assessment-style{
     border-radius: 20px;
+    margin-bottom: 20px;
     overflow: hidden;
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
@@ -368,13 +436,20 @@ position: relative;
 }
 
 .Assessment-Student-list-cell{
-
-    box-shadow: 0px, 0px,rgba(0, 0, 0, 0.25);
-    radius: 5px;
-    border-color: #FBFBFB;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    height: 50px;
+    padding: 12px 0px;
+    border: 2px solid #FBFBFB;
+    color: black;
+    transition: 0.2s;
 }
+
 .Assessment-Student-list-cell:hover{
-    border-color:#0078ff ;
+    border: 2px solid #33A849;
+    text-decoration: none;
+    color: black;
+    
 }
 
 .save-exit-btn{
@@ -384,7 +459,7 @@ position: relative;
 }
 
 // assessement marking Page
-#assessment-marking-panel {
+.assessment-marking-panel {
     display: grid;
     grid-template-columns: 1fr 44px auto;
     grid-template-areas:
@@ -394,7 +469,7 @@ position: relative;
 
 .hide-info-panel #info-panel {
     width: 0;
-    opacity:0;
+    opacity: 0;
 }
 
 .hide-info-panel #marking-panel{
@@ -409,7 +484,8 @@ position: relative;
     overflow: hidden;
     overflow-y: auto;
     height: 100%;
-
+    width: 100%;
+    
 }
 
 .sidebar-btn{
@@ -419,6 +495,8 @@ position: relative;
 
 #btn-panel .btn {
     box-shadow: none;
+    position: fixed;
+    z-index: 3;
 }
 
 #btn-panel .fa-arrow-right {
@@ -426,16 +504,30 @@ position: relative;
 }
 
 #info-panel {
-    width: 250px;
+    width: 300px;
+    height: 100%;
     transition: width 0.3s;
+    box-shadow: -5px 0px 5px rgb(0,0,0,0.05);
+    position: fixed;
+    top: 0;
+    right: 16px;
+    z-index: 2;
+    background-color: white;
+    padding-top: 150px;
+    padding-right: 20px;
+    padding-left: 20px;
     input{
         border:none;
     }
 }
 
-.image-rotate{
+.collapsable-arrow {
+    transition: 0.2s;
     transform:rotate(180deg);
-    transition-duration: 0.3s;
+}
+
+.image-rotate{
+    transform:rotate(0deg);
 }
 
 .lable-input{
@@ -446,7 +538,27 @@ position: relative;
     background-color: rgba(0, 0, 0, 0.05);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    height: 0;
+    overflow: hidden;
+}
 
+//accordion content when the arrow button is clicked
+.accordion-display {
+    height: 100%;
+    -moz-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -webkit-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -o-animation: accordion-display-animation 1s ease 3.5s infinite;
+    -ms-animation: accordion-display-animation 1s ease 3.5s infinite;
+    animation: accordion-display-animation 1s ease 3.5s infinite;
+}
+
+@keyframes accordion-display-animation {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
 }
 
 .marking-text-area{
@@ -484,8 +596,10 @@ label.score-radio{
 
 .score-label {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr;
-
+    grid-template-columns: 2.9fr 2.2fr 2fr 2fr 2fr 2.2fr;
+    font-weight: bold;
+    position: sticky;
+    z-index: 1;
 }
 
 .score-items{
@@ -498,9 +612,8 @@ label.score-radio{
 }
 
 .radioBTNs-section{
-    box-shadow: 0px, 0px, rgba(0, 0, 0, 0.25);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
     box-sizing: border-box;
 }
 
@@ -525,16 +638,38 @@ label.score-radio{
     font-size: 18px;
     line-height: 21px;
     color: #FFFFFF;
+    padding: 7px;
+}
 
-
+.save-marking-btn:hover {
+    background: #138028;
+    transition: 0.2s;
 }
 
 .text-area-style{
     border-radius: 7px;
-
     width: 100%;
-
+    height: 70px;
 }
+
+.marking-padding-right {
+    width: 79% !important;
+}
+
+.arrow-move {
+    right: 280px;
+    animation: arrow-transition 0.4s ease-out;
+}
+
+@keyframes arrow-transition {
+    from {
+        right: 10px;
+    }
+    to {
+        right: 280px;
+    }
+}
+
 //Student List
 
 .student-form-inputs {
@@ -694,19 +829,29 @@ input:focus {
 .rubric-list-row{
     background: #FFFFFF;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+    border-radius: 7px;
     border: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
     position: relative;
     border: 2px solid white;
-    height: 85px;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-decoration: none;
+    transition: 0.3s;
+    height: 70px;
+    
+    .rubric-list-text {
+        color: black;
+    }
+    
+    .rubric-list-text:hover {
+        color: black;
+    }
 }
 
 .rubric-list-row:hover{
     border: 2px solid #33A849;
+    text-decoration: none;
 
 }
 
@@ -911,6 +1056,17 @@ $skillset-colors-map: (
     column-count: 4;
   }
 
+}
+
+.auto-populate-button {
+    background-color: white;
+    border-radius: 7px;
+    border: 2px solid #D2D2D2;
+    width: 100%;
+}
+
+.auto-populate-button:focus {
+    outline: none;
 }
 
 //data view page

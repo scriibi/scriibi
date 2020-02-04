@@ -9,7 +9,7 @@
             @include('layout.partials.header')
         </header>
         
-        <main id="app">
+        <main class="margin-top-6" id="app">
             <!-- content goes here -->
             @yield('content')
             <!-- /content -->

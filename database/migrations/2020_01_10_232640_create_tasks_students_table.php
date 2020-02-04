@@ -18,6 +18,7 @@ class CreateTasksStudentsTable extends Migration
             $table->bigInteger('result')->unsigned();
             $table->bigInteger('student_Id')->unsigned();
             $table->bigInteger('tasks_skills_Id')->unsigned();
+            $table->string('comment')->nullable();
 
             $table->unique('tasks_students_Id');
 
