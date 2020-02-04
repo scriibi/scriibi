@@ -321,7 +321,11 @@ header {
 
 .assessment-settings-title{
     font-weight: bold;
-    color:#4C4D4F;
+    color: #4C4D4F;
+}
+
+.assessment-rubric-title {
+    margin-top: 10px;
 }
 
 .assessment-rubric-settings-btn {
@@ -329,18 +333,13 @@ header {
     input {
         display: none;
     }
-
-    span {
-        box-sizing: border-box;
-        line-height: 19px;
-        text-align: left;
-    }
 }
 
 .assessment-rubric-skills {
     height: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #909090;
 }
 
 .assessment-settings-btn {
@@ -393,6 +392,11 @@ header {
     border-radius: 100%;
     margin-top: 13px;
     margin-left: 10px;
+}
+
+.fill-circle {
+    background-color: #33A849;
+    transition: 0.2s;
 }
 
 .back-btn{

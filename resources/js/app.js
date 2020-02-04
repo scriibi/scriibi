@@ -146,6 +146,12 @@ $(function(){
             }
         }
     });
+    
+    //assessment-setup rubric selection radio script
+    $(".assessment-rubric-item").on("click", function(){
+        $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
+        $(this).find(".radio-circle").addClass("fill-circle");
+    });
 
 }); 
 
@@ -242,9 +248,11 @@ function toggleRadioBorder(event) {
 if (assessClass !== null) {
     assessClass.addEventListener("click", toggleRadioBorder, true);
 }
+
 if (assessGrade !== null) {
     assessGrade.addEventListener("click", toggleRadioBorder, true);
 }//end of radio button script
+
 
 // the rubric selection button
 var rubricSelectionBTN = document.getElementById("rubricSelectionBTN");

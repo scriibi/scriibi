@@ -63,19 +63,22 @@
                         <p class="col-3 text-left">Rubric Title</p>
                         <p class="col-8 text-left">Skills</p>
                     </div>
-                    <!-- populate more cells as per rubric -->
+                    <!-- 
+                        populate more cells as per rubric NOTE: ASSESSMENT-RUBRIC-ITEM is a class identifier for javascript. 
+                        Do not remove 
+                    -->
                     @foreach($rubrics as $r)
-                        <div class="assessment-rubric-item row mt-2 mx-0 clickable">
+                        <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
                             <label class="assessment-rubric-settings-btn w-100 clickable">
                                 <input type="radio" name="rubric" value={{$r->getId()}} />
                                 <div class="row px-0 mx-0">
                                     <div class="col-1">
                                         <span class="radio-circle"></span>
                                     </div>
-                                    <div class="btn col-3 border-0">
+                                    <div class="col-3 border-0">
                                         <p class="assessment-rubric-title">{{$r->getName()}}</p>
                                     </div>
-                                    <div class="btn col-8 border-0 pl-1">
+                                    <div class="col-8 border-0 pl-1">
                                         <p class="assessment-rubric-skills">
                                         <?php
                                             $skills_array = array();
@@ -88,13 +91,24 @@
                                             };
                                         ?>
 
+                                        <!-- Applying a comma after each skill -->
                                         <?php
                                             $final_skill = end($skills_array);
-                                            foreach($skills_array as $sa)
-                                            if($sa != $final_skill)
-                                                echo($sa . ", ");
-                                            else
-                                                echo($sa);
+                                            $count = 0;
+                                            foreach($skills_array as $sa) {
+                                                if($sa != $final_skill) {
+                                                    echo($sa . ", ");
+                                                    $count++;
+                                                }
+                                                else {
+                                                    echo($sa);
+                                                }
+                                                //apply an ellipses if reached 11 skills
+                                                if ($count == 8){
+                                                    echo($sa."...");
+                                                    break;
+                                                }
+                                            }//end of foreach
                                         ?>
                                         </p>
                                     </div>
