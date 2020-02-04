@@ -46,7 +46,8 @@
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
-                            <div class="card-title score-items mb-0 radioBTNs-section">
+                            <!-- if the global critera is not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
+                            <div class="card-title score-items mb-0 @if(!empty($global)) {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
                                 <div class="w-100 d-flex justify-content-between">
                                     <!-- load the first trait name -->
                                     <span class="align-self-center ml-3">{{$sc->getName()}}</span>
@@ -90,7 +91,7 @@
                                 @else
                                 <div class="w-100 text-center align-self-center">
                                     <input type='radio' name="skill_{{$counter}}" value='na' hidden checked>
-                                    <p>Not Applicable at student's level</p>
+                                    <p class="na-skill-message">Not Applicable at student's level</p>
                                 </div>
                                 @endif
                             </div>
