@@ -14,7 +14,7 @@
             <div class="mt-5">
                 <div class="row d-flex justify-content-between mb-3">
                     <h5 class="rubric-list-title">Assessments</h5>
-                    <a href="/assessment-setup" class="btn assessment-btn p-2">New Assessment+</a>
+                    <a href="/assessment-setup" class="btn assessment-btn p-2">New Assessment +</a>
                 </div>
 
                 <!-- do a student count; if 0 count then display below div -->
