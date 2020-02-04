@@ -73,7 +73,7 @@
        </div>
 
        <!-- AJAX list display of students -->
-       <div id="listDisplay">
+       <div class="pb-5" id="listDisplay">
 
        </div>
         <!-- /AJAX student list -->

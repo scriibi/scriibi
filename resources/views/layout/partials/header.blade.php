@@ -20,3 +20,20 @@
     <!-- /navbar content -->
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
 </nav>
+@if ($errors->any())
+<div class="row error-container" id="error-pop-up">
+    <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
+    <div class="d-none d-sm-block col-sm-10 col-md-8">
+        <div class="error-content pl-3 pr-3">
+            <span><strong>Error in submitting form:</strong></span>
+            <button type="button" id="error-close" class="error-close"><strong>X</strong></button>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+             </ul>
+        </div>
+    </div>
+    <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
+</div>
+@endif
