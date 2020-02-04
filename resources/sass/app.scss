@@ -182,6 +182,10 @@ header {
     border: 2px solid #33A849;
 }
 
+.temporary-page-height-fix {
+    height: 80vh;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -331,12 +335,12 @@ header {
         line-height: 19px;
         text-align: left;
     }
-    
-    .assessment-rubric-skills {
-        height: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+}
+
+.assessment-rubric-skills {
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .assessment-settings-btn {
@@ -387,6 +391,8 @@ header {
     width: 20px;
     height: 20px;
     border-radius: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .back-btn{
