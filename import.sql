@@ -11,9 +11,16 @@ insert into school_types(fk_curriculum_id, fk_school_type_identifier_id) values(
 insert into school_types(fk_curriculum_id, fk_school_type_identifier_id) values(3, 2);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Hawthorn Primary', 1, 1);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Mount Elwood Primary', 1, 1);
-insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('River Primary', 2, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('River Primary', 2, 3);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Armadale Primary', 1, 1);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Cowes Primary', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Nerang Primary School', 2, 3);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Nichols Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Swan Hill Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Beumauris North Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Carnegie Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Caulfield South Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Irymple Primary School', 1, 1);
 insert into scriibi_levels(scriibi_Level) values (	-5.00	);
 insert into scriibi_levels(scriibi_Level) values (	-4.75	);
 insert into scriibi_levels(scriibi_Level) values (	-4.50	);
@@ -340,8 +347,6 @@ INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_s
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,28);
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,34);
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,35);
-insert into global_criterias(description) values ('Can organise texts using paragraphs when the topic, speaker, time or location changes. For information texts, organises longer texts with topic sentences, elaborations and some closing sentences.');
-insert into global_criterias(description) values ('	Can retell a familiar text or event by sequencing two to three images and simple statements.');
 insert into global_criterias(description) values ('	Can retell a familiar text or event by sequencing two to three images and simple statements.');
 insert into global_criterias(description) values ('	Can review own text and make changes during shared editing. Can use delete and Caps Lock function and check their name and font sizes.');
 insert into global_criterias(description) values ('	Understands that letters can be represented as written text.  Copies letters and numbers with some control.  Can hold a pencil using a tripod grip.');

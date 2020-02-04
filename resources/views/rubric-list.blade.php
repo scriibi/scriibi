@@ -2,7 +2,7 @@
 @section('title', 'Rubric-List')
 @section('content')
 @csrf
-<div class="row">
+<div class="row @if(count($rubrics)===0){{"temporary-page-height-fix"}}@endif pb-5">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
     <div class="col-12 col-sm-10 col-md-8">
@@ -14,7 +14,7 @@
 
         @if(count($rubrics)===0)
 
-        <div class="mt-5 rubric-instruction">
+        <div class="notice-styling">
             <p>You currently do not have any rubric templates.</p>
             <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Rubric +</a> to create your first template</p>
             <p>and begin using them for your assessments!</p>

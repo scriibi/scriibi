@@ -1,15 +1,230 @@
 [
     {
-        "email": "",
+        "email": "wilksch.natalie.l@edumail.vic.gov.au",
         "email_verified": true,
-        "given_name": "",
-        "family_name": "",
-        "name": "",
+        "given_name": "Natalie",
+        "family_name": "Wilksch",
+        "name": "Natalie Wilksch",
         "user_metadata": {
-            "school": 1,
+            "school": 7,
+            "level": 121,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "piscioneri.ginette.g@eduamail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Ginette",
+        "family_name": "Lanyon",
+        "name": "Ginette Lanyon",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "manuel.nathan.n@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Nathan",
+        "family_name": "Manuel",
+        "name": "Nathan Manuel",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "doherty.ryan.p@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Ryan",
+        "family_name": "Doherty",
+        "name": "Ryan Doherty",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "stanley.kathryn.l@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Kathryn",
+        "family_name": "Stanley",
+        "name": "Kathryn Stanley",
+        "user_metadata": {
+            "school": 7,
+            "level": 125,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "lawson.melissa.j@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Melissa",
+        "family_name": "Lawson",
+        "name": "Melissa Lawson",
+        "user_metadata": {
+            "school": 7,
             "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "clancy.jodee.m@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Jodee",
+        "family_name": "Clancy",
+        "name": "Jodee Clancy",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "mcgaffin.kerry.m@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Kerry",
+        "family_name": "McGaffin",
+        "name": "Kerry McGaffin",
+        "user_metadata": {
+            "school": 7,
+            "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "eyles.matthew.r@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Matthew",
+        "family_name": "Eyles",
+        "name": "Matthew Eyles",
+        "user_metadata": {
+            "school": 7,
+            "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "zanker.travers.d@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Travers",
+        "family_name": "Zanker",
+        "name": "Travers Zanker",
+        "user_metadata": {
+            "school": 7,
+            "level": 145,
+            "positions": [1,2]
+        }
+    },
+    {
+        "email": "jackson.luke.l@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Luke",
+        "family_name": "Jackson",
+        "name": "Luke Jackson",
+        "user_metadata": {
+            "school": 7,
+            "level": 125,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "licastro.gregory.g@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Greg",
+        "family_name": "Licastro",
+        "name": "Greg Licastro",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "Morris.Cassie.C@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Cassie",
+        "family_name": "Morris",
+        "name": "Cassie Morris",
+        "user_metadata": {
+            "school": 7,
+            "level": 141,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "gahan.jarryd.j@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Jarryd",
+        "family_name": "Gahan",
+        "name": "Jarryd Gahan",
+        "user_metadata": {
+            "school": 7,
+            "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "driscoll.alana.l@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Alana",
+        "family_name": "Driscoll",
+        "name": "Alana Driscoll",
+        "user_metadata": {
+            "school": 7,
+            "level": 133,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "brown.ler-ree.k@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Ler-ree",
+        "family_name": "Brown",
+        "name": "Ler-ree Brown",
+        "user_metadata": {
+            "school": 7,
+            "level": 125,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "baldock.nikki.l@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Nikki",
+        "family_name": "Baldock",
+        "name": "Nikki Baldock",
+        "user_metadata": {
+            "school": 7,
+            "level": 129,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "williams.grace.e@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Grace",
+        "family_name": "Williams",
+        "name": "Grace Williams",
+        "user_metadata": {
+            "school": 7,
+            "level": 121,
+            "positions": [1]
+        }
+    },
+    {
+        "email": "manna.annette.a@edumail.vic.gov.au",
+        "email_verified": true,
+        "given_name": "Annette",
+        "family_name": "Manna",
+        "name": "Annette Manna",
+        "user_metadata": {
+            "school": 7,
+            "level": 125,
             "positions": [1]
         }
     }
 ]
-

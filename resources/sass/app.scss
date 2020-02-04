@@ -174,6 +174,18 @@ header {
     transition: 0.3s;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
+.scriibi-selected {
+    border: 2px solid #33A849;
+}
+
+.temporary-page-height-fix {
+    height: 80vh;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -309,41 +321,25 @@ header {
 
 .assessment-settings-title{
     font-weight: bold;
-    color:#4C4D4F;
+    color: #4C4D4F;
+}
+
+.assessment-rubric-title {
+    margin-top: 10px;
 }
 
 .assessment-rubric-settings-btn {
-    
-    box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.25);
-    border-radius: 7px;
-    height: 70px;
-    
+
     input {
         display: none;
     }
+}
 
-    span {
-        background: #FFFFFF;
-        border: 2px solid white;
-        box-sizing: border-box;
-        border-radius: 7px;
-        line-height: 19px;
-        transition: 0.2s;
-        width: 100%;
-        text-align: left;
-        padding: 5px 2px;
-
-    }
-    &:hover span, input:checked + span{
-        border: 2px solid #33A849;
-        height: 100%;
-    }
-    
-    .assessment-rubric-skills {
-        height: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.assessment-rubric-skills {
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #909090;
 }
 
 .assessment-settings-btn {
@@ -388,6 +384,20 @@ header {
     outline: none;
 }
 
+.radio-circle {
+    display: block;
+    border: 1px solid #33A849;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+.fill-circle {
+    background-color: #33A849;
+    transition: 0.2s;
+}
 
 .back-btn{
     border: 2px solid #D2D2D2;
@@ -449,7 +459,7 @@ header {
     border: 2px solid #33A849;
     text-decoration: none;
     color: black;
-    
+
 }
 
 .save-exit-btn{
@@ -485,7 +495,7 @@ header {
     overflow-y: auto;
     height: 100%;
     width: 100%;
-    
+
 }
 
 .sidebar-btn{
@@ -817,7 +827,7 @@ input:focus {
     color: #FFFFFF;
 }
 
-.rubric-instruction{
+.notice-styling{
     font-weight: bold;
     align-items: center;
     color: #6B6B6B;
@@ -839,11 +849,11 @@ input:focus {
     text-decoration: none;
     transition: 0.3s;
     height: 70px;
-    
+
     .rubric-list-text {
         color: black;
     }
-    
+
     .rubric-list-text:hover {
         color: black;
     }

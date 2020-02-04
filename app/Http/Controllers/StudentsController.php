@@ -135,6 +135,31 @@ class StudentsController extends Controller
      */
     public function update(Request $request)
     {
-        dump(request()->all());
+
+        $student_grade = $request->input('student_grade');
+        $student_assignment_level = $request->input('assessed_level');
+
+        //lookup corresponding scriibi_level ids for grade and assessed. (basically converts value to the correct scriibi_level_id)
+        $grade_scriibi_level = grade_label::find($student_grade)->ScriibiLevels->scriibi_Level_Id;
+        $assessed_scriibi_level = assessed_level_label::find($student_assignment_level)->ScriibiLevels->scriibi_Level_Id;
+
+        $student_Id = $request->input('studentId');
+        $student_first_name = $request->input('first_name');
+        $student_last_name = $request->input('last_name');
+        $student_gov_id = $request->input('student_gov_id');
+        $school_Id =  $request->input('schoolId');
+
+        DB::table('students')
+            ->updateOrInsert(
+                ['student_Id' => $student_Id],
+                ['student_First_Name' => $student_first_name,
+                'student_Last_Name' => $student_last_name,
+                'Student_Gov_Id' => $student_gov_id,
+                'enrolled_Level_Id' => $grade_scriibi_level,
+                'rubrik_level' => $assessed_scriibi_level,
+                'schools_school_Id' => $school_Id]
+            );
+
+        return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 }

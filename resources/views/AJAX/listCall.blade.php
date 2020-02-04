@@ -1,5 +1,6 @@
 <!-- Student detail card -->
        @foreach ($students as $s)
+
         <div class="universal-card mt-2">
                 <div class="student-details row ml-2 mr-2 pt-2">
                     <div class="col-10">
@@ -70,6 +71,10 @@
                     </div>
                     <div class="col-2">
                         <div class="student-icon-group pt-2">
+                            <!-- hidden fields for server side -->
+                            <input type="text" name="studentId" value = "{{$s->student_Id}}" hidden>
+                            <input type="text" name="schoolId" value = "{{$s->schools_school_Id}}" hidden>
+
                             <input type="submit" class="icon-btn" value="✔" />
                             <input type="button" class="icon-btn close-edit-button" value="❌" />
                         </div>
