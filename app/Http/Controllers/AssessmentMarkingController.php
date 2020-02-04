@@ -98,8 +98,10 @@ class AssessmentMarkingController extends Controller
             }
         }
 
-        redirect()->action(
-            'WritingTasksController@ShowWritingTask', ['writing_task' => $writingTask]);
+        if(isset($comment)){
+            DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
+        }
+        return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
 
     }
 }
