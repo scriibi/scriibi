@@ -15,6 +15,7 @@ class SkillCard
     private $currentResult;
     private $skillId;
     private $skillName;
+    private $existingUserInput;
     private $scriibiRangeIds = array();
     private $scriibiLevelglobalCriteria = array();
     private $scriibiLevelLocaCriteria = array();
@@ -52,6 +53,14 @@ class SkillCard
 
     public function getCurrentResult(){
         return $this->writingTask;
+    }
+
+    public function getExistingUserInput(){
+        return $this->existingUserInput;
+    }
+
+    public function setExistingUserInput($scriibi_value){
+        $this->existingUserInput = $scriibi_value;
     }
 
     public function populateScriibiLevelglobalCriteria(){
