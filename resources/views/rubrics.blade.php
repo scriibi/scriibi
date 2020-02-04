@@ -14,15 +14,6 @@
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
                 <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
-                <!-- <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
-                    @foreach($text_types as $tt)
-                        <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                            <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                <input type="checkbox" role="button-" name="" value={{$tt->text_type_Id}} class="">{{$tt->text_type_Name}}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> -->
                 <form action="/RubricConfirm" method="POST" class="mt-5 mb-0 p-0" id="rubricform">
                 @csrf
                     <!-- term-title+Curriculum -->
@@ -113,6 +104,7 @@
                                 </div>
                                 <div class="col-4">
                                     <button type="button" class="auto-populate-button" id="autopopulate-term2-rubric">Auto-populate term 2</button>
+                                    <span class="skill-tooltip ml-5">This button reverses your choices from term 1 to term 2.</span>
                                 </div>
                             </div>
 

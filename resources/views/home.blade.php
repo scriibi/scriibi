@@ -20,7 +20,7 @@
             <!-- student list panel -->
             <div class="card sl-panel mr-3 student-list-card-style px-0" id="student-list-panel">
                 <div class="student-list-scroll px-0 mx-0">
-                        <div class="card-body px-2 pt-3">
+                        <div class="card-body px-2 pt-3 overflow-padding">
                             @foreach($students as $student)
                             <div class="studet-list-cell-style list-group list-group-flush mb-1">
 
