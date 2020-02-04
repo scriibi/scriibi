@@ -70,9 +70,8 @@ $(function(){
         window.location.href = url_origin;
     });
     
-    //setting the default examples
+    //setting the default examples for the assessment-marking-page blade
     const assessed_level = "#level-".concat($("#assessed-marking-level").value);
-    console.log($("#assessed-marking-level").value);
     $("#level-examples div").addClass("d-none");
     $(assessed_level).removeClass("d-none");
     
@@ -130,6 +129,22 @@ $(function(){
             $("#rubric-template").addClass("d-none");
             $("#rubric-template").removeClass("d-block");
         } 
+    });
+    
+    //rubric builder autopopulate function
+    $("#autopopulate-term2-rubric").on("click", function(){
+        let form1_skills = $(".skill-checkbox1"),
+            form2_skills = $(".skill-checkbox2"),
+            unchecked_skills = [];
+        
+        for(var i = 0; i < form1_skills.length; i++){
+            if (!(form1_skills[i].checked) && !(form2_skills[i].checked)) {
+               form2_skills[i].checked = true;
+            }
+            else {
+                form2_skills[i].checked = false;
+            }
+        }
     });
 
 }); 
