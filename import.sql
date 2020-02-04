@@ -11,9 +11,16 @@ insert into school_types(fk_curriculum_id, fk_school_type_identifier_id) values(
 insert into school_types(fk_curriculum_id, fk_school_type_identifier_id) values(3, 2);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Hawthorn Primary', 1, 1);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Mount Elwood Primary', 1, 1);
-insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('River Primary', 2, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('River Primary', 2, 3);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Armadale Primary', 1, 1);
 insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Cowes Primary', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Nerang Primary School', 2, 3);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Nichols Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Swan Hill Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Beumauris North Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Carnegie Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Caulfield South Primary School', 1, 1);
+insert into schools(name, curriculum_details_curriculum_details_Id, school_type_identifier_id) values('Irymple Primary School', 1, 1);
 insert into scriibi_levels(scriibi_Level) values (	-5.00	);
 insert into scriibi_levels(scriibi_Level) values (	-4.75	);
 insert into scriibi_levels(scriibi_Level) values (	-4.50	);
