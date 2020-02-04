@@ -81,6 +81,7 @@ class AssessmentMarkingController extends Controller
         $skillCount = $request->input('skillCount');
         $studentId = $request->input('studentId');
         $writingTask = $request->input('writingTask');
+        $comment = $request->input('comment');
         for($i = 1; $i <= $skillCount; $i++){
             $student_skill = $request->input('skill_' . (string)$i);
             if(isset($student_skill)){

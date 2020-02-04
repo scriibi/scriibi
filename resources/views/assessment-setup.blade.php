@@ -59,40 +59,48 @@
                 </div>
                 <div>
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
-                        <p class="col-4 text-left pr-2">Template Title</p>
-                        <p class="col-8 text-left px-0">Skills</p>
+                        <span class="col-1"></span>
+                        <p class="col-3 text-left">Rubric Title</p>
+                        <p class="col-8 text-left">Skills</p>
                     </div>
                     <!-- populate more cells as per rubric -->
                     @foreach($rubrics as $r)
                         <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
-                            <label class="assessment-rubric-settings-btn w-100">
-                                <input type="radio" name="rubric" value={{$r->getId()}}>
-                                <span class="row px-0 mx-0">
-                                    <span class="radio-circle"></span>
-                                    <span class="btn col-3 border-0 assessment-rubric-title">{{$r->getName()}}</span>
-                                    <span class="btn col-7 border-0 pl-1 assessment-rubric-skills">
-                                    <?php
-                                        $skills_array = array();
-                                        $traits_skills = $r->getRubricTraitSkills();
-                                        foreach($traits_skills as $ts){
-                                            $skillObjects = $ts->getSkills();
-                                            foreach($skillObjects as $so){
-                                                array_push($skills_array, $so->getName());
-                                            }
-                                        };
-                                    ?>
+                            <label class="assessment-rubric-settings-btn w-100 clickable">
+                                <input type="radio" name="rubric" value={{$r->getId()}} />
+                                <div class="row px-0 mx-0">
+                                    <div class="col-1">
+                                        <span class="radio-circle"></span>
+                                    </div>
+                                    <div class="btn col-3 border-0">
+                                        <p class="assessment-rubric-title">{{$r->getName()}}</p>
+                                    </div>
+                                    <div class="btn col-8 border-0 pl-1">
+                                        <p class="assessment-rubric-skills">
+                                        <?php
+                                            $skills_array = array();
+                                            $traits_skills = $r->getRubricTraitSkills();
+                                            foreach($traits_skills as $ts){
+                                                $skillObjects = $ts->getSkills();
+                                                foreach($skillObjects as $so){
+                                                    array_push($skills_array, $so->getName());
+                                                }
+                                            };
+                                        ?>
 
-                                    <?php
-                                        $final_skill = end($skills_array);
-                                        foreach($skills_array as $sa)
-                                        if($sa != $final_skill)
-                                            echo($sa . ", ");
-                                        else
-                                            echo($sa);
-                                    ?>
-                                    </span>
-                                </label>
-                            </div>
+                                        <?php
+                                            $final_skill = end($skills_array);
+                                            foreach($skills_array as $sa)
+                                            if($sa != $final_skill)
+                                                echo($sa . ", ");
+                                            else
+                                                echo($sa);
+                                        ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                         @endforeach
                     <div class="d-flex justify-content-between mt-5 mb-2">
                         <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
