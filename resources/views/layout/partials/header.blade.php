@@ -20,3 +20,12 @@
     <!-- /navbar content -->
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
 </nav>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
