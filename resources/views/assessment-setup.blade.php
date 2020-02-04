@@ -55,7 +55,7 @@
             @if (count($rubrics) > 0)
             <div class="pt-1 pb-0 " >
                 <div>
-                    <h5><strong>Skill Template Selection</strong></h5>
+                    <h5><strong>Rubric Template Selection</strong></h5>
                 </div>
                 <div>
                     <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
@@ -64,12 +64,13 @@
                     </div>
                     <!-- populate more cells as per rubric -->
                     @foreach($rubrics as $r)
-                        <div class="body-cells row mt-2 mx-0 ">
+                        <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
                             <label class="assessment-rubric-settings-btn w-100">
                                 <input type="radio" name="rubric" value={{$r->getId()}}>
                                 <span class="row px-0 mx-0">
-                                    <span class="btn col-4 border-0 assessment-rubric-title">{{$r->getName()}}</span>
-                                    <span class="btn col-8 border-0 pl-1 assessment-rubric-skills">
+                                    <span class="radio-circle"></span>
+                                    <span class="btn col-3 border-0 assessment-rubric-title">{{$r->getName()}}</span>
+                                    <span class="btn col-7 border-0 pl-1 assessment-rubric-skills">
                                     <?php
                                         $skills_array = array();
                                         $traits_skills = $r->getRubricTraitSkills();
@@ -101,9 +102,9 @@
                     </div>
                     @else
                     <div class="mt-5 rubric-instruction">
-                        <p>You currently do not have any skill templates.</p>
-                        <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Template +</a> to create your first template</p>
-                        <p>and using them for your assessments!</p>
+                        <p>You currently do not have any rubric templates.</p>
+                        <p>Click the <a href="/rubrics" class="btn assessment-btn px-4">New Rubric +</a> to create your first template</p>
+                        <p>and begin using them for your assessments!</p>
                     </div>
                     <button type="button" name="button" class="btn back-btn-disabled" id="backBTN">back</button>
                     @endif
