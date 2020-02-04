@@ -78,7 +78,7 @@ class AssessmentMarkingController extends Controller
         $skillsAssessedArray = array();
         // stores the reference values from the table 'task_skills' in order to find the 'writing_tasks_writing_task_Id'
         $task_skills = array();
-        $skillCount = $request->input('skillCount');     
+        $skillCount = $request->input('skillCount');
         $studentId = $request->input('studentId');
         $writingTask = $request->input('writingTask');
         for($i = 1; $i <= $skillCount; $i++){
@@ -97,6 +97,11 @@ class AssessmentMarkingController extends Controller
                 $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
             }
         }
-        
+
+        if(isset($comment)){
+            DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
+        }
+        return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
+
     }
 }

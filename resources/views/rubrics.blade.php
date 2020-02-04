@@ -41,7 +41,7 @@
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>
-                                <label class="ml-3 student-form-label" for="grade">Show curriculum  milestone for</label><br />
+                                <label class="ml-3 student-form-label" for="grade">Show skills and curriculum  milestones for:</label><br />
                             </div>
                         </div>
 
@@ -67,6 +67,7 @@
                                             </li>
                                             <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
+
                                             @if(count($skills) > 0)
                                                 @foreach($skills as $skill)
                                                     <li class="list-group-item">
@@ -85,7 +86,7 @@
                                             @else
                                                 <li class="list-group-item">          
                                                     <label class="frm_checkbox"></label>
-                                                </li>
+
                                             @endif
                                             </div>
                                         </ul>

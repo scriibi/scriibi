@@ -15,6 +15,6 @@ class AssessmentListController extends Controller
         foreach($writing_tasks as $wt){
             array_push($writting_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));
         }
-        return view('Assessment-list', ['assessmentList' => $writting_taskList]);
+        return view('assessment-list', ['assessmentList' => $writting_taskList]);
     }
 }

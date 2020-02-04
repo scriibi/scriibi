@@ -7,25 +7,26 @@
    </div>
     <div class="col-12 col-sm-10 col-md-8">
         <div class="row d-flex justify-content-between mb-3 mt-5">
-                <h5 class="rubric-list-title">Skills Template List</h5>
-            <a href="/rubrics" class="btn assessment-btn p-2">New Template +</a>
+                <h5 class="rubric-list-title">My Assessment Rubrics</h5>
+            <a href="/rubrics" class="btn assessment-btn p-2">New Rubric +</a>
         </div>
         <!-- show no rubric created message -->
+
         @if(count($rubrics)===0)
+
         <div class="mt-5 rubric-instruction">
-            <p>You currently do not have any skills template.</p>
-            <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Template +</a> to create your first template</p>
-            <p>and using them for your assessments!</p>
+            <p>You currently do not have any rubric templates.</p>
+            <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Rubric +</a> to create your first template</p>
+            <p>and begin using them for your assessments!</p>
         </div>
 
         <!-- show list of rubric created -->
         @else
         <div class="row student-table-label d-flex mt-5 pl-3">
-            <p class="col-4 text-left">Template Name</p>
+            <p class="col-4 text-left">Rubric Name</p>
             <p class="col-2 text-left">Date Created</p>
             <p class="col-4 text-left">Skills</p>
         </div>
-
         <!-- populate more cells as per rubric -->
         @foreach($rubrics as $r)
             <a href="#" class="row btn-block rubric-list-row d-flex  pl-3 m-0 mb-2 pb-0">
@@ -63,7 +64,7 @@
                                 if ($count == 10){
                                     echo($sa."...");
                                     break;
-                                }  
+                                }
                             }//end of foreach
                         ?>
                     </p>

@@ -1,6 +1,6 @@
 <!-- Student detail card -->
        @foreach ($students as $s)
-        <div class="universal-card mt-2">        
+        <div class="universal-card mt-2">
                 <div class="student-details row ml-2 mr-2 pt-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
@@ -25,31 +25,32 @@
                             <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
                         </div>
                     </div>
-                </div>        
+                </div>
             <!-- /student details -->
 
             <!-- Edit student form -->
-            <form class="edit-form d-none" method="post">
+            <form class="edit-form d-none" action="/studentlist" method="POST">
             @csrf
+            @method('PUT');
                 <div class="row ml-2 mr-2">
                     <div class="col-10">
                         <div class="student-form-inputs fname-input">
-                            <input type="text" class="text-input" id="{{$s->student_First_Name}}{{$s->Student_Gov_Id}}" value="{{$s->student_First_Name}}" required />
+                            <input type="text" class="text-input" id="{{$s->student_First_Name}}{{$s->Student_Gov_Id}}" value="{{$s->student_First_Name}}" name="first_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="{{$s->student_First_Name}}{{$s->Student_Gov_Id}}"></label>
                         </div>
                         <div class="student-form-inputs lname-input">
-                            <input type="text" class="text-input" id="{{$s->student_Last_Name}}{{$s->Student_Gov_Id}}" value="{{$s->student_Last_Name}}" required />
+                            <input type="text" class="text-input" id="{{$s->student_Last_Name}}{{$s->Student_Gov_Id}}" value="{{$s->student_Last_Name}}" name="last_name" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="{{$s->student_Last_Name}}{{$s->Student_Gov_Id}}"></label>
                         </div>
                         <div class="student-form-inputs id-input">
-                            <input type="text" class="text-input" id="{{$s->Student_Gov_Id}}" value="{{$s->Student_Gov_Id}}" required />
+                            <input type="text" class="text-input" id="{{$s->Student_Gov_Id}}" value="{{$s->Student_Gov_Id}}" name="student_gov_id" required />
                             <span class="bar"></span>
                             <label class="student-form-label" for="{{$s->Student_Gov_Id}}"></label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="grade{{$s->Student_Gov_Id}}" value="{{$s->grade_label}}" required>
+                            <select class="select-input" id="grade{{$s->Student_Gov_Id}}" value="{{$s->grade_label}}" name="student_grade" required>
                                 @foreach ($grade as $g)
                                     <option value={{$g->grade_label_id}}>{{$g->grade_label}}</option>
                                 @endforeach
@@ -58,7 +59,7 @@
                             <label class="student-form-label" for="grade{{$s->Student_Gov_Id}}"></label><br />
                         </div>
                         <div class="student-form-inputs grade-input">
-                            <select class="select-input" id="assessedLevel{{$s->Student_Gov_Id}}" value="{{$s->assessed_level_label}}" required>
+                            <select class="select-input" id="assessedLevel{{$s->Student_Gov_Id}}" value="{{$s->assessed_level_label}}" name="assessed_level" required>
                                 @foreach ($assessed as $a)
                                     <option value={{$a->assessed_level_label_id}}>{{$a->assessed_level_label}}</option>
                                 @endforeach
