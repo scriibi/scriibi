@@ -65,7 +65,7 @@
                 <!-- assessments btn link-->
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
-                        <img class="align-self-center home-assessment-icon"src="/images/Assessment Logo.png" alt="assessment">
+                        <img class="align-self-center home-assessment-icon" src="/images/assessment-logo.png" alt="assessment">
                         <span class="align-self-center text-nowrap">My Assessments</span>
                     </div>
                 </a>
@@ -160,7 +160,7 @@
                     <span class="align-self-center mx-2 text-nowrap">Help</span>
                 </a>
                 <a href="mailto:info@scriibi.com" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
-                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/contact us.png" alt="logo8">
+                    <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/contact-us.png" alt="logo8">
                     <span class="align-self-center mx-2 text-nowrap">Contact Us</span>
                 </a>
 
