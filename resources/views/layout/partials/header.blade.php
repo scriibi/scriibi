@@ -27,10 +27,10 @@
             <span><strong>Error in submitting form:</strong></span>
             <button type="button" id="error-close" class="error-close"><strong>X</strong></button>
             <ul>
-                <li>who the hell name humphrey lmao</li>
-                <li>imagine being named humphrey bruh get outta here with that s word</li>
-                <li>A man has fallen into the river in LEGO&trade; City!</li>
-            </ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+             </ul>
         </div>
     </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
