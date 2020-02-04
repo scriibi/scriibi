@@ -347,8 +347,6 @@ INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_s
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,28);
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,34);
 INSERT INTO text_types_skills(text_types_skills_text_type_Id,text_types_skills_skill_Id) VALUES (11,35);
-insert into global_criterias(description) values ('Can organise texts using paragraphs when the topic, speaker, time or location changes. For information texts, organises longer texts with topic sentences, elaborations and some closing sentences.');
-insert into global_criterias(description) values ('	Can retell a familiar text or event by sequencing two to three images and simple statements.');
 insert into global_criterias(description) values ('	Can retell a familiar text or event by sequencing two to three images and simple statements.');
 insert into global_criterias(description) values ('	Can review own text and make changes during shared editing. Can use delete and Caps Lock function and check their name and font sizes.');
 insert into global_criterias(description) values ('	Understands that letters can be represented as written text.  Copies letters and numbers with some control.  Can hold a pencil using a tripod grip.');
