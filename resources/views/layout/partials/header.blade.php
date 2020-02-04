@@ -20,6 +20,7 @@
     <!-- /navbar content -->
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
 </nav>
+@if ($errors->any())
 <div class="row error-container" id="error-pop-up">
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
     <div class="d-none d-sm-block col-sm-10 col-md-8">
@@ -35,3 +36,4 @@
     </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
 </div>
+@endif
