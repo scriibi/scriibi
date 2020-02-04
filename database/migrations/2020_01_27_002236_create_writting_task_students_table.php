@@ -18,6 +18,7 @@ class CreateWrittingTaskStudentsTable extends Migration
             $table->bigInteger('fk_student_id')->unsigned();
             $table->bigInteger('fk_writting_task_id')->unsigned();
             $table->string('status', 45);
+            $table->string('comment')->nullable();
 
             $table->unique('writting_task_student_id');
 
