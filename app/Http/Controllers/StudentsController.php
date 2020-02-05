@@ -57,7 +57,7 @@ class StudentsController extends Controller
      */
     public function deleteStudent($student_id){
         try{
-            DB::table('students')->where('student_Id', '=', $student_id)->delete();
+            DB::table('students')->where('student_Id', $student_id)->update(['enrolled_Level_Id' => null]);
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
         }
         catch(Exception $e){

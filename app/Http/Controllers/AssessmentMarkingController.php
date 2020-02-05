@@ -49,11 +49,11 @@ class AssessmentMarkingController extends Controller
         foreach($skills as $s){
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
-            if(!$flag){
-                if(in_array($s->tasks_skills_Id, )){
-                    dd(true);
-                }
-            }
+            // if(!$flag){
+            //     if(in_array($s->tasks_skills_Id, )){
+            //         dd(true);
+            //     }
+            // }
             array_push($skillCards, $newSKillCard);
         }
         return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student->rubrik_level]);

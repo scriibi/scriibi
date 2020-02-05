@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class StudentTableSchoolFieldSetToNullable extends Migration
+class StudentTableEnrolledLevelSetToNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class StudentTableSchoolFieldSetToNullable extends Migration
     {
         Schema::table('nullable', function (Blueprint $table) {
             Schema::table('students', function (Blueprint $table) {
-                $table->string('name', 50)->nullable()->change();
+                $table->bigInteger('enrolled_Level_Id')->unsigned()->nullable()->change();
             });
         });
     }
@@ -28,7 +28,7 @@ class StudentTableSchoolFieldSetToNullable extends Migration
     public function down()
     {
         Schema::table('nullable', function (Blueprint $table) {
-            //
+            $table->bigInteger('enrolled_Level_Id')->unsigned();
         });
     }
 }
