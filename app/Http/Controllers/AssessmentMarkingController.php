@@ -32,7 +32,7 @@ class AssessmentMarkingController extends Controller
          * this value will be set to false only the very first time the the system is accessed
          * after a fresh database migration in the server
          */
-        $flag = empty($student_tasks[0]);            
+        $flag = empty($student_tasks[0]);
 
         $curriculum_Id = DB::table('teachers')
             ->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')
@@ -41,7 +41,7 @@ class AssessmentMarkingController extends Controller
             ->select('schools.curriculum_details_curriculum_details_Id')
             ->where('teachers.user_Id', '=', Auth::user()->user_Id)
             ->get();
-        
+
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
         }
@@ -49,6 +49,8 @@ class AssessmentMarkingController extends Controller
         foreach($skills as $s){
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
+            $newSKillCard->populateScriibiLevelLocalCriteria();
+            //dd($newSKillCard->getLocalCriteria());
             // if(!$flag){
             //     if(in_array($s->tasks_skills_Id, )){
             //         dd(true);

@@ -32,17 +32,16 @@
                 <!-- end of score points -->
             </div>
             <div class="scroll-panel mx-0 px-0">
-            
+
                 <!-- pop the first skill card -->
-               
+
                 <?php
                     $counter = 0;
                 ?>
                 @foreach($skillCards as $sc)
                     <?php
                         $counter++;
-                        $global = $sc->getGlobalCriteria();
-                        $local = $sc->getLocalCriteria();
+
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
@@ -125,8 +124,8 @@
                 <!-- /end of first skill card -->
             </div>
         </div>
-        
-        
+
+
         <!-- SIDEBAR SECTION -->
         <!-- sidebar btn to close or open -->
         <div class="btn-panel" id="btn-panel">
