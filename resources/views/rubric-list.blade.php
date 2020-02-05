@@ -8,7 +8,7 @@
     <div class="col-12 col-sm-10 col-md-8">
         <div class="row d-flex justify-content-between mb-3 mt-5">
                 <h5 class="rubric-list-title">My Assessment Rubrics</h5>
-            <a href="/rubrics" class="btn assessment-btn p-2">New Rubric +</a>
+            <a href="/rubrics" class="assessment-btn p-2">New Rubric +</a>
         </div>
         <!-- show no rubric created message -->
 
@@ -16,7 +16,7 @@
 
         <div class="notice-styling">
             <p>You currently do not have any rubric templates.</p>
-            <p>Click the <a href="/rubrics" class="btn assessment-btn px-2">New Rubric +</a> to create your first template</p>
+            <p>Click the <a href="/rubrics" class="assessment-btn px-2">New Rubric +</a> to create your first template</p>
             <p>and begin using them for your assessments!</p>
         </div>
 
@@ -51,7 +51,7 @@
                         <!-- Applying a comma after each skill -->
                         <?php
                             $final_skill = end($skills_array);
-                            $count = 0;
+                            $count = 1;
                             foreach($skills_array as $sa) {
                                 if($sa != $final_skill) {
                                     echo($sa . ", ");
@@ -61,7 +61,7 @@
                                     echo($sa);
                                 }
                                 //apply an ellipses if reached 11 skills
-                                if ($count == 10){
+                                if ($count === 9){
                                     echo($sa."...");
                                     break;
                                 }

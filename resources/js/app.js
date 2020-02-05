@@ -3,6 +3,13 @@
 
 //Start of Jquery
 $(function(){
+    
+    if($("#error-pop-up").length > 0) {
+        $("#error-close").on("click", function(){
+           $("#error-pop-up").addClass("hide-error"); 
+        });
+    }
+    
     var prevScrollPos = $(document).scrollTop();
     //home page navbar scrolling function
     $(window).scroll(function(){
