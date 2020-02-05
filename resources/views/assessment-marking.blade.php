@@ -99,16 +99,26 @@
                                 <div class="">
                                 </div>
                                 <?php
-                                    $global = $sc->getGlobalCriteria();
-                                    $local = $sc->getLocalCriteria();
+                                $global = $sc->getGlobalCriteria();
+                                $local = $sc->getLocalCriteria();
                                 foreach($global as $g){
                                         if($g != end($global)){
-                                            echo '<div class="text-left">
-                                            <p class="pt-2">'.$g.'</p>
-                                            <p class="milestone"></p>
-                                            </div>
-                                            <div class="">
-                                            </div>';
+                                            ?>
+                                                <div class="text-left">
+                                                <p class="pt-2"><?php echo $g ?></p>
+                                                <p class="milestone"></p>
+                                                </div>
+                                                <span class="local-criteria">
+                                                    <?php
+                                                        foreach($local as $l) {
+                                                            ?>
+                                                            <p><?php echo $l["curriculum_code"]; ?></p>
+                                                            <span class="skill-tooltip"><?php echo $l["description_elaboration"]; ?></span>
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                </span>
+                                            <?php
                                         }else{
                                             echo '<div class="text-left">
                                             <p class="pt-2">'.$g.'</p>
