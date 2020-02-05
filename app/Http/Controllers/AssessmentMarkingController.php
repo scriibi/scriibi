@@ -23,10 +23,17 @@ class AssessmentMarkingController extends Controller
         $range = AssessmentMarkingController::getScriibiRange($student_assessed_level);
 
         $status = DB::table('writting_task_students')->select('status', 'comment')->where('fk_student_id', '=', $student_id)->where('fk_writting_task_id', '=', $writing_task_id)->get();
-        $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*')->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
-        $student_tasks = tasks_students::get();
-        $flag = empty($student_tasks[0]);
-        //dd($student_tasks[1]->tasks_students_Id);
+        $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*', 'tasks_skills.tasks_skills_Id')->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
+        $student_tasks = (array)tasks_students::get();
+
+        //dd($student_tasks);
+        /**
+         * the flag is there to check if there are any records in the tasks_students table
+         * this value will be set to false only the very first time the the system is accessed
+         * after a fresh database migration in the server
+         */
+        $flag = empty($student_tasks[0]);            
+
         $curriculum_Id = DB::table('teachers')
             ->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')
             ->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')
@@ -43,11 +50,13 @@ class AssessmentMarkingController extends Controller
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
             // if(!$flag){
-                
+            //     if(in_array($s->tasks_skills_Id, )){
+            //         dd(true);
+            //     }
             // }
             array_push($skillCards, $newSKillCard);
         }
-        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status]);
+        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student->rubrik_level]);
     }
 
     /**
@@ -59,10 +68,14 @@ class AssessmentMarkingController extends Controller
         $scriibi_level_value = ScriibiLevels::find($student_scriibi_level);
         //dd($scriibi_level_value->scriibi_Level);
         if ($scriibi_level_value->scriibi_Level == 0.0){
-            $counter = -0.5;
-            while($counter <= 0.5){
+            $counter = -0.75;
+            while($counter <= 1.0){
+                if($counter >= 0.0){
+                    $counter += 0.5;
+                }else{
+                    $counter += 0.25;
+                }
                 array_push($range, $counter);
-                $counter += 0.25;
             }
         }else{
             $counter = $scriibi_level_value->scriibi_Level - 1;

@@ -14,25 +14,11 @@
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
                 <!-- load and pop checkboxs for each text type from DB; you should see 11 of them.-->
-                <!-- <div class="d-flex flex-wrap btn-group-toggle p-0 m-0 justify-content-start" datat-toggle="buttons">
-                    @foreach($text_types as $tt)
-                        <div class="btn-group-toggle px-1 pb-1" data-toggle="buttons">
-                            <label class="btn btn-sm btn-outline-success text-nowrap btn-text-type">
-                                <input type="checkbox" role="button-" name="" value={{$tt->text_type_Id}} class="">{{$tt->text_type_Name}}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> -->
                 <form action="/RubricConfirm" method="POST" class="mt-5 mb-0 p-0" id="rubricform">
                 @csrf
                     <!-- term-title+Curriculum -->
                     <div class="card-text m-0">
                         <div class="row">
-                            <div class="col-8">
-                                <input type="text" class="text-input" id="assessment_name1" name="rubric1_name" value="Term 1 Skills Template" required/>
-                                <span class="bar"></span>
-                                <label class="student-form-label ml-3" for="assessment_name1">Title</label>
-                            </div>
                             <div class="col-4">
                                 <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                         <option value="" disabled selected hidden>Select your option</option>
@@ -42,6 +28,11 @@
                                 </select>
                                 <span class="bar"></span>
                                 <label class="ml-3 student-form-label" for="grade">Show skills and curriculum  milestones for:</label><br />
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="text-input" id="assessment_name1" name="rubric1_name" value="Term 1 Skills Template" required/>
+                                <span class="bar"></span>
+                                <label class="student-form-label ml-3" for="assessment_name1">Title</label>
                             </div>
                         </div>
 
@@ -106,13 +97,14 @@
                     <div class="card-text m-0">
                         <!-- input for rubric name and curriculum code -->
                             <div class="row mt-4">
+                                <div class="col-4">
+                                    <button type="button" class="auto-populate-button" id="autopopulate-term2-rubric">Auto-populate term 2</button>
+                                    <span class="skill-tooltip ml-5">This button reverses your choices from term 1 to term 2.</span>
+                                </div>
                                 <div class="col-8">
                                     <input type="text" class="text-input" id="assessment_name2" name="rubric2_name" value="Term 2 Skills Template" required/>
                                     <span class="bar"></span>
                                     <label class="student-form-label ml-3" for="assessment_name2">Title</label>
-                                </div>
-                                <div class="col-4">
-                                    <button type="button" class="auto-populate-button" id="autopopulate-term2-rubric">Auto-populate term 2</button>
                                 </div>
                             </div>
 
