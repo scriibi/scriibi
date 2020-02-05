@@ -140,10 +140,11 @@ $(function(){
     
     //rubric builder autopopulate function
     $("#autopopulate-term2-rubric").on("click", function(){
-        let form1_skills = $(".skill-checkbox1"),
-            form2_skills = $(".skill-checkbox2"),
+        //grabbing all checklists element and placing it into an array
+        const form1_skills = $(".skill-checkbox1"),
+              form2_skills = $(".skill-checkbox2");
         
-        //loop through each form skill and if the first form isnt checked and neither is the second form, check the checklist.
+        //loop through each form skill and if the first form isnt checked and neither is the second form, check the checklist
         for(var i = 0; i < form1_skills.length; i++){
             if (!(form1_skills[i].checked) && !(form2_skills[i].checked)) {
                form2_skills[i].checked = true;

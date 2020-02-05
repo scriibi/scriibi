@@ -626,11 +626,11 @@ header {
 //accordion content when the arrow button is clicked
 .accordion-display {
     height: 100%;
-    -moz-animation: accordion-display-animation 1s ease 3.5s infinite;
-    -webkit-animation: accordion-display-animation 1s ease 3.5s infinite;
-    -o-animation: accordion-display-animation 1s ease 3.5s infinite;
-    -ms-animation: accordion-display-animation 1s ease 3.5s infinite;
-    animation: accordion-display-animation 1s ease 3.5s infinite;
+    -moz-animation: accordion-display-animation 1s ease;
+    -webkit-animation: accordion-display-animation 1s ease;
+    -o-animation: accordion-display-animation 1s ease;
+    -ms-animation: accordion-display-animation 1s ease;
+    animation: accordion-display-animation 1s ease;
 }
 
 @keyframes accordion-display-animation {
