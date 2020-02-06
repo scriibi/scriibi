@@ -30,6 +30,8 @@ class Auth0IndexController extends Controller
     public function logout()
     {
         \Auth::logout();
+        \Session::flush();
+
         $logoutUrl = sprintf(
             'https://%s/v2/logout?client_id=%s&returnTo=%s',
             config('laravel-auth0.domain'),

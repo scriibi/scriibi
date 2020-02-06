@@ -80,30 +80,23 @@ class SkillCard
     public function populateScriibiLevelLocalCriteria(){
         try{
             foreach($this->scriibiRangeIds as $sr){
+                //temp array to store results
                 $temp_array = array();
+                //find primary key of our skill, level and curriculum combo
                 $curri_scriibi_level_skill_id = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('curriculum_Id', '=', $this->curriculumId[0]->curriculum_details_curriculum_details_Id)->where('skill_Id', '=', $this->skillId)->where('scriibi_level_Id', '=', $sr)->first();
-
+                //find primary key(s) that match the previous results in table :local_criteria_curriculum_scriibi_level_skills
                 $local_criteria_ids = DB::table('local_criteria_curriculum_scriibi_level_skills')->select('local_criteria_Id')->where('curriculum_scriibi_levels_skills_Id', '=', $curri_scriibi_level_skill_id->curriculum_scriibi_levels_skills_Id)->get();
-                //tinker $local_criteria_ids = DB::table('local_criteria_curriculum_scriibi_level_skills')->select('local_criteria_Id')->where('curriculum_scriibi_levels_skills_Id', '=', 153)->get();
-                //dd(count((array)$local_criteria_ids));
-
+                //loop through results to retireve relevant curriculum code and descriptions fom table : local_criterias
                 foreach($local_criteria_ids as $lci){
-                    // dd(gettype($lci));
                     $local_criteria_details = DB::table('local_criterias')->select('curriculum_code', 'description_elaboration')->where('local_criteria_Id', '=', $lci->local_criteria_Id)->get();
-
+                    //convert results from object to array
+                    $criteria_array = \json_decode(json_encode($local_criteria_details), true);
+                    //if not null, push to temp_array()
                     if(!($local_criteria_details === NULL)){
-                        array_push($temp_array, $local_criteria_details);
-
+                        array_push($temp_array, $criteria_array);
                     }
-                    //tinker $local_criteria_details = DB::table('local_criterias')->select('curriculum_code', 'description_elaboration')->where('local_criteria_Id', '=', 178)->get();
-                    // array_push($temp_array, $local_criteria_details);
-
                 }
-
-
                 array_push($this->scriibiLevelLocalCriteria, $temp_array);
-
-
             }
 
         }catch(Exception $e){
