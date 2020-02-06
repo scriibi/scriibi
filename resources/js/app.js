@@ -57,18 +57,18 @@ $(function(){
 //======================== DATA VIEW ================================================
     
     //Table to display student grade data
+    let greaterThanTen = false;
+    
+    if ($(".assessment-date").length >= 10) {
+        greaterThanTen = true;
+    }
+
     let table = $("#overall-assessment-table").DataTable({
-        scrollX:        true,
-        scrollCollapse: true,
+        scrollX: greaterThanTen,
         paging:         false,
         fixedColumns:   {
             leftColumns: 3,
         },
-        columnDefs: [
-        {width: "220px", targets: 0},
-        {width: "50px", targets: 1},
-        {width: "50px", targets: 2}
-        ],
     });
 
 //======================== ASSESSMENT MARKING =======================================
