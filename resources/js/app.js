@@ -160,6 +160,28 @@ $(function(){
         $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
         $(this).find(".radio-circle").addClass("fill-circle");
     });
+    
+    //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
+    $(".marking-radio").on("click", function(){
+        //default is variable is true
+        let check = true;
+        //loop through each radio button in each group and test whether they are checked or not
+        $(".marking-radio").each(function(){
+            //get the name of the radio button
+            let radio_name = $(this).attr("name"); 
+            console.log(radio_name);
+            //check to see if each input within the group name is has been checked or not
+            if ($("input:radio[name="+radio_name+"]:checked").length === 0) {
+                check = false;
+            }
+        });
+        
+        //if check is still true, then display the completed text
+        if (check === true) {
+            $("#assessment-status").find(".complete-style").removeClass("d-none");
+            $("#assessment-status").find(".incomplete-style").addClass("d-none");
+        }
+    });
 
 }); 
 
