@@ -26,7 +26,7 @@ class StudentsController extends Controller
         //     'first_name' => 'required|min:3',
         //     'last_name' => 'required|min:3',
         // ]);
-
+        try{
         $student_first_name = $request->input('first_name');
         $student_last_name = $request->input('last_name');
         $student_gov_id = $request->input('student_gov_id');
@@ -45,6 +45,9 @@ class StudentsController extends Controller
         $student_classes_record = array('classes_class_Id' => $class, 'students_student_Id' => $newStudentId, 'student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level);
 
         $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
+        }catch(Exception $e){
+            throw $e;
+        }
 
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
@@ -140,7 +143,7 @@ class StudentsController extends Controller
      */
     public function update(Request $request)
     {
-
+        try{
         $student_grade = $request->input('student_grade');
         $student_assignment_level = $request->input('assessed_level');
 
@@ -164,7 +167,14 @@ class StudentsController extends Controller
                 'rubrik_level' => $assessed_scriibi_level,
                 'schools_school_Id' => $school_Id]
             );
-        DB::table('classes_students')->where('students_student_Id', $student_Id)->update(['student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level]);
+            DB::table('classes_students')
+                ->where('students_student_Id', $student_Id)
+                ->update(['student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level]);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 }

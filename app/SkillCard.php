@@ -4,7 +4,7 @@ namespace App;
 
 use DB;
 use Auth;
-use Exception;          
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class SkillCard
@@ -18,7 +18,7 @@ class SkillCard
     private $existingUserInput;
     private $scriibiRangeIds = array();
     private $scriibiLevelglobalCriteria = array();
-    private $scriibiLevelLocaCriteria = array();
+    private $scriibiLevelLocalCriteria = array();
 
     public function __construct($name, $range, $skillid, $curriculumid, $studentId, $writingTask){
         $this->curriculumId = $curriculumid;
@@ -48,7 +48,7 @@ class SkillCard
     }
 
     public function getLocalCriteria(){
-        return $this->scriibiLevelLocaCriteria;
+        return $this->scriibiLevelLocalCriteria;
     }
 
     public function getCurrentResult(){
@@ -77,21 +77,30 @@ class SkillCard
         }
     }
 
-    public function populateScriibiLevelLocaCriteria(){
+    public function populateScriibiLevelLocalCriteria(){
         try{
             foreach($this->scriibiRangeIds as $sr){
+                //temp array to store results
                 $temp_array = array();
-                $curri_scriibi_level_skill_id = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('curriculum_Id', '=', $this->curriculumId[0]->curriculum_details_curriculum_details_Id)->where('skill_Id', '=', $this->skillId)->where('scriibi_level_Id', '=', $sr)->get();
-                $local_criteria_ids = DB::table('local_criteria_curriculum_scriibi_level_skills')->select('local_criteria_Id')->where('curriculum_scriibi_levels_skills_Id', '=', $curri_scriibi_level_skill_id[0]->curriculum_scriibi_levels_skills_Id)->get();
+                //find primary key of our skill, level and curriculum combo
+                $curri_scriibi_level_skill_id = DB::table('curriculum_scriibi_level_skills')->select('curriculum_scriibi_levels_skills_Id')->where('curriculum_Id', '=', $this->curriculumId[0]->curriculum_details_curriculum_details_Id)->where('skill_Id', '=', $this->skillId)->where('scriibi_level_Id', '=', $sr)->first();
+                //find primary key(s) that match the previous results in table :local_criteria_curriculum_scriibi_level_skills
+                $local_criteria_ids = DB::table('local_criteria_curriculum_scriibi_level_skills')->select('local_criteria_Id')->where('curriculum_scriibi_levels_skills_Id', '=', $curri_scriibi_level_skill_id->curriculum_scriibi_levels_skills_Id)->get();
+                //loop through results to retireve relevant curriculum code and descriptions fom table : local_criterias
                 foreach($local_criteria_ids as $lci){
-                    $local_criteria_details = DB::table('local_criterias')->select('curriculum_code, description_elaboration')->where('local_criteria_Id', '=', $lci)->get();
-                    array_push($temp_array, $local_criteria_details);
+                    $local_criteria_details = DB::table('local_criterias')->select('curriculum_code', 'description_elaboration')->where('local_criteria_Id', '=', $lci->local_criteria_Id)->get();
+                    //convert results from object to array
+                    $criteria_array = \json_decode(json_encode($local_criteria_details), true);
+                    //if not null, push to temp_array()
+                    if(!($local_criteria_details === NULL)){
+                        array_push($temp_array, $criteria_array);
+                    }
                 }
-                //dd($this->scriibiLevelLocaCriteria);
-                array_push($this->scriibiLevelLocaCriteria, $temp_array);
+                array_push($this->scriibiLevelLocalCriteria, $temp_array);
             }
-        }catch(Exception $e){
 
+        }catch(Exception $e){
+            throw $e;
         }
     }
 

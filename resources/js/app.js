@@ -1,8 +1,9 @@
 "use strict";
 
-
-//Start of Jquery
+//######################################### JQUERY SCRIPTS #########################################
 $(function(){
+
+//======================== GLOBAL SCRIPTS ================================================
     
     if($("#error-pop-up").length > 0) {
         $("#error-close").on("click", function(){
@@ -22,6 +23,8 @@ $(function(){
         }
         prevScrollPos = currentScrollPos;
     });
+
+//======================== STUDENT LIST ================================================
     
     //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
@@ -49,8 +52,49 @@ $(function(){
            console.log(data);
        }
 
-   });
+   });    
+    
+//======================== DATA VIEW ================================================
+    
+    //Table to display student grade data
+    let greaterThanTen = false;
+    
+    if ($(".assessment-date").length >= 10) {
+        greaterThanTen = true;
+    }
 
+    let table = $("#overall-assessment-table").DataTable({
+        scrollX: greaterThanTen,
+        paging:         false,
+        fixedColumns:   {
+            leftColumns: 3,
+        },
+    });
+
+//======================== ASSESSMENT MARKING =======================================
+    
+    //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
+    $(".marking-radio").on("click", function(){
+        //default is variable is true
+        let check = true;
+        //loop through each radio button in each group and test whether they are checked or not
+        $(".marking-radio").each(function(){
+            //get the name of the radio button
+            let radio_name = $(this).attr("name"); 
+            console.log(radio_name);
+            //check to see if each input within the group name is has been checked or not
+            if ($("input:radio[name="+radio_name+"]:checked").length === 0) {
+                check = false;
+            }
+        });
+        
+        //if check is still true, then display the completed text
+        if (check === true) {
+            $("#assessment-status").find(".complete-style").removeClass("d-none");
+            $("#assessment-status").find(".incomplete-style").addClass("d-none");
+        }
+    });
+    
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
@@ -64,17 +108,6 @@ $(function(){
         let criteria_section = $(this).parent().parent().parent().parent().find(".criteria-section");
         console.log(criteria_section);
         criteria_section.toggleClass("accordion-display");
-    });
-
-    //on change of the drop down, redirect the user to the page with the value appeneded to the url
-    $("#select_curriculum_code").change(function(){
-        //getting the curriculum level value
-        let curriculum_level = $(this).val();
-        //get the origin url and apply the rubrics page to it and the value
-        let url_origin = window.location.origin;
-        url_origin += "/rubricsFlag/";
-        url_origin += curriculum_level;
-        window.location.href = url_origin;
     });
     
     //setting the default examples for the assessment-marking-page blade
@@ -113,22 +146,9 @@ $(function(){
         }
     });
     
-    //Table to display student grade data
-    let table = $("#overall-assessment-table").DataTable({
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         false,
-        fixedColumns:   {
-            leftColumns: 3,
-        },
-        columnDefs: [
-        {width: "220px", targets: 0},
-        {width: "50px", targets: 1},
-        {width: "50px", targets: 2}
-        ],
-    });
+//======================== ASSESSMENT SETUP =========================================
     
-    //If assessment form is incomplete, display the assessment form again
+     //If assessment form is incomplete, display the assessment form again
     $("#createAxBTN").on("click", function(){
         if (document.getElementById("assessment-name") === null) {
             $("#assessment-template").addClass("d-block");
@@ -137,6 +157,14 @@ $(function(){
             $("#rubric-template").removeClass("d-block");
         } 
     });
+    
+    //assessment-setup rubric selection radio script
+    $(".assessment-rubric-item").on("click", function(){
+        $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
+        $(this).find(".radio-circle").addClass("fill-circle");
+    });
+    
+//======================== RUBRIC FORM ==============================================
     
     //rubric builder autopopulate function
     $("#autopopulate-term2-rubric").on("click", function(){
@@ -155,15 +183,22 @@ $(function(){
         }
     });
     
-    //assessment-setup rubric selection radio script
-    $(".assessment-rubric-item").on("click", function(){
-        $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
-        $(this).find(".radio-circle").addClass("fill-circle");
+    //on change of the drop down, redirect the user to the page with the value appeneded to the url
+    $("#select_curriculum_code").change(function(){
+        //getting the curriculum level value
+        let curriculum_level = $(this).val();
+        //get the origin url and apply the rubrics page to it and the value
+        let url_origin = window.location.origin;
+        url_origin += "/rubricsFlag/";
+        url_origin += curriculum_level;
+        window.location.href = url_origin;
     });
 
-}); 
+}); //===== /END OF JQUERY =======
 
-//Student List scripts
+//######################################### VANILLA JS SCRIPTS #########################################
+
+//======================== STUDENT LIST =============================================
 
 //function to open the form
 function openEditForm(event) {

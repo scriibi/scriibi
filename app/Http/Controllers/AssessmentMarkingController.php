@@ -44,7 +44,7 @@ class AssessmentMarkingController extends Controller
             ->select('schools.curriculum_details_curriculum_details_Id')
             ->where('teachers.user_Id', '=', Auth::user()->user_Id)
             ->get();
-        
+
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
         }
@@ -52,13 +52,13 @@ class AssessmentMarkingController extends Controller
         foreach($skills as $s){
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
-            if(!$flag){
-                if(in_array($s->tasks_skills_Id, $student_tasks)){
-                    dd(true);
-                }else{
-                    dd(false);
-                }
-            }
+            // if(!$flag){
+            //     if(in_array($s->tasks_skills_Id, $student_tasks)){
+            //         dd(true);
+            //     }else{
+            //         dd(false);
+            //     }
+            // }
             array_push($skillCards, $newSKillCard);
         }
         return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student->rubrik_level]);
