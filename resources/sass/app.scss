@@ -616,7 +616,7 @@ header {
 
 }
 .criteria-section{
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.01);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
     height: 0;
@@ -1224,5 +1224,5 @@ $skillset-colors-map: (
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
+    
 }

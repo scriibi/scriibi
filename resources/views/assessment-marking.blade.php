@@ -6,7 +6,7 @@
 @csrf
     <div class="row assessment-marking-panel" id="assessment-marking-panel">
 
-        <div class="marking-panel ml-0 mr-1 px-0 mt-3 marking-padding-right" id="marking-panel">
+        <div class="marking-panel ml-0 px-0 mt-3 marking-padding-right" id="marking-panel">
             <div class="score-label mx-0 bg-white" id="score-label">
                 <!-- here goes the calculated score section in the value bit -->
                 <!-- keep this blank -->

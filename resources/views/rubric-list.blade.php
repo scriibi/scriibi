@@ -7,7 +7,7 @@
    </div>
     <div class="col-12 col-sm-10 col-md-8">
         <div class="row d-flex justify-content-between mb-3 mt-5">
-                <h5 class="rubric-list-title">My Assessment Rubrics</h5>
+                <h5 class="rubric-list-title">My Rubrics</h5>
             <a href="/rubrics" class="assessment-btn p-2"><strong>New Rubric +</strong></a>
         </div>
         <!-- show no rubric created message -->

@@ -9,7 +9,7 @@
    <div class="col-12 col-sm-10 col-md-8">
 
         <!-- Rubric Builder -->
-        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Select skills to build my rubric</strong></h4>
+        <h4 class="top-divider mb-3 header-text mx-0" id="RubricBuilder_title"><strong>Select skills to build your rubric</strong></h4>
 
         <div class="card universal-card-rubric p-0  row">
             <div class="card-body">
