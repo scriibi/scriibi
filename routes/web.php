@@ -27,7 +27,15 @@ Route::get('/assessment-studentlist', function(){
 // });
 
 Route::get('/data-view', function(){
-    return view('data-view');
+    return view('overall-data-view');
+});
+
+Route::get('/student-data-view', function(){
+    return view('student-data-view');
+});
+    
+Route::get('/assessment-data-view', function(){
+    return view('assessment-data-view');
 });
 
 Route::get('/home', function(){
