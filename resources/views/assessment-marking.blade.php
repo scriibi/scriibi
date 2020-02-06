@@ -6,7 +6,7 @@
 @csrf
     <div class="row assessment-marking-panel" id="assessment-marking-panel">
 
-        <div class="marking-panel ml-0 mr-1 px-0 mt-3 marking-padding-right" id="marking-panel">
+        <div class="marking-panel ml-0 px-0 mt-3 marking-padding-right" id="marking-panel">
             <div class="score-label mx-0 bg-white" id="score-label">
                 <!-- here goes the calculated score section in the value bit -->
                 <!-- keep this blank -->
@@ -60,31 +60,31 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="m-0 p-0" type="radio" name="skill_{{$counter}}" value={{$rubrics[0]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="m-0 p-0 marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[0]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input type="radio" name="skill_{{$counter}}" value={{$rubrics[2]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[2]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="" type="radio" name="skill_{{$counter}}" value={{$rubrics[4]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[4]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
                                     </label>
                                 </div>
                                 @else
@@ -152,9 +152,10 @@
         <!-- sidebar with assessment info -->
         <div class="info-panel" id="info-panel">
 
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end" id="assessment-status">
                 <!-- value attribute: Status -->
-                <p class="w-100 @if ($status === "incomplete") {{"incomplete-style"}} @else {{"complete-style"}} @endif">{{$status}}</p>
+                <p class="w-100 incomplete-style @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
+                <p class="w-100 complete-style @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
             </div>
             <div class="d-flex justify-content-end mt-1">
                 <!-- value attribute: Full name -->

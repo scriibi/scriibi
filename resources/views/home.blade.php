@@ -74,7 +74,7 @@
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">
 
                         <img class="align-self-center home-rubric-icon" src="/images/rubric-template.png" alt="rubric-template">
-                        <span class="align-self-center">Skills Template</span>
+                        <span class="align-self-center">My Rubrics</span>
 
                     </div>
                 </a>
