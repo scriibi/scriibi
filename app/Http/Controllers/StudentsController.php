@@ -164,7 +164,7 @@ class StudentsController extends Controller
                 'rubrik_level' => $assessed_scriibi_level,
                 'schools_school_Id' => $school_Id]
             );
-
+        DB::table('classes_students')->where('students_student_Id', $student_Id)->update(['student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level]);
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 }

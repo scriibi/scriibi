@@ -24,7 +24,6 @@ class listCallController extends Controller
         catch(Exception $e){
             abort(403, 'Please log in to view this page!');
         }
-
         return view('/AJAX/listCall', ['students' => $students,'grade' => $grade_label_list, 'assessed' =>  $assessed_label_list]);
     }
 
