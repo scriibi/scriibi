@@ -9,10 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
- Route::get('/demo', function () {
-   return view('demo');
-});
-
+Route::group(['middleware' => ['auth']], function () {
 // Route::get('/rubrics', function(){
 //    return view('rubrics');
 // });
@@ -33,11 +30,11 @@ Route::get('/data-view', function(){
     return view('data-view');
 });
 
-Route::get('/', function(){
+Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
     return view('home', ['students' => $students, 'user' => Auth::user()->name]);
-})->middleware('auth');
+})->name('home')->middleware('auth');
 
 Route::get('/studentlist', function(){
     return view('studentlist');
@@ -52,9 +49,7 @@ Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
 Route::get('/traits', 'RubricBuilder@test');
 
 //auth0 routes
-Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
-Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
-Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
+Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' );
 
 //student list routes
 Route::get('/AJAX/listCall', 'listCallController@generateList');
@@ -82,21 +77,12 @@ Route::get('/rubric', function(){
 
 Route::get('/assessed_level');
 
-// Route::get('/rubrics', function(){
-//    return view('rubrics');
-// });
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-//
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
-//
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
-//
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
+Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
+
+Route::get('/', function(){
+    return view('landing');
+});
+

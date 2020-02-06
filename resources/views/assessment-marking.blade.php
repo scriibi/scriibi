@@ -101,6 +101,10 @@
                                 <?php
                                 $global = $sc->getGlobalCriteria();
                                 $local = $sc->getLocalCriteria();
+
+                                //the following segment retrieves the correct curriculum code and description, but the loop is incorrect.
+                                //it is appearing three times on the front end.
+
                                 foreach($global as $g){
                                         if($g != end($global)){
                                             ?>
@@ -112,8 +116,13 @@
                                                     <?php
                                                         foreach($local as $l) {
                                                             ?>
-                                                            <p><?php echo $l["curriculum_code"]; ?></p>
-                                                            <span class="skill-tooltip"><?php echo $l["description_elaboration"]; ?></span>
+                                                            <p><?php
+                                                            //check if isset, so we dont throw an "undefined index [0] exception
+                                                            if(isset($l[0])){
+                                                                //access nested array values
+                                                                echo ($l[0][0]['curriculum_code']);
+                                                                ?></p>
+                                                            <span class="skill-tooltip"><?php  echo ($l[0][0]['description_elaboration']); }?></span>
                                                             <?php
                                                         }
                                                     ?>
@@ -134,7 +143,6 @@
                 <!-- /end of first skill card -->
             </div>
         </div>
-
 
         <!-- SIDEBAR SECTION -->
         <!-- sidebar btn to close or open -->

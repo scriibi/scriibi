@@ -29,8 +29,14 @@ class Auth0IndexController extends Controller
      */
     public function logout()
     {
-        \Auth::logout();
         \Session::flush();
+        \Session::save();
+        \Auth::logout();
+
+        \Cookie::queue(
+            \Cookie::forget('laravel_session'),
+            \Cookie::forget('XSRF-TOKEN')
+        );
 
         $logoutUrl = sprintf(
             'https://%s/v2/logout?client_id=%s&returnTo=%s',
