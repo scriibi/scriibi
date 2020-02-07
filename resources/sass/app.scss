@@ -33,6 +33,7 @@ header {
     z-index: 3;
     background-color: white;
 }
+
 //---------- Partials -------------------------
 
 //Navigation Bar
@@ -1185,14 +1186,45 @@ $skillset-colors-map: (
     line-height: 16px;
     text-align: center;
 }
-.table-grid-size{
 
+.filter-btn {
+    border: 2px solid #D2D2D2;
+    border-radius: 7px;
+    background-color: white;
+    width: 120px;
+    display: flex;
+    cursor: pointer;
+    
+    input {
+        display: none;
+    }
+    
+    p {
+        margin-top: 10px;
+    }
 }
+
+
 .assignment-result {
     width: 150px;
     text-align: center;
 }
 
+.light-orange-fill {
+    background-color: #ffd9b8 !important;
+}
+
+.orange-fill {
+    background-color: #ff9900 !important;
+}
+
+.light-green-fill {
+    background-color: #c1ffc1 !important;
+}
+
+.green-fill {
+    background-color: #87ec87 !important;
+}
 
 //---------- Media Queries --------------------
 
