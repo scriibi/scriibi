@@ -16,6 +16,7 @@
 
 <!-- CSS link -->
 <link rel="stylesheet" type="text/css" href="/css/app.css">
+
 <!-- fontawesome link -->
 <script src="https://kit.fontawesome.com/773092a791.js" crossorigin="anonymous"></script>
 

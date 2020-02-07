@@ -5,12 +5,14 @@ $(function(){
 
 //======================== GLOBAL SCRIPTS ================================================
     
+    //error notificiation
     if($("#error-pop-up").length > 0) {
         $("#error-close").on("click", function(){
            $("#error-pop-up").addClass("hide-error"); 
         });
     }
     
+    //navbar hide on scroll
     var prevScrollPos = $(document).scrollTop();
     //home page navbar scrolling function
     $(window).scroll(function(){
@@ -59,16 +61,169 @@ $(function(){
     //Table to display student grade data
     let greaterThanTen = false;
     
+    //tests if there are more than 10 columns before enabling scrolling
     if ($(".assessment-date").length >= 10) {
         greaterThanTen = true;
     }
-
+    
+    //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
         scrollX: greaterThanTen,
         paging:         false,
         fixedColumns:   {
             leftColumns: 3,
         },
+    });
+    
+//========== OVERALL ASSESSMENT
+    
+    //if a user clicks the overall grade filter
+    $("#overall-grade-filter").on("click", function(){
+        
+        //loop through each grade in each student row
+        $(".student-row").each(function(){
+           let student_grade = parseFloat($(this).find(".student-grade-level").html()); 
+            
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".assessment-result").each(function(){
+
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+                
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                else if (current_grade >= student_grade + 1) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                    $(this).addClass("light-orange-fill");
+                }
+                else if (current_grade <= student_grade - 1) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    });
+    
+    $("#overall-assessed-filter").on("click", function(){
+        
+        //loop through each grade in each student row
+        $(".student-row").each(function(){
+           let student_grade = parseFloat($(this).find(".student-assessed-level").html()); 
+            
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".assessment-result").each(function(){
+
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+                
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                else if (current_grade >= student_grade + 1) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                    $(this).addClass("light-orange-fill");
+                }
+                else if (current_grade <= student_grade - 1) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    });
+
+//========== STUDENT ASSESSMENT DATA
+    
+    //if a user clicks the grade filter
+    $("#assessment-grade-filter").on("click", function(){
+        
+        //loop through each grade in each student row
+        $(".student-row").each(function(){
+           let student_grade = parseFloat($(this).find(".student-grade-level").html()); 
+            
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".student-skill-result").each(function(){
+
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+                
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                else if (current_grade >= student_grade + 1) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                    $(this).addClass("light-orange-fill");
+                }
+                else if (current_grade <= student_grade - 1) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    });
+    
+    //if a user clicks the assessment grade filter
+    $("#assessment-assessed-filter").on("click", function(){
+        
+        //loop through each grade in each student row
+        $(".student-row").each(function(){
+           let student_grade = parseFloat($(this).find(".student-assessed-level").html()); 
+            
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".student-skill-result").each(function(){
+
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+                
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                else if (current_grade >= student_grade + 1) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                    $(this).addClass("light-orange-fill");
+                }
+                else if (current_grade <= student_grade - 1) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
     });
 
 //======================== ASSESSMENT MARKING =======================================
@@ -102,7 +257,7 @@ $(function(){
         $(this).toggleClass("arrow-move");
     });
 
-    // arrow rotate function
+    // assessment marking right pannel arrow rotate function
     $(".criteria-btn").click(function(){
         $(this).find(".collapsable-arrow").toggleClass("image-rotate");
         let criteria_section = $(this).parent().parent().parent().parent().find(".criteria-section");

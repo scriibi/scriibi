@@ -52,6 +52,7 @@ class AssessmentMarkingController extends Controller
         foreach($skills as $s){
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
+            $newSKillCard->populateScriibiLevelLocalCriteria();
             // if(!$flag){
             //     if(in_array($s->tasks_skills_Id, $student_tasks)){
             //         dd(true);
