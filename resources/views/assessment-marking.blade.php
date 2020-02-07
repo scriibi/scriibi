@@ -41,7 +41,8 @@
                 @foreach($skillCards as $sc)
                     <?php
                         $counter++;
-
+                        $global = $sc->getGlobalCriteria();
+                        $local = $sc->getLocalCriteria();
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
@@ -99,9 +100,7 @@
                                 <div class="">
                                 </div>
                                 <?php
-                                $global = $sc->getGlobalCriteria();
-                                $local = $sc->getLocalCriteria();
-
+                                
                                 //the following segment retrieves the correct curriculum code and description, but the loop is incorrect.
                                 //it is appearing three times on the front end.
 

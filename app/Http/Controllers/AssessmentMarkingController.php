@@ -27,10 +27,10 @@ class AssessmentMarkingController extends Controller
         //$student_tasks = DB::table('tasks_students')->select('tasks_skills_Id')->get();
         $student_tasks = tasks_students::get()->toArray();
         
-        foreach($student_tasks as $st){
-            dump($st['result']);
-        }
-        dd('end');
+        // foreach($student_tasks as $st){
+        //     dump($st['result']);
+        // }
+        // dd('end');
         /**
          * the flag is there to check if there are any records in the tasks_students table
          * this value will be set to false only the very first time the the system is accessed
