@@ -72,7 +72,7 @@ class SkillCard
                 array_push($this->scriibiLevelglobalCriteria, $global_criteria_description[0]->description);
             }
             catch(Exception $e){
-               // do something
+                array_push($this->scriibiLevelglobalCriteria, '');
             }
         }
     }

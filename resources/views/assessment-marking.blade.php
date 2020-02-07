@@ -105,36 +105,34 @@
                                 //it is appearing three times on the front end.
 
                                 foreach($global as $g){
-                                        if($g != end($global)){
-                                            ?>
-                                                <div class="text-left">
-                                                <p class="pt-2"><?php echo $g ?></p>
-                                                <p class="milestone"></p>
-                                                </div>
-                                                <span class="local-criteria">
-                                                    <?php
-                                                        foreach($local as $l) {
-                                                            ?>
-                                                            <p><?php
-                                                            //check if isset, so we dont throw an "undefined index [0] exception
-                                                            if(isset($l[0])){
-                                                                //access nested array values
-                                                                echo ($l[0][0]['curriculum_code']);
-                                                                ?></p>
-                                                            <span class="skill-tooltip"><?php  echo ($l[0][0]['description_elaboration']); }?></span>
-                                                            <?php
-                                                        }
-                                                    ?>
-                                                </span>
-                                            <?php
-                                        }else{
-                                            echo '<div class="text-left">
-                                            <p class="pt-2">'.$g.'</p>
-                                            <p class="milestone"></p>
-                                            </div>';
-                                        }
-                                    }
+                                        $i = 0;   
                                     ?>
+                                        <div class="text-left">
+                                        <p class="pt-2"><?php echo $g ?></p>
+                                        <p class="milestone"></p>
+                                        </div>
+                                        <span class="local-criteria">
+                                            <?php
+                                            //div
+                                            //  p course code
+                                            //  span description
+                                            //div
+
+                                            // try{
+                                            //     if(!empty($local[$i])){
+                                            //         foreach($local[$i] as $l){
+                                            //             echo ($l[0]['curriculum_code']);
+                                            //         }
+                                            //     }
+                                            // }catch(\Exception $e){
+                                            //     //dump($e);
+                                            // }   
+                                            ?>
+                                        </span>
+                                    <?php
+                                //$i++;
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
