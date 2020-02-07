@@ -20,7 +20,6 @@ class StudentInputController extends Controller
     public function ReturnStudentListPage(){
         try{
             $labels = StudentInputController::GetLabels();
-            $stdController = new StudentsController();
         }catch(Exception $e){
             abort(403, 'You do not have authorization to access this page!');
         }
@@ -34,6 +33,7 @@ class StudentInputController extends Controller
             $school_type_controller = new SchoolTypeController();
             $grade_label_list = GradeLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
             $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
+
         }
         catch(Exception $e){
             abort(403, 'Please log in to view this page!');

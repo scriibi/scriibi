@@ -124,11 +124,13 @@ class WritingTask
      */
     public function populateStudents(){
         $students = DB::table('students')
-        ->join('writting_task_students', 'students.student_Id', 'writting_task_students.fk_student_id')
-        ->select('students.*', 'writting_task_students.status')
-        ->where('writting_task_students.fk_writting_task_id', '=', $this->id)
-        ->get();
-
+            ->join('writting_task_students', 'students.student_Id', 'writting_task_students.fk_student_id')
+            ->join('classes_students', 'students.student_Id', 'classes_students.students_student_Id')
+            ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
+            ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
+            ->select('students.*', 'writting_task_students.status', 'grade_labels.grade_label', 'assessed_level_labels.assessed_level_label')
+            ->where('writting_task_students.fk_writting_task_id', '=', $this->id)
+            ->get();
         foreach($students as $s){
             array_push($this->students, $s);
         }

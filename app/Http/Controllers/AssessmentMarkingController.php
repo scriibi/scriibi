@@ -24,16 +24,19 @@ class AssessmentMarkingController extends Controller
 
         $status = DB::table('writting_task_students')->select('status', 'comment')->where('fk_student_id', '=', $student_id)->where('fk_writting_task_id', '=', $writing_task_id)->get();
         $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*', 'tasks_skills.tasks_skills_Id')->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
-        $student_tasks = (array)tasks_students::get();
-
-        //dd($student_tasks);
+        //$student_tasks = DB::table('tasks_students')->select('tasks_skills_Id')->get();
+        $student_tasks = tasks_students::get()->toArray();
+        
+        // foreach($student_tasks as $st){
+        //     dump($st['result']);
+        // }
+        // dd('end');
         /**
          * the flag is there to check if there are any records in the tasks_students table
          * this value will be set to false only the very first time the the system is accessed
          * after a fresh database migration in the server
          */
         $flag = empty($student_tasks[0]);            
-
         $curriculum_Id = DB::table('teachers')
             ->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')
             ->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')
@@ -41,7 +44,7 @@ class AssessmentMarkingController extends Controller
             ->select('schools.curriculum_details_curriculum_details_Id')
             ->where('teachers.user_Id', '=', Auth::user()->user_Id)
             ->get();
-        
+
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
         }
@@ -50,8 +53,10 @@ class AssessmentMarkingController extends Controller
             $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
             $newSKillCard->populateScriibiLevelglobalCriteria();
             // if(!$flag){
-            //     if(in_array($s->tasks_skills_Id, )){
+            //     if(in_array($s->tasks_skills_Id, $student_tasks)){
             //         dd(true);
+            //     }else{
+            //         dd(false);
             //     }
             // }
             array_push($skillCards, $newSKillCard);
@@ -120,6 +125,5 @@ class AssessmentMarkingController extends Controller
             DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
         }
         return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
-
     }
 }
