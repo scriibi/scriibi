@@ -48,7 +48,6 @@ class StudentsController extends Controller
         }catch(Exception $e){
             throw $e;
         }
-
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
 
