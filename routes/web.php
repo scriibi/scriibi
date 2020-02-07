@@ -10,33 +10,29 @@
 |
 */
 Route::group(['middleware' => ['auth']], function () {
-// Route::get('/rubrics', function(){
-//    return view('rubrics');
+
+// Route::get('/single-rubric', function(){
+//    return view('single-rubric');
 // });
 
-Route::get('/single-rubric', function(){
-   return view('single-rubric');
-});
-
-Route::get('/assessment-studentlist', function(){
-   return view('assessment-studentlist');
-});
-
-// Route::get('/assessment-marking', function(){
-//    return view('assessment-marking');
+// Route::get('/assessment-studentlist', function(){
+//    return view('assessment-studentlist');
 // });
 
-Route::get('/data-view', function(){
-    return view('overall-data-view');
-});
 
-Route::get('/student-data-view', function(){
-    return view('student-data-view');
-});
-    
-Route::get('/assessment-data-view', function(){
-    return view('assessment-data-view');
-});
+//the following routes are for viewing assessment data. this functionality has not been implemented fully.
+
+// Route::get('/data-view', function(){
+//     return view('overall-data-view');
+// });
+
+// Route::get('/student-data-view', function(){
+//     return view('student-data-view');
+// });
+
+// Route::get('/assessment-data-view', function(){
+//     return view('assessment-data-view');
+// });
 
 Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();
