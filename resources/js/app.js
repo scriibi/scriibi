@@ -5,12 +5,15 @@ $(function(){
 
 //======================== GLOBAL SCRIPTS ================================================
     
-    //error notificiation
-    if($("#error-pop-up").length > 0) {
-        $("#error-close").on("click", function(){
-           $("#error-pop-up").addClass("hide-error"); 
-        });
+    //error notificiation UNFINISHED!
+    //Count if the list has more than one error, if yes then display the error pop up. if they click the close button, add hide-error class
+    if($("#error-content").length > 0) {
+        $("#error-pop-up").removeClass("hide-error");
     }
+    
+    $("#error-close").on("click", function(){
+       $("#error-pop-up").addClass("hide-error"); 
+    });
     
     //navbar hide on scroll
     var prevScrollPos = $(document).scrollTop();
