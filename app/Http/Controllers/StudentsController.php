@@ -22,10 +22,10 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'first_name' => 'required|min:3',
-        //     'last_name' => 'required|min:3',
-        // ]);
+         $validatedData = $request->validate([
+             'first_name' => 'required|min:2',
+             'last_name' => 'required|min:2',
+         ]);
         try{
         $student_first_name = $request->input('first_name');
         $student_last_name = $request->input('last_name');

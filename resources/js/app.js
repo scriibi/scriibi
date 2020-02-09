@@ -269,40 +269,39 @@ $(function(){
     });
     
     //setting the default examples for the assessment-marking-page blade
-    const assessed_level = "#level-".concat($("#assessed-marking-level").value);
+    const assessed_level = $("#marking-level").html();
     $("#level-examples div").addClass("d-none");
-    $(assessed_level).removeClass("d-none");
     
-    $("#assessed-marking-level").change(function(){
-        if (this.value == "F"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-f").removeClass("d-none");
+    if (assessed_level != null) {
+        if (assessed_level.value == "F"){
+        $("#level-examples div").addClass("d-none");
+        $("#level-f").removeClass("d-none");
         }
-        else if (this.value == "1"){
+        else if (assessed_level.value == "1"){
             $("#level-examples div").addClass("d-none");
             $("#level-1").removeClass("d-none");
         }
-        else if (this.value == "2"){
+        else if (assessed_level.value == "2"){
             $("#level-examples div").addClass("d-none");
             $("#level-2").removeClass("d-none");
         }
-        else if (this.value == "3"){
+        else if (assessed_level.value == "3"){
             $("#level-examples div").addClass("d-none");
             $("#level-3").removeClass("d-none");
         }
-        else if (this.value == "4"){
+        else if (assessed_level.value == "4"){
             $("#level-examples div").addClass("d-none");
             $("#level-4").removeClass("d-none");
         }
-        else if (this.value == "5"){
+        else if (assessed_level.value == "5"){
             $("#level-examples div").addClass("d-none");
             $("#level-5").removeClass("d-none");
         }
-        else if (this.value == "6"){
+        else if (assessed_level.value == "6"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
-        }
-    });
+        }   
+    }
     
 //======================== ASSESSMENT SETUP =========================================
     
