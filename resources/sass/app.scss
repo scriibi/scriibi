@@ -258,6 +258,17 @@ header {
     overflow-x: hidden;
 }
 
+.interaction-icon {
+    width: 20px;
+    height: auto;
+    margin-top: 11px;
+}
+
+.remove-button-styling {
+    border: none;
+    background-color: transparent;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -1100,8 +1111,10 @@ $skillset-colors-map: (
     visibility: hidden;
     transition: 0.1s;
     position: absolute;
-    background: rgba(0,0,0,0.85);
-    color: white;
+    background-color: #e8e8e8;
+    -webkit-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
     border-radius: 0px 7px 7px 7px;
     top: 15px;
     left: 200px;
