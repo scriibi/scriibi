@@ -15,14 +15,14 @@ use Illuminate\Http\Request;
 class AssessmentMarkingController extends Controller
 {
     public function GenerateStudentMarkingPage($student_id, $writing_task_id){
-        $rangeAsScriibiValue = array();
-        $skillCards = array();
         /**
          * this array is used to aggregate all the task_skill values which are retrieved by tasks_skills table
          * this should be optimized later
          */
         $tasks_skills = array();
         $prepopulated_results = array();
+        $rangeAsScriibiValue = array();
+        $skillCards = array();
         $student = students::find($student_id);
         $skills = writing_tasks::find($writing_task_id)->skills;
         $range = AssessmentMarkingController::getScriibiRange($student->rubrik_level);
