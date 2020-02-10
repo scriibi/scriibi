@@ -5,15 +5,12 @@ $(function(){
 
 //======================== GLOBAL SCRIPTS ================================================
     
-    //error notificiation UNFINISHED!
-    //Count if the list has more than one error, if yes then display the error pop up. if they click the close button, add hide-error class
-    if($("#error-content").length > 0) {
-        $("#error-pop-up").removeClass("hide-error");
+    //error notificiation
+    if($("#error-pop-up").length > 0) {
+        $("#error-close").on("click", function(){
+           $("#error-pop-up").addClass("hide-error"); 
+        });
     }
-    
-    $("#error-close").on("click", function(){
-       $("#error-pop-up").addClass("hide-error"); 
-    });
     
     //navbar hide on scroll
     var prevScrollPos = $(document).scrollTop();
@@ -250,7 +247,6 @@ $(function(){
         if (check === true) {
             $("#assessment-status").find(".complete-style").removeClass("d-none");
             $("#assessment-status").find(".incomplete-style").addClass("d-none");
-            $("#assessment-status").find("input").val("1");
         }
     });
     
@@ -270,39 +266,40 @@ $(function(){
     });
     
     //setting the default examples for the assessment-marking-page blade
-    const assessed_level = $("#marking-level").html();
+    const assessed_level = "#level-".concat($("#assessed-marking-level").value);
     $("#level-examples div").addClass("d-none");
+    $(assessed_level).removeClass("d-none");
     
-    if (assessed_level != null) {
-        if (assessed_level == "121"){
-        $("#level-examples div").addClass("d-none");
-        $("#level-f").removeClass("d-none");
+    $("#assessed-marking-level").change(function(){
+        if (this.value == "F"){
+            $("#level-examples div").addClass("d-none");
+            $("#level-f").removeClass("d-none");
         }
-        else if (assessed_level == "125"){
+        else if (this.value == "1"){
             $("#level-examples div").addClass("d-none");
             $("#level-1").removeClass("d-none");
         }
-        else if (assessed_level == "129"){
+        else if (this.value == "2"){
             $("#level-examples div").addClass("d-none");
             $("#level-2").removeClass("d-none");
         }
-        else if (assessed_level == "133"){
+        else if (this.value == "3"){
             $("#level-examples div").addClass("d-none");
             $("#level-3").removeClass("d-none");
         }
-        else if (assessed_level == "137"){
+        else if (this.value == "4"){
             $("#level-examples div").addClass("d-none");
             $("#level-4").removeClass("d-none");
         }
-        else if (assessed_level == "141"){
+        else if (this.value == "5"){
             $("#level-examples div").addClass("d-none");
             $("#level-5").removeClass("d-none");
         }
-        else if (assessed_level == "145"){
+        else if (this.value == "6"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
-        }   
-    }
+        }
+    });
     
 //======================== ASSESSMENT SETUP =========================================
     

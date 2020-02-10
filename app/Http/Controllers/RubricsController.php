@@ -39,7 +39,7 @@ class RubricsController extends Controller
      * @return \Illuminate\Http\Response
      * 
      * Currently two rubrics are being passed in the same form and the same insert actions are replicated twice
-     * this has to be fixed in the upcomming iterations as this is highly inefficient
+     * this has to be fixed in the upcomming iterations as this highly inefficient
      */
     public function store(Request $request)
     {

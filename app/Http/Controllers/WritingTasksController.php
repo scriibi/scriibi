@@ -82,9 +82,6 @@ class WritingTasksController extends Controller
         }
     }
 
-    /**
-     * these queries have been written seperately for ease of use but can be optimized further with joins and caching
-     */
     public function getStudents($assessment_setting){
         $students_list = array();
         if($assessment_setting == 'mine'){
