@@ -24,13 +24,12 @@ class AssessmentMarkingController extends Controller
         $rangeAsScriibiValue = array();
         $skillCards = array();
         $student = students::find($student_id);
-        $skills = writing_tasks::find($writing_task_id)->skills;
         $range = AssessmentMarkingController::getScriibiRange($student->rubrik_level);
 
         $status = DB::table('writting_task_students')->select('status', 'comment')->where('fk_student_id', '=', $student_id)->where('fk_writting_task_id', '=', $writing_task_id)->get();
         $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*', 'tasks_skills.tasks_skills_Id')->where('tasks_skills.writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
         $student_assessed_level_label = DB::table('classes_students')->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')->select('assessed_level_labels.assessed_level_label')->where('classes_students.students_student_Id', '=', $student->student_Id)->get()->toArray();
-        $student_tasks = tasks_students::get()->toArray();
+        $student_tasks = DB::table('tasks_students')->join('tasks_skills', 'tasks_students.tasks_skills_Id', 'tasks_skills.tasks_skills_Id')->where('student_Id', '=', $student_id)->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get()->toArray();
         /**
          * the flag is there to check if there are any records in the tasks_students table
          * this value will be set to false only the very first time the the system is accessed
@@ -44,7 +43,7 @@ class AssessmentMarkingController extends Controller
         }
 
         foreach($student_tasks as $st){
-            $tasks_skills[$st['tasks_skills_Id']] = $st['result'];
+            $tasks_skills[$st->tasks_skills_Id] = $st->result;
         }
 
         foreach($skills as $s){
