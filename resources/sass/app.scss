@@ -258,6 +258,17 @@ header {
     overflow-x: hidden;
 }
 
+.interaction-icon {
+    width: 20px;
+    height: auto;
+    margin-top: 11px;
+}
+
+.remove-button-styling {
+    border: none;
+    background-color: transparent;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
