@@ -250,6 +250,7 @@ $(function(){
         if (check === true) {
             $("#assessment-status").find(".complete-style").removeClass("d-none");
             $("#assessment-status").find(".incomplete-style").addClass("d-none");
+            $("#assessment-status").find("input").val("1");
         }
     });
     

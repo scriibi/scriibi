@@ -150,6 +150,7 @@
                 <!-- value attribute: Status -->
                 <p class="w-100 incomplete-style @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
                 <p class="w-100 complete-style @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
+                <input type="hidden" name="status" value="0" />
             </div>
             <div class="mt-3">
                 <!-- value attribute: Full name -->
