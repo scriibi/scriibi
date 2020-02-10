@@ -46,20 +46,18 @@
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
-                            <!-- if the global criterias are not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
-                            <div class="card-title score-items mb-0 @if($global[0] != "" && $global[1] != "" && $global[2] != "") {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
+                            <!-- if the global critera is not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
+                            <div class="card-title score-items mb-0 @if(!empty($global)) {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
                                 <div class="w-100 d-flex justify-content-between">
                                     <!-- load the first trait name -->
                                     <span class="align-self-center ml-3">{{$sc->getName()}}</span>
-                                    <!-- if the global isnt empty then display the drop down button -->
-                                    @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
+                                    @if (!empty($global))
                                     <a class="btn btn-link align-self-center criteria-btn">
                                         <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                     </a>
                                     @endif
                                 </div>
-                                <!-- display radio buttons if global arrays are not empty -->
-                                @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
+                                @if (!empty($global))
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
@@ -151,18 +149,28 @@
                 <p class="w-100 incomplete-style @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
                 <p class="w-100 complete-style @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
             </div>
-            <div class="mt-3">
+            <div class="d-flex justify-content-end mt-1">
                 <!-- value attribute: Full name -->
-                <p class="student-table-label mb-0">Full Name:</p>
                 <p class="w-100"><strong>{{"$firstName $lastName"}}</strong></p>
             </div>
 
-            <div class="mt-2 mb-5">
-                <p class="student-table-label w-100 mb-0">Assessed Level:</p>
-                <p id="marking-level">{{$assessed_level}}</p>
+            <div class="d-flex justify-content-end mt-3">
+                <label class="w-100" for="assessed-level">Assessed Level:</label>
             </div>
             <div class="d-flex">
-                <p class="student-table-label mb-0">Student Leveled Samples</p>
+                <!-- value attribute: Assessed level -->
+                <select class="select-input" id="assessed-marking-level">
+                    <option value="F">Foundation</option>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                    <option value="4">Level 4</option>
+                    <option value="5">Level 5</option>
+                    <option value="6">Level 6</option>
+                </select>
+            </div>
+            <div class="d-flex mt-3 ">
+                <p><strong>Student Leveled Samples</strong></p>
             </div>
             <div id="level-examples" class="d-flex mt-1">
                 <div id="level-f" class="">
@@ -200,7 +208,7 @@
                 </div>
             </div>
             <div class="mt-5" >
-                <textarea class="text-area-style" placeholder="Comments..." name="comment" id="text-area-style"></textarea>
+                <textarea class="text-area-style" placeholder="Comments" name="comment" id="text-area-style"></textarea>
             </div>
             <div class="d-flex justify-content-center mt-5 ">
                 <!-- hidden fileds for server side use -->
