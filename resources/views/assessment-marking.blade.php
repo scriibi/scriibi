@@ -43,6 +43,10 @@
                         $counter++;
                         $global = $sc->getGlobalCriteria();
                         $local = $sc->getLocalCriteria();
+                        // if(!empty($local[2])){
+                        //     dump($local[2][0][0]['curriculum_code']);
+                        // }
+                        //dump($local);
                         $rubric1 = $rubrics[0]->scriibi_Level_Id."/".$sc->getId();
                         $rubric2 = $rubrics[1]->scriibi_Level_Id."/".$sc->getId();
                         $rubric3 = $rubrics[2]->scriibi_Level_Id."/".$sc->getId();
@@ -110,30 +114,31 @@
                                 
                                 //the following segment retrieves the correct curriculum code and description, but the loop is incorrect.
                                 //it is appearing three times on the front end.
+                                $i = 0;
                                 foreach($global as $g){
-                                        $i = 0;
                                         if($g != end($global)){
                                             ?>
                                             <div class="text-left">
                                                 <p class="pt-2"><?php echo $g ?></p>
                                                 <div class="d-flex">
                                                 <?php
-                                                    foreach($local as $l) {
-                                                        //check if isset, so we dont throw an "undefined index [0] exception
-                                                        if(isset($l[0])){
-                                                            //access nested array values
-                                                            ?>
+                                                    //check if isset, so we dont throw an "undefined index [0] exception
+                                                    if(!empty($local[$i])){
+                                                        //access nested array values
+                                                        foreach($local[$i] as $l){
+                                                        ?>
                                                             <div class="local-criteria mr-2">
-                                                                <span class='local-curriculum'><u><?php echo $l[0][0]["curriculum_code"]; ?></u></span>
-                                                                <span class='curriculum-tooltip'><?php echo $l[0][0]["description_elaboration"]; ?></span>
+                                                                <span class='local-curriculum'><u><?php echo $l[0]["curriculum_code"]; ?></u></span>
+                                                                <span class='curriculum-tooltip'><?php echo $l[0]["description_elaboration"]; ?></span>
                                                             </div>
-                                                            <?php 
+                                                        <?php
                                                         }
-                                                    }         
+                                                    } 
+                                                    $i++;        
                                                 ?>  
                                                 </div>
                                             </div>
-                                            <div></div> 
+                                        <div></div> 
                                 <?php
                                         }else{
                                             ?>
@@ -141,18 +146,18 @@
                                                     <p class="pt-2"><?php echo $g ?></p>
                                                         <div class="d-flex">
                                                         <?php
-                                                            foreach($local as $l) {
-                                                                //check if isset, so we dont throw an "undefined index [0] exception
-                                                                if(isset($l[0])){
-                                                                    //access nested array values
-                                                                    ?>
+                                                            //check if isset, so we dont throw an "undefined index [0] exception
+                                                            if(!empty($local[2])){
+                                                                foreach($local[2] as $l){
+                                                                //access nested array values
+                                                                ?>
                                                                     <div class="local-criteria mr-2">
-                                                                        <span class='local-curriculum'><u><?php echo $l[0][0]["curriculum_code"]; ?></u></span>
-                                                                        <span class='curriculum-tooltip'><?php echo $l[0][0]["description_elaboration"]; ?></span>
+                                                                        <span class='local-curriculum'><u><?php echo $l[0]["curriculum_code"]; ?></u></span>
+                                                                        <span class='curriculum-tooltip'><?php echo $l[0]["description_elaboration"]; ?></span>
                                                                     </div>
-                                                                    <?php 
+                                                                <?php
                                                                 }
-                                                            }         
+                                                            }        
                                                         ?>  
                                                         </div>
                                                     </div>
