@@ -149,28 +149,18 @@
                 <p class="w-100 incomplete-style @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
                 <p class="w-100 complete-style @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
             </div>
-            <div class="d-flex justify-content-end mt-1">
+            <div class="mt-3">
                 <!-- value attribute: Full name -->
+                <p class="student-table-label mb-0">Full Name:</p>
                 <p class="w-100"><strong>{{"$firstName $lastName"}}</strong></p>
             </div>
 
-            <div class="d-flex justify-content-end mt-3">
-                <label class="w-100" for="assessed-level">Assessed Level:</label>
+            <div class="mt-2 mb-5">
+                <p class="student-table-label w-100 mb-0">Assessed Level:</p>
+                <p id="marking-level">{{$assessed_level}}</p>
             </div>
             <div class="d-flex">
-                <!-- value attribute: Assessed level -->
-                <select class="select-input" id="assessed-marking-level">
-                    <option value="F">Foundation</option>
-                    <option value="1">Level 1</option>
-                    <option value="2">Level 2</option>
-                    <option value="3">Level 3</option>
-                    <option value="4">Level 4</option>
-                    <option value="5">Level 5</option>
-                    <option value="6">Level 6</option>
-                </select>
-            </div>
-            <div class="d-flex mt-3 ">
-                <p><strong>Student Leveled Samples</strong></p>
+                <p class="student-table-label mb-0">Student Leveled Samples</p>
             </div>
             <div id="level-examples" class="d-flex mt-1">
                 <div id="level-f" class="">
@@ -208,7 +198,7 @@
                 </div>
             </div>
             <div class="mt-5" >
-                <textarea class="text-area-style" placeholder="Comments" name="comment" id="text-area-style"></textarea>
+                <textarea class="text-area-style" placeholder="Comments..." name="comment" id="text-area-style"></textarea>
             </div>
             <div class="d-flex justify-content-center mt-5 ">
                 <!-- hidden fileds for server side use -->

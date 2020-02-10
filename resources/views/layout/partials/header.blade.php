@@ -27,7 +27,7 @@
         <div class="error-content pl-3 pr-3">
             <span><strong>Error in submitting form:</strong></span>
             <button type="button" id="error-close" class="error-close"><strong>X</strong></button>
-            <ul>
+            <ul id="error-content">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
