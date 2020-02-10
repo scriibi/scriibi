@@ -105,32 +105,27 @@
                                 //it is appearing three times on the front end.
 
                                 foreach($global as $g){
-                                        $i = 0;   
-                                    ?>
-                                        <div class="text-left">
-                                        <p class="pt-2"><?php echo $g ?></p>
-                                        <p class="milestone"></p>
-                                        </div>
-                                        <span class="local-criteria">
-                                            <?php
-                                            //div
-                                            //  p course code
-                                            //  span description
-                                            //div
-
-                                            // try{
-                                            //     if(!empty($local[$i])){
-                                            //         foreach($local[$i] as $l){
-                                            //             echo ($l[0]['curriculum_code']);
-                                            //         }
-                                            //     }
-                                            // }catch(\Exception $e){
-                                            //     //dump($e);
-                                            // }   
+                                        $i = 0;
+                                        if($g != end($global)){
                                             ?>
-                                        </span>
-                                    <?php
-                                //$i++;
+                                                    <div class="text-left">
+                                                    <p class="pt-2"><?php echo $g ?></p>
+                                                    <span class="local-criteria">
+                                                    
+                                                    </span>
+                                                    </div>
+                                                    <div></div> 
+                                <?php
+                                        }else{
+                                            ?>
+                                                <div class="text-left">
+                                                    <p class="pt-2"><?php echo $g ?></p>
+                                                    <span class="local-criteria">
+                                                    
+                                                    </span>
+                                                    </div>
+                                            <?php
+                                        }
                                 }
                                 ?>
                             </div>
