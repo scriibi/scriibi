@@ -24,6 +24,7 @@ class AssessmentMarkingController extends Controller
 
         $status = DB::table('writting_task_students')->select('status', 'comment')->where('fk_student_id', '=', $student_id)->where('fk_writting_task_id', '=', $writing_task_id)->get();
         $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*', 'tasks_skills.tasks_skills_Id')->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
+        $student_assessed_level = DB::table('classes_students')->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')->select('assessed_level_labels.assessed_level_label')->where('classes_students.students_student_Id', '=', 1)->get();
         //$student_tasks = DB::table('tasks_students')->select('tasks_skills_Id')->get();
         $student_tasks = tasks_students::get()->toArray();
         //dd($student_tasks);
@@ -52,7 +53,7 @@ class AssessmentMarkingController extends Controller
             // }
             array_push($skillCards, $newSKillCard);
         }
-        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student->rubrik_level]);
+        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level]);
     }
 
     /**
