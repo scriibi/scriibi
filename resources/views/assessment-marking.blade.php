@@ -43,6 +43,11 @@
                         $counter++;
                         $global = $sc->getGlobalCriteria();
                         $local = $sc->getLocalCriteria();
+                        $rubric1 = $rubrics[0]->scriibi_Level_Id."/".$sc->getId();
+                        $rubric2 = $rubrics[1]->scriibi_Level_Id."/".$sc->getId();
+                        $rubric3 = $rubrics[2]->scriibi_Level_Id."/".$sc->getId();
+                        $rubric4 = $rubrics[3]->scriibi_Level_Id."/".$sc->getId();
+                        $rubric5 = $rubrics[4]->scriibi_Level_Id."/".$sc->getId();
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
@@ -63,31 +68,31 @@
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="m-0 p-0 marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[0]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="m-0 p-0 marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[0]->scriibi_Level_Id . "/" . $sc->getId()}} @if(in_array($rubric1, $results)) {{"checked"}} @endif><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[1]->scriibi_Level_Id . "/" . $sc->getId()}} @if(in_array($rubric2, $results)) {{"checked"}} @endif><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[2]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[2]->scriibi_Level_Id . "/" . $sc->getId()}} @if(in_array($rubric3, $results)) {{"checked"}} @endif><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[3]->scriibi_Level_Id . "/" . $sc->getId()}} @if(in_array($rubric4, $results)) {{"checked"}} @endif><span></span>
                                     </label>
                                 </div>
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0">
                                         <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[4]->scriibi_Level_Id . "/" . $sc->getId()}}><span></span>
+                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$rubrics[4]->scriibi_Level_Id . "/" . $sc->getId()}} @if(in_array($rubric5, $results)) {{"checked"}} @endif><span></span>
                                     </label>
                                 </div>
                                 @else
