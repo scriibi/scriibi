@@ -258,6 +258,17 @@ header {
     overflow-x: hidden;
 }
 
+.interaction-icon {
+    width: 20px;
+    height: auto;
+    margin-top: 11px;
+}
+
+.remove-button-styling {
+    border: none;
+    background-color: transparent;
+}
+
 //---------- Page Specific --------------------
 
 // Home-page: dashboard
@@ -586,7 +597,7 @@ header {
 }
 
 #info-panel {
-    width: 300px;
+    width: 18.8vw;
     height: 100%;
     transition: width 0.3s;
     box-shadow: -5px 0px 5px rgb(0,0,0,0.05);
@@ -735,7 +746,7 @@ label.score-radio{
 }
 
 .marking-padding-right {
-    width: 79% !important;
+    width: 79vw !important;
 }
 
 .arrow-move {
@@ -1100,8 +1111,10 @@ $skillset-colors-map: (
     visibility: hidden;
     transition: 0.1s;
     position: absolute;
-    background: rgba(0,0,0,0.85);
-    color: white;
+    background-color: #e8e8e8;
+    -webkit-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
     border-radius: 0px 7px 7px 7px;
     top: 15px;
     left: 200px;

@@ -22,31 +22,28 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'first_name' => 'required|min:3',
-        //     'last_name' => 'required|min:3',
-        // ]);
+         $validatedData = $request->validate([
+             'first_name' => 'required|min:2',
+             'last_name' => 'required|min:2',
+         ]);
         try{
-        $student_first_name = $request->input('first_name');
-        $student_last_name = $request->input('last_name');
-        $student_gov_id = $request->input('student_gov_id');
-        $student_grade = $request->input('student_grade');
-        $student_assignment_level = $request->input('assessed_level');
+            $student_first_name = $request->input('first_name');
+            $student_last_name = $request->input('last_name');
+            $student_gov_id = $request->input('student_gov_id');
+            $student_grade = $request->input('student_grade');
+            $student_assignment_level = $request->input('assessed_level');
 
-        $school = teachers::find(Auth::user()->user_Id)->schools->first();
-        $class = teachers::find(Auth::user()->user_Id)->classes->first()->class_Id;
-        $grade_scriibi_level = grade_label::find($student_grade)->ScriibiLevels->scriibi_Level_Id;
-        $assessed_scriibi_level = assessed_level_label::find($student_assignment_level)->ScriibiLevels->scriibi_Level_Id;
+            $school = teachers::find(Auth::user()->user_Id)->schools->first();
+            $class = teachers::find(Auth::user()->user_Id)->classes->first()->class_Id;
+            $grade_scriibi_level = grade_label::find($student_grade)->ScriibiLevels->scriibi_Level_Id;
+            $assessed_scriibi_level = assessed_level_label::find($student_assignment_level)->ScriibiLevels->scriibi_Level_Id;
+            $student_record = array('student_First_Name' => $student_first_name, 'student_Last_Name' => $student_last_name, 'Student_Gov_Id' => $student_gov_id, 'enrolled_Level_Id' => $grade_scriibi_level, 'rubrik_level' => $assessed_scriibi_level, 'schools_school_Id' => $school->school_Id, 'suggested_level' => null);
+            $newStudentId = DB::table('students')->insertGetId($student_record);
+            $student_classes_record = array('classes_class_Id' => $class, 'students_student_Id' => $newStudentId, 'student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level);
 
-        $student_record = array('student_First_Name' => $student_first_name, 'student_Last_Name' => $student_last_name, 'Student_Gov_Id' => $student_gov_id, 'enrolled_Level_Id' => $grade_scriibi_level, 'rubrik_level' => $assessed_scriibi_level, 'schools_school_Id' => $school->school_Id, 'suggested_level' => null);
-
-        $newStudentId = DB::table('students')->insertGetId($student_record);
-
-        $student_classes_record = array('classes_class_Id' => $class, 'students_student_Id' => $newStudentId, 'student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level);
-
-        $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
+            $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
         }catch(Exception $e){
-            throw $e;
+            //throw $e;
         }
         return redirect()->action('StudentInputController@ReturnStudentListPage');
     }
