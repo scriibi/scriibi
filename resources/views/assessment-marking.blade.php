@@ -43,10 +43,6 @@
                         $counter++;
                         $global = $sc->getGlobalCriteria();
                         $local = $sc->getLocalCriteria();
-                        // if(!empty($local[2])){
-                        //     dump($local[2][0][0]['curriculum_code']);
-                        // }
-                        //dump($local);
                         $rubric1 = $rubrics[0]->scriibi_Level_Id."/".$sc->getId();
                         $rubric2 = $rubrics[1]->scriibi_Level_Id."/".$sc->getId();
                         $rubric3 = $rubrics[2]->scriibi_Level_Id."/".$sc->getId();
