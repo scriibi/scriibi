@@ -69,6 +69,14 @@
                         ?>
                     </p>
                 </div>
+                <div class="col-1">
+                    <form method="post">
+                        <input type="hidden" value="put something in here" />
+                        <button class="remove-button-styling" type="submit">
+                            <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
+                        </button>
+                    </form>
+                </div>
             </a>
         @endforeach
         @endif
