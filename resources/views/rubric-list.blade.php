@@ -36,7 +36,7 @@
                 <div class="col-2 rubric-list-text text-left">
                     <p>{{$r->getDate()}}</p>
                 </div>
-                <div class="col-6 rubric-list-skills text-left align-middle">
+                <div class="col-5 rubric-list-skills text-left align-middle">
                     <!-- get each skill from the rubric and display it into the p tag -->
                     <?php $skills_array = array();
                     $traits_skills = $r->getRubricTraitSkills();
@@ -61,13 +61,21 @@
                                     echo($sa);
                                 }
                                 //apply an ellipses if reached 11 skills
-                                if ($count === 9){
+                                if ($count === 7){
                                     echo($sa."...");
                                     break;
                                 }
                             }//end of foreach
                         ?>
                     </p>
+                </div>
+                <div class="col-1">
+                    <form method="post">
+                        <input type="hidden" value="put something in here" />
+                        <button class="remove-button-styling" type="submit">
+                            <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
+                        </button>
+                    </form>
                 </div>
             </a>
         @endforeach
