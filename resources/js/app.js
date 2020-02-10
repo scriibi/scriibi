@@ -273,31 +273,31 @@ $(function(){
     $("#level-examples div").addClass("d-none");
     
     if (assessed_level != null) {
-        if (assessed_level.value == "F"){
+        if (assessed_level == "121"){
         $("#level-examples div").addClass("d-none");
         $("#level-f").removeClass("d-none");
         }
-        else if (assessed_level.value == "1"){
+        else if (assessed_level == "125"){
             $("#level-examples div").addClass("d-none");
             $("#level-1").removeClass("d-none");
         }
-        else if (assessed_level.value == "2"){
+        else if (assessed_level == "129"){
             $("#level-examples div").addClass("d-none");
             $("#level-2").removeClass("d-none");
         }
-        else if (assessed_level.value == "3"){
+        else if (assessed_level == "133"){
             $("#level-examples div").addClass("d-none");
             $("#level-3").removeClass("d-none");
         }
-        else if (assessed_level.value == "4"){
+        else if (assessed_level == "137"){
             $("#level-examples div").addClass("d-none");
             $("#level-4").removeClass("d-none");
         }
-        else if (assessed_level.value == "5"){
+        else if (assessed_level == "141"){
             $("#level-examples div").addClass("d-none");
             $("#level-5").removeClass("d-none");
         }
-        else if (assessed_level.value == "6"){
+        else if (assessed_level == "145"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
         }   
