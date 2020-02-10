@@ -13,8 +13,8 @@
                 <p>{{$writingTask->getName()}}</p>
             </div>
             <div class="col-2">
-                <span><img class="interaction-icon" src="/images/edit.png" alt="edit-logo"> </span>
-                <span><img class="interaction-icon" src="/images/delete.png" alt="edit-logo"></span>
+                <span><img src="/images/edit.png" alt="edit-logo"> </span>
+                <span><img src="/images/delete.png" alt="edit-logo"></span>
             </div>
         </div>
         <div class="row mt-2 ">

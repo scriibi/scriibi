@@ -250,7 +250,6 @@ $(function(){
         if (check === true) {
             $("#assessment-status").find(".complete-style").removeClass("d-none");
             $("#assessment-status").find(".incomplete-style").addClass("d-none");
-            $("#assessment-status").find("input").val("1");
         }
     });
     
@@ -271,35 +270,34 @@ $(function(){
     
     //setting the default examples for the assessment-marking-page blade
     const assessed_level = $("#marking-level").html();
-    console.log(assessed_level);
     $("#level-examples div").addClass("d-none");
     
     if (assessed_level != null) {
-        if (assessed_level.value == ""){
+        if (assessed_level.value == "F"){
         $("#level-examples div").addClass("d-none");
         $("#level-f").removeClass("d-none");
         }
-        else if (assessed_level == "121"){
+        else if (assessed_level.value == "1"){
             $("#level-examples div").addClass("d-none");
             $("#level-1").removeClass("d-none");
         }
-        else if (assessed_level == "129"){
+        else if (assessed_level.value == "2"){
             $("#level-examples div").addClass("d-none");
             $("#level-2").removeClass("d-none");
         }
-        else if (assessed_level == "133"){
+        else if (assessed_level.value == "3"){
             $("#level-examples div").addClass("d-none");
             $("#level-3").removeClass("d-none");
         }
-        else if (assessed_level == "137"){
+        else if (assessed_level.value == "4"){
             $("#level-examples div").addClass("d-none");
             $("#level-4").removeClass("d-none");
         }
-        else if (assessed_level == "141"){
+        else if (assessed_level.value == "5"){
             $("#level-examples div").addClass("d-none");
             $("#level-5").removeClass("d-none");
         }
-        else if (assessed_level == "145"){
+        else if (assessed_level.value == "6"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
         }   
