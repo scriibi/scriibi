@@ -46,18 +46,20 @@
                     ?>
                     <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0">
                         <div class="card-body p-0">
-                            <!-- if the global critera is not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
-                            <div class="card-title score-items mb-0 @if(!empty($global)) {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
+                            <!-- if the global criterias are not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
+                            <div class="card-title score-items mb-0 @if($global[0] != "" && $global[1] != "" && $global[2] != "") {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
                                 <div class="w-100 d-flex justify-content-between">
                                     <!-- load the first trait name -->
                                     <span class="align-self-center ml-3">{{$sc->getName()}}</span>
-                                    @if (!empty($global))
+                                    <!-- if the global isnt empty then display the drop down button -->
+                                    @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
                                     <a class="btn btn-link align-self-center criteria-btn">
                                         <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                     </a>
                                     @endif
                                 </div>
-                                @if (!empty($global))
+                                <!-- display radio buttons if global arrays are not empty -->
+                                @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
