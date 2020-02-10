@@ -632,7 +632,7 @@ header {
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
     height: 0;
-    overflow: hidden;
+    opacity: 0;
 }
 
 //accordion content when the arrow button is clicked
@@ -643,6 +643,7 @@ header {
     -o-animation: accordion-display-animation 1s ease;
     -ms-animation: accordion-display-animation 1s ease;
     animation: accordion-display-animation 1s ease;
+    opacity: 1;
 }
 
 @keyframes accordion-display-animation {
@@ -773,6 +774,40 @@ label.score-radio{
     position: absolute;
     top: 7px;
     left: 47%;
+}
+
+.local-criteria {
+    position: relative;
+}
+
+.local-curriculum {
+    cursor: default;
+}
+
+.curriculum-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+    position: absolute;
+    background-color: #e8e8e8;
+    -webkit-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    box-shadow: 0px 4px 7px -4px rgba(0,0,0,0.30);
+    border-radius: 7px 0px 7px 7px;
+    top: 10px;
+    right: 30px;
+    margin-left: 15px;
+    padding: 5px 10px;
+    z-index: 2;
+    width: 250px;
+    font-size: 0.75rem;
+    transition: 0.4s;
+    font-size: 0.7rem;
+}
+
+.local-curriculum:hover ~ .curriculum-tooltip {
+    opacity: 1;
+    visibility: visible;
 }
 
 //Student List
