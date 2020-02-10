@@ -72,7 +72,7 @@
                 <div class="col-1">
                     <form method="post">
                         <input type="hidden" value="put something in here" />
-                        <button class="remove-button-styling" type="submit">
+                        <button class="remove-button-styling" type="submit" disabled>
                             <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
                         </button>
                     </form>
