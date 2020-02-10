@@ -113,9 +113,11 @@ class RubricsController extends Controller
      *
      * @param  \App\Rubrics  $rubrics
      * @return \Illuminate\Http\Response
+     * 
+     * deletes an existing rubric from the rubric table, rubrics_teachers table and also the rubrics_skills table
      */
     public function destroy(Rubrics $rubrics)
     {
-        //
+        
     }
 }

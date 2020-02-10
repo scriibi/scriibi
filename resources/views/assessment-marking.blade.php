@@ -116,9 +116,21 @@
                                             ?>
                                                     <div class="text-left">
                                                     <p class="pt-2"><?php echo $g ?></p>
-                                                    <span class="local-criteria">
                                                     
-                                                    </span>
+                                                    <?php
+                                                        foreach($local as $l) {
+                                                            //check if isset, so we dont throw an "undefined index [0] exception
+                                                            if(isset($l[0])){
+                                                                //access nested array values
+                                                                ?>
+                                                                <div class="local-criteria">
+                                                                    <span class='local-curriculum'><?php echo $l[0][0]["curriculum_code"]; ?></span>
+                                                                    <span class='skill-tooltip'><?php echo $l[0][0]["description_elaboration"]; ?></span>
+                                                                </div>
+                                                                <?php 
+                                                            }
+                                                        }         
+                                                    ?>             
                                                     </div>
                                                     <div></div> 
                                 <?php
