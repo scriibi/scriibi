@@ -43,6 +43,7 @@
                         $counter++;
                         $global = $sc->getGlobalCriteria();
                         $local = $sc->getLocalCriteria();
+                        //dump($global);
                         $rubric1 = $rubrics[0]->scriibi_Level_Id."/".$sc->getId();
                         $rubric2 = $rubrics[1]->scriibi_Level_Id."/".$sc->getId();
                         $rubric3 = $rubrics[2]->scriibi_Level_Id."/".$sc->getId();
@@ -57,14 +58,14 @@
                                     <!-- load the first trait name -->
                                     <span class="align-self-center ml-3">{{$sc->getName()}}</span>
                                     <!-- if the global isnt empty then display the drop down button -->
-                                    @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
+                                    @if ($global[0] != "" || $global[1] != "" || $global[2] != "")
                                     <a class="btn btn-link align-self-center criteria-btn">
                                         <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                     </a>
                                     @endif
                                 </div>
                                 <!-- display radio buttons if global arrays are not empty -->
-                                @if ($global[0] != "" && $global[1] != "" && $global[2] != "")
+                                @if (($global[0] != "") || ($global[1] != "") || ($global[2] != ""))
                                 <div class="w-100 text-center align-self-center">
                                     <label class="score-radio m-0 p-0 ">
                                         <!-- please load skill id in the name attribute -->
