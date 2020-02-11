@@ -1,7 +1,6 @@
 @extends('layout.mainlayout')
 @section('title', 'Rubric-List')
 @section('content')
-@csrf
 <div class="row @if(count($rubrics)===0){{"temporary-page-height-fix"}}@endif pb-5">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
@@ -70,9 +69,10 @@
                     </p>
                 </div>
                 <div class="col-1">
-                    <form method="post">
-                        <input type="hidden" value="put something in here" />
-                        <button class="remove-button-styling" type="submit" disabled>
+                    <form method="post" action="/rubricDelete">
+                        @csrf
+                        <input type="hidden" name="rubricId" value={{$r->getId()}} />
+                        <button class="remove-button-styling" type="submit">
                             <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
                         </button>
                     </form>
