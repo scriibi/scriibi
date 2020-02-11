@@ -66,6 +66,7 @@ Route::put('/studentlist', 'StudentsController@update');
 Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');
 Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
+Route::post('/rubricDelete', 'RubricsController@deleteRubric');
 
 //assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');

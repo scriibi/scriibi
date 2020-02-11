@@ -75,6 +75,20 @@ class RubricsController extends Controller
     }
 
     /**
+     * deletes an existing rubric from the rubric table, rubrics_teachers table and also the rubrics_skills table
+     */
+    public function deleteRubric(Request $request){
+        try{
+            $rubricId = $request->input('rubricId');
+            DB::table('rubrics_teachers')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+            return redirect()->action('RubricListController@GenerateUserRubrics');
+        }
+        catch(\Exception $e){
+            return redirect()->action('RubricListController@GenerateUserRubrics');
+        }
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Rubrics  $rubrics
@@ -113,11 +127,9 @@ class RubricsController extends Controller
      *
      * @param  \App\Rubrics  $rubrics
      * @return \Illuminate\Http\Response
-     * 
-     * deletes an existing rubric from the rubric table, rubrics_teachers table and also the rubrics_skills table
      */
     public function destroy(Rubrics $rubrics)
     {
-        
+        //
     }
 }
