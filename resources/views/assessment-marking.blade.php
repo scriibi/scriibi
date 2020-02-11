@@ -234,7 +234,7 @@
                 </div>
             </div>
             <div class="mt-5" >
-                <textarea class="text-area-style" placeholder="Comments..." name="comment" id="text-area-style"></textarea>
+                <textarea class="text-area-style" placeholder="Comments..." name="comment" id="text-area-style">{{$comment}}</textarea>
             </div>
             <div class="d-flex justify-content-center mt-5 ">
                 <!-- hidden fileds for server side use -->
