@@ -100,6 +100,8 @@ class AssessmentMarkingController extends Controller
         $studentId = $request->input('studentId');
         $writingTask = $request->input('writingTask');
         $comment = $request->input('comment');
+        $status = $request->input('status');
+        //dd($status);
         for($i = 1; $i <= $skillCount; $i++){
             $student_skill = $request->input('skill_' . (string)$i);
             if(isset($student_skill)){
@@ -119,6 +121,10 @@ class AssessmentMarkingController extends Controller
 
         if(isset($comment)){
             DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
+        }
+
+        if($status == 1){
+            DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['status' => 'completed']);
         }
         return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
     }
