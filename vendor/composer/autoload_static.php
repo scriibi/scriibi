@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
+class ComposerStaticInit3c4f0c1259bd8c341d315d34f3b17b39
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -4692,11 +4692,11 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Deprecated' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Deprecated.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Example' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Example.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\StaticMethod' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/StaticMethod.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tags\\Factory\\Strategy' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Factory/Strategy.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\AlignFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/AlignFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Formatter\\PassthroughFormatter' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Formatter/PassthroughFormatter.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Generic' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Generic.php',
+        'phpDocumentor\\Reflection\\DocBlock\\Tags\\InvalidTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/InvalidTag.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Link' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Link.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Method' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Method.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tags\\Param' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock/Tags/Param.php',
@@ -4752,10 +4752,10 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3c4f0c1259bd8c341d315d34f3b17b39::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3c4f0c1259bd8c341d315d34f3b17b39::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3c4f0c1259bd8c341d315d34f3b17b39::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3c4f0c1259bd8c341d315d34f3b17b39::$classMap;
 
         }, null, ClassLoader::class);
     }
