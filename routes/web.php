@@ -22,17 +22,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 //the following routes are for viewing assessment data. this functionality has not been implemented fully.
 
-// Route::get('/data-view', function(){
-//     return view('overall-data-view');
-// });
+Route::get('/data-view', 'DataViewController@overview');
 
-// Route::get('/student-data-view', function(){
-//     return view('student-data-view');
-// });
+// Route::get('/student-data-view', 'DataViewController@studentView');
 
-// Route::get('/assessment-data-view', function(){
-//     return view('assessment-data-view');
-// });
+// Route::get('/assessment-data-view', 'DataViewController@assessmentView');
 
 Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();
