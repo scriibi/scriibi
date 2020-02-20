@@ -26,7 +26,7 @@ Route::get('/data-view', 'DataViewController@overview');
 
 // Route::get('/student-data-view', 'DataViewController@studentView');
 
-// Route::get('/assessment-data-view', 'DataViewController@assessmentView');
+Route::get('/assessment-data-view', 'DataViewController@assessmentView');
 
 Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();

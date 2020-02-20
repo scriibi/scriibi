@@ -15,12 +15,14 @@ abstract class DataView
     protected $taskStudents = array();
     protected $StudentController = null;
     protected $WritingTaskController = null;
+    protected $scriibiLevels = array();
 
     public function __construct(){ 
         $this->StudentController = new StudentsController();
         $this->WritingTaskController = new WritingTasksController();
         $this->populateTaskSkills();
         $this->populateTaskStudents();
+        $this->populateScriibiLevels();
     }
 
     public function getStudents(){
@@ -29,6 +31,13 @@ abstract class DataView
 
     public function getWritingTasks(){
         return $this->writingTasks;
+    }
+
+    protected function populateScriibiLevels(){
+        $scriibiLvl = ScriibiLevels::get()->toArray();
+        foreach($scriibiLvl as $sl){
+            $this->scriibiLevels[$sl['scriibi_Level_Id']] = $sl['scriibi_Level'];
+        }
     }
 
     protected function populateTaskSkills(){ 

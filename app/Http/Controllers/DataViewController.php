@@ -19,7 +19,11 @@ class DataViewController extends Controller
         //
     }
 
-    public function assessmentView($assessment){
-        //
+    public function assessmentView(){
+        $overView = new App\DataViewWrittingTask(1);        // this value is hardcoded for testing and development, change it later
+        // $overView->generateDataTable();
+        // $dataTable = $overView->getDataTable();
+        // $writingTasks = $overView->getWritingTasks();
+        // return view('assessment-data-view');
     }
 }

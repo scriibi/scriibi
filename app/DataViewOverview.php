@@ -10,6 +10,10 @@ class DataViewOverview extends DataView
      * this is the main datatable that is passed into the view
      */
     private $taskRelaventSkills = array();
+    /**
+     * this dataTable should be in the format of a collection of studentId, student_full_name, 
+     * grade_label, assessed_label and a collection of assessment results
+     */
     private $dataTable = array();
 
     public function __construct(){
@@ -25,6 +29,7 @@ class DataViewOverview extends DataView
     
     protected function populateStudents(){
         $this->students = $this->StudentController->indexStudentsByClass()->toArray();
+        //dd($this->scriibiLevels);
     }
 
     protected function populateWritingTasks(){
@@ -33,7 +38,7 @@ class DataViewOverview extends DataView
 
     public function generateDataTable(){
         foreach($this->students as $s){
-            array_push($this->dataTable, [$s->student_Id, $s->student_First_Name . " " . $s->student_Last_Name, $s->grade_label, $s->assessed_level_label, $this->getStudentSkillsAverageForTask($s->student_Id)]);
+            array_push($this->dataTable, [$s->student_Id, $s->student_First_Name . " " . $s->student_Last_Name, $s->grade_label, $this->scriibiLevels[$s->fk_scriibi_level_id], $s->assessed_level_label, $this->scriibiLevels[$s->school_scriibi_level_id], $this->getStudentSkillsAverageForTask($s->student_Id)]);
         }
     }
 

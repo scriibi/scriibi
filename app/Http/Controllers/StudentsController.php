@@ -88,6 +88,24 @@ class StudentsController extends Controller
         return $students;
     }
 
+    public function indexStudentsByWritingTask($writingTask){
+        $students = [];
+        try{
+            $students = DB::table('classes_students')
+                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
+                ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
+                ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
+                ->join('writting_task_students', 'students.student_Id', 'writting_task_students.fk_student_id')
+                ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
+                ->where('writting_task_students.fk_writting_task_id', '=', $writingTask)
+                ->get()
+                ->toArray();   
+        }catch(Exception $e){
+            abort(403, 'Please log in to view this page!');
+        }
+        return $students;
+    }
+
     /**
      * Display a listing of the resource.
      *
