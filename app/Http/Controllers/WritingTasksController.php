@@ -26,6 +26,9 @@ class WritingTasksController extends Controller
         return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->get();
     }
 
+    public function indexSingleTask($taskId){
+        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.writing_task_Id', '=', $taskId)->get()->toArray();
+    }
     /**
      * Show the form for creating a new resource.
      *

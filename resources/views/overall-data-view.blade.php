@@ -3,24 +3,27 @@
 @section('content')
 
 <div class="view-by-container">
-    <p>View By</p>
     <div class="d-inline-block">
-        <label class="filter-btn" for="overall-assessed-filter">
-            <span class="radio-circle"></span>
-            <input type="radio" name="data-filter" id="overall-assessed-filter" />
-            <p>Assessed</p>
-        </label>
-        <label class="filter-btn" for="overall-grade-filter">
-            <span class="radio-circle"></span>
-            <input type="radio" name="data-filter" class="assess-input" id="overall-grade-filter" />
-            <p>Grade</p>
-        </label>
+        <div class="assessed-button-filter">
+            <label class="filter-btn" for="overall-assessed-filter">
+                <span class="radio-circle"></span>
+                <input type="radio" name="data-filter" id="overall-assessed-filter" />
+                <p class="pl-1 pt-1">Assessed</p>
+            </label>
+        </div>
+        <div class="grade-button-filter">
+            <label class="filter-btn" for="overall-grade-filter">
+                <span class="radio-circle"></span>
+                <input type="radio" name="data-filter" class="assess-input" id="overall-grade-filter" />
+                <p class="pl-1 pt-1">Grade</p>
+            </label>
+        </div>  
     </div>
 </div>
 
 <!-- the container for the table holding student data -->
 <table id="overall-assessment-table" class="row-border order-column ">
-    <!-- Table headers -->created_Date
+    <!-- Table headers -->
     <thead class="header-style" >
         <tr class="header-style text-center">
             <th rowspan="2" id="fullName">Full Name</th>
@@ -38,15 +41,15 @@
     <tbody >
         <!-- Student data goes down here -->
         @foreach($dataTable as $dt)
-        <tr class="student-row">
+        <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}>
             <td headers="Full Name">
               <!-- link this to the student-skill-view -->
            
                 <a href="#">{{$dt[1]}}</a>
                 </td>
                 <td class="justify-content-center student-grade-level" headers="grade">{{$dt[2]}}</td>
-                <td class="student-assessed-level" headers="assessed">{{$dt[3]}}</td>
-                @foreach($dt[4] as $taskAvg)
+                <td class="student-assessed-level" headers="assessed">{{$dt[4]}}</td>
+                @foreach($dt[6] as $taskAvg)
                     <td class="assessment-result" headers="date">{{$taskAvg}}</td>
                 @endforeach     
         </tr>

@@ -15,11 +15,11 @@ class DataViewController extends Controller
         return view('overall-data-view', ['dataTable' => $dataTable, 'writingTasks' => $writingTasks]);
     }
 
-    public function studentView($student){
-        //
-    }
+    // public function studentView($student){
+    //     //
+    // }
 
-    public function assessmentView($assessment){
-        //
-    }
+    // public function assessmentView(){
+    //     $overView = new App\DataViewWrittingTask(1);        // this value is hardcoded for testing and development, change it later
+    // }
 }
