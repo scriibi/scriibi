@@ -79,13 +79,21 @@ $(function(){
     });
     
 //========== OVERALL ASSESSMENT
-    
+    $(".assessed-button-filter").on("click", function () {
+        $(".grade-button-filter").find(".radio-circle").removeClass("fill-circle");
+        $(this).find(".radio-circle").addClass("fill-circle");
+    });
+     $(".grade-button-filter").on("click", function () {
+        $(".assessed-button-filter").find(".radio-circle").removeClass("fill-circle");
+        $(this).find(".radio-circle").addClass("fill-circle");
+    });
     //if a user clicks the overall grade filter
     $("#overall-grade-filter").on("click", function(){
         
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-grade-level").html()); 
+           var grade = $(this).data('grade');
+           let student_grade = parseFloat(grade); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){
@@ -121,7 +129,8 @@ $(function(){
         
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-assessed-level").html()); 
+           var assessed = $(this).data('assessed');
+           let student_grade = parseFloat(assessed); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){

@@ -6,30 +6,19 @@ use Exception;
 
 class DataViewOverview extends DataView
 {   
-    /**
-     * this is the main datatable that is passed into the view
-     */
     private $taskRelaventSkills = array();
-    /**
-     * this dataTable should be in the format of a collection of studentId, student_full_name, 
-     * grade_label, assessed_label and a collection of assessment results
-     */
-    private $dataTable = array();
-
+    
     public function __construct(){
         parent::__construct();
         $this->populateStudents();
         $this->populateWritingTasks();
+        $this->populateTaskStudents();
+        $this->populateTaskSkills();
         $this->populateTaskRelaventSkills();
     }
 
-    public function getDataTable(){
-        return $this->dataTable;
-    }
-    
     protected function populateStudents(){
         $this->students = $this->StudentController->indexStudentsByClass()->toArray();
-        //dd($this->scriibiLevels);
     }
 
     protected function populateWritingTasks(){

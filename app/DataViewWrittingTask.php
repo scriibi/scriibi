@@ -6,7 +6,6 @@ use DB;
 
 class DataViewWrittingTask extends DataView
 {   
-    private $dataTable = array();
     private $filteredTaskSkills = array();
     private $filteredStudentsTasks = array();
     private $skills = array();
@@ -15,11 +14,13 @@ class DataViewWrittingTask extends DataView
     public function __construct($writingTask){
         $this->taskId = $writingTask;
         parent::__construct();
+        $this->populateWritingTasks();
+        $this->populateTaskSkills();
         $this->populateStudents();
-        $this->populateWritingTasks($writingTask); 
+        $this->populateTaskStudents();
         $this->populateSkillsForAssessment();   
     }
-    
+
     public function filterSkillsOfWritingTask($taskSkill) {
         if($taskSkill->writing_tasks_writing_task_Id == $this->taskId){
             return $taskSkill->tasks_skills_Id;
@@ -39,11 +40,12 @@ class DataViewWrittingTask extends DataView
     }
 
     protected function populateStudents(){
-        $this->filteredTaskSkills = array_map(array($this, 'filterSkillsOfWritingTask'), $this->taskSkills);
-        $this->filteredStudentsTasks = array_map(array($this, 'filterStudentsWithResults'), $this->taskStudents);
-        $tempStudentCollection = $this->StudentController->indexStudentsByWritingTask($this->taskId);
-        //dd($tempStudentCollection);
-        $this->students = array_map(array($this, 'filterStudents'), $tempStudentCollection);
+        $this->students = $this->StudentController->indexStudentsByWritingTask($this->taskId);
+        // $this->filteredTaskSkills = array_map(array($this, 'filterSkillsOfWritingTask'), $this->taskSkills);
+        // $this->filteredStudentsTasks = array_map(array($this, 'filterStudentsWithResults'), $this->taskStudents);
+        // dd($this->filteredStudentsTasks);
+        // $tempStudentCollection = $this->StudentController->indexStudentsByWritingTask($this->taskId);
+        // $this->students = array_map(array($this, 'filterStudents'), $tempStudentCollection);
     }
 
     protected function populateWritingTasks(){
@@ -52,6 +54,9 @@ class DataViewWrittingTask extends DataView
 
     protected function populateSkillsForAssessment(){
         $this->skills = DB::table('skills')->join('tasks_skills', 'skills.skill_Id', 'tasks_skills.skills_skill_Id')->select('skills.*')->where('tasks_skills.writing_tasks_writing_task_Id', '=', $this->taskId)->get()->toArray();
-        //dd($this->skills);
+    }
+
+    public function generateDataTable(){
+        //
     }
 }
