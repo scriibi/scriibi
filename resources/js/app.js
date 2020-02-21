@@ -70,13 +70,13 @@ $(function(){
     }
     
     //dataTables configuration
-    let table = $("#overall-assessment-table").DataTable({
-        scrollX: greaterThanTen,
-        paging:         false,
-        fixedColumns:   {
-            leftColumns: 3,
-        },
-    });
+    // let table = $("#overall-assessment-table").DataTable({
+    //     scrollX: greaterThanTen,
+    //     paging:         false,
+    //     fixedColumns:   {
+    //         leftColumns: 3,
+    //     },
+    // });
     
 //========== OVERALL ASSESSMENT
     $(".assessed-button-filter").on("click", function () {
