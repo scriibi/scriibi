@@ -65,18 +65,18 @@ $(function(){
     let greaterThanTen = false;
     
     //tests if there are more than 10 columns before enabling scrolling
-    if ($(".assessment-date").length >= 10) {
+    if (($(".assessment-date").length >= 10)){
         greaterThanTen = true;
     }
     
     //dataTables configuration
-    // let table = $("#overall-assessment-table").DataTable({
-    //     scrollX: greaterThanTen,
-    //     paging:         false,
-    //     fixedColumns:   {
-    //         leftColumns: 3,
-    //     },
-    // });
+    let table = $("#overall-assessment-table").DataTable({
+        scrollX: greaterThanTen,
+        paging:         false,
+        fixedColumns:   {
+            leftColumns: 3,
+        },
+    });
     
 //========== OVERALL ASSESSMENT
     $(".assessed-button-filter").on("click", function () {
@@ -107,18 +107,18 @@ $(function(){
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                if (current_grade >= student_grade + 0.3) {
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                else if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                else if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                else if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -144,18 +144,18 @@ $(function(){
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                if (current_grade >= student_grade + 0.3) {
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                else if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                else if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                else if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -166,10 +166,10 @@ $(function(){
     
     //if a user clicks the grade filter
     $("#assessment-grade-filter").on("click", function(){
-        
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-grade-level").html()); 
+           var grade = $(this).data('grade');
+           let student_grade = parseFloat(grade); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
@@ -206,7 +206,8 @@ $(function(){
         
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-assessed-level").html()); 
+           var assessed = $(this).data('assessed');
+           let student_grade = parseFloat(assessed); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
