@@ -107,18 +107,18 @@ $(function(){
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                if (current_grade >= student_grade + 0.3) {
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                else if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                else if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                else if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -144,18 +144,18 @@ $(function(){
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
+                if (current_grade >= student_grade + 0.3) {
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                else if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                else if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                else if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
