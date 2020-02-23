@@ -65,18 +65,18 @@ $(function(){
     let greaterThanTen = false;
     
     //tests if there are more than 10 columns before enabling scrolling
-    if ($(".assessment-date").length >= 10) {
+    if (($(".assessment-date").length >= 10)){
         greaterThanTen = true;
     }
     
     //dataTables configuration
-    // let table = $("#overall-assessment-table").DataTable({
-    //     scrollX: greaterThanTen,
-    //     paging:         false,
-    //     fixedColumns:   {
-    //         leftColumns: 3,
-    //     },
-    // });
+    let table = $("#overall-assessment-table").DataTable({
+        scrollX: greaterThanTen,
+        paging:         false,
+        fixedColumns:   {
+            leftColumns: 3,
+        },
+    });
     
 //========== OVERALL ASSESSMENT
     $(".assessed-button-filter").on("click", function () {
@@ -166,10 +166,10 @@ $(function(){
     
     //if a user clicks the grade filter
     $("#assessment-grade-filter").on("click", function(){
-        
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-grade-level").html()); 
+           var grade = $(this).data('grade');
+           let student_grade = parseFloat(grade); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
@@ -206,7 +206,8 @@ $(function(){
         
         //loop through each grade in each student row
         $(".student-row").each(function(){
-           let student_grade = parseFloat($(this).find(".student-assessed-level").html()); 
+           var assessed = $(this).data('assessed');
+           let student_grade = parseFloat(assessed); 
             
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){

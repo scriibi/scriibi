@@ -30,7 +30,7 @@
             <th colspan="2"><p class="text-center">Levels</p></th>
             <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
             @foreach($writingTasks as $wt)
-                <th class="assessment-date" rowspan="2" id="date"><a href="#"><?php $date = new DateTime($wt->created_Date); echo ($date->format('d-m-Y'))?></a></th>
+                <th class="assessment-date" rowspan="2" style="width:100px" id="date"><a href="/assessment-data-view/{{$wt->writing_task_Id}}"><?php $date = new DateTime($wt->created_Date); echo ($date->format('d M, Y'))?></a></th>
             @endforeach
         </tr>
         <tr class="header-style">

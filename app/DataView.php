@@ -11,8 +11,7 @@ abstract class DataView
 {   
     /**
         * this is the main datatable that is passed into the view. 
-        * this dataTable should be in the format of a collection of studentId, student_full_name, 
-        * grade_label, assessed_label and a collection of assessment results
+        * the formate of this table depends on the dataview being generatd
     */
     protected $dataTable = array();
     protected $students = array();
@@ -65,7 +64,6 @@ abstract class DataView
     }
 
     protected function filterStudentIds(){
-        //dd($this->students);
         $studentIds = array();
         foreach($this->students as $s){
             array_push($studentIds, $s->student_Id);
