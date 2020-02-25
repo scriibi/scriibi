@@ -452,6 +452,10 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\DataView' => __DIR__ . '/../..' . '/app/DataView.php',
+        'App\\DataViewOverview' => __DIR__ . '/../..' . '/app/DataViewOverview.php',
+        'App\\DataViewStudent' => __DIR__ . '/../..' . '/app/DataViewStudent.php',
+        'App\\DataViewWrittingTask' => __DIR__ . '/../..' . '/app/DataViewWrittingTask.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AchievementsController' => __DIR__ . '/../..' . '/app/Http/Controllers/AchievementsController.php',
         'App\\Http\\Controllers\\AssessedLevelLabelController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssessedLevelLabelController.php',
@@ -473,6 +477,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'App\\Http\\Controllers\\CurriculumScriibiLevelsAchievementController' => __DIR__ . '/../..' . '/app/Http/Controllers/CurriculumScriibiLevelsAchievementController.php',
         'App\\Http\\Controllers\\CurriculumScriibiLevelsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CurriculumScriibiLevelsController.php',
         'App\\Http\\Controllers\\CurriculumScriibiLevelsCriteriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CurriculumScriibiLevelsCriteriaController.php',
+        'App\\Http\\Controllers\\DataViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/DataViewController.php',
         'App\\Http\\Controllers\\FormativeAssessmentResultsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FormativeAssessmentResultsController.php',
         'App\\Http\\Controllers\\FormativeAssessmentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FormativeAssessmentsController.php',
         'App\\Http\\Controllers\\GeneralWritingProblemLessonsController' => __DIR__ . '/../..' . '/app/Http/Controllers/GeneralWritingProblemLessonsController.php',
