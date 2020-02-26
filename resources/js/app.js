@@ -65,7 +65,7 @@ $(function(){
     let greaterThanTen = false;
     
     //tests if there are more than 10 columns before enabling scrolling
-    if (($(".assessment-date").length >= 10)){
+    if (($(".assessment-date").length >= 10) || ($(".assessment-skills").length >= 10)){
         greaterThanTen = true;
     }
     
@@ -111,14 +111,14 @@ $(function(){
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 0.8) {
+                if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade <= student_grade - 0.3) {
+                if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 0.8) {
+                if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -148,14 +148,14 @@ $(function(){
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 0.8) {
+                if (current_grade >= student_grade + 0.8) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade <= student_grade - 0.3) {
+                if (current_grade <= student_grade - 0.3) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 0.8) {
+                if (current_grade <= student_grade - 0.8) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -187,14 +187,14 @@ $(function(){
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                if (current_grade >= student_grade + 1) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                if (current_grade < student_grade && current_grade > student_grade - 1) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                if (current_grade <= student_grade - 1) {
                     $(this).addClass("orange-fill");
                 }
             });
@@ -203,6 +203,7 @@ $(function(){
     
     //if a user clicks the assessment grade filter
     $("#assessment-assessed-filter").on("click", function(){
+        console.log("work");
         
         //loop through each grade in each student row
         $(".student-row").each(function(){
@@ -225,14 +226,14 @@ $(function(){
                     $(this).addClass("light-green-fill");
                 }
                 //if the student's result is greater than their max grade
-                else if (current_grade >= student_grade + 1) {
+                if (current_grade >= student_grade + 1) {
                     $(this).addClass("green-fill");
                 }
                 //vice versa from the top half
-                else if (current_grade < student_grade && current_grade > student_grade - 1) {
+                if (current_grade < student_grade && current_grade > student_grade - 1) {
                     $(this).addClass("light-orange-fill");
                 }
-                else if (current_grade <= student_grade - 1) {
+                if (current_grade <= student_grade - 1) {
                     $(this).addClass("orange-fill");
                 }
             });
