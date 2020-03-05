@@ -162,7 +162,7 @@ $(function(){
         });
     });
 
-//========== STUDENT ASSESSMENT DATA
+//========== ASSESSEMNT STUDENT ASSESS DATA
     
     //if a user clicks the grade filter
     $("#assessment-grade-filter").on("click", function(){
