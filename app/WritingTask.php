@@ -135,4 +135,8 @@ class WritingTask
             array_push($this->students, $s);
         }
     }
+
+    public function populateStudentsInClass(){
+        // todo
+    }
 }

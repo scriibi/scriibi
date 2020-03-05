@@ -48,16 +48,32 @@
             <div class="col-12">
                 <?php
                     $students = $writingTask->getStudents();
+                    $temp = array();
+                    foreach($students as $s){
+                        if($s->status == "incomplete"){
+                            array_push($temp, $s);
+                        }
+                    }
                 ?>
             @foreach($students as $s)
+                @if(!in_array($s, $temp))                
                 <a href="/assessment-marking/{{$s->student_Id}}/{{$writingTask->getId()}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
-                    <!-- here goes the full name, id, grade, assessed level, status -->
                     <p class="col-4 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->student_First_Name}} {{$s->student_Last_Name}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->Student_Gov_Id}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->grade_label}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$s->assessed_level_label}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0 @if($s->status == "completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s->status}}</p>
-                </a>
+                </a> 
+                @endif  
+            @endforeach
+            @foreach($temp as $t)
+            <a href="/assessment-marking/{{$t->student_Id}}/{{$writingTask->getId()}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
+                    <p class="col-4 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$t->student_First_Name}} {{$t->student_Last_Name}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$t->Student_Gov_Id}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$t->grade_label}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0">{{$t->assessed_level_label}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left  pl-3 mb-0 @if($t->status == "completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$t->status}}</p>
+                </a>    
             @endforeach
             </div>
 
