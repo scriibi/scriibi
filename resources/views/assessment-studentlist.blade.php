@@ -13,7 +13,7 @@
                 <p>{{$writingTask->getName()}}</p>
             </div>
             <div class="col-2">
-                <span><img class="interaction-icon" src="/images/edit.png" alt="edit assessment icon"> </span>
+                <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img class="interaction-icon" src="/images/edit.png" alt="edit assessment icon"></a></span>
                 <span><img class="interaction-icon" src="/images/delete.png" alt="delete assessment icon"></span>
             </div>
         </div>

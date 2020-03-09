@@ -116,6 +116,24 @@ class WritingTasksController extends Controller
         return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
     }
 
+    public function editAssessment(Request $request)
+    {
+        try{
+            $assessment_id = $request->input('assessment_id');
+            $assessment_title = $request->input('assessment_name');
+            $assessment_date = $request->input('assessment_date');
+            $assessment_description = $request->input('assessment_description');
+            DB::table('writing_tasks')
+            ->where('writing_task_Id', $assessment_id)
+            ->update(['task_name' => $assessment_title, 'writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date]);
+            
+            return redirect()->action('WritingTasksController@ShowWritingTask', ['id' => $assessment_id]);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+    }
+
     /**
      * Display the specified resource.
      *

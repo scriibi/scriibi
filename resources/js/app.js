@@ -240,6 +240,17 @@ $(function(){
         });
     });
 
+    $(".student-row").each(function(){
+        $(this).find(".student-skill-result").each(function(){
+            $(this).on("click", function() {
+                if($(this).html()){
+                    $(this).toggleClass("circle");
+                }
+            });
+        });
+    });
+
+    
 //======================== ASSESSMENT MARKING =======================================
     
     //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
