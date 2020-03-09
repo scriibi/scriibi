@@ -111,11 +111,11 @@
                                 //the following segment retrieves the correct curriculum code and description, but the loop is incorrect.
                                 //it is appearing three times on the front end.
                                 $i = 0;
-                                foreach($global as $g){
-                                        if($g != end($global)){
+                                foreach($global as $key => $value){
+                                        if($key != 2){
                                             ?>
                                             <div class="text-left">
-                                                <p class="pt-2"><?php echo $g ?></p>
+                                                <p class="pt-2"><?php echo $value ?></p>
                                                 <div class="d-flex">
                                                 <?php
                                                     //check if isset, so we dont throw an "undefined index [0] exception
@@ -134,12 +134,12 @@
                                                 ?>  
                                                 </div>
                                             </div>
-                                        <div></div> 
+                                        <div></div>  
                                 <?php
                                         }else{
                                             ?>
                                                 <div class="text-left">
-                                                    <p class="pt-2"><?php echo $g ?></p>
+                                                    <p class="pt-2"><?php echo $value ?></p>
                                                         <div class="d-flex">
                                                         <?php
                                                             //check if isset, so we dont throw an "undefined index [0] exception

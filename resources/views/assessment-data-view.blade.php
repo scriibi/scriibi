@@ -16,6 +16,28 @@
             <p><?php echo (date("d-m-Y", strtotime($writingTask[0]->created_Date))); ?></p>
         </div>
     </div>
+
+    <div class="view-by-container">
+    <div class="d-inline-block">
+        <div class="assessed-button-filter">
+            <label class="filter-btn" for="assessment-assessed-filter">
+                <span class="radio-circle"></span>
+                <input type="radio" name="data-filter" id="assessment-assessed-filter" />
+                <p class="pl-1 pt-1">Assessed</p>
+            </label>
+        </div>
+        <div class="grade-button-filter">
+            <label class="filter-btn" for="assessment-grade-filter">
+                <span class="radio-circle"></span>
+                <input type="radio" name="data-filter" class="assess-input" id="assessment-grade-filter" />
+                <p class="pl-1 pt-1">Grade</p>
+            </label>
+        </div>  
+    </div>
+</div>
+
+    <!-- <p><button type="button" id="assessment-assessed-filter">Assessed</button></p>
+    <p><button type="button" id="assessment-grade-filter">Grade</button></p> -->
     
 <table id="overall-assessment-table" class="row-border order-column ">
     <!-- Table headers -->
@@ -27,8 +49,8 @@
             <th class="assessment-date" rowspan="2" id="average">Average</th>
         </tr>
         <tr class="header-style">
-            <th id="grade"><p class="text-center"><button type="button" id="assessment-grade-filter">Grade</button></p></th>
-            <th id="assessed"><p class="text-center"><button type="button" id="assessment-assessed-filter">Assessed</button></p></th>
+            <th id="grade"><p class="text-center">Grade</p></th>
+            <th id="assessed"><p class="text-center">Assessed</p></th>
             <?php $count = 1;?>
             @foreach($skills as $s)
                 <th id="skill{{$count}}" class="assessment-skills"><p class="text-center">{{$s->skill_Name}}</p></th>

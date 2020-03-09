@@ -7,6 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\DataView' => $baseDir . '/app/DataView.php',
+    'App\\DataViewOverview' => $baseDir . '/app/DataViewOverview.php',
+    'App\\DataViewStudent' => $baseDir . '/app/DataViewStudent.php',
+    'App\\DataViewWrittingTask' => $baseDir . '/app/DataViewWrittingTask.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AchievementsController' => $baseDir . '/app/Http/Controllers/AchievementsController.php',
     'App\\Http\\Controllers\\AssessedLevelLabelController' => $baseDir . '/app/Http/Controllers/AssessedLevelLabelController.php',
@@ -28,6 +32,7 @@ return array(
     'App\\Http\\Controllers\\CurriculumScriibiLevelsAchievementController' => $baseDir . '/app/Http/Controllers/CurriculumScriibiLevelsAchievementController.php',
     'App\\Http\\Controllers\\CurriculumScriibiLevelsController' => $baseDir . '/app/Http/Controllers/CurriculumScriibiLevelsController.php',
     'App\\Http\\Controllers\\CurriculumScriibiLevelsCriteriaController' => $baseDir . '/app/Http/Controllers/CurriculumScriibiLevelsCriteriaController.php',
+    'App\\Http\\Controllers\\DataViewController' => $baseDir . '/app/Http/Controllers/DataViewController.php',
     'App\\Http\\Controllers\\FormativeAssessmentResultsController' => $baseDir . '/app/Http/Controllers/FormativeAssessmentResultsController.php',
     'App\\Http\\Controllers\\FormativeAssessmentsController' => $baseDir . '/app/Http/Controllers/FormativeAssessmentsController.php',
     'App\\Http\\Controllers\\GeneralWritingProblemLessonsController' => $baseDir . '/app/Http/Controllers/GeneralWritingProblemLessonsController.php',
