@@ -26,7 +26,7 @@
         <div class="row mt-3">
             <!-- this is where the description of assessment task goes -->
             <div class="col-10">
-                <p><strong>Additional Notes:</strong></p>
+                <p style="font-size:1.3rem"><strong>Additional Notes:</strong></p>
                 <p>{{$writingTask->getDescription()}}</p>
             </div>
         </div>

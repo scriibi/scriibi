@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -37,4 +38,8 @@ class writing_tasks extends Model
     public function skills(){
         return $this->belongsToMany('App\skills', 'tasks_skills', 'writing_tasks_writing_task_Id', 'skills_skill_Id');
     }
+
+    public static function teacherTasks($teacherId){
+        return DB::table('writing_tasks')->select('writing_task_Id')->where('created_By_Teacher_User_Id', '=', $teacherId)->get()->toArray();
+    }   
 }
