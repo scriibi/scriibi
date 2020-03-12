@@ -374,6 +374,14 @@ $(function(){
         window.location.href = url_origin;
     });
 
+    // get the current url of the window
+    var url = window.location.href;
+    // check if the current url belongs to either the assessment marking page or the rubric creation page
+    if(url.includes('assessment-marking') || url.includes('rubricsFlag')){
+        // add the noselect css class to the body
+        $('body').addClass("noselect");
+    }
+
 }); //===== /END OF JQUERY =======
 
 //######################################### VANILLA JS SCRIPTS #########################################
