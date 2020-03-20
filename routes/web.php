@@ -72,6 +72,9 @@ Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
 Route::get('/assessment-update', 'WritingTasksController@editAssessment');
 Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit');
 
+//goal sheets
+Route::get('/goal-sheets', "GoalsController@generateGoalSheets");
+
 Route::get('/rubric', function(){
    return view('rubric');
 });

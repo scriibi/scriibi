@@ -76,6 +76,10 @@ $(function(){
         fixedColumns:   {
             leftColumns: 3,
         },
+        select: {
+            // style : 'os',
+            items : 'cell'
+        }
     });
     
 //========== OVERALL ASSESSMENT
@@ -246,6 +250,11 @@ $(function(){
                 if($(this).html()){
                     $(this).toggleClass("circle");
                 }
+                if($(this).hasClass("circle")){
+                    $(this).find(".student-goal-sheet-info").attr("checked", true);
+                }else{
+                    $(this).find(".student-goal-sheet-info").attr("checked", false);
+                }
             });
         });
     });
@@ -373,6 +382,14 @@ $(function(){
         url_origin += curriculum_level;
         window.location.href = url_origin;
     });
+
+    // get the current url of the window
+    var url = window.location.href;
+    // check if the current url belongs to either the assessment marking page or the rubric creation page
+    if(url.includes('assessment-marking') || url.includes('rubricsFlag')){
+        // add the noselect css class to the body
+        $('body').addClass("noselect");
+    }
 
 }); //===== /END OF JQUERY =======
 
@@ -576,6 +593,17 @@ function check_input_filled(e){
     }
 }
 
+//circle testing
+// var data = document.getElementById("data");
+// data.addEventListener("click", testCircle, false);
+// function testCircle() {
+//         console.log("clicked");
+//         data.classList.add("circle");
+//   }
+// document.getElementById('form').onsubmit = function() {
+//     console.log(document.getElementById('checkboxx').value);
+//     return false;
+// }
 
 //init function (only executes when onload)
 function init() {
