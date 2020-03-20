@@ -76,6 +76,10 @@ $(function(){
         fixedColumns:   {
             leftColumns: 3,
         },
+        select: {
+            // style : 'os',
+            items : 'cell'
+        }
     });
     
 //========== OVERALL ASSESSMENT
@@ -245,6 +249,11 @@ $(function(){
             $(this).on("click", function() {
                 if($(this).html()){
                     $(this).toggleClass("circle");
+                }
+                if($(this).hasClass("circle")){
+                    $(this).find(".student-goal-sheet-info").attr("checked", true);
+                }else{
+                    $(this).find(".student-goal-sheet-info").attr("checked", false);
                 }
             });
         });
@@ -584,6 +593,17 @@ function check_input_filled(e){
     }
 }
 
+//circle testing
+// var data = document.getElementById("data");
+// data.addEventListener("click", testCircle, false);
+// function testCircle() {
+//         console.log("clicked");
+//         data.classList.add("circle");
+//   }
+// document.getElementById('form').onsubmit = function() {
+//     console.log(document.getElementById('checkboxx').value);
+//     return false;
+// }
 
 //init function (only executes when onload)
 function init() {
