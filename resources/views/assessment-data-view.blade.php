@@ -98,6 +98,7 @@
         
     </tbody>
 </table>
-<input type="submit" value= "Submit">
+<!--<input type="submit" value= "Submit"> -->
+<a href="https://www.scriibi.com/wp-content/uploads/Sample-Writing-Goal.pdf" class="assessment-btn p-2" style="position:absolute"><strong>Generate Goal Sheet</strong></a>
 </form>    
 @endsection
