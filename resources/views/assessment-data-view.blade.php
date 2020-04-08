@@ -38,7 +38,7 @@
 
     <!-- <p><button type="button" id="assessment-assessed-filter">Assessed</button></p>
     <p><button type="button" id="assessment-grade-filter">Grade</button></p> -->
-<form method="get" action="/goal-sheets" id="form">
+<form method="get" action="/goal-sheets" id="form" target="_blank">
 @csrf
 <table id="overall-assessment-table" class="row-border order-column ">
     <!-- Table headers -->
@@ -98,7 +98,6 @@
         
     </tbody>
 </table>
-<!--<input type="submit" value= "Submit"> -->
-<a href="https://www.scriibi.com/wp-content/uploads/Sample-Writing-Goal.pdf" class="assessment-btn p-2" style="position:absolute"><strong>Generate Goal Sheet</strong></a>
+<input type="submit" value= "Generate Goal Sheets" class="assessment-btn p-2">
 </form>    
 @endsection

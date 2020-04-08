@@ -15,7 +15,8 @@
         "fideloper/proxy": "^4.2",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.1"
+        "laravel/ui": "^1.1",
+        "mixpanel/mixpanel-php" : "2.*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

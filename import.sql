@@ -2275,56 +2275,106 @@ INSERT INTO local_criteria_curriculum_scriibi_level_skills(local_criteria_Id,cur
 INSERT INTO local_criteria_curriculum_scriibi_level_skills(local_criteria_Id,curriculum_scriibi_levels_skills_Id) VALUES (232,295);
 INSERT INTO local_criteria_curriculum_scriibi_level_skills(local_criteria_Id,curriculum_scriibi_levels_skills_Id) VALUES (233,311);
 INSERT INTO student_definitions(description) VALUES ('The ending tells how the problem was solved.');
-INSERT INTO student_definitions(description) VALUES ('The writing describes what characters <strong>look like</strong> on the outside (face, hair, body, clothes), their <strong>traits</strong> (mean, kind) and their <strong>feelings</strong> (happy, grumpy, friendly).');
-INSERT INTO student_definitions(description) VALUES ('The first sentences tell the reader <strong>who</strong> it is about, <strong>where</strong> and <strong>what</strong> happened.  For example,  <span style="color: #993300">On the <strong>weekend</strong>, <em><strong>I </strong>went to the <strong>park </strong>with my <strong>family</strong>.  We had a <strong>picnic</strong>. </em></span>');
-INSERT INTO student_definitions(description) VALUES ('The <strong>main idea</strong> or <strong>topic</strong> is clear to the reader.  There are some interesting details that support the main idea.');
-INSERT INTO student_definitions(description) VALUES ('Some <strong>ideas</strong> have <strong>extra detail</strong> to give the reader more information.');
+INSERT INTO student_definitions(description) VALUES ('<strong>Events and ideas are written in order</strong> which makes it is easy to understand and retell.');
+INSERT INTO student_definitions(description) VALUES ('The writing describes what characters <strong>look like</strong> on the outside (face, hair, body, clothes), their <strong>traits</strong> (mean, kind) and their <strong>feelings</strong> (happy, grumpy, friendly).
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('The first sentences tells the reader <strong>who</strong> it is about, <strong>where</strong> and <strong>what</strong> happened.
+<ul>
+ 	<li>For example, <em>On the <strong>weekend</strong>, <strong>I </strong></em><em>went to the </em><strong><em>park</em></strong> <em>with my </em><strong><em>family</em></strong><em>.  We had a </em><strong><em>picnic</em></strong><em>. </em></li>
+</ul>');
+INSERT INTO student_definitions(description) VALUES ('The <strong>main idea</strong> or <strong>topic</strong> is clear to the reader. There are some interesting details that support the main idea.');
+INSERT INTO student_definitions(description) VALUES ('<strong>Some ideas have extra sentences about the topic </strong>to give the reader more information.');
+INSERT INTO student_definitions(description) VALUES ('People and places are described with detail and this helps the reader make clear mental images.
+
+The writer uses <strong>adjectives</strong> (e.g. red, blue, large, tiny, round, long, beautiful, pretty) and/or the <strong>five senses</strong> (see, hear, smell, taste, and feel) to describe people and places.');
 INSERT INTO student_definitions(description) VALUES ('Words and sentences are linked with <strong>connectives</strong> (and, because, then).');
-INSERT INTO student_definitions(description) VALUES ('Sentences make sense and sound right when reading them aloud.<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Grammar%20Usage/face%201.jpg" width="24" height="24" /> ''The dog go to the park''             ''The dog went to the park'' <img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Grammar%20Usage/face%202.jpg" width="25" height="25" />');
+INSERT INTO student_definitions(description) VALUES ('<h6><strong>[I will leave content, despite redundancy of level 1 goals for now]</strong></h6>
+Read each sentence out loud.  As you read, point to each word.  If a word sounds wrong, change it.
+<h3><em>We taked Milo to puppy school.            We took Milo to puppy school. </em></h3>');
 INSERT INTO student_definitions(description) VALUES ('Writing has some <strong>specific naming words </strong>(nouns) and <strong>action words </strong>(verbs).');
-INSERT INTO student_definitions(description) VALUES ('Interesting words are used to describe people, places and things.  (The <span style="text-decoration: underline">gigantic</span> man <span style="text-decoration: underline">tumbled</span> out of bed).');
+INSERT INTO student_definitions(description) VALUES ('<h6><strong>[I will leave content, despite redundancy of level 1 goals for now]</strong></h6>
+Interesting words are used to describe people, places and things.  (The <span style="text-decoration: underline">gigantic</span> man <span style="text-decoration: underline">tumbled</span> out of bed).');
 INSERT INTO student_definitions(description) VALUES ('The ending includes a resolution and is interesting and enjoyable to read.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Events are in order </strong>(sequenced) and there is a clear beginning, middle and end.  Time connectives sequence events and ideas.  For example -  <em>Arter </em>breakfast, we drove to the farm.');
-INSERT INTO student_definitions(description) VALUES ('People, places or things are described using figurative language such as similes, hyperbole, and onomatopoeia (sounds).');
+INSERT INTO student_definitions(description) VALUES ('People, places or things are described using figurative language such as <strong>similes</strong>, <strong>hyperbole</strong>, and <strong>onomatopoeia</strong> (sounds).
+
+&nbsp;');
 INSERT INTO student_definitions(description) VALUES ('The main idea is clear and interesting to the reader.');
 INSERT INTO student_definitions(description) VALUES ('The writer has reread the text to check for spelling, punctuation (.,!!:;), capital letters and grammar.  They have also responded to feedback from others and made changes to improve the text.');
 INSERT INTO student_definitions(description) VALUES ('Character''s <strong>appearance</strong> (the way they look) and their <b>actions </b>(what they do) are described with lots of detail.');
 INSERT INTO student_definitions(description) VALUES ('The beginning states <strong>who</strong> it is about and <strong>what </strong>is happening.  It includes some setting details (<strong>where</strong> it is set, <strong>when</strong> it happened, and <strong>why</strong>).');
-INSERT INTO student_definitions(description) VALUES ('The main idea or <strong>topic</strong> is clear to the reader.   Interesting and <strong>relevant</strong> <strong>details</strong> support the main idea/topic.');
+INSERT INTO student_definitions(description) VALUES ('The main idea or <strong>topic</strong> is clear to the reader. Interesting and <strong>relevant</strong> <strong>details</strong> support the main idea/topic.');
 INSERT INTO student_definitions(description) VALUES ('Writing is separated into <strong>paragraphs</strong> to make it easy to follow and read.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Ideas</strong> have <strong>extra details</strong> to give the reader more information.');
-INSERT INTO student_definitions(description) VALUES ('People, places, and actions are described using <strong>adjectives</strong>, <strong>action words</strong> (verbs) and the <strong>five senses</strong> (see, hear, smell, feels, taste).');
-INSERT INTO student_definitions(description) VALUES ('<ul><li>The writing has both long and short sentences.  This makes it interesting and easy to read aloud.</li></ul>');
+INSERT INTO student_definitions(description) VALUES ('People, places, and actions are described using <strong>adjectives</strong>, <strong>action words</strong> (verbs) and the <strong>five senses</strong> (see, hear, smell, feels, taste).
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('The writing has both <strong>long</strong> and <strong>short</strong> <strong>sentences</strong>. This makes it interesting and easy to read aloud.');
 INSERT INTO student_definitions(description) VALUES ('There is more descriptive detail in the middle of the text (problem).  The introduction and ending are shorter.');
 INSERT INTO student_definitions(description) VALUES ('Sentences begin with a capital letter and end with a full stop.  Proper nouns such as people''s names, places, and titles are capitalised.   Other types of punctuation  (? ! , " ") are evident in the text and enhance meaning.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Connectives</strong> link words and sentences (later, then, next, after that, and, so).');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Sentences start in different ways (On, At, Later, Then, While, After, Because, He, She, people''s names)');
-INSERT INTO student_definitions(description) VALUES ('Uses ''a, an, the'' and ''adjectives'' correctly to expand noun phrases/sentences.  (<em>I ate <strong>a big</strong> <strong>red</strong> apple.  <strong>The</strong> <strong>huge</strong> tree swayed in the wind. </em> &nbsp; &nbsp;');
+INSERT INTO student_definitions(description) VALUES ('Uses ''a, an, the'' and ''adjectives'' correctly to expand noun phrases/sentences.  (<em>I ate <strong>a big</strong> <strong>red</strong> apple.  <strong>The</strong> <strong>huge</strong> tree swayed in the wind. </em>
+
+&nbsp;');
 INSERT INTO student_definitions(description) VALUES ('Writing has some <strong>precise nouns </strong>and <strong>verbs </strong>to paint a clear picture in the reader''s mind.');
-INSERT INTO student_definitions(description) VALUES ('The summary has sequenced events and contains information on the setting, characters, conflicts and a resolutions.');
-INSERT INTO student_definitions(description) VALUES ('Interesting and topic specific words are used to describe people, places and things.  (The volcano <span style="text-decoration: underline">erupted</span> with a roar).');
-INSERT INTO student_definitions(description) VALUES ('<strong>The writing has both simple and compound sentences</strong>, which makes the writing flow.  A compound sentence has more than one idea and is connected with a conjunction (and, but, so, or, yet).');
+INSERT INTO student_definitions(description) VALUES ('The summary has sequenced events and contains information on the setting, characters, conflicts and a resolutions.
+
+&nbsp;
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('Interesting and topic specific words are used to describe people, places and things.  (The volcano <span style="text-decoration: underline">erupted</span> with a roar).
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('<strong>The writing has both simple and compound sentences</strong>, which makes the writing flow.  A compound sentence has more than one idea and is connected with a conjunction (and, but, so, or, yet).
+
+&nbsp;');
 INSERT INTO student_definitions(description) VALUES ('The ending resolves the problem or sums up the main points in an interesting and enjoyable way.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Information is sequenced logically</strong>.  Time and location connectives help sentences and ideas flow, and make the piece easy to read and understand.');
 INSERT INTO student_definitions(description) VALUES ('People, places or things are described using figurative language (original similes, metaphors, hyperbole, alliteration, personification).');
 INSERT INTO student_definitions(description) VALUES ('<strong>The main idea and supporting ideas are interesting and original</strong>.  Ideas are found easily from personal experience, observations, inspiration from books, movies, social media, games, and the author''s imagination.');
 INSERT INTO student_definitions(description) VALUES ('<strong>The writing has been self and peer revised</strong> to improve ideas, check that it makes sense when read aloud and that its purpose is clear for the reader.  Text has been edited for spelling, punctuation and grammar.');
-INSERT INTO student_definitions(description) VALUES ('Character''s <strong>physical</strong> features, <strong>personality</strong> traits (generous, coward, brave) and <strong>thoughts</strong> are described with detail.');
-INSERT INTO student_definitions(description) VALUES ('The beginning hooks the reader with an <strong>interesting first line</strong>.  It includes <strong>setting</strong> and <strong>character</strong> details.');
-INSERT INTO student_definitions(description) VALUES ('The <strong>topic is narrow</strong> and supported with <strong>relevant details</strong>. &nbsp;');
+INSERT INTO student_definitions(description) VALUES ('Character''s <strong>physical</strong> features, <strong>personality</strong> traits (generous, coward, brave) and <strong>thoughts</strong> are described with detail.
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('The beginning hooks the reader with an <strong>interesting first line</strong>.  It includes <strong>setting</strong> and <strong>character</strong> details.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('The <strong>topic is narrow</strong> and supported with <strong>relevant details</strong>.
+
+&nbsp;');
 INSERT INTO student_definitions(description) VALUES ('Writing is organised into <strong>paragraphs</strong> to make it easy to follow and read.');
-INSERT INTO student_definitions(description) VALUES ('<strong>Ideas</strong> are supported with <strong>relevant</strong> and <strong>interesting</strong> details.');
-INSERT INTO student_definitions(description) VALUES ('People, places, and actions are described using <strong>adjectives</strong>, <strong>precise verbs/</strong><strong>nouns</strong> (<em>horrendous instead of bad</em>) the <strong>five senses</strong> (see, hear, smell, feels like, taste) and <strong>Show don''t Tell</strong>.');
-INSERT INTO student_definitions(description) VALUES ('Long and short sentences enhance fluency and make it easy to read aloud.  Some short sentences are used for effect (Wow!).');
+INSERT INTO student_definitions(description) VALUES ('<strong>Ideas</strong> are supported with <strong>relevant</strong> and <strong>interesting</strong> details.
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('People, places, and actions are described using <strong>adjectives</strong>, <strong>precise verbs/</strong><strong>nouns</strong> (<em>horrendous instead of bad</em>) the <strong>five senses</strong> (see, hear, smell, feels like, taste) and <strong>Show don''t Tell</strong>.
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('<strong>Long</strong> and <strong>short</strong> <strong>sentences</strong> enhance fluency and make it easy to read aloud.  Some short sentences are used for effect (Wow!).');
 INSERT INTO student_definitions(description) VALUES ('There is more descriptive detail (Show don''t tell) in the middle part of the text (problem) to build up the tension.  The introduction and ending are shorter.');
 INSERT INTO student_definitions(description) VALUES ('Full stops, capital letters, question marks, commas, and exclamation marks are mostly used correctly.  Other types of punctuation  (''... " ") are used occasionally and enhance meaning.');
 INSERT INTO student_definitions(description) VALUES ('A range of<strong> connectives</strong> links words and sentences and makes the writing flow (later, then, next, after that, and, so).');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Sentences start in different ways (proper nouns, adjectives, conjunctions)');
-INSERT INTO student_definitions(description) VALUES ('Apostrophes are used to show possession of a singular noun.  (The cat''s toy.  Mum''s car).');
+INSERT INTO student_definitions(description) VALUES ('Apostrophes are used to show possession of a singular noun.  (The cat''s toy.  Mum''s car).
+<h2 style="text-align: center"></h2>');
 INSERT INTO student_definitions(description) VALUES ('Writing has <strong>precise nouns </strong>and <strong>verbs </strong>to paint a clear picture in the reader''s mind.  <strong>Topic specific</strong> words are used to enhance meaning (e.g. herd of sheep, instead of lots of sheep).');
 INSERT INTO student_definitions(description) VALUES ('Fiction text summary includes information on characters, setting, conflicts and resolutions.  Non-fiction text summary restates the main idea and supporting details.');
 INSERT INTO student_definitions(description) VALUES ('Interesting and topic specific words are used to describe people, places and things.  (The volcano <span style="text-decoration: underline">erupted</span> with a roar).');
-INSERT INTO student_definitions(description) VALUES ('<strong>Complex sentences</strong> make sentences interesting to read aloud and enhance the flow of the text.  A complex sentence has a dependent and independent clause.');
+INSERT INTO student_definitions(description) VALUES ('<strong>Complex sentences</strong> make sentences interesting to read aloud and enhance the flow of the text.  A complex sentence has a dependent and independent clause.
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('The ending resolves the problem or sums up the main points in an interesting and enjoyable way.');
 INSERT INTO student_definitions(description) VALUES ('Figurative language is used to describe people, places or things in interesting and memorable ways (similes, metaphors, hyperbole, alliteration, personification, oxymorons).');
 INSERT INTO student_definitions(description) VALUES ('<strong>The main idea and supporting ideas are interesting and original</strong>.  Ideas are found easily from a range of sources such as personal experience, observations, inspiration from books, movies, events, social media, games, or the author''s imagination.');
@@ -2335,53 +2385,2638 @@ INSERT INTO student_definitions(description) VALUES ('The topic is <strong>narro
 INSERT INTO student_definitions(description) VALUES ('Writing is organised into <strong>paragraphs</strong> to make it easy to follow and read.  Information texts are organised with topic sentences and supporting details.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Ideas within sentences</strong> are developed with additional <strong>details</strong> and paint a clear picture in the reader’s mind.');
 INSERT INTO student_definitions(description) VALUES ('People, places, and actions are described using <strong>adjectives</strong>, <strong>precise verbs/</strong><strong>nouns</strong> (<em>horrendous instead of bad</em>) the <strong>five senses</strong>, and <strong>Show don''t Tell</strong>.');
-INSERT INTO student_definitions(description) VALUES ('Long and short sentences enhance fluency and make it easy to read aloud.  Interjections or short two word phrases are used for effect.');
+INSERT INTO student_definitions(description) VALUES ('<strong>Long</strong> and <strong>short</strong> <strong>sentences</strong> enhance fluency and make it easy to read aloud.  <strong>Interjections</strong> or <strong>short two word phrases</strong> are used for effect.');
 INSERT INTO student_definitions(description) VALUES ('There is more detail added during important parts of the text (climatic point, the character is facing a problem).');
 INSERT INTO student_definitions(description) VALUES ('Full stops, capital letters, question marks, commas, and exclamation marks are used correctly.  Other types of punctuation  (''... : " ") are correctly applied to writing to enhance meaning.');
 INSERT INTO student_definitions(description) VALUES ('Writing has different types of <strong>connectives</strong> to link sentences and ideas (however, therefore, additionally, in summary).');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Sentences start in different ways (proper nouns, verbs, adjectives, conjunctions)');
-INSERT INTO student_definitions(description) VALUES ('<strong>Tenses</strong> are used correctly throughout the writing to show if events occur in the <strong>past</strong>, <strong>present</strong> or <strong>future</strong>.                         (John <em>ran</em> home, John <em>runs</em> home, John <em>will run</em> home).');
+INSERT INTO student_definitions(description) VALUES ('<strong>Tenses</strong> are used correctly throughout the writing to show if events occur in the <strong>past</strong>, <strong>present</strong> or <strong>future</strong>. (John <em>ran</em> home, John <em>runs</em> home, John <em>will run</em> home).
+
+Notice how several of the words in each sentence need to change.');
 INSERT INTO student_definitions(description) VALUES ('Writing has precise <strong>nouns, </strong><strong>verbs </strong>and <strong>topic specific </strong>vocabulary to paint a clear picture in the reader''s mind.');
 INSERT INTO student_definitions(description) VALUES ('<strong>Fiction text summary</strong> is concise and includes information on characters, setting, conflicts and resolutions.  <strong>Non-fiction</strong> <strong>text summary</strong> restates the main idea and supporting details, omitting small details.');
 INSERT INTO student_definitions(description) VALUES ('The writing has a range of interesting and topic specific vocabulary that creates strong mental images in a reader''s mind.');
 INSERT INTO student_definitions(description) VALUES ('Ideas are expressed using different types of sentences including <strong>prepositions</strong>, <strong>compound</strong> and <strong>complex</strong> sentences.');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Make sure the main problem is resolved and then end with an interesting last line.');
 INSERT INTO student_definitions(description) VALUES ('Figurative language is used creatively to describe people, places or things in interesting and memorable ways (similes, metaphors, hyperbole, alliteration, personification).');
 INSERT INTO student_definitions(description) VALUES ('Writing is revised and edited to improve the sequence and organisation of ideas, meaning, word choice and sentence fluency using set criteria or a rubric.');
-INSERT INTO student_definitions(description) VALUES ('Character''s <strong>physical</strong> features and <strong>personality</strong> are described with detail.  Their <strong>thoughts</strong> and <strong>emotions</strong> are revealed.');
+INSERT INTO student_definitions(description) VALUES ('Character''s <strong>physical</strong> features and <strong>personality</strong> are described with detail.  Their <strong>thoughts</strong> and <strong>emotions</strong> are revealed.
+<ul>
+ 	<li style="list-style-type: none"></li>
+</ul>');
 INSERT INTO student_definitions(description) VALUES ('The beginning hooks the reader with vivid setting and/or character details and interesting words.');
 INSERT INTO student_definitions(description) VALUES ('The writer has carefully selected a range of modal words to create a strong point of view and show degrees of certainty.  For example, ''I <em>might</em> get up early tomorrow.'' (low certainty/low modality).');
 INSERT INTO student_definitions(description) VALUES ('Writing is organised into <strong>paragraphs</strong> when the Time, Topic, Place and Person speaking changes.  Information texts are organised with topic sentences and supporting details.');
-INSERT INTO student_definitions(description) VALUES ('People, places, things, and ideas are described using <strong>adjectives</strong>, <strong>precise verbs/</strong><strong>nouns,</strong> the <strong>five senses</strong> and strategies such as <strong>Show don''t Tell, Snapshot </strong>writing and <strong>Rule of Three. </strong>');
-INSERT INTO student_definitions(description) VALUES ('Long and short sentences enhance fluency and make it easy to read aloud.  Interjections or short two word phrases are used for effect.');
+INSERT INTO student_definitions(description) VALUES ('People, places, things, and ideas are described using <strong>adjectives</strong>, <strong>precise verbs/</strong><strong>nouns,</strong> the <strong>five senses</strong> and strategies such as <strong>Show don''t Tell,</strong> <strong>Rule of Three </strong>and<strong> Snapshot </strong>writing<strong>. </strong>');
+INSERT INTO student_definitions(description) VALUES ('<strong>Long</strong> and <strong>short</strong> <strong>sentences</strong> enhance fluency and make it easy to read aloud.  <strong>Interjections</strong> or <strong>short two word phrases</strong> are used for effect.');
 INSERT INTO student_definitions(description) VALUES ('There is just the right amount of detail for important parts of the text.  This helps to speed up or slow down events.');
+INSERT INTO student_definitions(description) VALUES ('Writing uses a range of punctuation accurately to support meaning. Including: Full stops, capital letters, question marks, commas, exclamation marks, apostrophes, ellipses (...), colons ( : ), semicolons ( ; ), and talking marks.');
 INSERT INTO student_definitions(description) VALUES ('Writing has a range of <strong>connectives</strong> for different purposes (however, therefore, whilst, yet, additionally, in summary).');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Sentence beginnings are interesting, link ideas and start in different ways (proper nouns, verbs, adjectives, conjunctions).');
 INSERT INTO student_definitions(description) VALUES ('Apostrophes are used to show possession of singular (The <strong>cat''s</strong> toy) and plural nouns (My <strong>parents''</strong> decision).');
 INSERT INTO student_definitions(description) VALUES ('Writing has precise <strong>nouns, </strong><strong>verbs </strong>and <strong>topic specific </strong>vocabulary to paint a clear picture in the reader''s mind.');
 INSERT INTO student_definitions(description) VALUES ('<strong>The summary is short and clearly restates all the relevant events/experiences using concise language</strong>.  The writer has substituted specific language and small details with general statements.  For example, ''koalas, kangaroos and kookaburras'',  becomes ''Australian animals''.');
 INSERT INTO student_definitions(description) VALUES ('The vocabulary is interesting, varied and descriptive and suites the purpose and audience..  It enhances meaning and creates strong mental images in a reader''s mind.');
 INSERT INTO student_definitions(description) VALUES ('<strong>The text contains many long and interesting complex</strong> <strong>sentences, </strong>which enhances meaning and helps connect ideas within and between sentences.  For example: <em>We made our way down the mountain <span style="text-decoration: underline">before</span> the sun had risen</em>.');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('The main problem is resolved in a satisfying way.  The last line is interesting and lingers in the reader''s mind.');
 INSERT INTO student_definitions(description) VALUES ('Figurative language is used creatively to describe people, places or things in interesting and memorable ways (similes, metaphors, irony, idioms, hyperbole, alliteration, personification).');
 INSERT INTO student_definitions(description) VALUES ('<strong>Writing is improved through self and peer revision, with changes appropriate to purpose and audience using set criteria or a rubric.</strong> Changes can include using connectives and pronouns to make writing more cohesive, sequencing ideas, vocabulary, and including figurative language.');
-INSERT INTO student_definitions(description) VALUES ('Characters are interesting.  Their physical features, emotions and motivations for their behaviour are described in detail.');
+INSERT INTO student_definitions(description) VALUES ('Characters are interesting. Their physical features, emotions and motivations for their behaviour are described in detail.');
 INSERT INTO student_definitions(description) VALUES ('The beginning hooks the reader with vivid setting and/or character details and interesting words.');
-INSERT INTO student_definitions(description) VALUES ('The writer has expressed a strong point of view based on the choice of high, medium and low modality words. For example, ''We <em>must</em> care for elderly citizens.'' (high modality). &nbsp;');
+INSERT INTO student_definitions(description) VALUES ('The writer has expressed a strong point of view based on the choice of high, medium and low modality words. For example, ''We <em>must</em> care for elderly citizens.'' (high modality).
+
+&nbsp;');
 INSERT INTO student_definitions(description) VALUES ('Writing is organised into <strong>paragraphs</strong> when the Time, Topic, Location and Speaker changes.  Information texts are organised with topic sentences and supporting details.');
-INSERT INTO student_definitions(description) VALUES ('Ideas are elaborated with rich details using adjectives, adverbs, precise verbs/nouns, sensory words and strategies such as Show don''t Tell.');
+INSERT INTO student_definitions(description) VALUES ('Ideas are elaborated with rich details using <strong>adjectives, adverbs, precise verbs/nouns</strong>, <strong>sensory words</strong> and strategies such as <strong>Show don''t Tell, Rule of Three </strong>and<strong> Snapshot</strong> writing.');
 INSERT INTO student_definitions(description) VALUES ('Pacing is well controlled with just the right amount of information and detail to speed up or slow down events.');
+INSERT INTO student_definitions(description) VALUES ('The writing is punctuated accurately to support meaning: full stops, capital letters, question marks, exclamation marks, apostrophes, ellipses (...), colons ( : ), semicolons ( ; ), and talking marks.  Commas are used accurately to separate lists and clauses in sentences.');
 INSERT INTO student_definitions(description) VALUES ('A range of <strong>connectives</strong> are used to smoothly link ideas and improve sentence fluency when reading aloud (however, therefore, whilst, for this reason, additionally, on the whole).');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('Apostrophes are used to show possession of singular (The <strong>cat''s</strong> toy) and plural nouns (My <strong>parents''</strong> decision).');
 INSERT INTO student_definitions(description) VALUES ('Writing has precise <strong>nouns, </strong><strong>verbs </strong>and <strong>topic specific </strong>vocabulary to paint a clear picture in the reader''s mind.  The writing is concise and not too wordy.');
-INSERT INTO student_definitions(description) VALUES ('The strong vocabulary expresses feelings and the writer''s opinion.  The right words enhance meaning and create strong mental images in a reader''s mind. E.g The');
-INSERT INTO student_definitions(description) VALUES ('<strong>Complex sentences are interesting and used in a variety of ways to elaborate and explain ideas. </strong>Examples: <em><span style="text-decoration: underline">Despite</span> my best efforts, I''m in the same person I was last year.  I think we can get to the finals, <span style="text-decoration: underline">provided</span> we train hard. </em>');
+INSERT INTO student_definitions(description) VALUES ('The strong vocabulary expresses feelings and the writer''s opinion.  The right words enhance meaning and create strong mental images in a reader''s mind. E.g The
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('<strong>Complex sentences are interesting and used in a variety of ways to elaborate and explain ideas. </strong>Examples: <em><span style="text-decoration: underline">Despite</span> my best efforts, I''m in the same person I was last year.  I think we can get to the finals, <span style="text-decoration: underline">provided</span> we train hard. </em>
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('tbc');
 INSERT INTO student_definitions(description) VALUES ('The ending ties up the events and is satisfying and strong.  It leaves the reader with a sense of resolution.');
 INSERT INTO student_definitions(description) VALUES ('Figurative language is used in original and creative ways (similes, metaphors, irony, idioms, allusion, personification).');
 INSERT INTO student_definitions(description) VALUES ('<strong>Writing is improved through self and peer revision, with changes appropriate to purpose and audience using set criteria or a rubric.</strong> Changes can include removing repetition, reordering sentences, adding or changing words for impact, and using literary devices.');
+INSERT INTO student_definitions(description) VALUES ('Characters have distinct physical and personality traits. which makes them interesting.  Their backstory, connection to other characters and motivations make them feel real and readers'' can empathise or make connections with some characters.');
 INSERT INTO student_definitions(description) VALUES ('The beginning hooks the reader with vivid setting and/or character details and interesting words.');
 INSERT INTO student_definitions(description) VALUES ('<strong>The writer has expressed a strong point of view based on their choice of high, medium and low modality words.</strong> For example, ''We <i>should </i>care for elderly citizens'' (high modality).  ''We <em>could</em> try care for elderly citizens'' (low modality).');
 INSERT INTO student_definitions(description) VALUES ('Writing is organised into <strong>paragraphs</strong> appropriate to the text type and includes opening and concluding paragraphs.');
 INSERT INTO student_definitions(description) VALUES ('Pacing is well controlled with just the right amount of information and detail to speed up or slow down events.');
+INSERT INTO student_definitions(description) VALUES ('Punctuation is used correctly for different types of sentences.  Some punctuation is used creatively to enhance meaning and the tone of the piece.  For example, hyphens ( - ) and ellipses (...).');
 INSERT INTO student_definitions(description) VALUES ('A range of interesting <strong>connectives</strong> and <strong>phrases</strong> are used to link ideas smoothly and help the writing flow (however, therefore, whilst, for this reason, additionally, on the whole).');
-INSERT INTO student_definitions(description) VALUES ('<strong>A range of sentence types </strong>(complex, compound, prepositional phrases, fragments, punctuation) <strong>enhances readability and helps to develop and elaborate ideas in interesting and creative ways</strong>. For example: "<em>It was one of those March days when the sun shines hot and the wind blows cold: when it is summer in the light, and winter in the shade.</em>" - Charles Dickens.');
+INSERT INTO student_definitions(description) VALUES ('tbc');
+INSERT INTO student_definitions(description) VALUES ('<strong>A range of sentence types </strong>(complex, compound, prepositional phrases, fragments, punctuation) <strong>enhances readability and helps to develop and elaborate ideas in interesting and creative ways</strong>.
+
+For example: "<em>It was one of those March days when the sun shines hot and the wind blows cold: when it is summer in the light, and winter in the shade.</em>" - Charles Dickens.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;');
+INSERT INTO student_definitions(description) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /></span>  Somebody Wanted But So Then:</strong> To help you write your ending, retell your story using the <em>Somebody, Wanted, but, So, Then</em> strategy.
+
+To help you do this, answer the questions under each heading.  See the Three Little Pigs example.
+
+&nbsp;
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/SWBS.png" width="50%"  />
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> Sentence Starters for Endings:</span></strong>
+
+Finally...
+
+So...
+
+Luckily...
+
+In the end...
+
+They learned to...
+
+They all lived happily ever after...
+
+They felt...
+
+It was the best...
+
+It was the worst...
+
+I hope...
+
+Everyone...
+
+At last...
+
+At the end of the day...
+
+At the end of the night...
+
+We all...
+
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('Draw your characters and label what they <strong>look</strong> like, their <strong>traits</strong> and how they <strong>feel</strong>.
+<table>
+<tbody>
+<tr>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Character%20Development/Level%201%20old%20man.png" width="60%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Character%20Development/Level%201%20friendly%20monster.png" width="60%"  /></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h4><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /></span></strong><span style="color: #000000"> </span>Include <span style="color: #339966"><span style="color: #ff6600">Who?</span> </span><span style="color: #ff00ff">What? </span> <span style="color: #ff00ff"><span style="color: #339966">When?</span> <span style="color: #0000ff">Where? </span></span><span style="color: #000000">details at the beginning.</span></h4>
+&nbsp;
+<ul>
+ 	<li>
+<h3><em><span style="color: #ff00ff"><span style="color: #000000">On the <span style="color: #339966">holidays</span>, my friend <span style="color: #ff6600">Josh</span> and <span style="color: #ff6600">I</span> <span style="color: #0000ff">built a giant cubby in my backyard.</span></span></span></em></h3>
+</li>
+</ul>
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Openings_Introduction/Level%201%20Colourful%20Semantics.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Funnel Strategy</strong>
+<ol>
+ 	<li>Make a funnel with an A4 sheet of paper.</li>
+ 	<li>Write down three ideas you want to write about on separate pieces of paper, fold them up and put them in the funnel.</li>
+ 	<li>Take out one idea from the bottom of the funnel.</li>
+ 	<li>Write three interesting things about the idea and put them into the empty funnel.</li>
+ 	<li>Take out one idea from the bottom of the funnel.</li>
+ 	<li>You now have a specific topic to write about</li>
+</ol>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Funnel.jpg" width="100%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Stay on Topic Strategy: </strong>Read your writing aloud and <strong>cross out</strong> anything that is not about the <strong>main idea.</strong></td>
+<td width="4%"></td>
+<td width="48%"><img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Student%20example%20-%20Whale2.png" width="60%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="100%"><strong><span style="color: #000000">  <img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Developing%20Ideas/Developing%20ideas%20L1.png" width="90%"  /></span></strong></td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Developing%20Ideas/Tell%20Me%20More%20L1.png" width="90%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%">Use <strong>and </strong>to add more detail
+<ul>
+ 	<li><em>E.g. At the movies, we had ice-cream <strong>and</strong> popcorn.).</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%">Use <strong>then </strong>to put events in order
+<ul>
+ 	<li><em>E.g. My friend came to the movies.  <strong>Then</strong> we went out for pizza.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%">Use <strong>because </strong>to explain why something happened
+<ul>
+ 	<li><em>E.g. We lost the game <strong>because</strong> we didn''t have enough players.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>[I will leave content, despite redundancy of level 1 goals for now]</strong></h6>
+Sentences make sense and sound right when reading them aloud.                                                                                                         <img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Grammar%20Usage/face%201.jpg" width="24"  /> ''The dog go to the park''             ''The dog went to the park'' <img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Grammar%20Usage/face%202.jpg" width="25"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and see if you can change some words to make them more specific or precise. See the example below.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>[I will leave content, despite redundancy of level 1 goals for now]</strong></h6>
+Use <strong>adjectives</strong> to describe people, places and things. (<em>Clare put on her <span style="text-decoration: underline">red</span> <span style="text-decoration: underline">shiny</span> shoes.</em>)
+
+Find different and more interesting words (synonym) that mean the same thing. (<em>She put on her <del>red</del> shoes.  She put on her ruby shoes</em>).  Use a <strong>thesaurus</strong> or <strong>synonym</strong> list to help you.');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line.
+
+&nbsp;
+<ul>
+ 	<li><strong><em>Dialogue </em></strong><em>She turned to her brother and said, "Now let me tell you what really happened."</em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>S</strong><em><strong>urprise</strong> Jack opened his eyes and everything had changed, again!</em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>Describe a scene</strong> <em>Max curled up in his bed, fell fast asleep and thought, this was the best day of his life.  </em></li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Story Map</strong>: Write the beginning, middle and ending of your story in a graphic organiser.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Story%20Map.png" width="70%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Time and location connectives</strong>:  Use connectives to help put events in order and make your writing flow.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Connectives%20list.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as ice</em>.  <em>Max eats like a pig</em>.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have a <span style="text-decoration: underline">million</span> things to do.  My shoes are <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. </em><em><span style="text-decoration: underline">Crash</span>! I could hear the <span style="text-decoration: underline">clip clop</span> of the horses in the distance</em>.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><span style="color: #000000"><strong><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> Strong Feelings: </strong> Choose a list of emotions and write about the times you remember feeling those emotions. </span><span style="color: #000000"> </span></td>
+<td width="4%"></td>
+<td width="48%"><img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Feelings%203.png" width="95%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><span style="color: #000000"><strong style="font-family: inherit;font-size: inherit"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </strong><strong>KIC Strategy</strong></span>:  Write a list of things you know about, imagine and can do.  Choose one thing from the list and talk about it with a peer. Have them ask you ''Why'' and ''Tell me More" over and over to help you develop that idea.</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/KIC.png" width="95%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Write a list</strong>: Write a list based on the topics below or your own topic/question.  Circle anything from your list that you would like to write more about.  Here are some other topics you could write a list about:
+<ul>
+ 	<li style="text-align: left"><strong>I love...</strong></li>
+ 	<li style="text-align: left"><strong>I wish I could...</strong></li>
+ 	<li style="text-align: left"><strong>I dislike…</strong></li>
+ 	<li style="text-align: left"><strong>I am an expert at...</strong></li>
+ 	<li style="text-align: left"><strong>I need to improve on...</strong></li>
+ 	<li style="text-align: left"><strong>People like me because...</strong></li>
+ 	<li style="text-align: left"><strong>Why would anyone...?</strong></li>
+ 	<li style="text-align: left"><strong>My favourite... (movies/books/authors...)</strong></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/List%203.png" width="73%"  />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+<b><span style="color: #000000"><strong><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </strong></span>5Ws: </b>Now answer the 5Ws about this topic to develop your idea.  Who?  What?  When?  Where?  Why? Where?</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Reread aloud:</strong> Slowly read your writing aloud from start to finish. Point to each word as you read.  Listen carefully to make sure sentences are clear and make sense.  Stop anytime and fix errors, add detail or cross out words or sentences that don''t need to be there.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Caret: </span></strong>Add or change words within sentences using a caret (∨).
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Ex%20sentence%20caret.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Circle Editing: </strong>Practice peer editing with a group. It''s fun and effective. Read the instructions below.
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Circle%20Editing%20pic%20and%20inst.png" width="100%"  />
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Peer Feedback</strong>: Have a peer read your writing and ask you questions from the list on the left.  Ask them to put a smiley face next to the parts they like and a plus sign next to the parts they want to know more about.
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Peer%20Feedback%20L2%20version%202.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Draw your character</strong> with lots of colour and close up details. Then <strong>label</strong> your drawing. Use your picture to help you describe them in your writing.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Character%20Development/Level%201%20old%20man.png" width="60%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Write about what your characters are <strong>thinking</strong> and <strong>feeling</strong>.
+<ul>
+ 	<li><span style="color: #000000"><em>Tom was <strong>nervous</strong> and <strong>excited</strong> about starting at a new school. He <strong>wondered</strong> if he would make a friend on the first day.</em></span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add an interesting first sentence to hook the reader. </span>
+<ul>
+ 	<li><span style="color: #000000"><strong>A sound</strong> (Woosh)</span></li>
+ 	<li><span style="color: #000000"><strong>Dialogue</strong> ("Watch out!")</span></li>
+ 	<li><span style="color: #000000"><strong>A surprising fact</strong> (I live next door to a giant)</span></li>
+</ul>
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Add the<strong> 5Ws</strong> to your beginning. (<span style="color: #ff6600">who</span>, <span style="color: #ff00ff">what</span>, <span style="color: #339966">when</span>, <span style="color: #0000ff">where</span> + <span style="color: #ff0000">why</span>).
+<ul>
+ 	<li>''Guess what?  There is a new <span style="color: #ff6600">boy</span> in my class.  His name is <em><span style="color: #ff6600">Billy </span>and he is the <span style="color: #ff00ff">smartest kid</span> in the whole <span style="color: #0000ff">school</span>.  <span style="color: #ff6600">Billy</span> <span style="color: #ff0000">lives next door to a library</span>.''</em></li>
+</ul>
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Openings_Introduction/Level%201%20Colourful%20Semantics.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Stay on Topic Strategy: </strong>Read your writing aloud and <strong>cross out</strong> anything that is not about the <strong>main idea.</strong></td>
+<td width="4%"></td>
+<td width="48%"><img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Student%20example%20-%20Whale2.png" width="60%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Put it in Order Strategy:</strong>
+<ol>
+ 	<li>Write all the events that happen in order. Even the boring parts. It will look like a list.</li>
+ 	<li>Cross out anything that is not about the main idea or not interesting.</li>
+ 	<li>Choose an interesting topic from the list and write about that. See example:</li>
+</ol>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Put%20it%20in%20Order.png" width="98%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>To help organise your ideas and make it easier for the reader to read, try adding a space between large chunks of text.
+<ul>
+ 	<li>Read your writing from the beginning and when the following changes, start a new paragraph:
+<ul>
+ 	<li><strong>Topic</strong></li>
+ 	<li><strong>Time</strong></li>
+ 	<li><strong>Place </strong>(setting)</li>
+ 	<li><strong>Person </strong>(new speaker)</li>
+</ul>
+</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%" valign="top"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Paragraphing/Time%20Topic%20Place%20Person%20picture.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<img src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Developing%20Ideas/Dev%20Ideas%20L2.png" width="100%" />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Make a <strong>five senses organiser</strong> to describe people, places and actions (see, hear, smell, feel, taste).
+
+&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%202-4.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Draw</strong> people or places with lots of colour, close up details and setting details.  You can also label your picture.
+
+Use your picture to help you add detail to your writing.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Pictorial%20writing.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>Making sentences longer</strong></h6>
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong><span style="color: #000000"> C</span>ombine two short sentences using ''<em>and</em>''.
+<ul>
+ 	<li><strong>Instead of:</strong> <em>I went to the park. I played footy</em>.</li>
+ 	<li><strong>Try:</strong> <em>I went to the park <strong>and </strong>I played footy</em>.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add some of the</span><strong><span style="color: #000000"> 5Ws (<span style="color: #ff9900">Who</span>, <span style="color: #3366ff">what</span>, where, <span style="color: #ff00ff">when</span>, <span style="color: #99cc00">why</span>) </span></strong><span style="color: #000000">to your sentences to stretch them out.</span>
+<ul>
+ 	<li>While we were <span style="color: #ff00ff">asleep</span>, my <span style="color: #ff9900">puppy </span><span style="color: #3366ff">chewed the new couch,</span> because she <span style="color: #99cc00">lost her bone</span>.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sentence%20Length/5Ws.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and <span style="text-decoration: underline">draw an outline around the beginning, middle and end</span>.  The middle should be longer and contain more detail.  If it isn''t, use some of the strategies below to add detail and make your middle longer.</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Pacing/Outline%20traffic%20lights.png" width="97%"  /></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Draw</strong> people or actions with lots of <strong>colour </strong>and <strong>close up</strong> details.  Use your picture to add detail to your writing.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Describe people, places and actions using the <strong>five senses</strong> (<strong>see</strong>, <strong>hear</strong>, <strong>smell</strong>, <strong>feel</strong>, <strong>taste</strong>).</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Pacing/Five%20Senses.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/Level%202%20punct.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time Connectives</strong>: later, later on, before, soon.</li>
+ 	<li><strong>Adding information</strong>: also, too, and, so, but.</li>
+ 	<li><strong>List</strong>: First, second, third, finally, next, after that.</li>
+ 	<li><strong>Explaining</strong>: For example, because.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('Different ways to begin sentences:
+<ul>
+ 	<li><b>When</b>: On, At, When, During, In the morning/evening, that day/night</li>
+ 	<li><strong>Sequence</strong>: Next, Then, Later on, After, After that</li>
+ 	<li><strong>Conjunctions</strong>: After, While, As, Because, If, Now, Once, But, Since, So</li>
+ 	<li><strong>Pronouns</strong>: I, We, He, She, They, Our, My</li>
+ 	<li><strong>Other interesting starters</strong>: Suddenly, Wow, Splash, Bang, Despite, Meanwhile, By the time, It was, Let me tell you.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>In your writing, find sentences with nouns and see if you can ''add more detail'' or ''expand'' them by adding an <span style="text-decoration: underline">article</span> and <span style="text-decoration: underline">adjective</span>. See the example below:
+<ul>
+ 	<li>I ate chips.</li>
+ 	<li>I ate <strong>a</strong> <strong>large</strong>, <strong>hot</strong> bucket of chips.</li>
+</ul>
+&nbsp;
+
+<strong>Nouns</strong>: Nouns are people, places, objects, and ideas (Peter, Mum, Grandpa, park, cinema, book, bed, house).
+
+<strong>Articles</strong>: a, an, the
+
+<strong>Adjectives</strong>: Describing words (big, small, red, yellow, angry, happy, round, long).</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and underline nouns and verbs.  See if you can change them to make them more specific. See the example below.
+<ul>
+ 	<li><strong>Nouns</strong> are things, people and places (table, dog, house, ball, John, park)</li>
+ 	<li><strong>Verbs</strong> are actions (jump, run, hit, cry, laugh)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Somebody, Wanted, But, So, Then</strong>: Retell a story plot using these sentence starters.</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/SWBS.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use <strong>adjectives</strong> to describe people, places and things.
+<ul>
+ 	<li><em>Clare put on her <span style="text-decoration: underline">red</span> <span style="text-decoration: underline">shiny</span> shoes.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Find different and more interesting words (<strong>synonym</strong>) that mean the same thing. Use a thesaurus/synonym list.
+<ul>
+ 	<li><em>She put on her <del>red</del> shoes.  She put on her ruby shoes</em>.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /></span></strong>Underline all the general nouns and verbs in your writing and replace them with <strong>precise nouns</strong> and <strong>verbs</strong>.
+<ul>
+ 	<li>The flowers hung down in the sun. (general)</li>
+ 	<li>The <span style="text-decoration: underline">roses</span> <span style="text-decoration: underline">wilted</span> in the sun. (precise)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Compound Sentences:</strong> Join one or more ideas within a sentence using a coordinating conjunction.  To remember the conjunctions, think of the acronym FANBOYS (for, and, nor, but, or, yet, so).</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Compound%20Sentences.png" width="100%" /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line.
+
+&nbsp;
+<ul>
+ 	<li><strong><em>Dialogue: </em></strong><em>Before she left, she turned to her brother and said, "If I come back, I''ll tell you the whole truth."</em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><em><strong>Funny thought: </strong>As Ms. Bloomberg approached me, the old wooden slats creaked beneath her feet.  With every step, I imagined her falling through the floor. </em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>S</strong><em><strong>urprise:  </strong>Jack opened his eyes and everything was black.</em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>Describe a scene: </strong><em>Max curled up in his kennel and fell fast asleep.  </em></li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"> <strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Storyboard</strong>: Draw or write your ideas in order using a storyboard.  You can even use small pieces of square paper and move them into the right order.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Storyboard.png" width="88%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Put it in Order Strategy:</strong>
+
+1.Write all the events that happen in order. Even the boring parts. It will look like a list.
+
+2. Cross out anything that is not about the main idea or not interesting.
+
+3. Choose an interesting topic from the list and write about that.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Put%20it%20in%20Order.png" width="98%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three</strong>: Plan your story with an orientation, and two problems leading up to a big problem, then a resolution.
+
+&nbsp;</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Time and location connectives</strong>:
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Connectives%20list.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('Try to create your own original figurative language, rather than something common and cliche.  See below.
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as my breakfast this morning.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Metaphor</strong>: It compares two things <span style="text-decoration: underline">without</span> using the words like or as.
+
+<em>E.g. My Aunt <span style="text-decoration: underline">is</span> a dragon.  The house <span style="text-decoration: underline">was</span> a zoo.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have <u>50 million </u>things to do.  My shoes are slowly <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Alliteration</strong>: Words that start with the same sound are used repeatedly to create rhythm and fluency.
+
+<em>E.g. <span style="text-decoration: underline">Faint</span> <span style="text-decoration: underline">footsteps</span> followed me. Meg <span style="text-decoration: underline">planted</span> the <span style="text-decoration: underline">pretty</span> flowers.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. </em><em><span style="text-decoration: underline">Pitter patter</span>! Waves <span style="text-decoration: underline">crashed</span> against the rocks</em>.</td>
+<td width="4%"></td>
+<td width="48%"><strong>Personification: </strong>When objects are given human qualities.
+
+<em>E.g. The leaves <span style="text-decoration: underline">danced</span> in the wind.  The cookies were <span style="text-decoration: underline">begging</span> to be eaten.</em></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Free Writing</strong>: Put a timer on for two minutes and write anything that comes to mind. Don''t stop writing.  Write about something specific or just general thoughts that pop into your head.</td>
+<td width="4%"></td>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Mind Map</strong>: Write a word in the middle of your mindmap.  It can be a person, place or thing that interests you. Then brainstorm other things about that word.  Just keep going and let your imagination stretch as far as you can.  See example.
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/Mind%20Map.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Reread aloud:</strong> Slowly read your writing aloud from start to finish. Point to each word as you read. Listen carefully to make sure ideas make sense and the writing flows. Stop as you read to make changes.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Make Room to Revise</strong>:
+<ul>
+ 	<li>Leave space at the bottom of your page to add longer sentences or paragraphs.</li>
+ 	<li>Leave the left page blank for rewriting large sections or sentences and brainstorming.</li>
+ 	<li>Write on every second line (double spacing).</li>
+</ul>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Make%20Room%20to%20Edit.png" width="75%"  /></td>
+</tr>
+</tbody>
+</table>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Peer Feedback</strong>: Have a peer read your writing and ask you questions from the list below.  Ask them to put a symbol
+
+(<img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/smiley%20face.jpg" width="18"  />+ - ?) next to the parts they like, want to know more of, less of, and what parts confuse them.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Peer%20Feedback%20L3-6.png" width="75%"  />
+
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Make a sentence with <span style="text-decoration: underline">three</span> parts about where your character is <b>standing</b>, what they <strong>see</strong> and what they <strong>think</strong>. See example.
+<ul>
+ 	<li><em>Ben <span style="text-decoration: underline">climbed</span> the fence and peeked over the top.  He <span style="text-decoration: underline">saw</span> his neighbour digging a giant hole and he <span style="text-decoration: underline">wondered</span> if he was up to no good.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Describe your character''s actions and emotions using ''<strong>Show don''t Tell</strong>''.
+<ul>
+ 	<li>Telling:  <em>Jack was very happy</em>.</li>
+ 	<li>Showing: <em>Jack lept in the air, spun around 360 degrees, and then started dancing on the spot!</em></li>
+ 	<li><strong>INSERT IMAGE  - Show Don''t Tell</strong></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Begin with a <strong>hook</strong> to get the reader interested.
+<ul>
+ 	<li><strong>A sound</strong> <em>Woosh</em>.</li>
+ 	<li><strong>T</strong><strong>alk to the reader </strong>"<em>You probably won''t believe me when I tell you my story</em>."</li>
+ 	<li><strong>A surprising fact </strong><em>Although I look 30, I''m actually 12</em>.</li>
+ 	<li><strong>A sad fact</strong> <em>I have been poor my whole life</em>.</li>
+</ul>
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong>Add the <strong>5Ws</strong> to the beginning so the reader can form a clear picture of where events take place and details about the                characters.
+<ol>
+ 	<li><strong>Who</strong> it is about</li>
+ 	<li><strong>What</strong> they are doing</li>
+ 	<li><strong>When</strong> it is set (year, time, season, etc.)</li>
+ 	<li><strong>Where</strong> it is happening (farm, city, school, country)</li>
+ 	<li><strong>Why - </strong> A brief explanation (<em>I''ve been living on a Farm in Apollo Bay with my grandparents for a month now <span style="text-decoration: underline">because</span> <span style="text-decoration: underline">my parents are on holiday overseas</span>). </em></li>
+</ol>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Stay on Topic Strategy: </strong>Read your writing aloud and <strong>cross out</strong> anything that is not about the <strong>main idea.</strong></td>
+<td width="4%"></td>
+<td width="48%"><img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/Student%20example%20-%20Whale2.png" width="60%"  /></td>
+</tr>
+</tbody>
+</table>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>PASTA</strong> <strong>prompt: </strong>Complete a PASTA prompt based on a piece of writing.  It will help you narrow your idea and stay focused by looking at the five elements of style and voice.  See the examples below.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/PASTA%20Prompt.PNG" width="97%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>To help organise your ideas and make it easier for the reader to read, try adding a space between large chunks of text.
+
+&nbsp;
+
+Read your writing from the beginning and when the following changes, start a new paragraph:
+<ul>
+ 	<li><strong>Topic</strong></li>
+ 	<li><strong>Time</strong></li>
+ 	<li><strong>Place </strong>(setting)</li>
+ 	<li><strong>Person </strong>(new speaker)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Paragraphing/Time%20Topic%20Place%20Person%20picture.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong>Read your writing to a peer and have them tell you which parts they want to know more about.
+<ul>
+ 	<li>Put a plus symbol (<strong>+) </strong>next to the ideas they want to know more about.</li>
+ 	<li>After you receive feedback, revise your writing to add the additional information.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Developing%20Ideas/Tell%20Me%20More%20card.png" width="60%" /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Make a <strong>five senses organiser</strong> to describe people, places and actions (see, hear, smell, feel, taste).
+
+&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%202-4.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> Show don''t Tell: </span></strong><span style="color: #000000">Describe what is happening or how people are feeling rather than telling.  For example, instead of ''</span><span style="color: #000000"><em>She was really angry'', </em>better to write, <em>''Sam pounded her fists on the table.''</em></span>
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%201-2.png" width="95%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>  Making sentences longer                                                                                                              </strong></h6>
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong><span style="color: #000000"> Combine two short sentences using a conjunction (for, and, because, but, or, nor, yet, so)</span>
+<ul>
+ 	<li><strong>Instead of:</strong> <em>Nick had to leave. His friend was waiting for him.</em></li>
+ 	<li><strong>Try:</strong> <i>Nick had to leave <strong>because</strong> his friend was waiting for him.</i></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Compound%20Sentences.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add some of the</span><strong><span style="color: #000000"> 5Ws (<span style="color: #ff9900">Who</span>, <span style="color: #3366ff">what</span>, where, <span style="color: #ff00ff">when</span>, <span style="color: #99cc00">why</span>) </span></strong><span style="color: #000000">to your sentences to stretch them out.</span>
+<ul>
+ 	<li>While we were <span style="color: #ff00ff">asleep</span>, my <span style="color: #ff9900">puppy </span><span style="color: #3366ff">chewed the new couch,</span> because she <span style="color: #99cc00">lost her bone</span>.</li>
+</ul>
+&nbsp;</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sentence%20Length/5Ws.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+<h6><strong>  Making sentences shorter</strong></h6>
+<table style="height: 24px" width="838">
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add a one, two or three word phrases between long sentences for effect.</span>
+<ul>
+ 	<li>That''s insane!  Can you believe that? Woosh! Fabulous! Wow!</li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a short noun and verb phrase.
+<ul>
+ 	<li>He frowned.  She bolted.  They left.  Wind whistled.  Branches waved.  Babies cried.  People cheered.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and <span style="text-decoration: underline">draw an outline around the beginning, middle and end</span>.  The middle should be longer and contain more detail.  If it isn''t, use the <strong>Show don''t Tell</strong> strategy to add detail and add more detail to your middle.
+
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use <strong>Show don''t Tell</strong> to add detail to your writing and slow down the pace.
+
+Describe what is happening or how people are feeling rather than telling. For example:
+<ul>
+ 	<li><strong>Telling: </strong>''<em>He ran fast.''</em></li>
+ 	<li><strong>Showing: </strong><em>''Sam bolted down the street, not looking behind him.  His heart was pounding and sweat dripped down his red face.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%201-2.png" width="75%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/Punctuation%20L3.png" width="90%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time Connectives</strong>: later, later on, before, soon.</li>
+ 	<li><strong>Adding information</strong>: also, too, and, so.</li>
+ 	<li><strong>List</strong>: First, second, third, finally, next, after that.</li>
+ 	<li><strong>Explaining</strong>: For example, because.</li>
+ 	<li><strong>Contrast ideas</strong>: although, yet, but.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('Different ways to begin sentences:
+
+<strong>Adjective: </strong><em><span style="text-decoration: underline">Red</span> flowers appeared on my doorstep. </em>
+
+<strong>Proper noun: </strong><em><span style="text-decoration: underline">Danny</span> rushed through the door. </em>
+
+<strong>Adverb: </strong><span style="text-decoration: underline">Quietly</span>, she took a seat in the library.
+
+<strong>Sequence</strong>: Next, Then, Later on, After that
+
+<strong>Conjunctions</strong>: After, Although, As, While, As, Because, Before, Until, If, Since, Now, Once, But
+
+<strong>Pronouns</strong>: I, We, He, She, They, Our
+
+Look at other texts from good authors and <strong>imitate</strong> the different types of sentence beginnings (Despite, Actually, If only).');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>If a sentence is stating that a <strong>noun</strong> has ownership of an <strong>object</strong>, it is called a <strong>possessive noun</strong>.
+
+Look at the example below. Because the kennel belongs to the dog, you need to put an apostrophe before the s.
+<h2 style="text-align: center">My dog''s kennel is wooden.</h2>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and underline any general nouns and verbs. See if you can change them to make them more specific. See the example below.
+<ul>
+ 	<li><strong>Nouns</strong> are things, people and places (table, dog, house, ball, John, park)</li>
+ 	<li><strong>Verbs</strong> are actions (jump, run, hit, cry, laugh)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>One Sentence Summary: </strong>This strategy helps you explain in one sentence the author''s purpose and the main idea.</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/Main%20Idea%20Summary.png" width="100%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> One Word/Phrase</span>: </strong> Read sentences and try to sum up in one word or phrase what the author is trying to say. Then combine the words and phrases to make a short summary.  See example below (People, Places, Things, Animals)
+<ul>
+ 	<li> ''Great white sharks are super swimmers''.  - <strong>F<em>ast</em></strong></li>
+ 	<li>  ''They are called predatory fish because they eat other fish.'' - <em><strong>Predatory</strong></em></li>
+ 	<li>  ''Thailand, Malaysia, Singapore, and Indonesia.'' - <em><strong>Southeast Asia</strong></em></li>
+</ul>
+&nbsp;</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/Categorise%205W%20and%20noun%20groups.png" width="100%"  />*Categorise lists of people, places, things, and animals into one word.</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Find different and more interesting words (<strong>synonym</strong>) that mean the same thing. Use a thesaurus or synonym list to help you.
+<ul>
+ 	<li><em>She put on her <del>red</del> shoes.  She put on her ruby shoes</em>.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Underline all the general nouns and verbs in your writing and replace them with <strong>precise</strong> <strong>nouns</strong> and <strong>verbs</strong>
+<ul>
+ 	<li>The flowers hung down in the sun.  The <span style="text-decoration: underline">roses</span> <span style="text-decoration: underline">wilted</span> in the sun).</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a list of <strong>topic-specific words</strong> for people, places and things.
+<ul>
+ 	<li>E.g. Zoo: enclosure, habitat, endangered, camouflage.  Use these words in your writing.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Complex Sentences:</strong> Complex sentences contain an independent and subordinate (dependent) clause.  The subordinate clause does not make sense on its own, and needs the independent clause to complete the sentence.
+
+&nbsp;
+
+The letters in the acronym AAAWWUBBIS are subordinating conjunctions. Use them to create complex sentences.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Different%20types%20of%20Sentences/AAAWWUBBIS.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Different%20types%20of%20Sentences/Complex%20Sentence.png" width="100%"  />
+
+*The underlined parts begin with a subordinating conjunction and do not make sense on their own.</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line.
+
+&nbsp;
+<ul>
+ 	<li><strong>Circular ending</strong>: The story ends with the same/similar line or event as the beginning.</li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>Question</strong>: End with a question to make the reader think.  <em>Who is going to save us now?</em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong><em>Dialogue</em></strong><em>: </em><em>Before she left, she turned to her brother and said, "If I come back, I''ll tell you the whole truth</em>."</li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>A f</strong><em><strong>unny thought</strong>: Very few people can say they''ve achieved as many failures as I have.  </em></li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong><em>A </em>s</strong><em><strong>urprise ending</strong>: Jack opened his eyes and everything was black</em>.</li>
+</ul>
+&nbsp;
+<ul>
+ 	<li><strong>Describe a scene</strong>: <em>Max curled up in his kennel and fell fast asleep.</em></li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('Try to create your own original figurative language, rather than something common and cliche.  See below.
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as my breakfast this morning.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Metaphor</strong>: It compares two things <span style="text-decoration: underline">without</span> using the words like or as.
+
+<em>E.g. My Aunt <span style="text-decoration: underline">is</span> a dragon.  The house <span style="text-decoration: underline">was</span> a zoo.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have <u>50 million </u>things to do.  My shoes are slowly <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Alliteration</strong>: Words that start with the same sound are used repeatedly to create rhythm and fluency.
+
+<em>E.g. <span style="text-decoration: underline">Faint</span> <span style="text-decoration: underline">footsteps</span> followed me. Meg <span style="text-decoration: underline">planted</span> the <span style="text-decoration: underline">pretty</span> flowers.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. </em><em><span style="text-decoration: underline">Pitter patter</span>! Waves <span style="text-decoration: underline">crashed</span> against the rocks</em>.</td>
+<td width="4%"></td>
+<td width="48%"><strong>Personification: </strong>When objects are given human qualities.
+
+<em>E.g. The leaves <span style="text-decoration: underline">danced</span> in the wind.  The cookies were <span style="text-decoration: underline">begging</span> to be eaten.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Oxymoron</strong>: Words that are opposite or contradict each other.
+
+E.g. <em>We have a <span style="text-decoration: underline">love-hate</span> relationship. It was <span style="text-decoration: underline">seriously funny</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Free Writing</strong>: Put a timer on for two minutes and write anything that comes to mind. Don''t stop writing.  Write about something specific or just general thoughts that pop into your head.</td>
+<td width="4%"></td>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Mind Map</strong>: Write a word in the middle of your mindmap.  It can be a person, place or thing that interests you. Then brainstorm other things about that word.  Just keep going and let your imagination stretch as far as you can.  See example.
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/Mind%20Map.png" width="100%"  /></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Looping</strong>: After freewriting, read your writing then put a circle or loop around a word or sentence that you want to write about.  Set the timer again and write about that topic for another 2 minutes.  You can continue looping until you''re happy with your ideas.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/Looping.png" width="75%"  />
+
+&nbsp;</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>See-Think-Wonder</strong>: Look at pictures or go for a walk and observe everything around you.  Write down what you see, you think and what it makes you wonder.
+
+&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Finding%20Ideas/See%20Think%20Wonder.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Reread aloud:</strong> Slowly read your writing aloud from start to finish. Point to each word as you read.  Listen carefully and check that ideas and details make sense and the writing flow logically. Stop as you read to make changes.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Rest and </span>Revisit</strong>:  Don''t revise and edit in one go.  Take breaks so you can look at your writing with fresh eyes. You''ll be amazed at how much easier and clearer the revision process is when you''ve stepped away from your writing.</td>
+</tr>
+</tbody>
+</table>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Peer Feedback</strong>: Have a peer read your writing and ask you questions from the list below.  Ask them to put a symbol
+
+(<img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/smiley%20face.jpg" width="18"  />+ - ?) next to the parts they like, want to know more of, less of, and what parts confuse them.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Peer%20Feedback%20L3-6.png" width="75%"  />
+
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>List interesting facts about your character:
+<ul>
+ 	<li><em><strong>Personality</strong> </em>(<em>angry, calm, giving</em>)</li>
+ 	<li>Interesting <strong>P</strong><em><strong>hysical features</strong></em> (<em>she has wiry grey hair that sticks out in all directions</em>)</li>
+ 	<li>How are they <em><strong>connected to other characters</strong></em> (brother, best friend)</li>
+ 	<li>Interesting facts about their <em><strong>past </strong>(He never smiled, not even as a child). </em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Describe your character''s actions and emotions using ''<strong>Show don''t Tell</strong>''.
+<ul>
+ 	<li>Telling:  <em>Jack was very happy</em>.</li>
+ 	<li>Showing: <em>Jack lept in the air, spun around 360 degrees, and then started dancing on the spot!</em></li>
+ 	<li><strong>INSERT IMAGE  - Show Don''t Tell</strong></li>
+</ul>
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Describe your character using a <strong>simile </strong>
+<ul>
+ 	<li><em>She was as graceful as a swan gliding through the water on a lake.</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Draw and label the setting/character </span></strong><span style="color: #000000">with as much detail as you can.  Use your drawing to help you add detail when writing your opening.</span>
+
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Include some or all of the <strong>5Ws</strong> (who, when, where, what, why) in your introduction.
+<ul>
+ 	<li><em>The rickety abandoned <span style="text-decoration: underline">house</span> stood at the <span style="text-decoration: underline">top of the grassy hill</span>, surrounded by overgrown shrubs and a crooked wooden fence with a broken gate, which hung on one hinge.  No one dared to enter the gate.  <span style="text-decoration: underline">No one had been inside the house</span> for 100 years.  <span style="text-decoration: underline">It was thoughts to be haunted</span>. </em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Begin with one of the following:
+<ul>
+ 	<li><strong>Dialogue: </strong>"<em>Come with me, but don''t ask where we''re going</em>."</li>
+ 	<li><strong>A surprising fact:</strong> <em>I was born 200 years ago. </em></li>
+ 	<li><strong>Something funny:</strong> <em>I came last in the race.  Well, there has to be a first time for everything. </em></li>
+ 	<li><strong>Talk to the reader: </strong>"<em>You probably won''t believe me when I tell you</em>..."</li>
+ 	<li><strong>A</strong> <strong>sad fact: </strong><em>I have been poor my whole life.</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Stay on Topic Strategy:  </strong>Read your writing and <strong>cross out</strong> anything that is not about the <strong>main idea.</strong>
+
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>PASTA</strong> <strong>prompt: </strong>Complete a PASTA prompt based on a piece of writing.  It will help you narrow your idea and stay focused by looking at the five elements of style and voice.  See the examples below.
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Narrow%20Ideas/PASTA%20Prompt.PNG" width="97%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>narrative</strong> or <strong>recount</strong> writing start a new paragraph when the following changes:
+<ul>
+ 	<li><strong>Topic</strong>: When you''re talking about a new idea start a new paragraph. (<em>I went for a bike ride with my friend</em>).</li>
+ 	<li><strong>Time</strong>: When the time changes (<em>Later that day, The next day, On Monday, In the morning</em>).</li>
+ 	<li><strong>Place</strong>: When the setting or place changes (<em>Back at the farm...</em>).</li>
+ 	<li><strong>Person</strong>: If you''re introducing a new person, or a new person is speaking change paragraphs.</li>
+</ul>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Paragraphing/Student%20Example.png" width="100%"  />
+
+&nbsp;</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>Informational</strong> writing, start a new paragraph when the topic changes.  Each paragraph should have a topic sentence and supporting details.
+
+Most non-fiction paragraphs have three parts:
+<ol>
+ 	<li>Topic sentence or what the paragraph is about.</li>
+ 	<li>Details about the topic.</li>
+ 	<li>An example or evidence.</li>
+</ol>
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Paragraphing/Information%20text%20example.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>You can add more meaning to your ideas by adding information before or after the noun or verb.  This is called expanding a noun phrase or verb phrase.
+
+*The noun phrase is underlined.
+
+<strong>Narrative/Recount</strong>
+<ul>
+ 	<li><strong>Noun phrase:</strong> <em>I saw <span style="text-decoration: underline">their neighbour</span>. </em></li>
+ 	<li><strong>Expanded noun phrase: </strong>My friend''s elderly neighbour is very friendly and always says hello.</li>
+</ul>
+<strong>Information Text</strong>
+<ul>
+ 	<li><strong>Noun phrase:</strong> Y<em>ou can walk to <span style="text-decoration: underline">the island</span>.</em></li>
+ 	<li><strong>Expanded noun phrase:</strong> <em>At sunrise, during low tide, you can walk to the island.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Make a <strong>five senses organiser</strong> to describe people, places and actions (see, hear, smell, feel, taste).
+
+&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%202-4.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> Show don''t Tell: </span></strong><span style="color: #000000">Describe what is happening or how people are feeling rather than telling.  For example, instead of ''</span><span style="color: #000000"><em>She was really angry'', </em>better to write, <em>''Sam pounded her fists on the table.</em></span>
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Level%201-2.png" width="95%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>Making sentences longer</strong></h6>
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong><span style="color: #000000"> Combine two short sentences using a conjunction (for, and, because, but, or, nor, yet, so)</span>
+<ul>
+ 	<li><strong>Instead of:</strong> <em>Nick had to leave. His friend was waiting for him.</em></li>
+ 	<li><strong>Try:</strong> <i>Nick had to leave <strong>because</strong> his friend was waiting for him.</i></li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Start sentences with a subordinating conjunction (As, After, Although, When, While, Until, Because, Before, If, Since)</span>
+<ul>
+ 	<li><em><strong>While</strong> her parents slept, Mary snuck into the basement.</em></li>
+</ul>
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/AAAWWUBBIS.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%">&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Compound%20Sentences.png" width="100%"  />
+
+&nbsp;
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h6><strong>Making sentences shorter</strong></h6>
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add a one, two or three word phrases between long sentences for effect.</span>
+<ul>
+ 	<li>That''s insane!  Can you believe that? Woosh! Fabulous! Wow!</li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a short noun and verb phrase.
+<ul>
+ 	<li>He frowned.  She bolted.  They left.  Wind whistled.  Branches waved.  Babies cried.  People cheered.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use <strong>Show don''t Tell</strong> to make your middle longer.  Describe what is happening or how people are feeling rather than telling. For example:
+<ul>
+ 	<li><strong>Telling: </strong>''<em>He ran fast.''</em></li>
+ 	<li><strong>Showing: </strong><em>''Sam bolted down the street, not looking behind him.  His heart was pounding and sweat dripped down his red face.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/Level%204%20punctuation.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time</strong>: later, before, meanwhile, since.</li>
+ 	<li><strong>Adding information</strong>: also, too, and, in addition, furthermore.</li>
+ 	<li><strong>Opposing view</strong>: However, anyway, yet, whilst.</li>
+ 	<li><strong>List</strong>: To begin with, second(ly), third(ly), finally.</li>
+ 	<li><strong>Explaining</strong>:  In other words, For instance, For example.</li>
+ 	<li><strong>Contrast ideas</strong>: although, yet, but, besides.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('Different ways to begin sentences:
+<ul>
+ 	<li><strong>Adjective: </strong><em><span style="text-decoration: underline">Red</span> flowers appeared on my doorstep. </em></li>
+ 	<li><strong>Proper noun: </strong><em><span style="text-decoration: underline">Danny</span> rushed through the door. </em></li>
+ 	<li><strong>Adverb: </strong><span style="text-decoration: underline">Quietly</span>, she took a seat in the library.</li>
+ 	<li><strong>Sequence</strong>: Next, Then, Later on, After that, Before long</li>
+ 	<li><strong>Conjunctions</strong>: After, Although, As, While, When, As, Until, Because, Before, If, Since, Now, Once, But</li>
+ 	<li><strong>Pronouns</strong>: I, We, He, She, They, Our</li>
+</ul>
+&nbsp;
+
+Look at other texts from good authors and <strong>imitate</strong> the different types of sentence beginnings (Despite, Actually, If only).');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>As you write, you need to think about when events occur and what tense you will use.  See the examples below:
+<ul>
+ 	<li><strong>Past Tense: </strong>Use this if the events happened in the past.  <em>John <span style="text-decoration: underline">ran</span> as fast as he <span style="text-decoration: underline">could</span> to the shop before it <span style="text-decoration: underline">closed</span>. </em></li>
+ 	<li><strong>Present Tense</strong>: Use this if events are happening now. John <span style="text-decoration: underline">runs</span> as fast as he <span style="text-decoration: underline">can</span> to the shop before it <span style="text-decoration: underline">closes</span>.</li>
+ 	<li><strong>Future Tense</strong>: Use this if events happen later.  John <span style="text-decoration: underline">will need to run</span> as <span style="text-decoration: underline">fast</span> as he can to the shop before it <span style="text-decoration: underline">closes</span>.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Have a go at adding words in the <span style="text-decoration: underline">correct tense</span> to the sentences below.
+
+&nbsp;
+
+Sarah ……………………………….... to the party. <strong>(<i>Past)</i></strong>
+
+Sarah …………………………………. to the party. <strong>(</strong><em><strong>Present)</strong></em>
+
+Sarah …………………………………. to the party. <strong>(<i>Future)</i></strong></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and underline any general nouns and verbs. See if you can change them to make them more specific. See the example below.
+<ul>
+ 	<li><strong>Nouns</strong> are people, places, things, and ideas.</li>
+ 	<li><strong>Verbs</strong> are actions.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>One Sentence Summary: </strong>This strategy helps you explain in one sentence the author''s purpose and the main idea.</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/Main%20Idea%20Summary.png" width="100%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  4 </span>Questions</strong>: Answer four questions as concisely as you can to find and organise the main ideas for your summary.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/Monarch%20Butterfly.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Find different and more interesting words (<strong>synonym</strong>) that mean the same thing.  Use a thesaurus or synonym list to help you.
+<ul>
+ 	<li><em>She put on her <del>red</del> shoes.  (ordinary)</em></li>
+ 	<li><em>She put on her ruby shoes</em>. (interesting)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Underline all the general nouns and verbs in your writing and replace them with <strong>precise</strong> <strong>nouns</strong> and <strong>verbs</strong>.
+<ul>
+ 	<li>The flowers hung down in the sun. (general)</li>
+ 	<li>The <span style="text-decoration: underline">roses</span> <span style="text-decoration: underline">wilted</span> in the sun. (precise)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a list of <strong>topic-specific words</strong> for people, places and things.  Use these words in your writing.
+<ul>
+ 	<li>Zoo: enclosure, habitat, endangered, camouflage.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Preposition:</strong>  A preposition or prepositional phrase shows the relationship between a noun and another word.</td>
+<td width="4%"></td>
+<td width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Prepositions.png" width="100%"  /></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Complex Sentences:</strong> Complex sentences contain an independent and subordinate (dependent) clause.  The subordinate clause does not make sense on its own, and needs the independent clause to complete the sentence. Use words from the acronym AAAWWUBBIS to create complex sentences.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Different%20types%20of%20Sentences/AAAWWUBBIS.png" width="100%"  />
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Different%20types%20of%20Sentences/Complex%20Sentence.png" width="100%"  />
+
+*The underlined parts begin with a subordinating conjunction and do not make sense on their own.</td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Compound Sentences:</strong> Join one or more ideas within a sentence using a coordinating conjunction. To remember the conjunctions, think of the acronym FANBOYS (for, and, nor, but, or, yet, so). <em>I like skiing <strong>and</strong> snowboarding.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line that leaves the         reader satisfied.
+<ul>
+ 	<li><strong>Circular ending: </strong>The story ends with something familiar from the beginning. This can be the same last line or same event occurring.</li>
+ 	<li><strong>Question: </strong>End with a question to make the reader wonder.</li>
+ 	<li><strong><em>Dialogue: </em></strong><em>E.g., </em><em>Before she left, she turned to her brother and said, "If I come back, I''ll tell you the whole truth</em>."</li>
+ 	<li><strong>F</strong><em><strong>unny: </strong>End with a funny thought or scene. </em></li>
+ 	<li><em><strong>Cliffhanger: </strong></em>This ending leaves the reader asking questions or wanting more. <em> E.g.  Sia made it back home safe, but she wasn''t alone.  </em></li>
+ 	<li><em><strong>S</strong></em><em><strong>urprise:</strong> Jack opened his eyes and everything was black. </em></li>
+ 	<li><strong>Describe a</strong> <strong>scene: </strong><em>Sarah curled up in her bed and fell fast asleep, without a worry in the world. </em></li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('Try to create your own original figurative language, rather than something common and cliche.  See below.
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as my breakfast this morning.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Metaphor</strong>: It compares two things <span style="text-decoration: underline">without</span> using the words like or as.
+
+<em>E.g. My Aunt <span style="text-decoration: underline">is</span> a dragon.  The house <span style="text-decoration: underline">was</span> a zoo.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have <u>50 million </u>things to do.  My shoes are slowly <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Alliteration</strong>: Words that start with the same sound are used repeatedly to create rhythm and fluency.
+
+<em>E.g. <span style="text-decoration: underline">Faint</span> <span style="text-decoration: underline">footsteps</span> <span style="text-decoration: underline">followed</span> me.  <span style="text-decoration: underline">Penny</span> was a <span style="text-decoration: underline">precious</span> child.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. </em><em><span style="text-decoration: underline">Pitter patter</span>! Waves <span style="text-decoration: underline">crashed</span> against the rocks</em>.</td>
+<td width="4%"></td>
+<td width="48%"><strong>Personification: </strong>When objects are given human qualities.
+
+<em>E.g. Autumn leaves <span style="text-decoration: underline">danced</span> across the street.  His grumbling stomach was <span style="text-decoration: underline">begging</span> for food.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Oxymoron</strong>: Words that are opposite or contradict each other.
+
+E.g. <em>We have a <span style="text-decoration: underline">love-hate</span> relationship. It was <span style="text-decoration: underline">seriously funny</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Criteria and Rubrics</strong>: Ask your teacher for set criteria or a rubric to guide you as you write and revise.  The criteria will vary depending on the purpose and text type (narrative, poem).
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Criteria%20or%20Rubric.png" width="68%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Rest and </span>Revisit</strong>:  Don''t revise and edit in one go.  Take breaks so you can look at your writing with fresh eyes. You''ll be amazed at how much easier and clearer the revision process is when you''ve stepped away from your writing.</td>
+</tr>
+</tbody>
+</table>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Peer Feedback</strong>: Have a peer read your writing and ask you questions from the list below.  Ask them to put a symbol
+
+(<img class="alignnone" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/smiley%20face.jpg" width="18"  />+ - ?) next to the parts they like, want to know more of, less of, and what parts confuse them.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Peer%20Feedback%20L3-6.png" width="75%"  />
+
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>List interesting facts about your character:
+<ul>
+ 	<li><em><strong>Personality</strong> </em>(<em>angry, calm, giving</em>)</li>
+ 	<li>Interesting <strong>P</strong><em><strong>hysical features</strong></em> (<em>she has wiry grey hair that sticks out in all directions</em>)</li>
+ 	<li>How are they <em><strong>connected to other characters</strong></em> (brother, best friend)</li>
+ 	<li>Interesting facts about their <em><strong>past </strong>(He never smiled, not even as a child). </em></li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Describe your character''s actions and emotions using ''<strong>Show don''t Tell</strong>''.
+<ul>
+ 	<li>Telling: <em>Dad was very happy.</em></li>
+ 	<li><em>Showing: Dad lept in the air, spun around 360 degrees, and then started dancing on the spot!</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read the first paragraph of popular novels by great authors, study what they do and <strong>imitate their character descriptions</strong>.  Do not copy, just borrow ideas.
+<ul>
+ 	<li>For example, <em>He was a big, beefy man with hardly any neck</em> - J.K. Rowling, Harry Potter.
+<ul>
+ 	<li>Your version might be: <em>She was a frail, old lady who barely moved</em>.</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table style="height: 330px" width="878">
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Imitate others</span></strong>
+
+Read the first paragraph of popular novels by great authors, study what they do and imitate their <strong>sentence structures </strong>and <strong>character descriptions</strong>.  Do not copy, just borrow ideas.
+
+<strong>For example:</strong> <em>He was a big, beefy man with hardly any neck</em> - J.K. Rowling, Harry Potter.
+
+<strong>Your version might be:</strong> <em>She was a frail, old lady who barely moved</em>.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Hook the reader </span></strong><span style="color: #000000">with one of the following:</span>
+<ul>
+ 	<li><strong><span style="color: #000000">Dialogue</span></strong></li>
+ 	<li><strong><span style="color: #000000">A surprising fact</span></strong></li>
+ 	<li><strong><span style="color: #000000">Something funny / talk to the reader </span></strong><span style="color: #000000">("You probably won''t believe me when I tell you...")</span></li>
+ 	<li><strong><span style="color: #000000">A sad fact </span></strong><span style="color: #000000">(I have been poor my whole life.)</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Modal Words</strong>: To make your opinion in your writing clear and persuasive, choose words that are high or low modality.   This makes your reader know exactly how you feel about a topic.
+<ul>
+ 	<li>''We <strong><em>must</em> </strong>stop climate change <strong><em>now</em></strong>.''  <i>- </i>High modality.</li>
+ 	<li>''<em><strong>Maybe</strong> </em>we <em><strong>could</strong> </em>start doing something about climate change <em><strong>soon</strong></em>.'' - Low modality.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Modality/Mod%20lower%20levels.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>narrative</strong> or <strong>recount</strong> writing start a new paragraph when the following changes:
+<ul>
+ 	<li><strong>Topic</strong>: When you''re talking about a new idea start a new paragraph. (<em>I went for a bike ride with my friend</em>).</li>
+ 	<li><strong>Time</strong>: When the time changes (<em>Later that day, The next day, On Monday, In the morning</em>).</li>
+ 	<li><strong>Place</strong>: When the setting or place changes (<em>Back at the farm...</em>).</li>
+ 	<li><strong>Person</strong>: If you''re introducing a new person, or a new person is speaking change paragraphs.</li>
+</ul>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Paragraphing/Student%20Example.png" width="100%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>Informational</strong> writing, start a new paragraph when the topic changes.  Each paragraph should have a topic sentence and supporting details.
+
+Most non-fiction paragraphs have three parts:
+<ol>
+ 	<li>Topic sentence or what the paragraph is about.</li>
+ 	<li>Details about the topic.</li>
+ 	<li>An example or evidence.</li>
+</ol>
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Show don''t Tell:</strong> Describe what is happening or how people are feeling rather than telling.
+<ul>
+ 	<li><strong>Telling:</strong>  ''<em>She was really angry''</em></li>
+ 	<li><strong>Showing:</strong><em> ''Sam pounded her fists on the table.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three:</strong> Describe something with <span style="text-decoration: underline">three</span> details.
+<ul>
+ 	<li><em>It was a wet, dark and windy day''. ''When I closed my eyes, I heard the <span style="text-decoration: underline">wind howling</span>, <span style="text-decoration: underline">children laughing</span> and <span style="text-decoration: underline">dogs barking</span> in the distance''. </em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Snapshot:  </strong>Write down every detail, as it happens, to highlight an important moment.
+<ul>
+ 	<li>''Tom<em> cautiously looked over his left shoulder and without drawing attention to himself, slowly picked up the bag.  With his eyes fixed on the front door, and heart-pounding, he gently unzipped the backpack</em>''.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h6><strong>Making sentences longer</strong></h6>
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong><span style="color: #000000"> Combine two short sentences using a conjunction (for, and, because, but, or, nor, yet, so)</span>
+<ul>
+ 	<li><strong>Instead of:</strong> <em>Nick had to leave. His friend was waiting for him.</em></li>
+ 	<li><strong>Try:</strong> <i>Nick had to leave <strong>because</strong> his friend was waiting for him.</i></li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Start sentences with a subordinating conjunction (As, After, Although, When, While, Until, Because, Before, If, Since)</span>
+<ul>
+ 	<li><em><strong>While</strong> her parents slept, Mary snuck into the basement.</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+<h6><strong>Making sentences shorter</strong></h6>
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Add a one, two or three word phrases between long sentences for effect.</span>
+<ul>
+ 	<li>That''s insane!  Can you believe that? Woosh! Fabulous! Wow!</li>
+</ul>
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a short noun and verb phrase.
+<ul>
+ 	<li>He frowned.  She bolted.  They left.  Wind whistled.  Branches waved.  Babies cried.  People cheered.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('Use the following strategies to make your middle or important parts longer and more descriptive.
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><strong>Show don''t Tell: </strong>Describe what is happening or how people are feeling rather than telling. Use can use a thesaurus to help you find the right word.
+<ul>
+ 	<li><strong>Telling: </strong>''<em>He ran fast.''</em></li>
+ 	<li><strong>Showing: </strong><em>''Sam bolted down the street, not looking behind him.  His heart was pounding and sweat dripped down his red face.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three:</strong> Describe something with three details.
+
+E.g. <em>''It was a wet, dark and windy day''. ''When I closed my eyes, I heard the <span style="text-decoration: underline">wind howling</span>, <span style="text-decoration: underline">children laughing</span><span style="text-decoration: underline"> and </span><span style="text-decoration: underline">dogs barking</span> in the distance''. </em></td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/text%20example%201.png" width="100%"  /></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Snapshot:  </strong>Write down every detail to highlight an important moment.
+
+E.g. ''Tom<em> cautiously looked over his left shoulder and without drawing attention to himself, slowly picked up the bag.  With his eyes fixed on the front door, and heart-pounding, he gently unzipped the backpack</em>''.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/L5.png" width="100%" />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time</strong>: later, before, meanwhile, since.</li>
+ 	<li><strong>Adding information</strong>: also, too, and, in addition, furthermore.</li>
+ 	<li><strong>Opposing view</strong>: However, anyway, yet, whilst.</li>
+ 	<li><strong>List</strong>: To begin with, second(ly), third(ly), finally.</li>
+ 	<li><strong>Explaining</strong>:  In other words, For instance, For example.</li>
+ 	<li><strong>Compare </strong>and <strong>c</strong><strong>ontrast ideas</strong>: although, yet, but, similarly.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('Different ways to begin sentences:
+
+<strong>Adjective: </strong><em><span style="text-decoration: underline">Red</span> flowers appeared on my doorstep. </em>
+
+<strong>Proper noun: </strong><em><span style="text-decoration: underline">Danny</span> rushed through the door. </em>
+
+<strong>Adverb: </strong><span style="text-decoration: underline">Quietly</span>, she took a seat in the library.
+
+<strong>Sequence/Time</strong>: Next, Then, Later on, After that, Earlier, Simultaneously, Before long, Previously, In time
+
+<strong>Conjunctions</strong>: After, Although, As, While, As, Because, Before, Until, If, Since, Now, Once, But
+
+<strong>Pronouns</strong>: I, We, He, She, They, Our
+
+&nbsp;
+
+Look at other similar text types from good authors and <strong>imitate</strong> the different types of sentence beginnings (Despite, Actually, If only, Apparently, Suddenly).');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>If a sentence is stating that a <strong>noun</strong> has ownership of an <strong>object</strong>, it is called a <strong>possessive noun</strong>.
+
+&nbsp;
+
+For <span style="text-decoration: underline">singular</span> and <span style="text-decoration: underline">plural</span> nouns that do not end in s, add an <span style="text-decoration: underline">apostrophe + s</span>.
+<ul>
+ 	<li>My <strong>dog''s</strong> kennel is wooden.</li>
+ 	<li><strong>Earth''s</strong> atmosphere is polluted.</li>
+ 	<li>The <strong>children''s</strong> playground is empty.</li>
+</ul>
+For nouns that end in s,  add an <span style="text-decoration: underline">apostrophe after the s</span>.
+<ul>
+ 	<li>All the <strong>dogs''</strong> leashes were missing.</li>
+ 	<li>We''re having a <strong>girls''</strong> night in.</li>
+ 	<li>Miss <strong>Jones''</strong> house is large.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and underline any general nouns and verbs. See if you can change them to make them more specific.
+<ul>
+ 	<li><strong>Nouns</strong> are people, places, things, and ideas.</li>
+ 	<li><strong>Verbs</strong> are actions.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use <strong>topic specific</strong> words to make you sound like an expert and enhance meaning for the reader.  Brainstorm a list of words related to the topic you are writing about. Use these words in your writing.</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Sequence &amp; GIST</strong>: Put key events in order and then summarise each with a GIST summary.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/Text%20Summary.png" width="100%"  /></td>
+<td width="4%"></td>
+<td width="48%">Sequence <span style="text-decoration: underline">key</span> ideas from the text in <span style="text-decoration: underline">numerical order</span> or <span style="text-decoration: underline">by topic</span>.  Use your words and topic words from the text and rewrite each part with a <strong>GIST summary</strong>.  A GIST summary is very short and summarises the main idea of a sentence in one word/phrase. Do not include your opinion or how you feel about the text.
+
+See example:
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Retelling%20and%20Summarising/GIST%20ANALYSIS.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Find different and more interesting words (<strong>synonyms</strong>) that mean the same thing.  Use a thesaurus or synonym list.
+<ul>
+ 	<li><em>She put on her <del>red</del> shoes. (ordinary)</em></li>
+ 	<li><em>She <span style="text-decoration: underline">slipped</span> into her <span style="text-decoration: underline">ruby</span> shoes</em>. (interesting)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Underline all the general nouns and verbs in your writing and replace them with <strong>precise nouns</strong> and <strong>verbs</strong>
+<ul>
+ 	<li>The flowers hung down in the sun. (general)</li>
+ 	<li>The <span style="text-decoration: underline">roses</span> <span style="text-decoration: underline">wilted</span> in the sun. (precise)</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a list of <strong>topic-specific words</strong> for people, places and things.  Use these words in your writing.
+<ul>
+ 	<li>Zoo: enclosure, habitat, endangered, camouflage.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Complex Sentences:</strong> Complex sentences contain an independent and subordinate (dependent) clause.  The subordinate clause does not make sense on its own, and needs the independent clause to complete the sentence.  Use words from the acronym <strong>AAAWWUBBIS</strong> to create complex sentences.
+
+&nbsp;
+<p style="text-align: center"><strong>After   Although   As   When   While   Until   Because   Before   If   Since       </strong></p>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Complex%20Sentences%20L5_7.png" width="100%"  />
+
+*In the BEFORE column, underline the <span style="color: #ff6600"><strong>dependent </strong></span>and <strong><span style="color: #339966">independent</span> </strong>clauses.  The first one is done for you.</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line.
+<ul>
+ 	<li><strong>Circular ending: </strong>The story ends with the same/similar line from the beginning.</li>
+ 	<li><strong>Question:  </strong>End with a question to make the reader think.</li>
+ 	<li><strong><em>Dialogue:  </em></strong><em>Before she left, she turned to her brother and said, "If I come back, I''ll tell you the whole truth</em>."</li>
+ 	<li><strong>Funny</strong>:  <em>End with a funny thought or scene. </em></li>
+ 	<li><em><strong>A cliffhanger: </strong></em>Leave the reader asking questions or wanting more. <em> E.g.  Sia made it back home safe, but she wasn''t alone.</em></li>
+ 	<li><strong><em>A</em></strong> <strong>s</strong><em><strong>urprise: </strong>Jack opened his eyes and everything was black</em>.</li>
+ 	<li><strong>Describe a</strong> <strong>scene: </strong> Use Show don''t Tell to add detail.  <em>She slipped the diamond ring on her boney finger, and moved her hand from side to side as the light reflected and bounced in all directions, creating a dazzling sparkle</em>.</li>
+ 	<li><strong>Moral or lesson</strong>: Your <strong>characters</strong> have changed or have learned a lesson.  For example, by the end of a story, a selfish cold-hearted character gives a homeless person some spare change.  This act shows the character has changed and is very satisfying for a reader.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('Try to create your own original figurative language, rather than something common and cliche.  See below.
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as my breakfast this morning.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Metaphor</strong>: It compares two things <span style="text-decoration: underline">without</span> using the words like or as.
+
+<em>E.g. My Aunt <span style="text-decoration: underline">is</span> a dragon.  The house <span style="text-decoration: underline">was</span> a zoo.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have <u>50 million </u>things to do.  My shoes are slowly <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Alliteration</strong>: Words that start with the same sound are used repeatedly to create rhythm and fluency.
+
+<em>E.g. <span style="text-decoration: underline">Faint</span> <span style="text-decoration: underline">footsteps</span> <span style="text-decoration: underline">followed</span> me.  <span style="text-decoration: underline">Penny</span> was a <span style="text-decoration: underline">precious</span> child.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. </em><em><span style="text-decoration: underline">Pitter patter</span>! Waves <span style="text-decoration: underline">crashed</span> against the rocks</em>.</td>
+<td width="4%"></td>
+<td width="48%"><strong>Personification: </strong>When objects are given human qualities.
+
+<em>E.g. Autumn leaves <span style="text-decoration: underline">danced</span> across the street.  His grumbling stomach was <span style="text-decoration: underline">begging</span> for food.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Oxymoron</strong>: Words that are opposite or contradict each other.
+
+<em>E.g. We have a <span style="text-decoration: underline">love-hate</span> relationship. It was <span style="text-decoration: underline">seriously funny</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Irony</strong>: Words that mean the opposite of what you think. It can sometimes sound like sarcasm.
+
+<em>E.g. Wow, I <span style="text-decoration: underline">can''t wait</span> for that test! That meal was <span style="text-decoration: underline">soooo</span> delicious.  I just <span style="text-decoration: underline">love it</span> when dogs drool on me.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Allusion</strong>: An illusion makes a reference to something that most people understand.  It''s often used in a simile or metaphor.
+
+<em>E.g. It will sink, like the <span style="text-decoration: underline">Titanic</span>.  She is such a <span style="text-decoration: underline">Scrooge</span> and never offers to pay.  Chocolate is my <span style="text-decoration: underline">kryptonite</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Criteria and Rubrics</strong>: Ask your teacher for set criteria or a rubric to guide you as you write and revise.  The criteria will vary depending on the purpose and text type (narrative, poem).
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Criteria%20or%20Rubric.png" width="68%"  /></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  Rest and </span>Revisit</strong>:  Don''t revise and edit in one go.  Take breaks so you can look at your writing with fresh eyes. You''ll be amazed at how much easier and clearer the revision process is when you''ve stepped away from your writing.</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read the first paragraph of popular novels by great authors, study what they do and <strong>imitate their character descriptions</strong>.  Do not copy, just borrow ideas.
+
+<strong>For example:</strong> <span style="color: #993300"><em>He was a big, beefy man with hardly any neck</em> <span style="color: #000000">- J.K. Rowling, Harry Potter.</span>  </span>
+
+<span style="color: #993300"><strong><span style="color: #000000">Your version might be:</span></strong>  <em>She was a frail, old lady who barely moved</em>.</span></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Focus on one important/interesting fact </strong>and build on it with additional information. E.g.  <span style="color: #993300"><em>Danny wore shorts all year round - even in winter.  He said he never felt the cold, but the truth was, they were so poor, he could only buy long pants once every three years.  If only he could stop growing, just for one year.</em></span></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>List interesting facts about your character - <em><strong>Personality</strong> </em>(angry, calm, giving), <em><strong>physical</strong> <strong>features</strong></em> (interesting things like, <span style="color: #993300"><em>she had wiry grey hair that stuck out in all directions</em></span>), how are they <em><strong>connected to other characters</strong></em> (younger brother, best friend), interesting facts about their <em><strong>past </strong>(He never smiled, not even as a child). </em></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Include a <strong>flashback</strong> about your character to describe their motivations.  <span style="color: #993300"><em>Claire froze, as ocean water crept towards her toes.  Her heart pounded.  She remembered falling in a lake near her grandparents home as a child.</em> </span></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read the first paragraph of popular novels by great authors, study what they do and <strong>imitate their sentence structures and character descriptions</strong>.  Do not copy, just borrow ideas.
+
+<strong>For example:</strong> <em>He was a big, beefy man with hardly any neck</em> - J.K. Rowling, Harry Potter.
+
+<strong>Your version might be:</strong> <em>She was a frail, old lady who barely moved</em>.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Begin with one of the following:</span>
+<ul>
+ 	<li><strong><span style="color: #000000">Dialogue</span></strong></li>
+ 	<li><strong><span style="color: #000000">A surprising fact</span></strong></li>
+ 	<li><strong><span style="color: #000000">Something funny, talk to the reader </span></strong><span style="color: #000000">("You probably won''t believe me when I tell you...")</span></li>
+ 	<li><strong><span style="color: #000000">A sad fact </span></strong><span style="color: #000000">(I have been poor my whole life.)</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Modal Words</strong>: To make your opinion in your writing clear and persuasive, choose words that are high or low modality.   This makes your reader know exactly how you feel about a topic.
+<ul>
+ 	<li>''We <strong><em>must</em> </strong>stop climate change <strong><em>now</em></strong>.''  <i>- </i>High modality.</li>
+ 	<li>''<em><strong>Maybe</strong> </em>we <em><strong>could</strong> </em>start doing something about climate change <em><strong>soon</strong></em>.'' - Low modality.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Modality/Mod%20lower%20levels.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>narrative</strong> or <strong>recount</strong> writing start a new paragraph when the following changes:
+<ul>
+ 	<li><strong>Topic</strong>: When you''re talking about a new idea start a new paragraph. (<em>I went for a bike ride with my friend</em>).</li>
+ 	<li><strong>Time</strong>: When the time changes (<em>Later that day, The next day, On Monday, In the morning</em>).</li>
+ 	<li><strong>Place</strong>: When the setting or place changes (<em>Back at the farm...</em>).</li>
+ 	<li><strong>Person</strong>: If you''re introducing a new person, or a new person is speaking change paragraphs.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>Informational</strong> writing, start a new paragraph when the topic changes.  Each paragraph should have a topic sentence and supporting details.Most non-fiction paragraphs have three parts:
+<ol>
+ 	<li>Topic sentence or what the paragraph is about.</li>
+ 	<li>Details about the topic.</li>
+ 	<li>An example or evidence.</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Show don''t Tell:</strong> Describe what is happening or how people are feeling rather than telling.
+<ul>
+ 	<li><strong>Telling:</strong>  ''<em>She was really angry''</em></li>
+ 	<li><strong>Showing:</strong><em> ''Sam pounded her fists on the table.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three:</strong> Describe something with <span style="text-decoration: underline">three</span> details.
+<ul>
+ 	<li><em>It was a wet, dark and windy day''. ''When I closed my eyes, I heard the <span style="text-decoration: underline">wind howling</span>, <span style="text-decoration: underline">children laughing</span> and <span style="text-decoration: underline">dogs barking</span> in the distance''. </em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Snapshot:  </strong>Write down every detail, as it happens, to highlight an important moment.
+<ul>
+ 	<li>''Tom<em> cautiously looked over his left shoulder and without drawing attention to himself, slowly picked up the bag.  With his eyes fixed on the front door, and heart-pounding, he gently unzipped the backpack</em>''.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('Use the following strategies to make your middle or important parts longer and more descriptive.
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><strong>Show don''t Tell: </strong>Describe what is happening or how people are feeling rather than telling. Use can use a thesaurus to help you find the right word.
+<ul>
+ 	<li><strong>Telling: </strong>''<em>He ran fast.''</em></li>
+ 	<li><strong>Showing: </strong><em>''Sam bolted down the street, not looking behind him.  His heart was pounding and sweat dripped down his red face.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three:</strong> Describe something with three details.
+
+E.g. <em>''It was a wet, dark and windy day''. ''When I closed my eyes, I heard the <span style="text-decoration: underline">wind howling</span>, <span style="text-decoration: underline">children laughing</span><span style="text-decoration: underline"> and </span><span style="text-decoration: underline">dogs barking</span> in the distance''. </em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Snapshot:  </strong>Write down every detail to highlight an important moment.
+
+E.g. ''Tom<em> cautiously looked over his left shoulder and without drawing attention to himself, slowly picked up the bag.  With his eyes fixed on the front door, and heart-pounding, he gently unzipped the backpack</em>''.</td>
+<td width="4%"></td>
+<td width="48%"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Pacing/Text%20sample%20upper.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/L6.png" width="90%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time</strong>: Meanwhile, since.</li>
+ 	<li><strong>Adding information</strong>: in addition, furthermore.</li>
+ 	<li><strong>Opposing view</strong>: However, whilst, on the other hand.</li>
+ 	<li><strong>List</strong>: To begin with, in summary, on the whole.</li>
+ 	<li><strong>Explaining</strong>:  In other words, For instance, For example, equally important.</li>
+ 	<li><strong>Compare </strong>and <strong>c</strong><strong>ontrast</strong>: although, yet, alternatively, similarly, nevertheless.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>If a sentence is stating that a <strong>noun</strong> has ownership of an <strong>object</strong>, it is called a <strong>possessive noun</strong>.
+
+&nbsp;
+
+For <span style="text-decoration: underline">singular</span> and <span style="text-decoration: underline">plural</span> nouns that do not end in s, add an <span style="text-decoration: underline">apostrophe + s</span>.
+<ul>
+ 	<li>My <strong>dog''s</strong> kennel is wooden.</li>
+ 	<li><strong>Earth''s</strong> atmosphere is polluted.</li>
+ 	<li>The <strong>children''s</strong> playground is empty.</li>
+</ul>
+For nouns that end in s,  add an <span style="text-decoration: underline">apostrophe after the s</span>.
+<ul>
+ 	<li>All the <strong>dogs''</strong> leashes were missing.</li>
+ 	<li>We''re having a <strong>girls''</strong> night in.</li>
+ 	<li>Miss <strong>Jones''</strong> house is large.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read your writing and underline any general nouns and verbs. See if you can change them to make them more specific.
+<ul>
+ 	<li><strong>Noun: </strong> People, places, things, events or ideas.</li>
+ 	<li><strong>Verb:</strong> An action (running, shouting) or a state of being (content, relieved).</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use <strong>topic specific</strong> words to make you sound like an expert and enhance meaning for the reader.  Brainstorm a list of words related to the topic you are writing about. Use these words in your writing</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use words that express different <strong>shades of meaning</strong>.
+<ul>
+ 	<li><em>She put on the red shoes. </em></li>
+ 	<li><em>She <u>squeezed</u> her <span style="text-decoration: underline">flat</span> feet into the <span style="text-decoration: underline">tiny ruby</span> shoes.</em>  This <em>shows</em> (not tells) the reader that she is determined to wear the shoes, even if they''re too big and hurt her feet.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /></span></strong><span style="color: #000000">Use </span><strong><span style="color: #000000">specific nouns </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">verbs</span></strong><span style="color: #000000">:</span><span style="color: #000000"> The <span style="text-decoration: underline">crow</span> was <span style="text-decoration: underline">perched</span> on a tree <span style="text-decoration: underline">stump</span>.</span></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Create a list of <strong>topic specific words</strong> for people, places and things.  E.g. Zoo: enclosure, habitat, endangered, camouflage.  Use these words in your writing.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Use a <strong>thesaurus</strong> or <strong>synonym</strong> <strong>list</strong> to find more interesting words.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%">
+<p style="text-align: left"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Complex Sentences: </strong>Complex sentences contain an independent and subordinate (dependent) clause.  The subordinate clause does not make sense on its own, and needs the independent clause to complete the sentence.</p>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%">Use the subordinating conjunctions list to create interesting complex sentences.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Subordinating%20Conjunctions.png" width="100%"  />
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Sub%20Conjunction%20examples.png" width="100%"  />
+
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Memorable last line</strong>: Make sure the main problem is resolved and then end with an interesting last line.
+<ul>
+ 	<li><strong>Circular ending:  </strong>The story ends with the same/similar line from the beginning</li>
+ 	<li><strong>Question: </strong>End with a question to make the reader think. "<em>So, what are you going to do about climate change</em>?"</li>
+ 	<li><strong><em>Dialogue: </em></strong><em>Before she left, she turned to her brother and said, "If I ever come back, I''ll tell you the whole truth</em>."</li>
+ 	<li><strong>F</strong><em><strong>unny:  </strong>End with a funny thought or scene. </em></li>
+ 	<li><em><strong> A </strong></em><em><strong>cliffhanger:  </strong>Leave the reader asking questions or wanting more.  E.g.  Sia made it back home safe, but she wasn''t alone.                                                                                                                                                                                     </em></li>
+ 	<li><strong><em>A</em> s</strong><em><strong>urprise ending</strong>: Jack opened his eyes and everything was black</em>.</li>
+ 	<li><strong>D</strong><strong>escribe a</strong> <strong>scene: </strong> Using Show don''t Tell.  E.g., She slipped the diamond ring on her boney finger, and moved her hand from side to side as the light reflected and bounced in all directions, creating a dazzling sparkle.</li>
+ 	<li><strong>Moral or Lesson</strong>: Your characters have changed or have learned a lesson.  For example, by the end of a story, a selfish cold-hearted character gives a homeless person some spare change.  This act shows the character has changed and is very satisfying for a reader.  Remember to show, don''t tell.  For example, <em>Jack briskly walked passed a homeless man begging for money.  As annoyed pedestrians brushed past him, something compelled him to stop walking.  He took a deep breath, put his hand deep in his pocket and grabbed a handful of coins. </em></li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('Try to create your own original figurative language, rather than something common and cliche.  See below.
+<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong>Simile</strong>: Compares two things using the words ''like'' or ''as''.
+
+<em>E.g. It was as cold as my breakfast this morning.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Metaphor</strong>: It compares two things <span style="text-decoration: underline">without</span> using the words like or as.
+
+<em>E.g. My Aunt <span style="text-decoration: underline">is</span> a dragon.  My <span style="text-decoration: underline">dinosaur</span> of a computer crashed again.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Hyperbole</strong>: Exaggerating to make a point.
+
+<em>E.g. I have <u>50 million </u>things to do.  My shoes are slowly <span style="text-decoration: underline">killing</span> me.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Alliteration</strong>: Words that start with the same sound are used repeatedly to create rhythm and fluency.
+
+<em>E.g. <span style="text-decoration: underline">Faint</span> <span style="text-decoration: underline">footsteps</span> <span style="text-decoration: underline">followed</span> me.  <span style="text-decoration: underline">Penny</span> was a <span style="text-decoration: underline">precious</span> child.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Onomatopoeia</strong>: A word that mimics a sound.
+
+<em>E.g. I could hear the p<span style="text-decoration: underline">itter patter of</span> tiny feet.  Waves <span style="text-decoration: underline">crashed</span> against rocks.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Personification: </strong>When objects are given human qualities.
+
+<em>E.g. Autumn leaves <span style="text-decoration: underline">danced</span> across the street.  His grumbling stomach was <span style="text-decoration: underline">begging</span> for food.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Oxymoron</strong>: Words that are opposite or contradict each other.
+
+<em>E.g. We have a <span style="text-decoration: underline">love-hate</span> relationship. It was <span style="text-decoration: underline">seriously funny</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"><strong>Irony</strong>: Words that mean the opposite of what you think. It can sometimes sound like sarcasm.
+
+<em>E.g. Wow, I <span style="text-decoration: underline">can''t wait</span> for that test! That meal was <span style="text-decoration: underline">soooo</span> delicious.  I just <span style="text-decoration: underline">love it</span> when dogs drool on me.</em></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong>Allusion</strong>: An illusion makes a reference to something that most people understand.  It''s often used in a simile or metaphor.
+
+<em>E.g. It will sink, like the <span style="text-decoration: underline">Titanic</span>.  She is such a <span style="text-decoration: underline">Scrooge</span> and never offers to pay.  Chocolate is my <span style="text-decoration: underline">kryptonite</span>.</em></td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><strong>Criteria and Rubrics</strong>: Ask your teacher for set criteria or a rubric to guide you as you write and revise.  The criteria will vary depending on the purpose and text type (narrative, poem).
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Revision%20and%20Editing/Criteria%20or%20Rubric.png" width="68%"  /></td>
+<td width="4%"></td>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rest and Revisit</strong>:  Don''t revise and edit in one go.  Take breaks so you can look at your writing with fresh eyes. You''ll be amazed at how much easier and clearer the revision process is after you''ve stepped away from your writing.
+
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Deep Peer Questions: </strong>Read your piece aloud to a peer and ask them the questions below.  Make sure you write down their responses. Use this information to see if their feedback aligns with your intentions as a writer and to make any revisions.
+<ul>
+ 	<li>What''s the most important part and why?</li>
+ 	<li>How did the writing make you feel and why?</li>
+ 	<li>Finish these sentence beginnings about this piece of writing: I think... I was surprised... I wondered...</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read the first paragraph of popular novels by great authors, study what they do and <strong>imitate their character descriptions</strong>.  Do not copy, just borrow ideas.
+
+<strong>For example:</strong> <span style="color: #993300"><em>He was a big, beefy man with hardly any neck</em> <span style="color: #000000">- J.K. Rowling, Harry Potter.</span>  </span>
+
+<span style="color: #993300"><strong><span style="color: #000000">Your version might be:</span></strong>  <em>She was a frail, old lady who barely moved</em>.</span></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Focus on one important/interesting fact </strong>and build on it with additional information. E.g.  <span style="color: #993300"><em>Danny wore shorts all year round - even in winter.  He said he never felt the cold, but the truth was, they were so poor, he could only buy long pants once every three years.  If only he could stop growing, just for one year.</em></span></td>
+</tr>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>List interesting facts about your character - <em><strong>Personality</strong> </em>(angry, calm, giving), <em><strong>physical</strong> <strong>features</strong></em> (interesting things like, <span style="color: #993300"><em>she had wiry grey hair that stuck out in all directions</em></span>), how are they <em><strong>connected to other characters</strong></em> (younger brother, best friend), interesting facts about their <em><strong>past </strong>(He never smiled, not even as a child). </em></td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Include a <strong>flashback</strong> about your character to describe their motivations.  <span style="color: #993300"><em>Claire froze, as ocean water crept towards her toes.  Her heart pounded.  She remembered falling in a lake near her grandparents home as a child.</em> </span></td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Read the first paragraph of popular novels by great authors, study what they do and <strong>imitate their sentence structures and character descriptions</strong>.  Do not copy, just borrow ideas.
+
+<strong>For example:</strong> <em>He was a big, beefy man with hardly any neck</em> - J.K. Rowling, Harry Potter.
+
+<strong>Your version might be:</strong> <em>She was a frail, old lady who barely moved</em>.</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><span style="color: #000000">Begin with one of the following:</span>
+<ul>
+ 	<li><strong><span style="color: #000000">Dialogue</span></strong></li>
+ 	<li><strong><span style="color: #000000">A surprising fact</span></strong></li>
+ 	<li><strong><span style="color: #000000">Something funny, talk to the reader </span></strong><span style="color: #000000">("You probably won''t believe me when I tell you...")</span></li>
+ 	<li><strong><span style="color: #000000">A sad fact </span></strong><span style="color: #000000">(I have been poor my whole life.)</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Modal Words:</strong> To make your opinion in your writing clear and persuasive, think carefully about the types of words you chose that express, for example, how certain you are (could, might) or how frequently something occurs (often, rarely).  Below is a list to get started.
+
+If you are wanting to persuade your reader, use high modality words.  For example, ''We <strong><em>must</em> </strong>act on climate change.''
+
+&nbsp;
+
+<img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Modality/Modal%20word%20list.png" width="100%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>narrative</strong> or <strong>recount</strong> writing start a new paragraph when the following changes:
+<ul>
+ 	<li><strong>Topic</strong>: When you''re talking about a new idea start a new paragraph. (<em>I went for a bike ride with my friend</em>).</li>
+ 	<li><strong>Time</strong>: When the time changes (<em>Later that day, The next day, On Monday, In the morning</em>).</li>
+ 	<li><strong>Place</strong>: When the setting or place changes (<em>Back at the farm...</em>).</li>
+ 	<li><strong>Person</strong>: If you''re introducing a new person, or a new person is speaking change paragraphs.</li>
+</ul>
+</td>
+<td width="4%"></td>
+<td valign="top" width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>For <strong>Informational</strong> writing, start a new paragraph when the topic changes.  Each paragraph should have a topic sentence and supporting details.Most non-fiction paragraphs have three parts:
+<ol>
+ 	<li>Topic sentence or what the paragraph is about.</li>
+ 	<li>Details about the topic.</li>
+ 	<li>An example or evidence.</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('Use the following strategies to make your middle or important parts longer and more descriptive.
+<table>
+<tbody>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong><strong>Show don''t Tell: </strong>Describe what is happening or how people are feeling rather than telling. For example:
+<ul>
+ 	<li><strong>Telling: </strong>''<em>He ran fast.''</em></li>
+ 	<li><strong>Showing: </strong><em>''Sam bolted down the street, not looking behind him.  His heart was pounding and sweat dripped down his red face.''</em></li>
+</ul>
+</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Rule of Three:</strong> Describe something with three details.
+
+E.g. <em>''It was a wet, dark and windy day''. ''When I closed my eyes, I heard the <span style="text-decoration: underline">wind howling</span>, <span style="text-decoration: underline">children laughing</span><span style="text-decoration: underline"> and </span><span style="text-decoration: underline">dogs barking</span> in the distance''. </em></td>
+<td width="4%"></td>
+<td width="48%"><img src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Pacing/Text%20sample%20upper.png" width="100%" /></td>
+</tr>
+<tr>
+<td width="48%"><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span>Snapshot:  </strong>Write down every detail to highlight an important moment.
+
+E.g. ''Tom<em> cautiously looked over his left shoulder and without drawing attention to himself, slowly picked up the bag.  With his eyes fixed on the front door, and heart-pounding, he gently unzipped the backpack</em>''.</td>
+<td width="4%"></td>
+<td width="48%"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('<h3 style="text-align: center"><strong>Punctuation Rules and Examples</strong></h3>
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Punctuation/L7.png" width="90%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('Connectives List:
+<ul>
+ 	<li><strong>Time</strong>: Meanwhile, since.</li>
+ 	<li><strong>Adding information</strong>: in addition, furthermore, not only that, another thing.</li>
+ 	<li><strong>Opposing view</strong>: However, whilst, on the other hand.</li>
+ 	<li><strong>List</strong>: To begin with, in summary, on the whole.</li>
+ 	<li><strong>Explaining</strong>:  In other words, For instance, For example, Equally important.</li>
+ 	<li><strong>Compare </strong>and <strong>c</strong><strong>ontrast ideas</strong>: although, yet, alternatively, similarly.</li>
+</ul>');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<table>
+<tbody>
+<tr>
+<td valign="top" width="48%"><b><strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" />  </span></strong>Imitate Sentence Structures: </b>Record sentences you love and think are interesting.  Analyse how the author has crafted sentences and copy all of or parts of the structure using different words to create your own interesting sentences.  You can analyse sentences on whiteboards or in your book.</td>
+<td width="4%"></td>
+<td valign="top" width="48%">Have a go at analysing Patricia MacLachlan''s quotes.  Her sentences contain different types of punctuation, similes, the rule of three, subordinate and independent clauses, precise nouns and verbs.
+
+<img class="aligncenter" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Different%20types%20of%20Sentences/Analyse%20Sentence%20example%20final.png" width="100%"  /></td>
+</tr>
+</tbody>
+</table>
+&nbsp;');
+INSERT INTO strategies(strategy_Desc) VALUES ('tbc');
+INSERT INTO strategies(strategy_Desc) VALUES ('<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span>Story Map</strong>: Write the beginning, middle and ending of your story in a graphic organiser.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Story%20Map.png" width="70%"  />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+<strong><span style="color: #000000"><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="21" height="21" /> </span></strong><span style="color: #000000">Use the traffic light connectives list to help you sequence your ideas. </span>
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Sequencing/Traffic%20lights%20sequencing%20L1.png" width="65%"  />');
+INSERT INTO strategies(strategy_Desc) VALUES ('<span style="color: #000000"><strong><img class="" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/pencil.png" width="24"  /></strong> 1. Choose a person or place you want to describe in detail.</span>
+
+2. Draw a <strong>five senses organiser</strong> to describe your person or place.
+
+3. Describe your person or place using <strong>adjectives </strong>(describing words).
+
+4. Then add this detail to your writing.
+
+<img class="alignleft" src="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Goals%20Sheets%20for%20Students/Elaborating%20Ideas/Five%20senses%20L1%20Rev1-1.png" width="708"  />');
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (26,1);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (31,2);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (32,3);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (34,4);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (35,5);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (39,6);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (41,7);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (43,8);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (46,9);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (50,10);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (51,11);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (52,12);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (53,13);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (54,14);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (55,15);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (56,16);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (59,17);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (60,18);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (61,19);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (62,20);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (63,21);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (64,22);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (65,23);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (66,24);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (67,25);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (69,26);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (70,27);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (71,28);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (73,29);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (74,30);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (75,31);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (80,32);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (81,33);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (82,34);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (83,35);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (84,36);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (85,37);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (86,38);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (88,39);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (89,40);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (90,41);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (91,42);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (92,43);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (93,44);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (94,45);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (95,46);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (96,47);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (98,48);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (99,49);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (100,50);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (102,51);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (103,52);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (104,53);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (106,54);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (110,55);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (111,56);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (112,57);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (113,58);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (114,59);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (115,60);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (117,61);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (118,62);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (119,63);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (120,64);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (121,65);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (122,66);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (123,67);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (124,68);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (125,69);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (127,70);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (128,71);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (129,72);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (131,73);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (132,74);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (133,75);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (135,76);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (139,77);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (140,78);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (141,79);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (142,80);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (143,81);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (144,82);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (146,83);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (147,84);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (148,85);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (149,86);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (150,87);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (151,88);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (152,89);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (154,90);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (155,91);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (156,92);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (158,93);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (159,94);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (160,95);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (161,96);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (165,97);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (166,98);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (167,99);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (168,100);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (169,101);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (170,102);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (173,103);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (174,104);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (175,105);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (176,106);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (177,107);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (178,108);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (180,109);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (181,110);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (183,111);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (184,112);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (185,113);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (189,114);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (190,115);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (191,116);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (192,117);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (193,118);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (194,119);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (196,120);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (197,121);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (198,122);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (199,123);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (200,124);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (203,125);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (204,126);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (27,127);
+INSERT INTO skills_levels_strategies(skills_levels_Id,strategies_Id) VALUES (36,128);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (1,26);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (2,31);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (3,32);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (4,34);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (5,35);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (6,39);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (7,41);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (8,43);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (9,46);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (10,50);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (11,51);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (12,52);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (13,53);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (14,54);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (15,55);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (16,56);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (17,59);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (18,60);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (19,61);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (20,62);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (21,63);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (22,64);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (23,65);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (24,66);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (25,67);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (26,69);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (27,70);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (28,71);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (29,73);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (30,74);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (31,75);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (32,80);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (33,81);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (34,82);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (35,83);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (36,84);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (37,85);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (38,86);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (39,88);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (40,89);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (41,90);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (42,91);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (43,92);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (44,93);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (45,94);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (46,95);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (47,96);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (48,98);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (49,99);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (50,100);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (51,102);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (52,103);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (53,104);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (54,106);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (55,110);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (56,111);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (57,112);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (58,113);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (59,114);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (60,115);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (61,117);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (62,118);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (63,119);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (64,120);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (65,121);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (66,122);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (67,123);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (68,124);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (69,125);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (70,127);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (71,128);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (72,129);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (73,131);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (74,132);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (75,133);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (76,135);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (77,139);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (78,140);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (79,141);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (80,142);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (81,143);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (82,144);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (83,146);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (84,147);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (85,148);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (86,149);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (87,150);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (88,151);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (89,152);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (90,154);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (91,155);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (92,156);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (93,158);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (94,159);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (95,160);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (96,161);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (97,165);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (98,166);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (99,167);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (100,168);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (101,169);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (102,170);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (103,173);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (104,174);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (105,175);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (106,176);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (107,177);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (108,178);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (109,180);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (110,181);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (111,183);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (112,184);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (113,185);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (114,189);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (115,190);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (116,191);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (117,192);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (118,193);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (119,194);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (120,196);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (121,197);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (122,198);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (123,199);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (124,200);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (125,203);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (126,204);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (127,27);
+INSERT INTO skills_levels_student_defs(student_definitions_Id,skills_levels_Id) VALUES (128,36);
