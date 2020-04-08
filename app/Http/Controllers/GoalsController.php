@@ -27,9 +27,6 @@ class GoalsController extends Controller
     }
 
     public function generateGoalSheets(Request $request){
-        // $newGoalList = new goals();
-        // $newGoalList->getData($request);
-
         $i = 0;
         $a = null;
         $b = null;
@@ -140,12 +137,10 @@ class GoalsController extends Controller
             );
             $i++;
         }
-        $pdf = PDF::loadView('goalSheet', array('arr' => $arr));  
-        return $pdf->download('goals.pdf');
+        return view('goalSheet', ['arr' => $arr]);
     }
 
     // public function printGoalSheets($array){
-    //     dd('howdy');
     //     $pdf = PDF::loadView('goalSheet', array('arr' => $arr));  
     //     return $pdf->download('goals.pdf');
     // }
