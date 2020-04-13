@@ -16,7 +16,7 @@
             <p><?php echo (date("d-m-Y", strtotime($writingTask[0]->created_Date))); ?></p>
         </div>
     </div>
-
+    
     <div class="view-by-container">
     <div class="d-inline-block">
         <div class="assessed-button-filter">
@@ -38,13 +38,14 @@
 
     <!-- <p><button type="button" id="assessment-assessed-filter">Assessed</button></p>
     <p><button type="button" id="assessment-grade-filter">Grade</button></p> -->
-    
+<form method="get" action="/goal-sheets" id="form" target="_blank">
+@csrf
 <table id="overall-assessment-table" class="row-border order-column ">
     <!-- Table headers -->
     <thead class="header-style" >
         <tr class="header-style text-center">
-            <th rowspan="2" id="fullName">Full Name</th>
-            <th colspan="2"><p class="text-center">Levels</p></th>
+            <th name="name" rowspan="2" id="fullName">Full Name</th>
+            <th name="levels" colspan="2"><p class="text-center">Levels</p></th>
             <!-- IMPORTANT!!!!!!!!! REPLACE ID WITH UNIQUE IDENTIFIER & INNERHTML WITH THE RELATED TITLE-->
             <th class="assessment-date" rowspan="2" id="average">Average</th>
         </tr>
@@ -75,8 +76,12 @@
                     <td class="student-assessed-level" headers="assessed">{{$dt[4]}}</td>
                     <td headers="progerssion-point">{{$dt[6]}}</td>
                     <?php $count = 1;?>
-                    @foreach($dt[7] as $s)
-                        <td class="student-skill-result" headers="skill{{$count}}">{{$s}}</td>
+                    @foreach($dt[7] as $key => $value)
+                        <td class="student-skill-result" headers="skill{{$count}}">{{$value}}
+                        @if(strval($value) != "")
+                            <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" >
+                        @endif
+                        </td>
                         <?php $count++;?>
                     @endforeach
                 </tr>
@@ -90,6 +95,9 @@
             <td headers="progerssion-point">4.2</td>
             <td class="student-skill-result" headers="skill1">4</td>
         </tr> -->
+        
     </tbody>
 </table>
+<input type="submit" value= "Generate Goal Sheets" class="assessment-btn p-2">
+</form>    
 @endsection
