@@ -7,11 +7,12 @@
 <body>
 	<div class="container page-break">
 	@foreach($arr as $gs)    
-		
-			<h1>
+		<div class="golasheet-header">
+			<h1 class="goalsheet-header-heading">
 				<span class="heading-name">{{$gs["student_name"]}}</span>'s Writing Goal
 			</h1>
-					
+			<img src="images/GoalSheetLogo.png" alt="scriibi" class="goalsheet-header-logo">	
+		</div>
 			<div class="finding-ideas">
 				<h3>{{$gs["skill_name"]}}</h3>
 				<p>

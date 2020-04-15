@@ -22,7 +22,7 @@
 </div>
 
 <!-- the container for the table holding student data -->
-<table id="overall-assessment-table" class="row-border order-column ">
+<table id="overall-assessment-table" class="row-border order-column cell-border hover nowrap">
     <!-- Table headers -->
     <thead class="header-style" >
         <tr class="header-style text-center">
@@ -45,7 +45,7 @@
             <td headers="Full Name">
               <!-- link this to the student-skill-view -->
            
-                <a href="#">{{$dt[1]}}</a>
+                <a href="#" class="order-row">{{$dt[1]}}</a>
                 </td>
                 <td class="justify-content-center student-grade-level" headers="grade">{{$dt[2]}}</td>
                 <td class="student-assessed-level" headers="assessed">{{$dt[4]}}</td>

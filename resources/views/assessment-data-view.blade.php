@@ -1,8 +1,8 @@
 @extends('layout.mainlayout')
 @section('title', 'Data View')
 @section('content')
-
-
+​
+​
 <!-- the container for the table holding student data -->
 <div class="row mt-5 ">
     <div class="col-10">
@@ -35,17 +35,17 @@
         </div>  
     </div>
 </div>
-
+​
     <!-- <p><button type="button" id="assessment-assessed-filter">Assessed</button></p>
     <p><button type="button" id="assessment-grade-filter">Grade</button></p> -->
 <form method="get" action="/goal-sheets" id="form" target="_blank">
 @csrf
-<table id="overall-assessment-table" class="row-border order-column ">
+<table id="overall-assessment-table" class="data-view-table row-border order-column cell-border hover">
     <!-- Table headers -->
     <thead class="header-style" >
         <tr class="header-style text-center">
             <th name="name" rowspan="2" id="fullName">Full Name</th>
-            <th name="levels" colspan="2"><p class="text-center">Levels</p></th>
+            <!-- <th name="levels" colspan="2"><p class="text-center">Levels</p></th> -->
             <!-- IMPORTANT!!!!!!!!! REPLACE ID WITH UNIQUE IDENTIFIER & INNERHTML WITH THE RELATED TITLE-->
             <th class="assessment-date" rowspan="2" id="average">Average</th>
         </tr>
@@ -69,8 +69,10 @@
         <!-- Implement a foreach loop for each student and assign headers with the unique identifier -->
             @foreach ($dataTable as $dt)
                 <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}>
-                    <td headers="fullName">
-                        <a href="#">{{$dt[1]}}</a>
+                    <td headers="fullName" class="fname">
+                        <a href="#" class="fullname order-row" ><?php ((strlen(substr($dt[1], 0, 20))) < (strlen($dt[1]))) ? $name = substr($dt[1], 0, 20) . '...' : $name = $dt[1]; echo($name) ?></a>
+                        <button class="testSheet" value="{{$dt[1]}}"></button>
+                        <!-- <input type="radio" class="testSheet" value="{{$dt[1]}}"> -->
                     </td>
                     <td class="justify-content-center student-grade-level" headers="grade">{{$dt[2]}}</td>
                     <td class="student-assessed-level" headers="assessed">{{$dt[4]}}</td>
@@ -98,6 +100,9 @@
         
     </tbody>
 </table>
-<input type="submit" value= "Generate Goal Sheets" class="assessment-btn p-2">
+<input type="submit" target="_blank" value= "Generate Goal Sheets" class="assessment-btn p-2">
+​
+<input type="text" class="hiddenArea" name="individual-student" hidden/>
+​
 </form>    
 @endsection
