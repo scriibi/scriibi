@@ -65,7 +65,7 @@ $(function(){
     let greaterThanTen = false;
     
     //tests if there are more than 10 columns before enabling scrolling
-    if (($(".assessment-date").length >= 10) || ($(".assessment-skills").length >= 10)){
+    if (($(".assessment-date").length >= 9) || ($(".assessment-skills").length >= 9)){
         greaterThanTen = true;
     }
     
@@ -73,9 +73,9 @@ $(function(){
     let table = $("#overall-assessment-table").DataTable({
         scrollX: greaterThanTen,
         paging:         false,
-        fixedColumns:   {
-            leftColumns: 3,
-        },
+        // fixedColumns:   {
+        //     leftColumns: 3,
+        // },
         select: {
             // style : 'os',
             items : 'cell'
@@ -167,6 +167,20 @@ $(function(){
     });
 
 //========== ASSESSEMNT STUDENT ASSESS DATA
+
+    $(".student-row").each(function(){
+    $(this).find('.testSheet').on("click", function(){
+        let studentName = $(this).val();
+        $('.hiddenArea').val(studentName);
+        $("#form").submit();
+    })
+    });
+
+    $(".assessment-btn").on("click", function(){
+        let studentName = $(this).val();
+        $('.hiddenArea').val(studentName);
+        $("#form").submit();
+    });
     
     //if a user clicks the grade filter
     $("#assessment-grade-filter").on("click", function(){

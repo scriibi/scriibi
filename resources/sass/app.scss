@@ -1366,3 +1366,45 @@ td{
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Opera and Firefox */
   }
+
+.fname{
+    width: 200px;
+}
+
+.testSheet{
+    background: url('/images/file.png') no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain; 
+    width: 25px;
+    height: 25px;
+    margin:auto;  
+    z-index: 1000;
+    margin-left: 10px;
+    margin-top: 9px;
+    border:none;
+}
+.testSheet:focus, .textSheet:active, .textSheet:after{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+	  
+  // DataTable ordering row color and hover styles
+.order-row{
+    width: 154.5px;
+    padding-top: 15px;
+    color: #04A020;
+    font-weight: bold;
+    float: left;
+    text-align: left;
+}
+.order-row:hover{
+    text-decoration: none;
+    color: #04A020;
+}
+.header-spacing{
+  border-spacing:10px;
+}
