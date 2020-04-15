@@ -38,7 +38,11 @@ class GoalsController extends Controller
         
         // retrieve all the checkbox values for each individual goal sheet
         $inputs = $request->input('checkbox');
-
+        if($inputs == null){
+            return;
+        }
+        $student = $request->input('individual-student');
+        //dd($student);
         /**
          * localize the tables needed so only a 
          * few database calls have to be made
@@ -129,13 +133,25 @@ class GoalsController extends Controller
             }
             
             // append each goal sheet data set into an array
-            $arr[$i] = array(
-                "skill_name" => $skillName,
-                "student_name" => $studentName,
-                "strategy" => $strategy,
-                "student_definiton" => $definition,
-            );
-            $i++;
+            if($student == "Generate Goal Sheets"){
+                $arr[$i] = array(
+                    "skill_name" => $skillName,
+                    "student_name" => $studentName,
+                    "strategy" => $strategy,
+                    "student_definiton" => $definition,
+                );
+                $i++;
+            }else{
+                if($student === $studentName){
+                    $arr[$i] = array(
+                        "skill_name" => $skillName,
+                        "student_name" => $studentName,
+                        "strategy" => $strategy,
+                        "student_definiton" => $definition,
+                    );
+                    $i++;
+                }
+            }
         }
         return view('goalSheet', ['arr' => $arr]);
     }
