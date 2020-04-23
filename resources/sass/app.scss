@@ -1466,6 +1466,7 @@ td{
     margin-left: 10px;
     padding-bottom: 15px;
     padding-right: 10px;
+    cursor: pointer;
 }
 
 /**
@@ -1629,13 +1630,14 @@ td{
     width: 40%;
     display:table;
 }
-​
+
 /* The Close Button */
 .close-more-info-modal {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
     }
 ​
 .close-more-info-modal:hover, .close-more-info-modal:focus {
