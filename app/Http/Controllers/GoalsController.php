@@ -39,9 +39,10 @@ class GoalsController extends Controller
         // retrieve all the checkbox values for each individual goal sheet
         $inputs = $request->input('checkbox');
         if($inputs == null){
-            return;
+            return back()->withErrors(['message'=>'Please select at least one student result to generate goal sheets.']);
         }
         $student = $request->input('individual-student');
+   
         //dd($student);
         /**
          * localize the tables needed so only a 
@@ -133,7 +134,7 @@ class GoalsController extends Controller
             }
             
             // append each goal sheet data set into an array
-            if($student == "Generate Goal Sheets"){
+            if($student == "Generate All Goal Sheets"){
                 $arr[$i] = array(
                     "skill_name" => $skillName,
                     "student_name" => $studentName,
@@ -153,6 +154,7 @@ class GoalsController extends Controller
                 }
             }
         }
+    
         return view('goalSheet', ['arr' => $arr]);
     }
 
