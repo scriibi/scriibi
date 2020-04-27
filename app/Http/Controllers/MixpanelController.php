@@ -157,7 +157,7 @@ class MixpanelController extends Controller
     }
 
     private function filterCurriculum($curriculum){
-        if($curriculum->curriculum_Id == $this->schoolDetails[0]->curriculum_details_curriculum_details_Id){
+        if($curriculum->curriculum_Id == reset($this->schoolDetails)->curriculum_details_curriculum_details_Id){
             return true;
         }else{
             return false;
@@ -165,7 +165,7 @@ class MixpanelController extends Controller
     }
 
     private function filterSchoolTypeIdentifiers($school_type_identifier){
-        if($school_type_identifier->school_type_identifier_id == $this->schoolDetails[0]->school_type_identifier_id){
+        if($school_type_identifier->school_type_identifier_id == reset($this->schoolDetails)->school_type_identifier_id){
             return true;
         }else{
             return false;
