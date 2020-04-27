@@ -48,7 +48,7 @@ class MixpanelController extends Controller
     private $gradeLabelDetails = null;
 
     public function UpdateMixpanelUserDetails(){
-        $mp = Mixpanel::getInstance("e6969c1a173cd8c79229797e38658e57");
+        $mp = Mixpanel::getInstance("ce47c41eda12afcf7b62cdbbf6335bbe");
         // retrieve all table data required
         $teachers = DB::table('teachers')->get();
         $school_teachers = DB::table('school_teachers')->get();
@@ -65,7 +65,7 @@ class MixpanelController extends Controller
         $grade_labels = DB::table('grade_labels')->get();
 
         foreach($teachers as $teacher){
-            
+            try{
                 $this->userId = $teacher->user_Id;
                 $this->userName = $teacher->name;
                 $this->userEmail = $teacher->teacher_Email;
@@ -75,45 +75,34 @@ class MixpanelController extends Controller
                  * retrieving school data
                 */
                 $this->schoolTeacher = array_filter(reset($school_teachers), array($this, "filterSchoolTeachers"));
-                sleep(0.05);
                 $this->teacherSchoolId = reset($this->schoolTeacher)->schools_school_Id;
                 $this->schoolDetails = array_filter(reset($schools), array($this, "filterSchool"));
-                sleep(0.05);
                 $this->teacherSchoolName = reset($this->schoolDetails)->name;
                 $this->classDetails = array_filter(reset($classes_teachers), array($this, "filterClassesTeachers"));
-                sleep(0.05);
                 $this->classId = reset($this->classDetails)->classes_teachers_classes_class_Id;
                 $this->classesStudents = array_filter(reset($classes_students), array($this, "filterClassesStudents"));
-                sleep(0.05);
                 $this->studentsInClass = count($this->classesStudents);
                 $this->schoolCurriculumDetails = array_filter(reset($curriculum), array($this, "filterCurriculum"));
-                sleep(0.05);
                 $this->schoolCurriculumId = reset($this->schoolCurriculumDetails)->curriculum_Id;
                 $this->schoolCurriculumDescription = reset($this->schoolCurriculumDetails)->description;
                 $this->schoolTypeDetails = array_filter(reset($school_type_identifiers), array($this, "filterSchoolTypeIdentifiers"));
-                sleep(0.05);
                 $this->schoolTypeId = reset($this->schoolTypeDetails)->school_type_identifier_id;
                 $this->schoolTypeDescription = reset($this->schoolTypeDetails)->school_type_identifier_description;
                 $this->teacherScriibiDetails = array_filter(reset($teachers_scriibi_level), array($this, "filterTeachersScriibiLevels"));
-                sleep(0.05);
                 $this->scriibiDetails = array_filter(reset($scriibi_levels), array($this, "filterScriibiLevels"));
-                sleep(0.05);
                 $this->teacherScriibiLevel = reset($this->scriibiDetails)->scriibi_Level;
                 $this->teacherScriibiId = reset($this->scriibiDetails)->scriibi_Level_Id;
                 $this->teacherPositionDetails = array_filter(reset($teachers_positions), array($this, "filterTeachersPositions"));
-                sleep(0.05);
                 $this->positionDetails = array_filter(reset($positions), array($this, "filterPositions"));
-                sleep(0.05);
                 foreach($this->positionDetails as $pd){
+                    $this->teacherPositionId = [];
+                    $this->teacherPositionName = [];
                     array_push($this->teacherPositionId, $pd->position_Id);
                     array_push($this->teacherPositionName, $pd->position_Name);
                 }
                 $this->gradeLabelSchoolTypeDetails = array_filter(reset($school_types), array($this, "filterSchoolTypes"));
-                sleep(0.05);
                 $this->gradeLabelDetails = array_filter(reset($grade_labels), array($this, "filterGradeLabel"));
-                sleep(0.05);
                 $this->teacherGradeLabel = reset($this->gradeLabelDetails)->grade_label;
-                sleep(0.05);
 
                 $mp->identify($this->userId);
 
@@ -135,7 +124,9 @@ class MixpanelController extends Controller
                     'User School Type Description'      => $this->schoolTypeDescription,
                     'No. of Students in Class'          => $this->studentsInClass
                 ), $ip = 0, $ignore_time = true);
-            
+            }catch(Exception $ex){
+                //todo
+            } 
         }
         return redirect('home');
     }
