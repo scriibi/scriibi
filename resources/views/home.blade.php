@@ -163,6 +163,12 @@
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/contact-us.png" alt="logo8">
                     <span class="align-self-center mx-2 text-nowrap">Contact Us</span>
                 </a>
+                @if($userID == 10 || $userID == 1)
+                    <a href="/mixpanel-update" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                        <img class="align-self-center mx-2 px-3 home-etc-icons" style="border-radius: 50%" src="images/mixpanel_logo.png" alt="logo9">
+                        <span class="align-self-center mx-2 text-nowrap">Update Mixpanel Users</span>
+                    </a>
+                @endif
 
             </div>
         </div>
