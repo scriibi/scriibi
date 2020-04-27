@@ -48,7 +48,7 @@ class MixpanelController extends Controller
     private $gradeLabelDetails = null;
 
     public function UpdateMixpanelUserDetails(){
-        $mp = Mixpanel::getInstance("71aaffcdf30f8032e52db1b0468c8d41");
+        $mp = Mixpanel::getInstance("5babc6069b55205b0b135f120426d702");
         // retrieve all table data required
         $teachers = DB::table('teachers')->get();
         $school_teachers = DB::table('school_teachers')->get();
@@ -65,7 +65,7 @@ class MixpanelController extends Controller
         $grade_labels = DB::table('grade_labels')->get();
 
         foreach($teachers as $teacher){
-            try{
+            
                 $this->userId = $teacher->user_Id;
                 $this->userName = $teacher->name;
                 $this->userEmail = $teacher->teacher_Email;
@@ -79,9 +79,9 @@ class MixpanelController extends Controller
                 $this->schoolDetails = array_filter(reset($schools), array($this, "filterSchool"));
                 $this->teacherSchoolName = reset($this->schoolDetails)->name;
                 $this->classDetails = array_filter(reset($classes_teachers), array($this, "filterClassesTeachers"));
-                $this->classId = reset($this->classDetails)->classes_teachers_classes_class_Id;
-                $this->classesStudents = array_filter(reset($classes_students), array($this, "filterClassesStudents"));
-                $this->studentsInClass = count($this->classesStudents);
+                // $this->classId = reset($this->classDetails)->classes_teachers_classes_class_Id;
+                // $this->classesStudents = array_filter(reset($classes_students), array($this, "filterClassesStudents"));
+                // $this->studentsInClass = count($this->classesStudents);
                 $this->schoolCurriculumDetails = array_filter(reset($curriculum), array($this, "filterCurriculum"));
                 $this->schoolCurriculumId = reset($this->schoolCurriculumDetails)->curriculum_Id;
                 $this->schoolCurriculumDescription = reset($this->schoolCurriculumDetails)->description;
@@ -119,12 +119,10 @@ class MixpanelController extends Controller
                     'User School Curriculum Id'         => $this->schoolCurriculumId,
                     'User School Curriculum Description'=> $this->schoolCurriculumDescription,
                     'User School Type Id'               => $this->schoolTypeId,
-                    'User School Type Description'      => $this->schoolTypeDescription,
-                    'No. of Students in Class'          => $this->studentsInClass
+                    'User School Type Description'      => $this->schoolTypeDescription
+                    
                 ), $ip = 0, $ignore_time = true);
-            }catch(Exception $ex){
-                //todo
-            }
+            
         }
         return redirect('home');
     }
