@@ -31,12 +31,14 @@ Route::get('/assessment-data-view/{assessmentId}', 'DataViewController@assessmen
 Route::get('/home', function(){
     $stdController = new App\Http\Controllers\StudentsController();
     $students = $stdController->indexStudentsByClass();
-    return view('home', ['students' => $students, 'user' => Auth::user()->name]);
+    return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
 })->name('home')->middleware('auth');
 
 Route::get('/studentlist', function(){
     return view('studentlist');
 });
+
+Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
     return view('assessment-setup');
