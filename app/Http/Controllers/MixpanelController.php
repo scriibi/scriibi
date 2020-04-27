@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Mixpanel;
+use Exception;
 use Illuminate\Http\Request;
 
 class MixpanelController extends Controller
@@ -64,62 +65,66 @@ class MixpanelController extends Controller
         $grade_labels = DB::table('grade_labels')->get();
 
         foreach($teachers as $teacher){
-            $this->userId = $teacher->user_Id;
-            $this->userName = $teacher->name;
-            $this->userEmail = $teacher->teacher_Email;
-            $this->userCreated = $teacher->created_at;
-            $this->teacherDetails = $teacher;
-            /**
-             * retrieving school data
-            */
-            $this->schoolTeacher = array_filter(reset($school_teachers), array($this, "filterSchoolTeachers"));
-            $this->teacherSchoolId = reset($this->schoolTeacher)->schools_school_Id;
-            $this->schoolDetails = array_filter(reset($schools), array($this, "filterSchool"));
-            $this->teacherSchoolName = reset($this->schoolDetails)->name;
-            $this->classDetails = array_filter(reset($classes_teachers), array($this, "filterClassesTeachers"));
-            $this->classId = reset($this->classDetails)->classes_teachers_classes_class_Id;
-            $this->classesStudents = array_filter(reset($classes_students), array($this, "filterClassesStudents"));
-            $this->studentsInClass = count($this->classesStudents);
-            $this->schoolCurriculumDetails = array_filter(reset($curriculum), array($this, "filterCurriculum"));
-            $this->schoolCurriculumId = reset($this->schoolCurriculumDetails)->curriculum_Id;
-            $this->schoolCurriculumDescription = reset($this->schoolCurriculumDetails)->description;
-            $this->schoolTypeDetails = array_filter(reset($school_type_identifiers), array($this, "filterSchoolTypeIdentifiers"));
-            $this->schoolTypeId = reset($this->schoolTypeDetails)->school_type_identifier_id;
-            $this->schoolTypeDescription = reset($this->schoolTypeDetails)->school_type_identifier_description;
-            $this->teacherScriibiDetails = array_filter(reset($teachers_scriibi_level), array($this, "filterTeachersScriibiLevels"));
-            $this->scriibiDetails = array_filter(reset($scriibi_levels), array($this, "filterScriibiLevels"));
-            $this->teacherScriibiLevel = reset($this->scriibiDetails)->scriibi_Level;
-            $this->teacherScriibiId = reset($this->scriibiDetails)->scriibi_Level_Id;
-            $this->teacherPositionDetails = array_filter(reset($teachers_positions), array($this, "filterTeachersPositions"));
-            $this->positionDetails = array_filter(reset($positions), array($this, "filterPositions"));
-            foreach($this->positionDetails as $pd){
-                array_push($this->teacherPositionId, $pd->position_Id);
-                array_push($this->teacherPositionName, $pd->position_Name);
+            try{
+                $this->userId = $teacher->user_Id;
+                $this->userName = $teacher->name;
+                $this->userEmail = $teacher->teacher_Email;
+                $this->userCreated = $teacher->created_at;
+                $this->teacherDetails = $teacher;
+                /**
+                 * retrieving school data
+                */
+                $this->schoolTeacher = array_filter(reset($school_teachers), array($this, "filterSchoolTeachers"));
+                $this->teacherSchoolId = reset($this->schoolTeacher)->schools_school_Id;
+                $this->schoolDetails = array_filter(reset($schools), array($this, "filterSchool"));
+                $this->teacherSchoolName = reset($this->schoolDetails)->name;
+                $this->classDetails = array_filter(reset($classes_teachers), array($this, "filterClassesTeachers"));
+                $this->classId = reset($this->classDetails)->classes_teachers_classes_class_Id;
+                $this->classesStudents = array_filter(reset($classes_students), array($this, "filterClassesStudents"));
+                $this->studentsInClass = count($this->classesStudents);
+                $this->schoolCurriculumDetails = array_filter(reset($curriculum), array($this, "filterCurriculum"));
+                $this->schoolCurriculumId = reset($this->schoolCurriculumDetails)->curriculum_Id;
+                $this->schoolCurriculumDescription = reset($this->schoolCurriculumDetails)->description;
+                $this->schoolTypeDetails = array_filter(reset($school_type_identifiers), array($this, "filterSchoolTypeIdentifiers"));
+                $this->schoolTypeId = reset($this->schoolTypeDetails)->school_type_identifier_id;
+                $this->schoolTypeDescription = reset($this->schoolTypeDetails)->school_type_identifier_description;
+                $this->teacherScriibiDetails = array_filter(reset($teachers_scriibi_level), array($this, "filterTeachersScriibiLevels"));
+                $this->scriibiDetails = array_filter(reset($scriibi_levels), array($this, "filterScriibiLevels"));
+                $this->teacherScriibiLevel = reset($this->scriibiDetails)->scriibi_Level;
+                $this->teacherScriibiId = reset($this->scriibiDetails)->scriibi_Level_Id;
+                $this->teacherPositionDetails = array_filter(reset($teachers_positions), array($this, "filterTeachersPositions"));
+                $this->positionDetails = array_filter(reset($positions), array($this, "filterPositions"));
+                foreach($this->positionDetails as $pd){
+                    array_push($this->teacherPositionId, $pd->position_Id);
+                    array_push($this->teacherPositionName, $pd->position_Name);
+                }
+                $this->gradeLabelSchoolTypeDetails = array_filter(reset($school_types), array($this, "filterSchoolTypes"));
+                $this->gradeLabelDetails = array_filter(reset($grade_labels), array($this, "filterGradeLabel"));
+                $this->teacherGradeLabel = reset($this->gradeLabelDetails)->grade_label;
+
+                $mp->identify($this->userId);
+
+                //User Properties
+                $mp->people->set($this->userId, array(
+                    '$distinct_id'                      => $this->userId,
+                    '$first_name'                       => $this->userName,
+                    '$email'                            => $this->userEmail,
+                    'User Scriibi Level'                => $this->teacherScriibiLevel,
+                    'User Grade'                        => $this->teacherGradeLabel,
+                    'User Position Id'                  => $this->teacherPositionId,
+                    'User Position Description'         => $this->teacherPositionName,
+                    'User Created Date'                 => $this->userCreated,
+                    'User School Id'                    => $this->teacherSchoolId,
+                    'User School Name'                  => $this->teacherSchoolName,
+                    'User School Curriculum Id'         => $this->schoolCurriculumId,
+                    'User School Curriculum Description'=> $this->schoolCurriculumDescription,
+                    'User School Type Id'               => $this->schoolTypeId,
+                    'User School Type Description'      => $this->schoolTypeDescription,
+                    'No. of Students in Class'          => $this->studentsInClass
+                ), $ip = 0, $ignore_time = true);
+            }catch(Exception $ex){
+                //todo
             }
-            $this->gradeLabelSchoolTypeDetails = array_filter(reset($school_types), array($this, "filterSchoolTypes"));
-            $this->gradeLabelDetails = array_filter(reset($grade_labels), array($this, "filterGradeLabel"));
-            $this->teacherGradeLabel = reset($this->gradeLabelDetails)->grade_label;
-
-            $mp->identify($this->userId);
-
-            //User Properties
-            $mp->people->set($this->userId, array(
-                '$distinct_id'                      => $this->userId,
-                '$first_name'                       => $this->userName,
-                '$email'                            => $this->userEmail,
-                'User Scriibi Level'                => $this->teacherScriibiLevel,
-                'User Grade'                        => $this->teacherGradeLabel,
-                'User Position Id'                  => $this->teacherPositionId,
-                'User Position Description'         => $this->teacherPositionName,
-                'User Created Date'                 => $this->userCreated,
-                'User School Id'                    => $this->teacherSchoolId,
-                'User School Name'                  => $this->teacherSchoolName,
-                'User School Curriculum Id'         => $this->schoolCurriculumId,
-                'User School Curriculum Description'=> $this->schoolCurriculumDescription,
-                'User School Type Id'               => $this->schoolTypeId,
-                'User School Type Description'      => $this->schoolTypeDescription,
-                'No. of Students in Class'          => $this->studentsInClass
-            ), $ip = 0, $ignore_time = true);
         }
         return redirect('home');
     }
