@@ -17,7 +17,7 @@ class DataViewController extends Controller
             $overView->generateDataTable();
             $dataTable = $overView->getDataTable();
             $writingTasks = $overView->getWritingTasks();
-            $mp = Mixpanel::getInstance("5babc6069b55205b0b135f120426d702");
+            $mp = Mixpanel::getInstance("2407d4231d98a30fa9d448eaa58bde99");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Landed on a Key Page", array(
                     "Page Id"           => "P004",
