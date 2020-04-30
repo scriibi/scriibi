@@ -5,16 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 use Auth;
+use Mixpanel;
+use Exception;
 use App\writing_tasks;
 
 class DataViewController extends Controller
 {
     public function overview(){
-        $overView = new App\DataViewOverview();
-        $overView->generateDataTable();
-        $dataTable = $overView->getDataTable();
-        $writingTasks = $overView->getWritingTasks();
-        return view('overall-data-view', ['dataTable' => $dataTable, 'writingTasks' => $writingTasks]);
+        try{
+            $overView = new App\DataViewOverview();
+            $overView->generateDataTable();
+            $dataTable = $overView->getDataTable();
+            $writingTasks = $overView->getWritingTasks();
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Landed on a Key Page", array(
+                    "Page Id"           => "P004",
+                    "Page Name"         => "Data View"
+                )
+            );
+            return view('overall-data-view', ['dataTable' => $dataTable, 'writingTasks' => $writingTasks]);
+        }catch(Exception $ex){
+            //todo
+        }
+        
     }
 
     // public function studentView($student){

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Mixpanel;
 use Exception;
 use App\Rubrics;
+use App\schools;
 use App\Rubric;
 use App\classes;
+use App\ScriibiLevels;
 use App\teachers;
 use App\WritingTask;
 use App\writing_tasks;
@@ -54,7 +57,7 @@ class WritingTasksController extends Controller
             $assessment_description = $request->input('assessment_description');
             $assessment_setting = $request->input('assess');
             $assessment_rubric = $request->input('rubric');
-            
+    
             $rubric_details = Rubrics::find($assessment_rubric);
             $rubric = new Rubric($rubric_details->rubric_Id, $rubric_details->rubric_Name, $rubric_details->created_at);
             $rubric->populateTraits();
@@ -78,10 +81,42 @@ class WritingTasksController extends Controller
             foreach($students_list as $sl){
                 DB::table('writting_task_students')->insert(['fk_writting_task_id' => $newWritingTaskId, 'fk_student_id' => $sl, 'status' => 'incomplete']);
             }
+            
+            /**
+             * Mixpanel Code
+             */
+            $schoolTeacherDetails = DB::table('school_teachers')->where('teachers_user_Id', Auth::user()->user_Id)->get();
+            $teacherScriibiLvlDetails = DB::table('teachers_scriibi_levels')->where('teachers_user_Id', Auth::user()->user_Id)->get();
+            $schoolDetails = schools::find($schoolTeacherDetails[0]->schools_school_Id);
+            $schoolTypeDetails = DB::table('school_types')->where('fk_curriculum_id', $schoolDetails->curriculum_details_curriculum_details_Id)->where('fk_school_type_identifier_id', $schoolDetails->school_type_identifier_id)->get();
+            $gradeLabelDetails = DB::table('grade_labels')->where('fk_school_type_id', $schoolTypeDetails[0]->school_type_id)->where('fk_scriibi_level_id', $teacherScriibiLvlDetails[0]->scriibi_levels_scriibi_Level_Id)->get();
+            if($assessment_setting == "mine"){
+                $option = "class";
+            }else if($option == "all"){
+                $option = "grade";
+            }
+            $NoOfAssessments = DB::table('writing_tasks')->where('created_By_Teacher_User_Id', Auth::user()->user_Id)->count();
+            $NoOfSkills = DB::table('rubrics_skills')->where('rubrics_rubric_Id', $assessment_rubric)->count();
+            $StudentsInTask = DB::table('writting_task_students')->where('fk_writting_task_id', $newWritingTaskId)->count();
+
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Assessment Created", array(
+                "Assessment Id"             => $newWritingTaskId,
+                "Assesment Name"            => $assessment_title,
+                "Teacher Grade"             => $gradeLabelDetails[0]->grade_label,
+                "Teacher Scriibi Level"     => ScriibiLevels::find($gradeLabelDetails[0]->fk_scriibi_level_id)->scriibi_Level,
+                "Rubric Id"                 => $assessment_rubric,
+                "Class or Grade"            => $option,
+                "No. of Assessments"        => $NoOfAssessments,
+                "No. of Rubric Skills"      => $NoOfSkills,
+                "No. of Current Students"   => $StudentsInTask
+              )
+            );
 
             return redirect()->action('AssessmentListController@GenerateAssessmentList');
         }catch(Exception $e){
-            throw $e;
+            //todo
         }
     }
 
@@ -110,10 +145,29 @@ class WritingTasksController extends Controller
     }
 
     public function ShowWritingTask($assessment_id){
-        $writing_task_details = writing_tasks::find($assessment_id);
-        $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
-        $newWritingTask->populateStudents();
-        return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
+        try{
+            $writing_task_details = writing_tasks::find($assessment_id);
+            $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
+            $newWritingTask->populateStudents();
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+
+            $mp->track("Landed on a Key Page", array(
+                    "Page Id"           => "P032",
+                    "Page Name"         => "Single Assessment Page"
+                )
+            );
+            $mp->track("Assessment Viewed", array(
+                "Assessment Id"                  => $assessment_id,
+                "Assessment Name"                => $writing_task_details->task_name,
+                "No. of Current Students"        => count($newWritingTask->getStudents())
+              )
+            );
+            return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
+        }catch(Exception $ex){
+            //throw $ex;
+            //todo
+        }
     }
 
     public function editAssessment(Request $request)

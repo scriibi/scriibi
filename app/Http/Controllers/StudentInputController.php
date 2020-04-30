@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Mixpanel;
 use Exception;
 use App\teachers;
 use App\classes_teachers;
@@ -20,10 +21,18 @@ class StudentInputController extends Controller
     public function ReturnStudentListPage(){
         try{
             $labels = StudentInputController::GetLabels();
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Landed on a Key Page", array(
+                    "Page Id"           => "P005",
+                    "Page Name"         => "Student List"
+                )
+            );
+            return view('/studentlist', ['grade' => $labels['grades'], 'assessed' => $labels['assessed']]);
         }catch(Exception $e){
             abort(403, 'You do not have authorization to access this page!');
         }
-        return view('/studentlist', ['grade' => $labels['grades'], 'assessed' => $labels['assessed']]);
     }
     /**
      * returns an array of grade and assessed label values

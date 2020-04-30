@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Mixpanel;
+use Exception;
 use App\WritingTask;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,12 +12,24 @@ use App\Http\Controllers\Controller;
 class AssessmentListController extends Controller
 {
     public function GenerateAssessmentList(){
-        $writting_taskList = array();
-        $writing_task_controller = new WritingTasksController();
-        $writing_tasks = $writing_task_controller->index();
-        foreach($writing_tasks as $wt){
-            array_push($writting_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));
+        try{
+            $writting_taskList = array();
+            $writing_task_controller = new WritingTasksController();
+            $writing_tasks = $writing_task_controller->index();
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+
+            foreach($writing_tasks as $wt){
+                array_push($writting_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));
+            }
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Landed on a Key Page", array(
+                    "Page Id"           => "P002",
+                    "Page Name"         => "Assessment List"
+                )
+            );
+            return view('assessment-list', ['assessmentList' => $writting_taskList]);
+        }catch(Exception $ex){
+            //todo
         }
-        return view('assessment-list', ['assessmentList' => $writting_taskList]);
     }
 }
