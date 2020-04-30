@@ -40,7 +40,7 @@ class AssessmentMarkingController extends Controller
          */
         $flag = empty($student_tasks[0]);            
         $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
-        $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
+        $mp = Mixpanel::getInstance("5babc6069b55205b0b135f120426d702");
 
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
@@ -150,7 +150,7 @@ class AssessmentMarkingController extends Controller
             }
             $marksCompleted = DB::table('tasks_students')->whereIn('tasks_skills_Id', $allTaskSkills)->get();
 
-            $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
+            $mp = Mixpanel::getInstance("5babc6069b55205b0b135f120426d702");
             $mp->identify(Auth::user()->user_Id);
 
             $mp->track("Student Marked", array(

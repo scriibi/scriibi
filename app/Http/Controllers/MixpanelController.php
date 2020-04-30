@@ -48,7 +48,7 @@ class MixpanelController extends Controller
     private $gradeLabelDetails = null;
 
     public function UpdateMixpanelUserDetails(){
-        $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
+        $mp = Mixpanel::getInstance("5babc6069b55205b0b135f120426d702");
         // retrieve all table data required
         $teachers = DB::table('teachers')->get();
         $school_teachers = DB::table('school_teachers')->get();
