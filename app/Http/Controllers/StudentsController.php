@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Mixpanel;
 use Exception;
+use App\schools;
 use App\teachers;
 use App\students;
 use App\grade_label;
+use App\ScriibiLevels;
 use App\assessed_level_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,6 +45,15 @@ class StudentsController extends Controller
             $student_classes_record = array('classes_class_Id' => $class, 'students_student_Id' => $newStudentId, 'student_grade_label_id' => $student_grade, 'student_assessed_label_id' => $student_assignment_level);
 
             $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
+
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Student Added", array(
+                "Grade of student"              => grade_label::find($student_grade)->grade_label,
+                "Assessed Level of student"     => assessed_level_label::find($student_assignment_level)->assessed_level_label,
+                "Scriibi Level of Student"      => assessed_level_label::find($student_assignment_level)->ScriibiLevels->scriibi_Level
+              )
+            );
         }catch(Exception $e){
             //throw $e;
         }
@@ -56,8 +68,23 @@ class StudentsController extends Controller
      */
     public function deleteStudent($student_id){
         try{
+            $studentDetails = students::find($student_id);
+            $schoolDetails = schools::find($studentDetails->schools_school_Id);
+            $schoolTypeDetails = DB::table('school_types')->where('fk_curriculum_id', $schoolDetails->curriculum_details_curriculum_details_Id)->where('fk_school_type_identifier_id', $schoolDetails->school_type_identifier_id)->get();
+            $gradeLabelDetails = DB::table('grade_labels')->where('fk_school_type_id', $schoolTypeDetails[0]->school_type_id)->where('fk_scriibi_level_id', $studentDetails->enrolled_Level_Id)->get();
+            $assessedLabelDetails = DB::table('assessed_level_labels')->where('school_type_id_fk', $schoolTypeDetails[0]->school_type_id)->where('school_scriibi_level_id', $studentDetails->rubrik_level)->get();
+
             DB::table('students')->where('student_Id', $student_id)->update(['enrolled_Level_Id' => null]);
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
+            
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Student Deleted", array(
+                "Grade of student"              => $gradeLabelDetails[0]->grade_label,
+                "Assessed Level of student"     => $assessedLabelDetails[0]->assessed_level_label,
+                "Scriibi Level of Student"      => ScriibiLevels::find($assessedLabelDetails[0]->school_scriibi_level_id)->scriibi_Level
+              )
+            );
         }
         catch(Exception $e){
             return redirect()->action('StudentInputController@ReturnStudentListPage');

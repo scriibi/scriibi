@@ -29,9 +29,21 @@ Route::get('/data-view', 'DataViewController@overview');
 Route::get('/assessment-data-view/{assessmentId}', 'DataViewController@assessmentView');
 
 Route::get('/home', function(){
-    $stdController = new App\Http\Controllers\StudentsController();
-    $students = $stdController->indexStudentsByClass();
-    return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
+    try{
+        $stdController = new App\Http\Controllers\StudentsController();
+        $students = $stdController->indexStudentsByClass();
+        $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+
+        $mp->identify(Auth::user()->user_Id);
+        $mp->track("Landed on a Key Page", array(
+                "Page Id"           => "P001",
+                "Page Name"         => "Home"
+            )
+        );
+        return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
+    }catch(Exception $ex){
+        //todo
+    }
 })->name('home')->middleware('auth');
 
 Route::get('/studentlist', function(){
@@ -41,6 +53,14 @@ Route::get('/studentlist', function(){
 Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
+    $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+
+    $mp->identify(Auth::user()->user_Id);
+    $mp->track("Landed on a Key Page", array(
+            "Page Id"           => "P034",
+            "Page Name"         => "Assessment Setup"
+        )
+    );
     return view('assessment-setup');
 });
 

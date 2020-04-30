@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Mixpanel;
+use Exception;
 use App\SkillCard;
 use App\ScriibiLevels;
 use App\writing_tasks;
+use App\Rubrics_skills;
 use App\tasks_students;
 use App\students;
 use App\text_types_skills;
@@ -37,6 +40,7 @@ class AssessmentMarkingController extends Controller
          */
         $flag = empty($student_tasks[0]);            
         $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
+        $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
 
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
@@ -57,6 +61,13 @@ class AssessmentMarkingController extends Controller
             }
             array_push($skillCards, $newSKillCard);
         }
+
+        $mp->identify(Auth::user()->user_Id);
+        $mp->track("Landed on a Key Page", array(
+                "Page Id"           => "P033",
+                "Page Name"         => "Assessment Marking"
+            )
+        );
         return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level_label, 'assessed_level_scriibi_id' => $student->rubrik_level, 'results' => $prepopulated_results, 'comment' => $status[0]->comment]);
     }
 
@@ -92,40 +103,73 @@ class AssessmentMarkingController extends Controller
     }
 
     public function saveAssessment(Request $request){
-        // stores the values passed in through the form as key value pairs
-        $skillsAssessedArray = array();
-        // stores the reference values from the table 'task_skills' in order to find the 'writing_tasks_writing_task_Id'
-        $task_skills = array();
-        $skillCount = $request->input('skillCount');
-        $studentId = $request->input('studentId');
-        $writingTask = $request->input('writingTask');
-        $comment = $request->input('comment');
-        $status = $request->input('status');
-        //dd($status);
-        for($i = 1; $i <= $skillCount; $i++){
-            $student_skill = $request->input('skill_' . (string)$i);
-            if(isset($student_skill)){
-                if($student_skill != 'na'){
-                    $skill_pointer = explode("/", $student_skill);
-                    $skillsAssessedArray[$skill_pointer[1]] = $skill_pointer[0];
+        try{
+            // stores the values passed in through the form as key value pairs
+            $skillsAssessedArray = array();
+            // stores the reference values from the table 'task_skills' in order to find the 'writing_tasks_writing_task_Id'
+            $task_skills = array();
+            $skillCount = $request->input('skillCount');
+            $studentId = $request->input('studentId');
+            $writingTask = $request->input('writingTask');
+            $comment = $request->input('comment');
+            $status = $request->input('status');
+            
+            for($i = 1; $i <= $skillCount; $i++){
+                $student_skill = $request->input('skill_' . (string)$i);
+                if(isset($student_skill)){
+                    if($student_skill != 'na'){
+                        $skill_pointer = explode("/", $student_skill);
+                        $skillsAssessedArray[$skill_pointer[1]] = $skill_pointer[0];
+                    }
+                }
+            }  
+            $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get(); 
+            foreach($writingTaskSkills as $wts){
+                if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
+                    $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
+                    $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
                 }
             }
-        }
-        $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get();
-        foreach($writingTaskSkills as $wts){
-            if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
-                $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
-                $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
+
+            if(isset($comment)){
+                DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
             }
-        }
 
-        if(isset($comment)){
-            DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
-        }
+            if($status == 1){
+                DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['status' => 'completed']);
+            }
 
-        if($status == 1){
-            DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['status' => 'completed']);
+            /**
+             * mixpanel code
+             */
+            $writingTaskDetails = writing_tasks::find($writingTask);
+            $allTaskSkills = [];
+
+            foreach($writingTaskSkills as $ts){
+                array_push($allTaskSkills, $ts->tasks_skills_Id);
+            }
+            $marksCompleted = DB::table('tasks_students')->whereIn('tasks_skills_Id', $allTaskSkills)->get();
+
+            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp->identify(Auth::user()->user_Id);
+
+            $mp->track("Student Marked", array(
+                "Student Id"                    => $studentId,
+                "Assessment Id"                 => $writingTask,
+                "Assessed Level of Student"     => ScriibiLevels::find((students::find($studentId))->rubrik_level)->scriibi_Level,
+                "Rubric Id"                     => $writingTaskDetails->fk_rubric_id,
+                "No. of Rubric Skills"          => DB::table('rubrics_skills')->where('rubrics_rubric_Id', $writingTaskDetails->fk_rubric_id)->count(),
+                "Number of Skills Marked"       => count($skillsAssessedArray),
+                "Assessment Status"             => $status == 1 ? "Complete" : "Incomplete",
+                "Assessment Marks Completed "  => count($marksCompleted),
+              )
+            );
+
+            return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
+        }catch(Exception $ex){
+            // throw $ex;
+            //todo
         }
-        return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
+        
     }
 }
