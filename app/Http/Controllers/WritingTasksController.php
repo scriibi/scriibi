@@ -99,7 +99,7 @@ class WritingTasksController extends Controller
             $NoOfSkills = DB::table('rubrics_skills')->where('rubrics_rubric_Id', $assessment_rubric)->count();
             $StudentsInTask = DB::table('writting_task_students')->where('fk_writting_task_id', $newWritingTaskId)->count();
 
-            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Assessment Created", array(
                 "Assessment Id"             => $newWritingTaskId,
@@ -149,7 +149,7 @@ class WritingTasksController extends Controller
             $writing_task_details = writing_tasks::find($assessment_id);
             $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
             $newWritingTask->populateStudents();
-            $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+            $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
             $mp->identify(Auth::user()->user_Id);
 
             $mp->track("Landed on a Key Page", array(
