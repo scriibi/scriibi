@@ -32,7 +32,7 @@ Route::get('/home', function(){
     try{
         $stdController = new App\Http\Controllers\StudentsController();
         $students = $stdController->indexStudentsByClass();
-        $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+        $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
 
         $mp->identify(Auth::user()->user_Id);
         $mp->track("Landed on a Key Page", array(
@@ -53,7 +53,7 @@ Route::get('/studentlist', function(){
 Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
-    $mp = Mixpanel::getInstance("0e51059ac7661c64203efe203de149af");
+    $mp = Mixpanel::getInstance("627c101ab25b3d2d138fec9b3fd83987");
 
     $mp->identify(Auth::user()->user_Id);
     $mp->track("Landed on a Key Page", array(
