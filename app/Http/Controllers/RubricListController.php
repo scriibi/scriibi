@@ -20,7 +20,7 @@ class RubricListController extends Controller
         try{
             $rubricList = new RubricList();
             $returnList = $rubricList->GenerateTeacherSpecificRubricList();
-            $mp = Mixpanel::getInstance("2407d4231d98a30fa9d448eaa58bde99");
+            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
 
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Landed on a Key Page", array(
