@@ -32,7 +32,7 @@ Route::get('/home', function(){
     try{
         $stdController = new App\Http\Controllers\StudentsController();
         $students = $stdController->indexStudentsByClass();
-        $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
 
         $mp->identify(Auth::user()->user_Id);
         $mp->track("Landed on P001", array(
@@ -53,7 +53,7 @@ Route::get('/studentlist', function(){
 Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
-    $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+    $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
 
     $mp->identify(Auth::user()->user_Id);
     $mp->track("Landed on P034", array(
