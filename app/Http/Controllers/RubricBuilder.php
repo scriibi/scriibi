@@ -57,7 +57,7 @@ class RubricBuilder extends Controller
             $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
 
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on a Key Page", array(
+            $mp->track("Landed on P031", array(
                     "Page Id"           => "P031",
                     "Page Name"         => "Rubric Creator"
                 )

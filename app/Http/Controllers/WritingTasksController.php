@@ -152,7 +152,7 @@ class WritingTasksController extends Controller
             $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
             $mp->identify(Auth::user()->user_Id);
 
-            $mp->track("Landed on a Key Page", array(
+            $mp->track("Landed on P032", array(
                     "Page Id"           => "P032",
                     "Page Name"         => "Single Assessment Page"
                 )

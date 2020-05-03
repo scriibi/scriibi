@@ -63,7 +63,7 @@ class AssessmentMarkingController extends Controller
         }
 
         $mp->identify(Auth::user()->user_Id);
-        $mp->track("Landed on a Key Page", array(
+        $mp->track("Landed on P033", array(
                 "Page Id"           => "P033",
                 "Page Name"         => "Assessment Marking"
             )
