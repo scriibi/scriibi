@@ -22,7 +22,7 @@ class AssessmentListController extends Controller
                 array_push($writting_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));
             }
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on a Key Page", array(
+            $mp->track("Landed on P002", array(
                     "Page Id"           => "P002",
                     "Page Name"         => "Assessment List"
                 )

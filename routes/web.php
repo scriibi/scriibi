@@ -35,7 +35,7 @@ Route::get('/home', function(){
         $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
 
         $mp->identify(Auth::user()->user_Id);
-        $mp->track("Landed on a Key Page", array(
+        $mp->track("Landed on P001", array(
                 "Page Id"           => "P001",
                 "Page Name"         => "Home"
             )
@@ -56,7 +56,7 @@ Route::get('/assessment-setup', function(){
     $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
 
     $mp->identify(Auth::user()->user_Id);
-    $mp->track("Landed on a Key Page", array(
+    $mp->track("Landed on P034", array(
             "Page Id"           => "P034",
             "Page Name"         => "Assessment Setup"
         )
