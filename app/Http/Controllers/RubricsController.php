@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Mixpanel;
 use App\Rubrics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,6 +71,30 @@ class RubricsController extends Controller
 
         $new_teacher_rubric2 = array('rubrics_rubric_Id' => $newRubricId2, 'teachers_user_Id' => Auth::user()->user_Id);
         DB::table('rubrics_teachers')->insert($new_teacher_rubric2);
+
+        /**
+         * mixpanel code
+        */
+        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+
+        $mp->identify(Auth::user()->user_Id);
+        $mp->track("Rubric Created", array(
+                "Rubric Id"                  => $newRubricId1,
+                "Rubric Name"                => $rubric1_name,
+                "Rubric Scriibi Level"       => $assessed_level,
+                "Rubric Skill Ids"           => $rubric1_skills,
+                "Related Rubric Ids"         => [$newRubricId2],
+            )
+        );
+
+        $mp->track("Rubric Created", array(
+            "Rubric Id"                  => $newRubricId2,
+            "Rubric Name"                => $rubric2_name,
+            "Rubric Scriibi Level"       => $assessed_level,
+            "Rubric Skill Ids"           => $rubric2_skills,
+            "Related Rubric Ids"         => [$newRubricId1],
+        )
+    );
 
         return redirect()->action('RubricListController@GenerateUserRubrics');
     }

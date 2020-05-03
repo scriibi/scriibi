@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Mixpanel;
+use Exception;
 use App\traitObject;
 use App\skillObject;
 use App\traits;
@@ -50,8 +52,20 @@ class RubricBuilder extends Controller
      * generates the initial rubric builder page without any skills populated
      */
     public function generateRubricsView(){
-        $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
-        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null]);
+        try{
+            $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Landed on P031", array(
+                    "Page Id"           => "P031",
+                    "Page Name"         => "Rubric Creator"
+                )
+            );
+            return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null]);
+        }catch(Exception $ex){
+            //todo
+        }
     }
 
     /**
