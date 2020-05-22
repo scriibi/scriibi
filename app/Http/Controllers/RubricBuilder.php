@@ -8,6 +8,7 @@ use Exception;
 use App\traitObject;
 use App\skillObject;
 use App\traits;
+use App\Rubrics;
 use App\skills;
 use App\skills_traits;
 use App\text_types;
@@ -54,7 +55,7 @@ class RubricBuilder extends Controller
     public function generateRubricsView(){
         try{
             $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
 
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Landed on P031", array(
@@ -86,6 +87,55 @@ class RubricBuilder extends Controller
      */
     public function getTextTypes(){
         return text_types::get();
+    }
+
+    /**
+     * populates all the skills in all traits which belong to the selected rubric level, the level above
+     * and the level below and calculates the flags for all of the skills in the skills collection 
+     * and also retirves the pre-selected skills for the existing rubric and returns a rubric edit page 
+     */
+    public function generateEditRubricView($rubricId){
+        try{
+            $rubric_details = Rubrics::find($rubricId)->toArray();
+            $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+            RubricBuilder::populateSkillsInTraits($rubric_details["scriibi_levels_scriibi_level_Id"]);
+            foreach($this->traits_skills_array as $tsa){
+                $tsa->calcFlag($rubric_details["scriibi_levels_scriibi_level_Id"]);
+            }
+            $selected_rubric_skills = DB::table('rubrics_skills')->select('skills_skill_Id')->where('rubrics_rubric_Id', '=', $rubricId)->get();
+            $temp = [];
+            foreach($selected_rubric_skills as $srs){
+                array_push($temp, $srs->skills_skill_Id);
+            }
+            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $rubric_details["scriibi_levels_scriibi_level_Id"], 'traitObjects' => $this->traits_skills_array, 'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => []]);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    public function generateEditRubricViewWithFlags($rubricId, $level){
+        try{
+            $rubric_details = Rubrics::find($rubricId)->toArray();
+            $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+            RubricBuilder::populateSkillsInTraits($level);
+            foreach($this->traits_skills_array as $tsa){
+                $tsa->calcFlag($level);
+            }
+            $selected_rubric_skills = DB::table('rubrics_skills')->select('skills_skill_Id')->where('rubrics_rubric_Id', '=', $rubricId)->get();
+            // dump($rubric_details);
+            // dump($rubric_details["scriibi_levels_scriibi_level_Id"]);
+            // dump($this->traits_skills_array);
+            // dump($text_types_and_assessed_labels_array['assessed_labels']);
+            $temp = [];
+            foreach($selected_rubric_skills as $srs){
+                array_push($temp, $srs->skills_skill_Id);
+            }
+            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $level, 'traitObjects' => $this->traits_skills_array, 'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => []]);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
     }
 }
 

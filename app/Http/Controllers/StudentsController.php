@@ -46,7 +46,7 @@ class StudentsController extends Controller
 
             $newStudentClass = DB::table('classes_students')->insert($student_classes_record);
 
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Student Added", array(
                 "Grade of student"              => grade_label::find($student_grade)->grade_label,
@@ -77,7 +77,7 @@ class StudentsController extends Controller
             DB::table('students')->where('student_Id', $student_id)->update(['enrolled_Level_Id' => null]);
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
             
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Student Deleted", array(
                 "Grade of student"              => $gradeLabelDetails[0]->grade_label,

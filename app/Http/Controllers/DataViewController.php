@@ -17,7 +17,7 @@ class DataViewController extends Controller
             $overView->generateDataTable();
             $dataTable = $overView->getDataTable();
             $writingTasks = $overView->getWritingTasks();
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Landed on P004", array(
                     "Page Id"           => "P004",
@@ -47,6 +47,16 @@ class DataViewController extends Controller
             $dataTable = $assessmentView->getDataTable();
             $skills = $assessmentView->getSkills();
             $writingTask = $assessmentView->getWritingTasks();
+            /**
+             * mixpanel implementation
+             */
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp->identify(Auth::user()->user_Id);
+            $mp->track("Landed on P041", array(
+                    "Page Id"           => "P041",
+                    "Page Name"         => "Assessment Data View"
+                )
+            );
             return view('assessment-data-view', ['dataTable' => $dataTable, 'skills' => $skills, 'writingTask' => $writingTask]);
         }else{
             abort(403, 'You Cannot View This Assessment!');

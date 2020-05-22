@@ -72,6 +72,14 @@ class traitObject
         }
     }
 
+    public function isSkillsEmpty(){
+        if(empty($this->skills)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * populates the built in skills array with trait specific skills
      */

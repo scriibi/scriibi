@@ -124,8 +124,8 @@
     </table>
     <input type="text" class="hiddenArea" name="individual-student" hidden/>
 </form>
-<div id="generate-goal-sheets-modal" class="modal">
-  <div class="modal-content">
+<div id="generate-goal-sheets-modal" class="generate-gs-modal">
+  <div class="generate-gs-modal-content">
     <span class="close-goal-sheet-modal">&times;</span>
     <div class="slideshow-container" style="width:85%">
       <p class="green-bold">How to generate Goal Sheets</p>

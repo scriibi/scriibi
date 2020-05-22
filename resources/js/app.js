@@ -397,12 +397,41 @@ $(function(){
         window.location.href = url_origin;
     });
 
+    //on change of the drop down in the rubric edit page, redirect the user to the page with the value appeneded to the url
+    $("#select_curriculum_code_in_rubric_edit").change(function(){
+        //getting the curriculum level value
+        let curriculum_level = $(this).val();
+        let rubric_id = $(this).attr("data-rubric-id");
+        //get the origin url and apply the rubrics page to it and the value
+        let url_origin = window.location.origin;
+        url_origin += "/rubric-edit/";
+        url_origin += rubric_id;
+        url_origin += '/';
+        url_origin += curriculum_level;
+        window.location.href = url_origin;
+    });
+
     // get the current url of the window
     var url = window.location.href;
     // check if the current url belongs to either the assessment marking page or the rubric creation page
     if(url.includes('assessment-marking') || url.includes('rubricsFlag')){
         // add the noselect css class to the body
         $('body').addClass("noselect");
+    }
+
+    // check for rubric-details page
+    if(url.includes('rubric-details')){
+        // add onlick event for the edit rubric link
+        document.getElementById("edit-rubric-link").addEventListener("click", function(event){
+            let rubric_edit_button = document.getElementById("edit-rubric-link");
+            // retrieve the assessment count for this rubric
+            let assessment_count = rubric_edit_button.getAttribute("data-assessment-count");
+            if(assessment_count != "0"){
+                // if assessment count is 0 then display a modal and prevent redirect
+                event.preventDefault();
+                $("#multiple-assessments-warning-modal").modal("show");
+            }  
+        });
     }
 
 }); //===== /END OF JQUERY =======

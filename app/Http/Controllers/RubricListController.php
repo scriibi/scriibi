@@ -20,7 +20,7 @@ class RubricListController extends Controller
         try{
             $rubricList = new RubricList();
             $returnList = $rubricList->GenerateTeacherSpecificRubricList();
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
 
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Landed on P003", array(
@@ -32,5 +32,11 @@ class RubricListController extends Controller
         }catch(Exception $ex){
             //todo
         }
+    }
+
+    public function GenerateRubricDetails($rubric_id){
+        $rubricList = new RubricList();
+        $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
+        return view('rubric-details', ['data' => $rubricDetails]);
     }
 }

@@ -16,7 +16,7 @@ class AssessmentListController extends Controller
             $writting_taskList = array();
             $writing_task_controller = new WritingTasksController();
             $writing_tasks = $writing_task_controller->index();
-            $mp = Mixpanel::getInstance("5581c9a61e65c623c08d3a650f001c68");
+            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
 
             foreach($writing_tasks as $wt){
                 array_push($writting_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));

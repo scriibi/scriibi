@@ -4,6 +4,7 @@ namespace App;
 
 use DB;
 use Auth;
+use App\Rubric;
 use App\Rubrics;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,9 +30,10 @@ class WritingTask
         $this->assessed_at = date('Y-m-d', strtotime($assessed));
         $this->teacher_created = $teacher;
         $this->teaching_period = $teaching_period;
-        $this->rubric_id = $rubric_id;
-        $this->rubric = Rubrics::find($this->rubric_id);
-
+        $rubricRecord = Rubrics::find($rubric_id)->toArray();
+        $this->rubric = new Rubric($rubricRecord["rubric_Id"], $rubricRecord["rubric_Name"]);
+        $this->rubric->populateTraits();
+        $this->rubric->getSkillsByRubric();
         if ($this->assessed_at > date("Y-m-d")){
             $this->status = 'In Progress';
         }else if ($this->assessed_at <= date("Y-m-d")){
@@ -65,10 +67,6 @@ class WritingTask
 
     public function getTeachingPeriod(){
         return $this->teaching_period;
-    }
-
-    public function getRubricId(){
-        return $this->rubric_id;
     }
 
     public function getRubric(){
