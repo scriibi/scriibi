@@ -46,13 +46,23 @@
                                                                                          
                     <span class="aligh-dots-assessment-list-assessment-page">
                     <span class="text-left-skills-colors-assessment-page"> 
-                        <?php echo $counter;?> Skills 
+                        <?php echo $counter; $count = 0; ?> Skills 
                     </span> 
                         @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
                         @if(!$ts->isSkillsEmpty())
                             <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                        @else
+                            <?php $count++; ?>
                         @endif
                         @endforeach
+                        <?php
+                            while($count > 0){
+                        ?>
+                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
+                        <?php
+                            $count--;
+                            }
+                        ?>
                     </span> 
                 </span>
             </div>
