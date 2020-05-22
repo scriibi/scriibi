@@ -33,4 +33,10 @@ class RubricListController extends Controller
             //todo
         }
     }
+
+    public function GenerateRubricDetails($rubric_id){
+        $rubricList = new RubricList();
+        $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
+        return view('rubric-details', ['data' => $rubricDetails]);
+    }
 }

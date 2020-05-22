@@ -83,6 +83,10 @@ Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags')
 Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
 Route::post('/rubricDelete', 'RubricsController@deleteRubric');
+Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');
+Route::get('/rubric-edit/{rubricId}', 'RubricBuilder@generateEditRubricView');
+Route::get('/rubric-edit/{rubricId}/{level}', 'RubricBuilder@generateEditRubricViewWithFlags');
+Route::post('/rubric-edit-confirm', 'RubricsController@update');
 
 //assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
