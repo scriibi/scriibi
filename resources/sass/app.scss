@@ -1724,6 +1724,10 @@ box-sizing: border-box;
     background-color: #B975FD;
 }
 
+.colored-dot-color-white{
+    background-color: #ffffff;
+}
+
 .rubric-info-rubric-skills-span{
     margin-left: .5%;
     vertical-align: super;
@@ -1930,15 +1934,15 @@ box-sizing: border-box;
 }
 
 .assessment-list-card-assessment-page{
-    width: 420px;
+    width: 430px;
     height: 32px;
     background: #dfdfdf;
-    padding-top: 4.5px;
+    padding-top: 5px;
     overflow: hidden;
     border-radius: 7px;
     margin-top: 0px;
     span[class=text-left]{
-        width: 240px;
+        width: 255px;
         float: left;
         color: black;
         position: relative;
@@ -1954,10 +1958,10 @@ box-sizing: border-box;
         border-radius: 7px;
         border: 1px solid #dfdfdf;
         background: white;
-        padding: 5px 10px;
+        padding: 5px 10px 5px 3px;
 
         .text-left-skills-colors-assessment-page{
-            margin-right: 12px;
+            margin-right: 8px;
             color: black;
             font-size: 12px;
             padding-top: 3px;
