@@ -55,12 +55,14 @@ class RubricBuilder extends Controller
     public function generateRubricsView(){
         try{
             $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
 
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on P031", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P031",
-                    "Page Name"         => "Rubric Creator"
+                    "Page Name"         => "Rubric Creator",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null]);

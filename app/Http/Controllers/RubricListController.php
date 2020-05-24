@@ -20,12 +20,14 @@ class RubricListController extends Controller
         try{
             $rubricList = new RubricList();
             $returnList = $rubricList->GenerateTeacherSpecificRubricList();
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
 
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on P003", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P003",
-                    "Page Name"         => "Rubric List"
+                    "Page Name"         => "Rubric List",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             return view('rubric-list', ['rubrics' => $returnList]);

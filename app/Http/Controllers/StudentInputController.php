@@ -21,12 +21,14 @@ class StudentInputController extends Controller
     public function ReturnStudentListPage(){
         try{
             $labels = StudentInputController::GetLabels();
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
 
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on P005", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P005",
-                    "Page Name"         => "Student List"
+                    "Page Name"         => "Student List",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             return view('/studentlist', ['grade' => $labels['grades'], 'assessed' => $labels['assessed']]);
