@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Mixpanel;
 use Exception;
+use App\WritingTask;
+use App\writing_tasks;
 use Illuminate\Http\Request;
 
 class MixpanelController extends Controller
@@ -48,7 +50,7 @@ class MixpanelController extends Controller
     private $gradeLabelDetails = null;
 
     public function UpdateMixpanelUserDetails(){
-        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+        $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
         // retrieve all table data required
         $teachers = DB::table('teachers')->get();
         $school_teachers = DB::table('school_teachers')->get();
@@ -127,6 +129,36 @@ class MixpanelController extends Controller
             }catch(Exception $ex){
                 //todo
             } 
+        }
+        return redirect('home');
+    }
+
+    public function UpdateMixpanelUserAssessmentDetails(){
+        try{
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+            $teachers = DB::table('teachers')->get();
+            foreach($teachers as $t){
+                $writingTasks = DB::table('writing_tasks')->where('created_By_Teacher_User_Id', '=', $t->user_Id)->get();
+                foreach($writingTasks as $wt){
+                    $newWritingTask = new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id);
+                    $newWritingTask->populateStudents();
+                    $skillCount = DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $wt->fk_rubric_id)->count();
+                    $markingCompletedAmount = DB::table('writting_task_students')->where('fk_writting_task_id', '=', $wt->writing_task_Id)->where('status', '=', 'completed')->count();
+                    $mp->identify($t->user_Id);
+                    $mp->track("Assessment Viewed", array(
+                        "Assessment Id"                  => $wt->writing_task_Id,
+                        "Assessment Name"                => $wt->task_name,
+                        "No. of Current Students"        => count($newWritingTask->getStudents()),
+                        "Assessment Marks Completed"     => $markingCompletedAmount,
+                        "No. of Rubric Skills"           => $skillCount,
+                        "Rubric Id"                      => $wt->fk_rubric_id,
+                        "Historical Event Flag"          => 1,
+                    )
+                    );
+                }
+            }
+        }catch(Exception $e){
+            throw $e;
         }
         return redirect('home');
     }

@@ -33,7 +33,7 @@ class WritingTask
         $rubricRecord = Rubrics::find($rubric_id)->toArray();
         $this->rubric = new Rubric($rubricRecord["rubric_Id"], $rubricRecord["rubric_Name"]);
         $this->rubric->populateTraits();
-        $this->rubric->getSkillsByRubric();
+        $this->rubric->getSkillsByWritingTask($this->id);
         if ($this->assessed_at > date("Y-m-d")){
             $this->status = 'In Progress';
         }else if ($this->assessed_at <= date("Y-m-d")){

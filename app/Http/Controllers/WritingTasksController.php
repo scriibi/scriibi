@@ -99,7 +99,7 @@ class WritingTasksController extends Controller
             $NoOfSkills = DB::table('rubrics_skills')->where('rubrics_rubric_Id', $assessment_rubric)->count();
             $StudentsInTask = DB::table('writting_task_students')->where('fk_writting_task_id', $newWritingTaskId)->count();
 
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Assessment Created", array(
                 "Assessment Id"             => $newWritingTaskId,
@@ -149,23 +149,31 @@ class WritingTasksController extends Controller
             $writing_task_details = writing_tasks::find($assessment_id);
             $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
             $newWritingTask->populateStudents();
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $skillCount = DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $writing_task_details->fk_rubric_id)->count();
+            $markingCompletedAmount = DB::table('writting_task_students')->where('fk_writting_task_id', '=', $writing_task_details->writing_task_Id)->where('status', '=', 'completed')->count();
+            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
             $mp->identify(Auth::user()->user_Id);
 
-            $mp->track("Landed on P032", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P032",
-                    "Page Name"         => "Single Assessment Page"
+                    "Page Name"         => "Single Assessment Page",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             $mp->track("Assessment Viewed", array(
                 "Assessment Id"                  => $assessment_id,
                 "Assessment Name"                => $writing_task_details->task_name,
-                "No. of Current Students"        => count($newWritingTask->getStudents())
+                "No. of Current Students"        => count($newWritingTask->getStudents()),
+                "Assessment Marks Completed"     => $markingCompletedAmount,
+                "No. of Rubric Skills"           => $skillCount,
+                "Rubric Id"                      => $writing_task_details->fk_rubric_id,
+                "Historical Event Flag"          => "",
               )
             );
             return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
         }catch(Exception $ex){
-            //throw $ex;
+            throw $ex;
             //todo
         }
     }

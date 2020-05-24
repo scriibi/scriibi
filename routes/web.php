@@ -32,12 +32,14 @@ Route::get('/home', function(){
     try{
         $stdController = new App\Http\Controllers\StudentsController();
         $students = $stdController->indexStudentsByClass();
-        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+        $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
 
         $mp->identify(Auth::user()->user_Id);
-        $mp->track("Landed on P001", array(
+        $mp->track("Page Viewed", array(
                 "Page Id"           => "P001",
-                "Page Name"         => "Home"
+                "Page Name"         => "Home",
+                "Page URL"          => "",
+                "Check Email"       => ""
             )
         );
         return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
@@ -50,15 +52,18 @@ Route::get('/studentlist', function(){
     return view('studentlist');
 });
 
+Route::get('/mixpanel-update-user-assessment-details', 'MixpanelController@UpdateMixpanelUserAssessmentDetails');
 Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
-    $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+    $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
 
     $mp->identify(Auth::user()->user_Id);
-    $mp->track("Landed on P034", array(
+    $mp->track("Page Viewed", array(
             "Page Id"           => "P034",
-            "Page Name"         => "Assessment Setup"
+            "Page Name"         => "Assessment Setup",
+            "Page URL"          => "",
+            "Check Email"       => ""
         )
     );
     return view('assessment-setup');
