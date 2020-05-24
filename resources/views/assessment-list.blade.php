@@ -37,9 +37,9 @@
 
                 <div class="body-cells row mb-2">
                 <span class="row btn-block d-flex justify-content-between pl-3 m-0">
-                    <p class="col-4 text-truncate text-left px-0 mt-2" style="font-size:16px">Title</p>
-                    <p class="col-4 text-truncate text-left px-1 mt-2" style="font-size:14px">Date Created</p>
-                    <p class="col-4 text-truncate text-left px-1 mt-2" style="font-size:14px">Rubric</p>
+                    <p class="col-3 text-truncate text-left px-0 mt-2" style="font-size:16px">Title</p>
+                    <p class="col-2 text-truncate text-left px-1 mt-2" style="font-size:14px">Date Created</p>
+                    <p class="col-7 text-truncate text-left px-1 mt-2" style="font-size:14px">Rubric</p>
                 </span>
                 </div>
                    
@@ -48,33 +48,42 @@
                         <div class="body-cells row mb-2">
                             <a href="{{ url('/single-assessment/' . $al->getId()) }}" class="row btn-block assessment-rubric-list-row d-flex justify-content-between pl-3 m-0">
                                 <p class="col-3 rubric-list-text text-truncate text-left px-0 mt-2" style="font-size:16px">{{$al->getName()}}</p>
-                                <p class="col-1 rubric-list-text text-truncate text-left px-1 mt-2" style="font-size:14px">{{$al->getCreatedAt()}}</p>
-                                <div class="assessment-list-card px-0 mt-2">
-                                    <span class="text-left">{{$al->getRubric()->getName()}}</span>
-                                    <?php $counter = 0;?>                   
-                                        @foreach($al->getRubric()->getRubricTraitSkills() as $ts)
-                                            @foreach($ts->getSkills() as $s)
-                                                <?php $counter++;?>
+                                <p class="col-2 rubric-list-text text-truncate text-left px-1 mt-2" style="font-size:14px">{{$al->getCreatedAt()}}</p>
+                                <div class=" col-6 assessment-list-card px-0 mt-2">
+                                    <div class="row">
+                                        <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                                            <span class="text-left">
+                                                {{$al->getRubric()->getName()}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                                            <?php $counter = 0;?>                   
+                                            @foreach($al->getRubric()->getRubricTraitSkills() as $ts)
+                                                @foreach($ts->getSkills() as $s)
+                                                    <?php $counter++;?>
+                                                @endforeach
                                             @endforeach
-                                        @endforeach
-                                    <div class="assessment-list-skill-colors"> 
-                                        <span class="text-left-skills-colors"> <?php echo $counter;?> Skills </span>                                                                      
-                                        <div class="aligh-dots-assessment-list">
-                                        @foreach($al->getRubric()->getRubricTraitSkills() as $ts)
-                                        @if(!$ts->isSkillsEmpty())
-                                            <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
-                                        @endif
-                                        @endforeach
-                                        </div> 
+                                            <div class="assessment-list-skill-colors"> 
+                                                <span class="text-left-skills-colors"> <?php echo $counter;?> Skills </span>                                                                      
+                                                <div class="aligh-dots-assessment-list">
+                                                    @foreach($al->getRubric()->getRubricTraitSkills() as $ts)
+                                                    @if(!$ts->isSkillsEmpty())
+                                                        <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                                                    @endif
+                                                    @endforeach
+                                                </div> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <form method="post" action="/rubricDelete">
+                                <div class="col-1"></div>
+                                <!-- <form method="post" action="/rubricDelete">
                                     @csrf
                                     <input type="hidden" name="rubricId" value={{$al->getId()}} />
                                     <button class="rubric-remove-button-styling" id="assessment-rubric-remove-button-styling"type="submit">
                                         <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
                                     </button>
-                                </form>
+                                </form> -->
                             </a>
                         </div>
                     @endforeach
