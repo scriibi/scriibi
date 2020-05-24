@@ -1761,7 +1761,7 @@ box-sizing: border-box;
     text-decoration: none;
     transition: 0.3s;
     height: 500px;
-    width: 23.5%;
+    width: 100%;
     margin:0.5%;
     font-size: 0.8em;
     display: inline-block;
@@ -1853,7 +1853,7 @@ box-sizing: border-box;
 }
 
 .assessment-list-card{
-    width: 450px;
+    width: 100%;
     height: 32px;
     background: #dfdfdf;
     overflow: hidden;
@@ -1869,11 +1869,8 @@ box-sizing: border-box;
         margin-top: 5px;
     }
     .assessment-list-skill-colors{
-        position: absolute;
-        left: 75.75%;
-        top: 24px;
         height: 30px;
-        width: 175px;
+        width: 100%;
         border-radius: 7px;
         border: 1px solid #dfdfdf;
         background: white;
