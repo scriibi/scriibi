@@ -1,7 +1,6 @@
 @extends('layout.mainlayout')
 @section('title', 'Assessment-Student List')
 @section('content')
-
 <div class="row">
    <div class="d-none d-sm-block col-sm-1 col-md-2">
    </div>
@@ -9,8 +8,8 @@
         <!-- Assessment Title and edit/delete img-->
         <div class="row mt-5 ">
             <div class="col-10">
-                <h5 class="Assessment-Studentlist-title">Assessment Name :</h5>
-                <p>{{$writingTask->getName()}}</p>
+                <h5 class="Assessment-Studentlist-title">Assessment Name :<span style="font-size:0.8em;font-weight:normal;padding-left:10px">{{$writingTask->getName()}}</span></h5>
+                <br>
             </div>
             <div class="col-2">
                 <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img class="interaction-icon" src="/images/edit.png" alt="edit assessment icon"></a></span>
@@ -19,18 +18,55 @@
         </div>
         <div class="row mt-2 ">
             <div class="col-10">
-                <h5 class="Assessment-Studentlist-title">Date :</h5>
+                <h5><strong>Date :</strong></h5>
                 <p><?php echo (date("d-m-Y", strtotime($writingTask->getAssessedAt()))); ?></p>
             </div>
-        </div>
+        </div><br>
         <div class="row mt-3">
             <!-- this is where the description of assessment task goes -->
             <div class="col-10">
-                <p style="font-size:1.3rem"><strong>Additional Notes:</strong></p>
-                <p>{{$writingTask->getDescription()}}</p>
+                <p><strong>Additional Notes:</strong></p>
+                <!-- <p>hjvsjvbskjbnskfjbn</p> -->
+                <p>{{$writingTask->getDescription()}}</p><br>
             </div>
         </div>
-
+        <div style="position:inherit">
+            <h5 class="Assessment-Studentlist-title">Rubric Assigned</h5>
+            <div class="assessment-list-card-assessment-page px-0 mt-2">
+                <span class="text-left">
+                    {{$writingTask->getRubric()->getName()}} 
+                </span>
+                <?php $counter = 0;?>                   
+                    @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
+                        @foreach($ts->getSkills() as $s)
+                <?php $counter++;?>
+                        @endforeach
+                    @endforeach
+                <span class="assessment-list-skill-colors-assessment-page"> 
+                                                                                         
+                    <span class="aligh-dots-assessment-list-assessment-page">
+                    <span class="text-left-skills-colors-assessment-page"> 
+                        <?php echo $counter; $count = 0; ?> Skills 
+                    </span> 
+                        @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
+                        @if(!$ts->isSkillsEmpty())
+                            <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                        @else
+                            <?php $count++; ?>
+                        @endif
+                        @endforeach
+                        <?php
+                            while($count > 0){
+                        ?>
+                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
+                        <?php
+                            $count--;
+                            }
+                        ?>
+                    </span> 
+                </span>
+            </div>
+        </div>
         <!-- show list of students whether is 'my student' or 'all students' -->
         <div class="row mt-5">
             <div class="col-12">
@@ -76,14 +112,10 @@
                 </a>    
             @endforeach
             </div>
-
             <div class="col-12 d-flex justify-content-end mt-3 pr-4">
                 <button type="button" name="button" class="btn save-exit-btn col-2"  onclick="location.href='{{ url('/assessment-list') }}'">Save and Exit</button>
-
             </div>
-
             <!-- populate more cells as per rubric -->
-
         </div>
    </div>
     <div class="d-none d-sm-block col-sm-1 col-md-2">

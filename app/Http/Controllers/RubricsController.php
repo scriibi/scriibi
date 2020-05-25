@@ -75,7 +75,7 @@ class RubricsController extends Controller
         /**
          * mixpanel code
         */
-        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
         $mp->identify(Auth::user()->user_Id);
         $mp->track("Rubric Created", array(
@@ -105,7 +105,15 @@ class RubricsController extends Controller
     public function deleteRubric(Request $request){
         try{
             $rubricId = $request->input('rubricId');
-            DB::table('rubrics_teachers')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+            $assessments = DB::table('writing_tasks')->where('fk_rubric_id', '=', $rubricId)->get()->toArray();
+            if(count($assessments) == 0){
+                DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+                DB::table('rubrics_teachers')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+                DB::table('rubrics')->where('rubric_Id', '=', $rubricId)->delete();
+            }else{
+                DB::table('rubrics_teachers')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+                DB::statement("UPDATE rubrics SET rubric_Name = CONCAT(rubric_Name, ' (deleted)') WHERE rubric_Id = $rubricId");
+            }
             return redirect()->action('RubricListController@GenerateUserRubrics');
         }
         catch(\Exception $e){
@@ -139,12 +147,28 @@ class RubricsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rubrics  $rubrics
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rubrics $rubrics)
+    public function update(Request $request)
     {
-        //
+        try{
+            $rubricId = $request->input('rubric_id');
+            $newName = $request->input('rubric_name');
+            $newAsssessedLevel = $request->input('assessed_level');
+            $rubricSkills = $request->input('rubric_skills');
+            $new_rubric_skills = [];
+            DB::table('rubrics')->where('rubric_Id', '=', $rubricId)->update(['scriibi_levels_scriibi_level_Id' => $newAsssessedLevel, 'rubric_Name' => $newName]);
+            DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
+
+            foreach($rubricSkills as $rs){
+                array_push($new_rubric_skills, ['skills_skill_Id' => $rs, 'rubrics_rubric_Id' => $rubricId]);
+            }
+            DB::table('rubrics_skills')->insert($new_rubric_skills);
+            return redirect()->action('RubricListController@GenerateUserRubrics');
+        }
+        catch(\Exception $e){
+            throw $e;
+        }
     }
 
     /**

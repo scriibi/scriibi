@@ -32,12 +32,14 @@ Route::get('/home', function(){
     try{
         $stdController = new App\Http\Controllers\StudentsController();
         $students = $stdController->indexStudentsByClass();
-        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
         $mp->identify(Auth::user()->user_Id);
-        $mp->track("Landed on P001", array(
+        $mp->track("Page Viewed", array(
                 "Page Id"           => "P001",
-                "Page Name"         => "Home"
+                "Page Name"         => "Home",
+                "Page URL"          => "",
+                "Check Email"       => ""
             )
         );
         return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
@@ -50,15 +52,18 @@ Route::get('/studentlist', function(){
     return view('studentlist');
 });
 
+Route::get('/mixpanel-update-user-assessment-details', 'MixpanelController@UpdateMixpanelUserAssessmentDetails');
 Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
 Route::get('/assessment-setup', function(){
-    $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+    $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
     $mp->identify(Auth::user()->user_Id);
-    $mp->track("Landed on P034", array(
+    $mp->track("Page Viewed", array(
             "Page Id"           => "P034",
-            "Page Name"         => "Assessment Setup"
+            "Page Name"         => "Assessment Setup",
+            "Page URL"          => "",
+            "Check Email"       => ""
         )
     );
     return view('assessment-setup');
@@ -83,6 +88,10 @@ Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags')
 Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
 Route::post('/rubricDelete', 'RubricsController@deleteRubric');
+Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');
+Route::get('/rubric-edit/{rubricId}', 'RubricBuilder@generateEditRubricView');
+Route::get('/rubric-edit/{rubricId}/{level}', 'RubricBuilder@generateEditRubricViewWithFlags');
+Route::post('/rubric-edit-confirm', 'RubricsController@update');
 
 //assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');

@@ -122,11 +122,11 @@ header {
         opacity: 1;
         bottom: 40px;
     }
-    
+
     78% {
         bottom: 10px;
     }
-    
+
     100% {
         bottom: 20px;
     }
@@ -143,7 +143,7 @@ header {
         bottom: 20px;
         opacity: 1;
     }
-    
+
     to {
         bottom: -180px;
         opacity: 0;
@@ -1032,10 +1032,10 @@ input:focus {
 .rubric-list-skills{
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    // font-size: 14px;
     line-height: 16px;
     color: #909090;
-    height: 100%;
+    // height: 100%;
     overflow: hidden;
 }
 
@@ -1257,7 +1257,7 @@ td{
     //border:solid 1px #ccc;
     text-align: center;
 
-    label { 
+    label {
         display: block;
         text-align: center;
      }
@@ -1273,7 +1273,7 @@ td{
         position: absolute;
         opacity: 0;
     }
-    
+
 }
 
 .circle {
@@ -1281,10 +1281,10 @@ td{
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size: contain; 
-    margin:auto;  
+    background-size: contain;
+    margin:auto;
     z-index: 1000;
-    
+
 }
 
 .filter-btn {
@@ -1295,11 +1295,11 @@ td{
     width: 120px;
     display: flex;
     cursor: pointer;
-    
+
     input {
         display: none;
     }
-    
+
     p {
         margin-top: 10px;
     }
@@ -1353,7 +1353,7 @@ td{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    
+
 }
 
 /* Users cannot copy or select any of the text on the screen other than textbox and text area text*/
@@ -1376,10 +1376,10 @@ td{
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-    background-size: contain; 
+    background-size: contain;
     width: 25px;
     height: 25px;
-    margin:auto;  
+    margin:auto;
     z-index: 1000;
     margin-left: 10px;
     margin-top: 9px;
@@ -1391,7 +1391,7 @@ td{
     box-shadow: none;
 }
 
-	  
+
   // DataTable ordering row color and hover styles
 .order-row{
     width: 154.5px;
@@ -1483,7 +1483,7 @@ td{
     height: 200px;
     margin-top: auto;
 }
-.modal-image{                                  
+.modal-image{
     display:block;
     margin-left: auto;
     margin-right: auto;
@@ -1532,7 +1532,7 @@ td{
 }
 
 /* Fading animation */
-.modal-fade-image {                                          
+.modal-fade-image {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
@@ -1544,7 +1544,7 @@ td{
     to {opacity: 1}
 }
 
-@keyframes fade {                             
+@keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
 }
@@ -1555,7 +1555,7 @@ td{
 }
 
 /* The Modal (background) */
-.modal {
+.generate-gs-modal{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -1570,7 +1570,7 @@ td{
 }
 
 /* Modal Content */
-.modal-content {
+.generate-gs-modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -1681,3 +1681,300 @@ box-sizing: border-box;
     font-size: 1.5em;
     font-family: sans-serif;
 }
+
+.rubric-details-colored-dot-dimensions{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.colored-dot-dimensions{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.colored-dot-color-yellow{
+    background-color: #FFD12D;
+}
+
+.colored-dot-color-red{
+    background-color: #FC8585;
+}
+
+.colored-dot-color-green{
+    background-color: #41D798;
+}
+
+.colored-dot-color-pink{
+    background-color: #F370BF;
+}
+
+.colored-dot-color-blue{
+    background-color: #5995F0;
+}
+
+.colored-dot-color-grey{
+    background-color: #C4C4C4;
+}
+
+.colored-dot-color-purple{
+    background-color: #B975FD;
+}
+
+.colored-dot-color-white{
+    background-color: #ffffff;
+}
+
+.rubric-info-rubric-skills-span{
+    margin-left: .5%;
+    vertical-align: super;
+}
+
+.rubric-info-rubric-skills-div{
+    margin: 1% 0;
+}
+
+.multiple-assessments-warning{
+    margin-top: 10%;
+}
+
+.rubric-detail-info-section{
+    padding-top: 1%;
+}
+
+
+
+
+.rubric-list-card-single{
+    background: #FFFFFF;
+    // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    border: none;
+    // padding-top: 10px;
+    position: relative;
+    border: 1px solid #DFDFDF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: 0.3s;
+    height: 500px;
+    width: 100%;
+    margin:0.5%;
+    margin-bottom: 20px;
+    font-size: 0.8em;
+    display: inline-block;
+
+    .rubric-skills-para{
+       font-weight: bold;
+       padding: 10px 10px 0px 10px;
+       margin-bottom: 0px;
+    }
+
+    .rubric-list-text-title {
+        // height: 55px;
+        overflow: hidden;
+        padding: 5px 0px 5px 5px;
+        font-weight: bold;
+        text-overflow: ellipsis;
+        border-radius: 2px;
+        background-color: #dfdfdf;
+        color: black;
+    }
+
+    .rubric-list-skills ul li{
+        font-size: 200%;
+    }
+
+    .rubric-list-skills ul li span{
+        font-size: 10px;
+    }
+
+    .rubric-box {
+        border-radius: 7px;
+        background-color: #DFDFDF;
+    }
+
+    .rubric-box-small{
+        border-radius: 7px;
+        background-color: white;
+        height: 480px;
+    }
+
+    .rubric-more-skills {
+        left: 10px;
+        bottom  : 10px;
+        position: absolute;
+        color: #00000050;
+    }
+
+    .rubric-remove-button-styling {
+        border: none;
+        background-color: transparent;
+        right: 10px;
+        bottom  : 10px;
+        position: absolute;
+    }
+}
+
+.rubric-list-card-single:hover{
+    border: 2px solid #33A849;
+    text-decoration: none;
+}
+
+// assessment page latest changes
+.assessment-rubric-list-row{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    border: none;
+    padding-top: 15px;
+    position: relative;
+    border: 2px solid white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: 0.3s;
+    height: 86px;
+    color: black;
+    #assessment-rubric-remove-button-styling {
+        border: none;
+        background-color: transparent;
+        right: 1%;
+        bottom  : 30px;
+        position: absolute;
+    }
+}
+
+.assessment-rubric-list-row:hover{
+    border: 2px solid #33a849;
+    text-decoration: none;
+    color:black;
+}
+
+.assessment-list-card{
+    width: 100%;
+    height: 30px;
+    background: #dfdfdf;
+    overflow: hidden;
+    border-radius: 7px;
+    margin-top: 0px;
+    span[class=text-left]{
+        float: left;
+        color: black;
+        position: relative;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 5%;
+        margin-top: 2.5px;
+    }
+    .assessment-list-skill-colors{
+        height: 30px;
+        width: 100%;
+        border-radius: 7px;
+        border: 1px solid #dfdfdf;
+        background: white;
+        .text-left-skills-colors{
+            float: left;
+            margin-left: 10px;
+            color: black;
+            font-size: 12px;
+            padding-top: 3px;
+        }
+        .aligh-dots-assessment-list{
+            text-align: left;
+            margin-left: 70px;
+            margin-top: 3px;
+        }
+        .color-span-assessment-list{
+            // float: left;
+            // margin-top: 10px;
+            // padding: 2px;
+            left: 5px;
+        }
+    }
+    .assessment-list-skill-rubric-grid-row{
+        height: 30px;
+        width: 175px;
+        border-radius: 7px;
+        border: 1px solid #dfdfdf;
+        background: white;
+
+        .text-left-skills-rubric-grid-row{
+            float: left;
+            margin-left: 10px;
+            color: black;
+            font-size: 12px;
+            padding-top: 3px;
+        }
+
+        .aligh-dots-assessment-rubric-grid-row{
+            text-align: left;
+            margin-left: 70px;
+            margin-top: 3px;
+        }
+    }
+    //edir rubric styling
+    .edir-rubric-btn-clear{
+        box-sizing: border-box;
+        border-radius: 7px;
+        font-size: 14px;
+        width: 80px;
+        height: 44px;
+    }
+    #edit-rubric-save-exit-btn{
+        background-color: #33A849;
+        border-radius: 7px;
+        color: #FFFFFF;
+        float: right;
+    }
+}
+
+.assessment-list-card-assessment-page{
+    width: 430px;
+    height: 32px;
+    background: #dfdfdf;
+    padding-top: 5px;
+    overflow: hidden;
+    border-radius: 7px;
+    margin-top: 0px;
+    span[class=text-left]{
+        width: 255px;
+        float: left;
+        color: black;
+        position: relative;
+        line-height: 1.8;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    .assessment-list-skill-colors-assessment-page{
+        margin-top: 50px;
+        height: 30px;
+        width: 225px;
+        border-radius: 7px;
+        border: 1px solid #dfdfdf;
+        background: white;
+        padding: 5px 10px 5px 3px;
+
+        .text-left-skills-colors-assessment-page{
+            margin-right: 8px;
+            color: black;
+            font-size: 12px;
+            padding-top: 3px;
+
+        }
+        .aligh-dots-assessment-list-assessment-page{
+            text-align: left;
+            margin-top: 5px;
+        }
+    }
+}
+
+@media only screen and (max-width: 995px) {
+    .rubric-edit-warning-image-content{
+        margin-top: 22%;
+    }
+  }

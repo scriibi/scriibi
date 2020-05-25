@@ -40,7 +40,7 @@ class AssessmentMarkingController extends Controller
          */
         $flag = empty($student_tasks[0]);            
         $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
-        $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
         foreach($range as $r){
             array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
@@ -63,9 +63,11 @@ class AssessmentMarkingController extends Controller
         }
 
         $mp->identify(Auth::user()->user_Id);
-        $mp->track("Landed on P033", array(
+        $mp->track("Page Viewed", array(
                 "Page Id"           => "P033",
-                "Page Name"         => "Assessment Marking"
+                "Page Name"         => "Assessment Marking",
+                "Page URL"          => "",
+                "Check Email"       => ""
             )
         );
         return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level_label, 'assessed_level_scriibi_id' => $student->rubrik_level, 'results' => $prepopulated_results, 'comment' => $status[0]->comment]);
@@ -150,7 +152,7 @@ class AssessmentMarkingController extends Controller
             }
             $marksCompleted = DB::table('tasks_students')->whereIn('tasks_skills_Id', $allTaskSkills)->get();
 
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
 
             $mp->track("Student Marked", array(

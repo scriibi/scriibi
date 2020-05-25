@@ -17,11 +17,13 @@ class DataViewController extends Controller
             $overView->generateDataTable();
             $dataTable = $overView->getDataTable();
             $writingTasks = $overView->getWritingTasks();
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on P004", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P004",
-                    "Page Name"         => "Data View"
+                    "Page Name"         => "Data View",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             return view('overall-data-view', ['dataTable' => $dataTable, 'writingTasks' => $writingTasks]);
@@ -50,11 +52,13 @@ class DataViewController extends Controller
             /**
              * mixpanel implementation
              */
-            $mp = Mixpanel::getInstance("871e96902937551ce5ef1b783f0df286");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
-            $mp->track("Landed on P041", array(
+            $mp->track("Page Viewed", array(
                     "Page Id"           => "P041",
-                    "Page Name"         => "Assessment Data View"
+                    "Page Name"         => "Assessment Data View",
+                    "Page URL"          => "",
+                    "Check Email"       => ""
                 )
             );
             return view('assessment-data-view', ['dataTable' => $dataTable, 'skills' => $skills, 'writingTask' => $writingTask]);

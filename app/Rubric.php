@@ -63,4 +63,10 @@ class Rubric
             $tsa->populateRubricSpecificSkills($this->id);
         }
     }
+
+    public function getSkillsByWritingTask($taskId){
+        foreach($this->rubic_trait_skills as $tsa){
+            $tsa->populateWritingTaskSpecificSkills($taskId);
+        }
+    }
 }

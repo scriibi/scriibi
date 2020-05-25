@@ -72,6 +72,14 @@ class traitObject
         }
     }
 
+    public function isSkillsEmpty(){
+        if(empty($this->skills)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * populates the built in skills array with trait specific skills
      */
@@ -144,6 +152,23 @@ class traitObject
 
         foreach($this->skills as $skill){
             $skill->setFlag($curriculum->curriculum_Id, $level);
+        }
+    }
+
+    /**
+     * populate the built in skills array with writing task specific skills
+     */
+    public function populateWritingTaskSpecificSkills($writingTask){
+        $writing_task_specific_skills = DB::table('tasks_skills')
+            ->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')
+            ->join('skills_traits', 'skills.skill_Id', 'skills_traits.skills_traits_skills_skill_Id')
+            ->select('skills.*')
+            ->where('skills_traits.skills_traits_traits_trait_Id', '=', $this->id)
+            ->where('tasks_skills.writing_tasks_writing_task_Id', '=', $writingTask)
+            ->get();
+
+        foreach($writing_task_specific_skills as $skill){
+            array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
         }
     }
 
