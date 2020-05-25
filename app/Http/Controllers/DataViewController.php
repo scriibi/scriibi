@@ -17,7 +17,7 @@ class DataViewController extends Controller
             $overView->generateDataTable();
             $dataTable = $overView->getDataTable();
             $writingTasks = $overView->getWritingTasks();
-            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Page Viewed", array(
                     "Page Id"           => "P004",
@@ -52,7 +52,7 @@ class DataViewController extends Controller
             /**
              * mixpanel implementation
              */
-            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Page Viewed", array(
                     "Page Id"           => "P041",

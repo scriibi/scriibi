@@ -71,12 +71,17 @@
       </div>
       <div class="modal-body">
         <div class="row">       
-          <div class="col-sm-6"><img src="/images/warning.png" class="img-fluid w-75 rounded mx-auto d-block" alt=""></div>       
-          <div class="col-sm-6">
-              <p><strong>Uh oh! Seems like you've already used this rubric for more than one assessment.</strong></p>
-              <p>You're unalbe to edit this irgunal rubric as we will loose your students' data from each assessment if any changes are made here</p>
-              <p>However, you can click on each assessment using this rubric to individually <strong>edit, rename</strong> and <strong>save</strong> a copy of this rubric as another one.</p>
-              <p>Thankyou!</p>
+            <div class="col-sm-6">
+                <div class="rubric-edit-warning-image-content">
+                    <img src="/images/warning.png" class="rounded mx-auto d-block" alt="" style="width:60%">
+                </div>
+            </div>       
+            <div class="col-sm-6">
+                <div style="padding-top:6%">
+                    <p><strong>You cannot edit this rubric because it is linked to one or more assessments.</strong></p>
+                    <p>We are working hard to enable this ‘edit rubric’ feature, so it will be available soon. Thanks for your patience.</p>
+                    <p>You can create a new rubric by clicking <strong><a href="/rubrics" style="text-decoration:none"> here</a></strong></p>
+                </div>
             </div>     
         </div> 
       </div>
