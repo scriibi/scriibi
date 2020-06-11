@@ -50,7 +50,7 @@ class MixpanelController extends Controller
     private $gradeLabelDetails = null;
 
     public function UpdateMixpanelUserDetails(){
-        $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
         // retrieve all table data required
         $teachers = DB::table('teachers')->get();
         $school_teachers = DB::table('school_teachers')->get();
@@ -135,7 +135,7 @@ class MixpanelController extends Controller
 
     public function UpdateMixpanelUserAssessmentDetails(){
         try{
-            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $teachers = DB::table('teachers')->get();
             foreach($teachers as $t){
                 $writingTasks = DB::table('writing_tasks')->where('created_By_Teacher_User_Id', '=', $t->user_Id)->get();

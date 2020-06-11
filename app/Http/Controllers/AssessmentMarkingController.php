@@ -22,6 +22,7 @@ class AssessmentMarkingController extends Controller
          * this array is used to aggregate all the task_skill values which are retrieved by tasks_skills table
          * this should be optimized later
          */
+        $primary_grade_range = array(119 => 'D', 120 => '0.5', 121 => 'F', 123 => 'F.5');
         $tasks_skills = array();
         $prepopulated_results = array();
         $rangeAsScriibiValue = array();
@@ -40,12 +41,18 @@ class AssessmentMarkingController extends Controller
          */
         $flag = empty($student_tasks[0]);            
         $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
-        $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
-
+        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
+        // dump($range);
         foreach($range as $r){
-            array_push($rangeAsScriibiValue, ScriibiLevels::find($r));
+            $value = ScriibiLevels::find($r);
+            if (array_key_exists($value["scriibi_Level_Id"], $primary_grade_range)){
+                $value["scriibi_Level"] = $primary_grade_range[$value["scriibi_Level_Id"]];
+                array_push($rangeAsScriibiValue, $value);
+            }else{
+                array_push($rangeAsScriibiValue, $value);
+            }
         }
-
+        // dd($rangeAsScriibiValue);
         foreach($student_tasks as $st){
             $tasks_skills[$st->tasks_skills_Id] = $st->result;
         }
@@ -152,7 +159,7 @@ class AssessmentMarkingController extends Controller
             }
             $marksCompleted = DB::table('tasks_students')->whereIn('tasks_skills_Id', $allTaskSkills)->get();
 
-            $mp = Mixpanel::getInstance("916bc248c70bef14305273a1d9142fa5");
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
 
             $mp->track("Student Marked", array(
