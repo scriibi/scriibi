@@ -434,6 +434,18 @@ $(function(){
         });
     }
 
+    // warning for deleting an assessment
+    if(url.includes('assessment-list')){
+        // add onlick event for the edit rubric link
+        $(".rubric-remove-button-styling").click(function() {
+            event.preventDefault();
+            let assessment_id = $(this).attr("data-assessement-id");
+            console.log(assessment_id);
+            document.getElementById("assessment-delete-warning-modal-form").value = assessment_id;
+            $("#delete-assessment-warning-modal").modal("show"); 
+        });     
+    }
+
 }); //===== /END OF JQUERY =======
 
 //######################################### VANILLA JS SCRIPTS #########################################
