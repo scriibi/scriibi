@@ -520,6 +520,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'App\\Http\\Controllers\\LessonsSkillsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LessonsSkillsController.php',
         'App\\Http\\Controllers\\LocalCriteriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalCriteriaController.php',
         'App\\Http\\Controllers\\LocalCriteriaCurriculumScriibiLevelSkillsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalCriteriaCurriculumScriibiLevelSkillsController.php',
+        'App\\Http\\Controllers\\MixpanelController' => __DIR__ . '/../..' . '/app/Http/Controllers/MixpanelController.php',
         'App\\Http\\Controllers\\PositionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PositionsController.php',
         'App\\Http\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostsController.php',
         'App\\Http\\Controllers\\RubricBuilder' => __DIR__ . '/../..' . '/app/Http/Controllers/RubricBuilder.php',

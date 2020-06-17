@@ -504,6 +504,33 @@ header {
     color: #FFFFFF;
 }
 
+.assessment-trashbin-button{
+    background-color: #ffffff;
+    border: 2px solid rgba(166,166,176);
+    border-radius: 7px;
+    color: rgba(166,166,176);
+    text-decoration: none;
+    text-align: center;
+    .assessment-trash-tab-icon-grey{
+        display: inline-block;
+    }
+    .assessment-trash-tab-icon-red{
+        display: none;
+    }
+}
+
+.assessment-trashbin-button:hover{
+    color: rgba(218,74,84);
+    border: 2px solid rgba(218,74,84);
+    text-decoration: none;
+    .assessment-trash-tab-icon-grey{
+        display: none;
+    }
+    .assessment-trash-tab-icon-red{
+        display: inline-block;
+    }
+}
+
 .assessment-btn:hover{
     text-decoration: none;
     color: white;
@@ -1854,6 +1881,34 @@ box-sizing: border-box;
     color:black;
 }
 
+.delete-list-row-styling{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    border: 2px solid #DA4A54;
+    padding-top: 15px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: 0.3s;
+    height: 86px;
+    color: black;
+    #assessment-rubric-remove-button-styling {
+        border: none;
+        background-color: transparent;
+        right: 1%;
+        bottom  : 30px;
+        position: absolute;
+    }
+}
+
+.delete-list-row-styling:hover{
+    border: 3px solid #DA4A54;
+    text-decoration: none;
+    color:black;
+}
+
 .assessment-list-card{
     width: 100%;
     height: 30px;
@@ -1971,6 +2026,24 @@ box-sizing: border-box;
             margin-top: 5px;
         }
     }
+}
+
+.assessment-delete-button{
+    color: white;
+    margin: 2%;
+    padding: 2% 9%;
+    border-radius: 7px;
+    border-style: none;
+    border-color: none;
+    text-decoration: none;
+}
+
+.delete-button-red{
+    background-color: rgb(218, 74,84);
+}
+
+.delete-button-green{
+    background-color: rgb(51, 168,73);
 }
 
 @media only screen and (max-width: 995px) {
