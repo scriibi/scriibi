@@ -21,8 +21,6 @@
                 <div class="notice-styling mt-5">
                     <div class="">
                         <p>Trash is empty.</p>
-                        <p>Go back to Assessments by</p>
-                        <p>clicking<a href="/assessment-list" class="assessment-btn p-2 mx-2">Assessment List</a></p>
                     </div>
 
                 </div>

@@ -143,7 +143,7 @@
                             @csrf
                             <input type="hidden" name="assessmentId" value="" id="assessment-delete-warning-modal-form"/>
                             <button class="assessment-delete-button delete-button-red"  data-dismiss="modal">cancel</button>
-                            <button class="assessment-delete-button delete-button-green" type='submit'>proceed</button>
+                            <button class="assessment-delete-button delete-button-green" type='submit'>yes</button>
                         </form>
                     </div>
                 </div>
