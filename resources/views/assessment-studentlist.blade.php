@@ -12,8 +12,7 @@
                 <br>
             </div>
             <div class="col-2">
-                <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img class="interaction-icon" src="/images/edit.png" alt="edit assessment icon"></a></span>
-                <span><img class="interaction-icon" src="/images/delete.png" alt="delete assessment icon"></span>
+                <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img src="/images/edit assessment button.png" alt="edit assessment icon" width="150px" height="23px"></a></span>
             </div>
         </div>
         <div class="row mt-2 ">
