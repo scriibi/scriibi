@@ -102,6 +102,9 @@ Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMark
 Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
 Route::get('/assessment-update', 'WritingTasksController@editAssessment');
 Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit');
+Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');
+Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');
+Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");

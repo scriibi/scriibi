@@ -26,7 +26,7 @@ class WritingTasksController extends Controller
      */
     public function index()
     {
-        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->get();
+        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->where('deleted_at', '=', null)->get();
     }
 
     public function indexSingleTask($taskId){
@@ -194,6 +194,29 @@ class WritingTasksController extends Controller
         catch(Exception $e){
             throw $e;
         }
+    }
+
+    /**
+     * sets the deleted_at field of a writing task once deleted by the user
+     */
+    public function softDeleteAssessment(Request $request){
+        DB::table('writing_tasks')
+            ->where('writing_task_Id', $request->input('assessmentId'))
+            ->update(['deleted_at' => date('Y-m-d H:i:s', time())]);
+
+        return redirect()->action('AssessmentListController@GenerateAssessmentList');
+    }
+
+    public function getSoftDeletes(){
+        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->where('deleted_at', '!=', null)->get();
+    }
+
+    public function restoreSoftDelete($assessmentId){
+        DB::table('writing_tasks')
+            ->where('writing_task_Id', $assessmentId)
+            ->update(['deleted_at' => null]);
+
+        return redirect()->action('AssessmentListController@GenerateDeletedAssessmentList');
     }
 
     /**

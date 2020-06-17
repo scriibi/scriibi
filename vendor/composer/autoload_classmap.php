@@ -47,6 +47,7 @@ return array(
     'App\\Http\\Controllers\\LessonsSkillsController' => $baseDir . '/app/Http/Controllers/LessonsSkillsController.php',
     'App\\Http\\Controllers\\LocalCriteriaController' => $baseDir . '/app/Http/Controllers/LocalCriteriaController.php',
     'App\\Http\\Controllers\\LocalCriteriaCurriculumScriibiLevelSkillsController' => $baseDir . '/app/Http/Controllers/LocalCriteriaCurriculumScriibiLevelSkillsController.php',
+    'App\\Http\\Controllers\\MixpanelController' => $baseDir . '/app/Http/Controllers/MixpanelController.php',
     'App\\Http\\Controllers\\PositionsController' => $baseDir . '/app/Http/Controllers/PositionsController.php',
     'App\\Http\\Controllers\\PostsController' => $baseDir . '/app/Http/Controllers/PostsController.php',
     'App\\Http\\Controllers\\RubricBuilder' => $baseDir . '/app/Http/Controllers/RubricBuilder.php',
