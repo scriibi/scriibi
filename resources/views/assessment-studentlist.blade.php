@@ -12,7 +12,7 @@
                 <br>
             </div>
             <div class="col-2">
-                <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img src="/images/edit assessment button.png" alt="edit assessment icon" width="150px" height="23px"></a></span>
+                <span><a href="/assessment-edit/{{$writingTask->getId()}}"><img src="/images/edit assessment button.png" alt="edit assessment icon" width="150px" height="28px"></a></span>
             </div>
         </div>
         <div class="row mt-2 ">
@@ -32,38 +32,40 @@
         <div style="position:inherit">
             <h5 class="Assessment-Studentlist-title">Rubric Assigned</h5>
             <div class="assessment-list-card-assessment-page px-0 mt-2">
-                <span class="text-left">
-                    {{$writingTask->getRubric()->getName()}} 
-                </span>
-                <?php $counter = 0;?>                   
-                    @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
-                        @foreach($ts->getSkills() as $s)
-                <?php $counter++;?>
-                        @endforeach
-                    @endforeach
-                <span class="assessment-list-skill-colors-assessment-page"> 
-                                                                                         
-                    <span class="aligh-dots-assessment-list-assessment-page">
-                    <span class="text-left-skills-colors-assessment-page"> 
-                        <?php echo $counter; $count = 0; ?> Skills 
-                    </span> 
+                <a href="/rubric-edit/{{$writingTask->getRubric()->getId()}}/{{$writingTask->getId()}}" style="text-decoration:none">
+                    <span class="text-left">
+                        {{$writingTask->getRubric()->getName()}} 
+                    </span>
+                    <?php $counter = 0;?>                   
                         @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
-                        @if(!$ts->isSkillsEmpty())
-                            <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
-                        @else
-                            <?php $count++; ?>
-                        @endif
+                            @foreach($ts->getSkills() as $s)
+                    <?php $counter++;?>
+                            @endforeach
                         @endforeach
-                        <?php
-                            while($count > 0){
-                        ?>
-                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
-                        <?php
-                            $count--;
-                            }
-                        ?>
-                    </span> 
-                </span>
+                    <span class="assessment-list-skill-colors-assessment-page"> 
+                                                                                            
+                        <span class="aligh-dots-assessment-list-assessment-page">
+                            <span class="text-left-skills-colors-assessment-page"> 
+                                <?php echo $counter; $count = 0; ?> Skills 
+                            </span> 
+                            @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
+                            @if(!$ts->isSkillsEmpty())
+                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                            @else
+                                <?php $count++; ?>
+                            @endif
+                            @endforeach
+                            <?php
+                                while($count > 0){
+                            ?>
+                                    <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
+                            <?php
+                                $count--;
+                                }
+                            ?>
+                        </span> 
+                    </span>
+                </a>
             </div>
         </div>
         <!-- show list of students whether is 'my student' or 'all students' -->

@@ -89,9 +89,10 @@ Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
 Route::post('/rubricDelete', 'RubricsController@deleteRubric');
 Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');
-Route::get('/rubric-edit/{rubricId}', 'RubricBuilder@generateEditRubricView');
-Route::get('/rubric-edit/{rubricId}/{level}', 'RubricBuilder@generateEditRubricViewWithFlags');
+Route::get('/rubric-edit/{rubricId}/{taskId}', 'RubricBuilder@generateEditRubricView');
+Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricViewWithFlags');
 Route::post('/rubric-edit-confirm', 'RubricsController@update');
+Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
 
 //assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
@@ -105,6 +106,9 @@ Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generate
 Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');
 Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');
 Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');
+
+// fetch
+Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");

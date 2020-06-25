@@ -402,12 +402,15 @@ $(function(){
         //getting the curriculum level value
         let curriculum_level = $(this).val();
         let rubric_id = $(this).attr("data-rubric-id");
+        let task_id = $(this).attr("data-task-id");
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
         url_origin += "/rubric-edit/";
         url_origin += rubric_id;
         url_origin += '/';
         url_origin += curriculum_level;
+        url_origin += '/';
+        url_origin += task_id;
         window.location.href = url_origin;
     });
 
@@ -444,6 +447,66 @@ $(function(){
             document.getElementById("assessment-delete-warning-modal-form").value = assessment_id;
             $("#delete-assessment-warning-modal").modal("show"); 
         });     
+    }
+
+    $("#rubric-edit-submit").on("click", function(){
+        event.preventDefault();
+        let task_id = $(this).attr("data-task-id");
+        if(task_id !== 'NA'){
+            let url_origin = window.location.origin;
+            url_origin += '/fetch/assessed_skills/';
+            url_origin += task_id;
+            fetch(url_origin)
+            .then(data => {
+                return data.json()
+            })
+            .then(skills => {
+                let checked = [];
+                let rootnode = document.getElementById("assessed-skills-to-delete");
+                if(skills.length !== 0){
+                    let checkboxes = document.getElementsByName('rubric_skills[]');
+                    for(let cbx of checkboxes){
+                        if(cbx.checked){
+                            checked.push(cbx.value)
+                        }
+                    }
+                    rootnode.innerHTML = "";
+                    skills.forEach(skill => {
+                        if(!(checked.includes(skill.skill_Id.toString()))){
+                            let node = document.createElement("LI");                
+                            let textnode = document.createElement("SPAN");                
+                            let colornode = document.createElement("SPAN");            
+                            let text = document.createTextNode('  ' + skill.skill_Name);
+                            let color = 'colored-dot-color-' + skill.colour;
+                            textnode.appendChild(text);
+                            colornode.classList.add(color);          
+                            colornode.classList.add('colored-dot-dimensions');          
+                            node.appendChild(colornode);                              
+                            node.appendChild(textnode);                              
+                            rootnode.appendChild(node);
+                        }
+                    });
+                    if(rootnode.childElementCount > 0){
+                        $("#multiple-students-marked-for-assessment-warning-modal").modal("show");
+                    }else{
+                        document.getElementById("rubricform").submit();
+                    }
+                }else{
+                    document.getElementById("rubricform").submit();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }else if(task_id === 'NA'){
+            document.getElementById("rubricform").submit();
+        }
+    });
+
+    if(url.includes('/rubric-edit')){
+        $("#edit-rubric-warning-modal-yes-button").on("click", function(){
+            document.getElementById("rubricform").submit();
+        });   
     }
 
 }); //===== /END OF JQUERY =======

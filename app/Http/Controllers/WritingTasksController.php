@@ -178,6 +178,10 @@ class WritingTasksController extends Controller
         }
     }
 
+    /**
+     * take in post data for the assessment details and update
+     * the existing assessmentt details
+     */
     public function editAssessment(Request $request)
     {
         try{
@@ -207,16 +211,38 @@ class WritingTasksController extends Controller
         return redirect()->action('AssessmentListController@GenerateAssessmentList');
     }
 
+    /**
+     * return all the assessment records with the deleted_at field set to a timestamp
+     * which indicates they have been soft deleted
+     */
     public function getSoftDeletes(){
         return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->where('deleted_at', '!=', null)->get();
     }
 
+    /**
+     * reset the deleted_at field for a specific writing task back to null indicating
+     * that the assessment has been restored 
+     */
     public function restoreSoftDelete($assessmentId){
         DB::table('writing_tasks')
             ->where('writing_task_Id', $assessmentId)
             ->update(['deleted_at' => null]);
 
         return redirect()->action('AssessmentListController@GenerateDeletedAssessmentList');
+    }
+
+    public function retrieveAssessedSkills($taskId){
+        $skills = DB::table('traits')
+            ->join('skills_traits', 'traits.trait_Id', '=', 'skills_traits.skills_traits_traits_trait_Id')
+            ->join('skills', 'skills_traits.skills_traits_skills_skill_Id', '=', 'skills.skill_Id')
+            ->join('tasks_skills', 'skills.skill_Id', '=', 'tasks_skills.skills_skill_Id')
+            ->join('tasks_students', 'tasks_skills.tasks_skills_Id', '=', 'tasks_students.tasks_skills_Id')
+            ->where('tasks_skills.writing_tasks_writing_task_Id', '=', $taskId)
+            ->select('traits.colour', 'skills.skill_Id', 'skills.skill_Name')
+            ->distinct()
+            ->get()
+            ->toArray();
+        return response()->json($skills);
     }
 
     /**
