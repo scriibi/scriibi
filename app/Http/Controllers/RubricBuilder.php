@@ -12,6 +12,7 @@ use App\Rubrics;
 use App\skills;
 use App\skills_traits;
 use App\text_types;
+use App\writing_tasks;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -96,8 +97,9 @@ class RubricBuilder extends Controller
      * and the level below and calculates the flags for all of the skills in the skills collection 
      * and also retirves the pre-selected skills for the existing rubric and returns a rubric edit page 
      */
-    public function generateEditRubricView($rubricId){
+    public function generateEditRubricView($rubricId, $taskId){
         try{
+            $currentAssessment = null;
             $rubric_details = Rubrics::find($rubricId)->toArray();
             $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
             RubricBuilder::populateSkillsInTraits($rubric_details["scriibi_levels_scriibi_level_Id"]);
@@ -109,15 +111,20 @@ class RubricBuilder extends Controller
             foreach($selected_rubric_skills as $srs){
                 array_push($temp, $srs->skills_skill_Id);
             }
-            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $rubric_details["scriibi_levels_scriibi_level_Id"], 'traitObjects' => $this->traits_skills_array, 'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => []]);
+            if($taskId !== 'NA'){
+                $currentAssessment = writing_tasks::find($taskId)->toArray();
+            }
+            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $rubric_details["scriibi_levels_scriibi_level_Id"], 'traitObjects' => $this->traits_skills_array, 
+            'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => [], 'currentAssessment' => $currentAssessment]);
         }
         catch(Exception $e){
             throw $e;
         }
     }
 
-    public function generateEditRubricViewWithFlags($rubricId, $level){
+    public function generateEditRubricViewWithFlags($rubricId, $level, $taskId){
         try{
+            $currentAssessment = null;
             $rubric_details = Rubrics::find($rubricId)->toArray();
             $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
             RubricBuilder::populateSkillsInTraits($level);
@@ -125,15 +132,15 @@ class RubricBuilder extends Controller
                 $tsa->calcFlag($level);
             }
             $selected_rubric_skills = DB::table('rubrics_skills')->select('skills_skill_Id')->where('rubrics_rubric_Id', '=', $rubricId)->get();
-            // dump($rubric_details);
-            // dump($rubric_details["scriibi_levels_scriibi_level_Id"]);
-            // dump($this->traits_skills_array);
-            // dump($text_types_and_assessed_labels_array['assessed_labels']);
             $temp = [];
             foreach($selected_rubric_skills as $srs){
                 array_push($temp, $srs->skills_skill_Id);
             }
-            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $level, 'traitObjects' => $this->traits_skills_array, 'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => []]);
+            if($taskId !== 'NA'){
+                $currentAssessment = writing_tasks::find($taskId)->toArray();
+            }
+            return view('rubric-edit', ['rubric' => $rubric_details, 'level' => $level, 'traitObjects' => $this->traits_skills_array,
+            'assessedLabels' => $text_types_and_assessed_labels_array['assessed_labels'], 'selectedSkills' => $temp, 'assessmentCount' => [], 'currentAssessment' => $currentAssessment]);
         }
         catch(Exception $e){
             throw $e;
