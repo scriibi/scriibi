@@ -204,6 +204,7 @@ class RubricsController extends Controller
                 }
             }
             DB::table('rubrics_skills')->insert($rubricSkillsMassInsert);
+            DB::table('rubrics_teachers')->insert(['rubrics_rubric_Id' => $newRubricId, 'teachers_user_Id' => Auth::user()->user_Id]);
             DB::table('writing_tasks')->where('writing_task_Id', '=', $taskId)->update(['fk_rubric_id' => $newRubricId]);
             DB::table('tasks_students')->whereIn('tasks_skills_Id', $taskSkillsToRemove)->delete();
             DB::table('tasks_skills')->whereIn('tasks_skills_Id', $taskSkillsToRemove)->delete();
@@ -219,6 +220,7 @@ class RubricsController extends Controller
         $uniquesPerLevel = [];
         $filteredSkillsLevels = [];
         $skillsLevels = skills_levels::get()->toArray();
+        //dd($skillsLevels);
         $taskStudents =  array_map(function($student){return $student->student_Id;}, DB::table('tasks_skills')
             ->join('tasks_students', 'tasks_skills.tasks_skills_Id', 'tasks_students.tasks_skills_Id')
             ->select('tasks_students.student_Id')
@@ -254,8 +256,14 @@ class RubricsController extends Controller
             }
             $uniquesPerLevel[$keys[$i]] = array_unique($temp);
         }
+        // dump($filteredSkillsLevels);
+        // dd($uniquesPerLevel);
         foreach($students as $student){
-           $assesibleCount = count($uniquesPerLevel[$student->rubrik_level]);
+            if(array_key_exists($student->rubrik_level, $uniquesPerLevel)){
+                $assesibleCount = count($uniquesPerLevel[$student->rubrik_level]);
+            }else{
+                $assesibleCount = 0;
+            }
            $studentMarksCount = RubricsController::count_array_values_of($taskStudents, $student->student_Id);
            if($studentMarksCount >= $assesibleCount){
                 $status = 'completed';                
