@@ -31,41 +31,50 @@
         </div>
         <div style="position:inherit">
             <h5 class="Assessment-Studentlist-title">Rubric Assigned</h5>
-            <div class="assessment-list-card-assessment-page px-0 mt-2">
-                <a href="/rubric-edit/{{$writingTask->getRubric()->getId()}}/{{$writingTask->getId()}}" style="text-decoration:none">
-                    <span class="text-left">
-                        {{$writingTask->getRubric()->getName()}} 
-                    </span>
-                    <?php $counter = 0;?>                   
-                        @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
-                            @foreach($ts->getSkills() as $s)
-                    <?php $counter++;?>
-                            @endforeach
-                        @endforeach
-                    <span class="assessment-list-skill-colors-assessment-page"> 
-                                                                                            
-                        <span class="aligh-dots-assessment-list-assessment-page">
-                            <span class="text-left-skills-colors-assessment-page"> 
-                                <?php echo $counter; $count = 0; ?> Skills 
-                            </span> 
+            <div class="row no-gutters">
+                <div class="col-sm-auto">
+                    <div class="assessment-list-card-assessment-page px-0 mt-2" style="display:inline-block">
+                        <span class="text-left">
+                            {{$writingTask->getRubric()->getName()}} 
+                        </span>
+                        <?php $counter = 0;?>                   
                             @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
-                            @if(!$ts->isSkillsEmpty())
-                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
-                            @else
-                                <?php $count++; ?>
-                            @endif
+                                @foreach($ts->getSkills() as $s)
+                        <?php $counter++;?>
+                                @endforeach
                             @endforeach
-                            <?php
-                                while($count > 0){
-                            ?>
-                                    <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
-                            <?php
-                                $count--;
-                                }
-                            ?>
-                        </span> 
-                    </span>
-                </a>
+                        <span class="assessment-list-skill-colors-assessment-page">                                                                         
+                            <span class="aligh-dots-assessment-list-assessment-page">
+                                <span class="text-left-skills-colors-assessment-page"> 
+                                    <?php echo $counter; $count = 0; ?> Skills 
+                                </span> 
+                                @foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts)
+                                @if(!$ts->isSkillsEmpty())
+                                    <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                                @else
+                                    <?php $count++; ?>
+                                @endif
+                                @endforeach
+                                <?php
+                                    while($count > 0){
+                                ?>
+                                        <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
+                                <?php
+                                    $count--;
+                                    }
+                                ?>
+                            </span> 
+                        </span>
+                        <!-- <button type="button" name="button" class="btn save-exit-btn col-2"  onclick="location.href='{{ url('/assessment-list') }}'">Save and Exit</button> -->
+                        <!-- <a href="/rubric-edit/{{$writingTask->getRubric()->getId()}}/{{$writingTask->getId()}}" style="text-decoration:none"></a> -->
+                    </div>
+                </div>
+                <?php
+                    $editRubricUrl = '/rubric-edit/' . $writingTask->getRubric()->getId() . '/' . $writingTask->getId();
+                ?>
+                <div class="col">
+                    <button type="button" name="button" class="btn save-exit-btn ml-2 mt-2 pt-1 pb-1"  onclick="location.href='{{ url($editRubricUrl) }}'">Edit Rubric</button>
+                </div>
             </div>
         </div>
         <!-- show list of students whether is 'my student' or 'all students' -->
