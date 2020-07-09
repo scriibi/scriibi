@@ -57,11 +57,15 @@ class WritingTasksController extends Controller
             $assessment_description = $request->input('assessment_description');
             $assessment_setting = $request->input('assess');
             $assessment_rubric = $request->input('rubric');
-    
+            $rubricType = DB::table('scriibi_rubrics')->where('rubric_id', '=', $assessment_rubric)->get()->toArray();
             $rubric_details = Rubrics::find($assessment_rubric);
             $rubric = new Rubric($rubric_details->rubric_Id, $rubric_details->rubric_Name, $rubric_details->created_at);
             $rubric->populateTraits();
-            $rubric->getSkillsByRubric();
+            if(!empty($rubricType)){
+                $rubric->getSkillsByScriibiSpecificRubrics();
+            }else{
+                $rubric->getSkillsByRubric();
+            }
             
             $students = WritingTasksController::getStudents($assessment_setting);
             
