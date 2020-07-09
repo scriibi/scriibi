@@ -16,10 +16,24 @@ class RubricListController extends Controller
     /**
      * creates rubric objects for all rubrics of the currently logged in user
      */
-    public function GenerateUserRubrics(){
+    public function GenerateUserRubrics(Request $request){
+        // dd($request->path());
         try{
             $rubricList = new RubricList();
             $returnList = $rubricList->GenerateTeacherSpecificRubricList();
+            $rubricsData = [];
+            foreach($returnList as $r){
+                $skills = [];
+                // $name = $r->getName();
+                $traitsSkills = $r->getRubricTraitSkills();
+                foreach($traitsSkills as $ts){
+                    $skillObjects = $ts->getSkills();
+                    foreach($skillObjects as $so){
+                        array_push($skills, (object) array('name' => $so->getName(), 'color' => $ts->getColor()));
+                    }
+                }
+                array_push($rubricsData, (object) array('id' => $r->getId(), 'name' => $r->getName(), 'skills' => $skills));
+            }
             $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
             $mp->identify(Auth::user()->user_Id);
@@ -30,11 +44,22 @@ class RubricListController extends Controller
                     "Check Email"       => ""
                 )
             );
-            return view('rubric-list', ['rubrics' => $returnList]);
-        }catch(Exception $ex){
+            if($request->path() === 'rubric-list-mine')
+                return (json_encode($rubricsData));
+            if($request->path() === 'rubric-list')
+                return view('rubric-list', ['rubrics' => json_encode($rubricsData)]);
+            }catch(Exception $ex){
             //todo
         }
     }
+
+    // public function GenerateScriibiRubrics(){
+    //     try{
+
+    //     }catch(Exception $e){
+    //         //todo
+    //     }
+    // }
 
     public function GenerateRubricDetails($rubric_id){
         $rubricList = new RubricList();

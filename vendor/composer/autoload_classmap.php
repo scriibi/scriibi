@@ -108,6 +108,7 @@ return array(
     'App\\Rubrics_skills' => $baseDir . '/app/Rubrics_skills.php',
     'App\\Rubrics_teachers' => $baseDir . '/app/Rubrics_teachers.php',
     'App\\ScriibiLevels' => $baseDir . '/app/ScriibiLevels.php',
+    'App\\ScriibiRubrics' => $baseDir . '/app/ScriibiRubrics.php',
     'App\\SkillCard' => $baseDir . '/app/SkillCard.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\WritingTask' => $baseDir . '/app/WritingTask.php',
