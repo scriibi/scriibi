@@ -61,7 +61,7 @@ class RubricList
 
         foreach($this->rubrics_list as $rl){
             $rl->populateTraits();
-            $rl->getSkillsByRubric();
+            $rl->getSkillsByScriibiSpecificRubrics();
         }
 
         return $this->rubrics_list;
