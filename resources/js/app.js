@@ -369,23 +369,6 @@ $(function(){
     
 //======================== RUBRIC FORM ==============================================
     
-    //rubric builder autopopulate function
-    $("#autopopulate-term2-rubric").on("click", function(){
-        //grabbing all checklists element and placing it into an array
-        const form1_skills = $(".skill-checkbox1"),
-              form2_skills = $(".skill-checkbox2");
-        
-        //loop through each form skill and if the first form isnt checked and neither is the second form, check the checklist
-        for(var i = 0; i < form1_skills.length; i++){
-            if (!(form1_skills[i].checked) && !(form2_skills[i].checked)) {
-               form2_skills[i].checked = true;
-            }
-            else {
-                form2_skills[i].checked = false;
-            }
-        }
-    });
-    
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
     $("#select_curriculum_code").change(function(){
         //getting the curriculum level value
@@ -397,17 +380,29 @@ $(function(){
         window.location.href = url_origin;
     });
 
+    $("#select_scriibi_curriculum_code").change(function(){
+        //getting the curriculum level value
+        let curriculum_level = $(this).val();
+        //get the origin url and apply the rubrics page to it and the value
+        let url_origin = window.location.origin;
+        url_origin += "/scriibi-rubric-builder/";
+        url_origin += curriculum_level;
+        window.location.href = url_origin;
+    });
     //on change of the drop down in the rubric edit page, redirect the user to the page with the value appeneded to the url
     $("#select_curriculum_code_in_rubric_edit").change(function(){
         //getting the curriculum level value
         let curriculum_level = $(this).val();
         let rubric_id = $(this).attr("data-rubric-id");
+        let task_id = $(this).attr("data-task-id");
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
         url_origin += "/rubric-edit/";
         url_origin += rubric_id;
         url_origin += '/';
         url_origin += curriculum_level;
+        url_origin += '/';
+        url_origin += task_id;
         window.location.href = url_origin;
     });
 
@@ -445,6 +440,233 @@ $(function(){
             $("#delete-assessment-warning-modal").modal("show"); 
         });     
     }
+
+    $("#rubric-edit-submit").on("click", function(){
+        event.preventDefault();
+        let task_id = $(this).attr("data-task-id");
+        if(task_id !== 'NA'){
+            let url_origin = window.location.origin;
+            url_origin += '/fetch/assessed_skills/';
+            url_origin += task_id;
+            fetch(url_origin)
+            .then(data => {
+                return data.json()
+            })
+            .then(skills => {
+                let checked = [];
+                let rootnode = document.getElementById("assessed-skills-to-delete");
+                if(skills.length !== 0){
+                    let checkboxes = document.getElementsByName('rubric_skills[]');
+                    for(let cbx of checkboxes){
+                        if(cbx.checked){
+                            checked.push(cbx.value)
+                        }
+                    }
+                    rootnode.innerHTML = "";
+                    skills.forEach(skill => {
+                        if(!(checked.includes(skill.skill_Id.toString()))){
+                            let node = document.createElement("LI");                
+                            let textnode = document.createElement("SPAN");                
+                            let colornode = document.createElement("SPAN");            
+                            let text = document.createTextNode('  ' + skill.skill_Name);
+                            let color = 'colored-dot-color-' + skill.colour;
+                            textnode.appendChild(text);
+                            colornode.classList.add(color);          
+                            colornode.classList.add('colored-dot-dimensions');          
+                            node.appendChild(colornode);                              
+                            node.appendChild(textnode);                              
+                            rootnode.appendChild(node);
+                        }
+                    });
+                    if(rootnode.childElementCount > 0){
+                        $("#multiple-students-marked-for-assessment-warning-modal").modal("show");
+                    }else{
+                        document.getElementById("rubricform").submit();
+                    }
+                }else{
+                    document.getElementById("rubricform").submit();
+                }
+            })
+            .catch(err => {
+                // console.log(err);
+            })
+        }else if(task_id === 'NA'){
+            document.getElementById("rubricform").submit();
+        }
+    });
+
+    if(url.includes('/rubric-edit')){
+        $("#edit-rubric-warning-modal-yes-button").on("click", function(){
+            document.getElementById("rubricform").submit();
+        });   
+    }
+
+    //======================== RUBRIC LIST PAGE ==============================================
+    
+    $("#rubric-list-option-my-rubrics").on("click", function(){
+        $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
+        $(this).addClass("rubric-list-option-current-style");
+        let url_origin = window.location.origin;
+        url_origin += '/rubric-list-mine';
+        fetch(url_origin)
+        .then(data => {
+            return data.json();
+        })
+        .then(rubrics => {
+            let rootNode = document.getElementById('rubric-list-skill-cards');
+            rootNode.innerHTML = "";
+            let rubricCount = rubrics.length;
+            if(rubricCount !== 0){
+                for(let i = 0; i < rubricCount; i++){
+                    let skillCardNode = document.createElement("DIV");
+                    skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
+                    let linkNode = document.createElement("a");
+                    linkNode.href = '/rubric-details/' + rubrics[i].id;
+                    linkNode.target = '_self';
+                    linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
+                    skillCardNode.appendChild(linkNode);
+                    let rubricTitleNode = document.createElement("DIV");
+                    rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
+                    linkNode.appendChild(rubricTitleNode);
+                    rubricTitleNode.innerHTML = rubrics[i].name;
+                    let rubricSkillsNode = document.createElement("DIV");
+                    rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
+                    let rubricSkillsTitleNode = document.createElement("p");
+                    rubricSkillsTitleNode.classList.add('rubric-skills-para');
+                    rubricSkillsNode.appendChild(rubricSkillsTitleNode);
+                    rubricSkillsTitleNode.innerHTML = 'Skills';
+                    linkNode.appendChild(rubricSkillsNode);
+                    let rubricsSkillsDetailsNode = document.createElement('ul');
+                    rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
+                    rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
+                    rubrics[i].skills.forEach((skill, index) => {
+                        if(index < 20){
+                            let skillItem = document.createElement('li');
+                            let skillNameNode = document.createElement('SPAN');
+                            let skillColorNode = document.createElement('SPAN');
+                            skillNameNode.innerHTML = ' ' + skill.name;
+                            let colorClass = 'colored-dot-color-' + skill.color;
+                            skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                            skillItem.appendChild(skillColorNode);
+                            skillItem.appendChild(skillNameNode);
+                            rubricsSkillsDetailsNode.appendChild(skillItem);
+                        }
+                    });
+                    let skillCardFooterNode = document.createElement('DIV');
+                    linkNode.appendChild(skillCardFooterNode);
+                    let moreSkillsNode = document.createElement('DIV');
+                    moreSkillsNode.classList.add('rubric-more-skills');
+                    skillCardFooterNode.appendChild(moreSkillsNode);
+                    if(rubrics[i].skills.length > 20){
+                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                    }
+                    let rubricDeleteNode = document.createElement('form');
+                    rubricDeleteNode.method = "POST";
+                    rubricDeleteNode.action = "/rubricDelete";
+                    skillCardFooterNode.appendChild(rubricDeleteNode);
+                    let rubricDeletehiddenInputNode = document.createElement('input');
+                    rubricDeletehiddenInputNode.type = "hidden";
+                    rubricDeletehiddenInputNode.name = "rubricId";
+                    rubricDeletehiddenInputNode.value = rubrics[i].id;
+                    let rubricDeleteButtonNode = document.createElement('button');
+                    rubricDeleteButtonNode.classList.add('rubric-remove-button-styling');
+                    rubricDeleteButtonNode.type = 'submit';
+                    let rubricDeleteImgNode = document.createElement('img');
+                    rubricDeleteImgNode.classList.add('interaction-icon');
+                    rubricDeleteImgNode.src = 'images/delete.png';
+                    rubricDeleteNode.appendChild(rubricDeletehiddenInputNode);
+                    rubricDeleteNode.appendChild(rubricDeleteButtonNode);
+                    rubricDeleteButtonNode.appendChild(rubricDeleteImgNode);
+                    rootNode.appendChild(skillCardNode);
+                }
+                // rubrics.forEach(rubric => {
+                    
+                // });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+
+    $("#rubric-list-option-scriibi-rubrics").on("click", function(){
+        $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
+        $(this).addClass("rubric-list-option-current-style");
+        let url_origin = window.location.origin;
+        url_origin += '/rubric-list-scriibi';
+        let rootNode = document.getElementById('rubric-list-skill-cards');
+        rootNode.innerHTML = "";
+        fetch(url_origin)
+        .then(data => {
+            return data.json();
+        })
+        .then(rubrics => {
+            console.log(rubrics);
+            let rootNode = document.getElementById('rubric-list-skill-cards');
+            rootNode.innerHTML = "";
+            let rubricCount = rubrics.length;
+            if(rubricCount !== 0){
+                for(let i = 0; i < rubricCount; i++){
+                    let skillCardNode = document.createElement("DIV");
+                    skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
+                    let linkNode = document.createElement("a");
+                    linkNode.target = '_self';
+                    linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
+                    skillCardNode.appendChild(linkNode);
+                    let rubricTitleNode = document.createElement("DIV");
+                    rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
+                    linkNode.appendChild(rubricTitleNode);
+                    rubricTitleNode.innerHTML = rubrics[i].name;
+                    let rubricSkillsNode = document.createElement("DIV");
+                    rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
+                    let rubricSkillsTitleNode = document.createElement("p");
+                    rubricSkillsTitleNode.classList.add('rubric-skills-para');
+                    rubricSkillsNode.appendChild(rubricSkillsTitleNode);
+                    rubricSkillsTitleNode.innerHTML = 'Skills';
+                    linkNode.appendChild(rubricSkillsNode);
+                    let rubricsSkillsDetailsNode = document.createElement('ul');
+                    rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
+                    rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
+                    rubrics[i].skills.forEach((skill, index) => {
+                        if(index < 20){
+                            let skillItem = document.createElement('li');
+                            let skillNameNode = document.createElement('SPAN');
+                            let skillColorNode = document.createElement('SPAN');
+                            skillNameNode.innerHTML = ' ' + skill.name;
+                            let colorClass = 'colored-dot-color-' + skill.color;
+                            skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                            skillItem.appendChild(skillColorNode);
+                            skillItem.appendChild(skillNameNode);
+                            rubricsSkillsDetailsNode.appendChild(skillItem);
+                        }
+                    });
+                    let skillCardFooterNode = document.createElement('DIV');
+                    linkNode.appendChild(skillCardFooterNode);
+                    let moreSkillsNode = document.createElement('DIV');
+                    moreSkillsNode.classList.add('rubric-more-skills');
+                    skillCardFooterNode.appendChild(moreSkillsNode);
+                    if(rubrics[i].skills.length > 20){
+                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                    }
+                    rootNode.appendChild(skillCardNode);
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+
+    $("#rubric-list-option-build-rubrics").on("click", function(){
+        $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
+        $(this).addClass("rubric-list-option-current-style");
+        let url_origin = window.location.origin;
+        url_origin += 'rubric-list-build';
+    });
+
+    // $("").on("click", function(){
+        
+    // });
 
 }); //===== /END OF JQUERY =======
 
@@ -576,70 +798,42 @@ if (saveBTN !== null) {
 
 // validate input from all fields in rubric-form
 function check_input_filled(e){
-
     e.preventDefault();
-
     var error = "",
         curriculum_code = document.getElementById("select_curriculum_code").value,
-        skill_1_error = false,
-        skill_2_error = false,
-        title_1_error = false,
-        title_2_error = false;
+        skill_error = false,
+        title_error = false;
+    
     if (curriculum_code === ""){
-        error += "you need curriculum code \n";
+        error += "you need to select a curriculum code. \n";
     }
 
-    // check rubric title 1 & 2 are entered
-    var rubric_title_1 = document.getElementById("assessment_name1").value;
-    var rubric_title_2 = document.getElementById("assessment_name2").value;
-    var title_1_filled = false;
-    var title_2_filled = false;
-    if (rubric_title_1===""){
-        title_1_error = true;
-        error+="you need to set term 1 rubric title. \n";
+    // check rubric title is entered
+    var rubric_title = document.getElementById("assessment_name").value;
+    if (rubric_title===""){
+        title_error = true;
+        error+="you need to set a rubric title. \n";
     }
 
-    if (rubric_title_2===""){
-        title_2_error = true;
-        error+="you need to set term 2 rubric title. \n";
-    }
-
-
-    //check form 1 skill items
-    var skill_items_1 = document.getElementById("check-array1").querySelectorAll(".skill-checkbox1");
-    var skill_checked_1 = false;
-    for (var i = 0; i < skill_items_1.length; i++) {
-        if (skill_items_1[i].checked) {
-            skill_checked_1 = true;
+    //check skill items
+    var skill_items = document.getElementById("check-array").querySelectorAll(".skill-checkbox");
+    var skill_checked = false;
+    for (var i = 0; i < skill_items.length; i++) {
+        if (skill_items[i].checked) {
+            skill_checked = true;
             break;
         }
     }
 
-    if (skill_checked_1 === false){
-        skill_1_error = true;
+    if (skill_checked === false){
+        skill_error = true;
     }
 
-    if (skill_1_error === true) {
-        error += "you need to select skills for term 1 \n";
+    if (skill_error === true) {
+        error += "you need to select at least one skill for the rubric. \n";
     }
 
-    //check form 2 skill item
-    var skill_items_2 = document.getElementById("check-array2").querySelectorAll(".skill-checkbox2");
-    var skill_checked_2 = false;
-    for(var i=0; i< skill_items_2.length; i++){
-        if (skill_items_2[i].checked) {
-            skill_checked_2 = true;
-            break;
-        }
-    }
-    if (skill_checked_2 === false){
-        skill_2_error = true;
-    }
-    if (skill_2_error === true){
-        error += "you need to select skills for term 2 \n";
-    }
-
-    if((skill_checked_1 === true)&&(skill_checked_2 === true)&&(error === "")){
+    if((skill_checked === true)&&(error === "")){
         var form = document.getElementById("rubricform");
         form.submit();
     }

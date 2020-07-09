@@ -32,6 +32,15 @@ Route::get('/home', function(){
     try{
         $stdController = new App\Http\Controllers\StudentsController();
         $students = $stdController->indexStudentsByClass();
+        $userCondition = DB::table('teachers_positions')
+            ->where('teachers_user_Id', '=', Auth::user()->user_Id)
+            ->where('positions_position_Id', '=', 2018)
+            ->get()
+            ->toArray();
+        $privilagedUser = false;
+        if(!empty($userCondition)){
+            $privilagedUser = true;
+        }
         $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
         $mp->identify(Auth::user()->user_Id);
@@ -42,7 +51,7 @@ Route::get('/home', function(){
                 "Check Email"       => ""
             )
         );
-        return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id]);
+        return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id, 'privilagedUser' => $privilagedUser]);
     }catch(Exception $ex){
         //todo
     }
@@ -89,9 +98,13 @@ Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
 Route::post('/RubricConfirm', 'RubricsController@store');
 Route::post('/rubricDelete', 'RubricsController@deleteRubric');
 Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');
-Route::get('/rubric-edit/{rubricId}', 'RubricBuilder@generateEditRubricView');
-Route::get('/rubric-edit/{rubricId}/{level}', 'RubricBuilder@generateEditRubricViewWithFlags');
+Route::get('/rubric-edit/{rubricId}/{taskId}', 'RubricBuilder@generateEditRubricView');
+Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricViewWithFlags');
 Route::post('/rubric-edit-confirm', 'RubricsController@update');
+Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
+Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');
+Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');
+Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric');
 
 //assessment routes
 Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
@@ -105,6 +118,11 @@ Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generate
 Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');
 Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');
 Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');
+
+// fetch
+Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
+Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics');
+Route::get('/rubric-list-scriibi', 'RubricListController@GenerateScriibiRubrics');
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");

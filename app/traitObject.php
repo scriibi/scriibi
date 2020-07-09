@@ -145,6 +145,21 @@ class traitObject
         }
     }
 
+    public function populateScriibiRubricSpecificSkills($rubricId){
+        $scriibi_rubric_specific_skills = DB::table('rubrics')
+            ->join('rubrics_skills', 'rubrics.rubric_Id', 'rubrics_skills.rubrics_rubric_Id')
+            ->join('skills', 'rubrics_skills.skills_skill_Id', 'skills.skill_Id')
+            ->join('skills_traits', 'skills.skill_Id', 'skills_traits.skills_traits_skills_skill_Id')
+            ->select('skills.*')
+            ->where('skills_traits.skills_traits_traits_trait_Id', '=', $this->id)
+            ->where('rubrics.rubric_Id', '=', $rubricId)
+            ->get();
+
+        foreach($scriibi_rubric_specific_skills as $skill){
+            array_push($this->skills, new skillObject($skill->skill_Id, $skill->skill_Name, $skill->skill_def));
+        }
+    }
+
     public function calcFlag($level){
 
         $schoolId = DB::table('school_teachers')->select('schools_school_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();

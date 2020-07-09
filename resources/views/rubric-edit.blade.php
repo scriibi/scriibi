@@ -8,14 +8,14 @@
     <div class="col-12 col-sm-10 col-md-8"><br>
     <h1 class="Assessment-Studentlist-title">Edit Rubric</h1>
     <p>We love your student data as much as you do! Therefore in order to keep your students’ records, you can edit this rubric and save a new copy with a new name, however it can’t be a name that is already being used. </p>
-    <form action="/rubric-edit-confirm" method="POST" class="mt-5 mb-0 p-0" id="rubricform">
+    <form action="{{$currentAssessment != null ? '/assessment-rubric-edit-confirm' : '/rubric-edit-confirm'}}" method="POST" class="mt-5 mb-0 p-0" id="rubricform">
         @csrf
         <!-- Assessment Title and edit/delete img-->
         <div class="row mt-5 ">
             <div class="col-10">
             
                 <h1 class="Assessment-Studentlist-title">Edit Rubric Name :</h1>
-                <p><input class="form-control" type="text" name="rubric_name" value="{{$rubric['rubric_Name']}}"></p>
+                <p><input class="form-control" type="text" name="rubric_name" value="{{$currentAssessment != null ? 'Copy of ' . $rubric['rubric_Name'] : $rubric['rubric_Name']}}"></p>
                 <input type="text" name="rubric_id" value="{{$rubric['rubric_Id']}}" hidden>
             </div>
     
@@ -45,9 +45,9 @@
                         <div class="card-text m-0">
                             <div class="row">
                                 <div class="col-4">
-                                <h1 class="Assessment-Studentlist-title">Term 1 Rubric</h1><br><br>
+                                <h1 class="Assessment-Studentlist-title">Rubric</h1><br><br>
                                 <label >Show skills and curriculum  milestones for:</label><br />
-                                <select class="select-input" name="assessed_level" id="select_curriculum_code_in_rubric_edit" data-rubric-id={{$rubric['rubric_Id']}}>
+                                <select class="select-input" name="assessed_level" id="select_curriculum_code_in_rubric_edit" data-rubric-id={{$rubric['rubric_Id']}} data-task-id={{$currentAssessment != null ? $currentAssessment['writing_task_Id'] : 'NA'}}>
                                     <!-- <option value="" disabled selected hidden>Select your option</option> -->
                                     @foreach($assessedLabels as $al)
                                         <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
@@ -118,8 +118,11 @@
                 </div>
             </div>
         </div><br><br>
-        <input type="text" name="assessment_id" value="" hidden />
-        <input type="submit" class="btn save-exit-btn col-3" value="Save Rubric" style="float:right;margin-right:15%"></button>
+        @if($currentAssessment != null)
+            <input type="hidden" name="task_id" value="{{$currentAssessment['writing_task_Id']}}">
+        @endif
+        <!-- <input type="text" name="assessment_id" value="" hidden /> -->
+        <input type="submit" class="btn save-exit-btn col-3" value="{{$currentAssessment != null ? 'Save new Rubric' : 'Update Rubric'}}" id="rubric-edit-submit" style="float:right;margin-right:15%" data-task-id="{{$currentAssessment != null ? $currentAssessment['writing_task_Id'] : 'NA'}}"></button>
     </form>
         <!-- <div class="col-12 d-flex justify-content-end mt-3 pr-4">
             <button type="button" name="button" class="btn save-exit-btn col-2"  onclick="location.href='{{ url('/assessment-list') }}'">Save and Exit</button>
@@ -131,3 +134,37 @@
 </div>
 
 @endsection
+
+<div class="modal fade bd-example-modal-lg multiple-assessments-warning" id="multiple-students-marked-for-assessment-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">       
+            <div class="col-sm-12">
+                <p><strong>You are deleting skills that you have already assessed. Data for these skills will be removed from this assessment if you delete it.</strong></p>
+            </div>         
+        </div>
+        <div class="row">       
+            <div class="col-sm-12">
+                <p><strong>These are:</strong></p>
+                <ul id="assessed-skills-to-delete" style="list-style-type:none">
+                </ul>
+            </div>         
+        </div>
+        <div class="row">       
+            <div class="col-sm-12">
+                <button class="assessment-delete-button delete-button-red" data-dismiss="modal">cancel</button>
+                <button class="assessment-delete-button delete-button-green" id="edit-rubric-warning-modal-yes-button">yes, delete!</button>
+            </div>         
+        </div>   
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

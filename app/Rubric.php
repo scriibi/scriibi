@@ -64,6 +64,12 @@ class Rubric
         }
     }
 
+    public function getSkillsByScriibiSpecificRubrics(){
+        foreach($this->rubic_trait_skills as $tsa){
+            $tsa->populateScriibiRubricSpecificSkills($this->id);
+        }
+    }
+
     public function getSkillsByWritingTask($taskId){
         foreach($this->rubic_trait_skills as $tsa){
             $tsa->populateWritingTaskSpecificSkills($taskId);

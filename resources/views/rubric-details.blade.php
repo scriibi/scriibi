@@ -14,7 +14,7 @@
             </div>
             <div class="col-2">
                 <!-- put the width and height of this image to the css file later -->
-                <span><a href="/rubric-edit/{{$data['rubric']->getId()}}" id="edit-rubric-link" data-assessment-count="{{count($data['writing_tasks'])}}"><img src="/images/Edit Rubric Icon and Text.png" alt="edit assessment icon" width="110px" height="25px"></a></span>
+                <span><a href="/rubric-edit/{{$data['rubric']->getId()}}/NA" id="edit-rubric-link" data-assessment-count="{{count($data['writing_tasks'])}}"><img src="/images/Edit Rubric Icon and Text.png" alt="edit assessment icon" width="110px" height="25px"></a></span>
             </div>
         </div>
         <div class="row mt-3 rubric-detail-info-section">

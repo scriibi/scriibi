@@ -15,8 +15,10 @@ class AssessementSetupController extends Controller
      * 
      */
     public function GenerateAssessmentSetup(){
-        $rubricList = new RubricList();
-        $returnList = $rubricList->GenerateTeacherSpecificRubricList();
-        return view('assessment-setup', ['rubrics' => $returnList]);
+        $rubricList1 = new RubricList();
+        $returnList1 = $rubricList1->GenerateTeacherSpecificRubricList();
+        $rubricList2 = new RubricList();
+        $returnList2 = $rubricList2->GenerateScriibiSpecificRubricList();
+        return view('assessment-setup', ['rubrics' => $returnList1, 'scriibiRubrics' => $returnList2]);
     }
 }

@@ -581,6 +581,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'App\\Rubrics_skills' => __DIR__ . '/../..' . '/app/Rubrics_skills.php',
         'App\\Rubrics_teachers' => __DIR__ . '/../..' . '/app/Rubrics_teachers.php',
         'App\\ScriibiLevels' => __DIR__ . '/../..' . '/app/ScriibiLevels.php',
+        'App\\ScriibiRubrics' => __DIR__ . '/../..' . '/app/ScriibiRubrics.php',
         'App\\SkillCard' => __DIR__ . '/../..' . '/app/SkillCard.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\WritingTask' => __DIR__ . '/../..' . '/app/WritingTask.php',

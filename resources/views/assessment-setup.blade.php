@@ -52,70 +52,128 @@
         </div>
         <!-- step 2:Rubric Template to select which rubric to use for assessment-->
         <div id="rubric-template" hidden>
-            @if (count($rubrics) > 0)
+            @if (count($rubrics) > 0 || count($scriibiRubrics) > 0)
             <div class="pt-1 pb-0 " >
                 <div>
                     <h5><strong>Rubric Template Selection</strong></h5>
                 </div>
                 <div>
-                    <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
+                    <!-- <div class="header-cells row rubric-table-header d-flex justify-content-between mt-5 pl-3">
                         <span class="col-1"></span>
                         <p class="col-3 text-left">Rubric Title</p>
                         <p class="col-8 text-left">Skills</p>
-                    </div>
+                    </div> -->
                     <!-- 
                         populate more cells as per rubric NOTE: ASSESSMENT-RUBRIC-ITEM is a class identifier for javascript. 
                         Do not remove 
                     -->
-                    @foreach($rubrics as $r)
-                        <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
-                            <label class="assessment-rubric-settings-btn w-100 clickable">
-                                <input type="radio" name="rubric" value={{$r->getId()}} />
-                                <div class="row px-0 mx-0">
-                                    <div class="col-1">
-                                        <span class="radio-circle"></span>
-                                    </div>
-                                    <div class="col-3 border-0">
-                                        <p class="assessment-rubric-title">{{$r->getName()}}</p>
-                                    </div>
-                                    <div class="col-8 border-0 pl-1">
-                                        <p class="assessment-rubric-skills">
-                                        <?php
-                                            $skills_array = array();
-                                            $traits_skills = $r->getRubricTraitSkills();
-                                            foreach($traits_skills as $ts){
-                                                $skillObjects = $ts->getSkills();
-                                                foreach($skillObjects as $so){
-                                                    array_push($skills_array, $so->getName());
-                                                }
-                                            };
-                                        ?>
+                    <br />
+                    @if (count($rubrics) > 0)
+                        <h6><strong>My Rubrics</strong></h6>
+                        @foreach($rubrics as $r)
+                            <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
+                                <label class="assessment-rubric-settings-btn w-100 clickable">
+                                    <input type="radio" name="rubric" value={{$r->getId()}} />
+                                    <div class="row px-0 mx-0">
+                                        <div class="col-1">
+                                            <span class="radio-circle"></span>
+                                        </div>
+                                        <div class="col-3 border-0">
+                                            <p class="assessment-rubric-title">{{$r->getName()}}</p>
+                                        </div>
+                                        <div class="col-8 border-0 pl-1">
+                                            <p class="assessment-rubric-skills">
+                                            <?php
+                                                $skills_array = array();
+                                                $traits_skills = $r->getRubricTraitSkills();
+                                                foreach($traits_skills as $ts){
+                                                    $skillObjects = $ts->getSkills();
+                                                    foreach($skillObjects as $so){
+                                                        array_push($skills_array, $so->getName());
+                                                    }
+                                                };
+                                            ?>
 
-                                        <!-- Applying a comma after each skill -->
-                                        <?php
-                                            $final_skill = end($skills_array);
-                                            $count = 0;
-                                            foreach($skills_array as $sa) {
-                                                if($sa != $final_skill) {
-                                                    echo($sa . ", ");
-                                                    $count++;
-                                                }
-                                                else {
-                                                    echo($sa);
-                                                }
-                                                //apply an ellipses if reached 11 skills
-                                                if ($count == 8){
-                                                    echo($sa."...");
-                                                    break;
-                                                }
-                                            }//end of foreach
-                                        ?>
-                                        </p>
+                                            <!-- Applying a comma after each skill -->
+                                            <?php
+                                                $final_skill = end($skills_array);
+                                                $count = 0;
+                                                foreach($skills_array as $sa) {
+                                                    if($sa != $final_skill) {
+                                                        echo($sa . ", ");
+                                                        $count++;
+                                                    }
+                                                    else {
+                                                        echo($sa);
+                                                    }
+                                                    //apply an ellipses if reached 11 skills
+                                                    if ($count == 8){
+                                                        echo($sa."...");
+                                                        break;
+                                                    }
+                                                }//end of foreach
+                                            ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </label>
-                        </div>
-                        @endforeach
+                                </label>
+                            </div>
+                            @endforeach
+                        @endif
+                        @if(count($scriibiRubrics) > 0)
+                            <br />
+                            <br />
+                            <h6><strong>Scriibi Rubrics</strong></h6>
+                            @foreach($scriibiRubrics as $r)
+                            <div class="assessment-rubric-item rubric-list-row row mt-2 mx-0 clickable">
+                                <label class="assessment-rubric-settings-btn w-100 clickable">
+                                    <input type="radio" name="rubric" value={{$r->getId()}} />
+                                    <div class="row px-0 mx-0">
+                                        <div class="col-1">
+                                            <span class="radio-circle"></span>
+                                        </div>
+                                        <div class="col-3 border-0">
+                                            <p class="assessment-rubric-title">{{$r->getName()}}</p>
+                                        </div>
+                                        <div class="col-8 border-0 pl-1">
+                                            <p class="assessment-rubric-skills">
+                                            <?php
+                                                $skills_array = array();
+                                                $traits_skills = $r->getRubricTraitSkills();
+                                                foreach($traits_skills as $ts){
+                                                    $skillObjects = $ts->getSkills();
+                                                    foreach($skillObjects as $so){
+                                                        array_push($skills_array, $so->getName());
+                                                    }
+                                                };
+                                            ?>
+
+                                            <!-- Applying a comma after each skill -->
+                                            <?php
+                                                $final_skill = end($skills_array);
+                                                $count = 0;
+                                                foreach($skills_array as $sa) {
+                                                    if($sa != $final_skill) {
+                                                        echo($sa . ", ");
+                                                        $count++;
+                                                    }
+                                                    else {
+                                                        echo($sa);
+                                                    }
+                                                    //apply an ellipses if reached 11 skills
+                                                    if ($count == 8){
+                                                        echo($sa."...");
+                                                        break;
+                                                    }
+                                                }//end of foreach
+                                            ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            @endforeach
+                        @endif
                     <div class="d-flex justify-content-between mt-5 mb-2">
                         <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
 
