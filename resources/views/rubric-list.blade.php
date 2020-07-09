@@ -1,89 +1,87 @@
 @extends('layout.mainlayout')
 @section('title', 'Rubric-List')
 @section('content')
-<div class="row @if(count($rubrics)===0){{"temporary-page-height-fix"}}@endif pb-5">
-   <div class="d-none d-sm-block col-sm-1 col-md-1">
-   </div>
-    <div class="col-12 col-sm-10 col-md-10">
-        <div class="row d-flex justify-content-between mb-3 mt-5">
-                <h5 class="rubric-list-title">My Rubrics</h5>
-            <a href="/rubrics" class="assessment-btn p-2"><strong>New Rubric +</strong></a>
-        </div>
-        <!-- show no rubric created message -->
-
-        @if(count($rubrics)===0)
-
-        <div class="notice-styling mt-5">
-            <p>You currently do not have any rubric templates.</p>
-            <p>Click the <a href="/rubrics" class="assessment-btn p-2 mx-2"><strong>New Rubric +</strong></a> to create your first template</p>
-            <p>and begin using them for your assessments!</p>
-        </div>
-
-        <!-- show list of rubric created -->
-        @else
-        <!-- populate more cells as per rubric -->
-        <div class="row">
-        @foreach($rubrics as $r)
-            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                <a href="/rubric-details/{{$r->getId()}}" class="card rubric-box btn-block rubric-list-card-single">
-                    <div class="rubric-list-text-title text-left">
-                        {{$r->getName()}}
-                    </div>
-                    <div class="rubric-box-small rubric-list-skills text-left align-middle">
-                        <p class="rubric-skills-para">Skills</p>
-                        <ul style="list-style: none;padding-left:10px;">
-                        <!-- get each skill from the rubric and display it into the p tag -->
-                            <?php $skills_array = array();
-                                $colors_array = array();
-                                $traits_skills = $r->getRubricTraitSkills();
-                                foreach($traits_skills as $ts){
-                                    $skillObjects = $ts->getSkills();
-                                    foreach($skillObjects as $so){
-                                        array_push($skills_array, $so->getName());
-                                        array_push($colors_array,$ts->getColor());
-                                    }
-                                };
-                                $final_skill = end($skills_array);
-                                $count = 0;
-                                foreach($skills_array as $sa) {
-                                    if($count<20)
-                                    {
-                                    ?>   
-                                        <li>
-                                        <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($colors_array[$count]); ?>"></span>
-                                        <span>{{$sa}}</span>
-                                        </li>
-                                    <?php
-                                    }
-                                    $count++;
-                                }//end of foreach
-                            ?>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="rubric-more-skills">
-                            <?php 
-                            if($count>20)
-                            {
-                                echo ($count-20)." more";
-                            }
-                            ?>
-                        </div>
-                        <form method="post" action="/rubricDelete">
-                            @csrf
-                            <input type="hidden" name="rubricId" value={{$r->getId()}} />
-                            <button class="rubric-remove-button-styling" type="submit">
-                                <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
-                            </button>
-                        </form>
-                    </div>
-                </a>
+    <div class="rubric-list-parent-cont">
+        <div class="row no-gutters rubric-list-options-row">
+            <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
+                Scriibi Rubrics
             </div>
-        @endforeach
+            <!-- <div class="col-3 rubric-list-option" id="rubric-list-option-shared-rubrics">
+                Shared with Me             
+            </div> -->
+            <div class="col-4 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
+                My Saved Rubrics   
+            </div>
+            <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
+                Build a new Rubric
+            </a>
         </div>
-        @endif
-   </div>
-    <div class="d-none d-sm-block col-sm-1 col-md-1">
-   </div>
-</div>
+    </div>
+    
+    <!-- section for my rubrics to be done through js-->
+    <div class="row @if(count(json_decode($rubrics))===0){{"temporary-page-height-fix"}}@endif pb-5 pl-3 pr-4 pt-3" id="rubric-list-rubrics-view">    
+        <div class="d-none d-sm-block col-sm-1 col-md-1"></div>
+        <div class="col-10 col-sm-10 col-md-10">
+
+            @if(count(json_decode($rubrics)) === 0)
+                <div class="notice-styling mt-5">
+                    <p>You currently do not have any rubric templates.</p>
+                </div>
+            <!-- show list of rubric created -->
+            @else
+            <!-- populate more cells as per rubric -->
+                <div class="row" id="rubric-list-skill-cards">
+                    @foreach(json_decode($rubrics) as $r)
+                        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <a href="/rubric-details/{{$r->id}}" class="card rubric-box btn-block rubric-list-card-single">
+                                <div class="rubric-list-text-title text-left">
+                                    {{$r->name}}
+                                </div>
+                                <div class="rubric-box-small rubric-list-skills text-left align-middle">
+                                    <p class="rubric-skills-para">Skills</p>
+                                    <ul style="list-style: none;padding-left:10px;">
+                                    <!-- get each skill from the rubric and display it into the p tag -->
+                                        <?php
+                                            $count = 0;
+                                            $skillsCount = count($r->skills);
+                                            foreach($r->skills as $s){
+                                                if($count < 20){                                       
+                                        ?>   
+                                                    <li>
+                                                        <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($s->color); ?>"></span>
+                                                        <span>{{$s->name}}</span>
+                                                    </li>
+                                        <?php
+                                                $count++;
+                                                }
+                                            }
+                                        ?>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="rubric-more-skills">
+                                        <?php 
+                                            if($skillsCount > 20)
+                                            {
+                                                echo ($skillsCount-20)." more";
+                                            }
+                                        ?>
+                                    </div>
+                                    <form method="post" action="/rubricDelete">
+                                    @csrf
+                                        <input type="hidden" name="rubricId" value={{$r->id}} />
+                                        <button class="rubric-remove-button-styling" type="submit">
+                                            <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
+                                        </button>
+                                    </form>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+        <div class="d-none d-sm-block col-sm-1 col-md-1"></div>
+    </div>
+                                           
 @endsection

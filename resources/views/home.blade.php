@@ -173,7 +173,12 @@
                         <span class="align-self-center mx-2 text-nowrap">Update Mixpanel User Assessments</span>
                     </a>
                 @endif
-
+                @if($privilagedUser)
+                    <a href="/scriibi-rubric-builder" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                        <img class="align-self-center mx-2 px-3 home-etc-icons" style="border-radius: 50%" src="images/s-logo.png" alt="logo9">
+                        <span class="align-self-center mx-2 text-nowrap">Create Scriibi Rubric</span>
+                    </a>
+                @endif
             </div>
             <iframe src="https://writing.scriibi.com/login" width="1px" height="1px" style="border:none;"></iframe>
         </div>

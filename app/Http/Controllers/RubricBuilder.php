@@ -50,6 +50,19 @@ class RubricBuilder extends Controller
         }
     }
 
+    public function isprivilegedUser(){
+        $PrivilageUser = DB::table('teachers')
+            ->join('teachers_positions', 'teachers.user_Id', 'teachers_positions.teachers_user_Id')
+            ->join('school_teachers', 'teachers.user_Id', 'school_teachers.teachers_user_Id')
+            ->where('teachers.user_Id', Auth::user()->user_Id)
+            ->where('teachers_positions.positions_position_Id', 2018)
+            // ->where('school_teachers.schools_school_Id', 1)
+            ->get()->toArray();
+        if(!empty($PrivilageUser))
+            return true;
+        else return false;
+    }
+
     /**
      * generates the initial rubric builder page without any skills populated
      */
@@ -57,7 +70,7 @@ class RubricBuilder extends Controller
         try{
             $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
             $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-
+            $isPrivilagedUser = RubricBuilder::isprivilegedUser();
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Page Viewed", array(
                     "Page Id"           => "P031",
@@ -66,7 +79,7 @@ class RubricBuilder extends Controller
                     "Check Email"       => ""
                 )
             );
-            return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null]);
+            return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null, 'scriibi_user' => $isPrivilagedUser]);
         }catch(Exception $ex){
             //todo
         }
@@ -79,10 +92,11 @@ class RubricBuilder extends Controller
     public function generateRubricsViewWithFlags($level){
         $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
         RubricBuilder::populateSkillsInTraits($level);
+        $isPrivilagedUser = RubricBuilder::isprivilegedUser();
         foreach($this->traits_skills_array as $tsa){
             $tsa->calcFlag($level);
         }
-        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => $level]);
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => $level, 'scriibi_user' => $isPrivilagedUser]);
     }
 
     /**
@@ -145,6 +159,36 @@ class RubricBuilder extends Controller
         catch(Exception $e){
             throw $e;
         }
+    }
+
+    // this section will be changed when the cascading criteria selection for scriibi rubric builder is implemented
+    public function generateScribiiRubricBuilderView(){
+        try{
+            $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
+            $isPrivilagedUser = RubricBuilder::isprivilegedUser();
+            if($isPrivilagedUser){
+                $curriculum = DB::table('curriculum')->get()->toArray();
+                $schoolTypes = DB::table('school_type_identifiers')->get()->toArray();
+            }
+            return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => null, 'scriibi_user' => $isPrivilagedUser, 'curriculum' => $curriculum, 'schoolTypes' => $schoolTypes]);
+        }catch(Exception $ex){
+            //todo
+        }
+    }
+
+    public function generateScribiiRubricBuilderViewWithFlags($level){
+        $text_types_and_assessed_labels_array = RubricBuilder::populateTraits();
+        RubricBuilder::populateSkillsInTraits($level);
+        $isPrivilagedUser = RubricBuilder::isprivilegedUser();
+        if($isPrivilagedUser){
+            $curriculum = DB::table('curriculum')->get()->toArray();
+            $schoolTypes = DB::table('school_type_identifiers')->get()->toArray();
+        }
+        foreach($this->traits_skills_array as $tsa){
+            $tsa->calcFlag($level);
+        }
+        return view('rubrics', ['traitObjects' => $this->traits_skills_array, 'text_types'=> $text_types_and_assessed_labels_array['text_types'], 'assessed_labels' => $text_types_and_assessed_labels_array['assessed_labels'], 'level' => $level, 'scriibi_user' => $isPrivilagedUser, 'curriculum' => $curriculum, 'schoolTypes' => $schoolTypes]);
     }
 }
 

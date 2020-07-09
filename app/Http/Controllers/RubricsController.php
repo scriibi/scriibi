@@ -47,33 +47,20 @@ class RubricsController extends Controller
      */
     public function store(Request $request)
     {
-        $rubric1_name = $request->input('rubric1_name');
-        $rubric2_name = $request->input('rubric2_name');
+        $rubric_name = $request->input('rubric_name');
         $assessed_level = $request->input('assessed_level');
-        $rubric1_skills = $request->input('rubric1_skills');
-        $rubric2_skills = $request->input('rubric2_skills');
-
-        $new_rubric_1 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric1_name);
-        $new_rubric_2 = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric2_name);
+        $rubric_skills = $request->input('rubric_skills');
+        $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name);
         
-        $newRubricId1 = DB::table('rubrics')->insertGetId($new_rubric_1);
-        $newRubricId2 = DB::table('rubrics')->insertGetId($new_rubric_2);
+        $newRubricId = DB::table('rubrics')->insertGetId($new_rubric);
 
-        foreach($rubric1_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId1);
+        foreach($rubric_skills as $skill){
+            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId);
             DB::table('rubrics_skills')->insert($new_rubric_skill);
         }
 
-        foreach($rubric2_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId2);
-            DB::table('rubrics_skills')->insert($new_rubric_skill);
-        }
-
-        $new_teacher_rubric1 = array('rubrics_rubric_Id' => $newRubricId1, 'teachers_user_Id' => Auth::user()->user_Id);
-        DB::table('rubrics_teachers')->insert($new_teacher_rubric1);
-
-        $new_teacher_rubric2 = array('rubrics_rubric_Id' => $newRubricId2, 'teachers_user_Id' => Auth::user()->user_Id);
-        DB::table('rubrics_teachers')->insert($new_teacher_rubric2);
+        $new_teacher_rubric = array('rubrics_rubric_Id' => $newRubricId, 'teachers_user_Id' => Auth::user()->user_Id);
+        DB::table('rubrics_teachers')->insert($new_teacher_rubric);
 
         /**
          * mixpanel code
@@ -82,24 +69,15 @@ class RubricsController extends Controller
 
         $mp->identify(Auth::user()->user_Id);
         $mp->track("Rubric Created", array(
-                "Rubric Id"                  => $newRubricId1,
-                "Rubric Name"                => $rubric1_name,
+                "Rubric Id"                  => $newRubricId,
+                "Rubric Name"                => $rubric_name,
                 "Rubric Scriibi Level"       => $assessed_level,
-                "Rubric Skill Ids"           => $rubric1_skills,
-                "Related Rubric Ids"         => [$newRubricId2],
+                "Rubric Skill Ids"           => $rubric_skills,
+                "Related Rubric Ids"         => 'N/A',
             )
         );
 
-        $mp->track("Rubric Created", array(
-            "Rubric Id"                  => $newRubricId2,
-            "Rubric Name"                => $rubric2_name,
-            "Rubric Scriibi Level"       => $assessed_level,
-            "Rubric Skill Ids"           => $rubric2_skills,
-            "Related Rubric Ids"         => [$newRubricId1],
-        )
-    );
-
-        return redirect()->action('RubricListController@GenerateUserRubrics');
+        return redirect('/rubric-list');
     }
 
     /**
@@ -284,6 +262,30 @@ class RubricsController extends Controller
                 $count ++;
             }
         return $count;
+    }
+
+    public function saveScriibiRubric(Request $request){
+        $rubric_name = $request->input('rubric_name');
+        $assessed_level = $request->input('assessed_level');
+        $curriculumId = $request->input('curriculum');
+        $schoolTypeId = $request->input('schoolType');
+        $rubric_skills = $request->input('rubric_skills');
+
+        $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name);
+        
+        $newRubricId = DB::table('rubrics')->insertGetId($new_rubric);
+
+        foreach($rubric_skills as $skill){
+            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId);
+            DB::table('rubrics_skills')->insert($new_rubric_skill);
+        }
+
+        $new_teacher_rubric = array('rubrics_rubric_Id' => $newRubricId, 'teachers_user_Id' => Auth::user()->user_Id);
+        DB::table('rubrics_teachers')->insert($new_teacher_rubric);
+        // add new record to the scriibi rubrics table
+        $new_scriibi_rubric = array('rubric_id' => $newRubricId, 'curriculum_id' => $curriculumId, 'school_type_identifier_id' => $schoolTypeId);
+        DB::table('scriibi_rubrics')->insert($new_scriibi_rubric);
+        //return redirect();
     }
 
     /**
