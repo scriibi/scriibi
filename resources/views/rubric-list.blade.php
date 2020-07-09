@@ -27,6 +27,7 @@
                 <div class="notice-styling mt-5">
                     <p>You currently do not have any rubric templates.</p>
                 </div>
+                <div class="row" id="rubric-list-skill-cards"></div>
             <!-- show list of rubric created -->
             @else
             <!-- populate more cells as per rubric -->
