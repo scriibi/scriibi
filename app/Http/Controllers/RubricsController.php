@@ -95,10 +95,10 @@ class RubricsController extends Controller
                 DB::table('rubrics_teachers')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
                 DB::statement("UPDATE rubrics SET rubric_Name = CONCAT(rubric_Name, ' (deleted)') WHERE rubric_Id = $rubricId");
             }
-            return redirect()->action('RubricListController@GenerateUserRubrics');
+            return redirect('/rubric-list');
         }
         catch(\Exception $e){
-            return redirect()->action('RubricListController@GenerateUserRubrics');
+            return redirect('/rubric-list');
         }
     }
 
@@ -145,7 +145,7 @@ class RubricsController extends Controller
                 array_push($new_rubric_skills, ['skills_skill_Id' => $rs, 'rubrics_rubric_Id' => $rubricId]);
             }
             DB::table('rubrics_skills')->insert($new_rubric_skills);
-            return redirect()->action('RubricListController@GenerateUserRubrics');
+            return redirect('/rubric-list');
         }
         catch(\Exception $e){
             throw $e;
@@ -285,7 +285,7 @@ class RubricsController extends Controller
         // add new record to the scriibi rubrics table
         $new_scriibi_rubric = array('rubric_id' => $newRubricId, 'curriculum_id' => $curriculumId, 'school_type_identifier_id' => $schoolTypeId);
         DB::table('scriibi_rubrics')->insert($new_scriibi_rubric);
-        //return redirect();
+        return redirect('/scriibi-rubric-builder');
     }
 
     /**
