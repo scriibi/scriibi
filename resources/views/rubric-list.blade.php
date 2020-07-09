@@ -24,7 +24,7 @@
         <div class="col-10 col-sm-10 col-md-10">
 
             @if(count(json_decode($rubrics)) === 0)
-                <div class="notice-styling mt-5">
+                <div class="notice-styling mt-5" id="no-rubrics-available">
                     <p>You currently do not have any rubric templates.</p>
                 </div>
                 <div class="row" id="rubric-list-skill-cards"></div>
