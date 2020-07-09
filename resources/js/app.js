@@ -593,10 +593,68 @@ $(function(){
         $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
         $(this).addClass("rubric-list-option-current-style");
         let url_origin = window.location.origin;
-        url_origin += 'rubric-list-scriibi';
+        url_origin += '/rubric-list-scriibi';
         let rootNode = document.getElementById('rubric-list-skill-cards');
         rootNode.innerHTML = "";
-
+        fetch(url_origin)
+        .then(data => {
+            return data.json();
+        })
+        .then(rubrics => {
+            console.log(rubrics);
+            let rootNode = document.getElementById('rubric-list-skill-cards');
+            rootNode.innerHTML = "";
+            let rubricCount = rubrics.length;
+            if(rubricCount !== 0){
+                for(let i = 0; i < rubricCount; i++){
+                    let skillCardNode = document.createElement("DIV");
+                    skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
+                    let linkNode = document.createElement("a");
+                    linkNode.target = '_self';
+                    linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
+                    skillCardNode.appendChild(linkNode);
+                    let rubricTitleNode = document.createElement("DIV");
+                    rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
+                    linkNode.appendChild(rubricTitleNode);
+                    rubricTitleNode.innerHTML = rubrics[i].name;
+                    let rubricSkillsNode = document.createElement("DIV");
+                    rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
+                    let rubricSkillsTitleNode = document.createElement("p");
+                    rubricSkillsTitleNode.classList.add('rubric-skills-para');
+                    rubricSkillsNode.appendChild(rubricSkillsTitleNode);
+                    rubricSkillsTitleNode.innerHTML = 'Skills';
+                    linkNode.appendChild(rubricSkillsNode);
+                    let rubricsSkillsDetailsNode = document.createElement('ul');
+                    rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
+                    rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
+                    rubrics[i].skills.forEach((skill, index) => {
+                        if(index < 20){
+                            let skillItem = document.createElement('li');
+                            let skillNameNode = document.createElement('SPAN');
+                            let skillColorNode = document.createElement('SPAN');
+                            skillNameNode.innerHTML = ' ' + skill.name;
+                            let colorClass = 'colored-dot-color-' + skill.color;
+                            skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                            skillItem.appendChild(skillColorNode);
+                            skillItem.appendChild(skillNameNode);
+                            rubricsSkillsDetailsNode.appendChild(skillItem);
+                        }
+                    });
+                    let skillCardFooterNode = document.createElement('DIV');
+                    linkNode.appendChild(skillCardFooterNode);
+                    let moreSkillsNode = document.createElement('DIV');
+                    moreSkillsNode.classList.add('rubric-more-skills');
+                    skillCardFooterNode.appendChild(moreSkillsNode);
+                    if(rubrics[i].skills.length > 20){
+                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                    }
+                    rootNode.appendChild(skillCardNode);
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
     });
 
     $("#rubric-list-option-build-rubrics").on("click", function(){

@@ -17,14 +17,12 @@ class RubricListController extends Controller
      * creates rubric objects for all rubrics of the currently logged in user
      */
     public function GenerateUserRubrics(Request $request){
-        // dd($request->path());
         try{
             $rubricList = new RubricList();
             $returnList = $rubricList->GenerateTeacherSpecificRubricList();
             $rubricsData = [];
             foreach($returnList as $r){
                 $skills = [];
-                // $name = $r->getName();
                 $traitsSkills = $r->getRubricTraitSkills();
                 foreach($traitsSkills as $ts){
                     $skillObjects = $ts->getSkills();
@@ -65,5 +63,28 @@ class RubricListController extends Controller
         $rubricList = new RubricList();
         $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
         return view('rubric-details', ['data' => $rubricDetails]);
+    }
+
+    public function GenerateScriibiRubrics(){
+        try{
+            $rubricList = new RubricList();
+            $returnList = $rubricList->GenerateScriibiSpecificRubricList();
+            $rubricsData = [];
+            foreach($returnList as $r){
+                $skills = [];
+                $traitsSkills = $r->getRubricTraitSkills();
+                foreach($traitsSkills as $ts){
+                    $skillObjects = $ts->getSkills();
+                    foreach($skillObjects as $so){
+                        array_push($skills, (object) array('name' => $so->getName(), 'color' => $ts->getColor()));
+                    }
+                }
+                array_push($rubricsData, (object) array('id' => $r->getId(), 'name' => $r->getName(), 'skills' => $skills));
+            }   
+                // dd($rubricsData);
+                return (json_encode($rubricsData));
+            }catch(Exception $ex){
+            //todo
+        }
     }
 }
