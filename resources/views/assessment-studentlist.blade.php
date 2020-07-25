@@ -32,7 +32,7 @@
         <div style="position:inherit">
             <h5 class="Assessment-Studentlist-title">Rubric Assigned</h5>
             <div class="row no-gutters">
-                <div class="col-sm-auto">
+                <div class="col-sm-auto assessment-studentlist-rubric">
                     <div class="assessment-list-card-assessment-page px-0 mt-2" style="display:inline-block">
                         <span class="text-left">
                             {{$writingTask->getRubric()->getName()}} 
@@ -65,9 +65,71 @@
                                 ?>
                             </span> 
                         </span>
-                        <!-- <button type="button" name="button" class="btn save-exit-btn col-2"  onclick="location.href='{{ url('/assessment-list') }}'">Save and Exit</button> -->
-                        <!-- <a href="/rubric-edit/{{$writingTask->getRubric()->getId()}}/{{$writingTask->getId()}}" style="text-decoration:none"></a> -->
                     </div>
+                    <span class="rubric-tooltip">
+                        <h6 style="font-weight: 900; padding: 5px 0 0 5px">{{$writingTask->getRubric()->getName()}}</h6>
+                        <div class="rubric-tooltip-skills">
+                            <h6 style="padding: 5px 0 0 5px">Skills</h6>
+                            <div class="row">
+                                    <div class="col">
+                                        <div class="rubric-box-small rubric-list-skills text-left align-middle">
+                                            <ul style="list-style: none;padding-left:10px;">
+                                            <!-- get each skill from the rubric and display it into the p tag -->
+                                                <?php
+                                                    $targetSkill;
+                                                    $count = 0;
+                                                    foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts){
+                                                        foreach($ts->getSkills() as $s){
+                                                            if($count < 10){   
+                                                                $targetSkill = $s->getId();                                 
+                                                                ?>   
+                                                                    <li>
+                                                                        <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                                                                        <span>{{$s->getName()}}</span>
+                                                                    </li>
+                                                                <?php
+                                                            $count++;
+                                                            }
+                                                        }
+                                                    }
+                                                ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="rubric-box-small rubric-list-skills text-left align-middle">
+                                            <ul style="list-style: none;padding-left:10px;">
+                                                <?php 
+                                                    $targetReached = false;
+                                                    $totalSkillCount = 0;
+                                                    $count = 0;
+                                                    foreach($writingTask->getRubric()->getRubricTraitSkills() as $ts){
+                                                        foreach($ts->getSkills() as $s){ 
+                                                            if($count < 9){
+                                                                if($targetReached){
+                                                                ?>
+                                                                    <li>
+                                                                        <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts->getColor()); ?>"></span>
+                                                                        <span>{{$s->getName()}}</span>
+                                                                    </li>
+                                                                <?php
+                                                                    $count++;
+                                                                }
+                                                                if($s->getId() === $targetSkill){
+                                                                    $targetReached = true;
+                                                                }                                                                                    
+                                                            }
+                                                            $totalSkillCount++;
+                                                        }
+                                                    }
+                                                ?>
+                                                <li>{{$totalSkillCount > 19 ? $totalSkillCount - 19 . " more" : ""}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </span>
                 </div>
                 <?php
                     $editRubricUrl = '/rubric-edit/' . $writingTask->getRubric()->getId() . '/' . $writingTask->getId();

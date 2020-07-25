@@ -35,7 +35,7 @@ class RubricList
         $rubric = new Rubric($rubric_details[0]->rubric_Id, $rubric_details[0]->rubric_Name, $rubric_details[0]->created_at);
         $rubric->populateTraits();
         $rubric->getSkillsByRubric();
-        $writing_tasks = DB::table('writing_tasks')->select('writing_tasks.task_name')->where('fk_rubric_id', '=', $id)->get();
+        $writing_tasks = DB::table('writing_tasks')->select('writing_tasks.*')->where('fk_rubric_id', '=', $id)->get();
 
         return ['rubric' => $rubric, 'writing_tasks' => $writing_tasks];
     }
