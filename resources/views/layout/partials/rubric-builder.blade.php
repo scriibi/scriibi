@@ -3,7 +3,12 @@
     <div class="col-12 col-sm-10 col-md-8"><br>
         <form action={{$scriibi_user ? "/scriibi-rubric-confirm" : "/RubricConfirm"}} method="POST" class="mt-5 mb-0 p-0" id="rubricform">
         @csrf
-            <!-- Assessment Title and edit/delete img-->
+            @if(!$scriibi_user)
+                <div class="row d-flex justify-content-between mb-3 ml-1">
+                    <h5 class="rubric-list-title">Rubric Builder</h5>
+                    <a href="/rubric-list" class="assessment-btn p-2"><strong>Return to Rubrics List</strong></a>
+                </div>
+            @endif
             <div class="row mt-5 ">
                 <div class="col-12">
                     <h1 class="Assessment-Studentlist-title">Rubric Name :</h1>
@@ -22,7 +27,7 @@
                             <div class="row">
                                 @if(!$scriibi_user)
                                     <div class="col-4">
-                                        <h1 class="Assessment-Studentlist-title">Rubric</h1><br /><br />
+                                        <!-- <h1 class="Assessment-Studentlist-title">Rubric</h1><br /><br /> -->
                                         <label>Show skills and curriculum  milestones for:</label><br />
                                         <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                             <option value="" disabled selected hidden>Please select an option</option>

@@ -28,16 +28,11 @@ class GoalsController extends Controller
 
     public function generateGoalSheets(Request $request){
         $i = 0;
-        $a = null;
-        $b = null;
-        $e = null;
-        $skillName = null;
-        $strategy = null;
-        $definition = null;
         $arr = array();
         
         // retrieve all the checkbox values for each individual goal sheet
         $inputs = $request->input('checkbox');
+        // dd($inputs);
         if($inputs == null){
             return back()->withErrors(['message'=>'Please select at least one student result to generate goal sheets.']);
         }
@@ -76,7 +71,13 @@ class GoalsController extends Controller
          * generate strategies and student definitions
          * for each of them 
          */ 
-        foreach ($inputs as $input){       
+        foreach ($inputs as $input){
+            $a = null;
+            $b = null;
+            $e = null;
+            $skillName = null;
+            $strategy = null;
+            $definition = null;     
             // split each goal string into three individual peices of data 
             $input2 = explode('?', $input);
             $skillId = intval($input2[0]);
@@ -97,7 +98,7 @@ class GoalsController extends Controller
                     $d = $sl->scriibi_Level_Id;
                 }
             }
-            
+                    
             // retrieve the skill level id if both the skill id and the scriibi level id form a unique record
             foreach($skills_levels as $sk){
                 if(($sk['skills_levels_skills_skill_Id'] == $skillId) && ($sk['scriibi_levels_scriibi_Level_Id'] == $d)){
@@ -153,9 +154,19 @@ class GoalsController extends Controller
                     $i++;
                 }
             }
+
         }
     
         return view('goalSheet', ['arr' => $arr]);
+    }
+
+    public function CheckSkillLevelAvailability($skillId, $mark){
+        $scriibiLevel = DB::table('scriibi_levels')->where('scriibi_Level', '=', $mark)->select('scriibi_levels.scriibi_Level_Id')->get()->toArray();
+
+        $skillLevel = DB::table('skills_levels')->where('skills_levels_skills_skill_Id', '=', $skillId)->where('scriibi_levels_scriibi_Level_Id', '=', $scriibiLevel[0]->scriibi_Level_Id)->get()->toArray();
+
+        return json_encode($skillLevel);
+
     }
 
     // public function printGoalSheets($array){

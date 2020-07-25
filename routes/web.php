@@ -123,6 +123,7 @@ Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restore
 Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
 Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics');
 Route::get('/rubric-list-scriibi', 'RubricListController@GenerateScriibiRubrics');
+Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");

@@ -31,7 +31,7 @@
                 <!-- foreach required here to display assessments-->  
                 <ul>
                     @foreach($data['writing_tasks'] as $assessment)
-                        <li>{{$assessment->task_name}}</li>
+                        <li><a style="text-decoration: none; color:#33A849;" href="{{ url('/single-assessment/' . $assessment->writing_task_Id) }}">{{$assessment->task_name}}</a></li>
                     @endforeach
                 </ul>
             </div>
