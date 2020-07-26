@@ -103,7 +103,7 @@
                         @foreach($dt[7] as $key => $value)
                             <td class="student-skill-result" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}">{{$value}}
                             @if(strval($value) != "")
-                                <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" >
+                                <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" hidden>
                             @endif
                             </td>
                             <?php $count++;?>

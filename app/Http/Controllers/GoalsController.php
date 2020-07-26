@@ -38,7 +38,6 @@ class GoalsController extends Controller
         }
         $student = $request->input('individual-student');
    
-        //dd($student);
         /**
          * localize the tables needed so only a 
          * few database calls have to be made
@@ -161,10 +160,9 @@ class GoalsController extends Controller
     }
 
     public function CheckSkillLevelAvailability($skillId, $mark){
-        $scriibiLevel = DB::table('scriibi_levels')->where('scriibi_Level', '=', $mark)->select('scriibi_levels.scriibi_Level_Id')->get()->toArray();
-
+        $newMark = $this->calculateGoalLevel($mark);
+        $scriibiLevel = DB::table('scriibi_levels')->where('scriibi_Level', '=', $newMark)->select('scriibi_levels.scriibi_Level_Id')->get()->toArray();
         $skillLevel = DB::table('skills_levels')->where('skills_levels_skills_skill_Id', '=', $skillId)->where('scriibi_levels_scriibi_Level_Id', '=', $scriibiLevel[0]->scriibi_Level_Id)->get()->toArray();
-
         return json_encode($skillLevel);
 
     }
