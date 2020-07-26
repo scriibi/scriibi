@@ -274,11 +274,7 @@ $(function(){
                         return data.json();
                     })
                     .then(availability => {
-                        if($(this).find(".student-goal-sheet-info").is(':checked'))
-                            console.log('yes checked');
-                        else    
-                            console.log('no checked');
-                            // $(this).find(".student-goal-sheet-info").attr("checked", false);
+                        // $(this).find(".student-goal-sheet-info").attr("checked", false);
                         if(availability.length !== 0)
                             $(this).toggleClass("circle");   
                         else
