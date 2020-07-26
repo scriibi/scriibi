@@ -274,20 +274,23 @@ $(function(){
                         return data.json();
                     })
                     .then(availability => {
-                        console.log(availability);
+                        if($(this).find(".student-goal-sheet-info").is(':checked'))
+                            console.log('yes checked');
+                        else    
+                            console.log('no checked');
+                            // $(this).find(".student-goal-sheet-info").attr("checked", false);
                         if(availability.length !== 0)
-                            $(this).toggleClass("circle");
+                            $(this).toggleClass("circle");   
                         else
-                            $("#no-strategies-warning-modal").modal("show");
+                            $("#no-strategies-warning-modal").modal("show");                          
+                        if($(this).hasClass("circle"))
+                            $(this).find(".student-goal-sheet-info").attr("checked", true);
+                        else 
+                            $(this).find(".student-goal-sheet-info").attr("checked", false);                   
                     })
                     .catch(err => {
                         console.log(err);
                     })
-                }
-                if($(this).hasClass("circle")){
-                    $(this).find(".student-goal-sheet-info").attr("checked", true);
-                }else{
-                    $(this).find(".student-goal-sheet-info").attr("checked", false);
                 }
             });
         });
