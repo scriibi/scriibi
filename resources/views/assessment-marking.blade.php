@@ -177,19 +177,20 @@
         <!-- sidebar with assessment info -->
         <div class="info-panel" id="info-panel">
 
-            <div class="d-flex justify-content-end" id="assessment-status">
+            <div class="mt-2 justify-content-end" id="assessment-status">
+                <p class="student-table-label mb-0">Status:</p>
                 <!-- value attribute: Status -->
-                <p class="w-100 incomplete-style @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
-                <p class="w-100 complete-style @if($status != 'completed') {{'d-none'}} @endif">Completed</p>
+                <p class="w-100 incomplete-style mb-0 @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
+                <p class="w-100 complete-style mb-0 @if($status != 'completed') {{'d-none'}} @endif">Completed</p>
                 <input type="hidden" name="status" value="0" />
             </div>
-            <div class="mt-3">
+            <div class="mt-2">
                 <!-- value attribute: Full name -->
                 <p class="student-table-label mb-0">Full Name:</p>
                 <p class="w-100"><strong>{{"$firstName $lastName"}}</strong></p>
             </div>
 
-            <div class="mt-2 mb-5">
+            <div class="mt-2">
                 <p class="student-table-label w-100 mb-0">Assessed Level:</p>
                 <p>{{$assessed_level[0]->assessed_level_label}}</p>
                 <p id="marking-level" class="d-none">{{$assessed_level_scriibi_id}}</p>
@@ -197,7 +198,7 @@
             <div class="d-flex">
                 <p class="student-table-label mb-0">Student Leveled Samples</p>
             </div>
-            <div id="level-examples" class="d-flex mt-1">
+            <div id="level-examples" class="d-flex">
                 <div id="level-f" class="">
                     <a target="_blank" class="d-block mb-1" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%20F.pdf">Foundation Level</a>
                     <a target="_blank" class="d-block mb-1" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%201.pdf">Level 1</a>
@@ -233,10 +234,10 @@
                     <a target="_blank" class="d-block mb-1" href="https://writing.scriibi.com/wp-content/uploads/scaffoldsetc/Year%20Level%20Assessment%20Samples/Sample%20Level%207.pdf">Level 7</a>
                 </div>
             </div>
-            <div class="mt-5" >
+            <div class="mt-2">
                 <textarea class="text-area-style" placeholder="Comments..." name="comment" id="text-area-style">{{$comment}}</textarea>
             </div>
-            <div class="d-flex justify-content-center mt-5 ">
+            <div class="d-flex justify-content-center mt-2">
                 <!-- hidden fileds for server side use -->
                 <input type="text" name="skillCount" value = {{count($skillCards)}} hidden>
                 <input type="text" name="studentId" value = {{$student_id}} hidden>
