@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-2">
                         <div class="student-icon-group">
-                            <button class="icon-btn edit-student-button" type="button">✏</button>
-                            <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button">🗑</button>
+                            <button class="icon-btn edit-student-button" type="button"><img src="/images/pencil.png" alt="edit" style="width:22px;height:22px;"></button>
+                            <button onclick="location.href='{{ url('/studentDelete/' . $s->student_Id) }}'" class="icon-btn" type="button"><img src="/images/greenbin.png" alt="delete" style="width:22px;height:22px;"></button>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
 	@foreach($arr as $gs)    
 		<div class="golasheet-header">
 			<h1 class="goalsheet-header-heading">
-				<span class="heading-name">{{$gs["student_name"]}}</span>'s Writing Goal
+				<span class="heading-name">{{$gs["student_name"]}}</span>{{substr($gs["student_name"], -1) == 's' ? "' " : "'s "}} Writing Goal
 			</h1>
 			<img src="images/GoalSheetLogo.png" alt="scriibi" class="goalsheet-header-logo">	
 		</div>
