@@ -307,19 +307,22 @@ function showSlides(n) {
       </div>
       <div class="modal-body">
         <div class="row">       
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 <div class="rubric-edit-warning-image-content">
-                    <i class="fas fa-info-circle"></i>
+                    <img src="/images/info.png" alt="more information" class="info-image">
                 </div>
             </div>       
-            <div class="col-sm-10">
-                <div style="padding-top:6%">
+            <div class="col-sm-11">
+                <div>
                     <p>There are no strategies for this skill because:</p>
                     <p>1.  The <strong>minimum</strong> requirement for this skill is at a higher level, <strong>or</strong></p>
                     <p>2.  The <strong>maximum</strong> level of accomplishment for this skill has been achieved.</p>
                 </div>
             </div>     
-        </div> 
+        </div>
+        <div style="text-align:center">
+            <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>
+        </div>
       </div>
     </div>
     </div>
