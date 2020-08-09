@@ -589,6 +589,32 @@ header {
     color: #FFFFFF;
 }
 
+.rubric-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+    position: absolute;
+    background-color: #e8e8e8;
+    border-radius: 7px;
+    bottom: 45px;
+    left: 0;
+    padding: 2px;
+    z-index: 2;
+    width: 536px;
+    font-size: 0.75rem;
+    transition: 0.4s;
+}
+
+.rubric-tooltip-skills{
+    border-radius: 7px;
+    background-color: #FFFFFF;
+}
+
+.assessment-studentlist-rubric:hover .rubric-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
 // assessement marking Page
 .assessment-marking-panel {
     display: grid;
@@ -2081,6 +2107,11 @@ box-sizing: border-box;
 
 .delete-button-green{
     background-color: rgb(51, 168,73);
+}
+
+.info-image{
+    width: 40px;
+    height: 40px;
 }
 
 @media only screen and (max-width: 995px) {

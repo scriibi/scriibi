@@ -262,12 +262,31 @@ $(function(){
         $(this).find(".student-skill-result").each(function(){
             $(this).on("click", function() {
                 if($(this).html()){
-                    $(this).toggleClass("circle");
-                }
-                if($(this).hasClass("circle")){
-                    $(this).find(".student-goal-sheet-info").attr("checked", true);
-                }else{
-                    $(this).find(".student-goal-sheet-info").attr("checked", false);
+                    let skillId = $(this).attr("data-skillId"); 
+                    let mark = $(this).attr("data-mark"); 
+                    let url_origin = window.location.origin;
+                    url_origin += '/skill-level-availability/';
+                    url_origin += skillId;
+                    url_origin += '/';
+                    url_origin += mark;
+                    fetch(url_origin)
+                    .then(data => {
+                        return data.json();
+                    })
+                    .then(availability => {
+                        // $(this).find(".student-goal-sheet-info").attr("checked", false);
+                        if(availability.length !== 0)
+                            $(this).toggleClass("circle");   
+                        else
+                            $("#no-strategies-warning-modal").modal("show");                          
+                        if($(this).hasClass("circle"))
+                            $(this).find(".student-goal-sheet-info").attr("checked", true);
+                        else 
+                            $(this).find(".student-goal-sheet-info").attr("checked", false);                   
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
                 }
             });
         });
@@ -594,8 +613,8 @@ $(function(){
         $(this).addClass("rubric-list-option-current-style");
         let url_origin = window.location.origin;
         url_origin += '/rubric-list-scriibi';
-        let rootNode = document.getElementById('rubric-list-skill-cards');
-        rootNode.innerHTML = "";
+        // let rootNode = document.getElementById('rubric-list-skill-cards');
+        // rootNode.innerHTML = "";
         fetch(url_origin)
         .then(data => {
             return data.json();

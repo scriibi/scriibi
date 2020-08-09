@@ -101,9 +101,9 @@
                         <td headers="progerssion-point">{{$dt[6]}}</td>
                         <?php $count = 1;?>
                         @foreach($dt[7] as $key => $value)
-                            <td class="student-skill-result" headers="skill{{$count}}">{{$value}}
+                            <td class="student-skill-result" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}">{{$value}}
                             @if(strval($value) != "")
-                                <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" >
+                                <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" hidden>
                             @endif
                             </td>
                             <?php $count++;?>
@@ -295,3 +295,36 @@ function showSlides(n) {
 </script>
 
 @endsection
+
+<div class="modal fade bd-example-modal-lg no-strategies-warning" id="no-strategies-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">       
+            <div class="col-sm-1">
+                <div class="rubric-edit-warning-image-content">
+                    <img src="/images/info.png" alt="more information" class="info-image">
+                </div>
+            </div>       
+            <div class="col-sm-11">
+                <div>
+                    <p>There are no strategies for this skill because:</p>
+                    <p>1.  The <strong>minimum</strong> requirement for this skill is at a higher level, <strong>or</strong></p>
+                    <p>2.  The <strong>maximum</strong> level of accomplishment for this skill has been achieved.</p>
+                </div>
+            </div>     
+        </div>
+        <div style="text-align:center">
+            <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

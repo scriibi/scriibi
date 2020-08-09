@@ -22,28 +22,26 @@ class GoalsController extends Controller
             return $level + 1;
         }
         else{
-           return ceil($level);
+            if($level > 0){
+                return intval(round($level, 0, PHP_ROUND_HALF_UP));
+            }else{
+                return intval(round($level, 0, PHP_ROUND_HALF_DOWN));
+            }
         }
     }
 
     public function generateGoalSheets(Request $request){
         $i = 0;
-        $a = null;
-        $b = null;
-        $e = null;
-        $skillName = null;
-        $strategy = null;
-        $definition = null;
         $arr = array();
         
         // retrieve all the checkbox values for each individual goal sheet
         $inputs = $request->input('checkbox');
+
         if($inputs == null){
             return back()->withErrors(['message'=>'Please select at least one student result to generate goal sheets.']);
         }
         $student = $request->input('individual-student');
    
-        //dd($student);
         /**
          * localize the tables needed so only a 
          * few database calls have to be made
@@ -76,11 +74,24 @@ class GoalsController extends Controller
          * generate strategies and student definitions
          * for each of them 
          */ 
-        foreach ($inputs as $input){       
+        foreach ($inputs as $input){
+            $a = null;
+            $b = null;
+            $e = null;
+            $skillName = null;
+            $strategy = null;
+            $definition = null;     
             // split each goal string into three individual peices of data 
             $input2 = explode('?', $input);
             $skillId = intval($input2[0]);
-            $mark = $this->calculateGoalLevel(intval($input2[1]));
+            $floatVal = floatval($input2[1]);
+            if($floatVal && intval($floatVal) != $floatVal){
+                $mark = $floatVal;
+            }
+            else{
+                $mark = intval($input2[1]);
+            }       
+            $mark = $this->calculateGoalLevel($mark);
             $studentName = $input2[2];
             
             // retrieve the skill name based on the skill id value
@@ -97,7 +108,7 @@ class GoalsController extends Controller
                     $d = $sl->scriibi_Level_Id;
                 }
             }
-            
+                    
             // retrieve the skill level id if both the skill id and the scriibi level id form a unique record
             foreach($skills_levels as $sk){
                 if(($sk['skills_levels_skills_skill_Id'] == $skillId) && ($sk['scriibi_levels_scriibi_Level_Id'] == $d)){
@@ -153,9 +164,25 @@ class GoalsController extends Controller
                     $i++;
                 }
             }
+
         }
     
         return view('goalSheet', ['arr' => $arr]);
+    }
+
+    public function CheckSkillLevelAvailability($skillId, $mark){
+        $floatVal = floatval($mark);
+        if($floatVal && intval($floatVal) != $floatVal){
+            $mark = $floatVal;
+        }
+        else{
+            $mark = intval($mark);
+        }       
+        $newMark = $this->calculateGoalLevel($mark);
+        $scriibiLevel = DB::table('scriibi_levels')->where('scriibi_Level', '=', $newMark)->select('scriibi_levels.scriibi_Level_Id')->get()->toArray();
+        $skillLevel = DB::table('skills_levels')->where('skills_levels_skills_skill_Id', '=', $skillId)->where('scriibi_levels_scriibi_Level_Id', '=', $scriibiLevel[0]->scriibi_Level_Id)->get()->toArray();
+        return json_encode($skillLevel);
+
     }
 
     // public function printGoalSheets($array){
