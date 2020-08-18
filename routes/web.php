@@ -127,9 +127,11 @@ Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckS
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");
+Route::view('/goal-sheet-preview','preview');
 
 Route::get('/rubric', function(){
    return view('rubric');
+
 });
 
 Route::get('/assessed_level');
