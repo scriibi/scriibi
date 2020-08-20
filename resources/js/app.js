@@ -1,5 +1,7 @@
 "use strict";
 
+const { filter } = require("lodash");
+
 //######################################### JQUERY SCRIPTS #########################################
 $(function(){
 
@@ -532,6 +534,9 @@ $(function(){
             return data.json();
         })
         .then(rubrics => {
+            let assessLevelParentDelete = document.getElementById('scriibi_rubrics_select');
+            if (assessLevelParentDelete !== null)
+                assessLevelParentDelete.remove();
             let rootNode = document.getElementById('rubric-list-skill-cards');
             rootNode.innerHTML = "";
             let rubricCount = rubrics.length;
@@ -598,9 +603,6 @@ $(function(){
                     rubricDeleteButtonNode.appendChild(rubricDeleteImgNode);
                     rootNode.appendChild(skillCardNode);
                 }
-                // rubrics.forEach(rubric => {
-                    
-                // });
             }
         })
         .catch(err => {
@@ -612,64 +614,14 @@ $(function(){
         $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
         $(this).addClass("rubric-list-option-current-style");
         let url_origin = window.location.origin;
-        url_origin += '/rubric-list-scriibi';
-        // let rootNode = document.getElementById('rubric-list-skill-cards');
-        // rootNode.innerHTML = "";
+        url_origin += '/rubric-list-scriibi/NA';
         fetch(url_origin)
         .then(data => {
             return data.json();
         })
         .then(rubrics => {
             console.log(rubrics);
-            let rootNode = document.getElementById('rubric-list-skill-cards');
-            rootNode.innerHTML = "";
-            let rubricCount = rubrics.length;
-            if(rubricCount !== 0){
-                for(let i = 0; i < rubricCount; i++){
-                    let skillCardNode = document.createElement("DIV");
-                    skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
-                    let linkNode = document.createElement("a");
-                    linkNode.target = '_self';
-                    linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
-                    skillCardNode.appendChild(linkNode);
-                    let rubricTitleNode = document.createElement("DIV");
-                    rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
-                    linkNode.appendChild(rubricTitleNode);
-                    rubricTitleNode.innerHTML = rubrics[i].name;
-                    let rubricSkillsNode = document.createElement("DIV");
-                    rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
-                    let rubricSkillsTitleNode = document.createElement("p");
-                    rubricSkillsTitleNode.classList.add('rubric-skills-para');
-                    rubricSkillsNode.appendChild(rubricSkillsTitleNode);
-                    rubricSkillsTitleNode.innerHTML = 'Skills';
-                    linkNode.appendChild(rubricSkillsNode);
-                    let rubricsSkillsDetailsNode = document.createElement('ul');
-                    rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
-                    rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
-                    rubrics[i].skills.forEach((skill, index) => {
-                        if(index < 20){
-                            let skillItem = document.createElement('li');
-                            let skillNameNode = document.createElement('SPAN');
-                            let skillColorNode = document.createElement('SPAN');
-                            skillNameNode.innerHTML = ' ' + skill.name;
-                            let colorClass = 'colored-dot-color-' + skill.color;
-                            skillColorNode.classList.add('colored-dot-dimensions', colorClass);
-                            skillItem.appendChild(skillColorNode);
-                            skillItem.appendChild(skillNameNode);
-                            rubricsSkillsDetailsNode.appendChild(skillItem);
-                        }
-                    });
-                    let skillCardFooterNode = document.createElement('DIV');
-                    linkNode.appendChild(skillCardFooterNode);
-                    let moreSkillsNode = document.createElement('DIV');
-                    moreSkillsNode.classList.add('rubric-more-skills');
-                    skillCardFooterNode.appendChild(moreSkillsNode);
-                    if(rubrics[i].skills.length > 20){
-                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
-                    }
-                    rootNode.appendChild(skillCardNode);
-                }
-            }
+            updateRubricsGrid(rubrics);
         })
         .catch(err => {
             console.log(err);
@@ -682,10 +634,6 @@ $(function(){
         let url_origin = window.location.origin;
         url_origin += 'rubric-list-build';
     });
-
-    // $("").on("click", function(){
-        
-    // });
 
 }); //===== /END OF JQUERY =======
 
@@ -861,17 +809,107 @@ function check_input_filled(e){
     }
 }
 
-//circle testing
-// var data = document.getElementById("data");
-// data.addEventListener("click", testCircle, false);
-// function testCircle() {
-//         console.log("clicked");
-//         data.classList.add("circle");
-//   }
-// document.getElementById('form').onsubmit = function() {
-//     console.log(document.getElementById('checkboxx').value);
-//     return false;
-// }
+function updateRubricsGrid(dataSet){
+    let rubrics = dataSet['rubrics'];
+    let assessedLabels = dataSet['assessed_labels'];
+    let teacherLevel = dataSet['teacher_level'];
+    let rootNode = document.getElementById('rubric-list-skills-section');
+    let innerNode = document.getElementById('rubric-list-skill-cards');
+    let assessLevelParentDelete = document.getElementById('scriibi_rubrics_select');
+    if (assessLevelParentDelete !== null)
+        assessLevelParentDelete.remove();
+    innerNode.innerHTML = "";
+    let assessLevelParent = document.createElement('DIV');
+    assessLevelParent.classList.add('col-4', 'mb-4');
+    assessLevelParent.setAttribute('id', 'scriibi_rubrics_select');
+    let assessmentLeveltitle = document.createElement('label');
+    assessmentLeveltitle.innerText = 'Show Scriibi Rubrics for:';
+    let breakPoint = document.createElement('br');
+    rootNode.insertBefore(assessLevelParent, innerNode);
+    assessLevelParent.appendChild(assessmentLeveltitle);
+    assessLevelParent.appendChild(breakPoint);
+    let assessmentLevelSelect = document.createElement('select');
+    assessmentLevelSelect.setAttribute('name', 'assessed_level');
+    assessmentLevelSelect.setAttribute('id', 'select_curriculum_code_for_scriibi_rubrics');
+    assessmentLevelSelect.classList.add('select-input');
+    assessedLabels.forEach((label) => {
+        let option = document.createElement('option');
+        option.setAttribute('value', label.school_scriibi_level_id);
+        option.innerText = label.assessed_level_label;
+        if(teacherLevel == label.school_scriibi_level_id)
+            option.selected = true;
+        assessmentLevelSelect.appendChild(option);
+    });
+    assessLevelParent.appendChild(assessmentLevelSelect);
+    let assessLevelDelimeter = document.createElement('SPAN');
+    assessLevelDelimeter.classList.add('bar');
+    assessLevelParent.appendChild(assessLevelDelimeter);
+    let rubricCount = rubrics.length;
+    if(rubricCount !== 0){
+        for(let i = 0; i < rubricCount; i++){
+            let skillCardNode = document.createElement("DIV");
+            skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
+            let linkNode = document.createElement("a");
+            linkNode.target = '_self';
+            linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
+            skillCardNode.appendChild(linkNode);
+            let rubricTitleNode = document.createElement("DIV");
+            rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
+            linkNode.appendChild(rubricTitleNode);
+            rubricTitleNode.innerHTML = rubrics[i].name;
+            let rubricSkillsNode = document.createElement("DIV");
+            rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
+            let rubricSkillsTitleNode = document.createElement("p");
+            rubricSkillsTitleNode.classList.add('rubric-skills-para');
+            rubricSkillsNode.appendChild(rubricSkillsTitleNode);
+            rubricSkillsTitleNode.innerHTML = 'Skills';
+            linkNode.appendChild(rubricSkillsNode);
+            let rubricsSkillsDetailsNode = document.createElement('ul');
+            rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
+            rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
+            rubrics[i].skills.forEach((skill, index) => {
+                if(index < 20){
+                    let skillItem = document.createElement('li');
+                    let skillNameNode = document.createElement('SPAN');
+                    let skillColorNode = document.createElement('SPAN');
+                    skillNameNode.innerHTML = ' ' + skill.name;
+                    let colorClass = 'colored-dot-color-' + skill.color;
+                    skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                    skillItem.appendChild(skillColorNode);
+                    skillItem.appendChild(skillNameNode);
+                    rubricsSkillsDetailsNode.appendChild(skillItem);
+                }
+            });
+            let skillCardFooterNode = document.createElement('DIV');
+            linkNode.appendChild(skillCardFooterNode);
+            let moreSkillsNode = document.createElement('DIV');
+            moreSkillsNode.classList.add('rubric-more-skills');
+            skillCardFooterNode.appendChild(moreSkillsNode);
+            if(rubrics[i].skills.length > 20){
+                moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+            }
+            innerNode.appendChild(skillCardNode);
+        }
+    }
+    let listenOn = document.getElementById('select_curriculum_code_for_scriibi_rubrics');
+    listenOn.addEventListener('change', function(){
+        event.preventDefault();
+        let value = listenOn.value;
+        let url_origin = window.location.origin;
+        url_origin += '/rubric-list-scriibi/' + value;
+        fetch(url_origin)
+        .then(data => {
+            return data.json();
+        })
+        .then(rubrics => {
+            console.log(rubrics);
+            updateRubricsGrid(rubrics);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+}
 
 //init function (only executes when onload)
 function init() {

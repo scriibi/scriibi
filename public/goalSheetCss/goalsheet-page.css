@@ -2,6 +2,34 @@
     body{
         background: rgb(204,204,204);
         font-family: sans-serif;
+        display :flex;
+
+    }
+    
+    .preview{
+        width :14cm;
+        height:100%;
+        background: rgb(221, 189, 214);
+        box-shadow: 0px 5px 10px grey inset;
+        padding:2px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.5cm;
+        box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+        
+    }
+    
+    textarea{
+        
+        background: white;
+        padding:5px;
+        display: block;
+        width: 97%;        
+        font-size:17px;        
+        margin-top: 4.25cm;
+        margin-bottom: 0.5cm;        
+        border-bottom: 1px solid #a7a8b0;      
+
     }
 
     .golasheet-header{

@@ -40,7 +40,7 @@ class RubricList
         return ['rubric' => $rubric, 'writing_tasks' => $writing_tasks];
     }
 
-    public function GenerateScriibiSpecificRubricList(){
+    public function GenerateScriibiSpecificRubricList($teacherLevel){
         $schoolType = DB::table('school_teachers')
             ->join('teachers', 'school_teachers.teachers_user_Id', 'teachers.user_Id')
             ->join('schools', 'school_teachers.schools_school_Id', 'schools.school_Id')
@@ -53,6 +53,7 @@ class RubricList
             ->join('rubrics', 'scriibi_rubrics.rubric_id', 'rubrics.rubric_Id')
             ->where('scriibi_rubrics.curriculum_id', '=', $schoolType[0]->curriculum_details_curriculum_details_Id)
             ->where('scriibi_rubrics.school_type_identifier_id', '=', $schoolType[0]->school_type_identifier_id)
+            ->where('rubrics.scriibi_levels_scriibi_level_Id', '=', $teacherLevel)
             ->select('rubrics.*')
             ->get();
         foreach($rubrics as $r){
@@ -65,5 +66,10 @@ class RubricList
         }
 
         return $this->rubrics_list;
+    }
+
+    public function getTeacherLevel($teacherId){
+        $teacherLevel = DB::table('teachers_scriibi_levels')->select('scriibi_levels_scriibi_Level_Id')->where('teachers_user_Id', $teacherId)->get()->toArray();
+        return $teacherLevel[0]->scriibi_levels_scriibi_Level_Id;
     }
 }

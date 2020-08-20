@@ -21,7 +21,7 @@
     <!-- section for my rubrics to be done through js-->
     <div class="row @if(count(json_decode($rubrics))===0){{"temporary-page-height-fix"}}@endif pb-5 pl-3 pr-4 pt-3" id="rubric-list-rubrics-view">    
         <div class="d-none d-sm-block col-sm-1 col-md-1"></div>
-        <div class="col-10 col-sm-10 col-md-10">
+        <div class="col-10 col-sm-10 col-md-10" id="rubric-list-skills-section">
 
             @if(count(json_decode($rubrics)) === 0)
                 <div class="notice-styling mt-5" id="no-rubrics-available">
