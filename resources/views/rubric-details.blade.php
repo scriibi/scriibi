@@ -8,34 +8,39 @@
     <div class="col-12 col-sm-10 col-md-8">
         <div class="row mt-5 rubric-detail-info-section">
             <div class="col-10">
-                <h5 class="Assessment-Studentlist-title">Rubric Name :</h5>
-                <!-- Insert rubric name here -->
-                <p>{{$data['rubric']->getName()}}</p>
+                <h5 class="Assessment-Studentlist-title">Rubric Name :<span style="font-size:0.8em;font-weight:normal;padding-left:10px">{{$data['rubric']->getName()}}</span></h5>
+                <!-- Insert rubric name here 
+                <p>{{$data['rubric']->getName()}}</p> -->
+                </br>
             </div>
             <div class="col-2">
                 <!-- put the width and height of this image to the css file later -->
                 <span><a href="/rubric-edit/{{$data['rubric']->getId()}}/NA" id="edit-rubric-link" data-assessment-count="{{count($data['writing_tasks'])}}"><img src="/images/Edit Rubric Icon and Text.png" alt="edit assessment icon" width="110px" height="25px"></a></span>
             </div>
         </div>
-        <div class="row mt-3 rubric-detail-info-section">
-            <div class="col-10">
-                <h5 class="Assessment-Studentlist-title">Date :</h5>
-                <!-- change date later -->
-                <p><?php //echo (date("d-m-Y", strtotime($writingTask->getAssessedAt()))); ?></p>
-                <p>{{$data['rubric']->getDate()}}</p>
-            </div>
-        </div>
-        <div class="row mt-3 rubric-detail-info-section">
-            <div class="col-10">
+        <div class="row " style="padding-top:1cm">
+            <!-- <div class="col-3">
+                <h5 class="Assessment-Studentlist-title" style="font-size:1.3rem">Date :</h5>
+                change date later 
+                <p><?php //echo (date("d-m-Y", strtotime($data['rubric']->getDate()))); ?></p>
+                 <p>{{$data['rubric']->getDate()}}</p>
+            </div>-->
+            <div class="col-12">
                 <p style="font-size:1.3rem"><strong>Assessments using this rubric :</strong></p>
                 <!-- foreach required here to display assessments-->  
-                <ul>
+                <div class="rubric-assessment-list">
                     @foreach($data['writing_tasks'] as $assessment)
-                        <li><a style="text-decoration: none; color:#33A849;" href="{{ url('/single-assessment/' . $assessment->writing_task_Id) }}">{{$assessment->task_name}}</a></li>
+                        <div class="rubric-assessment" >
+                            <a  href="{{ url('/single-assessment/' . $assessment->writing_task_Id) }}">
+                            <p class="text-truncate text-left"  style="color:black; font-size:14px">
+                            {{$assessment->task_name}}</p>
+                            </a>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
+        
         <div class="row mt-3 rubric-detail-info-section">
             <div class="col-12">
                 <h5 class="Assessment-Studentlist-title">Skills</h5>

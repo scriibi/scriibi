@@ -53,12 +53,17 @@
                                         <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
                                     @endforeach
                                 </select>
-                                <span class="bar"></span>
-                                    
+                                <span class="bar"></span>                                    
                                 </div>
+                                <div class="col-8 justify-content-between float-right" style="text-align:right">
+                                    <img class="skill-flag-icon" src="/images/flag.png" />
+                                    <span>This Skill is a Curriculum milestone for the selected level</span>
+                                <div>
                             </div>
+                               
+                        </div>
 
-                            <!-- skills cards deck-->
+                        <!-- skills cards deck-->
                             <div class="card-columns p-0 mt-3" id="check-array1">
                             @foreach($traitObjects as $to)
                                         <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
