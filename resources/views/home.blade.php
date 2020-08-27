@@ -4,9 +4,9 @@
 @csrf
 
 <div class="row mx-4 pb-5">
-    <div class="d-none d-sm-block col-sm-1 col-md-2">
+    <div class="d-none d-sm-block col-sm-1 col-md-1">
     </div>
-    <div class="col-12 col-sm-10 col-md-8">
+    <div class="col-12 col-sm-10 col-md-10">
 
         <!-- greeting row -->
         <div class="row mt-5">
@@ -67,14 +67,14 @@
                     <div class="d-flex justify-content-between h-100 mx-4 p-0">                    
                         <img class="align-self-center home-assessment-icon" src="/images/assessment-logo.png" alt="assessment">
                         <div class="desc-home">
-                        <div class="box a">
-                        <span class="align-self-center text-nowrap" >My Assessments</span>
-                        </div>
-                        <div class="box b" >
-                            View/edit your assessments</br></br>
-                            For new assessments, populate details</br>                            
-                            (title, date, notes) and attach a rubric                       
-                        </div>                
+                            <div class="box a">
+                                <span class="align-self-center text-nowrap" >My Assessments</span>
+                            </div>
+                            <div class="box b" >
+                                View/edit your assessments</br></br>
+                                For new assessments, populate details</br>                            
+                                (title, date, notes) and attach a rubric                       
+                            </div>                
                         </div> 
                     </div> 
                    
@@ -86,12 +86,12 @@
                         <img class="align-self-center home-rubric-icon" src="/images/rubric-template.png" alt="rubric-template">
                         <div class="desc-home">
                             <div class="box a">
-                        <span class="align-self-center" >My Rubrics</span>                   
+                            <span class="align-self-center">My Rubrics</span>                   
                         </div>
                         <div class="box b">
-                         Plan and build rubrics with criteria (skills) that</br>
-                         you can use for future assessments</br>
-                         (eg. moderation, report, text type)
+                            Plan and build rubrics with criteria (skills) that</br>
+                            you can use for future assessments</br>
+                            (eg. moderation, report, text type)
                         </div>
                     </div>
                     </div>
@@ -208,7 +208,7 @@
             <iframe src="https://writing.scriibi.com/login" width="1px" height="1px" style="border:none;"></iframe>
         </div>
     </div>
-    <div class="d-none d-sm-block col-sm-1 col-md-2">
+    <div class="d-none d-sm-block col-sm-1 col-md-1">
     </div>
 
 </div>
