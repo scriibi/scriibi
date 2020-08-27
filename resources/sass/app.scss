@@ -275,10 +275,10 @@ header {
 #main-panel{
     display: grid;
     grid-template-columns: 7fr 3fr;
-    grid-template-areas:
-        "sl-panel btn-panel";
+    grid-template-areas: "sl-panel btn-panel";
     height: 50vh;
-
+    position: relative;
+    min-height: 450px;
 }
 
 .btn-panel{
