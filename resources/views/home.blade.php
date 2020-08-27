@@ -64,7 +64,7 @@
             <div class="btn-panel">
                 <!-- assessments btn link-->
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
-                    <div class="d-flex justify-content-between h-100 p-0">                    
+                    <div class="d-flex justify-content-between h-100 mx-4 p-0">                    
                         <img class="align-self-center home-assessment-icon" src="/images/assessment-logo.png" alt="assessment">
                         <div class="desc-home">
                         <div class="box a">
@@ -82,7 +82,7 @@
                 </a>
                 <!-- rubric template btn link -->
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
-                    <div class="d-flex justify-content-between h-100  p-0">
+                    <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center home-rubric-icon" src="/images/rubric-template.png" alt="rubric-template">
                         <div class="desc-home">
                             <div class="box a">
