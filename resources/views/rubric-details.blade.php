@@ -32,7 +32,7 @@
                     @foreach($data['writing_tasks'] as $assessment)
                         <div class="rubric-assessment" >
                             <a  href="{{ url('/single-assessment/' . $assessment->writing_task_Id) }}">
-                            <p class="text-truncate text-left"  style="color:black; font-size:14px">
+                            <p class="text-truncate text-left">
                             {{$assessment->task_name}}</p>
                             </a>
                         </div>
