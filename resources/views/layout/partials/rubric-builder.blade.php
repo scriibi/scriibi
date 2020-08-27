@@ -35,9 +35,15 @@
                                                 <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
                                             @endforeach
                                         </select>
-                                        <span class="bar"></span>
+                                        <span class="bar"></span>                                       
+                                    </div>
+                                    <div  class="col-8">                                   
+                                    <img style="margin-left:4.5cm" class="skill-flag-icon float-left" src="/images/flag.png" />
+                                    <span > This Skill is a Curriculum milestone for the selected level</span>
                                     </div>
                                 @else
+                                    <img style="margin-left:11cm" class="skill-flag-icon float-left" src="/images/flag.png" />
+                                    <span> This Skill is a Curriculum milestone for the selected level</span>
                                     <div class="col-4">
                                         <br /><br />
                                         <label>Curriculum</label><br />
@@ -70,7 +76,7 @@
                                         <span class="bar"></span>
                                     </div>
                                 <!-- use an else condition here when setting up the page for scriibi rubric building and delete this comment -->
-                                @endif
+                                @endif                                
                             </div>
 
                             <!-- skills cards deck-->

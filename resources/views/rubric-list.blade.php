@@ -2,6 +2,7 @@
 @section('title', 'Rubric-List')
 @section('content')
     <div class="rubric-list-parent-cont">
+    
         <div class="row no-gutters rubric-list-options-row">
             <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
                 Scriibi Rubrics
@@ -16,12 +17,14 @@
                 Build a new Rubric
             </a>
         </div>
+        
     </div>
     
     <!-- section for my rubrics to be done through js-->
     <div class="row @if(count(json_decode($rubrics))===0){{"temporary-page-height-fix"}}@endif pb-5 pl-3 pr-4 pt-3" id="rubric-list-rubrics-view">    
         <div class="d-none d-sm-block col-sm-1 col-md-1"></div>
-        <div class="col-10 col-sm-10 col-md-10">
+        
+        <div class="col-10 col-sm-10 col-md-10" style="height:12cm">
 
             @if(count(json_decode($rubrics)) === 0)
                 <div class="notice-styling mt-5" id="no-rubrics-available">
@@ -31,7 +34,8 @@
             <!-- show list of rubric created -->
             @else
             <!-- populate more cells as per rubric -->
-                <div class="row" id="rubric-list-skill-cards">
+            <div class="student-list-scroll px-0 mx-0" style="height:100%">
+                <div class="row " id="rubric-list-skill-cards">
                     @foreach(json_decode($rubrics) as $r)
                         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <a href="/rubric-details/{{$r->id}}" class="card rubric-box btn-block rubric-list-card-single">
@@ -79,6 +83,7 @@
                             </a>
                         </div>
                     @endforeach
+                </div>
                 </div>
             @endif
         </div>

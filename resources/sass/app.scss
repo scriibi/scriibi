@@ -283,7 +283,7 @@ header {
 
 .btn-panel{
     display: grid;
-    grid-auto-rows: 4fr 3fr 2fr 2fr;
+    grid-auto-rows: 3fr 3fr 2fr 2fr;
 }
 
 
@@ -392,6 +392,34 @@ header {
     width: auto;
     margin-left: 10px;
 }
+
+.desc-home {  
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    height:3cm;
+    padding-top: 10px;
+    
+  }
+  
+  .box{
+    padding-top:10px;
+    
+  }
+  
+  .a
+  {
+    font-size:14.4px;
+    text-align:center;
+  
+  }
+  
+  .b{
+    font-size:8.5px;
+    align-self:baseline;
+    text-align:right;
+    padding-right:5px;
+    
+  }
 
 // Assessment setup Page
 
@@ -1319,6 +1347,34 @@ $skillset-colors-map: (
     opacity: 1;
     visibility: visible
 }
+
+// rubric details page
+
+.rubric-assessment-list{
+    display:grid;
+    grid-template-columns: repeat(3,33.3%);
+    grid-gap:10px;
+    background-color:white;
+  
+  }
+  
+  .rubric-assessment{
+    padding-top:10px;
+    padding-bottom:10px;
+    color:black;
+    border:#d4d8d5 solid;
+    text-decoration: none;
+    border-radius:10px;
+    text-align:left;
+    padding-left:17px;
+    height:40px;  
+  }
+  
+  .rubric-assessment:hover{
+        border: 2px solid #33A849;
+      text-decoration: none;
+    
+  }
 
 //data view page
 
