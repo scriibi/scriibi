@@ -55,8 +55,8 @@
                                 </select>
                                 <span class="bar"></span>                                    
                                 </div>
-                                <div class="col-8">
-                                    <img style="margin-left:1.8cm"class="skill-flag-icon" src="/images/flag.png" />
+                                <div class="col-8 justify-content-between float-right" style="text-align:right">
+                                    <img class="skill-flag-icon" src="/images/flag.png" />
                                     <span>This Skill is a Curriculum milestone for the selected level</span>
                                 <div>
                             </div>
