@@ -275,10 +275,10 @@ header {
 #main-panel{
     display: grid;
     grid-template-columns: 7fr 3fr;
-    grid-template-areas:
-        "sl-panel btn-panel";
+    grid-template-areas: "sl-panel btn-panel";
     height: 50vh;
-
+    position: relative;
+    min-height: 450px;
 }
 
 .btn-panel{
@@ -391,7 +391,7 @@ header {
 .home-etc-icons {
     height: 30px;
     width: auto;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .desc-home {  
@@ -399,29 +399,25 @@ header {
     grid-template-columns:repeat(1,1fr);
     height:3cm;
     padding-top: 10px;
-    
-  }
+}
   
-  .box{
+.box{
     padding-top:10px;
-    align-self:center;
-    
-  }
+    align-self:right;
+}
+
+.a
+{
+    font-size:1rem;
+    text-align:right;
+}
   
-  .a
-  {
-    font-size:14.4px;
-    text-align:center;
-  
-  }
-  
-  .b{
-    font-size:8.5px;
+.b{
+    font-size:.725rem;
     align-self:baseline;
     text-align:right;
-    padding-right:5px;
-    
-  }
+    padding-right:3px;
+}
 
 // Assessment setup Page
 
@@ -1357,26 +1353,32 @@ $skillset-colors-map: (
     grid-template-columns: repeat(3,33.3%);
     grid-gap:10px;
     background-color:white;
-  
-  }
-  
-  .rubric-assessment{
+}
+
+.rubric-assessment{
     padding-top:10px;
     padding-bottom:10px;
-    color:black;
-    border:#d4d8d5 solid;
-    text-decoration: none;
-    border-radius:10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     text-align:left;
     padding-left:17px;
     height:40px;  
-  }
-  
-  .rubric-assessment:hover{
-        border: 2px solid #33A849;
-      text-decoration: none;
-    
-  }
+}
+
+.rubric-assessment > a {
+    text-decoration: none;
+}
+
+.rubric-assessment > a > p{
+    color: #000000;
+    font-size: 1em;
+}
+
+.rubric-assessment:hover{
+    border: 2px solid #33A849;
+    text-decoration: none;
+}
 
 //data view page
 
