@@ -882,13 +882,6 @@ function updateRubricsGrid(dataSet){
                 linkNode.target = '_self';
             }
             linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
-            let hiddenRadioInput = document.createElement('input');
-            hiddenRadioInput.setAttribute('type', 'radio');
-            hiddenRadioInput.setAttribute('name', 'rubric');
-            hiddenRadioInput.setAttribute('class', 'hidden-rubric-radio');
-            hiddenRadioInput.setAttribute('value', rubrics[i].id);
-            hiddenRadioInput.setAttribute('hidden', 'hidden');
-            linkNode.appendChild(hiddenRadioInput);
             skillCardNode.appendChild(linkNode);
             let rubricTitleNode = document.createElement("DIV");
             rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
