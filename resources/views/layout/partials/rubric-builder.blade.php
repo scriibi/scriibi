@@ -39,11 +39,11 @@
                                     </div>
                                     <div  class="col-8 justify-content-between float-right" style="text-align:right" >                                   
                                     <img  class="skill-flag-icon " src="/images/flag.png" />
-                                    <span > This Skill is a Curriculum milestone for the selected level</span>
+                                    <span >= This skill is a curriculum milestone for the selected level</span>
                                     </div>
                                 @else
                                     <img style="margin-left:11cm" class="skill-flag-icon float-left" src="/images/flag.png" />
-                                    <span> This Skill is a Curriculum milestone for the selected level</span>
+                                    <span>= This skill is a curriculum milestone for the selected level</span>
                                     <div class="col-4">
                                         <br /><br />
                                         <label>Curriculum</label><br />
