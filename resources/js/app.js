@@ -1,6 +1,6 @@
 "use strict";
 
-const { filter } = require("lodash");
+const { filter, forEach } = require("lodash");
 
 //######################################### JQUERY SCRIPTS #########################################
 $(function(){
@@ -534,6 +534,7 @@ $(function(){
             return data.json();
         })
         .then(rubrics => {
+            let currentUrl = window.location.href;
             let assessLevelParentDelete = document.getElementById('scriibi_rubrics_select');
             if (assessLevelParentDelete !== null)
                 assessLevelParentDelete.remove();
@@ -544,9 +545,16 @@ $(function(){
                 for(let i = 0; i < rubricCount; i++){
                     let skillCardNode = document.createElement("DIV");
                     skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
-                    let linkNode = document.createElement("a");
-                    linkNode.href = '/rubric-details/' + rubrics[i].id;
-                    linkNode.target = '_self';
+                    let linkNode;
+                    if(currentUrl.includes('/assessment-setup')){
+                        linkNode = document.createElement("div");
+                        linkNode.classList.add('assessment-setup-rubric-select-radio-link');
+                        linkNode.setAttribute('data-rubric-id', rubrics[i].id);
+                    }else{
+                        linkNode = document.createElement("a");
+                        linkNode.href = '/rubric-details/' + rubrics[i].id;
+                        linkNode.target = '_self';
+                    }
                     linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
                     skillCardNode.appendChild(linkNode);
                     let rubricTitleNode = document.createElement("DIV");
@@ -603,12 +611,16 @@ $(function(){
                     rubricDeleteButtonNode.appendChild(rubricDeleteImgNode);
                     rootNode.appendChild(skillCardNode);
                 }
+                assessmentRubricSelectListener();
             }
         })
         .catch(err => {
             console.log(err);
         })
     });
+
+    // background event listner to check for a rubric select/click during assessment setup
+    assessmentRubricSelectListener();
 
     $("#rubric-list-option-scriibi-rubrics").on("click", function(){
         $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
@@ -809,12 +821,23 @@ function check_input_filled(e){
     }
 }
 
+function assessmentRubricSelectListener(){
+    $('.assessment-setup-rubric-select-radio-link').on('click', function(){
+        let radio = $('.hidden-rubric-radio');
+        radio.prop('checked', true);
+        radio.prop('value', $(this).data("rubric-id"));
+    }); 
+}
+
 function updateRubricsGrid(dataSet){
+    let currentUrl = window.location.href;
     let rubrics = dataSet['rubrics'];
     let assessedLabels = dataSet['assessed_labels'];
     let teacherLevel = dataSet['teacher_level'];
     let rootNode = document.getElementById('rubric-list-skills-section');
+    rootNode.classList.remove('student-list-scroll');
     let innerNode = document.getElementById('rubric-list-skill-cards');
+    innerNode.classList.add('student-list-scroll');
     let assessLevelParentDelete = document.getElementById('scriibi_rubrics_select');
     if (assessLevelParentDelete !== null)
         assessLevelParentDelete.remove();
@@ -849,9 +872,23 @@ function updateRubricsGrid(dataSet){
         for(let i = 0; i < rubricCount; i++){
             let skillCardNode = document.createElement("DIV");
             skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
-            let linkNode = document.createElement("a");
-            linkNode.target = '_self';
+            let linkNode;
+            if(currentUrl.includes('/assessment-setup')){
+                linkNode = document.createElement("div");
+                linkNode.classList.add('assessment-setup-rubric-select-radio-link');
+                linkNode.setAttribute('data-rubric-id', rubrics[i].id);
+            }else{
+                linkNode = document.createElement("a");
+                linkNode.target = '_self';
+            }
             linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
+            let hiddenRadioInput = document.createElement('input');
+            hiddenRadioInput.setAttribute('type', 'radio');
+            hiddenRadioInput.setAttribute('name', 'rubric');
+            hiddenRadioInput.setAttribute('class', 'hidden-rubric-radio');
+            hiddenRadioInput.setAttribute('value', rubrics[i].id);
+            hiddenRadioInput.setAttribute('hidden', 'hidden');
+            linkNode.appendChild(hiddenRadioInput);
             skillCardNode.appendChild(linkNode);
             let rubricTitleNode = document.createElement("DIV");
             rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
@@ -890,6 +927,7 @@ function updateRubricsGrid(dataSet){
             }
             innerNode.appendChild(skillCardNode);
         }
+        assessmentRubricSelectListener();
     }
     let listenOn = document.getElementById('select_curriculum_code_for_scriibi_rubrics');
     listenOn.addEventListener('change', function(){
