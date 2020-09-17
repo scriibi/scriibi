@@ -8,7 +8,7 @@
 </div>
 <div class="view-by-container">
     <div class="d-inline-block">
-            <div class="filter-buttons">
+        <div class="filter-buttons">
             <div class="assessed-button-filter">
                 <label class="filter-btn" for="overall-assessed-filter">
                     <span class="radio-circle"></span>
@@ -23,11 +23,7 @@
                     <p class="pl-1 pt-1">Grade</p>
                 </label>
             </div>
-            <div class="moreInfo-button" id="myBtn-more-info">
-                <strong><span>More Info</span></strong>
-                <i class="fas fa-info-circle"></i>
-            </div>  
-            </div>  
+        </div>  
     </div>
 </div>
 
@@ -42,12 +38,11 @@
             <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
             @foreach(array_reverse($writingTasks) as $wt)
             
-                <th class="writingtask text-truncate text-left" style="width:100px;" id="date">
+                <th class="writingtask  text-left" style="width:100px;" id="date">
                 
                 <a href="/assessment-data-view/{{$wt->writing_task_Id}}" style ="text-decoration:none">
                 <span class="task-desc">{{$wt->task_name}}</span>
                 <p class=" text-truncate text-center dataview-taskname" >{{$wt->task_name}}</p>
-                
                 <p class="text-center" style="color:#04A020"><?php 
                 //$date = new DateTime($wt->created_Date); 
                  //echo ($date->format('d M, Y'));
