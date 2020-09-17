@@ -374,13 +374,17 @@ $(function(){
 //======================== ASSESSMENT SETUP =========================================
     
      //If assessment form is incomplete, display the assessment form again
-    $("#createAxBTN").on("click", function(){
-        if (document.getElementById("assessment-name") === null) {
+    $("#createAxBTN").on("click", function(event){
+        event.preventDefault();
+        if ((document.getElementById("assessment_name").value === "") || (document.getElementsByClassName('hidden-rubric-radio').rubric.value == "")) {
             $("#assessment-template").addClass("d-block");
             $("#assessment-template").removeClass("d-none");
             $("#rubric-template").addClass("d-none");
             $("#rubric-template").removeClass("d-block");
-        } 
+            toggleAssessmentSetupHeader("details");
+        }else{
+            document.getElementById('assessment-setup-form').submit();
+        }
     });
     
     //assessment-setup rubric selection radio script
@@ -454,7 +458,7 @@ $(function(){
     // warning for deleting an assessment
     if(url.includes('assessment-list')){
         // add onlick event for the edit rubric link
-        $(".rubric-remove-button-styling").click(function() {
+        $(".rubric-remove-button-styling").click(function(event) {
             event.preventDefault();
             let assessment_id = $(this).attr("data-assessement-id");
             console.log(assessment_id);
@@ -463,7 +467,7 @@ $(function(){
         });     
     }
 
-    $("#rubric-edit-submit").on("click", function(){
+    $("#rubric-edit-submit").on("click", function(event){
         event.preventDefault();
         let task_id = $(this).attr("data-task-id");
         if(task_id !== 'NA'){
@@ -701,17 +705,33 @@ function closeEditForm(event) {
 
 
 // assessment setup Page
+function toggleAssessmentSetupHeader(page){
+    let header, content, visibility;
+    if(page === "details"){
+        document.getElementById('backBTN').setAttribute('hidden', 'hidden');
+        document.getElementById('createAxBTN').setAttribute('hidden', 'hidden');
+        content = `Fill in details for your assessment`;
+    }else{
+        document.getElementById('backBTN').removeAttribute('hidden');
+        document.getElementById('createAxBTN').removeAttribute('hidden');
+        content = `Select a rubric`
+    }
+    document.getElementById('create-assessment-title').innerHTML = content;
+}
+
 function closeAssessmentForm(event){
     document.getElementById("assessment-template").classList.remove("d-none","d-block");
     document.getElementById("assessment-template").classList.toggle("d-none",true);
 }
 
 function openRubricForm(event){
+    toggleAssessmentSetupHeader("rubric");
     document.getElementById("rubric-template").classList.remove("d-block","d-block");
     document.getElementById("rubric-template").classList.toggle("d-block",true);
 }
 
 function openAssessmentForm(event){
+    toggleAssessmentSetupHeader("details");
     document.getElementById("assessment-template").classList.toggle("d-none",false);
     document.getElementById("assessment-template").classList.toggle("d-block",true);
 }
@@ -938,7 +958,6 @@ function updateRubricsGrid(dataSet){
     }
     let listenOn = document.getElementById('select_curriculum_code_for_scriibi_rubrics');
     listenOn.addEventListener('change', function(){
-        // event.preventDefault();
         let value = listenOn.value;
         let url_origin = window.location.origin;
         url_origin += '/rubric-list-scriibi/' + value;

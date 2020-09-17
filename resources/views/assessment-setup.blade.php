@@ -7,12 +7,19 @@
    </div>
    <!-- main panel -->
     <div class="col-12 col-sm-10 col-md-8">
-        <!-- create assessment title -->
-        <p class=" mt-5" id="create-assessment-title">Fill in details for your assessment</p>
-        <!-- accordion for assessment setup -->
-        <!-- step 1: assessment detail -->
-        <form class="mt-5" action="/assessment-submit" method="post">
-            @csrf
+        <form class="mt-5" action="/assessment-submit" method="post" id="assessment-setup-form">
+        @csrf
+            <!-- create assessment title -->
+            <div class="d-flex justify-content-between mt-2 mb-1">
+                <p class='mt-5' id='create-assessment-title'>Fill in details for your assessment</p>
+                <div>
+                    <button type='button' name='button' class='btn back-btn mt-5' id='backBTN' style="height: 40px; margin-right: 10px" hidden>back</button>
+                    <input type='submit' name='button' value='Create Assessment' class='btn assessment-btn border-0 mt-5' id='createAxBTN' style="height: 40px;" hidden>
+                </div>
+            </div>
+            <!-- accordion for assessment setup -->
+            <!-- step 1: assessment detail -->
+        
             <div class="card card-assessment-style" id="assessment-template">
                 <div class="card-body">
                     <div class="card-title mb-5 mt-3">
@@ -53,12 +60,7 @@
             <!-- step 2:Rubric Template to select which rubric to use for assessment-->
             <div id="rubric-template" hidden>
                 <input type="radio" name="rubric" value="" class="hidden-rubric-radio" hidden/>
-                <div class="pt-1 pb-0" >
-                    <div class="d-flex justify-content-between mt-5 mb-2">
-                        <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
-                        <!-- Has a test inside the input to see if a rubric has been made. Else, disable the submit button -->
-                        <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
-                    </div>
+                <div class="pt-1 pb-0">
                     <div>
                         <div class="rubric-list-parent-cont" style="margin: 5% auto">
                             <div class="row no-gutters rubric-list-options-row">
@@ -129,8 +131,7 @@
                                 @endforeach
                             @endif
                             </div>
-                        </div>
-                        
+                        </div>   
                     </div>
                 </div>
             </div>
