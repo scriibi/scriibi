@@ -54,24 +54,26 @@
             <div id="rubric-template" hidden>
                 <input type="radio" name="rubric" value="" class="hidden-rubric-radio" hidden/>
                 <div class="pt-1 pb-0" >
-                    <div>
-                        <h5><strong>Rubric Template Selection</strong></h5>
+                    <div class="d-flex justify-content-between mt-5 mb-2">
+                        <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
+                        <!-- Has a test inside the input to see if a rubric has been made. Else, disable the submit button -->
+                        <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
                     </div>
                     <div>
-                        <div class="rubric-list-parent-cont">
+                        <div class="rubric-list-parent-cont" style="margin: 5% auto">
                             <div class="row no-gutters rubric-list-options-row">
-                                <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
+                                <div class="col-6 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
                                     Scriibi Rubrics
                                 </div>
                                 <!-- <div class="col-3 rubric-list-option" id="rubric-list-option-shared-rubrics">
                                     Shared with Me             
                                 </div> -->
-                                <div class="col-4 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
+                                <div class="col-6 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
                                     My Saved Rubrics   
                                 </div>
-                                <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
+                                <!-- <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
                                     Build a new Rubric
-                                </a>
+                                </a> -->
                             </div>                 
                         </div>
                         <div class="student-list-scroll" id="rubric-list-skills-section">
@@ -128,12 +130,7 @@
                             @endif
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mt-5 mb-2">
-                            <button type="button" name="button" class="btn back-btn" id="backBTN">back</button>
-
-                            <!-- Has a test inside the input to see if a rubric has been made. Else, disable the submit button -->
-                            <input type="submit" name="button" value="Create Assessment" class="btn assessment-btn border-0" id="createAxBTN">
-                        </div>
+                        
                     </div>
                 </div>
             </div>

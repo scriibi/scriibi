@@ -71,8 +71,8 @@
                                 <span class="align-self-center text-nowrap" >My Assessments</span>
                             </div>
                             <div class="box b" >
-                                View/edit your assessments</br></br>
-                                For new assessments, populate details</br>                            
+                                View/edit your assessments.</br>
+                                For new assessments, populate details                           
                                 (title, date, notes) and attach a rubric                       
                             </div>                
                         </div> 
@@ -89,8 +89,8 @@
                             <span class="align-self-center">My Rubrics</span>                   
                         </div>
                         <div class="box b">
-                            Plan and build rubrics with criteria (skills) that</br>
-                            you can use for future assessments</br>
+                            Plan and build rubrics with criteria (skills) that 
+                            you can use for future assessments 
                             (eg. moderation, report, text type)
                         </div>
                     </div>

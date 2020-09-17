@@ -1,5 +1,6 @@
 "use strict";
 
+const { event } = require("jquery");
 const { filter, forEach } = require("lodash");
 
 //######################################### JQUERY SCRIPTS #########################################
@@ -545,6 +546,7 @@ $(function(){
             let rootNode = document.getElementById('rubric-list-skill-cards');
             rootNode.innerHTML = "";
             let rubricCount = rubrics.length;
+            let currentSelected = $('.hidden-rubric-radio').val();
             if(rubricCount !== 0){
                 for(let i = 0; i < rubricCount; i++){
                     let skillCardNode = document.createElement("DIV");
@@ -554,6 +556,8 @@ $(function(){
                         linkNode = document.createElement("div");
                         linkNode.classList.add('assessment-setup-rubric-select-radio-link');
                         linkNode.setAttribute('data-rubric-id', rubrics[i].id);
+                        if(currentSelected == rubrics[i].id)
+                            linkNode.classList.add('assessment-setup-rubric-selected');
                     }else{
                         linkNode = document.createElement("a");
                         linkNode.href = '/rubric-details/' + rubrics[i].id;
@@ -596,23 +600,25 @@ $(function(){
                     if(rubrics[i].skills.length > 20){
                         moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
                     }
-                    let rubricDeleteNode = document.createElement('form');
-                    rubricDeleteNode.method = "POST";
-                    rubricDeleteNode.action = "/rubricDelete";
-                    skillCardFooterNode.appendChild(rubricDeleteNode);
-                    let rubricDeletehiddenInputNode = document.createElement('input');
-                    rubricDeletehiddenInputNode.type = "hidden";
-                    rubricDeletehiddenInputNode.name = "rubricId";
-                    rubricDeletehiddenInputNode.value = rubrics[i].id;
-                    let rubricDeleteButtonNode = document.createElement('button');
-                    rubricDeleteButtonNode.classList.add('rubric-remove-button-styling');
-                    rubricDeleteButtonNode.type = 'submit';
-                    let rubricDeleteImgNode = document.createElement('img');
-                    rubricDeleteImgNode.classList.add('interaction-icon');
-                    rubricDeleteImgNode.src = 'images/delete.png';
-                    rubricDeleteNode.appendChild(rubricDeletehiddenInputNode);
-                    rubricDeleteNode.appendChild(rubricDeleteButtonNode);
-                    rubricDeleteButtonNode.appendChild(rubricDeleteImgNode);
+                    if(!currentUrl.includes('/assessment-setup')){
+                        let rubricDeleteNode = document.createElement('form');
+                        rubricDeleteNode.method = "POST";
+                        rubricDeleteNode.action = "/rubricDelete";
+                        skillCardFooterNode.appendChild(rubricDeleteNode);
+                        let rubricDeletehiddenInputNode = document.createElement('input');
+                        rubricDeletehiddenInputNode.type = "hidden";
+                        rubricDeletehiddenInputNode.name = "rubricId";
+                        rubricDeletehiddenInputNode.value = rubrics[i].id;
+                        let rubricDeleteButtonNode = document.createElement('button');
+                        rubricDeleteButtonNode.classList.add('rubric-remove-button-styling');
+                        rubricDeleteButtonNode.type = 'submit';
+                        let rubricDeleteImgNode = document.createElement('img');
+                        rubricDeleteImgNode.classList.add('interaction-icon');
+                        rubricDeleteImgNode.src = 'images/delete.png';
+                        rubricDeleteNode.appendChild(rubricDeletehiddenInputNode);
+                        rubricDeleteNode.appendChild(rubricDeleteButtonNode);
+                        rubricDeleteButtonNode.appendChild(rubricDeleteImgNode);
+                    }
                     rootNode.appendChild(skillCardNode);
                 }
                 assessmentRubricSelectListener();
@@ -830,6 +836,11 @@ function assessmentRubricSelectListener(){
         let radio = $('.hidden-rubric-radio');
         radio.prop('checked', true);
         radio.prop('value', $(this).data("rubric-id"));
+        let previouslySelected = $('.assessment-setup-rubric-selected');
+        if(previouslySelected){
+            previouslySelected.removeClass('assessment-setup-rubric-selected');
+        }
+        $(this).addClass('assessment-setup-rubric-selected');
     }); 
 }
 
@@ -872,6 +883,7 @@ function updateRubricsGrid(dataSet){
     assessLevelDelimeter.classList.add('bar');
     assessLevelParent.appendChild(assessLevelDelimeter);
     let rubricCount = rubrics.length;
+    let currentSelected = $('.hidden-rubric-radio').val();
     if(rubricCount !== 0){
         for(let i = 0; i < rubricCount; i++){
             let skillCardNode = document.createElement("DIV");
@@ -881,6 +893,8 @@ function updateRubricsGrid(dataSet){
                 linkNode = document.createElement("div");
                 linkNode.classList.add('assessment-setup-rubric-select-radio-link');
                 linkNode.setAttribute('data-rubric-id', rubrics[i].id);
+                if(currentSelected == rubrics[i].id)
+                    linkNode.classList.add('assessment-setup-rubric-selected');
             }else{
                 linkNode = document.createElement("a");
                 linkNode.target = '_self';
@@ -928,7 +942,7 @@ function updateRubricsGrid(dataSet){
     }
     let listenOn = document.getElementById('select_curriculum_code_for_scriibi_rubrics');
     listenOn.addEventListener('change', function(){
-        event.preventDefault();
+        // event.preventDefault();
         let value = listenOn.value;
         let url_origin = window.location.origin;
         url_origin += '/rubric-list-scriibi/' + value;
@@ -937,7 +951,6 @@ function updateRubricsGrid(dataSet){
             return data.json();
         })
         .then(rubrics => {
-            console.log(rubrics);
             updateRubricsGrid(rubrics);
         })
         .catch(err => {
