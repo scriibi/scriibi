@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
+class ComposerStaticInit4f18637f1ad0130b74617df95e706a32
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -901,6 +901,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'Doctrine\\DBAL\\Driver\\AbstractPostgreSQLDriver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractPostgreSQLDriver.php',
         'Doctrine\\DBAL\\Driver\\AbstractSQLAnywhereDriver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractSQLAnywhereDriver.php',
         'Doctrine\\DBAL\\Driver\\AbstractSQLServerDriver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractSQLServerDriver.php',
+        'Doctrine\\DBAL\\Driver\\AbstractSQLServerDriver\\PortWithoutHost' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractSQLServerDriver/PortWithoutHost.php',
         'Doctrine\\DBAL\\Driver\\AbstractSQLiteDriver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractSQLiteDriver.php',
         'Doctrine\\DBAL\\Driver\\Connection' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/Connection.php',
         'Doctrine\\DBAL\\Driver\\DriverException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/DriverException.php',
@@ -911,6 +912,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'Doctrine\\DBAL\\Driver\\IBMDB2\\DB2Driver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/IBMDB2/DB2Driver.php',
         'Doctrine\\DBAL\\Driver\\IBMDB2\\DB2Exception' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/IBMDB2/DB2Exception.php',
         'Doctrine\\DBAL\\Driver\\IBMDB2\\DB2Statement' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/IBMDB2/DB2Statement.php',
+        'Doctrine\\DBAL\\Driver\\IBMDB2\\DataSourceName' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/IBMDB2/DataSourceName.php',
         'Doctrine\\DBAL\\Driver\\Mysqli\\Driver' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/Mysqli/Driver.php',
         'Doctrine\\DBAL\\Driver\\Mysqli\\MysqliConnection' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/Mysqli/MysqliConnection.php',
         'Doctrine\\DBAL\\Driver\\Mysqli\\MysqliException' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Driver/Mysqli/MysqliException.php',
@@ -982,6 +984,9 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'Doctrine\\DBAL\\FetchMode' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/FetchMode.php',
         'Doctrine\\DBAL\\Id\\TableGenerator' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Id/TableGenerator.php',
         'Doctrine\\DBAL\\Id\\TableGeneratorSchemaVisitor' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Id/TableGeneratorSchemaVisitor.php',
+        'Doctrine\\DBAL\\Internal\\DependencyOrderCalculator' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Internal/DependencyOrderCalculator.php',
+        'Doctrine\\DBAL\\Internal\\DependencyOrderEdge' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Internal/DependencyOrderEdge.php',
+        'Doctrine\\DBAL\\Internal\\DependencyOrderNode' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Internal/DependencyOrderNode.php',
         'Doctrine\\DBAL\\LockMode' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/LockMode.php',
         'Doctrine\\DBAL\\Logging\\DebugStack' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Logging/DebugStack.php',
         'Doctrine\\DBAL\\Logging\\EchoSQLLogger' => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL/Logging/EchoSQLLogger.php',
@@ -4970,6 +4975,7 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
         'Symfony\\Component\\VarDumper\\VarDumper' => __DIR__ . '/..' . '/symfony/var-dumper/VarDumper.php',
         'Symfony\\Contracts\\EventDispatcher\\Event' => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts/Event.php',
         'Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface' => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts/EventDispatcherInterface.php',
+        'Symfony\\Contracts\\Service\\Attribute\\Required' => __DIR__ . '/..' . '/symfony/service-contracts/Attribute/Required.php',
         'Symfony\\Contracts\\Service\\ResetInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ResetInterface.php',
         'Symfony\\Contracts\\Service\\ServiceLocatorTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceLocatorTrait.php',
         'Symfony\\Contracts\\Service\\ServiceProviderInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceProviderInterface.php',
@@ -5117,10 +5123,10 @@ class ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitec00bf90062df44eff7db9d37e5a0ddb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4f18637f1ad0130b74617df95e706a32::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4f18637f1ad0130b74617df95e706a32::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4f18637f1ad0130b74617df95e706a32::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4f18637f1ad0130b74617df95e706a32::$classMap;
 
         }, null, ClassLoader::class);
     }

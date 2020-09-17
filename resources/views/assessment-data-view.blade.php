@@ -64,19 +64,19 @@
     <p><button type="button" id="assessment-grade-filter">Grade</button></p> -->
 <form method="get" action="/goal-sheets" id="student-marks-form" target="_blank">
 @csrf
-    <table id="overall-assessment-table" class="data-view-table row-border order-column cell-border hover">
+    <table id="overall-assessment-table" class="data-view-table row-border order-column cell-border hover position_table" style="margin-left:0px;border-bottom:1px solid #111">
         <!-- Table headers -->
         <thead class="header-style" >
             <tr class="header-style text-center">
-                <th name="name" id="fullName">Full Name</th>
+                <th name="name" id="fullName" style="width:250px" >Full Name</th>
                 <!-- <th name="levels" colspan="2"><p class="text-center">Levels</p></th> -->
                 <!-- IMPORTANT!!!!!!!!! REPLACE ID WITH UNIQUE IDENTIFIER & INNERHTML WITH THE RELATED TITLE-->
-                <th id="grade"><p class="text-center">Grade</p></th>
-                <th id="assessed"><p class="text-center">Assessed</p></th>
-                <th class="assessment-date" id="average">Average</th>
+                <th id="grade" class="text-center">Grade</th>
+                <th id="assessed" class="text-center">Assessed</th>
+                <th class="assessment-date text-center" id="average" >Average</th>
                 <?php $count = 1;?>
                 @foreach($skills as $s)
-                    <th id="skill{{$count}}" class="assessment-skills"><p class="text-center">{{$s->skill_Name}}</p></th>
+                    <th id="skill{{$count}}" class="assessment-skills text-center" style="width:100px">{{$s->skill_Name}}</th>
                     <?php $count++;?>
                 @endforeach
                 <!-- Implement a foreach loop for each skill and assign it with a unique identifier
@@ -90,18 +90,18 @@
             <!-- Student data goes down here -->
             <!-- Implement a foreach loop for each student and assign headers with the unique identifier -->
                 @foreach ($dataTable as $dt)
-                    <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}>
-                        <td headers="fullName" class="fname">
-                            <a href="#" class="fullname order-row" ><?php ((strlen(substr($dt[1], 0, 20))) < (strlen($dt[1]))) ? $name = substr($dt[1], 0, 20) . '...' : $name = $dt[1]; echo($name) ?></a>
+                    <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}  >
+                        <td headers="fullName" class="fname" style="width:200px">
+                            <a href="#" class="fullname order-row text-truncate" style="width:200px"><?php ((strlen(substr($dt[1], 0, 20))) < (strlen($dt[1]))) ? $name = substr($dt[1], 0, 20) . '...' : $name = $dt[1]; echo($name) ?></a>
                             <button class="testSheet" value="{{$dt[1]}}"></button>
                             <!-- <input type="radio" class="testSheet" value="{{$dt[1]}}"> -->
                         </td>
-                        <td class="justify-content-center student-grade-level" headers="grade">{{$dt[2]}}</td>
-                        <td class="student-assessed-level" headers="assessed">{{$dt[4]}}</td>
-                        <td headers="progerssion-point">{{$dt[6]}}</td>
+                        <td class="justify-content-center student-grade-level" headers="grade" style="width:100px">{{$dt[2]}}</td>
+                        <td class="student-assessed-level" headers="assessed" style="width:100px">{{$dt[4]}}</td>
+                        <td headers="progerssion-point"  style="width:100px">{{$dt[6]}}</td>
                         <?php $count = 1;?>
                         @foreach($dt[7] as $key => $value)
-                            <td class="student-skill-result" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}">{{$value}}
+                            <td class="student-skill-result text-center" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}  " style="width:100px;">{{$value}}
                             @if(strval($value) != "")
                                 <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" hidden>
                             @endif
