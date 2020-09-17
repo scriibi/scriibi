@@ -69,20 +69,24 @@ $(function(){
     //tests if there are more than 10 columns before enabling scrolling
     if (($(".assessment-date").length >= 9) || ($(".assessment-skills").length >= 9)){
         greaterThanTen = true;
-    }
-    
+    }    
+        
     //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
-        scrollX: greaterThanTen,
+        //scrollX: greaterThanTen,
+        scrollX: true,
+        scrollY: 460,
+        scrollCollapse: true,
+       
         paging:         false,
-        // fixedColumns:   {
-        //     leftColumns: 3,
-        // },
+         fixedColumns:   {
+            leftColumns: 3,
+         },
         select: {
             // style : 'os',
             items : 'cell'
         }
-    });
+    }); 
     
 //========== OVERALL ASSESSMENT
     $(".assessed-button-filter").on("click", function () {
