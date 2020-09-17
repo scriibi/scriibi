@@ -1268,6 +1268,39 @@ $skillset-colors-map: (
     }
 }
 
+.task-desc {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+    position: absolute;
+    background-color: #e8e8e8;
+    border-radius: 7px;
+    color:black;
+    z-index: 1000;
+    padding-left:0.5em;
+    padding-top:0.5em;
+    padding-right:0.5em;
+    padding-bottom:0.5em;
+    margin-top:1.5em;   
+    max-width:350px;
+    height:auto;
+    font-size: 14px;
+    transition: 0.4s;
+    white-space: normal;
+
+}
+
+.writingtask:hover .task-desc {
+    visibility: visible;
+    opacity: 1;
+}
+
+.writingtask:hover ~ .task-desc {
+    opacity: 1;
+    visibility: visible
+}
+
+
 .skill-tooltip {
     opacity: 0;
     visibility: hidden;
@@ -1398,10 +1431,13 @@ $skillset-colors-map: (
 
 table {
     border-collapse: collapse;
+    margin-right: auto ;
+    margin-left:auto;
 
   }
 
 
+  
 td{
     padding:5px;
     //border:solid 1px #ccc;
@@ -1425,6 +1461,25 @@ td{
     }
 
 }
+
+.dataview-taskname{
+    width:100px;
+    color: #000000;
+    font-weight:100;
+
+}
+
+
+table.dataTable.no-footer {
+    border-bottom: 0;
+    
+  }
+  
+  .dataTables_wrapper.no-footer .dataTables_scrollBody 
+  {
+      border-bottom:0;
+  }
+
 
 .circle {
     background: url('/images/circle.png') no-repeat center;
