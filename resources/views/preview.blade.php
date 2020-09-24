@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="container page-break">    
+<div id="container" class="content page-break">    
 		<div class="golasheet-header">
 			<h1 class="goalsheet-header-heading">
 				<span class="heading-name"> Student Name</span> Writing Goal
@@ -20,7 +20,12 @@
 				
 				</p>
 			</div>
-	
+
+			<div class="goal-heading-purpose">
+			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="height:73px">	
+			
+			</div>
+			<!--
 			<div class="goal-heading">
 				<h5>My Progress</h5>
 			</div>
@@ -34,6 +39,7 @@
 					<img src="images/goal-sheet.png">
 				</div>
 			</div>
+			-->
 				
 			<div class="goal-heading">
 				<h5>Strategies to help me</h5>	
@@ -64,7 +70,7 @@
 					<p>&nbsp;</p>
 					<p>&nbsp;  </p>
 				</div>
-				
+				<!--
 				<div class="sign">
 					<div class="checked-peer cp1">
 						<strong><p>Checked by Peer</p></strong>
@@ -75,25 +81,27 @@
 						<strong><p>Checked by Teacher</p></strong>
 						<p class="signature">&nbsp;</p>
 					</div>
-				</div>	
+				</div>
+				-->	
 			</div>
-			&nbsp;
-		</div>
+		&nbsp;
+</div>
 		<div class="preview">
-		<div class="">
+		<div >
 								
 				<textarea name = "goals" rows=3 id="goals">
 
 				</textarea>			
 			</div>						
-			<div class="">				
-				<textarea name = "strategies" rows=20 id="strategies">			
+			<div>				
+				<textarea name = "strategies" rows=30 id="strategies">			
 
 
 				</textarea>
 			</div>
 			<div>
-                <input type="button" id="btn" value="Preview" style="background-color: #2db72b;color: white;">              
+				<input type="button" id="btn" value="Preview" style="background-color: #2db72b;color: white;"> 
+				<input  type="button" id="btn" onclick="printDiv('container')" value="Print" style="background-color: #2db72b;color: white;">             
             </div>
 		</div>
 
@@ -120,7 +128,20 @@
 			{
 				goal_def.innerHTML= textbox1.value;
 				strats.innerHTML=textbox2.value;					   
-			}					
+			}
+
+			// To select the div which you want to print on button click	
+			function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+		}					
 		</script>
 </body>
 </html>
