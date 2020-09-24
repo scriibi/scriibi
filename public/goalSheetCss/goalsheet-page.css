@@ -1,7 +1,7 @@
 @media only screen{
     body{
         background: rgb(204,204,204);
-        font-family: sans-serif;
+        font-family: Raleway;
         display :flex;
 
     }
@@ -106,7 +106,7 @@
        }
     
        .goal-heading{
-          
+           font-style: italic;
            background-color: #dadfe6;  
            padding: 5px 5px;
            border-radius: 10px;
@@ -142,8 +142,8 @@
        .strats{
            width: 94%;
            margin: auto;
-           min-height: 410px;
-            max-height:490px;
+          
+           height: 485px;
        }
        
        .progress-two img{
@@ -220,11 +220,11 @@
         background: white;
         display: block;
         
-        margin-left:8%;
-        margin-right:2%;
+        margin-left:7cm;
+        margin-right:2cm;
         margin-bottom: 0.5cm;
         box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-        width: 50%;
+        width: 21cm;
 
        }
     
@@ -248,7 +248,7 @@
 
     body{
         background-color: red;
-        font-family: sans-serif;
+        font-family: Raleway;
         margin: 0.6cm;
         margin-top:20px;
     }
@@ -276,7 +276,7 @@
 
     .preview{
         display:none;
-        width :40%;
+        width :17cm;
         height:100%;
         background: rgb(221, 189, 214);
         box-shadow: 0px 5px 10px grey inset;
@@ -294,8 +294,8 @@
         background-color:#0cb33e;
         border-radius: 10px;
         padding: 5px;
+        padding-bottom:0;
         margin-top: 10px;
-        margin-bottom: 5px;
         -webkit-print-color-adjust: exact;
         -moz-print-color-adjust: exact; /* Old versions of Firefox */
         -ms-print-color-adjust: exact; /* Internet Explorer/Edge */
@@ -382,7 +382,7 @@
         .strats{
             width: 94%;
             margin: auto;
-            min-height: 410px;
-            max-height:490px;
+            margin-top:0;
+            height: 485px;
         }
 }

@@ -3,6 +3,8 @@
 <head>
 	<title>Goal Sheets</title>
 	<link rel="stylesheet" href="./goalSheetCss/goalsheet-page.css">
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
 </head>
 <body>	
 	<div id="container" class="container page-break">

@@ -3,6 +3,8 @@
 <head>
 	<title>Goal Sheets</title>
 	<link rel="stylesheet" href="./goalSheetCss/goalsheet-page.css">
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
 </head>
 <body>
 
@@ -22,7 +24,7 @@
 			</div>
 
 			<div class="goal-heading-purpose">
-			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="height:71px">	
+			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="height:70px">	
 			
 			</div>
 			<!--
