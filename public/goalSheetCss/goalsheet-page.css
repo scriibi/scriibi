@@ -142,7 +142,7 @@
        .strats{
            width: 94%;
            margin: auto;
-          
+           margin-top:0;
            height: 485px;
        }
        
@@ -250,7 +250,7 @@
         background-color: red;
         font-family: Raleway;
         margin: 0.6cm;
-        margin-top:20px;
+        margin-top:0px;
     }
 
     .goal-headder{
