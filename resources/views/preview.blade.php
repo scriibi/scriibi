@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="goal-heading-purpose">
-			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="height:73px">	
+			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="height:71px">	
 			
 			</div>
 			<!--
