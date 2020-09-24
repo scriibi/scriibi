@@ -275,23 +275,22 @@ header {
 #main-panel{
     display: grid;
     grid-template-columns: 7fr 3fr;
-    grid-template-areas:
-        "sl-panel btn-panel";
+    grid-template-areas: "sl-panel btn-panel";
     height: 50vh;
-
+    position: relative;
+    min-height: 450px;
 }
 
 .btn-panel{
     display: grid;
-    grid-auto-rows: 4fr 3fr 2fr 2fr;
+    grid-auto-rows: 3fr 3fr 2fr 2fr;
 }
 
 
 .student-list-scroll{
     overflow-y: auto;
     overflow-x: hidden;
-    position: relative;
-
+    height: 14cm;
 }
 
 .studet-list-text{
@@ -367,6 +366,8 @@ header {
 .home-assessment-icon {
     height: 70px;
     width: auto;
+    margin-left: 10px;
+    
 }
 
 .home-rubric-icon {
@@ -390,7 +391,32 @@ header {
 .home-etc-icons {
     height: 30px;
     width: auto;
-    margin-left: 10px;
+    margin-left: 5px;
+}
+
+.desc-home {  
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    height:3cm;
+    padding-top: 10px;
+}
+  
+.box{
+    padding-top:10px;
+    align-self:right;
+}
+
+.a
+{
+    font-size:1rem;
+    text-align:right;
+}
+  
+.b{
+    font-size:.725rem;
+    align-self:baseline;
+    text-align:right;
+    padding-right:3px;
 }
 
 // Assessment setup Page
@@ -1242,6 +1268,39 @@ $skillset-colors-map: (
     }
 }
 
+.task-desc {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+    position: absolute;
+    background-color: #e8e8e8;
+    border-radius: 7px;
+    color:black;
+    z-index: 1000;
+    padding-left:0.5em;
+    padding-top:0.5em;
+    padding-right:0.5em;
+    padding-bottom:0.5em;
+    margin-top:1.5em;   
+    max-width:350px;
+    height:auto;
+    font-size: 14px;
+    transition: 0.4s;
+    white-space: normal;
+
+}
+
+.writingtask:hover .task-desc {
+    visibility: visible;
+    opacity: 1;
+}
+
+.writingtask:hover ~ .task-desc {
+    opacity: 1;
+    visibility: visible
+}
+
+
 .skill-tooltip {
     opacity: 0;
     visibility: hidden;
@@ -1320,6 +1379,40 @@ $skillset-colors-map: (
     visibility: visible
 }
 
+// rubric details page
+
+.rubric-assessment-list{
+    display:grid;
+    grid-template-columns: repeat(3,33.3%);
+    grid-gap:10px;
+    background-color:white;
+}
+
+.rubric-assessment{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    text-align:left;
+    padding-left:17px;
+    height:40px;  
+}
+
+.rubric-assessment > a {
+    text-decoration: none;
+}
+
+.rubric-assessment > a > p{
+    color: #000000;
+    font-size: 1em;
+}
+
+.rubric-assessment:hover{
+    border: 2px solid #33A849;
+    text-decoration: none;
+}
+
 //data view page
 
 .header-style{
@@ -1338,10 +1431,13 @@ $skillset-colors-map: (
 
 table {
     border-collapse: collapse;
+    margin-right: auto ;
+    margin-left:auto;
 
   }
 
 
+  
 td{
     padding:5px;
     //border:solid 1px #ccc;
@@ -1365,6 +1461,25 @@ td{
     }
 
 }
+
+.dataview-taskname{
+    width:100px;
+    color: #000000;
+    font-weight:100;
+
+}
+
+
+table.dataTable.no-footer {
+    border-bottom: 0;
+    
+  }
+  
+  .dataTables_wrapper.no-footer .dataTables_scrollBody 
+  {
+      border-bottom:0;
+  }
+
 
 .circle {
     background: url('/images/circle.png') no-repeat center;
@@ -1942,6 +2057,10 @@ box-sizing: border-box;
     border: 2px solid #33a849;
     text-decoration: none;
     color:black;
+}
+
+.assessment-setup-rubric-selected{
+    border: 2px solid #33a849;
 }
 
 .delete-list-row-styling{
