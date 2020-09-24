@@ -12,7 +12,7 @@
 			<h1 class="goalsheet-header-heading">
 				<span class="heading-name">{{$gs["student_name"]}}</span>{{substr($gs["student_name"], -1) == 's' ? "' " : "'s "}} Writing Goal
 			</h1>
-			<img src="images/Scriibi-logo.png" alt="scriibi" class="goalsheet-header-logo">	
+			<img src="images/GoalSheetLogo.png" alt="scriibi" class="goalsheet-header-logo">	
 		</div>
 			<div class="finding-ideas">
 				<h3>{{$gs["skill_name"]}}</h3>
