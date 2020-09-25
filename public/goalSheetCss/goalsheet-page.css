@@ -143,7 +143,7 @@
            width: 94%;
            margin: auto;
            margin-top:0;
-           height: 485px;
+           height: 495px;
        }
        
        .progress-two img{
@@ -167,7 +167,7 @@
        }
     
        .lines{
-           margin-bottom: 10px;
+           margin-bottom: 0px;
        }
     
        .lines p{
@@ -206,8 +206,7 @@
     
        .container{
         background: white;
-        display: block;
-        
+        display: block;        
         margin-left:25%;
         margin-right:5%;
         margin-bottom: 0.5cm;
@@ -218,8 +217,7 @@
 
        .content{
         background: white;
-        display: block;
-        
+        display: block;        
         margin-left:7cm;
         margin-right:2cm;
         margin-bottom: 0.5cm;
@@ -251,6 +249,7 @@
         font-family: Raleway;
         margin: 0.6cm;
         margin-top:0px;
+        margin-bottom:0px;
     }
 
     .goal-headder{
@@ -268,6 +267,15 @@
         height: 12%;
         margin-top: 3%;
         margin-left: 17%;
+    }
+
+    .goal-heading-purpose{
+        clear: both;
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 94%;
+        margin: auto;
+        
     }
 
     p{
@@ -294,12 +302,18 @@
         background-color:#0cb33e;
         border-radius: 10px;
         padding: 5px;
-        padding-bottom:0;
+        margin-bottom:5px;
         margin-top: 10px;
+        padding-left:10px;
         -webkit-print-color-adjust: exact;
         -moz-print-color-adjust: exact; /* Old versions of Firefox */
         -ms-print-color-adjust: exact; /* Internet Explorer/Edge */
         box-shadow: inset 0 0 0 1000px #0cb33e;    
+       }
+
+       .finding-ideas > h3
+       {
+           margin:0px;
        }
 
        .strategies{
@@ -314,8 +328,17 @@
             border-radius: 10px;
             font-size:18px;
             padding-left:5px;
-            -webkit-print-color-adjust: exact
+            -webkit-print-color-adjust: exact;
+            padding: 5px 5px;           
+            height: 30px;  
+            margin-top: 10px;           
+            margin-bottom: 15px;
        }
+
+       .goal-heading > h5{
+        padding-top: 5px;
+        margin: 0;
+        }
 
        .progress-one{
             font-size:14px;
@@ -334,12 +357,12 @@
         }
 
        .reflection-heading{
-            font-size: 16px;
+            font-size: 20px;
 
        }
        
        .reflection-span{ 
-            font-size: 10px;
+            font-size: 13px;
             float: right;
             padding-top:5px;
             padding-right:10px;
@@ -349,6 +372,7 @@
            border-bottom: 1px solid #a7a8b0;
            padding: 5px;
            display: block;
+           margin: auto;
            -webkit-print-color-adjust: exact
        }
 
@@ -383,6 +407,6 @@
             width: 94%;
             margin: auto;
             margin-top:0;
-            height: 485px;
+            height: 495px;
         }
 }
