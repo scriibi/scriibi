@@ -94,8 +94,9 @@
 	@endforeach
 	</div>
 	
-	<div class=" col-12 col-sm-10 col-md-10" style="float:left">
-        <input  type="button" id="btn" onclick="printDiv('container')" value="Print" style="background-color: #2db72b;color: white;float:left">              
+	<div class="Print-btn-styling">
+		<input class="Print-button"  type="button" id="btn" onclick="printDiv('container')" value="Print or save as PDF" > 
+		<img class="generate-image">              
 	</div>
 	
 	<script>

@@ -143,7 +143,7 @@
            width: 94%;
            margin: auto;
            margin-top:0;
-           height: 495px;
+           height: 535px;
        }
        
        .progress-two img{
@@ -238,6 +238,40 @@
             box-shadow: 0px 5px 10px grey inset;
     
         }
+
+        .Print-btn-styling{
+            background: #33A849;
+            border-radius: 7px;
+            color: #FFFFFF;
+            padding: 4px;
+            height:40px;
+            margin-top:40px;
+            text-align:center;
+
+        }
+    
+        .Print-button{
+            float:left;
+            outline: none;
+            border: none;
+            background: #33A849;
+            color: #FFFFFF;
+            text-align:center;
+            margin:2px;
+            height:38px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            font-family: "Raleway", sans-serif;
+            
+        }
+
+        .generate-image{
+            content: url('/images/file2.png');
+            padding-top: 5px;
+            width: 27px;
+            height: 31px;
+        }
     
 }
 
@@ -280,6 +314,7 @@
 
     p{
         margin-top:0;
+        margin-bottom:2px;
     }
 
     .preview{
@@ -302,7 +337,7 @@
         background-color:#0cb33e;
         border-radius: 10px;
         padding: 5px;
-        margin-bottom:5px;
+        margin-bottom:0px;
         margin-top: 10px;
         padding-left:10px;
         -webkit-print-color-adjust: exact;
@@ -313,7 +348,9 @@
 
        .finding-ideas > h3
        {
-           margin:0px;
+           margin:2px;
+           margin-bottom:3.5px;
+           font-weight:900;
        }
 
        .strategies{
@@ -407,6 +444,6 @@
             width: 94%;
             margin: auto;
             margin-top:0;
-            height: 495px;
+            height: 535px;
         }
 }
