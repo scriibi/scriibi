@@ -124,6 +124,8 @@ Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAs
 Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics');
 Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel');
 Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
+Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');
+Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel');
 
 //goal sheets
 Route::get('/goal-sheets', "GoalsController@generateGoalSheets");
