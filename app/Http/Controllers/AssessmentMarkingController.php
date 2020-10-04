@@ -23,6 +23,7 @@ class AssessmentMarkingController extends Controller
          * this should be optimized later
          */
         $primary_grade_range = array(119 => 'D', 120 => '0.5', 121 => 'F', 123 => 'F.5');
+        $fullScriibiRange = [];
         $tasks_skills = array();
         $prepopulated_results = array();
         $rangeAsScriibiValue = array();
@@ -42,7 +43,11 @@ class AssessmentMarkingController extends Controller
         $flag = empty($student_tasks[0]);            
         $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
         $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-        // dump($range);
+        
+        foreach(DB::table('scriibi_levels')->select('scriibi_Level', 'scriibi_Level_Id')->get() as $r){
+            $fullScriibiRange[$r->scriibi_Level_Id] = $r->scriibi_Level;
+        }
+
         foreach($range as $r){
             $value = ScriibiLevels::find($r);
             if (array_key_exists($value["scriibi_Level_Id"], $primary_grade_range)){
@@ -52,7 +57,7 @@ class AssessmentMarkingController extends Controller
                 array_push($rangeAsScriibiValue, $value);
             }
         }
-        // dd($rangeAsScriibiValue);
+        
         foreach($student_tasks as $st){
             $tasks_skills[$st->tasks_skills_Id] = $st->result;
         }
@@ -77,17 +82,12 @@ class AssessmentMarkingController extends Controller
                 "Check Email"       => ""
             )
         );
-        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level_label, 'assessed_level_scriibi_id' => $student->rubrik_level, 'results' => $prepopulated_results, 'comment' => $status[0]->comment]);
+        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level_label, 'assessed_level_scriibi_id' => $student->rubrik_level, 'results' => $prepopulated_results, 'comment' => $status[0]->comment, 'fullScriibiRange' => $fullScriibiRange]);
     }
 
-    /**
-     * returns the range of the scriibi levels based on the students rubric/assessed level
-     */
-    public function getScriibiRange($student_scriibi_level){
+    public function calculateLeftShift($scriibi_level){
         $range = array();
-        $scriibi_levels = array();
-        $scriibi_level_value = ScriibiLevels::find($student_scriibi_level);
-        //dd($scriibi_level_value->scriibi_Level);
+        $scriibi_level_value = ScriibiLevels::find($scriibi_level);
         if ($scriibi_level_value->scriibi_Level == 0.0){
             $counter = -0.75;
             while($counter <= 1.0){
@@ -105,11 +105,50 @@ class AssessmentMarkingController extends Controller
                 $counter += 0.5;
             }
         }
+        return $range;
+    }
+
+    public function calculateRightShift($scriibi_level){
+        $range = array();
+        $scriibi_level_value = ScriibiLevels::find($scriibi_level);
+        $counter = $scriibi_level_value->scriibi_Level - 1;
+        while($counter <= ($scriibi_level_value->scriibi_Level + 1)){
+            array_push($range, $counter);
+            $counter += 0.5;
+        }
+        return $range;
+    }
+
+    /**
+     * returns the range of the scriibi levels based on the students rubric/assessed level
+     */
+    public function getScriibiRange($student_scriibi_level){
+        $scriibi_levels = array();
+        $range = AssessmentMarkingController::calculateLeftShift($student_scriibi_level);
         foreach($range as $r){
             array_push($scriibi_levels, DB::table('scriibi_levels')->select('scriibi_Level_Id')->where('scriibi_Level', '=', $r)->first()->scriibi_Level_Id);
         }
         return $scriibi_levels;
     }
+
+    public function getShiftedScriibiRange($shift, $scriibi_level){
+        try{
+            $scriibi_levels = array();
+            if($shift == "left"){
+                $range = AssessmentMarkingController::calculateLeftShift($scriibi_level);
+            }
+            if($shift == "right"){ 
+                $range = AssessmentMarkingController::calculateRightShift($scriibi_level);
+
+            }
+            foreach($range as $r){
+                array_push($scriibi_levels, DB::table('scriibi_levels')->select('scriibi_levels.scriibi_Level_Id', 'scriibi_levels.scriibi_Level')->where('scriibi_Level', '=', $r)->first());
+            }
+        return $scriibi_levels;
+        }catch(Exception $ex){
+            return $ex;
+        }
+     }
 
     public function saveAssessment(Request $request){
         try{
@@ -124,14 +163,15 @@ class AssessmentMarkingController extends Controller
             $status = $request->input('status');
             
             for($i = 1; $i <= $skillCount; $i++){
-                $student_skill = $request->input('skill_' . (string)$i);
+                $student_skill = $request->input('skill_mark_' . (string)$i);
                 if(isset($student_skill)){
                     if($student_skill != 'na'){
                         $skill_pointer = explode("/", $student_skill);
                         $skillsAssessedArray[$skill_pointer[1]] = $skill_pointer[0];
                     }
                 }
-            }  
+            }
+            // dd($skillsAssessedArray);
             $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get(); 
             foreach($writingTaskSkills as $wts){
                 if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
@@ -180,5 +220,57 @@ class AssessmentMarkingController extends Controller
             //todo
         }
         
+    }
+
+    public function getMarkingCriteriaOfRange(Request $request){
+        try{
+            $query = $request->all();
+            $primary_grade_range = array(119 => 'D', 120 => '0.5', 121 => 'F', 123 => 'F.5');
+            $rangeAsScriibiValue = array();
+            $skillCards = array();
+            $range = AssessmentMarkingController::getShiftedScriibiRange($query["shift"], $query["level"]);
+
+            $skills = DB::table('tasks_skills')
+                ->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')
+                ->select('skills.*', 'tasks_skills.tasks_skills_Id')
+                ->where('tasks_skills.writing_tasks_writing_task_Id', '=', $query["task"])
+                ->get();
+            
+            $curriculum_Id = DB::table('teachers')
+                ->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')
+                ->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')
+                ->join('schools', 'classes.schools_school_Id', 'schools.school_Id')
+                ->select('schools.curriculum_details_curriculum_details_Id')
+                ->where('teachers.user_Id', '=', Auth::user()->user_Id)
+                ->get();
+
+            foreach($range as $r){
+                $value = ScriibiLevels::find($r->scriibi_Level_Id);
+                if (array_key_exists($value["scriibi_Level_Id"], $primary_grade_range)){
+                    $value["scriibi_Level"] = $primary_grade_range[$value["scriibi_Level_Id"]];
+                    array_push($rangeAsScriibiValue, $value);
+                }else{
+                    array_push($rangeAsScriibiValue, $value);
+                }
+            }
+
+            foreach($skills as $s){
+                $skillObj = array("id" => $s->skill_Name, "name" => $s->skill_Id);
+                $newSKillCard = new SkillCard($s->skill_Name, [$range[0]->scriibi_Level_Id,$range[2]->scriibi_Level_Id,$range[4]->scriibi_Level_Id], $s->skill_Id, $curriculum_Id, $query["student"], $query["task"]);
+                $newSKillCard->populateScriibiLevelglobalCriteria();
+                $newSKillCard->populateScriibiLevelLocalCriteria();
+                $skillObj["global"] = $newSKillCard->getGlobalCriteria();
+                $skillObj["local"] = $newSKillCard->getLocalCriteria();
+                array_push($skillCards, $skillObj);
+            }
+            return json_encode(['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards]);
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+    public function getScriibiLevel(Request $request){
+        $query = $request->all();
+        return (json_encode($skills = DB::table('scriibi_levels')->where('scriibi_Level_Id', '=', $query["id"])->select('scriibi_Level')->get()));
     }
 }
