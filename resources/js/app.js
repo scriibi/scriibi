@@ -303,28 +303,6 @@ $(function(){
 //======================== ASSESSMENT MARKING =======================================
     
     //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
-    $(".marking-radio").on("click", function(){
-        //default is variable is true
-        let check = true;
-        //loop through each radio button in each group and test whether they are checked or not
-        $(".marking-radio").each(function(){
-            //get the name of the radio button
-            let radio_name = $(this).attr("name"); 
-            console.log(radio_name);
-            //check to see if each input within the group name is has been checked or not
-            if ($("input:radio[name="+radio_name+"]:checked").length === 0) {
-                check = false;
-            }
-        });
-        
-        //if check is still true, then display the completed text
-        if (check === true) {
-            $("#assessment-status").find(".complete-style").removeClass("d-none");
-            $("#assessment-status").find(".incomplete-style").addClass("d-none");
-            $("#assessment-status").find("input").val("1");
-        }
-    });
-    
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
         $('#assessment-marking-panel').toggleClass('hide-info-panel');
@@ -374,6 +352,212 @@ $(function(){
             $("#level-6").removeClass("d-none");
         }   
     }
+
+    $('.left-shift-scale').on('click', function(event){
+        event.preventDefault();
+        let leftShift = $(this);
+        let leftShiftValue = $(this).attr('data-left-extreme');
+        console.log(leftShiftValue)
+        let writingTask = $('input[name=writingTask]').val();
+        let studentId = $('input[name="studentId"]').val();
+        let url_origin = window.location.origin;
+        let urlParams = new URLSearchParams();
+        urlParams.append('shift', 'left');
+        urlParams.append('level', leftShiftValue);
+        urlParams.append('task', writingTask);
+        urlParams.append('student', studentId);
+        url_origin += "/get-shifted-criteria?" + urlParams.toString();
+        console.log(url_origin);
+        fetch(url_origin)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            let count = 0;
+            $('.marking-scale').each(function(){
+                $(this).text(data.rubrics[count].scriibi_Level);
+                if(count == 0){
+                    // This check for level 119 is done to ensure that the user cannot go beyond level -0.5 (Level D)
+                    if(data.rubrics[count].scriibi_Level_Id != 119){
+                        leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
+                        leftShift.removeClass('d-none')
+                    }
+                    else{ 
+                        leftShift.addClass('d-none')
+                    }
+                }
+                if(count == 4){
+                    let rightShift = $('.right-shift-scale');
+                    if(data.rubrics[count].scriibi_Level_Id != 149){
+                        rightShift.attr('data-right-extreme', data.rubrics[count].scriibi_Level_Id)
+                        rightShift.removeClass('d-none')
+                    }
+                    else {
+                        rightShift.addClass('d-none')
+                    }
+                }
+                count++;
+            })
+            count = 0;
+            let skillCard;
+            let globalCounter;
+            $('.skill-tab').each(function(){
+                globalCounter = 0;
+                let markingCounter = 0;
+                skillCard = data.skillCards[count];
+                let availableMark = $(this).find('.assesible-skill-mark').val();
+                $(this).find('.marking-radio').each(function(){
+                    let mark = data.rubrics[markingCounter].scriibi_Level_Id + "/" + skillCard.name;
+                    $(this).val(mark);
+                    if(availableMark == mark) $(this).prop('checked', true);
+                    else $(this).prop('checked', false);
+                    markingCounter++;
+                })
+                $(this).find('.global-local-criteria').each(function(){
+                    let main = $(this);
+                    $(this).find('.global-def').text(skillCard.global[globalCounter]);
+                    $(this).find('.local-def').empty();
+                    if(Array.isArray(skillCard.local[globalCounter]) && skillCard.local[globalCounter].length){
+                        let localCriteria = document.createElement('div');
+                        let localCurriculum = document.createElement('span');
+                        let curriculumTooltip = document.createElement('span');
+                        localCriteria.classList.add('local-criteria', 'mr-2');
+                        localCurriculum.classList.add('local-curriculum');
+                        curriculumTooltip.classList.add('curriculum-tooltip');
+                        localCurriculum.innerHTML = "<u>" + skillCard.local[globalCounter][0][0].curriculum_code + "</u>";
+                        curriculumTooltip.innerHTML = skillCard.local[globalCounter][0][0].description_elaboration;
+                        localCriteria.appendChild(localCurriculum);
+                        localCriteria.appendChild(curriculumTooltip);
+                        main.find('.local-def').append(localCriteria);
+                    }
+                    globalCounter++;
+                })
+                count++;
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+
+    $('.right-shift-scale').on('click', function(event){
+        event.preventDefault();
+        let rightShift = $(this);
+        let rightShiftValue = $(this).attr('data-right-extreme');
+        let writingTask = $('input[name=writingTask]').val();
+        let studentId = $('input[name="studentId"]').val();
+        let url_origin = window.location.origin;
+        let urlParams = new URLSearchParams();
+        urlParams.append('shift', 'right');
+        urlParams.append('level', rightShiftValue);
+        urlParams.append('task', writingTask);
+        urlParams.append('student', studentId);
+        url_origin += "/get-shifted-criteria?" + urlParams.toString();
+        console.log(url_origin);
+        fetch(url_origin)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            let count = 0;
+            $('.marking-scale').each(function(){
+                $(this).text(data.rubrics[count].scriibi_Level);
+                if(count == 0){
+                    let leftShift = $('.left-shift-scale');
+                    // This check for level 119 is done to ensure that the user cannot go beyond level -0.5 (Level D)
+                    if(data.rubrics[count].scriibi_Level_Id != 119){
+                        leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
+                        leftShift.removeClass('d-none')
+                    }
+                    else{ 
+                        leftShift.addClass('d-none')
+                    }
+                }
+                if(count == 4){
+                    if(data.rubrics[count].scriibi_Level_Id != 149){
+                        rightShift.attr('data-right-extreme', data.rubrics[count].scriibi_Level_Id)
+                        rightShift.removeClass('d-none')
+                    }
+                    else {
+                        rightShift.addClass('d-none')
+                    }
+                }
+                count++;
+            })
+            count = 0;
+            let skillCard;
+            let globalCounter;
+            $('.skill-tab').each(function(){
+                globalCounter = 0;
+                let markingCounter = 0;
+                skillCard = data.skillCards[count];
+                let availableMark = $(this).find('.assesible-skill-mark').val();
+                $(this).find('.marking-radio').each(function(){
+                    let mark = data.rubrics[markingCounter].scriibi_Level_Id + "/" + skillCard.name;
+                    $(this).val(mark);
+                    if(availableMark == mark) $(this).prop('checked', true);
+                    else $(this).prop('checked', false);
+                    markingCounter++;
+                })
+                $(this).find('.global-local-criteria').each(function(){
+                    let main = $(this);
+                    $(this).find('.global-def').text(skillCard.global[globalCounter]);
+                    $(this).find('.local-def').empty();
+                    if(Array.isArray(skillCard.local[globalCounter]) && skillCard.local[globalCounter].length){
+                        let localCriteria = document.createElement('div');
+                        let localCurriculum = document.createElement('span');
+                        let curriculumTooltip = document.createElement('span');
+                        localCriteria.classList.add('local-criteria', 'mr-2');
+                        localCurriculum.classList.add('local-curriculum');
+                        curriculumTooltip.classList.add('curriculum-tooltip');
+                        localCurriculum.innerHTML = "<u>" + skillCard.local[globalCounter][0][0].curriculum_code + "</u>";
+                        curriculumTooltip.innerHTML = skillCard.local[globalCounter][0][0].description_elaboration;
+                        localCriteria.appendChild(localCurriculum);
+                        localCriteria.appendChild(curriculumTooltip);
+                        main.find('.local-def').append(localCriteria);
+                    }
+                    globalCounter++;
+                })
+                count++;
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    });
+
+    $('.marking-radio').on('click', function(event){
+        $(this).parent().parent().parent().find('.assesible-skill-mark').val($(this).val())
+        let url_origin = window.location.origin;
+        let urlParams = new URLSearchParams();
+        urlParams.append('id', $(this).val().split("/")[0]);
+        url_origin += "/get-scriibi-level?" + urlParams.toString();
+        fetch(url_origin)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            $(this).parent().parent().parent().find('.assesible-skill-mark-value').text(data[0].scriibi_Level);
+            let check = true;
+            $(".assesible-skill-mark").each(function(){
+                if(!$(this).val()){
+                    check = false;
+                }
+                console.log(check);
+            });
+            
+            //if check is still true, then display the completed text
+            if (check === true) {
+                $("#assessment-status").find(".complete-style").removeClass("d-none");
+                $("#assessment-status").find(".incomplete-style").addClass("d-none");
+                $("#assessment-status").find("input").val("1");
+            }
+        })
+    })
+
+
     
 //======================== ASSESSMENT SETUP =========================================
     
