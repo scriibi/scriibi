@@ -13,6 +13,7 @@ ONE "student list/class", but in future a teacher may have more than ONE.]
 
 class classes extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'class_Id';
 
     public function teachers(){

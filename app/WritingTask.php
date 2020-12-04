@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WritingTask
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $id;
     private $name;
     private $description;

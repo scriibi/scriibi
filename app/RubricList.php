@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RubricList
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $rubrics_list = array();
     /**
      * returns a list of rubrics for the currently logged in user

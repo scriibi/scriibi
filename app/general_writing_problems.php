@@ -10,6 +10,7 @@ a general writing problem is a way of categorising a particlar lesson. a lesson 
 
 class general_writing_problems extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'general_writing_problems_Id';
 
     public function lessons(){

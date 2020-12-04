@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class traitObject
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $id;
     private $name;
     private $colour;

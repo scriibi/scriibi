@@ -9,6 +9,7 @@ a school has a name and primary contact, as well as subscribing to a particluar 
 */
 class schools extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'school_Id';
 
     public function teachers_primary_contact(){

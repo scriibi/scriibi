@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     use Notifiable;
 
     protected $primaryKey = 'user_id';

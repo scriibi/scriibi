@@ -10,6 +10,7 @@ for any given skill at any given level, there exists a corresponding "student de
 
 class student_definitions extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'student_definitions_Id';
 
     public function skills_level(){

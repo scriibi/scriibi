@@ -9,6 +9,7 @@ this class records the details of a particlur formative assessment
 */
 class formative_assessments extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'formative_assessment_Id';
 
     public function classes_students(){

@@ -9,6 +9,7 @@ this is the scriibi-defined writing skill that serves as the basis of assessment
 */
 class skills extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'skill_Id';
 
     public function lessons(){

@@ -13,6 +13,7 @@ this class associates a student with a particlar skill at a particular level. th
 
 class goals extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'goal_Id';
 
     public function skills_level(){

@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 
 
 class CreateScriibiLevelsTable extends Migration
-{
+{// ################################################################################# older model file (delete later) ########################################################################################
     /**
      * Run the migrations.
      *

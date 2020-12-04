@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class assessed_level_label extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'assessed_level_label_id';
 
     public function school_type(){

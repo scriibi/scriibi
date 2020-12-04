@@ -11,6 +11,7 @@ this class associates curriculums with their corresponding global and local scri
 
 class curriculum_scriibi_levels extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'curriculum_scriibi_levels_Id';
 
     public function curriculum(){

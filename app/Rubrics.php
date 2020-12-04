@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Rubrics extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'rubric_Id';
 
     public function writing_tasks(){

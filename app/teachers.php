@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class teachers extends Authenticatable
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'user_Id';
 
     protected $fillable = [

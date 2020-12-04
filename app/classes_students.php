@@ -10,6 +10,7 @@ this model groups particular students into classes.
 
 class classes_students extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'classes_students_Id';
 
     public function formative_assessments(){

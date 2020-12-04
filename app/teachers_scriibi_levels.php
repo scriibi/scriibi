@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class teachers_scriibi_levels extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'teachers_scriibi_levels_Id';
 
 }

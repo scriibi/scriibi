@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class text_types extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'text_type_Id';
 
     public function skills(){

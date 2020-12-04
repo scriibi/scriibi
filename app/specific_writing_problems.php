@@ -9,6 +9,7 @@ a lesson may target 0 or more specific writing problems. this a way of further c
 */
 class specific_writing_problems extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'specific_writing_problem_Id';
 
     public function lessons(){

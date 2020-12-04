@@ -7,6 +7,7 @@ use Exception;
 
 class DataViewWrittingTask extends DataView
 {   
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $skills = array();
     private $taskId = null;
 

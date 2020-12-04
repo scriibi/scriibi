@@ -15,6 +15,7 @@ this allows us to record whether a student is below or above their enrolled leve
 
 class students extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'student_Id';
 
     public function ScriibiLevels_rubrik_level(){

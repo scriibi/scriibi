@@ -12,7 +12,7 @@ class CreateCurriculumScriibiLevelsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {// ################################################################################# older model file (delete later) ########################################################################################
         Schema::create('curriculum_scriibi_levels', function (Blueprint $table) {
             $table->bigIncrements('curriculum_scriibi_levels_Id');
             $table->bigInteger('curriculum_Id')->unsigned();

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class teaching_periods extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'teaching_period_Id';
 
     public function writing_tasks(){

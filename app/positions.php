@@ -17,6 +17,7 @@ Teachers will be assigned Class and Grade postions on first login
 
 class positions extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'position_Id';
 
     public function teachers(){

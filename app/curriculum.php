@@ -11,6 +11,7 @@ curriculum refers to a particular school curriculum defined by name, state, and 
 
 class curriculum extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'curriculum_Id';
 
     /**

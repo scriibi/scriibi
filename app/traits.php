@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class traits extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'trait_Id';
 
     public function skills(){

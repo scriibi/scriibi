@@ -4,6 +4,7 @@ namespace App;
 
 class Rubric
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $id;
     private $name;
     private $dateCreated;

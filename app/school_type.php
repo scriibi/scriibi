@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class school_type extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'school_type_id';
 
     public function curriculum(){

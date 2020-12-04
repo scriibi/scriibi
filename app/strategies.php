@@ -12,6 +12,7 @@ for any given skill at any given level, there exists a corresponding "strategy" 
 
 class strategies extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'strategies_Id';
 
     public function skills_levels(){

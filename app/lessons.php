@@ -11,6 +11,7 @@ a lesson is a teaching tool that is defined by scriibi. it contains teaching con
 
 class lessons extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'lesson_Id';
 
     public function teachers(){

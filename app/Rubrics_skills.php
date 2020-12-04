@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rubrics_skills extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'rubrics_skills_Id';
 
 }

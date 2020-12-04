@@ -9,6 +9,7 @@ use App\Http\Controllers\WritingTasksController;
 
 abstract class DataView
 {   
+    // ################################################################################# older model file (delete later) ########################################################################################
     /**
         * this is the main datatable that is passed into the view. 
         * the formate of this table depends on the dataview being generatd

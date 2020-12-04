@@ -11,6 +11,7 @@ global criteria is a the scriibi defined writing criteria that a particular curr
 
 class global_criteria extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'global_criteria_Id';
 
     public function curriculum_scriibi_levels_criteria(){

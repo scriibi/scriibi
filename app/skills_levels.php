@@ -12,6 +12,7 @@ this associates a scriibi level with a scriibi skill.
 
 class skills_levels extends Model
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     protected $primaryKey = 'skills_levels_Id';
 
     public function student_definitions(){
