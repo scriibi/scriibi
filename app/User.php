@@ -2,42 +2,82 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    // ################################################################################# older model file (delete later) ########################################################################################
-    use Notifiable;
-
-    protected $primaryKey = 'user_id';
-
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'user';
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Get the school associated with the primary contact.
      */
-    protected $fillable = [
-        'name', 'email',
-    ];
+    public function school()
+    {
+        return $this->hasOne('App\School', 'primary_contact');
+    }
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * The memberships that belong to the user.
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function memberships()
+    {
+        return $this->belongsToMany('App\Membership', 'user_membership', 'user_id', 'membership_id')
+                    ->using('App\UserMembership')
+                    ->withPivot(['id', 'user_id', 'membership_id', 'created_at', 'updated_at']);
+    }
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * The positions that belong to the user/teacher.
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function positions()
+    {
+        return $this->belongsToMany('App\Position', 'teacher_position', 'teacher_id', 'position_id')
+                    ->using('App\TeacherPosition')
+                    ->withPivot(['id', 'teacher_id', 'position_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The scriibi levels that belong to the user/teacher.
+     */
+    public function scriibiLevels()
+    {
+        return $this->belongsToMany('App\ScriibiLevel', 'teacher_scriibi_level', 'teacher_id', 'scriibi_level_id')
+                    ->using('App\TeacherScriibiLevel')
+                    ->withPivot(['id', 'teacher_id', 'scriibi_level_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The classes that belong to the user/teacher.
+     */
+    public function classes()
+    {
+        return $this->belongsToMany('App\Clss', 'teacher_class', 'teacher_id', 'class_id')
+                    ->using('App\TeacherClass')
+                    ->withPivot(['id', 'teacher_id', 'class_id', 'status_flag', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The schools that belong to the user/teacher.
+     */
+    public function schools()
+    {
+        return $this->belongsToMany('App\School', 'teacher_school', 'teacher_id', 'school_id')
+                    ->using('App\TeacherSchool')
+                    ->withPivot(['id', 'teacher_id', 'school_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The rubric templates that belong to the user/teacher.
+     */
+    public function rubricTeacherTemplates()
+    {
+        return $this->belongsToMany('App\Rubric', 'rubric_teacher_template', 'teacher_id', 'rubric_id')
+                    ->using('App\RubricTeacherTemplate')
+                    ->withPivot(['id', 'rubric_id', 'teacher_id', 'created_at', 'updated_at']);
+    }
 }
