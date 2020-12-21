@@ -27,22 +27,22 @@
                                 <ul class="d-flex justify-content-between row mb-2 mt-2">
                                     <div class="col-7 row d-flex justify-content-start px-0">
                                         <div class="col-4 align-self-center text-truncate pl-1">
-                                            <span>{{$student->student_First_Name}}</span>
+                                            <span>{{$student->first_name}}</span>
                                         </div>
                                         <div class="col-5 align-self-center text-truncate pl-1">
-                                            <span>{{$student->student_Last_Name}}</span>
+                                            <span>{{$student->last_name}}</span>
                                         </div>
                                         <div class="col-3 align-self-center text-truncate pl-1">
-                                            <span>{{$student->Student_Gov_Id}}</span>
+                                            <span>{{$student->gov_id}}</span>
                                         </div>
 
                                     </div>
                                     <div class="col-5 row d-flex justify-content-start px-0">
                                         <div class="col-4 align-self-center text-truncate px-0">
-                                            <span>{{$student->grade_label}}</span>
+                                            <span>{{$student->grade_level_id}}</span>
                                         </div>
                                         <div class="col-4 align-self-center text-nowrap px-0">
-                                            <span>{{$student->assessed_level_label}}</span>
+                                            <span>{{$student->assessed_level_id}}</span>
                                         </div>
                                     </div>
 

@@ -26,10 +26,18 @@ class Student extends Model
     /**
      * The writing tasks that belong to the student.
      */
-    public function students()
+    public function writingTasks()
     {
         return $this->belongsToMany('App\WritingTask', 'writing_task_student', 'student_id', 'writing_task_id')
                     ->using('App\WritingTaskStudent')
                     ->withPivot(['id', 'student_id', 'writing_task_id', 'comment', 'status_flag', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * Get the writing task skill results for the student.
+     */
+    public function taskSkillStudentResults()
+    {
+        return $this->hasMany('App\TaskSkillStudentResult', 'student_id');
     }
 }

@@ -99,20 +99,20 @@ class StudentsController extends Controller
     public function indexStudentsByClass(){
         $students = [];
         try{
-            $class = DB::table('classes_teachers')->select('classes_teachers_classes_class_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
+            // $class = DB::table('classes_teachers')->select('classes_teachers_classes_class_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
 
-            $students = DB::table('classes_students')
-                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
-                ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
-                ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
-                ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
-                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
-                ->get();
+            // $students = DB::table('classes_students')
+            //     ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
+            //     ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
+            //     ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
+            //     ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
+            //     ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
+            //     ->get();
+            return  DB::table('student')->where('id', 266)->get();
         }
         catch(Exception $e){
             abort(403, 'Please log in to view this page!');
         }
-        return $students;
     }
 
     public function indexStudentsByWritingTask($writingTask){

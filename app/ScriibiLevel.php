@@ -70,4 +70,12 @@ class ScriibiLevel extends Model
                     ->using('App\AssessedLabel')
                     ->withPivot(['id', 'label', 'scriibi_level_id', 'curriculum_school_type_id', 'created_at', 'updated_at']);
     }
+
+    /**
+     * Get the writing task skill results for the scriibi level.
+     */
+    public function taskSkillStudentResults()
+    {
+        return $this->hasMany('App\TaskSkillStudentResult', 'result');
+    }
 }

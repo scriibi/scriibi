@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CurriculumSkillLevelLocalCriteria extends Model
+class CurriculumSkillLevelLocalCriteria extends Pivot
 {
     /**
      * The table associated with the model.

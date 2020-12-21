@@ -32,28 +32,28 @@ Route::group(['middleware' => ['auth']], function () {
         try{
             $stdController = new App\Http\Controllers\StudentsController();
             $students = $stdController->indexStudentsByClass();
-            $userCondition = DB::table('teachers_positions')
-                ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-                ->where('positions_position_Id', '=', 2018)
-                ->get()
-                ->toArray();
+            // $userCondition = DB::table('teachers_positions')
+            //     ->where('teachers_user_Id', '=', Auth::user()->user_Id)
+            //     ->where('positions_position_Id', '=', 2018)
+            //     ->get()
+            //     ->toArray();
             $privilagedUser = false;
-            if(!empty($userCondition)){
-                $privilagedUser = true;
-            }
-            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
+            // if(!empty($userCondition)){
+            //     $privilagedUser = true;
+            // }
+            // $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
 
-            $mp->identify(Auth::user()->user_Id);
-            $mp->track("Page Viewed", array(
-                    "Page Id"           => "P001",
-                    "Page Name"         => "Home",
-                    "Page URL"          => "",
-                    "Check Email"       => ""
-                )
-            );
+            // $mp->identify(Auth::user()->user_Id);
+            // $mp->track("Page Viewed", array(
+            //         "Page Id"           => "P001",
+            //         "Page Name"         => "Home",
+            //         "Page URL"          => "",
+            //         "Check Email"       => ""
+            //     )
+            // );
             return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id, 'privilagedUser' => $privilagedUser]);
         }catch(Exception $ex){
-            //todo
+            throw $ex;
         }
     })->name('home')->middleware('auth');
 

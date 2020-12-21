@@ -62,4 +62,12 @@ class Skill extends Model
                     ->using('App\SkillLevel')
                     ->withPivot(['id', 'skill_id', 'scriibi_level_id', 'created_at', 'updated_at']);
     }
+
+    /**
+     * Get the writing task skill results for the skill.
+     */
+    public function taskSkillStudentResults()
+    {
+        return $this->hasMany('App\TaskSkillStudentResult', 'skill_id');
+    }
 }
