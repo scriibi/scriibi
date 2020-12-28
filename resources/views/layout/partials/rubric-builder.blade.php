@@ -32,7 +32,7 @@
                                         <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                             <option value="" disabled selected hidden>Please select an option</option>
                                             @foreach($assessed_labels as $al)
-                                                <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
+                                                <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                             @endforeach
                                         </select>
                                         <span class="bar"></span>                                       
@@ -82,32 +82,33 @@
                             <!-- skills cards deck-->
                             <div class="card-columns p-0 mt-3" id="check-array">
                                 @foreach($traitObjects as $to)
-                                    <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
+                                    <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to['color']); ?> mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
 
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
-                                                    <input type="text" name="trait_id" value={{$to->getId()}} hidden />
-                                                    {{$to->getName()}}
+                                                    <input type="text" name="trait_id" value={{$to['id']}} hidden />
+                                                    {{$to['name']}}
                                                 </span>
                                             </li>
-                                            <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
-                                                @if(count($skills) > 0)
-                                                    @foreach($skills as $skill)
+                                                @if(isset($level))
+                                                
+                                                    <?php $skills = $to['skills'] ?>
+                                                    @foreach($skills as $key => $value)
                                                         <li class="list-group-item">
                                                             <!-- load each skill item in the skills category;
                                                             the number of skills items in the skill category vary -->
                                                             <label class="frm_checkbox">
-                                                                <input type="checkbox" class="skill-checkbox" name="rubric_skills[]" value={{$skill->getId()}} />
-                                                                <span class="skill-name">{{$skill->getName()}}</span>
-                                                                @if ($skill->getFlag() === true)
+                                                                <input type="checkbox" class="skill-checkbox" name="rubric_skills[]" value={{$key}} />
+                                                                <span class="skill-name">{{$value['name']}}</span>
+                                                                @if ($value['flag'] === true)
                                                                     <img class="skill-flag-icon float-right" src="/images/flag.png" />
                                                                 @endif
                                                             </label>
-                                                            <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                                            <span class="skill-tooltip">{!!$value['description']!!}</span>
                                                         </li>
                                                     @endforeach
                                                 @else

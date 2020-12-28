@@ -111,8 +111,7 @@ class traitObject
         foreach($scriibi_value_ids as $svi){
             array_push($assessed_level_range, $svi->scriibi_Level_Id);
         }
-
-        $popSkills = traits::find($this->id)->skills;
+        
         $skills_levels = DB::table('skills_levels')->select('skills_levels.skills_levels_skills_skill_Id')->whereIn('skills_levels.scriibi_levels_scriibi_Level_Id', $assessed_level_range)->get()->unique();
         
         foreach($skills_levels as $sl){

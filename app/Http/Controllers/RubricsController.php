@@ -11,31 +11,11 @@ use App\skills_levels;
 use AssessmentMarkingController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\RubricService;
 
 
 class RubricsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -45,38 +25,9 @@ class RubricsController extends Controller
      * Currently two rubrics are being passed in the same form and the same insert actions are replicated twice
      * this has to be fixed in the upcomming iterations as this is highly inefficient
      */
-    public function store(Request $request)
-    {
-        $rubric_name = $request->input('rubric_name');
-        $assessed_level = $request->input('assessed_level');
-        $rubric_skills = $request->input('rubric_skills');
-        $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name);
-        
-        $newRubricId = DB::table('rubrics')->insertGetId($new_rubric);
-
-        foreach($rubric_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId);
-            DB::table('rubrics_skills')->insert($new_rubric_skill);
-        }
-
-        $new_teacher_rubric = array('rubrics_rubric_Id' => $newRubricId, 'teachers_user_Id' => Auth::user()->user_Id);
-        DB::table('rubrics_teachers')->insert($new_teacher_rubric);
-
-        /**
-         * mixpanel code
-        */
-        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-
-        $mp->identify(Auth::user()->user_Id);
-        $mp->track("Rubric Created", array(
-                "Rubric Id"                  => $newRubricId,
-                "Rubric Name"                => $rubric_name,
-                "Rubric Scriibi Level"       => $assessed_level,
-                "Rubric Skill Ids"           => $rubric_skills,
-                "Related Rubric Ids"         => 'N/A',
-            )
-        );
-
+    public function store(Request $request, RubricService $rubricService)
+    {   // do  exception handling and data cleaning here later
+        $rubricService->saveTeacherTemplate(Auth::user()->id, $request->input('rubric_name'), $request->input('assessed_level'), $request->input('rubric_skills'));
         return redirect('/rubric-list');
     }
 
@@ -100,28 +51,6 @@ class RubricsController extends Controller
         catch(\Exception $e){
             return redirect('/rubric-list');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Rubrics  $rubrics
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Rubrics $rubrics)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Rubrics  $rubrics
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Rubrics $rubrics)
-    {
-        //
     }
 
     /**

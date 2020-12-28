@@ -9,6 +9,7 @@ use Exception;
 use App\Rubric;
 use App\RubricList;
 use Illuminate\Http\Request;
+use App\Services\RubricListingService;
 use App\Http\Controllers\Controller;
 
 class RubricListController extends Controller
@@ -16,34 +17,24 @@ class RubricListController extends Controller
     /**
      * creates rubric objects for all rubrics of the currently logged in user
      */
-    public function GenerateUserRubrics(Request $request){
+    public function GenerateUserRubrics(Request $request, RubricListingService $rubricListingServiceInstance){
         try{
-            $rubricList = new RubricList();
-            $returnList = $rubricList->GenerateTeacherSpecificRubricList();
-            $rubricsData = RubricListController::expandTraits($returnList);
-            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-
-            $mp->identify(Auth::user()->user_Id);
-            $mp->track("Page Viewed", array(
-                    "Page Id"           => "P003",
-                    "Page Name"         => "Rubric List",
-                    "Page URL"          => "",
-                    "Check Email"       => ""
-                )
-            );
-            if($request->path() === 'rubric-list-mine')
-                return (json_encode($rubricsData));
-            if($request->path() === 'rubric-list')
-                return view('rubric-list', ['rubrics' => json_encode($rubricsData)]);
-            }catch(Exception $ex){
-            //todo
+            $rubrics = $rubricListingServiceInstance->getTeacherTemplateList(Auth::user()->id);
+            return view('rubric-list', ['rubrics' => json_encode($rubrics)]);
+            // if($request->path() === 'rubric-list-mine')
+            //     return (json_encode($rubricsData));
+            // if($request->path() === 'rubric-list')
+            //     return view('rubric-list', ['rubrics' => json_encode($rubricsData)]);
+        }catch(Exception $ex){
+            throw $ex;
         }
     }
 
-    public function GenerateRubricDetails($rubric_id){
-        $rubricList = new RubricList();
-        $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
-        return view('rubric-details', ['data' => $rubricDetails]);
+    public function GenerateRubricDetails($rubric_id, RubricListingService $rubricListingServiceInstance){
+        $rubrics = $rubricListingServiceInstance->getTeacherTemplate($rubric_id);
+        return view('rubric-details', ['data' => $rubrics]);
+        // $rubricList = new RubricList();
+        // $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
     }
 
     /**

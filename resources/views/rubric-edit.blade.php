@@ -13,10 +13,9 @@
         <!-- Assessment Title and edit/delete img-->
         <div class="row mt-5 ">
             <div class="col-10">
-            
                 <h1 class="Assessment-Studentlist-title">Edit Rubric Name :</h1>
-                <p><input class="form-control" type="text" name="rubric_name" value="{{$currentAssessment != null ? 'Copy of ' . $rubric['rubric_Name'] : $rubric['rubric_Name']}}"></p>
-                <input type="text" name="rubric_id" value="{{$rubric['rubric_Id']}}" hidden>
+                <p><input class="form-control" type="text" name="rubric_name" value="{{$rubric['name']}}"></p>
+                <input type="text" name="rubric_id" value="{{$rubric['id']}}" hidden>
             </div>
     
         </div>
@@ -47,10 +46,10 @@
                                 <div class="col-4">
                                 <h1 class="Assessment-Studentlist-title">Rubric</h1><br><br>
                                 <label >Show skills and curriculum  milestones for:</label><br />
-                                <select class="select-input" name="assessed_level" id="select_curriculum_code_in_rubric_edit" data-rubric-id={{$rubric['rubric_Id']}} data-task-id={{$currentAssessment != null ? $currentAssessment['writing_task_Id'] : 'NA'}}>
+                                <select class="select-input" name="assessed_level" id="select_curriculum_code_in_rubric_edit" data-rubric-id={{$rubric['id']}} data-task-id={{$currentAssessment != null ? $currentAssessment['writing_task_Id'] : 'NA'}}>
                                     <!-- <option value="" disabled selected hidden>Select your option</option> -->
                                     @foreach($assessedLabels as $al)
-                                        <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
+                                        <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                     @endforeach
                                 </select>
                                 <span class="bar"></span>                                    
@@ -66,45 +65,45 @@
                         <!-- skills cards deck-->
                             <div class="card-columns p-0 mt-3" id="check-array1">
                             @foreach($traitObjects as $to)
-                                        <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
-                                            <ul class="list-group list-group-flush ">
-                                                <li class="text-white m-0 d-flex justify-content-start px-2">
-                                                    <!-- load icon address-->
-                                                    
-                                                    <!-- load trait title -->
-                                                    <span class="skill-title w-100 pl-0 align-self-center px-2">
-                                                        <input type="text" name="trait_id" value={{$to->getId()}} hidden />
-                                                        {{$to->getName()}}
-                                                    </span>
+                                <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to['color']); ?> mt-1">
+                                    <ul class="list-group list-group-flush ">
+                                        <li class="text-white m-0 d-flex justify-content-start px-2">
+                                            <!-- load icon address-->
+                                            
+                                            <!-- load trait title -->
+                                            <span class="skill-title w-100 pl-0 align-self-center px-2">
+                                                <input type="text" name="trait_id" value={{$to['id']}} hidden />
+                                                {{$to['name']}}
+                                            </span>
 
+                                        </li>
+                                        <?php $skills = $to['skills']?>
+                                        <div class="list-group-box">
+
+                                        @if(count($skills) > 0)
+                                            @foreach($skills as $key => $value)
+                                                <li class="list-group-item">
+                                                    <!-- load each skill item in the skills category;
+                                                    the number of skills items in the skill category vary -->
+                                                    <label class="frm_checkbox">
+                                                        <input type="checkbox" class="skill-checkbox1" name="rubric_skills[]" value={{$key}} @if(in_array($key, $selectedSkills)) checked @endif />
+                                                        <span class="skill-name">{{$value['name']}}</span>
+                                                        @if ($value['flag'] === true)
+                                                            <img class="skill-flag-icon float-right" src="/images/flag.png" />
+                                                        @endif
+                                                    </label>
+                                                    <span class="skill-tooltip">{!!$value['description']!!}</span>
                                                 </li>
-                                                <?php $skills = $to->getSkills()?>
-                                                <div class="list-group-box">
+                                            @endforeach
+                                        @else
+                                            <li class="list-group-item">          
+                                                <label class="frm_checkbox"></label>
 
-                                                @if(count($skills) > 0)
-                                                    @foreach($skills as $skill)
-                                                        <li class="list-group-item">
-                                                            <!-- load each skill item in the skills category;
-                                                            the number of skills items in the skill category vary -->
-                                                            <label class="frm_checkbox">
-                                                                <input type="checkbox" class="skill-checkbox1" name="rubric_skills[]" value={{$skill->getId()}} @if(in_array($skill->getId(), $selectedSkills)) checked @endif />
-                                                                <span class="skill-name">{{$skill->getName()}}</span>
-                                                                @if ($skill->getFlag() === true)
-                                                                    <img class="skill-flag-icon float-right" src="/images/flag.png" />
-                                                                @endif
-                                                            </label>
-                                                            <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    <li class="list-group-item">          
-                                                        <label class="frm_checkbox"></label>
-
-                                                @endif
-                                                </div>
-                                            </ul>
+                                        @endif
                                         </div>
-                                @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
 
 
                                 <!-- load cards from skill-categories DB; you should see 7 of them;

@@ -29,7 +29,9 @@ class CustomUserRepository extends Auth0UserRepository
             return User::where('email', '=', $profile['email'])->first();
         }
         catch(\Exception $e){
-            return null;
+            if($e){
+                return null;
+            }
         }
     }
 

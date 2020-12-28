@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('assessment-setup');
     });
 
-    Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
+    Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');  // done
 
     Route::get('/traits', 'RubricBuilder@test');
 
@@ -93,12 +93,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/studentlist', 'StudentsController@update');
 
     //rubric routes
-    Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');
-    Route::get('/rubrics', 'RubricBuilder@generateRubricsView');
-    Route::post('/RubricConfirm', 'RubricsController@store');
+    Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');  // done (have to add the flags)
+    Route::get('/rubrics', 'RubricBuilder@generateRubricsView');  // done
+    Route::post('/RubricConfirm', 'RubricsController@store');   // done (do data validation and exception handling in the controller class)
     Route::post('/rubricDelete', 'RubricsController@deleteRubric');
-    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');
-    Route::get('/rubric-edit/{rubricId}/{taskId}', 'RubricBuilder@generateEditRubricView');
+    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');  //  done  (remove the assessments attached check and let all rubrics to be editted)
+    Route::get('/rubric-edit/{rubricId}/{taskId}', 'RubricBuilder@generateEditRubricView');  // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
     Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricViewWithFlags');
     Route::post('/rubric-edit-confirm', 'RubricsController@update');
     Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');

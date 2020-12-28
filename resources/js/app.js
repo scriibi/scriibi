@@ -7,17 +7,17 @@ const { filter, forEach } = require("lodash");
 $(function(){
 
 //======================== GLOBAL SCRIPTS ================================================
-    
+
     //error notificiation UNFINISHED!
     //Count if the list has more than one error, if yes then display the error pop up. if they click the close button, add hide-error class
     if($("#error-content").length > 0) {
         $("#error-pop-up").removeClass("hide-error");
     }
-    
+
     $("#error-close").on("click", function(){
-       $("#error-pop-up").addClass("hide-error"); 
+       $("#error-pop-up").addClass("hide-error");
     });
-    
+
     //navbar hide on scroll
     var prevScrollPos = $(document).scrollTop();
     //home page navbar scrolling function
@@ -33,7 +33,7 @@ $(function(){
     });
 
 //======================== STUDENT LIST ================================================
-    
+
     //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
@@ -60,25 +60,25 @@ $(function(){
            console.log(data);
        }
 
-   });    
-    
+   });
+
 //======================== DATA VIEW ================================================
-    
+
     //Table to display student grade data
     let greaterThanTen = false;
-    
+
     //tests if there are more than 10 columns before enabling scrolling
     if (($(".assessment-date").length >= 9) || ($(".assessment-skills").length >= 9)){
         greaterThanTen = true;
-    }    
-        
+    }
+
     //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
         //scrollX: greaterThanTen,
         scrollX: true,
         scrollY: 460,
         scrollCollapse: true,
-       
+
         paging:         false,
          fixedColumns:   {
             leftColumns: 3,
@@ -87,8 +87,8 @@ $(function(){
             // style : 'os',
             items : 'cell'
         }
-    }); 
-    
+    });
+
 //========== OVERALL ASSESSMENT
     $(".assessed-button-filter").on("click", function () {
         $(".grade-button-filter").find(".radio-circle").removeClass("fill-circle");
@@ -100,12 +100,12 @@ $(function(){
     });
     //if a user clicks the overall grade filter
     $("#overall-grade-filter").on("click", function(){
-        
+
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade); 
-            
+           let student_grade = parseFloat(grade);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){
 
@@ -114,7 +114,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -135,14 +135,14 @@ $(function(){
             });
         });
     });
-    
+
     $("#overall-assessed-filter").on("click", function(){
-        
+
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed); 
-            
+           let student_grade = parseFloat(assessed);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){
 
@@ -151,7 +151,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -188,14 +188,14 @@ $(function(){
         $('.hiddenArea').val(studentName);
         $("#form").submit();
     });
-    
+
     //if a user clicks the grade filter
     $("#assessment-grade-filter").on("click", function(){
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade); 
-            
+           let student_grade = parseFloat(grade);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
 
@@ -204,7 +204,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -225,16 +225,16 @@ $(function(){
             });
         });
     });
-    
+
     //if a user clicks the assessment grade filter
     $("#assessment-assessed-filter").on("click", function(){
         console.log("work");
-        
+
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed); 
-            
+           let student_grade = parseFloat(assessed);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
 
@@ -243,7 +243,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -269,8 +269,8 @@ $(function(){
         $(this).find(".student-skill-result").each(function(){
             $(this).on("click", function() {
                 if($(this).html()){
-                    let skillId = $(this).attr("data-skillId"); 
-                    let mark = $(this).attr("data-mark"); 
+                    let skillId = $(this).attr("data-skillId");
+                    let mark = $(this).attr("data-mark");
                     let url_origin = window.location.origin;
                     url_origin += '/skill-level-availability/';
                     url_origin += skillId;
@@ -283,13 +283,13 @@ $(function(){
                     .then(availability => {
                         // $(this).find(".student-goal-sheet-info").attr("checked", false);
                         if(availability.length !== 0)
-                            $(this).toggleClass("circle");   
+                            $(this).toggleClass("circle");
                         else
-                            $("#no-strategies-warning-modal").modal("show");                          
+                            $("#no-strategies-warning-modal").modal("show");
                         if($(this).hasClass("circle"))
                             $(this).find(".student-goal-sheet-info").attr("checked", true);
-                        else 
-                            $(this).find(".student-goal-sheet-info").attr("checked", false);                   
+                        else
+                            $(this).find(".student-goal-sheet-info").attr("checked", false);
                     })
                     .catch(err => {
                         console.log(err);
@@ -299,9 +299,9 @@ $(function(){
         });
     });
 
-    
+
 //======================== ASSESSMENT MARKING =======================================
-    
+
     //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
@@ -317,11 +317,11 @@ $(function(){
         console.log(criteria_section);
         criteria_section.toggleClass("accordion-display");
     });
-    
+
     //setting the default examples for the assessment-marking-page blade
     const assessed_level = $("#marking-level").html();
     $("#level-examples div").addClass("d-none");
-    
+
     if (assessed_level != null) {
         if (assessed_level == "121"){
         $("#level-examples div").addClass("d-none");
@@ -350,7 +350,7 @@ $(function(){
         else if (assessed_level == "145"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
-        }   
+        }
     }
 
     $('.left-shift-scale').on('click', function(event){
@@ -383,7 +383,7 @@ $(function(){
                         leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
                         leftShift.removeClass('d-none')
                     }
-                    else{ 
+                    else{
                         leftShift.addClass('d-none')
                     }
                 }
@@ -471,7 +471,7 @@ $(function(){
                         leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
                         leftShift.removeClass('d-none')
                     }
-                    else{ 
+                    else{
                         leftShift.addClass('d-none')
                     }
                 }
@@ -547,7 +547,7 @@ $(function(){
                 }
                 console.log(check);
             });
-            
+
             //if check is still true, then display the completed text
             if (check === true) {
                 $("#assessment-status").find(".complete-style").removeClass("d-none");
@@ -558,9 +558,9 @@ $(function(){
     })
 
 
-    
+
 //======================== ASSESSMENT SETUP =========================================
-    
+
      //If assessment form is incomplete, display the assessment form again
     $("#createAxBTN").on("click", function(event){
         event.preventDefault();
@@ -574,15 +574,15 @@ $(function(){
             document.getElementById('assessment-setup-form').submit();
         }
     });
-    
+
     //assessment-setup rubric selection radio script
     $(".assessment-rubric-item").on("click", function(){
         $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
         $(this).find(".radio-circle").addClass("fill-circle");
     });
-    
+
 //======================== RUBRIC FORM ==============================================
-    
+
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
     $("#select_curriculum_code").change(function(){
         //getting the curriculum level value
@@ -628,21 +628,6 @@ $(function(){
         $('body').addClass("noselect");
     }
 
-    // check for rubric-details page
-    if(url.includes('rubric-details')){
-        // add onlick event for the edit rubric link
-        document.getElementById("edit-rubric-link").addEventListener("click", function(event){
-            let rubric_edit_button = document.getElementById("edit-rubric-link");
-            // retrieve the assessment count for this rubric
-            let assessment_count = rubric_edit_button.getAttribute("data-assessment-count");
-            if(assessment_count != "0"){
-                // if assessment count is 0 then display a modal and prevent redirect
-                event.preventDefault();
-                $("#multiple-assessments-warning-modal").modal("show");
-            }  
-        });
-    }
-
     // warning for deleting an assessment
     if(url.includes('assessment-list')){
         // add onlick event for the edit rubric link
@@ -651,8 +636,8 @@ $(function(){
             let assessment_id = $(this).attr("data-assessement-id");
             console.log(assessment_id);
             document.getElementById("assessment-delete-warning-modal-form").value = assessment_id;
-            $("#delete-assessment-warning-modal").modal("show"); 
-        });     
+            $("#delete-assessment-warning-modal").modal("show");
+        });
     }
 
     $("#rubric-edit-submit").on("click", function(event){
@@ -679,16 +664,16 @@ $(function(){
                     rootnode.innerHTML = "";
                     skills.forEach(skill => {
                         if(!(checked.includes(skill.skill_Id.toString()))){
-                            let node = document.createElement("LI");                
-                            let textnode = document.createElement("SPAN");                
-                            let colornode = document.createElement("SPAN");            
+                            let node = document.createElement("LI");
+                            let textnode = document.createElement("SPAN");
+                            let colornode = document.createElement("SPAN");
                             let text = document.createTextNode('  ' + skill.skill_Name);
                             let color = 'colored-dot-color-' + skill.colour;
                             textnode.appendChild(text);
-                            colornode.classList.add(color);          
-                            colornode.classList.add('colored-dot-dimensions');          
-                            node.appendChild(colornode);                              
-                            node.appendChild(textnode);                              
+                            colornode.classList.add(color);
+                            colornode.classList.add('colored-dot-dimensions');
+                            node.appendChild(colornode);
+                            node.appendChild(textnode);
                             rootnode.appendChild(node);
                         }
                     });
@@ -712,11 +697,11 @@ $(function(){
     if(url.includes('/rubric-edit')){
         $("#edit-rubric-warning-modal-yes-button").on("click", function(){
             document.getElementById("rubricform").submit();
-        });   
+        });
     }
 
     //======================== RUBRIC LIST PAGE ==============================================
-    
+
     $("#rubric-list-option-my-rubrics").on("click", function(){
         $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
         $(this).addClass("rubric-list-option-current-style");
@@ -786,7 +771,7 @@ $(function(){
                     moreSkillsNode.classList.add('rubric-more-skills');
                     skillCardFooterNode.appendChild(moreSkillsNode);
                     if(rubrics[i].skills.length > 20){
-                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more';
                     }
                     if(!currentUrl.includes('/assessment-setup')){
                         let rubricDeleteNode = document.createElement('form');
@@ -996,7 +981,7 @@ function check_input_filled(e){
         curriculum_code = document.getElementById("select_curriculum_code").value,
         skill_error = false,
         title_error = false;
-    
+
     if (curriculum_code === ""){
         error += "you need to select a curriculum code. \n";
     }
@@ -1045,7 +1030,7 @@ function assessmentRubricSelectListener(){
             previouslySelected.removeClass('assessment-setup-rubric-selected');
         }
         $(this).addClass('assessment-setup-rubric-selected');
-    }); 
+    });
 }
 
 function updateRubricsGrid(dataSet){
@@ -1138,7 +1123,7 @@ function updateRubricsGrid(dataSet){
             moreSkillsNode.classList.add('rubric-more-skills');
             skillCardFooterNode.appendChild(moreSkillsNode);
             if(rubrics[i].skills.length > 20){
-                moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more';
             }
             innerNode.appendChild(skillCardNode);
         }
