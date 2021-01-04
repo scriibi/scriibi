@@ -50,4 +50,14 @@ class Rubric extends Model
                     ->using('App\RubricWritingTask')
                     ->withPivot(['id', 'rubric_id', 'writing_task_id', 'created_at', 'updated_at']);
     }
+
+    /**
+     * The curriculum school types that belong to the rubric.
+     */
+    public function curriculumSchoolType()
+    {
+        return $this->belongsToMany('App\CurriculumSchoolType', 'rubric_scriibi', 'rubric_id', 'curriculum_school_type_id')
+            ->using('App\RubricScriibi')
+            ->withPivot(['id', 'rubric_id', 'curriculum_school_type_id', 'created_at', 'updated_at']);
+    }
 }

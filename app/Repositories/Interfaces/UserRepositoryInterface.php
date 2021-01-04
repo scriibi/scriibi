@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface TeacherRepositoryInterface
+interface UserRepositoryInterface
 {
     /**
     * Return the school of a specified teacher
@@ -10,6 +10,13 @@ interface TeacherRepositoryInterface
     * @return object
     */
     public function getTeacherSchool($id): ?object;
+
+    /**
+     * Return all the memberships of a specified user
+     * @param $id
+     * @return array
+     */
+    public function getUserMemberships($id): ?array;
 }
 
 ?>

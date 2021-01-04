@@ -40,4 +40,14 @@ class CurriculumSchoolType extends Pivot
                     ->using('App\AssessedLabel')
                     ->withPivot(['id', 'label', 'scriibi_level_id', 'curriculum_school_type_id', 'created_at', 'updated_at']);
     }
+
+    /**
+     * The rubrics that belong to the assessed curriculum school type.
+     */
+    public function rubrics()
+    {
+        return $this->belongsToMany('App\Rubric', 'rubric_scriibi', 'curriculum_school_type_id', 'rubric_id')
+            ->using('App\RubricScriibi')
+            ->withPivot(['id', 'rubric_id', 'curriculum_school_type_id', 'created_at', 'updated_at']);
+    }
 }

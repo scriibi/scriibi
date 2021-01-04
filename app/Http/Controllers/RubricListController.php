@@ -13,13 +13,13 @@ use App\Services\RubricListingService;
 use App\Http\Controllers\Controller;
 
 class RubricListController extends Controller
-{       
+{
     /**
      * creates rubric objects for all rubrics of the currently logged in user
      */
     public function GenerateUserRubrics(Request $request, RubricListingService $rubricListingServiceInstance){
         try{
-            $rubrics = $rubricListingServiceInstance->getTeacherTemplateList(Auth::user()->id);
+            $rubrics = $rubricListingServiceInstance->getTeacherTemplates(Auth::user()->id);
             return view('rubric-list', ['rubrics' => json_encode($rubrics)]);
             // if($request->path() === 'rubric-list-mine')
             //     return (json_encode($rubricsData));
@@ -33,25 +33,24 @@ class RubricListController extends Controller
     public function GenerateRubricDetails($rubric_id, RubricListingService $rubricListingServiceInstance){
         $rubrics = $rubricListingServiceInstance->getTeacherTemplate($rubric_id);
         return view('rubric-details', ['data' => $rubrics]);
-        // $rubricList = new RubricList();
-        // $rubricDetails = $rubricList->GenerateSingleRubric($rubric_id);
     }
 
     /**
      * creates rubric objects for all scriibi levels
     */
-    public function GenerateScriibiRubricsForLevel($teacherLevel){
+    public function GenerateScriibiRubricsForLevel($teacherLevel, RubricListingService $rubricListingServiceInstance){
         try{
-            $rubricList = new RubricList();
-            if($teacherLevel === "NA"){
-                $teacherLevel = $rubricList->getTeacherLevel(Auth::user()->user_Id);
-            }
-            $returnList = $rubricList->GenerateScriibiSpecificRubricList($teacherLevel);
-            $rubricsData = RubricListController::expandTraits($returnList);
-            $school_type_controller = new SchoolTypeController();
-            $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
-            $dataSet = ['assessed_labels' => $assessed_label_list, 'rubrics' => $rubricsData, 'teacher_level' => $teacherLevel]; 
-            return (json_encode($dataSet));
+            $response = $rubricListingServiceInstance->getScriibiRubrics(Auth::user()->id, $teacherLevel);
+//            $rubricList = new RubricList();
+//            if($teacherLevel === "NA"){
+//                $teacherLevel = $rubricList->getTeacherLevel(Auth::user()->user_Id);
+//            }
+//            $returnList = $rubricList->GenerateScriibiSpecificRubricList($teacherLevel);
+//            $rubricsData = RubricListController::expandTraits($returnList);
+//            $school_type_controller = new SchoolTypeController();
+//            $assessed_label_list = AssessedLevelLabelController::indexBySchoolType($school_type_controller->getSchoolTypeOfCurrentUser());
+//            $dataSet = ['assessed_labels' => $assessed_label_list, 'rubrics' => $rubricsData, 'teacher_level' => $teacherLevel];
+            return json_encode(['rubrics' => $response]);
         }catch(Exception $ex){
         //todo
         }

@@ -5,18 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CurriculumSchoolType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CurriculumSchoolType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RubricBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RubricBuilder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RubricListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RubricListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RubricsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RubricsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/CustomUserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CustomUserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/traitObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/traitObject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/RubricRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/RubricRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/ScriibiLevelRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/ScriibiLevelRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/TeacherRepositoryInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/RubricRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/RubricRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ScriibiLevelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ScriibiLevelRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/TeacherRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Rubric.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rubric.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/RubricScriibi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RubricScriibi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/RubricBuilderService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricBuilderService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/RubricListingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricListingService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/RubricService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout/partials/rubric-builder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/partials/rubric-builder.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rubric-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rubric-details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/rubric-edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rubric-edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/rubric-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rubric-list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +34,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -37,6 +47,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -174,7 +192,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609192590985</updated>
-      <workItem from="1609192593399" duration="3181000" />
+      <workItem from="1609192593399" duration="12130000" />
+      <workItem from="1609284106315" duration="4225000" />
+      <workItem from="1609290733520" duration="27962000" />
+      <workItem from="1609465556286" duration="66232000" />
     </task>
     <servers />
   </component>

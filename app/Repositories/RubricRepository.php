@@ -119,18 +119,16 @@ class RubricRepository implements RubricRepositoryInterface
     * @param $id
     * @return array
     */
-    public function getTeacherTemplates($id): array
+    public function getTeacherTemplateIds($id): array
     {
         try
         {
             return $this->rubric
                 ->select('rubric.id')
-                ->whereHas(
-                    'teachers', function($query) use ($id)
-                    {
-                        $query->where('user.id', $id);
-                    }
-                )
+                ->whereHas('teachers', function($query) use ($id)
+                {
+                    $query->where('user.id', $id);
+                })
                 ->get()
                 ->map(function($rubric)
                 {
@@ -139,6 +137,36 @@ class RubricRepository implements RubricRepositoryInterface
                 ->toArray();
         }
         catch(QueryException $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Returns all scriibi rubrics (ids) that belong to a specific
+     * scriibi level and curriculum school type
+     * @param $level
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getScriibiRubricIds($level, $curriculumSchoolTypeId): array
+    {
+        try
+        {
+            return $this->rubric
+                ->where('scriibi_level_id', $level)
+                ->whereHas('curriculumSchoolType', function ($query) use($curriculumSchoolTypeId)
+                {
+                    $query->where('curriculum_school_type.id', $curriculumSchoolTypeId);
+                })
+                ->get()
+                ->map(function ($rubric)
+                {
+                    return $rubric->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
         {
             return [];
         }
@@ -161,6 +189,29 @@ class RubricRepository implements RubricRepositoryInterface
             return $rubric;
         }
         catch(QueryException $e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Update an existing Rubric instance
+     * @param $id
+     * @param $name
+     * @param $scriibiLevel
+     * @return Rubric
+     */
+    public function updateRubric($id, $name, $scriibiLevel): ?Rubric
+    {
+        try
+        {
+            $rubric = $this->rubric::findOrFail($id);
+            $rubric->name = $name;
+            $rubric->scriibi_level_id = $scriibiLevel;
+            $rubric->save();
+            return $rubric;
+        }
+        catch (QueryException | ModelNotFound $e)
         {
             return null;
         }

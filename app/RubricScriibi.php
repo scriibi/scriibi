@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class RubricScriibi extends Model
+class RubricScriibi extends Pivot
 {
     /**
      * The table associated with the model.

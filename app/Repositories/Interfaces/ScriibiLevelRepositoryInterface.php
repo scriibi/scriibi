@@ -17,6 +17,13 @@ interface ScriibiLevelRepositoryInterface
     * @return array
     */
     public function getScriibiLevelRange($id): array;
+
+    /**
+     * Returns the minimum scriibi level (id) of a specified teacher
+     * @param $id
+     * @return int
+     */
+    public function getMinScriibiLevelOfTeacher($id): ?int;
 }
 
 ?>

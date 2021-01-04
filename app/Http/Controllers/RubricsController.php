@@ -21,7 +21,7 @@ class RubricsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * 
+     *
      * Currently two rubrics are being passed in the same form and the same insert actions are replicated twice
      * this has to be fixed in the upcomming iterations as this is highly inefficient
      */
@@ -59,21 +59,11 @@ class RubricsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, RubricService $rubricService)
     {
         try{
-            $rubricId = $request->input('rubric_id');
-            $newName = $request->input('rubric_name');
-            $newAsssessedLevel = $request->input('assessed_level');
-            $rubricSkills = $request->input('rubric_skills');
-            $new_rubric_skills = [];
-            DB::table('rubrics')->where('rubric_Id', '=', $rubricId)->update(['scriibi_levels_scriibi_level_Id' => $newAsssessedLevel, 'rubric_Name' => $newName]);
-            DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $rubricId)->delete();
-
-            foreach($rubricSkills as $rs){
-                array_push($new_rubric_skills, ['skills_skill_Id' => $rs, 'rubrics_rubric_Id' => $rubricId]);
-            }
-            DB::table('rubrics_skills')->insert($new_rubric_skills);
+            // todo - add a check for the number of skills (it cannot be zero)
+            $rubricService->updateTeacherTemplate($request->input('rubric_id'), $request->input('rubric_name'), $request->input('assessed_level'), $request->input('rubric_skills'));
             return redirect('/rubric-list');
         }
         catch(\Exception $e){
@@ -95,7 +85,7 @@ class RubricsController extends Controller
             $rubricSkillsMassInsert = [];
             $taskSkillsToRemove = [];
             $taskSkillsToAdd = [];
-            $existingTaskSkills = DB::table('tasks_skills')->where('writing_tasks_writing_task_Id', $taskId)->get()->toArray();    
+            $existingTaskSkills = DB::table('tasks_skills')->where('writing_tasks_writing_task_Id', $taskId)->get()->toArray();
             $newRubricId = DB::table('rubrics')->insertGetId(['scriibi_levels_scriibi_level_Id' => $newAsssessedLevel, 'rubric_Name' => $newName]);
             foreach($rubricSkills as $skill){
                 array_push($rubricSkillsMassInsert, ['skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId]);
@@ -135,7 +125,7 @@ class RubricsController extends Controller
             ->whereIn('tasks_skills.skills_skill_Id', $newSkillSet)
             ->get()
             ->toArray());
-        
+
         $students = DB::table('writting_task_students')
             ->join('students', 'writting_task_students.fk_student_id', 'students.student_Id')
             ->where('fk_writting_task_id', '=', $writingTask)
@@ -173,7 +163,7 @@ class RubricsController extends Controller
             }
            $studentMarksCount = RubricsController::count_array_values_of($taskStudents, $student->student_Id);
            if($studentMarksCount >= $assesibleCount){
-                $status = 'completed';                
+                $status = 'completed';
            }else{
                 $status = 'incomplete';
            }
@@ -193,38 +183,15 @@ class RubricsController extends Controller
         return $count;
     }
 
-    public function saveScriibiRubric(Request $request){
+    public function saveScriibiRubric(Request $request, RubricService $rubricService){
         $rubric_name = $request->input('rubric_name');
         $assessed_level = $request->input('assessed_level');
         $curriculumId = $request->input('curriculum');
         $schoolTypeId = $request->input('schoolType');
         $rubric_skills = $request->input('rubric_skills');
 
-        $new_rubric = array('scriibi_levels_scriibi_level_Id' => $assessed_level, 'rubric_Name' => $rubric_name);
-        
-        $newRubricId = DB::table('rubrics')->insertGetId($new_rubric);
+        $rubricService->saveScriibiRubric($rubric_name, $assessed_level, $rubric_skills, $curriculumId, $schoolTypeId);
 
-        foreach($rubric_skills as $skill){
-            $new_rubric_skill = array('skills_skill_Id' => $skill, 'rubrics_rubric_Id' => $newRubricId);
-            DB::table('rubrics_skills')->insert($new_rubric_skill);
-        }
-
-        $new_teacher_rubric = array('rubrics_rubric_Id' => $newRubricId, 'teachers_user_Id' => Auth::user()->user_Id);
-        DB::table('rubrics_teachers')->insert($new_teacher_rubric);
-        // add new record to the scriibi rubrics table
-        $new_scriibi_rubric = array('rubric_id' => $newRubricId, 'curriculum_id' => $curriculumId, 'school_type_identifier_id' => $schoolTypeId);
-        DB::table('scriibi_rubrics')->insert($new_scriibi_rubric);
         return redirect('/scriibi-rubric-builder');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Rubrics  $rubrics
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Rubrics $rubrics)
-    {
-        //
     }
 }

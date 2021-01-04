@@ -13,7 +13,7 @@
             </div>
             <div class="col-2">
                 <!-- put the width and height of this image to the css file later -->
-                <span><a href="/rubric-edit/{{$data['id']}}/NA" id="edit-rubric-link"><img src="/images/Edit Rubric Icon and Text.png" alt="edit assessment icon" width="110px" height="25px"></a></span>
+                <span><a href="/rubric-edit/{{$data['id']}}/NA/NA" id="edit-rubric-link"><img src="/images/Edit Rubric Icon and Text.png" alt="edit assessment icon" width="110px" height="25px"></a></span>
             </div>
         </div>
         <div class="row " style="padding-top:1cm">

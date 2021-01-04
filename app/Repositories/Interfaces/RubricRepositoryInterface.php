@@ -45,7 +45,16 @@ interface RubricRepositoryInterface
     * @param $id
     * @return array
     */
-    public function getTeacherTemplates($id): array;
+    public function getTeacherTemplateIds($id): array;
+
+    /**
+     * Returns all scriibi rubrics (ids) that belong to a specific
+     * scriibi level and curriculum school type
+     * @param $level
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getScriibiRubricIds($level, $curriculumSchoolTypeId): array;
 
     /**
     * Create and save a new Rubric instance
@@ -54,6 +63,15 @@ interface RubricRepositoryInterface
     * @return Rubric
     */
     public function addRubric($name, $scriibiLevel): ?Rubric;
+
+    /**
+     * Update an existing Rubric instance
+     * @param $id
+     * @param $name
+     * @param $scriibiLevel
+     * @return Rubric
+     */
+    public function updateRubric($id, $name, $scriibiLevel): ?Rubric;
 }
 
 ?>

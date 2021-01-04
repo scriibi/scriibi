@@ -35,21 +35,19 @@
                                                 <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                             @endforeach
                                         </select>
-                                        <span class="bar"></span>                                       
+                                        <span class="bar"></span>
                                     </div>
-                                    <div  class="col-8 justify-content-between float-right" style="text-align:right" >                                   
-                                    <img  class="skill-flag-icon " src="/images/flag.png" />
-                                    <span >= This skill is a curriculum milestone for the selected level</span>
+                                    <div class="col-8 justify-content-between float-right" style="text-align:right">
+                                        <img  class="skill-flag-icon " src="/images/flag.png" />
+                                        <span>= This skill is a curriculum milestone for the selected level</span>
                                     </div>
                                 @else
-                                    <img style="margin-left:11cm" class="skill-flag-icon float-left" src="/images/flag.png" />
-                                    <span>= This skill is a curriculum milestone for the selected level</span>
                                     <div class="col-4">
                                         <br /><br />
                                         <label>Curriculum</label><br />
                                         <select class="select-input" name="curriculum">
                                         @foreach($curriculum as $c)
-                                            <option value={{$c->curriculum_Id}}>{{$c->state}}</option>
+                                            <option value={{$c['id']}}>{{$c['state']}}</option>
                                         @endforeach
                                         </select>
                                         <span class="bar"></span>
@@ -59,7 +57,7 @@
                                         <label>School Type</label><br />
                                         <select class="select-input" name="schoolType">
                                         @foreach($schoolTypes as $st)
-                                            <option value={{$st->school_type_identifier_id}}>{{$st->school_type_identifier_name}}</option>
+                                            <option value={{$st['id']}}>{{$st['name']}}</option>
                                         @endforeach
                                         </select>
                                         <span class="bar"></span>
@@ -70,13 +68,13 @@
                                         <select class="select-input" name="assessed_level" id="select_scriibi_curriculum_code">
                                             <option value="" disabled selected hidden>Please select an option</option>
                                             @foreach($assessed_labels as $al)
-                                                <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
+                                                <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                             @endforeach
                                         </select>
                                         <span class="bar"></span>
                                     </div>
                                 <!-- use an else condition here when setting up the page for scriibi rubric building and delete this comment -->
-                                @endif                                
+                                @endif
                             </div>
 
                             <!-- skills cards deck-->
@@ -95,7 +93,7 @@
                                             </li>
                                             <div class="list-group-box">
                                                 @if(isset($level))
-                                                
+
                                                     <?php $skills = $to['skills'] ?>
                                                     @foreach($skills as $key => $value)
                                                         <li class="list-group-item">
@@ -112,7 +110,7 @@
                                                         </li>
                                                     @endforeach
                                                 @else
-                                                    <li class="list-group-item">          
+                                                    <li class="list-group-item">
                                                         <label class="frm_checkbox"></label>
                                                 @endif
                                             </div>

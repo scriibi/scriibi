@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Exception;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
-use App\Repositories\Interfaces\TeacherRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
 
@@ -15,9 +15,9 @@ class RubricBuilderService
      */
     protected $traitRepositoryInterface;
     /**
-     * @var TeacherRepositoryInterface
+     * @var UserRepositoryInterface
      */
-    protected $teacherRepositoryInterface;
+    protected $userRepositoryInterface;
     /**
      * @var AssessedLabelRepositoryInterface
      */
@@ -27,10 +27,10 @@ class RubricBuilderService
      */
     protected $scriibiLevelRepositoryInterface;
 
-    public function __construct(TraitRepositoryInterface $traitRepoInt, TeacherRepositoryInterface $teacherRepoInt, AssessedLabelRepositoryInterface $assessedLabelRepoInt, ScriibiLevelRepositoryInterface $scriibiLevelRepoInt)
+    public function __construct(TraitRepositoryInterface $traitRepoInt, UserRepositoryInterface $userRepoInt, AssessedLabelRepositoryInterface $assessedLabelRepoInt, ScriibiLevelRepositoryInterface $scriibiLevelRepoInt)
     {
         $this->traitRepositoryInterface = $traitRepoInt;
-        $this->teacherRepositoryInterface = $teacherRepoInt;
+        $this->userRepositoryInterface = $userRepoInt;
         $this->assessedLabelRepositoryInterface = $assessedLabelRepoInt;
         $this->scriibiLevelRepositoryInterface = $scriibiLevelRepoInt;
     }
@@ -45,9 +45,9 @@ class RubricBuilderService
         try
         {
             $traits = $this->traitRepositoryInterface->all();
-            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($this->teacherRepositoryInterface->getTeacherSchool($teacherId)[0]->curriculum_school_type_id);
-            return
-                (object)[
+            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($this->userRepositoryInterface->getTeacherSchool($teacherId)[0]->curriculum_school_type_id);
+            return (object)
+                [
                     'traits' => $traits,
                     'assessedLabels' => $assessedLabels
                 ];
@@ -70,7 +70,7 @@ class RubricBuilderService
         try
         {
             $traitsWithSkills = $this->traitRepositoryInterface->getSkillsInScriibiLevelRange(RubricBuilderService::getScriibiRange($level));
-            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($this->teacherRepositoryInterface->getTeacherSchool($teacherId)[0]->curriculum_school_type_id);
+            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($this->userRepositoryInterface->getTeacherSchool($teacherId)[0]->curriculum_school_type_id);
 
             if(empty($traitsWithSkills))
             {
@@ -78,10 +78,10 @@ class RubricBuilderService
             }
 
             return (object)
-            [
-                'traits' => $traitsWithSkills,
-                'assessedLabels' => $assessedLabels
-            ];
+                [
+                    'traits' => $traitsWithSkills,
+                    'assessedLabels' => $assessedLabels
+                ];
         }
         catch(Exception $e)
         {

@@ -9,6 +9,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Services\UserService;
+
 Route::group(['middleware' => ['auth']], function () {
 
     // Route::get('/single-rubric', function(){
@@ -28,29 +31,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/assessment-data-view/{assessmentId}', 'DataViewController@assessmentView');
 
-    Route::get('/home', function(){
+    Route::get('/home', function(UserService $userService){
         try{
             $stdController = new App\Http\Controllers\StudentsController();
             $students = $stdController->indexStudentsByClass();
-            // $userCondition = DB::table('teachers_positions')
-            //     ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-            //     ->where('positions_position_Id', '=', 2018)
-            //     ->get()
-            //     ->toArray();
+            $memberships = $userService->getUserMemberships(Auth::user()->id);
             $privilagedUser = false;
-            // if(!empty($userCondition)){
-            //     $privilagedUser = true;
-            // }
-            // $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-
-            // $mp->identify(Auth::user()->user_Id);
-            // $mp->track("Page Viewed", array(
-            //         "Page Id"           => "P001",
-            //         "Page Name"         => "Home",
-            //         "Page URL"          => "",
-            //         "Check Email"       => ""
-            //     )
-            // );
+             if(array_key_exists(3, $memberships[0])){
+                 $privilagedUser = true;
+             }
             return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id, 'privilagedUser' => $privilagedUser]);
         }catch(Exception $ex){
             throw $ex;
@@ -98,13 +87,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/RubricConfirm', 'RubricsController@store');   // done (do data validation and exception handling in the controller class)
     Route::post('/rubricDelete', 'RubricsController@deleteRubric');
     Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');  //  done  (remove the assessments attached check and let all rubrics to be editted)
-    Route::get('/rubric-edit/{rubricId}/{taskId}', 'RubricBuilder@generateEditRubricView');  // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
-    Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricViewWithFlags');
-    Route::post('/rubric-edit-confirm', 'RubricsController@update');
+    Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricView');  // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
+    Route::post('/rubric-edit-confirm', 'RubricsController@update'); // done (clean request data)
     Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
-    Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');
-    Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');
-    Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric');
+    Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');    // done (change the flow later so the curriculum->school->type->level cascade)
+    Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');// done (add flags and change the flow later as above)
+    Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric'); // done (clean request data and make sure all fields are !null)
 
     //assessment routes
     Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');
