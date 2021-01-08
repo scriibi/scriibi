@@ -27,18 +27,25 @@ interface RubricRepositoryInterface
     public function getRubrics(array $ids): array;
 
     /**
+     * Return a specific rubric with its associated skills
+     * @param $id
+     * @return array
+     */
+    public function getRubricWithSkillIds($id): array;
+
+    /**
     * Return all specified rubrics with their associated skills and traits
     * @param array
     * @return array
     */
-    public function getRubricsWithSkills(array $ids): array;
+    public function getRubricsWithGroupedSkills(array $ids): array;
 
     /**
     * Return a specific rubric with its associated skills and traits
     * @param $id
     * @return array
     */
-    public function getRubricWithSkills($id): array;
+    public function getRubricWithGroupedSkills($id): array;
 
     /**
     * Return all rubrics (ids) that belong to a specific teacher

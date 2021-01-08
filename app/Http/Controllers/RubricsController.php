@@ -18,16 +18,17 @@ class RubricsController extends Controller
 {
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     *
-     * Currently two rubrics are being passed in the same form and the same insert actions are replicated twice
-     * this has to be fixed in the upcomming iterations as this is highly inefficient
+     * @param Request $request
+     * @param RubricService $rubricService
      */
     public function store(Request $request, RubricService $rubricService)
     {   // do  exception handling and data cleaning here later
-        $rubricService->saveTeacherTemplate(Auth::user()->id, $request->input('rubric_name'), $request->input('assessed_level'), $request->input('rubric_skills'));
+        $template = array(
+            'name' => $request->input('rubric_name'),
+            'level' => $request->input('assessed_level'),
+            'skills' => $request->input('rubric_skills'),
+        );
+        $rubricService->saveTeacherTemplate(Auth::user()->id, $template);
         return redirect('/rubric-list');
     }
 
@@ -56,7 +57,7 @@ class RubricsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, RubricService $rubricService)
@@ -184,13 +185,14 @@ class RubricsController extends Controller
     }
 
     public function saveScriibiRubric(Request $request, RubricService $rubricService){
-        $rubric_name = $request->input('rubric_name');
-        $assessed_level = $request->input('assessed_level');
-        $curriculumId = $request->input('curriculum');
-        $schoolTypeId = $request->input('schoolType');
-        $rubric_skills = $request->input('rubric_skills');
-
-        $rubricService->saveScriibiRubric($rubric_name, $assessed_level, $rubric_skills, $curriculumId, $schoolTypeId);
+        $rubric = array(
+            'name' => $request->input('rubric_name'),
+            'level' => $request->input('assessed_level'),
+            'skills' => $request->input('rubric_skills'),
+            'curriculum' => $request->input('curriculum'),
+            'schoolType' => $request->input('schoolType')
+        );
+        $rubricService->saveScriibiRubric($rubric);
 
         return redirect('/scriibi-rubric-builder');
     }

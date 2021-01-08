@@ -5,8 +5,6 @@ namespace App\Services;
 use Exception;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
 
 class RubricListingService
 {
@@ -18,21 +16,54 @@ class RubricListingService
      * @var TraitRepositoryInterface
      */
     protected $traitRepositoryInterface;
-    /**
-     * @var UserRepositoryInterface
-     */
-    protected $userRepositoryInterface;
-    /**
-     * @var ScriibiLevelRepositoryInterface
-     */
-    protected $scriibiLevelRepositoryInterface;
 
-    public function __construct(RubricRepositoryInterface $rubricRepoInt, TraitRepositoryInterface $traitRepoInt, UserRepositoryInterface $userRepoInt, ScriibiLevelRepositoryInterface $scriibiLevelRepoInt)
+    public function __construct(RubricRepositoryInterface $rubricRepoInt, TraitRepositoryInterface $traitRepoInt)
     {
         $this->rubricRepositoryInterface = $rubricRepoInt;
         $this->traitRepositoryInterface = $traitRepoInt;
-        $this->userRepositoryInterface = $userRepoInt;
-        $this->scriibiLevelRepositoryInterface = $scriibiLevelRepoInt;
+    }
+
+    /**
+     * Return a teacher rubric template and its associated skills grouped by traits
+     * @param $id
+     * @return array
+     */
+    public function getTeacherTemplate($id): array
+    {
+        try
+        {
+            $traitsList = [];
+            $rubric = $this->rubricRepositoryInterface->getRubricWithGroupedSkills($id);
+            $returnList =
+                [
+                    'id' => $rubric['id'],
+                    'name' => $rubric['name'],
+                    'scriibiLevel' => $rubric['scriibi_level_id']
+                ];
+            $length = count($rubric['skills']);
+
+            for($i = 0; $i < $length; $i++)
+            {
+                $trait = $rubric['skills'][$i]['traits'][0];
+                if(!array_key_exists($trait['id'], $traitsList))
+                {
+                    $traitsList[$trait['id']]  =
+                        [
+                            'name' => $trait['name'],
+                            'color' => $trait['color'],
+                            'icon' => $trait['icon'],
+                            'skills' => []
+                        ];
+                }
+                array_push($traitsList[$trait['id']]['skills'], $rubric['skills'][$i]);
+            }
+            $returnList['traits'] = $traitsList;
+            return $returnList;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
     }
 
     /**
@@ -44,83 +75,10 @@ class RubricListingService
     {
         try
         {
-            $responseList = $traits = [];
             $rubrics = $this->rubricRepositoryInterface->getTeacherTemplateIds($id);
-
-            foreach($this->traitRepositoryInterface->all() as $trait){
-                $traits[$trait['id']] = [
-                    'name' => $trait['name'],
-                    'color' => $trait['color'],
-                    'icon' => $trait['icon'],
-                    'skills' => []
-                ];
-            }
-
-            foreach($this->rubricRepositoryInterface->getRubrics($rubrics) as $rubric){
-                $responseList[$rubric['id']] = [
-                    'name' => $rubric['name'],
-                    'scriibi_level_id' => $rubric['scriibi_level_id'],
-                    'traits' => $traits
-                ];
-            }
-            $rubricsWithSkills = $this->rubricRepositoryInterface->getRubricsWithSkills($rubrics);
-            $length = count($rubricsWithSkills);
-
-            for($i = 0; $i < $length; $i++){
-                $skillSet = $rubricsWithSkills[$i]['skills'];
-                $skilllCount = count($rubricsWithSkills[$i]['skills']);
-
-                for($j = 0; $j < $skilllCount; $j++){
-                    array_push($responseList[ $rubricsWithSkills[$i]['id'] ]['traits'][ $skillSet[$j]['traits'][0]['id'] ]['skills'], $skillSet[$j]);
-                }
-            }
-            return $responseList;
+            return $this->getRubricsWithSkills($rubrics);
         }
-        catch(Exception $e)
-        {
-            return [];
-        }
-    }
-
-    /**
-    * Return a teacher rubric template and its associated skills grouped by traits
-    * @param $id
-    * @return array
-    */
-    public function getTeacherTemplate($id): array
-    {
-        try
-        {
-            $traitsList = [];
-            $rubric = $this->rubricRepositoryInterface->getRubricWithSkills($id);
-            $responseList =
-                [
-                    'id' => $rubric['id'],
-                    'name' => $rubric['name'],
-                    'scriibiLevel' => $rubric['scriibi_level_id']
-                ];
-            $length = count($rubric['skills']);
-
-            for($i = 0; $i < $length; $i++)
-            {
-                $trait = $rubric['skills'][$i]['traits'][0];
-
-                if(!array_key_exists($trait['id'], $traitsList))
-                {
-                    $traitsList[$trait['id']]  = [
-                        'name' => $trait['name'],
-                        'color' => $trait['color'],
-                        'icon' => $trait['icon'],
-                        'skills' => []
-                    ];
-                }
-                array_push($traitsList[$trait['id']]['skills'], $rubric['skills'][$i]);
-
-            }
-            $responseList['traits'] = $traitsList;
-            return $responseList;
-        }
-        catch(Exception $e)
+        catch (Exception $e)
         {
             return [];
         }
@@ -128,52 +86,96 @@ class RubricListingService
 
     /**
      * Return a list of all scriibi rubrics and their skills grouped by traits for a specified level`
-     * @param $id
      * @param $level
+     * @param $curriculumSchoolType
      * @return array
      */
-    public function getScriibiRubrics($id, $level): array
+    public function getScriibiRubrics($level, $curriculumSchoolType): array
     {
         try
         {
-            $responseList = $traits = [];
-            $scriibiLevel = $level === 'NA' ? $this->scriibiLevelRepositoryInterface->getMinScriibiLevelOfTeacher($id) : $level;
-            $curriculumSchoolType = $this->userRepositoryInterface->getTeacherSchool($id)[0]->curriculum_school_type_id;
-            $rubrics = $this->rubricRepositoryInterface->getScriibiRubricIds($scriibiLevel, $curriculumSchoolType);
-
-            foreach($this->traitRepositoryInterface->all() as $trait){
-                $traits[$trait['id']] = [
-                    'name' => $trait['name'],
-                    'color' => $trait['color'],
-                    'icon' => $trait['icon'],
-                    'skills' => []
-                ];
-            }
-
-            foreach($this->rubricRepositoryInterface->getRubrics($rubrics) as $rubric){
-                $responseList[$rubric['id']] = [
-                    'name' => $rubric['name'],
-                    'scriibi_level_id' => $rubric['scriibi_level_id'],
-                    'traits' => $traits
-                ];
-            }
-
-            $rubricsWithSkills = $this->rubricRepositoryInterface->getRubricsWithSkills($rubrics);
-            $length = count($rubricsWithSkills);
-
-            for($i = 0; $i < $length; $i++){
-                $skillSet = $rubricsWithSkills[$i]['skills'];
-                $skilllCount = count($rubricsWithSkills[$i]['skills']);
-
-                for($j = 0; $j < $skilllCount; $j++){
-                    array_push($responseList[ $rubricsWithSkills[$i]['id'] ]['traits'][ $skillSet[$j]['traits'][0]['id'] ]['skills'], $skillSet[$j]);
-                }
-            }
-            return $responseList;
+            $rubrics = $this->rubricRepositoryInterface->getScriibiRubricIds($level, $curriculumSchoolType);
+            return $this->getRubricsWithSkills($rubrics);
         }
         catch (Exception $e)
         {
             return  [];
+        }
+    }
+
+    /**
+     * Accepts a list of rubric ids and returns an array of rubrics
+     * with associated skills grouped by traits
+     * @param $rubricIds
+     * @return array
+     */
+    protected function getRubricsWithSkills($rubricIds): array
+    {
+        try
+        {
+            $returnList = [];
+            $traits = $this->getTraitsStruct();
+            $rubrics = $this->rubricRepositoryInterface->getRubrics($rubricIds);
+            $rubricsLength = count($rubrics);
+
+            for($i = 0; $i < $rubricsLength; $i++)
+            {
+                $returnList[$rubrics[$i]['id']] =
+                    [
+                        'name' => $rubrics[$i]['name'],
+                        'scriibi_level_id' => $rubrics[$i]['scriibi_level_id'],
+                        'traits' => $traits
+                    ];
+            }
+
+            $rubricsWithSkills = $this->rubricRepositoryInterface->getRubricsWithGroupedSkills($rubricIds);
+            $rubricsWSkillslength = count($rubricsWithSkills);
+
+            for($j = 0; $j < $rubricsWSkillslength; $j++)
+            {
+                $skillSet = $rubricsWithSkills[$j]['skills'];
+                $skilllCount = count($rubricsWithSkills[$j]['skills']);
+
+                for($k = 0; $k < $skilllCount; $k++)
+                {
+                    array_push($returnList[ $rubricsWithSkills[$j]['id'] ]['traits'][ $skillSet[$k]['traits'][0]['id'] ]['skills'], $skillSet[$k]);
+                }
+            }
+            return $returnList;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Returns all available traits as key value pairs with the trait id as the
+     * key and trait data and an empty skills array as the value
+     * @return array
+     */
+    protected function getTraitsStruct(): array
+    {
+        try
+        {
+            $returnList = [];
+            $traits = $this->traitRepositoryInterface->all();
+            $length = count($traits);
+            for($i = 0; $i < $length; $i++)
+            {
+                $returnList[$traits[$i]['id']] =
+                    [
+                        'name' => $traits[$i]['name'],
+                        'color' => $traits[$i]['color'],
+                        'icon' => $traits[$i]['icon'],
+                        'skills' => []
+                    ];
+            }
+            return $returnList;
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 }

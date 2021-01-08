@@ -12,6 +12,10 @@ use App\Repositories\SkillRepository;
 use App\Repositories\CurriculumRepository;
 use App\Repositories\SchoolTypeRepository;
 use App\Repositories\SchoolRepository;
+use App\Repositories\ClassRepository;
+use App\Repositories\WritingTaskRepository;
+use App\Repositories\TeachingPeriodRepository;
+use App\Repositories\StudentRepository;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -21,6 +25,10 @@ use App\Repositories\Interfaces\SkillRepositoryInterface;
 use App\Repositories\Interfaces\CurriculumRepositoryInterface;
 use App\Repositories\Interfaces\SchoolTypeRepositoryInterface;
 use App\Repositories\Interfaces\SchoolRepositoryInterface;
+use App\Repositories\Interfaces\ClassRepositoryInterface;
+use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
+use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface;
+use App\Repositories\Interfaces\StudentRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -50,5 +58,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CurriculumRepositoryInterface::class, CurriculumRepository::class);
         $this->app->bind(SchoolTypeRepositoryInterface::class, SchoolTypeRepository::class);
         $this->app->bind(SchoolRepositoryInterface::class, SchoolRepository::class);
+        $this->app->bind(ClassRepositoryInterface::class, ClassRepository::class);
+        $this->app->bind(WritingTaskRepositoryInterface::class, WritingTaskRepository::class);
+        $this->app->bind(TeachingPeriodRepositoryInterface::class, TeachingPeriodRepository::class);
+        $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
     }
 }

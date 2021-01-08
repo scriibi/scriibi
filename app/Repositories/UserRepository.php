@@ -50,7 +50,7 @@ class UserRepository implements UserRepositoryInterface
      * @param $id
      * @return array
      */
-    public function getUserMemberships($id): ?array
+    public function getUserMemberships($id): array
     {
         try
         {

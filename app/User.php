@@ -80,4 +80,12 @@ class User extends Model
                     ->using('App\RubricTeacherTemplate')
                     ->withPivot(['id', 'rubric_id', 'teacher_id', 'created_at', 'updated_at']);
     }
+
+    /**
+     * Get the writing tasks that belong to the user/teacher.
+     */
+    public function writingTasks()
+    {
+        return $this->hasMany('App\WritingTask', 'primary_owner_id');
+    }
 }

@@ -84,4 +84,12 @@ class WritingTask extends Model
     {
         return $this->hasMany('App\TaskSkillStudentResult', 'writing_task_id');
     }
+
+    /**
+     * Get the user/teacher that owns the writing task.
+     */
+    public function teacher()
+    {
+        return $this->belongsTo('App\User', 'primary_owner_id');
+    }
 }

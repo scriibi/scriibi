@@ -18,11 +18,18 @@ class CreateWritingTasksTable extends Migration
             $table->string('name', 255)->nullable(false);
             $table->text('description')->nullable();
             $table->date('assessed_date')->nullable(false);
+            $table->bigInteger('primary_owner_id')->nullable(true)->unsigned();
             $table->integer('group_count')->nullable();
             $table->bigInteger('school_id')->unsigned();
             $table->bigInteger('teaching_period_id')->unsigned();
             $table->bigInteger('status_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('primary_owner_id', 'fk_wrt_tsk_scr_primary_owner_id')
+                ->references('id')
+                ->on('user')
+                ->onDelete('set null')
+                ->onUpdate('no action');
 
             $table->foreign('school_id', 'fk_wrt_tsk_scr_school_id')
                 ->references('id')

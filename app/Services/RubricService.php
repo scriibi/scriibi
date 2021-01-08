@@ -28,17 +28,15 @@ class RubricService
     * Creates a new teacher rubric template and attaches the associations to the
     * appropriate skills and teacher
     * @param $teacherId
-    * @param $templateName
-    * @param $templateLevel
-    * @param $templateSkills
+    * @param $template
     * @return bool
     */
-    public function saveTeacherTemplate($teacherId, $templateName, $templateLevel, $templateSkills): bool
+    public function saveTeacherTemplate($teacherId, $template): bool
     {
         try
         {
-            $rubric = $this->rubricRepositoryInterface->addRubric($templateName, $templateLevel);
-            $rubric->skills()->attach($templateSkills);
+            $rubric = $this->rubricRepositoryInterface->addRubric($template['name'], $template['level']);
+            $rubric->skills()->attach($template['skills']);
             $rubric->teachers()->attach($teacherId);
             return true;
         }
@@ -51,25 +49,21 @@ class RubricService
     /**
      * Creates a new scriibi rubric template and attaches the associations to the
      * appropriate skills and curriculum school type
-     * @param $rubricName
-     * @param $rubricLevel
-     * @param $curriculum
-     * @param $schoolType
-     * @param $rubricSkills
+     * @param $rubric
      * @return bool
      */
-    public function saveScriibiRubric($rubricName, $rubricLevel, $rubricSkills, $curriculum, $schoolType): bool
+    public function saveScriibiRubric($rubric): bool
     {
         try
         {
-            $rubric = $this->rubricRepositoryInterface->addRubric($rubricName, $rubricLevel);
-            $rubric->skills()->attach($rubricSkills);
+            $newRubric = $this->rubricRepositoryInterface->addRubric($rubric['name'], $rubric['level']);
+            $newRubric->skills()->attach($rubric['skills']);
             $curriculumSchoolType = DB::table('curriculum_school_type')
-                ->where('curriculum_id', $curriculum)
-                ->where('school_type_id', $schoolType)
+                ->where('curriculum_id', $rubric['curriculum'])
+                ->where('school_type_id', $rubric['schoolType'])
                 ->get()
                 ->toArray();
-            $rubric->curriculumSchoolType()->attach($curriculumSchoolType[0]->id);
+            $newRubric->curriculumSchoolType()->attach($curriculumSchoolType[0]->id);
             return true;
         }
         catch (Exception $e)
@@ -110,7 +104,7 @@ class RubricService
             $updatedRubric = $this->rubricRepositoryInterface->updateRubric($id, $name, $scriibiLevel);
             if($updatedRubric === null)
             {
-                throw new Exception('Rubric Could not be updated');
+                throw new Exception('Rubric could not be updated');
             }
             $skillsUpdated = RubricService::updateRubricSkills($updatedRubric, $skills);
             if($skillsUpdated)

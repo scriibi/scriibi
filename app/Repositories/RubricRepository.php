@@ -64,7 +64,8 @@ class RubricRepository implements RubricRepositoryInterface
     {
         try
         {
-            return $this->rubric->whereIn('id', $ids)
+            return $this->rubric
+                ->whereIn('id', $ids)
                 ->get()
                 ->toArray();
         }
@@ -75,15 +76,54 @@ class RubricRepository implements RubricRepositoryInterface
     }
 
     /**
+     * Return a specific rubric with its associated skills
+     * @param $id
+     * @return array
+     */
+    public function getRubricWithSkillIds($id): array
+    {
+        try
+        {
+            return $this->rubric
+                ->where('id', $id)
+                ->with('skills')
+                ->get()
+                ->map(function($rubric)
+                {
+                    $skills = [];
+                    $length = count($rubric->skills);
+                    for($i = 0; $i < $length; $i++)
+                    {
+                        array_push($skills, $rubric->skills[$i]->id);
+                    }
+                    return
+                        [
+                            'id' => $rubric->id,
+                            'name' => $rubric->name,
+                            'scriibi_level_id' => $rubric->scriibi_level_id,
+                            'skills' => $skills
+                        ];
+                })
+                ->toArray();
+
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
     * Return all specified rubrics with their associated skills and traits
     * @param array
     * @return array
     */
-    public function getRubricsWithSkills(array $ids): array
+    public function getRubricsWithGroupedSkills(array $ids): array
     {
         try
         {
-            return $this->rubric->whereIn('id', $ids)
+            return $this->rubric
+                ->whereIn('id', $ids)
                 ->with('skills.traits')
                 ->get()
                 ->toArray();
@@ -99,11 +139,12 @@ class RubricRepository implements RubricRepositoryInterface
     * @param $id
     * @return array
     */
-    public function getRubricWithSkills($id): array
+    public function getRubricWithGroupedSkills($id): array
     {
         try
         {
-            return $this->rubric::where('id', $id)
+            return $this->rubric
+                ->where('id', $id)
                 ->with('skills.traits')
                 ->first()
                 ->toArray();

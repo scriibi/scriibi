@@ -64,7 +64,7 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
     }
 
     /**
-     * Returns the minimum scriibi level (id) of a specified teacher
+     * Return the minimum scriibi level (id) of a specified teacher
      * @param $id
      * @return int
      */
@@ -82,6 +82,33 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
         catch (Exception $e)
         {
             return null;
+        }
+    }
+
+    /**
+     * Return all the scriibi levels of a specified teacher
+     * @param $id
+     * @return array
+     */
+    public function getScriibiLevelsOfTeacher($id): array
+    {
+        try
+        {
+            return $this->scriibiLevel
+                ->whereHas('teachers', function ($query) use($id)
+                {
+                    $query->where('user.id', $id);
+                })
+                ->get()
+                ->map(function($scriibiLevel)
+                {
+                    return $scriibiLevel->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 }

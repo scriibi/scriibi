@@ -367,7 +367,7 @@ header {
     height: 70px;
     width: auto;
     margin-left: 10px;
-    
+
 }
 
 .home-rubric-icon {
@@ -394,13 +394,13 @@ header {
     margin-left: 5px;
 }
 
-.desc-home {  
+.desc-home {
     display:grid;
     grid-template-columns:repeat(1,1fr);
     height:3cm;
     padding-top: 10px;
 }
-  
+
 .box{
     padding-top:10px;
     align-self:right;
@@ -411,7 +411,7 @@ header {
     font-size:1rem;
     text-align:right;
 }
-  
+
 .b{
     font-size:.725rem;
     align-self:baseline;
@@ -510,7 +510,21 @@ header {
     transition: 0.2s;
 }
 
-.back-btn{
+.assessment-builder-class-select {
+    border: 2px solid #D2D2D2;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.my-class-select{
+    width: 156px;
+}
+
+.other-class-select{
+    width: 187px;
+}
+
+.back-btn {
     border: 2px solid #D2D2D2;
     box-sizing: border-box;
     border-radius: 7px;
@@ -1290,7 +1304,7 @@ $skillset-colors-map: (
     padding-top:0.5em;
     padding-right:0.5em;
     padding-bottom:0.5em;
-    margin-top:1.5em;   
+    margin-top:1.5em;
     max-width:350px;
     height:auto;
     font-size: 14px;
@@ -1405,7 +1419,7 @@ $skillset-colors-map: (
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     text-align:left;
     padding-left:17px;
-    height:40px;  
+    height:40px;
 }
 
 .rubric-assessment > a {
@@ -1446,7 +1460,7 @@ table {
   }
 
 
-  
+
 td{
     padding:5px;
     //border:solid 1px #ccc;
@@ -1481,10 +1495,10 @@ td{
 
 table.dataTable.no-footer {
     border-bottom: 0;
-    
+
   }
-  
-  .dataTables_wrapper.no-footer .dataTables_scrollBody 
+
+  .dataTables_wrapper.no-footer .dataTables_scrollBody
   {
       border-bottom:0;
   }

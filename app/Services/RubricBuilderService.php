@@ -76,7 +76,6 @@ class RubricBuilderService
             {
                 throw new Exception('Method getSkillsInScriibiLevelRange() returned an empty array');
             }
-
             return (object)
                 [
                     'traits' => $traitsWithSkills,

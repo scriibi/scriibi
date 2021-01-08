@@ -15,7 +15,9 @@ use App\teachers;
 use App\WritingTask;
 use App\writing_tasks;
 use Illuminate\Http\Request;
+use App\Services\WritingTaskService;
 use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class WritingTasksController extends Controller
 {
@@ -45,79 +47,38 @@ class WritingTasksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param WritingTaskService $writingTaskService
+     * @param UserRepositoryInterface $userRepository
      */
-    public function store(Request $request)
+    public function store(Request $request, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository)
     {
         $students_list = array();
         try{
-            $assessment_title = $request->input('assessment_name');
-            $assessment_date = $request->input('assessment_date');
-            $assessment_description = $request->input('assessment_description');
-            $assessment_setting = $request->input('assess');
-            $assessment_rubric = $request->input('rubric');
-            $rubricType = DB::table('scriibi_rubrics')->where('rubric_id', '=', $assessment_rubric)->get()->toArray();
-            $rubric_details = Rubrics::find($assessment_rubric);
-            $rubric = new Rubric($rubric_details->rubric_Id, $rubric_details->rubric_Name, $rubric_details->created_at);
-            $rubric->populateTraits();
-            if(!empty($rubricType)){
-                $rubric->getSkillsByScriibiSpecificRubrics();
-            }else{
-                $rubric->getSkillsByRubric();
-            }
-            
-            $students = WritingTasksController::getStudents($assessment_setting);
-            
-            foreach($students as $student){
-                array_push($students_list, $student);
-            }
-            $writing_task_record = array('writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date, 'created_By_Teacher_User_Id' => Auth::user()->user_Id, 'teaching_period_Id' => 1, 'task_name' => $assessment_title, 'fk_rubric_id' => $assessment_rubric);
-            $newWritingTaskId = DB::table('writing_tasks')->insertGetId($writing_task_record);
-            $allTraits = $rubric->getRubricTraitSkills();
-            
-            foreach($allTraits as $trait){
-                $skills = $trait->getSkills();
-                foreach($skills as $skill){
-                    DB::table('tasks_skills')->insert(['writing_tasks_writing_task_Id' => $newWritingTaskId, 'skills_skill_Id' => $skill->getId()]);
-                }
-            }
-            foreach($students_list as $sl){
-                DB::table('writting_task_students')->insert(['fk_writting_task_id' => $newWritingTaskId, 'fk_student_id' => $sl, 'status' => 'incomplete']);
-            }
-            
-            /**
-             * Mixpanel Code
-             */
-            $schoolTeacherDetails = DB::table('school_teachers')->where('teachers_user_Id', Auth::user()->user_Id)->get();
-            $teacherScriibiLvlDetails = DB::table('teachers_scriibi_levels')->where('teachers_user_Id', Auth::user()->user_Id)->get();
-            $schoolDetails = schools::find($schoolTeacherDetails[0]->schools_school_Id);
-            $schoolTypeDetails = DB::table('school_types')->where('fk_curriculum_id', $schoolDetails->curriculum_details_curriculum_details_Id)->where('fk_school_type_identifier_id', $schoolDetails->school_type_identifier_id)->get();
-            $gradeLabelDetails = DB::table('grade_labels')->where('fk_school_type_id', $schoolTypeDetails[0]->school_type_id)->where('fk_scriibi_level_id', $teacherScriibiLvlDetails[0]->scriibi_levels_scriibi_Level_Id)->get();
-            if($assessment_setting == "mine"){
-                $option = "class";
-            }else if($option == "all"){
-                $option = "grade";
-            }
-            $NoOfAssessments = DB::table('writing_tasks')->where('created_By_Teacher_User_Id', Auth::user()->user_Id)->count();
-            $NoOfSkills = DB::table('rubrics_skills')->where('rubrics_rubric_Id', $assessment_rubric)->count();
-            $StudentsInTask = DB::table('writting_task_students')->where('fk_writting_task_id', $newWritingTaskId)->count();
+            $name = $request->input('assessment_name');
+            $description = $request->input('assessment_description');
+            $date = $request->input('assessment_date');
+            $classType = $request->input('assess');
+            $class = $request->input($classType);
+            $rubric = $request->input('rubric');
+            $school = $userRepository->getTeacherSchool(Auth::user()->id)->toArray();
+            $status = DB::table('status')
+                ->where('name', 'active')
+                ->get()
+                ->toArray();
+            $input =
+                [
+                    'name' => $name,
+                    'description' => $description,
+                    'date' => $date,
+                    'owner_id' => Auth::user()->id,
+                    'school' => $school[0],
+                    'status' => $status[0]->id,
+                    'class' => $class,
+                    'rubric' => $rubric,
+                ];
 
-            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-            $mp->identify(Auth::user()->user_Id);
-            $mp->track("Assessment Created", array(
-                "Assessment Id"             => $newWritingTaskId,
-                "Assesment Name"            => $assessment_title,
-                "Teacher Grade"             => $gradeLabelDetails[0]->grade_label,
-                "Teacher Scriibi Level"     => ScriibiLevels::find($gradeLabelDetails[0]->fk_scriibi_level_id)->scriibi_Level,
-                "Rubric Id"                 => $assessment_rubric,
-                "Class or Grade"            => $option,
-                "No. of Assessments"        => $NoOfAssessments,
-                "No. of Rubric Skills"      => $NoOfSkills,
-                "No. of Current Students"   => $StudentsInTask
-              )
-            );
-
+            $result = $writingTaskService->saveWritingTask($input);
             return redirect()->action('AssessmentListController@GenerateAssessmentList');
         }catch(Exception $e){
             //todo
@@ -196,7 +157,7 @@ class WritingTasksController extends Controller
             DB::table('writing_tasks')
             ->where('writing_task_Id', $assessment_id)
             ->update(['task_name' => $assessment_title, 'writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date]);
-            
+
             return redirect()->action('WritingTasksController@ShowWritingTask', ['id' => $assessment_id]);
         }
         catch(Exception $e){
@@ -225,7 +186,7 @@ class WritingTasksController extends Controller
 
     /**
      * reset the deleted_at field for a specific writing task back to null indicating
-     * that the assessment has been restored 
+     * that the assessment has been restored
      */
     public function restoreSoftDelete($assessmentId){
         DB::table('writing_tasks')
@@ -257,7 +218,7 @@ class WritingTasksController extends Controller
      */
     public function show(writing_tasks $writing_tasks)
     {
-        
+
     }
 
     /**
@@ -274,7 +235,7 @@ class WritingTasksController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\writing_tasks  $writing_tasks
      * @return \Illuminate\Http\Response
      */
