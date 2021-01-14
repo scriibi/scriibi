@@ -37,12 +37,36 @@ class WritingTaskService
         $this->studentRepositoryInterface = $studentRepoInt;
     }
 
+    /**
+     * Returns all writing task details of a specified Id value
+     * @param $id
+     * @return array
+     */
+    public function getWritingTask($id): array
+    {
+        try
+        {
+            return $this->writingTaskRepositoryInterface->getWritingTask($id);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Creates a new writing task along with a new rubric and creates all
+     * required associations between the task and rubric, classes, students
+     * and skills
+     * @param $writingTask
+     * @return bool
+     */
     public function saveWritingTask($writingTask): bool
     {
         try
         {
             $newRubricName = 'Writing Task Rubric';
-            $year = $this->getYearFromDate($writingTask['date']);
+            $year = $this->extractYearFromDate($writingTask['date']);
             $teachingPeriod = $this->teachingPeriodRepositoryInterface->getTeachingPeriodOfDate($year, $writingTask['date'], $writingTask['school']['curriculum_school_type_id']);
             $writingTaskDetails =
                 [
@@ -125,7 +149,7 @@ class WritingTaskService
      * @param $date
      * @return string|null
      */
-    public function getYearFromDate($date): ?string
+    public function extractYearFromDate($date): ?string
     {
         try
         {

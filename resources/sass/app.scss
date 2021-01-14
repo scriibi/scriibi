@@ -592,9 +592,26 @@ header {
     font-family: Raleway;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 18px;
+    line-height: 18px;
     color: #000000;
+}
+
+.Assessment-details-date{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 13px;
+    line-height: 13px;
+    color: #000000;
+}
+
+.Assessment-details-description{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 11px;
 }
 
 .Assessment-Studentlist-heading{
@@ -606,10 +623,47 @@ header {
     color: #33A849;
 }
 
+.assignment-action-button{
+    background-color: #FFFFFF;
+    border: 1px solid #33A849;
+    border-radius: 5px;
+    color: #33A849;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.assignment-action-button:hover{
+    background-color: #33A849;
+    color: #FFFFFF;
+}
+
+.assignment-action-button-delete{
+    background-color: rgba(218,74,84);
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.assignment-action-button-delete:hover{
+    color: #FFFFFF;
+}
+
+.assessment-details-card{
+    border: 1px solid #C4C4C4;
+    border-radius: 7px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    color: black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 .Assessment-Student-list-cell{
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
-    height: 50px;
+    height: 70px;
     padding: 12px 0px;
     border: 2px solid #FBFBFB;
     color: black;
@@ -623,10 +677,26 @@ header {
 
 }
 
+.assessment-delete-student-checkbox{
+    width: 25px;
+    height: 25px;
+}
+
+.add-students-modal-list{
+    height: 200px;
+    overflow-y: scroll;
+}
+
 .save-exit-btn{
     background-color: #33A849;
     border-radius: 7px;
     color: #FFFFFF;
+    transition: 0.2s;
+}
+
+.save-exit-btn:hover{
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .rubric-tooltip {
@@ -636,7 +706,7 @@ header {
     position: absolute;
     background-color: #e8e8e8;
     border-radius: 7px;
-    bottom: 45px;
+    top: 40px;
     left: 0;
     padding: 2px;
     z-index: 2;
@@ -648,6 +718,13 @@ header {
 .rubric-tooltip-skills{
     border-radius: 7px;
     background-color: #FFFFFF;
+}
+
+.assessment-studentlist-rubric{
+    border: 2px solid #C4C4C4;
+    border-radius: 5px;
+    height: 37px;
+    width: 170px;
 }
 
 .assessment-studentlist-rubric:hover .rubric-tooltip {
@@ -2193,7 +2270,7 @@ box-sizing: border-box;
 }
 
 .assessment-list-card-assessment-page{
-    width: 430px;
+    width: 200px;
     height: 32px;
     background: #dfdfdf;
     padding-top: 5px;
@@ -2261,3 +2338,26 @@ box-sizing: border-box;
         margin-top: 22%;
     }
   }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    box-shadow: inset 0 0 1px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #AAAAAA;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #AAAAAA;
+}

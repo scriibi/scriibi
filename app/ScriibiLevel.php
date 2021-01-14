@@ -78,4 +78,20 @@ class ScriibiLevel extends Model
     {
         return $this->hasMany('App\TaskSkillStudentResult', 'result');
     }
+
+    /**
+     * Get the students for the grade scriibi level.
+     */
+    public function studentGradeLevel()
+    {
+        return $this->hasMany('App\Student', 'grade_level_id');
+    }
+
+    /**
+     * Get the students for the assessed scriibi level.
+     */
+    public function studentAssessedLevel()
+    {
+        return $this->hasMany('App\Student', 'assessed_level_id');
+    }
 }

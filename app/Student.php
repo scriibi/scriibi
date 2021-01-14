@@ -40,4 +40,20 @@ class Student extends Model
     {
         return $this->hasMany('App\TaskSkillStudentResult', 'student_id');
     }
+
+    /**
+     * Get the grade scriibi level that owns the student.
+     */
+    public function gradeLevel()
+    {
+        return $this->belongsTo('App\ScriibiLevel', 'grade_level_id');
+    }
+
+    /**
+     * Get the assessed scriibi level that owns the student.
+     */
+    public function assessedLevel()
+    {
+        return $this->belongsTo('App\ScriibiLevel', 'assessed_level_id');
+    }
 }

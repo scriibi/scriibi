@@ -32,6 +32,7 @@ class ClassRepository implements ClassRepositoryInterface
         {
             return $this->class
                 ->where('school_id', $schoolId)
+                ->where('status_flag', 'active')
                 ->whereHas('teachers', function ($query) use($teacherId)
                 {
                     $query->where('user.id', $teacherId);
@@ -62,6 +63,37 @@ class ClassRepository implements ClassRepositoryInterface
                     $query->whereIn('scriibi_level.id', $scriibiIds);
                 })
                 ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all the ids of the currently active
+     * classes associated with the specified teacher
+     * @param $teacherId
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassIdsOfTeacher($teacherId, $schoolId): array
+    {
+        try
+        {
+            return $this->class
+                ->where('school_id', $schoolId)
+                ->where('status_flag', 'active')
+                ->whereHas('teachers', function ($query) use($teacherId)
+                {
+                    $query->where('user.id', $teacherId);
+                })
+                ->get()
+                ->map(function($class)
+                {
+                    return $class->id;
+                })
                 ->toArray();
         }
         catch (Exception $e)

@@ -214,6 +214,30 @@ class RubricRepository implements RubricRepositoryInterface
     }
 
     /**
+     * Returns the rubric associated with a specified writing task
+     * @param $taskId
+     * @return array
+     */
+    public function getRubricOfWritingTask($taskId): array
+    {
+        try
+        {
+            return $this->rubric
+                ->whereHas('writingTasks', function ($query) use($taskId)
+                {
+                    $query->where('writing_task.id', $taskId);
+                })
+                ->get()
+                ->toArray();
+
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
     * Create and save a new Rubric instance
     * @param $name
     * @param $scriibiLevel

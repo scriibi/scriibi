@@ -24,16 +24,16 @@ class RubricListingService
     }
 
     /**
-     * Return a teacher rubric template and its associated skills grouped by traits
-     * @param $id
+     * Return a specified rubric and its associated skills grouped by traits
+     * @param $rubricId
      * @return array
      */
-    public function getTeacherTemplate($id): array
+    public function getRubricDetails($rubricId): array
     {
         try
         {
             $traitsList = [];
-            $rubric = $this->rubricRepositoryInterface->getRubricWithGroupedSkills($id);
+            $rubric = $this->rubricRepositoryInterface->getRubricWithGroupedSkills($rubricId);
             $returnList =
                 [
                     'id' => $rubric['id'],
@@ -68,14 +68,14 @@ class RubricListingService
 
     /**
     * Return a list of all rubrics and their skills grouped by traits
-    * @param $id
+    * @param $teacherId
     * @return array
     */
-    public function getTeacherTemplates($id): array
+    public function getTeacherTemplates($teacherId): array
     {
         try
         {
-            $rubrics = $this->rubricRepositoryInterface->getTeacherTemplateIds($id);
+            $rubrics = $this->rubricRepositoryInterface->getTeacherTemplateIds($teacherId);
             return $this->getRubricsWithSkills($rubrics);
         }
         catch (Exception $e)
@@ -109,7 +109,7 @@ class RubricListingService
      * @param $rubricIds
      * @return array
      */
-    protected function getRubricsWithSkills($rubricIds): array
+    public function getRubricsWithSkills($rubricIds): array
     {
         try
         {

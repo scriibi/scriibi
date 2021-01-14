@@ -96,8 +96,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     //assessment routes
     Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup'); // done (needs improvement for js and css on client side)
-    Route::post('/assessment-submit', 'WritingTasksController@store');
-    Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');
+    Route::post('/assessment-submit', 'WritingTasksController@store'); // done (check save speed once deployed onto AWS, sanitize the data)
+    Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList'); // done
     Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');
     Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');
     Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
     Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics'); // done
     Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel'); // done (do data validation)
+    Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam');
     Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');
     Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel');

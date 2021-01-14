@@ -4,20 +4,19 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use Mixpanel;
 use Exception;
-use App\Rubrics;
-use App\schools;
 use App\Rubric;
-use App\classes;
-use App\ScriibiLevels;
-use App\teachers;
 use App\WritingTask;
 use App\writing_tasks;
 use Illuminate\Http\Request;
 use App\Services\WritingTaskService;
 use App\Http\Controllers\Controller;
+use App\Services\RubricListingService;
+use App\Repositories\RubricRepository;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 class WritingTasksController extends Controller
 {
@@ -33,15 +32,6 @@ class WritingTasksController extends Controller
 
     public function indexSingleTask($taskId){
         return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.writing_task_Id', '=', $taskId)->get()->toArray();
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -85,61 +75,45 @@ class WritingTasksController extends Controller
         }
     }
 
-    /**
-     * these queries have been written seperately for ease of use but can be optimized further with joins and caching
-     */
-    public function getStudents($assessment_setting){
-        $students_list = array();
-        if($assessment_setting == 'mine'){
-            $classes = teachers::find(Auth::user()->user_Id)->classes;
-            foreach($classes as $class){
-                $students_in_class = DB::table('classes_students')->select('students_student_Id')->where('classes_students.classes_class_Id', '=', $class->class_Id)->get();
-                foreach($students_in_class as $sic){
-                    array_push($students_list, $sic->students_student_Id);
-                }
-            }
-        }else{
-            $teacher_grade = DB::table('teachers_scriibi_levels')->select('teachers_scriibi_levels.scriibi_levels_scriibi_Level_Id')->where('teachers_scriibi_levels.teachers_user_Id', '=', Auth::user()->user_Id)->first();
-            $school = DB::table('school_teachers')->select('school_teachers.schools_school_Id')->where('school_teachers.teachers_user_Id', '=', Auth::user()->user_Id)->first();
-            $students = DB::table('students')->select('students.student_Id')->where('students.enrolled_Level_Id', '=', $teacher_grade->scriibi_levels_scriibi_Level_Id)->where('students.schools_school_Id', '=', $school->schools_school_Id)->get();
-            foreach($students as $student){
-                array_push($students_list, $student->student_Id);
-            }
-        }
-        return $students_list;
-    }
-
-    public function ShowWritingTask($assessment_id){
+    public function ShowWritingTask($assessment_id, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository, RubricListingService $rubricListingService, RubricRepository $rubricRepository, WritingTaskRepositoryInterface $writingTaskRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository){
         try{
-            $writing_task_details = writing_tasks::find($assessment_id);
-            $newWritingTask = new WritingTask($writing_task_details->writing_task_Id, $writing_task_details->task_name, $writing_task_details->writing_Task_Description, $writing_task_details->created_at, $writing_task_details->created_Date, $writing_task_details->created_By_Teacher_User_Id, $writing_task_details->teaching_period_Id, $writing_task_details->fk_rubric_id);
-            $newWritingTask->populateStudents();
-            $skillCount = DB::table('rubrics_skills')->where('rubrics_rubric_Id', '=', $writing_task_details->fk_rubric_id)->count();
-            $markingCompletedAmount = DB::table('writting_task_students')->where('fk_writting_task_id', '=', $writing_task_details->writing_task_Id)->where('status', '=', 'completed')->count();
-            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-            $mp->identify(Auth::user()->user_Id);
-
-            $mp->track("Page Viewed", array(
-                    "Page Id"           => "P032",
-                    "Page Name"         => "Single Assessment Page",
-                    "Page URL"          => "",
-                    "Check Email"       => ""
-                )
+            $writingTask = $writingTaskService->getWritingTask($assessment_id);
+            $rubricId = $rubricRepository->getRubricOfWritingTask($writingTask[0]['id'])[0]['id'];
+            $rubric = $rubricListingService->getRubricDetails($rubricId);
+            $students = $writingTaskRepository->getStudentsOfWritingTask($writingTask[0]['id']);
+            $curriculumSchoolType = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['curriculum_school_type_id'];
+            $assessedLabels = $this->formatLabels($assessedLabelRepository->getAssessedLabels($curriculumSchoolType));
+            $gradeLabels = $this->formatLabels($gradeLabelRepository->getGradeLabels($curriculumSchoolType));
+            return view('assessment-studentlist',
+                [
+                    'writingTask' => $writingTask,
+                    'rubric' => $rubric,
+                    'students' => $students,
+                    'assessedLabels' => $assessedLabels,
+                    'gradeLabels' => $gradeLabels
+                ]
             );
-            $mp->track("Assessment Viewed", array(
-                "Assessment Id"                  => $assessment_id,
-                "Assessment Name"                => $writing_task_details->task_name,
-                "No. of Current Students"        => count($newWritingTask->getStudents()),
-                "Assessment Marks Completed"     => $markingCompletedAmount,
-                "No. of Rubric Skills"           => $skillCount,
-                "Rubric Id"                      => $writing_task_details->fk_rubric_id,
-                "Historical Event Flag"          => "",
-              )
-            );
-            return view('assessment-studentlist', ['writingTask' => $newWritingTask]);
         }catch(Exception $ex){
             throw $ex;
             //todo
+        }
+    }
+
+    protected function formatLabels($labels): array
+    {
+        try
+        {
+            $result = [];
+            $length = count($labels);
+            for($i = 0; $i < $length; $i++)
+            {
+                $result[$labels[$i]['scriibi_level_id']] = $labels[$i]['label'];
+            }
+            return $result;
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 
@@ -208,50 +182,5 @@ class WritingTasksController extends Controller
             ->get()
             ->toArray();
         return response()->json($skills);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\writing_tasks  $writing_tasks
-     * @return \Illuminate\Http\Response
-     */
-    public function show(writing_tasks $writing_tasks)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\writing_tasks  $writing_tasks
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(writing_tasks $writing_tasks)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  \App\writing_tasks  $writing_tasks
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, writing_tasks $writing_tasks)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\writing_tasks  $writing_tasks
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(writing_tasks $writing_tasks)
-    {
-        //
     }
 }

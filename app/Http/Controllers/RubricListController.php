@@ -38,8 +38,8 @@ class RubricListController extends Controller
     {
         try
         {
-            $rubrics = $rubricListingServiceInstance->getTeacherTemplate($rubric_id);
-            return view('rubric-details', ['data' => $rubrics]);
+            $rubric = $rubricListingServiceInstance->getRubricDetails($rubric_id);
+            return view('rubric-details', ['data' => $rubric]);
         }
         catch (Exception $e)
         {

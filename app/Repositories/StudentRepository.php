@@ -42,6 +42,29 @@ class StudentRepository implements StudentRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all the students who are associated with a given classes
+     * @param $ids
+     * @return array
+     */
+    public function getStudentsOfClasses($ids): array
+    {
+        try
+        {
+            return $this->student
+                ->whereHas('classes', function($query) use($ids)
+                {
+                    $query->whereIn('class.id', $ids);
+                })
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

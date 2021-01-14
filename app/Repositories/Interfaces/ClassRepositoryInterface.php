@@ -19,6 +19,15 @@ interface ClassRepositoryInterface
      * @return array
      */
     public function getClassesOfScriibiLevels($scriibiIds, $schoolId): array;
+
+    /**
+     * Return all the ids of the currently active
+     * classes associated with the specified teacher
+     * @param $teacherId
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassIdsOfTeacher($teacherId, $schoolId): array;
 }
 
 ?>

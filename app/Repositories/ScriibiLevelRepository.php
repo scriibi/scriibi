@@ -21,6 +21,22 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
     }
 
     /**
+     * Return all scriibi levels in the system
+     * @return array
+     */
+    public function all(): array
+    {
+        try
+        {
+            return $this->scriibiLevel::all();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
     * Return the scriibi level value of a given scriibi level id
     * @param $id
     * @return int
@@ -86,7 +102,7 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
     }
 
     /**
-     * Return all the scriibi levels of a specified teacher
+     * Return all the scriibi levels (ids) of a specified teacher
      * @param $id
      * @return array
      */

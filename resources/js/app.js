@@ -555,9 +555,43 @@ $(function(){
                 $("#assessment-status").find("input").val("1");
             }
         })
-    })
+    });
 
+    //=================== ASSESSMENT STUDENTLIST ===================================
 
+    $('.assessment-add-students-btn').on('click', function ($event){
+        let url_origin = window.location.origin;
+        url_origin += '/get-team-students/' + $(this).data('task-id');
+        fetch(url_origin)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data)
+            let length = data.length;
+            let parent = $('.add-students-modal-list');
+            let template = $('.add-students-row').first();
+            parent.empty();
+            for(let i = 0; i < length; i++)
+            {
+                let newRow = template.clone();
+                newRow.find('input').val(data[i].id);
+                newRow.find('input').prop('checked', false);
+                newRow.find('label').text(data[i].first_name + ' ' + data[i].last_name);
+                newRow.removeAttr('hidden');
+                parent.append(newRow);
+            }
+            $('#add-students-modal').modal('show');
+        });
+    });
+
+    $('.add-students-confirm-btn').on('click', function ($event){
+        let set = [];
+        $('.add-students-check:checkbox:checked').each(function (index){
+            set.push($(this).val());
+        })
+        console.log(set);
+    });
 
 //======================== ASSESSMENT SETUP =========================================
 

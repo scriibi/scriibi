@@ -16,6 +16,7 @@ use App\Repositories\ClassRepository;
 use App\Repositories\WritingTaskRepository;
 use App\Repositories\TeachingPeriodRepository;
 use App\Repositories\StudentRepository;
+use App\Repositories\GradeLabelRepository;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -29,6 +30,7 @@ use App\Repositories\Interfaces\ClassRepositoryInterface;
 use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
 use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface;
 use App\Repositories\Interfaces\StudentRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -62,5 +64,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(WritingTaskRepositoryInterface::class, WritingTaskRepository::class);
         $this->app->bind(TeachingPeriodRepositoryInterface::class, TeachingPeriodRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
+        $this->app->bind(GradeLabelRepositoryInterface::class, GradeLabelRepository::class);
     }
 }

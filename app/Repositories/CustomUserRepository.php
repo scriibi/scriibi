@@ -66,7 +66,7 @@ class CustomUserRepository extends Auth0UserRepository
             \Cookie::queue(
                 \Cookie::forget('XSRF-TOKEN')
             );
-            abort('403', 'There\'s an issue with your credentials. Please contact info@scriibi.com');
+            abort('403', 'There\'s an issue with your credentials in the new application v3.0. Please contact info@scriibi.com');
         }
         return new Auth0User( $user->getAttributes(), $userinfo['accessToken'] );
     }

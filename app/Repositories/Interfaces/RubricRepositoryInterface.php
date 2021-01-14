@@ -64,6 +64,13 @@ interface RubricRepositoryInterface
     public function getScriibiRubricIds($level, $curriculumSchoolTypeId): array;
 
     /**
+     * Returns the rubric associated with a specified writing task
+     * @param $taskId
+     * @return array
+     */
+    public function getRubricOfWritingTask($taskId): array;
+
+    /**
     * Create and save a new Rubric instance
     * @param $name
     * @param $scriibiLevel

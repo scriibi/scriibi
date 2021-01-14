@@ -14,6 +14,7 @@ use App\ScriibiLevels;
 use App\assessed_level_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\StudentListingService;
 
 class StudentsController extends Controller
 {
@@ -76,7 +77,7 @@ class StudentsController extends Controller
 
             DB::table('students')->where('student_Id', $student_id)->update(['enrolled_Level_Id' => null]);
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
-            
+
             $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Student Deleted", array(
@@ -126,7 +127,7 @@ class StudentsController extends Controller
                 ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
                 ->where('writting_task_students.fk_writting_task_id', '=', $writingTask)
                 ->get()
-                ->toArray();   
+                ->toArray();
         }catch(Exception $e){
             abort(403, 'Please log in to view this page!');
         }
@@ -134,53 +135,10 @@ class StudentsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function show(students $students)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(students $students)
-    {
-
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
@@ -217,5 +175,17 @@ class StudentsController extends Controller
         }
 
         return redirect()->action('StudentInputController@ReturnStudentListPage');
+    }
+
+    public function getStudentsOfMyTeam($taskId, StudentListingService $studentListingService)
+    {
+        try
+        {
+            return $studentListingService->getStudentsOfTeam(Auth::user()->id, $taskId);
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
     }
 }

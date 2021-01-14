@@ -6,28 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssessementSetupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssessementSetupController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssessmentListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssessmentListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RubricListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RubricListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RubricsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RubricsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WritingTasksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WritingTasksController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ClassRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ClassRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CustomUserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CustomUserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/ClassRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/ClassRepositoryInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/RubricRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/RubricRepositoryInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/ScriibiLevelRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/ScriibiLevelRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/UserRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/UserRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/StudentRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/StudentRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/WritingTaskRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/WritingTaskRepositoryInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/RubricRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/RubricRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/ScriibiLevelRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ScriibiLevelRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/RubricBuilderService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricBuilderService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StudentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/WritingTaskRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/WritingTaskRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ScriibiLevel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ScriibiLevel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/RubricListingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricListingService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/RubricService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/RubricService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WritingTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WritingTask.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/WritingTaskListingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/WritingTaskListingService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/WritingTaskService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/WritingTaskService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Student.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_05_000855_create_writing_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_05_000855_create_writing_tasks_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assessment-setup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-setup.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assessment-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assessment-studentlist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-studentlist.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +200,7 @@
       <workItem from="1609192593399" duration="12130000" />
       <workItem from="1609284106315" duration="4225000" />
       <workItem from="1609290733520" duration="27962000" />
-      <workItem from="1609465556286" duration="147007000" />
+      <workItem from="1609465556286" duration="241771000" />
     </task>
     <servers />
   </component>
