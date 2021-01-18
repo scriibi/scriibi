@@ -13,6 +13,7 @@
             <div class="col-8">
                 <div class="row no-gutters">
                     <div class="col-6">
+                        <span class="writing-task-id" data-writing-task-id="{{$writingTask[0]['id']}}" hidden="hidden"></span>
                         <h5 class="Assessment-Studentlist-title">{{$writingTask[0]['name']}}</h5>
                         <h5 class="Assessment-details-date"><strong><?php echo (date("d-m-Y", strtotime($writingTask[0]['assessed_date']))); ?></strong></h5>
                         <div class="row no-gutters mt-4">
@@ -110,10 +111,6 @@
                                     </div>
                                 </span>
                             </div>
-{{--                            <?php--}}
-{{--                            $editRubricUrl = '/rubric-edit/' . $rubric['id'] . '/' . $writingTask[0]['id'];--}}
-{{--                            ?>--}}
-{{--                            <button type="button" name="button" class="btn save-exit-btn ml-xl-2 mt-2 pt-1 pb-1"  onclick="location.href='{{ url($editRubricUrl) }}'">Edit Rubric</button>--}}
                         </div>
                     </div>
                     <div class="col-6">
@@ -134,14 +131,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
         <!-- show list of students whether is 'my student' or 'all students' -->
         <div class="row mt-5">
             <div class="col-12">
@@ -152,11 +141,10 @@
                     <p>Click on each student to grade them</p>
                 </div>
                 <div>
-{{--                    <button type="button" name="button" class="btn assessment-add-students-btn assignment-action-button mt-2 pt-1 pb-1 ml-auto mr-2" data-task-id="{{$writingTask[0]['id']}}">+ Add Student</button>--}}
-                        <a href="http://127.0.0.1:8001//get-team-students/{{$writingTask[0]['id']}}">click me</a>
+                    <button type="button" name="button" class="btn assessment-add-students-btn assignment-action-button mt-2 pt-1 pb-1 ml-auto mr-2" data-task-id="{{$writingTask[0]['id']}}">+ Add Student</button>
                 </div>
                 <div>
-                    <button type="button" name="button" class="btn assignment-action-button-delete mt-2 pt-1 pb-1 ml-auto" >- Remove Student</button>
+                    <button type="button" name="button" class="btn asmnt-rmv-stu-btn assignment-action-button-delete mt-2 pt-1 pb-1 ml-auto" disabled="disabled">- Remove Student</button>
                 </div>
             </div>
             <div class="col-12">
@@ -169,15 +157,15 @@
                         <p class="col-1 text-left px-0"></p>
                     </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 assessment-student-list">
             @foreach($students as $s)
-                <a href="/assessment-marking/{{$s['id']}}/{{$writingTask[0]['id']}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button">
+                <a href="/assessment-marking/{{$s['id']}}/{{$writingTask[0]['id']}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button" data-student-card-id="{{$s['id']}}">
                     <p class="col-3 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['first_name']}} {{$s['last_name']}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0 @if($s['pivot']['status_flag'] == "completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s['pivot']['status_flag']}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['school_mgt_sys_id']}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$assessedLabels[$s['grade_level_id']]}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$gradeLabels[$s['assessed_level_id']]}}</p>
-                    <input type="checkbox" name="assessment-delete-students[]" class="col-1 assessment-delete-student-checkbox align-self-center text-left pl-3">
+                    <input type="checkbox" name="assessment-delete-students[]" value="{{$s['id']}}" class="col-1 assessment-delete-student-checkbox align-self-center text-left pl-3">
                 </a>
             @endforeach
             </div>
@@ -189,10 +177,17 @@
 </div>
 @endsection
 
-
+<a class="row btn-block Assessment-Student-list-cell student-list-cell-template d-flex justify-content-start px-0" role="button" hidden="hidden">
+    <p class="col-3 student-list-name rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0"></p>
+    <p class="col-2 student-list-status rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0"></p>
+    <p class="col-2 student-list-scl-mgmt-id rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0"></p>
+    <p class="col-2 student-list-grade rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0"></p>
+    <p class="col-2 student-list-assessed rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0"></p>
+    <input type="checkbox" name="assessment-delete-students[]" class="col-1 assessment-delete-student-checkbox align-self-center text-left pl-3">
+</a>
 
 <div class="modal" id="add-students-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><strong>Add Students</strong></h5>
@@ -201,6 +196,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="add-students-modal-selected p-1"></div>
                 <div class="add-students-modal-list">
                     <div class="add-students-row" hidden="hidden">
                         <input type="checkbox" class="add-students-check" name="add-students-check[]" value="">
@@ -211,6 +207,26 @@
             <div class="modal-footer">
                 <button type="button" name="button" class="btn btn add-students-confirm-btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Done</button>
                 <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="delete-students-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-justify"><strong>Discard Results?</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Removing these students from the assessment will delete any results, student work and comments that you have already recorded for them.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="button" class="btn asmnt-rmv-stu-confmr-btn btn-danger mt-2 pt-1 pb-1 mr-2">Yes, discard results</button>
+                <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">No, go back</button>
             </div>
         </div>
     </div>

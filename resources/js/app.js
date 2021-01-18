@@ -567,21 +567,32 @@ $(function(){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
             let length = data.length;
             let parent = $('.add-students-modal-list');
             let template = $('.add-students-row').first();
+            $('.add-students-modal-selected').empty();
             parent.empty();
             for(let i = 0; i < length; i++)
             {
                 let newRow = template.clone();
+                let fullName = data[i].first_name + ' ' + data[i].last_name;
                 newRow.find('input').val(data[i].id);
+                newRow.find('input').attr('data-stu-name', fullName);
                 newRow.find('input').prop('checked', false);
-                newRow.find('label').text(data[i].first_name + ' ' + data[i].last_name);
+                newRow.find('label').text(fullName);
                 newRow.removeAttr('hidden');
                 parent.append(newRow);
             }
             $('#add-students-modal').modal('show');
+            $('.add-students-check').on('change', function($event){
+                let parent = $('.add-students-modal-selected');
+                let name = $(this).attr('data-stu-name');
+                if($(this).is(':checked')){
+                    parent.append(`<div class="add-student-modal-name-tag m-1" data-tag-name=${name.replace(' ', '_')}>` + name + `</div>`)
+                }else{
+                    parent.find(`[data-tag-name=${name.replace(' ', '_')}]`).remove();
+                }
+            });
         });
     });
 
@@ -590,9 +601,104 @@ $(function(){
         $('.add-students-check:checkbox:checked').each(function (index){
             set.push($(this).val());
         })
-        console.log(set);
+        if(typeof set !== 'undefined' && set.length > 0){
+            let writingTaskId = $('.writing-task-id').attr('data-writing-task-id');
+            let url_origin = window.location.origin;
+            url_origin += '/add-students-to-task';
+            let body = new FormData();
+            body.append('writingTaskId', writingTaskId);
+            body.append('students', set);
+            let options = {
+                method: 'POST',
+                credentials: 'same-origin',
+                mode: 'same-origin',
+                body: body
+            };
+            fetch(url_origin, options)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function (data){
+                console.log(data);
+                let parent = $('.assessment-student-list');
+                let studentRow = $('.student-list-cell-template');
+                let studentCount = data.students.length;
+                for(let i = 0; i < studentCount; i++){
+                    let newStudent = studentRow.clone();
+                    newStudent.attr('href', `/assessment-marking/${data.students[i].id}/${data.writingTaskId}`);
+                    newStudent.attr('data-student-card-id', data.students[i].id);
+                    newStudent.find('.student-list-name').text(data.students[i].first_name + ' ' + data.students[i].last_name);
+                    newStudent.find('.student-list-status').text(data.taskStatus);
+                    newStudent.find('.student-list-status').addClass('incomplete-style');
+                    newStudent.find('.student-list-scl-mgmt-id').text(data.students[i].school_mgt_sys_id);
+                    newStudent.find('.student-list-grade').text(data.gradeLabels[data.students[i].grade_level_id]);
+                    newStudent.find('.student-list-assessed').text(data.assessedLabels[data.students[i].assessed_level_id]);
+                    newStudent.find('input[name="assessment-delete-students[]"]').val(data.students[i].id);
+                    newStudent.removeClass('student-list-cell-template');
+                    newStudent.prop('hidden', false);
+                    parent.prepend(newStudent);
+                }
+                attachAssessmentStudentDeleteCheckboxListener();
+                $('#add-students-modal').modal('hide');
+            });
+        }
     });
 
+    if(window.location.pathname.includes('/single-assessment/')){
+        attachAssessmentStudentDeleteCheckboxListener();
+    }
+
+    function attachAssessmentStudentDeleteCheckboxListener(){
+        $('input[name="assessment-delete-students[]"]').on('change', function(event){
+           if($('input[name="assessment-delete-students[]"]:checkbox:checked').length > 0){
+               $('.asmnt-rmv-stu-btn').prop('disabled', false);
+           }
+           else{
+               $('.asmnt-rmv-stu-btn').prop('disabled', true);
+           }
+        });
+    }
+
+    $('.asmnt-rmv-stu-btn').on('click', function (event){
+        $('#delete-students-modal').modal('show');
+    });
+
+    $('.asmnt-rmv-stu-confmr-btn').on('click', function (event){
+        let set  = [];
+        let url_origin = window.location.origin;
+        url_origin += '/delete-students-from-task';
+        let writingTaskId = $('.writing-task-id').attr('data-writing-task-id');
+        $('input[name="assessment-delete-students[]"]:checkbox:checked').each(function (index){
+            set.push($(this).val());
+        });
+        let body = {
+            writingTask: writingTaskId,
+            students: set
+        }
+        let options = {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }
+        fetch(url_origin, options)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function (data){
+           if(data)
+           {
+                for(let s of set){
+                    let selector = `[data-student-card-id="${s}"]`
+                    $(selector).remove();
+                }
+           }
+            $('#delete-students-modal').modal('hide');
+        });
+    });
 //======================== ASSESSMENT SETUP =========================================
 
      //If assessment form is incomplete, display the assessment form again

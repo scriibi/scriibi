@@ -47,7 +47,8 @@ class ClassRepository implements ClassRepositoryInterface
     }
 
     /**
-     * Return all the classes of all specified scriibi levels and school
+     * Return all the classes of all specified scriibi levels which are
+     * currently active
      * @param $scriibiIds
      * @param $schoolId
      * @return array
@@ -58,6 +59,7 @@ class ClassRepository implements ClassRepositoryInterface
         {
             return $this->class
                 ->where('school_id', $schoolId)
+                ->where('status_flag', 'active')
                 ->whereHas('scriibiLevels', function ($query) use($scriibiIds)
                 {
                     $query->whereIn('scriibi_level.id', $scriibiIds);
@@ -100,6 +102,56 @@ class ClassRepository implements ClassRepositoryInterface
         {
             return [];
         }
+    }
+
+    /**
+     * Return all the ids of the currently active
+     * classes associated with the specified students
+     * @param $studentIds
+     * @return array
+     */
+    public function getClassIdsOfStudents($studentIds): array
+    {
+        try
+        {
+            return $this->class
+                ->where('status_flag', 'active')
+                ->whereHas('students', function ($query) use($studentIds)
+                {
+                    $query->whereIn('student.id', $studentIds);
+                })
+                ->get()
+                ->map(function($class)
+                {
+                    return $class->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all the ids of the classes associated
+     * with the specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getClassIdsOfWritingTask($writingTaskId): array
+    {
+        return $this->class
+            ->whereHas('writingTasks', function ($query) use($writingTaskId)
+            {
+                $query->where('writing_task.id', $writingTaskId);
+            })
+            ->get()
+            ->map(function($class)
+            {
+                return $class->id;
+            })
+            ->toArray();
     }
 }
 

@@ -40,6 +40,23 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
     }
 
     /**
+     * Returns an ORM resource instance of a specified writing task
+     * @param $id
+     * @return array
+     */
+    public function getWritingTaskInstance($id): ?WritingTask
+    {
+        try
+        {
+            return $this->writingTask::find($id);
+        }
+        catch (Exception $e)
+        {
+            return null;
+        }
+    }
+
+    /**
      * Create and save a WritingTask instance
      * @param $writingTask
      * @return WritingTask|null

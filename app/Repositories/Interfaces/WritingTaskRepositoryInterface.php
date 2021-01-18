@@ -14,6 +14,13 @@ interface WritingTaskRepositoryInterface
     public function getWritingTask($id): array;
 
     /**
+     * Returns an ORM resource instance of a specified writing task
+     * @param $id
+     * @return array
+     */
+    public function getWritingTaskInstance($id): ?WritingTask;
+
+    /**
      * Create and save a WritingTask instance
      * @param $writingTask
      * @return WritingTask|null

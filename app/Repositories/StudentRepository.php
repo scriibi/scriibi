@@ -65,6 +65,79 @@ class StudentRepository implements StudentRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all the specified student details with their associated,
+     * currently active classes
+     * !!! A student can belong to only 1 ACTIVE class at any given moment
+     * @param $ids
+     * @return array
+     */
+    public function getStudentsWithActiveClasses($ids): array
+    {
+        try
+        {
+            return $this->student
+                ->whereIn('student.id', $ids)
+                ->with(['classes' => function($query)
+                {
+                    $query->where('class.status_flag', 'active');
+                }])
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all student details for the specified ids
+     * @param $ids
+     * @return array
+     */
+    public function getStudents($ids): array
+    {
+        try
+        {
+            return $this->student
+                ->whereIn('id', $ids)
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all student ids associated with a specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getStudentIdsOfWritingTask($writingTaskId): array
+    {
+        try
+        {
+            return $this->student
+                ->whereHas('writingTasks', function ($query) use($writingTaskId)
+                {
+                    $query->where('writing_task.id', $writingTaskId);
+                })
+                ->get()
+                ->map(function ($student)
+                {
+                    return $student->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

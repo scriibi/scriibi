@@ -682,9 +682,27 @@ header {
     height: 25px;
 }
 
+.add-students-modal-selected{
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 30px;
+    width: 98%;
+}
+
 .add-students-modal-list{
     height: 200px;
     overflow-y: scroll;
+}
+
+.add-student-modal-name-tag{
+    background-color: rgb(189, 252, 206);
+    border-radius: 25px;
+    color: #33A849;
+    flex-basis: content;
+    padding: 2px 4px;
 }
 
 .save-exit-btn{

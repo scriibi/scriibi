@@ -17,6 +17,29 @@ interface StudentRepositoryInterface
      * @return array
      */
     public function getStudentsOfClasses($ids): array;
+
+    /**
+     * Return all the specified student details with their associated,
+     * currently active classes
+     * !!! A student can belong to only 1 ACTIVE class at any given moment
+     * @param $ids
+     * @return array
+     */
+    public function getStudentsWithActiveClasses($ids): array;
+
+    /**
+     * Return all student details for the specified ids
+     * @param $ids
+     * @return array
+     */
+    public function getStudents($ids): array;
+
+    /**
+     * Return all student ids associated with a specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getStudentIdsOfWritingTask($writingTaskId): array;
 }
 
 ?>

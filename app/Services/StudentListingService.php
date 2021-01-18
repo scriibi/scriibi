@@ -56,10 +56,10 @@ class StudentListingService
     {
         try
         {
-            $scriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfTeacher($teacherId);
-            $school = $this->userRepositoryInterface->getTeacherSchool($teacherId);
-            $classes = $this->classRepositoryInterface->getClassesOfScriibiLevels($scriibiLevels, $school[0]['id']);
             $classIds = [];
+            $school = $this->userRepositoryInterface->getTeacherSchool($teacherId);
+            $scriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfTeacher($teacherId);
+            $classes = $this->classRepositoryInterface->getClassesOfScriibiLevels($scriibiLevels, $school[0]['id']);
             $length = count($classes);
 
             for($i = 0; $i < $length; $i++)
@@ -74,22 +74,40 @@ class StudentListingService
         }
     }
 
+    /**
+     * Filters the team students from the students who are already associated
+     * with the writing task and order the resultant data set
+     * @param $teamStudentsList
+     * @param $taskId
+     * @return array
+     */
     protected function filterTeamStudentsFromTaskStudents($teamStudentsList, $taskId): array
     {
         try
         {
-            $studentIdHashMap = [];
+            $taskStudentIdHashMap = [];
             $writingTaskStudents = $this->writingTaskRepositoryInterface->getStudentsOfWritingTask($taskId);
             $taskStudentsCount = count($writingTaskStudents);
             $teamStudentsCount = count($teamStudentsList);
-            for ($j = 0; $j < $taskStudentsCount; $j++)
+
+            for ($i = 0; $i < $taskStudentsCount; $i++)
             {
-                $studentIdHashMap[$writingTaskStudents[$j]['id']] = true;
+                $taskStudentIdHashMap[$writingTaskStudents[$i]['id']] = true;
             }
-            for ($j = 0; $j < $taskStudentsCount; $j++)
+
+            for ($j = 0; $j < $teamStudentsCount; $j++)
             {
-                $studentIdHashMap[$writingTaskStudents[$j]['id']] = true;
+                if(array_key_exists($teamStudentsList[$j]['id'], $taskStudentIdHashMap))
+                {
+                    unset($teamStudentsList[$j]);
+                }
             }
+
+            usort($teamStudentsList, function ($a, $b)
+            {
+                return strcmp($a['first_name'], $b['first_name']);
+            });
+            return $teamStudentsList;
         }
         catch (Exception $e)
         {

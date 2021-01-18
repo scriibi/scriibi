@@ -20,6 +20,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/assessment-submit',
-        '/rubricDelete'
+        '/rubricDelete',
+        '/add-students-to-task',
+        '/delete-students-from-task'
     ];
 }

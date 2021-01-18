@@ -94,7 +94,6 @@ class WritingTasksController extends Controller
                 ]
             );
         }catch(Exception $ex){
-            throw $ex;
             //todo
         }
     }
@@ -114,6 +113,48 @@ class WritingTasksController extends Controller
         catch (Exception $e)
         {
             return [];
+        }
+    }
+
+    public function addStudentsToAssessment(Request $request, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository)
+    {
+        try
+        {
+            $students = explode(',', $request->input('students'));
+            $writingTaskId = $request->input('writingTaskId');
+            $result = $writingTaskService->addStudents($students, $writingTaskId);
+            $curriculumSchoolType = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['curriculum_school_type_id'];
+            $assessedLabels = $this->formatLabels($assessedLabelRepository->getAssessedLabels($curriculumSchoolType));
+            $gradeLabels = $this->formatLabels($gradeLabelRepository->getGradeLabels($curriculumSchoolType));
+            $response =
+                [
+                    'status' => true,
+                    'writingTaskId' => $writingTaskId,
+                    'students' => $result,
+                    'taskStatus' => 'incomplete',
+                    'assessedLabels' => $assessedLabels,
+                    'gradeLabels' => $gradeLabels
+                ];
+            return json_encode($response);
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
+    }
+
+    public function deleteStudentsFromAssessment(Request $request, WritingTaskService $writingTaskService)
+    {
+        try
+        {
+            $students = $request->input('students');
+            $writingTaskId = $request->input('writingTask');
+            $response = $writingTaskService->deleteStudents($students, $writingTaskId);
+            return json_encode($response);
+        }
+        catch (Exception $e)
+        {
+            // todo
         }
     }
 

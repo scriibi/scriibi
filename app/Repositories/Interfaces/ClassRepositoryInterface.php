@@ -13,7 +13,8 @@ interface ClassRepositoryInterface
     public function getClassesOfTeacher($teacherId, $schoolId): array;
 
     /**
-     * Return all the classes of all specified scriibi levels
+     * Return all the classes of all specified scriibi levels which are
+     * currently active
      * @param $scriibiIds
      * @param $schoolId
      * @return array
@@ -28,6 +29,22 @@ interface ClassRepositoryInterface
      * @return array
      */
     public function getClassIdsOfTeacher($teacherId, $schoolId): array;
+
+    /**
+     * Return all the ids of the currently active
+     * classes associated with the specified students
+     * @param $studentIds
+     * @return array
+     */
+    public function getClassIdsOfStudents($studentIds): array;
+
+    /**
+     * Return all the ids of the classes associated
+     * with the specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getClassIdsOfWritingTask($writingTaskId): array;
 }
 
 ?>

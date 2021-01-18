@@ -111,6 +111,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
     Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics'); // done
     Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel'); // done (do data validation)
+    Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment'); // done (sanitize data later)
+    Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment'); // done (try to refactor the function in the writing task service)
     Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam');
     Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');
