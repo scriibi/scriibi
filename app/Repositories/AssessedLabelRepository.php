@@ -39,6 +39,29 @@ class AssessedLabelRepository implements AssessedLabelRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the assessed label of a specified curriculum school type
+     * and scriibi level
+     * @param $curriculumSchoolTypeId
+     * @param $scriibiLevelId
+     * @return array
+     */
+    public function getAssessedLabel($curriculumSchoolTypeId, $scriibiLevelId): array
+    {
+        try
+        {
+            return $this->assessedLabel
+                ->where('curriculum_school_type_id', $curriculumSchoolTypeId)
+                ->where('scriibi_level_id', $scriibiLevelId)
+                ->get()
+                ->toArray();
+        }
+        catch(QueryException $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

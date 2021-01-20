@@ -46,6 +46,23 @@ class StudentListingService
     }
 
     /**
+     * Return all details of the student specified by the passed in id value
+     * @param $id
+     * @return array
+     */
+    public function getStudent($id): array
+    {
+        try
+        {
+            return $this->studentRepositoryInterface->getStudent($id);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Return all students who belong to classes (within the teacher's school)
      * which possess the same scriibi levels as the specified teacher
      * @param $teacherId

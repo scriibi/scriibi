@@ -134,6 +134,58 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the task and the specified student who is associated with
+     * a given writing task
+     * @param $writingTaskId
+     * @param $studentId
+     * @return array
+     */
+    public function getStudentOfWritingTask($writingTaskId, $studentId): array
+    {
+        try
+        {
+            return $this->writingTask
+                ->where('id', $writingTaskId)
+                ->with(['students' => function($query) use($studentId)
+                {
+                    $query->where('student.id', $studentId);
+                }])
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return the skills and task skills (pivot between writing_task
+     * and skill table) of the specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getTaskSkillsOfWritingTask($writingTaskId): array
+    {
+        try
+        {
+            return $this->writingTask
+                ->where('id', $writingTaskId)
+                ->with('skills')
+                ->get()
+                ->map(function($writingTask)
+                {
+                    return $writingTask['skills'];
+                })
+                ->toArray()[0];
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

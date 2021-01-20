@@ -28,7 +28,7 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
     {
         try
         {
-            return $this->scriibiLevel::all();
+            return $this->scriibiLevel::all()->toArray();
         }
         catch (Exception $e)
         {
@@ -54,16 +54,33 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
     }
 
     /**
+     * Return the scriibi level value as it is of a given scriibi level id
+     * @param $id
+     * @return int
+     */
+    public function getScriibiLevelValueAsFloat($id): ?float
+    {
+        try
+        {
+            return (float) $this->scriibiLevel::findOrFail($id)->scriibi_level;
+        }
+        catch(ModelNotFound | QueryException | Exception $e)
+        {
+            return null;
+        }
+    }
+
+    /**
     * Return a list of scriibi level ids for a given list of scriibi level values
-    * @param array
+    * @param $scriibiValues
     * @return array
     */
-    public function getScriibiLevelRange($range): array
+    public function getScriibiLevelRangeIds($scriibiValues): array
     {
         try
         {
             return $this->scriibiLevel
-                ->whereIn('scriibi_level', $range)
+                ->whereIn('scriibi_level', $scriibiValues)
                 ->get()
                 ->map(
                     function($scriibiLevel)
@@ -74,6 +91,26 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
                 ->toArray();
         }
         catch(QueryException $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return a list of scriibi level details for a given list of scriibi level ids
+     * @param $ids
+     * @return array
+     */
+    public function getScriibiLevelRangeDetails($ids): array
+    {
+        try
+        {
+            return $this->scriibiLevel
+                ->whereIn('id', $ids)
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
         {
             return [];
         }

@@ -101,7 +101,7 @@ class RubricBuilderService
             if($scriibiValue !== null)
             {
                 $range = $scriibiValue === 0 ? [$scriibiValue - 0.5, $scriibiValue, $scriibiValue + 1.0] : [$scriibiValue - 1.0, $scriibiValue, $scriibiValue + 1.0];
-                return $this->scriibiLevelRepositoryInterface->getScriibiLevelRange($range);
+                return $this->scriibiLevelRepositoryInterface->getScriibiLevelRangeIds($range);
             }
             else
             {

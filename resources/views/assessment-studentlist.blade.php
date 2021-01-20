@@ -161,7 +161,7 @@
             @foreach($students as $s)
                 <a href="/assessment-marking/{{$s['id']}}/{{$writingTask[0]['id']}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button" data-student-card-id="{{$s['id']}}">
                     <p class="col-3 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['first_name']}} {{$s['last_name']}}</p>
-                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0 @if($s['pivot']['status_flag'] == "completed") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s['pivot']['status_flag']}}</p>
+                    <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0 @if($s['pivot']['status_flag'] == "complete") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s['pivot']['status_flag']}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['school_mgt_sys_id']}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$assessedLabels[$s['grade_level_id']]}}</p>
                     <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$gradeLabels[$s['assessed_level_id']]}}</p>

@@ -6,7 +6,6 @@ use DB;
 use Auth;
 use Mixpanel;
 use Exception;
-use App\SkillCard;
 use App\ScriibiLevels;
 use App\writing_tasks;
 use App\Rubrics_skills;
@@ -14,154 +13,59 @@ use App\tasks_students;
 use App\students;
 use App\text_types_skills;
 use Illuminate\Http\Request;
+use App\Repositories\ScriibiLevelRepository;
+use App\Services\StudentListingService;
+use App\Services\WritingTaskMarkingService;
+use App\Services\WritingTaskService;
+use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface as AssessedLevelRepository;
+
 
 class AssessmentMarkingController extends Controller
 {
-    public function GenerateStudentMarkingPage($student_id, $writing_task_id){
-        /**
-         * this array is used to aggregate all the task_skill values which are retrieved by tasks_skills table
-         * this should be optimized later
-         */
-        $primary_grade_range = array(119 => 'D', 120 => '0.5', 121 => 'F', 123 => 'F.5');
-        $fullScriibiRange = [];
-        $tasks_skills = array();
-        $prepopulated_results = array();
-        $rangeAsScriibiValue = array();
-        $skillCards = array();
-        $student = students::find($student_id);
-        $range = AssessmentMarkingController::getScriibiRange($student->rubrik_level);
+    public function GenerateStudentMarkingPage($student_id, $writing_task_id, StudentListingService $studentListingService, WritingTaskMarkingService $markingService, WritingTaskService $writingTaskService, ScriibiLevelRepository $scriibiLevelRepository, UserRepository $userRepository, AssessedLevelRepository $assessedLabelRepository)
+    {
+        try
+        {
+            $student  = $studentListingService->getStudent($student_id);
+            $school = $userRepository->getTeacherSchool(Auth::user()->id)[0];
+            $curriculumId = DB::table('curriculum_school_type')->where('id', $school['curriculum_school_type_id'])->get()->toArray()[0]->curriculum_id;
+            $assessedLabel = $assessedLabelRepository->getAssessedLabel($school['curriculum_school_type_id'], $student['assessed_level_id'])[0]['label'];
+            $skillCards = $markingService->getStudentSkillCardsWithExtras($student, $writing_task_id, $curriculumId);
+            $writingTaskWithStudent = $writingTaskService->getStudentOfTask($writing_task_id, $student_id)[0];
 
-        $status = DB::table('writting_task_students')->select('status', 'comment')->where('fk_student_id', '=', $student_id)->where('fk_writting_task_id', '=', $writing_task_id)->get();
-        $skills = DB::table('tasks_skills')->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')->select('skills.*', 'tasks_skills.tasks_skills_Id')->where('tasks_skills.writing_tasks_writing_task_Id', '=', $writing_task_id)->get();
-        $student_assessed_level_label = DB::table('classes_students')->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')->select('assessed_level_labels.assessed_level_label')->where('classes_students.students_student_Id', '=', $student->student_Id)->get()->toArray();
-        $student_tasks = DB::table('tasks_students')->join('tasks_skills', 'tasks_students.tasks_skills_Id', 'tasks_skills.tasks_skills_Id')->where('student_Id', '=', $student_id)->where('writing_tasks_writing_task_Id', '=', $writing_task_id)->get()->toArray();
-        /**
-         * the flag is there to check if there are any records in the tasks_students table
-         * this value will be set to false only the very first time the the system is accessed
-         * after a fresh database migration in the server
-         */
-        $flag = empty($student_tasks[0]);            
-        $curriculum_Id = DB::table('teachers')->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')->join('schools', 'classes.schools_school_Id', 'schools.school_Id')->select('schools.curriculum_details_curriculum_details_Id')->where('teachers.user_Id', '=', Auth::user()->user_Id)->get();
-        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-        
-        foreach(DB::table('scriibi_levels')->select('scriibi_Level', 'scriibi_Level_Id')->get() as $r){
-            $fullScriibiRange[$r->scriibi_Level_Id] = $r->scriibi_Level;
+            return view('assessment-marking',
+                [
+                    'rubrics' => $skillCards['rangeForLabels'],
+                    'skillCards' => $skillCards['skillCards'],
+                    'firstName' => $student['first_name'],
+                    'lastName' => $student['last_name'],
+                    'student_id' => $student['id'],
+                    'writting_task_id' => $writing_task_id,
+                    'status' => $writingTaskWithStudent['students'][0]['pivot']['status_flag'],
+                    'assessed_level' => $assessedLabel,
+                    'assessed_level_scriibi_id' => $student['assessed_level_id'],
+                    'results' => $skillCards['prepopulatedResults'],
+                    'comment' => $writingTaskWithStudent['students'][0]['pivot']['comment'],
+                    'fullScriibiRange' => $skillCards['fullScriibiRange']
+                ]
+            );
         }
-
-        foreach($range as $r){
-            $value = ScriibiLevels::find($r);
-            if (array_key_exists($value["scriibi_Level_Id"], $primary_grade_range)){
-                $value["scriibi_Level"] = $primary_grade_range[$value["scriibi_Level_Id"]];
-                array_push($rangeAsScriibiValue, $value);
-            }else{
-                array_push($rangeAsScriibiValue, $value);
-            }
+        catch (Exception $e)
+        {
+            // todo
         }
-        
-        foreach($student_tasks as $st){
-            $tasks_skills[$st->tasks_skills_Id] = $st->result;
-        }
-
-        foreach($skills as $s){
-            $newSKillCard = new SkillCard($s->skill_Name, [$range[0],$range[2],$range[4]], $s->skill_Id, $curriculum_Id, $student_id, $writing_task_id);
-            $newSKillCard->populateScriibiLevelglobalCriteria();
-            $newSKillCard->populateScriibiLevelLocalCriteria();
-            if(!$flag){
-                if(array_key_exists($s->tasks_skills_Id, $tasks_skills)){
-                   array_push($prepopulated_results, $tasks_skills[$s->tasks_skills_Id] . "/" . $s->skill_Id);
-                }
-            }
-            array_push($skillCards, $newSKillCard);
-        }
-
-        $mp->identify(Auth::user()->user_Id);
-        $mp->track("Page Viewed", array(
-                "Page Id"           => "P033",
-                "Page Name"         => "Assessment Marking",
-                "Page URL"          => "",
-                "Check Email"       => ""
-            )
-        );
-        return view('assessment-marking', ['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards, 'firstName' => $student->student_First_Name, 'lastName' => $student->student_Last_Name, 'student_id' => $student->student_Id, 'writting_task_id' => $writing_task_id, 'status' => $status[0]->status, 'assessed_level' => $student_assessed_level_label, 'assessed_level_scriibi_id' => $student->rubrik_level, 'results' => $prepopulated_results, 'comment' => $status[0]->comment, 'fullScriibiRange' => $fullScriibiRange]);
     }
 
-    public function calculateLeftShift($scriibi_level){
-        $range = array();
-        $scriibi_level_value = ScriibiLevels::find($scriibi_level);
-        if ($scriibi_level_value->scriibi_Level == 0.0){
-            $counter = -0.75;
-            while($counter <= 1.0){
-                if($counter >= 0.0){
-                    $counter += 0.5;
-                }else{
-                    $counter += 0.25;
-                }
-                array_push($range, $counter);
-            }
-        }else{
-            $counter = $scriibi_level_value->scriibi_Level - 1;
-            while($counter <= ($scriibi_level_value->scriibi_Level + 1)){
-                array_push($range, $counter);
-                $counter += 0.5;
-            }
-        }
-        return $range;
-    }
-
-    public function calculateRightShift($scriibi_level){
-        $range = array();
-        $scriibi_level_value = ScriibiLevels::find($scriibi_level);
-        $counter = $scriibi_level_value->scriibi_Level - 1;
-        while($counter <= ($scriibi_level_value->scriibi_Level + 1)){
-            array_push($range, $counter);
-            $counter += 0.5;
-        }
-        return $range;
-    }
-
-    /**
-     * returns the range of the scriibi levels based on the students rubric/assessed level
-     */
-    public function getScriibiRange($student_scriibi_level){
-        $scriibi_levels = array();
-        $range = AssessmentMarkingController::calculateLeftShift($student_scriibi_level);
-        foreach($range as $r){
-            array_push($scriibi_levels, DB::table('scriibi_levels')->select('scriibi_Level_Id')->where('scriibi_Level', '=', $r)->first()->scriibi_Level_Id);
-        }
-        return $scriibi_levels;
-    }
-
-    public function getShiftedScriibiRange($shift, $scriibi_level){
+    public function saveAssessment(Request $request, WritingTaskMarkingService $markingService){
         try{
-            $scriibi_levels = array();
-            if($shift == "left"){
-                $range = AssessmentMarkingController::calculateLeftShift($scriibi_level);
-            }
-            if($shift == "right"){ 
-                $range = AssessmentMarkingController::calculateRightShift($scriibi_level);
-
-            }
-            foreach($range as $r){
-                array_push($scriibi_levels, DB::table('scriibi_levels')->select('scriibi_levels.scriibi_Level_Id', 'scriibi_levels.scriibi_Level')->where('scriibi_Level', '=', $r)->first());
-            }
-        return $scriibi_levels;
-        }catch(Exception $ex){
-            return $ex;
-        }
-     }
-
-    public function saveAssessment(Request $request){
-        try{
-            // stores the values passed in through the form as key value pairs
             $skillsAssessedArray = array();
-            // stores the reference values from the table 'task_skills' in order to find the 'writing_tasks_writing_task_Id'
-            $task_skills = array();
             $skillCount = $request->input('skillCount');
             $studentId = $request->input('studentId');
             $writingTask = $request->input('writingTask');
             $comment = $request->input('comment');
             $status = $request->input('status');
-            
+
             for($i = 1; $i <= $skillCount; $i++){
                 $student_skill = $request->input('skill_mark_' . (string)$i);
                 if(isset($student_skill)){
@@ -171,106 +75,43 @@ class AssessmentMarkingController extends Controller
                     }
                 }
             }
-            // dd($skillsAssessedArray);
-            $writingTaskSkills = DB::table('tasks_skills')->select('tasks_skills_Id', 'skills_skill_Id')->where('writing_tasks_writing_task_Id', '=', $writingTask)->get(); 
-            foreach($writingTaskSkills as $wts){
-                if(in_array($wts->skills_skill_Id, array_keys($skillsAssessedArray))){
-                    $student_task = array('result' => $skillsAssessedArray[$wts->skills_skill_Id], 'student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id);
-                    $new_task_student = DB::table('tasks_students')->updateOrInsert(['student_Id' => $studentId, 'tasks_skills_Id' => $wts->tasks_skills_Id],$student_task);
-                }
-            }
-
-            if(isset($comment)){
-                DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['comment' => $comment]);
-            }
-
-            if($status == 1){
-                DB::table('writting_task_students')->where('fk_student_id', '=', $studentId)->where('fk_writting_task_id', '=', $writingTask)->update(['status' => 'completed']);
-            }
-
-            /**
-             * mixpanel code
-             */
-            $writingTaskDetails = writing_tasks::find($writingTask);
-            $allTaskSkills = [];
-
-            foreach($writingTaskSkills as $ts){
-                array_push($allTaskSkills, $ts->tasks_skills_Id);
-            }
-            $marksCompleted = DB::table('tasks_students')->whereIn('tasks_skills_Id', $allTaskSkills)->get();
-
-            $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-            $mp->identify(Auth::user()->user_Id);
-
-            $mp->track("Student Marked", array(
-                "Student Id"                    => $studentId,
-                "Assessment Id"                 => $writingTask,
-                "Assessed Level of Student"     => ScriibiLevels::find((students::find($studentId))->rubrik_level)->scriibi_Level,
-                "Rubric Id"                     => $writingTaskDetails->fk_rubric_id,
-                "No. of Rubric Skills"          => DB::table('rubrics_skills')->where('rubrics_rubric_Id', $writingTaskDetails->fk_rubric_id)->count(),
-                "Number of Skills Marked"       => count($skillsAssessedArray),
-                "Assessment Status"             => $status == 1 ? "Complete" : "Incomplete",
-                "Assessment Marks Completed "  => count($marksCompleted),
-              )
+            $result = $markingService->saveMarks($studentId, $writingTask, $skillsAssessedArray, $comment, $status);
+            return redirect()->action('WritingTasksController@ShowWritingTask',
+                [
+                    'assessment_id' => $writingTask
+                ]
             );
-
-            return redirect()->action('WritingTasksController@ShowWritingTask', ['assessment_id' => $writingTask]);
         }catch(Exception $ex){
             // throw $ex;
             //todo
         }
-        
+
     }
 
-    public function getMarkingCriteriaOfRange(Request $request){
-        try{
+    public function getMarkingCriteriaOfRange(Request $request, WritingTaskMarkingService $markingService, UserRepository $userRepository)
+    {
+        try
+        {
             $query = $request->all();
-            $primary_grade_range = array(119 => 'D', 120 => '0.5', 121 => 'F', 123 => 'F.5');
-            $rangeAsScriibiValue = array();
-            $skillCards = array();
-            $range = AssessmentMarkingController::getShiftedScriibiRange($query["shift"], $query["level"]);
+            $school = $userRepository->getTeacherSchool(Auth::user()->id)[0];
+            $curriculumId = DB::table('curriculum_school_type')->where('id', $school['curriculum_school_type_id'])->get()->toArray()[0]->curriculum_id;
+            $skillCards = $markingService->getStudentSkillCardsForShiftedRange($query["task"], $curriculumId, $query["shift"], $query["level"]);
 
-            $skills = DB::table('tasks_skills')
-                ->join('skills', 'tasks_skills.skills_skill_Id', 'skills.skill_Id')
-                ->select('skills.*', 'tasks_skills.tasks_skills_Id')
-                ->where('tasks_skills.writing_tasks_writing_task_Id', '=', $query["task"])
-                ->get();
-            
-            $curriculum_Id = DB::table('teachers')
-                ->join('classes_teachers', 'teachers.user_Id', 'classes_teachers.teachers_user_Id')
-                ->join('classes', 'classes_teachers.classes_teachers_classes_class_Id', 'classes.class_Id')
-                ->join('schools', 'classes.schools_school_Id', 'schools.school_Id')
-                ->select('schools.curriculum_details_curriculum_details_Id')
-                ->where('teachers.user_Id', '=', Auth::user()->user_Id)
-                ->get();
-
-            foreach($range as $r){
-                $value = ScriibiLevels::find($r->scriibi_Level_Id);
-                if (array_key_exists($value["scriibi_Level_Id"], $primary_grade_range)){
-                    $value["scriibi_Level"] = $primary_grade_range[$value["scriibi_Level_Id"]];
-                    array_push($rangeAsScriibiValue, $value);
-                }else{
-                    array_push($rangeAsScriibiValue, $value);
-                }
-            }
-
-            foreach($skills as $s){
-                $skillObj = array("id" => $s->skill_Name, "name" => $s->skill_Id);
-                $newSKillCard = new SkillCard($s->skill_Name, [$range[0]->scriibi_Level_Id,$range[2]->scriibi_Level_Id,$range[4]->scriibi_Level_Id], $s->skill_Id, $curriculum_Id, $query["student"], $query["task"]);
-                $newSKillCard->populateScriibiLevelglobalCriteria();
-                $newSKillCard->populateScriibiLevelLocalCriteria();
-                $skillObj["global"] = $newSKillCard->getGlobalCriteria();
-                $skillObj["local"] = $newSKillCard->getLocalCriteria();
-                array_push($skillCards, $skillObj);
-            }
-            return json_encode(['rubrics' => $rangeAsScriibiValue, 'skillCards' => $skillCards]);
-        }catch(Exception $ex){
-            throw $ex;
+            return json_encode(
+                [
+                    'rubrics' => $skillCards['rangeForLabels'],
+                    'skillCards' => $skillCards['skillCards']
+                ]
+            );
+        }
+        catch(Exception $ex)
+        {
+            // todo
         }
     }
 
-    public function getScriibiLevel(Request $request){
+    public function getScriibiLevel(Request $request, ScriibiLevelRepository $scriibiLevelRepository){
         $query = $request->all();
-        return (json_encode($skills = DB::table('scriibi_levels')->where('scriibi_Level_Id', '=', $query["id"])->select('scriibi_Level')->get()));
+        return (json_encode((string)$scriibiLevelRepository->getScriibiLevelValueAsFloat($query["id"])));
     }
 }

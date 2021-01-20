@@ -41,6 +41,23 @@ interface WritingTaskRepositoryInterface
      * @return array
      */
     public function getStudentsOfWritingTask($taskId): array;
+
+    /**
+     * Return the task and the specified student who is associated with
+     * a given writing task
+     * @param $writingTaskId
+     * @param $studentId
+     * @return array
+     */
+    public function getStudentOfWritingTask($writingTaskId, $studentId): array;
+
+    /**
+     * Return the task skills (pivot between writing_task and skill table)
+     * of the specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getTaskSkillsOfWritingTask($writingTaskId): array;
 }
 
 ?>

@@ -95,10 +95,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric'); // done (clean request data and make sure all fields are !null)
 
     //assessment routes
-    Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup'); // done (needs improvement for js and css on client side)
+    Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup'); // done (needs improvement for js and css on client side also try to make a service for this without using the controller)
     Route::post('/assessment-submit', 'WritingTasksController@store'); // done (check save speed once deployed onto AWS, sanitize the data)
     Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList'); // done
-    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');
+    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask'); // done
     Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');
     Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
     Route::get('/assessment-update', 'WritingTasksController@editAssessment');

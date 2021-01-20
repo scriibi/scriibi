@@ -28,6 +28,22 @@ class AssessementSetupController extends Controller
             $schoolId = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['id'];
             $userClasses = $classRepository->getClassesOfTeacher(Auth::user()->id, $schoolId);
             $otherClasses = $classRepository->getClassesOfScriibiLevels($scriibiLevels, $schoolId);
+            $userClassHashMap = [];
+
+            $userClassCount = count($userClasses);
+            for ($i = 0; $i < $userClassCount; $i++)
+            {
+                $userClassHashMap[$userClasses[$i]['id']] = true;
+            }
+
+            $otherClassCount = count($otherClasses);
+            for ($j = 0; $j < $otherClassCount; $j++)
+            {
+                if(array_key_exists($otherClasses[$j]['id'], $userClassHashMap))
+                {
+                    unset($otherClasses[$j]);
+                }
+            }
             return view('assessment-setup',
                 [
                     'rubrics' => $rubrics,

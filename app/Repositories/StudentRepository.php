@@ -21,6 +21,23 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
+     * Return all details of the specified student
+     * @param $id
+     * @return array
+     */
+    public function getStudent($id): array
+    {
+        try
+        {
+            return $this->student::find($id)->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Return all the students who are associated with a given class
      * @param $id
      * @return array

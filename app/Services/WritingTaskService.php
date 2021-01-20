@@ -220,6 +220,14 @@ class WritingTaskService
         }
     }
 
+    /**
+     * Disassociate the specified students from the writing task,
+     * delete any marks awarded and detach any classes that no longer
+     * should be associated with the writing task
+     * @param $students
+     * @param $writingTaskId
+     * @return bool
+     */
     public function deleteStudents($students, $writingTaskId): bool
     {
         try
@@ -268,6 +276,25 @@ class WritingTaskService
         {
             DB::rollback();
             return false;
+        }
+    }
+
+    /**
+     * Return the writing task with the associated student who
+     * is passed in through the parameter
+     * @param $writingTaskId
+     * @param $studentId
+     * @return array
+     */
+    public function getStudentOfTask($writingTaskId, $studentId): array
+    {
+        try
+        {
+            return $this->writingTaskRepositoryInterface->getStudentOfWritingTask($writingTaskId, $studentId);
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 }

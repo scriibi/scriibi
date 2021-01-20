@@ -5,6 +5,13 @@ namespace App\Repositories\Interfaces;
 interface StudentRepositoryInterface
 {
     /**
+     * Return all details of the specified student
+     * @param $id
+     * @return array
+     */
+    public function getStudent($id): array;
+
+    /**
      * Return all the students who are associated with a given class
      * @param $id
      * @return array
