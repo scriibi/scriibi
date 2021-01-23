@@ -46,6 +46,43 @@ class SkillRepository implements SkillRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the id values of all skills
+     * @return array
+     */
+    public function getAllSkillIds(): array
+    {
+        try
+        {
+            return $this->skill::all()
+                ->map(function($skill)
+                {
+                    return $skill->id;
+                })
+                ->toArray();
+        }
+        catch(Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all skills
+     * @return array
+     */
+    public function getAllSkills(): array
+    {
+        try
+        {
+            return $this->skill::all()->toArray();
+        }
+        catch(Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

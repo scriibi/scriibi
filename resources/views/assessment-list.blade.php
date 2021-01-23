@@ -104,48 +104,48 @@
 
 @endsection
 
-{{--<div class="modal fade bd-example-modal-lg multiple-assessments-warning" id="delete-assessment-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">--}}
-{{--    <div class="modal-dialog modal-lg">--}}
-{{--        <div class="modal-content">--}}
-{{--            <div class="modal-header">--}}
-{{--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                    <span aria-hidden="true">&times;</span>--}}
-{{--                </button>--}}
-{{--            </div>--}}
+<div class="modal fade bd-example-modal-lg multiple-assessments-warning" id="delete-assessment-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-{{--            <div class="modal-body">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-3">--}}
-{{--                        <div class="rubric-edit-warning-image-content">--}}
-{{--                            <img src="/images/warning.png" class="rounded mx-auto d-block" alt="" style="width:60%">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-9">--}}
-{{--                        <p><strong>You are moving this assessment to Trash.</strong></p>--}}
-{{--                        <p style="color: rgb(218, 74,84)"><strong>Any student assessment data within this assessment will be removed from the system.</strong></p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-3">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-9">--}}
-{{--                        <p>You can access Trash to restore this assessment and it’s data within 90 days, after which it will be permanently deleted.</p>--}}
-{{--                        <p>If you are not sure about anything please reach out to us at <strong>help@scriibi.com</strong></p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-1">--}}
-{{--                    </div>--}}
-{{--                    <div class="col-sm-11" style="text-align: center">--}}
-{{--                        <form method="post" action="/asssessment-delete">--}}
-{{--                            @csrf--}}
-{{--                            <input type="hidden" name="assessmentId" value="" id="assessment-delete-warning-modal-form"/>--}}
-{{--                            <button class="assessment-delete-button delete-button-red"  data-dismiss="modal">cancel</button>--}}
-{{--                            <button class="assessment-delete-button delete-button-green" type='submit'>yes, move to trash</button>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="rubric-edit-warning-image-content">
+                            <img src="/images/warning.png" class="rounded mx-auto d-block" alt="" style="width:60%">
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <p><strong>You are moving this assessment to Trash.</strong></p>
+                        <p style="color: rgb(218, 74,84)"><strong>Any student assessment data within this assessment will be removed from the system.</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9">
+                        <p>You can access Trash to restore this assessment and it’s data within 90 days, after which it will be permanently deleted.</p>
+                        <p>If you are not sure about anything please reach out to us at <strong>help@scriibi.com</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-11" style="text-align: center">
+                        <form method="post" action="/asssessment-delete">
+                            @csrf
+                            <input type="hidden" name="assessmentId" value="" id="assessment-delete-warning-modal-form"/>
+                            <button class="assessment-delete-button delete-button-red"  data-dismiss="modal">cancel</button>
+                            <button class="assessment-delete-button delete-button-green" type='submit'>yes, move to trash</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

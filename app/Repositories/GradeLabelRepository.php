@@ -39,6 +39,29 @@ class GradeLabelRepository implements GradeLabelRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the grade labels for the specified scriibi levels
+     * of a specified curriculum school type
+     * @param $scriibiLevels
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getGradeLabelsForAUser($scriibiLevels, $curriculumSchoolTypeId): array
+    {
+        try
+        {
+            return $this->gradeLabel
+                ->whereIn('scriibi_level_id', $scriibiLevels)
+                ->where('curriculum_school_type_id', $curriculumSchoolTypeId)
+                ->get()
+                ->toArray();
+        }
+        catch(QueryException $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

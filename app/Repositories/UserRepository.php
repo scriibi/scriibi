@@ -75,6 +75,32 @@ class UserRepository implements UserRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the specified user with position of
+     * the teacher (if available)
+     * @param $id
+     * @param $position
+     * @return array
+     */
+    public function getUserPosition($id, $position): array
+    {
+        try
+        {
+            return $this->user
+                ->where('user.id', $id)
+                ->whereHas('positions', function($query)  use($position)
+                {
+                    $query->where('position.name', $position);
+                })
+                ->get()
+                ->toArray();
+        }
+        catch(Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

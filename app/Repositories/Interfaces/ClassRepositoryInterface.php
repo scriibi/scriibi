@@ -5,7 +5,8 @@ namespace App\Repositories\Interfaces;
 interface ClassRepositoryInterface
 {
     /**
-     * Return all the classes of a specified teacher within a specified school
+     * Return all the currently active classes of a specified teacher
+     * within a specified school
      * @param $teacherId
      * @param $schoolId
      * @return array
@@ -14,12 +15,21 @@ interface ClassRepositoryInterface
 
     /**
      * Return all the classes of all specified scriibi levels which are
-     * currently active
+     * currently active within the specified school
      * @param $scriibiIds
      * @param $schoolId
      * @return array
      */
     public function getClassesOfScriibiLevels($scriibiIds, $schoolId): array;
+
+    /**
+     * Return all the classes of all specified scriibi level which are
+     * currently active within the specified school
+     * @param $scriibiId
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassesOfScriibiLevel($scriibiId, $schoolId): array;
 
     /**
      * Return all the ids of the currently active
@@ -45,6 +55,14 @@ interface ClassRepositoryInterface
      * @return array
      */
     public function getClassIdsOfWritingTask($writingTaskId): array;
+
+    /**
+     * Return all the currently active classes
+     * associated with the specified school
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassesOfSchool($schoolId): array;
 }
 
 ?>

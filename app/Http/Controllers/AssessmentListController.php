@@ -14,7 +14,8 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 class AssessmentListController extends Controller
 {
     public function GenerateAssessmentList(WritingTaskListingService $writingTaskListingService, UserRepositoryInterface $userRepoInt){
-        try{
+        try
+        {
             $school = $userRepoInt->getTeacherSchool(Auth::user()->id)->toArray();
             $tasks = $writingTaskListingService->getTeacherWritingTasks(Auth::user()->id, $school[0]['id']);
             return view('assessment-list',
@@ -27,20 +28,18 @@ class AssessmentListController extends Controller
         }
     }
 
-    public function GenerateDeletedAssessmentList(){
+    public function GenerateDeletedAssessmentList(WritingTaskListingService $writingTaskListingService, UserRepositoryInterface $userRepoInt){
         try{
-            $deleted_writing_taskList = array();
-            $writing_task_controller = new WritingTasksController();
-            $writing_tasks = $writing_task_controller->getSoftDeletes();
-            if(count($writing_tasks) > 0){
-                foreach($writing_tasks as $wt){
-                    array_push($deleted_writing_taskList, new WritingTask($wt->writing_task_Id, $wt->task_name, $wt->writing_Task_Description, $wt->created_at, $wt->created_Date, $wt->created_By_Teacher_User_Id, $wt->teaching_period_Id, $wt->fk_rubric_id));
-                }
-            }
-            //dd($deleted_writing_taskList);
-            return view('assessment-trashcan', ['assessmentList' => $deleted_writing_taskList]);
-        }catch(Exception $e){
-            $e;
+            $school = $userRepoInt->getTeacherSchool(Auth::user()->id)->toArray();
+            $writingTasks = $writingTaskListingService->getTeacherSoftDeletedTasks(Auth::user()->id, $school[0]['id']);
+            return view('assessment-trashcan',
+                [
+                    'assessmentList' => $writingTasks
+                ]
+            );
+        }catch(Exception $e)
+        {
+            // todo
         }
     }
 }

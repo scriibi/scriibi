@@ -61,6 +61,31 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
+     * Return all the students who are associated with a given class
+     * with the associated class  details
+     * @param $id
+     * @return array
+     */
+    public function getStudentsOfClassWithClassInfo($id): array
+    {
+        try
+        {
+            return $this->student
+                ->whereHas('classes', function($query) use($id)
+                {
+                    $query->where('class.id', $id);
+                })
+                ->with('classes')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Return all the students who are associated with a given classes
      * @param $ids
      * @return array
@@ -74,6 +99,31 @@ class StudentRepository implements StudentRepositoryInterface
                 {
                     $query->whereIn('class.id', $ids);
                 })
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all the students who are associated with a given classes
+     * with the class details
+     * @param $ids
+     * @return array
+     */
+    public function getStudentsOfClassesWithClassInfo($ids): array
+    {
+        try
+        {
+            return $this->student
+                ->whereHas('classes', function($query) use($ids)
+                {
+                    $query->whereIn('class.id', $ids);
+                })
+                ->with('classes')
                 ->get()
                 ->toArray();
         }
@@ -148,6 +198,27 @@ class StudentRepository implements StudentRepositoryInterface
                 {
                     return $student->id;
                 })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all students of the specified school
+     * @param $schoolId
+     * @return array
+     */
+    public function getStudentsOfSchoolWithClassInfo($schoolId): array
+    {
+        try
+        {
+            return $this->student
+                ->where('school_id', $schoolId)
+                ->with('classes')
+                ->get()
                 ->toArray();
         }
         catch (Exception $e)

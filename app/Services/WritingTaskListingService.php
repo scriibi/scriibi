@@ -60,6 +60,37 @@ class WritingTaskListingService
         try
         {
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds);
+            return $this->populateWritingTasksWithRubricDetails($writingTasks);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Retrieves all soft deleted writing tasks (with rubrics)
+     * associated with the specified classes
+     * @param $classIds
+     * @return array
+     */
+    protected function getSoftDeletedWritingTasks($classIds): array
+    {
+        try
+        {
+            $writingTasks = $this->writingTaskRepositoryInterface->getSoftDeletedWritingTasksOfClasses($classIds);
+            return $this->populateWritingTasksWithRubricDetails($writingTasks);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    protected function populateWritingTasksWithRubricDetails($writingTasks): array
+    {
+        try
+        {
             $length = count($writingTasks);
             $temporary = [];
 
@@ -78,6 +109,26 @@ class WritingTaskListingService
         catch (Exception $e)
         {
             return [];
+        }
+    }
+
+    /**
+     * Returns all the soft deleted writing tasks that belong to the
+     * teacher's class team with their associated rubric skills
+     * @param $teacherId
+     * @param $schoolId
+     * @return array
+     */
+    public function getTeacherSoftDeletedTasks($teacherId, $schoolId): array
+    {
+        try
+        {
+            $classIds = $this->classRepositoryInterface->getClassIdsOfTeacher($teacherId, $schoolId);
+            return $this->getSoftDeletedWritingTasks($classIds);
+        }
+        catch (Exception $e)
+        {
+
         }
     }
 }

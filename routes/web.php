@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //the following routes are for viewing assessment data. this functionality has not been implemented fully.
 
-    Route::get('/data-view', 'DataViewController@overview');
+    Route::get('/trait-view/{selection}/{subselection?}', 'DataViewController@getTraitView');
 
     // Route::get('/student-data-view', 'DataViewController@studentView');
 
@@ -99,12 +99,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/assessment-submit', 'WritingTasksController@store'); // done (check save speed once deployed onto AWS, sanitize the data)
     Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList'); // done
     Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask'); // done
-    Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');
-    Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');
-    Route::get('/assessment-update', 'WritingTasksController@editAssessment');
-    Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit');
-    Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');
-    Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');
+    Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage'); // done (needs heavy optimization for the global and local criteria selection)
+    Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment'); // done
+    Route::get('/assessment-update', 'WritingTasksController@editAssessment'); // done
+    Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit'); // done
+    Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');  // done
+    Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList'); // done
     Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');
 
     // fetch
@@ -115,8 +115,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment'); // done (try to refactor the function in the writing task service)
     Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam');
     Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
-    Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');
-    Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel');
+    Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange'); // done (needs refactoring and optimization for the global and local criteria selection)
+    Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel'); // done
 
     //goal sheets
     Route::get('/goal-sheets', "GoalsController@generateGoalSheets");

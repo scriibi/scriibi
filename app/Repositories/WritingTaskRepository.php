@@ -186,6 +186,125 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return the writing tasks associated with the specified teaching
+     * periods and also associated with the specified school
+     * @param $teachingPeriodIds
+     * @param $schoolId
+     * @return array
+     */
+    public function getWritingTasksOfTeachingPeriods($teachingPeriodIds, $schoolId): array
+    {
+        try
+        {
+            return $this->writingTask
+                ->where('school_id', $schoolId)
+                ->whereIn('teaching_period_id', $teachingPeriodIds)
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Updates the specified writing task with the
+     * passed in information
+     * @param $id
+     * @param $name
+     * @param $description
+     * @param $assessedDate
+     * @return bool
+     */
+    public function updateWritingTask($id, $name, $description, $assessedDate): bool
+    {
+        try
+        {
+            $this->writingTask
+                ->where('id', $id)
+                ->update(
+                    [
+                        'name' => $name,
+                        'description' => $description,
+                        'assessed_date' => $assessedDate,
+                    ]
+                );
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Set the timestamp for the soft delete column of the specified
+     * writing task
+     * @param $writingTaskId
+     * @return bool
+     */
+    public function softDeleteWritingTask($writingTaskId): bool
+    {
+        try
+        {
+            $writingTask = $this->writingTask::findOrFail($writingTaskId);
+            $writingTask->delete();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Get all soft deleted writing tasks which belong to the specified
+     * classes
+     * @param $classes
+     * @return bool
+     */
+    public function getSoftDeletedWritingTasksOfClasses($classes): array
+    {
+        try
+        {
+            return $this->writingTask::onlyTrashed()
+                ->whereHas('classes', function($query) use($classes)
+                {
+                    $query->whereIn('class.id', $classes);
+                })
+                ->with('rubrics')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $writingTaskId
+     * @return bool
+     */
+    public function restoreSoftDeletedWritingTasks($writingTaskId): bool
+    {
+        try
+        {
+            $this->writingTask::withTrashed()
+                ->where('id', $writingTaskId)
+                ->restore();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
 }
 
 ?>

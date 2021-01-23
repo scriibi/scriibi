@@ -29,11 +29,11 @@
             </div>
            <div class="generate-button assessment-btn-styling p-2">
                 <input type="submit" form="student-marks-form" target="_blank" value= "Generate All Goal Sheets" class="generate-button1 assessment-btn">
-                <img class="generate-image">  
+                <img class="generate-image">
             </div>
         </div>
     </div>
-    
+
     <div class="view-by-container">
     <div class="d-inline-block">
     <strong><span>Analyse student data by:</span></strong>
@@ -51,12 +51,12 @@
                     <input type="radio" name="data-filter" class="assess-input" id="assessment-grade-filter" />
                     <p class="pl-1 pt-1">Grade</p>
                 </label>
-            </div>  
+            </div>
             <div class="moreInfo-button" id="myBtn-more-info">
                 <strong><span>More Info</span></strong>
                 <i class="fas fa-info-circle"></i>
             </div>
-        </div>  
+        </div>
     </div>
 </div>
 ​
@@ -119,7 +119,7 @@
                 <td headers="progerssion-point">4.2</td>
                 <td class="student-skill-result" headers="skill1">4</td>
             </tr> -->
-            
+
         </tbody>
     </table>
     <input type="text" class="hiddenArea" name="individual-student" hidden/>
@@ -188,7 +188,7 @@
                  <p>
                     <ul>
                         <li>
-                            Your students’ performance is colour coded to show their progression and highlight areas that need improvement.     
+                            Your students’ performance is colour coded to show their progression and highlight areas that need improvement.
                         </li>
                     </ul>
                  </p>
@@ -261,7 +261,7 @@ window.onclick = function(event) {
   }
   if (event.target == modal1) {
         modal1.style.display = "none";
-    }
+  }
 }
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -306,19 +306,19 @@ function showSlides(n) {
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">       
+        <div class="row">
             <div class="col-sm-1">
                 <div class="rubric-edit-warning-image-content">
                     <img src="/images/info.png" alt="more information" class="info-image">
                 </div>
-            </div>       
+            </div>
             <div class="col-sm-11">
                 <div>
                     <p>There are no strategies for this skill because:</p>
                     <p>1.  The <strong>minimum</strong> requirement for this skill is at a higher level, <strong>or</strong></p>
                     <p>2.  The <strong>maximum</strong> level of accomplishment for this skill has been achieved.</p>
                 </div>
-            </div>     
+            </div>
         </div>
         <div style="text-align:center">
             <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>

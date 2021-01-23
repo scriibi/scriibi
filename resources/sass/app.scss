@@ -496,12 +496,12 @@ header {
 }
 
 .radio-circle {
-    display: block;
+    display: inline-block;
     border: 1px solid #33A849;
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    margin-top: 13px;
+    margin-top: 5px;
     margin-left: 10px;
 }
 
@@ -1850,9 +1850,9 @@ table.dataTable.no-footer {
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
-    background-color: #33A849;
-}
+//.active, .dot:hover {
+//    background-color: #33A849;
+//}
 
 /* Fading animation */
 .modal-fade-image {

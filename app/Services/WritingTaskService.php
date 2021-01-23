@@ -297,5 +297,55 @@ class WritingTaskService
             return [];
         }
     }
+
+    /**
+     * Updates a specified writing task with the passed in information
+     * @param $updatedDetails
+     * @return bool
+     */
+    public function updateWritingTask($updatedDetails): bool
+    {
+        try
+        {
+            $this->writingTaskRepositoryInterface->updateWritingTask($updatedDetails['id'], $updatedDetails['name'], $updatedDetails['description'], $updatedDetails['assessedDate']);
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    public function softDeleteWritingTask($writingTaskId): bool
+    {
+        try
+        {
+            $result = $this->writingTaskRepositoryInterface->softDeleteWritingTask($writingTaskId);
+            if($result)
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception('Could not perform soft delete');
+            }
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    public function restoreSoftDeletedWritingTask($writingTaskId): bool
+    {
+        try
+        {
+            return $this->writingTaskRepositoryInterface->restoreSoftDeletedWritingTasks($writingTaskId);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
 }
 ?>

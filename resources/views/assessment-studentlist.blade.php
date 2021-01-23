@@ -124,9 +124,9 @@
             <div class="col-4">
                 <div>
                     <div class="d-flex flex-column">
-                        <button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1 ml-auto" >Edit Assessment</button>
-                        <button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1 ml-auto">Complete Assessment</button>
-                        <button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1 ml-auto">Data and Goal Sheets</button>
+                        <a href="/assessment-edit/{{$writingTask[0]['id']}}" class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" >Edit Assessment</button></a>
+                        <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Complete Assessment</button></a>
+                        <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Data and Goal Sheets</button></a>
                     </div>
                 </div>
             </div>

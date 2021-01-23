@@ -10,6 +10,18 @@ interface SkillRepositoryInterface
     * @return array
     */
     public function getSkillIdsOfRubric($id): array;
+
+    /**
+     * Return the id values of all skills
+     * @return array
+     */
+    public function getAllSkillIds(): array;
+
+    /**
+     * Return all skills
+     * @return array
+     */
+    public function getAllSkills(): array;
 }
 
 ?>

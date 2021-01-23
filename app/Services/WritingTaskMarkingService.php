@@ -47,10 +47,12 @@ class WritingTaskMarkingService
                 ->get()
                 ->toArray();
             $studentTaskResultsCount = count($studentTaskResults);
+
             for ($j = 0; $j < $studentTaskResultsCount; $j++)
             {
                 $studentTaskResultsHashMap[$studentTaskResults[$j]->task_skill_id] = $studentTaskResults[$j]->result;
             }
+
             $length = count($taskSkills);
             for ($i = 0; $i < $length; $i++)
             {

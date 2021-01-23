@@ -74,22 +74,146 @@ $(function(){
 
     //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
-        //scrollX: greaterThanTen,
         scrollX: true,
-        scrollY: 460,
+        scrollY: '418px',
         scrollCollapse: true,
-
-        paging:         false,
-         fixedColumns:   {
-            leftColumns: 3,
+        paging: true,
+        "autoWidth": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+         fixedColumns: {
+            leftColumns: 4,
          },
         select: {
-            // style : 'os',
             items : 'cell'
+        },
+        "drawCallback": function( settings ) {
+            let value = $('select[name="data-view-trait-filter-select"]').val();
+            if(value === 'assessed')
+                enableTraitViewAssessedFilter();
+            if(value === 'grade')
+                enableTraitViewGradeFilter()
         }
     });
 
+    $('select[name="data-view-trait-filter-select"]').on('change', function (event){
+        let value = $(this).val();
+        if(value === 'assessed')
+            enableTraitViewAssessedFilter();
+        if(value === 'grade')
+            enableTraitViewGradeFilter()
+    });
+
+    $('#data-view-range-school').on('click', function() {
+        let  url_origin = window.location.origin + '/trait-view/school';
+        window.location = url_origin;
+    });
+
+    $('select[name="data-view-grade-select"]').on('change', function(event){
+        let  url_origin = window.location.origin + '/trait-view/grade/';
+        let value = $(this).val();
+        url_origin += value;
+        window.location = url_origin;
+    });
+
+    $('select[name="data-view-class-select"]').on('change', function(event){
+        let  url_origin = window.location.origin + '/trait-view/class/';
+        let value = $(this).val();
+        url_origin += value;
+        window.location = url_origin;
+    });
+
+    $('input[name="data-view-range-setting"]').on('change', function (event){
+       let value = $(this).val();
+       if(value === 'grade'){
+           $('select[name="data-view-grade-select"]').prop('hidden', false);
+           $('select[name="data-view-class-select"]').prop('hidden', true);
+           $('.trait-view-grade').addClass('fill-circle');
+           $('.trait-view-class').removeClass('fill-circle');
+       }
+       if(value === 'class'){
+           $('select[name="data-view-class-select"]').prop('hidden', false);
+           $('select[name="data-view-grade-select"]').prop('hidden', true);
+           $('.trait-view-class').addClass('fill-circle');
+           $('.trait-view-grade').removeClass('fill-circle');
+       }
+        $('.trait-view-school').removeClass('fill-circle');
+    });
 //========== OVERALL ASSESSMENT
+    function enableDataTableFilters(){
+
+    }
+
+    function enableTraitViewAssessedFilter(){
+        $(".student-row").each(function(){
+            var assessed = $(this).data('assessed');
+            let student_grade = parseFloat(assessed);
+
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".trait-skill-result").each(function(){
+
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade >= student_grade + 0.3) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                if (current_grade >= student_grade + 0.8) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                if (current_grade <= student_grade - 0.3) {
+                    $(this).addClass("light-orange-fill");
+                }
+                if (current_grade <= student_grade - 0.8) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    }
+
+    function enableTraitViewGradeFilter(){
+        $(".student-row").each(function(){
+            var grade = $(this).data('grade');
+            let student_grade = parseFloat(grade);
+            //loop through each cell with the .student-skill-result identifier in the current .student-row
+            $(this).find(".trait-skill-result").each(function(){
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+
+                let current_grade = parseFloat($(this).html());
+                console.log(current_grade)
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade >= student_grade + 0.3) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                if (current_grade >= student_grade + 0.8) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                if (current_grade <= student_grade - 0.3) {
+                    $(this).addClass("light-orange-fill");
+                }
+                if (current_grade <= student_grade - 0.8) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    }
+
     $(".assessed-button-filter").on("click", function () {
         $(".grade-button-filter").find(".radio-circle").removeClass("fill-circle");
         $(this).find(".radio-circle").addClass("fill-circle");

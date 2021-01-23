@@ -17,6 +17,15 @@ interface UserRepositoryInterface
      * @return array
      */
     public function getUserMemberships($id): array;
+
+    /**
+     * Return the specified user with position of
+     * the teacher (if available)
+     * @param $id
+     * @param $position
+     * @return array
+     */
+    public function getUserPosition($id, $position): array;
 }
 
 ?>

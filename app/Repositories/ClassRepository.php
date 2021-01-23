@@ -21,7 +21,8 @@ class ClassRepository implements ClassRepositoryInterface
     }
 
     /**
-     * Return all the classes of a specified teacher within a specified school
+     * Return all the currently active classes of a specified teacher
+     * within a specified school
      * @param $teacherId
      * @param $schoolId
      * @return array
@@ -48,7 +49,7 @@ class ClassRepository implements ClassRepositoryInterface
 
     /**
      * Return all the classes of all specified scriibi levels which are
-     * currently active
+     * currently active within the specified school
      * @param $scriibiIds
      * @param $schoolId
      * @return array
@@ -66,6 +67,34 @@ class ClassRepository implements ClassRepositoryInterface
                 })
                 ->get()
                 ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all the classes of all specified scriibi level which are
+     * currently active within the specified school
+     * @param $scriibiId
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassesOfScriibiLevel($scriibiId, $schoolId): array
+    {
+        try
+        {
+            return $this->class
+                ->where('school_id', $schoolId)
+                ->where('status_flag', 'active')
+                ->whereHas('scriibiLevels', function ($query) use($scriibiId)
+                {
+                    $query->where('scriibi_level.id', $scriibiId);
+                })
+                ->get()
+                ->toArray();
+
         }
         catch (Exception $e)
         {
@@ -141,17 +170,46 @@ class ClassRepository implements ClassRepositoryInterface
      */
     public function getClassIdsOfWritingTask($writingTaskId): array
     {
-        return $this->class
-            ->whereHas('writingTasks', function ($query) use($writingTaskId)
-            {
-                $query->where('writing_task.id', $writingTaskId);
-            })
-            ->get()
-            ->map(function($class)
-            {
-                return $class->id;
-            })
-            ->toArray();
+        try
+        {
+            return $this->class
+                ->whereHas('writingTasks', function ($query) use($writingTaskId)
+                {
+                    $query->where('writing_task.id', $writingTaskId);
+                })
+                ->get()
+                ->map(function($class)
+                {
+                    return $class->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all the currently active classes
+     * associated with the specified school
+     * @param $schoolId
+     * @return array
+     */
+    public function getClassesOfSchool($schoolId): array
+    {
+        try
+        {
+            return $this->class
+                ->where('school_id', $schoolId)
+                ->where('status_flag', 'active')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+
+        }
     }
 }
 

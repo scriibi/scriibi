@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WritingTask extends Model
 {
@@ -12,6 +13,11 @@ class WritingTask extends Model
      * @var string
      */
     protected $table = 'writing_task';
+
+    /**
+     * Enable soft deletes for a model
+     */
+    use SoftDeletes;
 
     /**
      * Get the status that owns the writing task.

@@ -19,11 +19,27 @@ interface StudentRepositoryInterface
     public function getStudentsOfClass($id): array;
 
     /**
+     * Return all the students who are associated with a given class
+     * with the associated class  details
+     * @param $id
+     * @return array
+     */
+    public function getStudentsOfClassWithClassInfo($id): array;
+
+    /**
      * Return all the students who are associated with a given classes
      * @param $ids
      * @return array
      */
     public function getStudentsOfClasses($ids): array;
+
+    /**
+     * Return all the students who are associated with a given classes
+     * with the class details
+     * @param $ids
+     * @return array
+     */
+    public function getStudentsOfClassesWithClassInfo($ids): array;
 
     /**
      * Return all the specified student details with their associated,
@@ -47,6 +63,13 @@ interface StudentRepositoryInterface
      * @return array
      */
     public function getStudentIdsOfWritingTask($writingTaskId): array;
+
+    /**
+     * Return all students of the specified school
+     * @param $schoolId
+     * @return array
+     */
+    public function getStudentsOfSchoolWithClassInfo($schoolId): array;
 }
 
 ?>

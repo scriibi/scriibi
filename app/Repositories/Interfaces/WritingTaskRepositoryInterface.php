@@ -58,6 +58,51 @@ interface WritingTaskRepositoryInterface
      * @return array
      */
     public function getTaskSkillsOfWritingTask($writingTaskId): array;
+
+    /**
+     * Return the writing tasks associated with the specified teaching
+     * periods and also associated with the specified school
+     * @param $teachingPeriodIds
+     * @param $schoolId
+     * @return array
+     */
+    public function getWritingTasksOfTeachingPeriods($teachingPeriodIds, $schoolId): array;
+
+    /**
+     * Updates the specified writing task with the
+     * passed in information
+     * @param $id
+     * @param $name
+     * @param $description
+     * @param $assessedDate
+     * @return bool
+     */
+    public function updateWritingTask($id, $name, $description, $assessedDate): bool;
+
+    /**
+     * Set the timestamp for the soft delete column of the specified
+     * writing task
+     * @param $writingTaskId
+     * @return bool
+     */
+    public function softDeleteWritingTask($writingTaskId): bool;
+
+    /**
+     * Get all soft deleted writing tasks which belong to the specified
+     * classes
+     * writing task
+     * @param $classes
+     * @return bool
+     */
+    public function getSoftDeletedWritingTasksOfClasses($classes): array;
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $writingTaskId
+     * @return bool
+     */
+    public function restoreSoftDeletedWritingTasks($writingTaskId): bool;
 }
 
 ?>

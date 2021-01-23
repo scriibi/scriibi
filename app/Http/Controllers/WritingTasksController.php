@@ -8,6 +8,7 @@ use Exception;
 use App\Rubric;
 use App\WritingTask;
 use App\writing_tasks;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Services\WritingTaskService;
 use App\Http\Controllers\Controller;
@@ -76,7 +77,8 @@ class WritingTasksController extends Controller
     }
 
     public function ShowWritingTask($assessment_id, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository, RubricListingService $rubricListingService, RubricRepository $rubricRepository, WritingTaskRepositoryInterface $writingTaskRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository){
-        try{
+        try
+        {
             $writingTask = $writingTaskService->getWritingTask($assessment_id);
             $rubricId = $rubricRepository->getRubricOfWritingTask($writingTask[0]['id'])[0]['id'];
             $rubric = $rubricListingService->getRubricDetails($rubricId);
@@ -161,54 +163,73 @@ class WritingTasksController extends Controller
     /**
      * take in post data for the assessment details and update
      * the existing assessmentt details
+     * @param Request $request
+     * @param WritingTaskService $writingTaskService
+     * @return RedirectResponse
      */
-    public function editAssessment(Request $request)
+    public function editAssessment(Request $request, WritingTaskService $writingTaskService)
     {
-        try{
-            $assessment_id = $request->input('assessment_id');
-            $assessment_title = $request->input('assessment_name');
-            $assessment_date = $request->input('assessment_date');
-            $assessment_description = $request->input('assessment_description');
-            DB::table('writing_tasks')
-            ->where('writing_task_Id', $assessment_id)
-            ->update(['task_name' => $assessment_title, 'writing_Task_Description' => $assessment_description, 'created_Date' => $assessment_date]);
-
-            return redirect()->action('WritingTasksController@ShowWritingTask', ['id' => $assessment_id]);
+        try
+        {
+            $assessmentId = $request->input('assessment_id');
+            $assessmentTitle = $request->input('assessment_name');
+            $assessmentDate = $request->input('assessment_date');
+            $assessmentDescription = $request->input('assessment_description');
+            $updatedDetails =
+                [
+                    'id' => $assessmentId,
+                    'name' => $assessmentTitle,
+                    'description' => $assessmentDescription,
+                    'assessedDate' => $assessmentDate
+                ];
+            $writingTaskService->updateWritingTask($updatedDetails);
+            return redirect()->action('WritingTasksController@ShowWritingTask',
+                [
+                    'id' => $assessmentId
+                ]
+            );
         }
         catch(Exception $e){
-            throw $e;
+            // todo
         }
     }
 
     /**
      * sets the deleted_at field of a writing task once deleted by the user
      */
-    public function softDeleteAssessment(Request $request){
-        DB::table('writing_tasks')
-            ->where('writing_task_Id', $request->input('assessmentId'))
-            ->update(['deleted_at' => date('Y-m-d H:i:s', time())]);
-
-        return redirect()->action('AssessmentListController@GenerateAssessmentList');
-    }
-
-    /**
-     * return all the assessment records with the deleted_at field set to a timestamp
-     * which indicates they have been soft deleted
-     */
-    public function getSoftDeletes(){
-        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->where('deleted_at', '!=', null)->get();
+    public function softDeleteAssessment(Request $request, WritingTaskService $writingTaskService)
+    {
+        try
+        {
+            $assessmentId = $request->input('assessmentId');
+            $writingTaskService->softDeleteWritingTask($assessmentId);
+            return redirect()->action('AssessmentListController@GenerateAssessmentList');
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
     }
 
     /**
      * reset the deleted_at field for a specific writing task back to null indicating
      * that the assessment has been restored
+     * @param $assessmentId
+     * @param WritingTaskService $writingTaskService
+     * @return RedirectResponse
      */
-    public function restoreSoftDelete($assessmentId){
-        DB::table('writing_tasks')
-            ->where('writing_task_Id', $assessmentId)
-            ->update(['deleted_at' => null]);
+    public function restoreSoftDelete($assessmentId, WritingTaskService $writingTaskService)
+    {
+        try
+        {
+            $writingTaskService->restoreSoftDeletedWritingTask($assessmentId);
+            return redirect()->action('AssessmentListController@GenerateDeletedAssessmentList');
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
 
-        return redirect()->action('AssessmentListController@GenerateDeletedAssessmentList');
     }
 
     public function retrieveAssessedSkills($taskId){
