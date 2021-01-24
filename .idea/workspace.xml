@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataViewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataViewController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/TeachingPeriodRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/TeachingPeriodRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/TeachingPeriodRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/TeachingPeriodRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/DataViewService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/DataViewService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +175,7 @@
       <workItem from="1609284106315" duration="4225000" />
       <workItem from="1609290733520" duration="27962000" />
       <workItem from="1609465556286" duration="261825000" />
-      <workItem from="1610663436190" duration="226207000" />
+      <workItem from="1610663436190" duration="227290000" />
     </task>
     <servers />
   </component>
