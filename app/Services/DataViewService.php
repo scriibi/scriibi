@@ -91,6 +91,11 @@ class DataViewService
             {
                 $teachingPeriodIds = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
                 $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
+                if(!$this->checkWritingTaskExistanceForTeachingPeriod($writingTasks, $teachingPeriodIds[count($teachingPeriodIds)-1]))
+                {
+                    continue;
+                }
+
                 usort($writingTasks, array($this, 'sortWritingTasks'));
                 $writingTaskIds = $this->extractIdValues($writingTasks);
                 $results = DB::table('task_skill_student_result')
@@ -120,6 +125,25 @@ class DataViewService
         catch (Exception $e)
         {
             return [];
+        }
+    }
+
+    protected function checkWritingTaskExistanceForTeachingPeriod($writingTasks, $teachingPeriodId): bool
+    {
+        try
+        {
+            foreach ($writingTasks as $writingTask)
+            {
+                if((int)$writingTask['teaching_period_id'] === (int)$teachingPeriodId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        catch (Exception $e)
+        {
+            return false;
         }
     }
 

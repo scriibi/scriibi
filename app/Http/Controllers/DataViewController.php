@@ -87,7 +87,9 @@ class DataViewController extends Controller
                 $privilage = 'Leader';
                 $grades = $gradeLabelRepository->getGradeLabels($userSchool['curriculum_school_type_id']);
                 $classes = $classRepository->getClassesOfSchool($userSchool['id']);
-            }else{
+            }
+            else
+            {
                 $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
                 if($selection === null)
                 {
