@@ -5,30 +5,11 @@
 <div class="col-10">
        <br><br>
 </div>
-{{--<div class="view-by-container">--}}
-{{--    <div class="d-inline-block">--}}
-{{--        <div class="filter-buttons">--}}
-{{--            <div class="assessed-button-filter">--}}
-{{--                <label class="filter-btn" for="overall-assessed-filter">--}}
-{{--                    <span class="radio-circle"></span>--}}
-{{--                    <input type="radio" name="data-filter" id="overall-assessed-filter" />--}}
-{{--                    <p class="pl-1 pt-1">Assessed</p>--}}
-{{--                </label>--}}
-{{--            </div>--}}
-{{--            <div class="grade-button-filter">--}}
-{{--                <label class="filter-btn" for="overall-grade-filter">--}}
-{{--                    <span class="radio-circle"></span>--}}
-{{--                    <input type="radio" name="data-filter" class="assess-input" id="overall-grade-filter" />--}}
-{{--                    <p class="pl-1 pt-1">Grade</p>--}}
-{{--                </label>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+
 <div class="data-view-settings">
     <div class="row">
         <div class="col-4">
-            <h6><strong>Cohort</strong></h6>
+            <h6 class="ml-2"><strong>Cohort</strong></h6>
             <div>
                 <label for="data-view-range-school">
                     <span class="trait-view-school radio-circle {{$selection == 'school' ? 'fill-circle' : ''}}"></span>
@@ -69,12 +50,19 @@
             </div>
         </div>
         <div class="col-8">
-            <h6><strong>Analyse by</strong></h6>
-            <select class="filter-select" name="data-view-trait-filter-select">
-                <option value="" disabled="disabled" selected="selected">Select one</option>
-                <option value="assessed">Assessed Level</option>
-                <option value="grade">Grade Level</option>
-            </select>
+            <div class="justify-content-end">
+                <h6><strong>Analyse by</strong></h6>
+                <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
+                    <option value="" disabled="disabled" selected="selected">Select one</option>
+                    <option value="assessed">Assessed Level</option>
+                    <option value="grade">Grade Level</option>
+                </select>
+            </div>
+            <div>
+                <a href="/trait-view/school" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Of Writing</button></a>
+                <a href="/growth-view/school" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
+                <a href="" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
+            </div>
         </div>
     </div>
 </div>

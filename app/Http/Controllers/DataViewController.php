@@ -46,7 +46,8 @@ class DataViewController extends Controller
                     'selection' => $selection,
                     'subselection' => $subselection,
                     'grades' => $grades,
-                    'classes' => $classes
+                    'classes' => $classes,
+                    'currentView' => 'trait'
                 ]
             );
         }

@@ -51,11 +51,10 @@ class TeachingPeriodRepository implements TeachingPeriodRepositoryInterface
      * curriculum school type sorted by start date
      * @param $year
      * @param $curriculumSchoolTypeId
-     * @param $limit
      * @return array
      * @throws Exception
      */
-    public function getTeachingPeriodIdsOfYear($year, $curriculumSchoolTypeId, $limit): array
+    public function getTeachingPeriodIdsOfYear($year, $curriculumSchoolTypeId): array
     {
         try
         {
@@ -63,7 +62,6 @@ class TeachingPeriodRepository implements TeachingPeriodRepositoryInterface
                 ->where('year', $year)
                 ->where('curriculum_school_type_id', $curriculumSchoolTypeId)
                 ->orderBy('start_date', 'asc')
-                ->limit($limit)
                 ->get()
                 ->map(function($teachingPeriod)
                 {

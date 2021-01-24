@@ -495,6 +495,21 @@ header {
     outline: none;
 }
 
+.current-active-view{
+    color: #FFFFFF !important;
+    background-color: #33A849;
+    border-radius: 5px;
+    color: #33A849;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.current-active-view:hover{
+    color: #FFFFFF;
+    background-color: #33A849;
+}
+
 .radio-circle {
     display: inline-block;
     border: 1px solid #33A849;

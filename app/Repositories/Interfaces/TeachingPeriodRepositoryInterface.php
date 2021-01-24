@@ -21,11 +21,10 @@ interface TeachingPeriodRepositoryInterface
      * curriculum school type sorted by start date
      * @param $year
      * @param $curriculumSchoolTypeId
-     * @param $limit
      * @return array
      * @throws Exception
      */
-    public function getTeachingPeriodIdsOfYear($year, $curriculumSchoolTypeId, $limit): array;
+    public function getTeachingPeriodIdsOfYear($year, $curriculumSchoolTypeId): array;
 
     /**
      * Return all teaching periods for the specified curriculum school type

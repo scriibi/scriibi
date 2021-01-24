@@ -84,8 +84,14 @@ class DataViewService
             $date = date('Y-m-d');
             $students = $this->getStudents($selection, $subselection, $school['id']);
             $studentIds = $this->extractIdValues($students);
+            $teachingPeriodsOfYear = $this->teachingPeriodRepositoryInterface->getTeachingPeriodIdsOfYear(date_create($date)->format("Y"), $school['curriculum_school_type_id']);
             $allTeachingPeriods = $this->teachingPeriodRepositoryInterface->getTeachingPeriodsForCurriculumSchoolType($school['curriculum_school_type_id']);
-            $teachingPeriodIds = $this->filterLatestTeachingPeriodsForLimit($date, $allTeachingPeriods, $limit);
+            foreach ($teachingPeriodsOfYear as $tpy)
+            {
+                $x = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
+                dump($x);
+            }
+            dd();
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
             usort($writingTasks, array($this, 'sortWritingTasks'));
             $results = DB::table('task_skill_student_result')
@@ -278,6 +284,34 @@ class DataViewService
                 return -1;
             }
         });
+    }
+
+    protected function getSpecifiedTeachingPeriodForLimit($target, $teachingPeriods, $limit): array
+    {
+        try
+        {
+            $teachingPeriodIds = [];
+            $startingIndex = null;
+            $teachingPeriodsCount = count($teachingPeriods);
+            for ($i = 0; $i < $teachingPeriodsCount; $i++)
+            {
+                if((int)$teachingPeriods[$i]['id'] === (int)$target)
+                {
+                    $startingIndex = $i;
+                    break;
+                }
+            }
+            for($j = 0; $j < $limit; $j++)
+            {
+                array_push($teachingPeriodIds, $teachingPeriods[$startingIndex]['id']);
+                $startingIndex--;
+            }
+            return array_reverse($teachingPeriodIds);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
     }
 }
 
