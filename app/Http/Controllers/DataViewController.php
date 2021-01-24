@@ -99,7 +99,7 @@ class DataViewController extends Controller
                 $grades = $gradeLabelRepository->getGradeLabelsForAUser($scriibiLevelsOfUser, $userSchool['curriculum_school_type_id']);
             }
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
-            $dataset = $dataViewService->getGrowthOfWritingDataSet('class', '36', $userSchool, $scriibiLevels);
+            $dataset = $dataViewService->getGrowthOfWritingDataSet($selection, $subselection, $userSchool, $scriibiLevels);
             $teachingPeriods = $teachingPeriodRepository->getTeachingPeriods($dataset['teachingPeriods']);
             return view('growth-data-view',
                 [
