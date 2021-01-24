@@ -100,7 +100,6 @@ class DataViewController extends Controller
             }
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
             $dataset = $dataViewService->getGrowthOfWritingDataSet('class', '36', $userSchool, $scriibiLevels);
-            dd($dataset);
             $teachingPeriods = $teachingPeriodRepository->getTeachingPeriods($dataset['teachingPeriods']);
             return view('growth-data-view',
                 [

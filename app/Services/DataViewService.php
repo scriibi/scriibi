@@ -91,7 +91,6 @@ class DataViewService
             {
                 $teachingPeriodIds = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
                 $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
-                dump($writingTasks);
                 usort($writingTasks, array($this, 'sortWritingTasks'));
                 $writingTaskIds = $this->extractIdValues($writingTasks);
                 $results = DB::table('task_skill_student_result')
