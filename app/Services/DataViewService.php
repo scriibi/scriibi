@@ -46,53 +46,28 @@ class DataViewService
     {
         try
         {
-            dump($selection);
-            dump($subselection);
-            dump($school);
             $limit = 3;
             $date = date('Y-m-d');
             $students = $this->getStudents($selection, $subselection, $school['id']);
-            dump('students');
-            dump($students);
             $studentIds = $this->extractIdValues($students);
-            dump('students extracted');
-            dump($studentIds);
             $allTeachingPeriods = $this->teachingPeriodRepositoryInterface->getTeachingPeriodsForCurriculumSchoolType($school['curriculum_school_type_id']);
-            dump('all tp');
-            dump($allTeachingPeriods);
             $teachingPeriodIds = $this->filterLatestTeachingPeriodsForLimit($date, $allTeachingPeriods, $limit);
-            dump('tpIds');
-            dump($teachingPeriodIds);
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
-            dump('writing Tasks of Tps');
-            dump($writingTasks);
             usort($writingTasks, array($this, 'sortWritingTasks'));
-            dump('writing Tasks sorted');
-            dump($writingTasks);
             $writingTaskIds = $this->extractIdValues($writingTasks);
-            dump('writing Tasks sorted  ids');
-            dump($writingTaskIds);
             $results = DB::table('task_skill_student_result')
                 ->whereIn('writing_task_id', $writingTaskIds)
                 ->whereIn('student_id', $studentIds)
                 ->get()
                 ->toArray();
-            dump('raw results');
-            dump($results);
             $this->sortResults($results, $writingTaskIds);
-            dump('sorted results');
-            dump($results);
             $studentTemplates = $this->createStudentSkillDataTemplates($students);
-            dump('student templates');
-            dump($studentTemplates);
             $resultCount = count($results);
 
             for ($i = 0; $i < $resultCount; $i++)
             {
                 $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
             }
-            dump('final student templates');
-            dd($studentTemplates);
             return $studentTemplates;
         }
         catch (Exception $e)
