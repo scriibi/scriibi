@@ -42,7 +42,41 @@ class DataViewService
         $this->skillRepositoryInterface = $skillRepoInt;
     }
 
-    public function getTraitsOrWritingDataSet($selection, $subselection = null, $school): array
+    public function getTraitsOfWritingDataSet($selection, $subselection = null, $school): array
+    {
+        try
+        {
+            $limit = 3;
+            $date = date('Y-m-d');
+            $students = $this->getStudents($selection, $subselection, $school['id']);
+            $studentIds = $this->extractIdValues($students);
+            $allTeachingPeriods = $this->teachingPeriodRepositoryInterface->getTeachingPeriodsForCurriculumSchoolType($school['curriculum_school_type_id']);
+            $teachingPeriodIds = $this->filterLatestTeachingPeriodsForLimit($date, $allTeachingPeriods, $limit);
+            $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
+            usort($writingTasks, array($this, 'sortWritingTasks'));
+            $writingTaskIds = $this->extractIdValues($writingTasks);
+            $results = DB::table('task_skill_student_result')
+                ->whereIn('writing_task_id', $writingTaskIds)
+                ->whereIn('student_id', $studentIds)
+                ->get()
+                ->toArray();
+            $this->sortResults($results, $writingTaskIds);
+            $studentTemplates = $this->createStudentSkillDataTemplates($students);
+            $resultCount = count($results);
+
+            for ($i = 0; $i < $resultCount; $i++)
+            {
+                $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
+            }
+            return $studentTemplates;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    public function getGrowthOfWritingDataSet($selection, $subselection = null, $school): array
     {
         try
         {
@@ -61,6 +95,7 @@ class DataViewService
                 ->toArray();
             $studentTemplates = $this->createStudentSkillDataTemplates($students);
             $resultCount = count($results);
+
             for ($i = 0; $i < $resultCount; $i++)
             {
                 $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
@@ -224,6 +259,25 @@ class DataViewService
         {
             return [];
         }
+    }
+
+    protected function sortResults(&$results, $order)
+    {
+        usort($results, function ($a, $b) use($order)
+        {
+            if(array_search($a->writing_task_id, $order) == array_search($b->writing_task_id, $order))
+            {
+                return 0;
+            }
+            if(array_search($a->writing_task_id, $order) > array_search($b->writing_task_id, $order))
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        });
     }
 }
 

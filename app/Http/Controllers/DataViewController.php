@@ -34,7 +34,7 @@ class DataViewController extends Controller
                 $grades = $gradeLabelRepository->getGradeLabelsForAUser($scriibiLevelsOfUser, $userSchool['curriculum_school_type_id']);
                 $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
             }
-            $dataset = $dataViewService->getTraitsOrWritingDataSet($selection, $subselection, $userSchool);
+            $dataset = $dataViewService->getTraitsOfWritingDataSet($selection, $subselection, $userSchool);
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
             $skills = $skillRepository->getAllSkills();
             return view('traits-data-view',
@@ -50,9 +50,49 @@ class DataViewController extends Controller
                 ]
             );
         }
-        catch(Exception $ex)
+        catch(Exception $e)
         {
-            throw $e;
+            // todo
+        }
+    }
+
+    public function getGowthView($selection, $subselection = null, UserRepositoryInterface $userRepository, DataViewService $dataViewService, ScriibiLevelRepositoryInterface $scriibiLevelRepository, SkillRepositoryInterface $skillRepository, ClassRepositoryInterface $classRepository, GradeLabelRepositoryInterface $gradeLabelRepository)
+    {
+        try
+        {
+            $position = 'Leader';
+            $userSchool = $userRepository->getTeacherSchool(Auth::user()->id)[0];
+            $userPosition = $userRepository->getUserPosition(Auth::user()->id, $position);
+            if(!empty($userPosition))
+            {
+                $privilage = 'Leader';
+                $grades = $gradeLabelRepository->getGradeLabels($userSchool['curriculum_school_type_id']);
+                $classes = $classRepository->getClassesOfSchool($userSchool['id']);
+            }else{
+                $privilage = 'Teacher';
+                $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
+                $grades = $gradeLabelRepository->getGradeLabelsForAUser($scriibiLevelsOfUser, $userSchool['curriculum_school_type_id']);
+                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+            }
+            $dataset = $dataViewService->getGrowthOfWritingDataSet($selection, $subselection, $userSchool);
+            $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
+            $skills = $skillRepository->getAllSkills();
+            return view('traits-data-view',
+                [
+                    'dataset' => false,
+                    'scriibiLevels' => $scriibiLevels,
+                    'skills' => $skills,
+                    'privilage' => $privilage,
+                    'selection' => $selection,
+                    'subselection' => $subselection,
+                    'grades' => $grades,
+                    'classes' => $classes
+                ]
+            );
+        }
+        catch (Exception $e)
+        {
+            // todo
         }
     }
 

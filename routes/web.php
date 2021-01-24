@@ -14,18 +14,10 @@ use App\Services\UserService;
 
 Route::group(['middleware' => ['auth']], function () {
 
-    // Route::get('/single-rubric', function(){
-    //    return view('single-rubric');
-    // });
-
-    // Route::get('/assessment-studentlist', function(){
-    //    return view('assessment-studentlist');
-    // });
-
-
     //the following routes are for viewing assessment data. this functionality has not been implemented fully.
 
     Route::get('/trait-view/{selection}/{subselection?}', 'DataViewController@getTraitView');
+    Route::get('/growth-view/{selection}/{subselection?}', 'DataViewController@getGowthView');
 
     // Route::get('/student-data-view', 'DataViewController@studentView');
 
