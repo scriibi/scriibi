@@ -32,5 +32,13 @@ interface TeachingPeriodRepositoryInterface
      * @return array
      */
     public function getTeachingPeriodsForCurriculumSchoolType($curriculumSchoolTypeId): array;
+
+    /**
+     * Return all teaching periods for the specified ids
+     * ordered by start date in ASC
+     * @param $teachingPeriodIds
+     * @return array
+     */
+    public function getTeachingPeriods($teachingPeriodIds): array;
 }
 ?>

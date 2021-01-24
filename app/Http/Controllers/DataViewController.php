@@ -14,25 +14,38 @@ use App\Repositories\Interfaces\SkillRepositoryInterface;
 use App\Repositories\Interfaces\ClassRepositoryInterface;
 use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
 use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
+use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface;
 class DataViewController extends Controller
 {
-    public function getTraitView($selection, $subselection = null, UserRepositoryInterface $userRepository, DataViewService $dataViewService, ScriibiLevelRepositoryInterface $scriibiLevelRepository, SkillRepositoryInterface $skillRepository, ClassRepositoryInterface $classRepository, GradeLabelRepositoryInterface $gradeLabelRepository)
+    public function getTraitView($selection = null, $subselection = null, UserRepositoryInterface $userRepository, DataViewService $dataViewService, ScriibiLevelRepositoryInterface $scriibiLevelRepository, SkillRepositoryInterface $skillRepository, ClassRepositoryInterface $classRepository, GradeLabelRepositoryInterface $gradeLabelRepository)
     {
         try
         {
             $position = 'Leader';
             $userSchool = $userRepository->getTeacherSchool(Auth::user()->id)[0];
             $userPosition = $userRepository->getUserPosition(Auth::user()->id, $position);
+            $classes = null;
             if(!empty($userPosition))
             {
+                if($selection === null)
+                {
+                    $selection = 'school';
+                }
                 $privilage = 'Leader';
                 $grades = $gradeLabelRepository->getGradeLabels($userSchool['curriculum_school_type_id']);
                 $classes = $classRepository->getClassesOfSchool($userSchool['id']);
-            }else{
+            }
+            else
+            {
+                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+                if($selection === null)
+                {
+                    $selection ='class';
+                    $subselection = $classes[0]['id'];
+                }
                 $privilage = 'Teacher';
                 $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
                 $grades = $gradeLabelRepository->getGradeLabelsForAUser($scriibiLevelsOfUser, $userSchool['curriculum_school_type_id']);
-                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
             }
             $dataset = $dataViewService->getTraitsOfWritingDataSet($selection, $subselection, $userSchool);
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
@@ -53,41 +66,53 @@ class DataViewController extends Controller
         }
         catch(Exception $e)
         {
-            // todo
+            throw $e;
         }
     }
 
-    public function getGowthView($selection, $subselection = null, UserRepositoryInterface $userRepository, DataViewService $dataViewService, ScriibiLevelRepositoryInterface $scriibiLevelRepository, SkillRepositoryInterface $skillRepository, ClassRepositoryInterface $classRepository, GradeLabelRepositoryInterface $gradeLabelRepository)
+    public function getGrowthView($selection = null, $subselection = null, UserRepositoryInterface $userRepository, DataViewService $dataViewService, ScriibiLevelRepositoryInterface $scriibiLevelRepository, SkillRepositoryInterface $skillRepository, ClassRepositoryInterface $classRepository, GradeLabelRepositoryInterface $gradeLabelRepository, TeachingPeriodRepositoryInterface $teachingPeriodRepository)
     {
         try
         {
             $position = 'Leader';
             $userSchool = $userRepository->getTeacherSchool(Auth::user()->id)[0];
             $userPosition = $userRepository->getUserPosition(Auth::user()->id, $position);
+            $classes = null;
             if(!empty($userPosition))
             {
+                if($selection === null)
+                {
+                    $selection = 'school';
+                }
                 $privilage = 'Leader';
                 $grades = $gradeLabelRepository->getGradeLabels($userSchool['curriculum_school_type_id']);
                 $classes = $classRepository->getClassesOfSchool($userSchool['id']);
             }else{
+                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+                if($selection === null)
+                {
+                    $selection ='class';
+                    $subselection = $classes[0]['id'];
+                }
                 $privilage = 'Teacher';
                 $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
                 $grades = $gradeLabelRepository->getGradeLabelsForAUser($scriibiLevelsOfUser, $userSchool['curriculum_school_type_id']);
-                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
             }
-            $dataset = $dataViewService->getGrowthOfWritingDataSet($selection, $subselection, $userSchool);
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
-            $skills = $skillRepository->getAllSkills();
-            return view('traits-data-view',
+            $dataset = $dataViewService->getGrowthOfWritingDataSet('class', '36', $userSchool, $scriibiLevels);
+            dd($dataset);
+            $teachingPeriods = $teachingPeriodRepository->getTeachingPeriods($dataset['teachingPeriods']);
+            return view('growth-data-view',
                 [
-                    'dataset' => false,
+                    'dataset' => $dataset['studentTemplates'],
                     'scriibiLevels' => $scriibiLevels,
-                    'skills' => $skills,
+                    'teachingPeriods' => $teachingPeriods,
                     'privilage' => $privilage,
                     'selection' => $selection,
                     'subselection' => $subselection,
                     'grades' => $grades,
-                    'classes' => $classes
+                    'classes' => $classes,
+                    'currentView' => 'growth'
                 ]
             );
         }

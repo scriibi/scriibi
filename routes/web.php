@@ -16,8 +16,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     //the following routes are for viewing assessment data. this functionality has not been implemented fully.
 
-    Route::get('/trait-view/{selection}/{subselection?}', 'DataViewController@getTraitView');
-    Route::get('/growth-view/{selection}/{subselection?}', 'DataViewController@getGowthView');
+    Route::get('/trait-view/{selection?}/{subselection?}', 'DataViewController@getTraitView');
+    Route::get('/growth-view/{selection?}/{subselection?}', 'DataViewController@getGrowthView');
 
     // Route::get('/student-data-view', 'DataViewController@studentView');
 

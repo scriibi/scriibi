@@ -10,12 +10,14 @@
     <div class="row">
         <div class="col-4">
             <h6 class="ml-2"><strong>Cohort</strong></h6>
-            <div>
-                <label for="data-view-range-school">
-                    <span class="trait-view-school radio-circle {{$selection == 'school' ? 'fill-circle' : ''}}"></span>
-                    <input id="data-view-range-school" type="radio" name="data-view-range-setting-school" value="school" style="display: none">&nbsp;School
-                </label>
-            </div>
+            @if($privilage === 'Leader')
+                <div>
+                    <label for="data-view-range-school">
+                        <span class="trait-view-school radio-circle {{$selection == 'school' ? 'fill-circle' : ''}}"></span>
+                        <input id="data-view-range-school" type="radio" name="data-view-range-setting-school" value="school" style="display: none">&nbsp;School
+                    </label>
+                </div>
+            @endif
             <div>
                 <div>
                     <label for="data-view-range-grade">
@@ -59,9 +61,10 @@
                 </select>
             </div>
             <div>
-                <a href="/trait-view/school" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Of Writing</button></a>
-                <a href="/growth-view/school" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                <a href="" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
+                <input type="hidden" name="current-view" value="{{$currentView}}" />
+                <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Of Writing</button></a>
+                <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
+                <a class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
             </div>
         </div>
     </div>

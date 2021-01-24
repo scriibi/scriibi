@@ -111,14 +111,16 @@ $(function(){
     });
 
     $('select[name="data-view-grade-select"]').on('change', function(event){
-        let  url_origin = window.location.origin + '/trait-view/grade/';
+        let currentView = $('input[name="current-view"]').val();
+        let  url_origin = window.location.origin + '/' + currentView + '-view/grade/';
         let value = $(this).val();
         url_origin += value;
         window.location = url_origin;
     });
 
     $('select[name="data-view-class-select"]').on('change', function(event){
-        let  url_origin = window.location.origin + '/trait-view/class/';
+        let currentView = $('input[name="current-view"]').val();
+        let  url_origin = window.location.origin + '/' + currentView + '-view/class/';
         let value = $(this).val();
         url_origin += value;
         window.location = url_origin;

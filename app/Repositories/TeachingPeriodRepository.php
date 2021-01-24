@@ -95,6 +95,28 @@ class TeachingPeriodRepository implements TeachingPeriodRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all teaching periods for the specified ids
+     * ordered by start date in ASC
+     * @param $teachingPeriodIds
+     * @return array
+     */
+    public function getTeachingPeriods($teachingPeriodIds): array
+    {
+        try
+        {
+            return $this->teachingPeriod
+                ->whereIn('id', $teachingPeriodIds)
+                ->orderBy('start_date', 'asc')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

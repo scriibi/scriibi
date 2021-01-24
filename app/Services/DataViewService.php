@@ -76,7 +76,7 @@ class DataViewService
         }
     }
 
-    public function getGrowthOfWritingDataSet($selection, $subselection = null, $school): array
+    public function getGrowthOfWritingDataSet($selection, $subselection = null, $school, $allScriibiLevels): array
     {
         try
         {
@@ -86,31 +86,96 @@ class DataViewService
             $studentIds = $this->extractIdValues($students);
             $teachingPeriodsOfYear = $this->teachingPeriodRepositoryInterface->getTeachingPeriodIdsOfYear(date_create($date)->format("Y"), $school['curriculum_school_type_id']);
             $allTeachingPeriods = $this->teachingPeriodRepositoryInterface->getTeachingPeriodsForCurriculumSchoolType($school['curriculum_school_type_id']);
+            $studentTemplates = $this->createStudentTeachingPeriodTemplates($students, $teachingPeriodsOfYear);
             foreach ($teachingPeriodsOfYear as $tpy)
             {
-                $x = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
-                dump($x);
-            }
-            dd();
-            $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
-            usort($writingTasks, array($this, 'sortWritingTasks'));
-            $results = DB::table('task_skill_student_result')
-                ->whereIn('writing_task_id', $this->extractIdValues($writingTasks))
-                ->whereIn('student_id', $studentIds)
-                ->get()
-                ->toArray();
-            $studentTemplates = $this->createStudentSkillDataTemplates($students);
-            $resultCount = count($results);
+                $teachingPeriodIds = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
+                $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
+                dump($writingTasks);
+                usort($writingTasks, array($this, 'sortWritingTasks'));
+                $writingTaskIds = $this->extractIdValues($writingTasks);
+                $results = DB::table('task_skill_student_result')
+                    ->whereIn('writing_task_id', $writingTaskIds)
+                    ->whereIn('student_id', $studentIds)
+                    ->get()
+                    ->toArray();
+                $this->sortResults($results, $writingTaskIds);
+                $studentSkillTemplates = $this->createStudentSkillDataTemplates($students);
+                $resultCount = count($results);
 
-            for ($i = 0; $i < $resultCount; $i++)
-            {
-                $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
+                for ($i = 0; $i < $resultCount; $i++)
+                {
+                    $studentSkillTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
+                }
+
+                foreach ($studentSkillTemplates as $key => $value)
+                {
+                    $studentTemplates[$key]['teachingPeriods'][$tpy] = $this->getSkillsAvg($value['skills'], $allScriibiLevels);
+                }
             }
-            return $studentTemplates;
+            return [
+                'studentTemplates' => $studentTemplates,
+                'teachingPeriods' => $teachingPeriodsOfYear
+            ];
         }
         catch (Exception $e)
         {
             return [];
+        }
+    }
+
+    protected function getSkillsAvg($skills, $allScriibiLevels): ?float
+    {
+        try
+        {
+            $total = 0;
+            $skillCount = 0;
+            foreach ($skills as $skill)
+            {
+                if($skill !== null)
+                {
+                    $total += $allScriibiLevels[$skill];
+                    $skillCount++;
+                }
+            }
+            return $total / $skillCount;
+        }
+        catch (Exception $e)
+        {
+            return null;
+        }
+    }
+
+    protected function createStudentTeachingPeriodTemplates($students, $teachingPeriodIds)
+    {
+        try
+        {
+            $templates = [];
+            $teachingPeriodHashMap = [];
+
+            foreach ($teachingPeriodIds as $teachingPeriod)
+            {
+                $teachingPeriodHashMap[$teachingPeriod] = null;
+            }
+            $studentCount = count($students);
+
+            for ($j = 0; $j < $studentCount; $j++)
+            {
+                $templates[$students[$j]['id']] =
+                    [
+                        'name' => $students[$j]['first_name'] . ' ' . $students[$j]['last_name'],
+                        'class' => !empty($students[$j]['classes']) ? $students[$j]['classes'][0]['name'] : null,
+                        'gradeLevel' => $students[$j]['grade_level_id'],
+                        'assessedLevel' => $students[$j]['assessed_level_id'],
+                        'teachingPeriods' => $teachingPeriodHashMap
+                    ];
+            }
+            return $templates;
+
+        }
+        catch (Exception $e)
+        {
+            return $e;
         }
     }
 
@@ -145,6 +210,7 @@ class DataViewService
             return [];
         }
     }
+
 
     protected function getStudents($selection, $subselection = null, $schoolId): array
     {

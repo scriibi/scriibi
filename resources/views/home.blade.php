@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Hello {{$user}}, </h3>
+                <h3>Hi {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
@@ -97,7 +97,7 @@
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
-                <a href="/trait-view/school" class="card extra-card-style list-group-item-action mt-2">
+                <a href="/trait-view" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center home-goal-icon" src="/images/goal-setting.png" alt="data-view">
                         <span class="align-self-center">View Student Data and</br> Generate Goal Sheets</span>
