@@ -5,6 +5,7 @@
 /public/js
 /config/database.php
 /storage/*.key
+/vendor
 .env
 .env.backup
 .phpunit.result.cache
