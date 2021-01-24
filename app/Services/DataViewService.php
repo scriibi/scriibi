@@ -46,11 +46,12 @@ class DataViewService
     {
         try
         {
-            $year = 2021;
             $limit = 3;
+            $date = date('Y-m-d');
             $students = $this->getStudents($selection, $subselection, $school['id']);
             $studentIds = $this->extractIdValues($students);
-            $teachingPeriodIds = $this->teachingPeriodRepositoryInterface->getTeachingPeriodIdsOfYear($year, $school['curriculum_school_type_id'], $limit);
+            $allTeachingPeriods = $this->teachingPeriodRepositoryInterface->getTeachingPeriodsForCurriculumSchoolType($school['curriculum_school_type_id']);
+            $teachingPeriodIds = $this->filterLatestTeachingPeriodsForLimit($date, $allTeachingPeriods, $limit);
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
             usort($writingTasks, array($this, 'sortWritingTasks'));
             $results = DB::table('task_skill_student_result')
@@ -199,6 +200,29 @@ class DataViewService
         else
         {
             return -1;
+        }
+    }
+
+    protected function filterLatestTeachingPeriodsForLimit($date, $teachingPeriods, $limit):array
+    {
+        try
+        {
+            $teachingPeriodIds = [];
+            $filteredPeriods = array_filter($teachingPeriods, function ($period) use($date)
+            {
+                if($period['start_date'] <= $date){ return true; }
+            });
+            $filteredPeriodsPointer = count($filteredPeriods) - 1;
+            for($i = 0; $i < $limit; $i++)
+            {
+                array_push($teachingPeriodIds, $filteredPeriods[$filteredPeriodsPointer]['id']);
+                $filteredPeriodsPointer--;
+            }
+            return array_reverse($teachingPeriodIds);
+        }
+        catch (Exception$e)
+        {
+            return [];
         }
     }
 }

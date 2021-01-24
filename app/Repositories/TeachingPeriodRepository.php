@@ -73,7 +73,28 @@ class TeachingPeriodRepository implements TeachingPeriodRepositoryInterface
         }
         catch (Exception $e)
         {
-            throw $e;
+            return [];
+        }
+    }
+
+    /**
+     * Return all teaching periods for the specified curriculum school type
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getTeachingPeriodsForCurriculumSchoolType($curriculumSchoolTypeId): array
+    {
+        try
+        {
+            return $this->teachingPeriod
+                ->where('curriculum_school_type_id', $curriculumSchoolTypeId)
+                ->orderBy('start_date', 'asc')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 }
