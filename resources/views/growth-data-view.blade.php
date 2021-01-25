@@ -122,7 +122,7 @@
                     }
                 }
                 ?>
-                <td class="student-assessed-level align-middle" headers="growth-value">{{ $start  !== null || $end !== null ? $end-$start : '' }}</td>
+                <td class="student-assessed-level align-middle" headers="growth-value">{{ $start  !== null || $end !== null ? round($end-$start, 1) : '' }}</td>
             </tr>
         @endforeach
         </tbody>

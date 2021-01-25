@@ -6,21 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataViewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataViewController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/SkillRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/SkillRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/StudentRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/StudentRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/WritingTaskRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Interfaces/WritingTaskRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SkillRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/StudentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/WritingTaskRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/WritingTaskRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/DataViewService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/DataViewService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GoalsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GoalsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assessment-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-data-view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assessment-studentlist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-studentlist.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/growth-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/growth-data-view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +178,7 @@
       <workItem from="1609284106315" duration="4225000" />
       <workItem from="1609290733520" duration="27962000" />
       <workItem from="1609465556286" duration="261825000" />
-      <workItem from="1610663436190" duration="285698000" />
+      <workItem from="1610663436190" duration="291323000" />
     </task>
     <servers />
   </component>

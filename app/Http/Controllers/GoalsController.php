@@ -33,7 +33,7 @@ class GoalsController extends Controller
     public function generateGoalSheets(Request $request){
         $i = 0;
         $arr = array();
-        
+
         // retrieve all the checkbox values for each individual goal sheet
         $inputs = $request->input('checkbox');
 
@@ -41,9 +41,9 @@ class GoalsController extends Controller
             return back()->withErrors(['message'=>'Please select at least one student result to generate goal sheets.']);
         }
         $student = $request->input('individual-student');
-   
+
         /**
-         * localize the tables needed so only a 
+         * localize the tables needed so only a
          * few database calls have to be made
          */
         $skills_levels = skills_levels::all('skills_levels_Id','skills_levels_skills_skill_Id','scriibi_levels_scriibi_Level_Id')
@@ -69,19 +69,19 @@ class GoalsController extends Controller
                             ->get()
                             ->keyBy('scriibi_Level_Id');
 
-        /** 
+        /**
          * loop through each goal sheet request and
          * generate strategies and student definitions
-         * for each of them 
-         */ 
+         * for each of them
+         */
         foreach ($inputs as $input){
             $a = null;
             $b = null;
             $e = null;
             $skillName = null;
             $strategy = null;
-            $definition = null;     
-            // split each goal string into three individual peices of data 
+            $definition = null;
+            // split each goal string into three individual peices of data
             $input2 = explode('?', $input);
             $skillId = intval($input2[0]);
             $floatVal = floatval($input2[1]);
@@ -90,10 +90,10 @@ class GoalsController extends Controller
             }
             else{
                 $mark = intval($input2[1]);
-            }       
+            }
             $mark = $this->calculateGoalLevel($mark);
             $studentName = $input2[2];
-            
+
             // retrieve the skill name based on the skill id value
             foreach($skills as $skill){
                 if($skill['skill_Id'] == $skillId)
@@ -108,28 +108,28 @@ class GoalsController extends Controller
                     $d = $sl->scriibi_Level_Id;
                 }
             }
-                    
+
             // retrieve the skill level id if both the skill id and the scriibi level id form a unique record
             foreach($skills_levels as $sk){
                 if(($sk['skills_levels_skills_skill_Id'] == $skillId) && ($sk['scriibi_levels_scriibi_Level_Id'] == $d)){
-                    $a = $sk['skills_levels_Id'];                
+                    $a = $sk['skills_levels_Id'];
                 }
             }
 
             // retrieve the strategy id of the matching skill level id
             foreach($skills_strategies as $ss){
                 if($ss['skills_levels_Id'] == $a){
-                    $b = $ss['strategies_Id'];                
+                    $b = $ss['strategies_Id'];
                 }
             }
 
             // retrieve the strategy description of the matching strategy id
             foreach($strategies as $s){
                 if($s['strategies_Id'] == $b){
-                    $strategy = $s['strategy_Desc'];                
+                    $strategy = $s['strategy_Desc'];
                 }
             }
-            
+
             // retrieve the student definition id of the row with a matching skill level id
             foreach($skills_levels_student_def as $slsd){
                 if($slsd['skills_levels_Id'] == $a){
@@ -143,7 +143,7 @@ class GoalsController extends Controller
                     $definition = $std['description'];
                 }
             }
-            
+
             // append each goal sheet data set into an array
             if($student == "Generate All Goal Sheets"){
                 $arr[$i] = array(
@@ -166,7 +166,7 @@ class GoalsController extends Controller
             }
 
         }
-    
+
         return view('goalSheet', ['arr' => $arr]);
     }
 
@@ -177,91 +177,11 @@ class GoalsController extends Controller
         }
         else{
             $mark = intval($mark);
-        }       
+        }
         $newMark = $this->calculateGoalLevel($mark);
         $scriibiLevel = DB::table('scriibi_levels')->where('scriibi_Level', '=', $newMark)->select('scriibi_levels.scriibi_Level_Id')->get()->toArray();
         $skillLevel = DB::table('skills_levels')->where('skills_levels_skills_skill_Id', '=', $skillId)->where('scriibi_levels_scriibi_Level_Id', '=', $scriibiLevel[0]->scriibi_Level_Id)->get()->toArray();
         return json_encode($skillLevel);
 
-    }
-
-    // public function printGoalSheets($array){
-    //     $pdf = PDF::loadView('goalSheet', array('arr' => $arr));  
-    //     return $pdf->download('goals.pdf');
-    // }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\goals  $goals
-     * @return \Illuminate\Http\Response
-     */
-    public function show(goals $goals)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\goals  $goals
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(goals $goals)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\goals  $goals
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, goals $goals)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\goals  $goals
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(goals $goals)
-    {
-        //
     }
 }

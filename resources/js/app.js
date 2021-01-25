@@ -833,7 +833,23 @@ $(function(){
     }
 
     $('.asmnt-rmv-stu-btn').on('click', function (event){
-        $('#delete-students-modal').modal('show');
+        let allStudents = [];
+        let deleteStudents  = [];
+        $('.assessment-student-list').find('input[name="assessment-delete-students[]"]').each(function (index){
+            allStudents.push($(this).val());
+        });
+        $('input[name="assessment-delete-students[]"]:checkbox:checked').each(function (index){
+            deleteStudents.push($(this).val());
+        });
+        console.log(allStudents);
+        if(allStudents.length === deleteStudents.length)
+        {
+            $('#cannot-delete-all-students-modal').modal('show');
+        }
+        else
+        {
+            $('#delete-students-modal').modal('show');
+        }
     });
 
     $('.asmnt-rmv-stu-confmr-btn').on('click', function (event){
