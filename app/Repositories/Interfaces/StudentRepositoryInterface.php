@@ -65,6 +65,13 @@ interface StudentRepositoryInterface
     public function getStudentIdsOfWritingTask($writingTaskId): array;
 
     /**
+     * Return all students associated with a specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getStudentsOfWritingTaskWithClassInfo($writingTaskId): array;
+
+    /**
      * Return all students of the specified school
      * @param $schoolId
      * @return array

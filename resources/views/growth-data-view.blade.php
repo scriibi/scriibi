@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <select class="data-view-dropdown" name="data-view-grade-select" {{ $selection == 'grade' ? '' : 'hidden' }}>
-                            <option value="none" disabled="disabled" {{ !isset($subselection) ? 'selected' : '' }}>Select one</option>
+                            <option value="none" disabled="disabled" {{ $selection == 'grade' && isset($subselection) ? '' : 'selected' }}>Select one</option>
                             @foreach($grades as $grade)
                                 <option value="{{$grade['scriibi_level_id']}}" <?php if($selection == 'grade' && $subselection == $grade['scriibi_level_id']){echo 'selected';} ?>>{{$grade['label']}}</option>
                             @endforeach
@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <select class="data-view-dropdown" name="data-view-class-select" {{ $selection == 'class' ? '' : 'hidden' }}>
-                            <option value="none" disabled="disabled" {{ !isset($subselection) ? 'selected' : '' }}>Select one</option>
+                            <option value="none" disabled="disabled" {{ $selection == 'class' && isset($subselection) ? '' : 'selected' }}>Select one</option>
                             @foreach($classes as $class)
                                 <option value="{{$class['id']}}" <?php if($selection == 'class' && $subselection == $class['id']){echo 'selected';} ?>>{{$class['name']}}</option>
                             @endforeach
@@ -62,45 +62,67 @@
                 </div>
                 <div>
                     <input type="hidden" name="current-view" value="{{$currentView}}" />
-                    <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Of Writing</button></a>
                     <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                    <a class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
+                    <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Skills</button></a>
+                    <a href="/assessment-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
                 </div>
             </div>
         </div>
     </div>
     <!-- the container for the table holding student data -->
-    <table id="overall-assessment-table" class="table row-border order-column cell-border hover nowrap" style="width: 100%">
+    <table id="overall-assessment-table" class="table row-border order-column cell-border hover nowrap" style="width: 100%; border-bottom: 1px solid #D2D2D2">
         <!-- Table headers -->
         <thead class="header-style">
         <tr class="header-style text-center">
-            <th  id="fullName" style="width:200px">Full Name</th>
-            <th id="class">Class</th>
-            <th id="grade">Grade Level</th>
-            <th id="assessed">Assessed Level</th>
+            <th  id="fullName" class="align-middle" style="width:200px">Full Name</th>
+            <th id="class" class="align-middle">Class</th>
+            <th id="grade"class="text-wrap align-middle">Grade Level</th>
+            <th id="assessed" class="text-wrap align-middle">Assessed Level</th>
             <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
             <?php $count = 1;?>
             @foreach($teachingPeriods as $teachingPeriod)
-                <th id="period{{$count}}" class="assessment-skills text-center skill-column" style="width:200px">{{ $teachingPeriod['year'] . ' Teaching Period ' . $count }}</th>
+                <th id="period{{$count}}" class="assessment-skills text-center skill-column text-wrap align-middle">{{ ' Term ' . $count . ',  ' . $teachingPeriod['year']}}</th>
                 <?php $count++;?>
             @endforeach
+            <th id="growth-value" class="text-wrap align-middle">Growth</th>
         </tr>
         </thead>
         <tbody>
         <!-- Student data goes down here -->
         @foreach($dataset as $key => $value)
             <tr class="student-row" data-grade="{{$scriibiLevels[$value['gradeLevel']]}}" data-assessed="{{$scriibiLevels[$value['assessedLevel']]}}" >
-                <td headers="fullName" class="fname" style="width:200px">
+                <td headers="fullName" class="fname align-middle" style="width:200px">
                     {{$value['name']}}
                 </td>
-                <td class="justify-content-center student-grade-level" headers="class" style="width:100px">{{$value['class']}}</td>
-                <td class="justify-content-center student-grade-level" headers="grade" style="width:100px" >{{$scriibiLevels[$value['gradeLevel']]}}</td>
-                <td class="student-assessed-level" headers="assessed" style="width:100px">{{$scriibiLevels[$value['assessedLevel']]}}</td>
+                <td class="justify-content-center student-grade-level align-middle" headers="class">{{$value['class']}}</td>
+                <td class="justify-content-center student-grade-level align-middle" headers="grade">{{$scriibiLevels[$value['gradeLevel']]}}</td>
+                <td class="student-assessed-level align-middle" headers="assessed" style="width:100px">{{$scriibiLevels[$value['assessedLevel']]}}</td>
                 <?php $count = 1;?>
-                @foreach($value['teachingPeriods'] as $key => $value)
-                    <td class="trait-skill-result text-center skill-column" headers="period{{$count}}" data-period-id="{{$key}}" data-mark="{{$value}}  " style="width:100px;">{{ $value!== null ? round($value, 1) : '' }}</td>
+                @foreach($value['teachingPeriods'] as $key => $val)
+                    <td class="trait-skill-result text-center skill-column" headers="period{{$count}}" data-period-id="{{$key}}" data-mark="{{$val}}">{{ $val!== null ? round($val, 1) : '' }}</td>
                     <?php $count++;?>
                 @endforeach
+                <?php
+                $start = null;
+                $end = null;
+                foreach ($value['teachingPeriods'] as $key => $v)
+                    {
+                        if($v !== null)
+                            {
+                                $start = $v;
+                                break;
+                            }
+                    }
+                foreach (array_reverse($value['teachingPeriods']) as $key => $v)
+                {
+                    if($v !== null)
+                    {
+                        $end = $v;
+                        break;
+                    }
+                }
+                ?>
+                <td class="student-assessed-level align-middle" headers="growth-value">{{ $start  !== null || $end !== null ? $end-$start : '' }}</td>
             </tr>
         @endforeach
         </tbody>

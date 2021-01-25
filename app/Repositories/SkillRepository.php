@@ -83,6 +83,55 @@ class SkillRepository implements SkillRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all skill Ids that are associated with a writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getSkillsIdsOfWritingTask($writingTaskId): array
+    {
+        try
+        {
+            return $this->skill
+                ->whereHas('writingTasks',  function ($query) use($writingTaskId)
+                {
+                    $query->where('writing_task.id', $writingTaskId);
+                })
+                ->get()
+                ->map(function ($skill)
+                {
+                    return $skill->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all specified skill details along with the associated
+     * traits
+     * @param $skillIds
+     * @return array
+     */
+    public  function getSkillsWithTraits($skillIds): array
+    {
+        try
+        {
+            return $this->skill
+                ->whereIn('id', $skillIds)
+                ->with('traits')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

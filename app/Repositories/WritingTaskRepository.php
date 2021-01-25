@@ -305,6 +305,53 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
             return false;
         }
     }
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $schoolId
+     * @return array
+     */
+    public function getWritingTasksOfSchool($schoolId): array
+    {
+        try
+        {
+            return $this->writingTask
+                ->where('school_id', $schoolId)
+                ->orderBy('assessed_date', 'desc')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $classId
+     * @return array
+     */
+    public function getWritingTasksOfClass($classId): array
+    {
+        try
+        {
+            return $this->writingTask
+                ->whereHas('classes', function($query) use($classId)
+                {
+                    $query->where('class.id', $classId);
+                })
+                ->orderBy('assessed_date', 'desc')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

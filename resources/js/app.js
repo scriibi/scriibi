@@ -106,7 +106,9 @@ $(function(){
     });
 
     $('#data-view-range-school').on('click', function() {
-        let  url_origin = window.location.origin + '/trait-view/school';
+        let  url_origin = window.location.origin;
+        let currentView = $('input[name="current-view"]').val();
+        url_origin += '/' + currentView + '-view/school';
         window.location = url_origin;
     });
 
@@ -141,6 +143,51 @@ $(function(){
            $('.trait-view-grade').removeClass('fill-circle');
        }
         $('.trait-view-school').removeClass('fill-circle');
+    });
+
+    $('#assessment-data-view-assessment-select').on('change', function (event){
+        let url_origin = window.location.origin + '/assessment-view/';
+        let schoolCheck = $('.trait-view-school').hasClass('fill-circle');
+        let classCheck = $('.trait-view-class').hasClass('fill-circle');
+        let gradeCheck = $('.trait-view-grade').hasClass('fill-circle');
+        console.log('classC', gradeCheck)
+        if(schoolCheck)
+        {
+            url_origin += 'school/null/' + $(this).val();
+        }
+        if(classCheck)
+        {
+            let subselection = $('select[name="data-view-class-select"]').val();
+            if(subselection)
+            {
+                url_origin += 'class/' + subselection + "/" + $(this).val();
+            }
+            else
+            {
+                let subselection = $('select[name="data-view-grade-select"]').val();
+                if(subselection)
+                {
+                    url_origin += 'grade/' + subselection + "/" + $(this).val();
+                }
+            }
+        }
+        if(gradeCheck)
+        {
+            let subselection = $('select[name="data-view-grade-select"]').val();
+            if(subselection)
+            {
+                url_origin += 'grade/' + subselection + "/" + $(this).val();
+            }
+            else
+            {
+                let subselection = $('select[name="data-view-class-select"]').val();
+                if(subselection)
+                {
+                    url_origin += 'class/' + subselection + "/" + $(this).val();
+                }
+            }
+        }
+        window.location = url_origin;
     });
 //========== OVERALL ASSESSMENT
     function enableDataTableFilters(){

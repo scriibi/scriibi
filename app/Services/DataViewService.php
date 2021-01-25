@@ -91,6 +91,7 @@ class DataViewService
             {
                 $teachingPeriodIds = $this->getSpecifiedTeachingPeriodForLimit($tpy, $allTeachingPeriods, $limit);
                 $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfTeachingPeriods($teachingPeriodIds, $school['id']);
+
                 if(!$this->checkWritingTaskExistanceForTeachingPeriod($writingTasks, $teachingPeriodIds[count($teachingPeriodIds)-1]))
                 {
                     continue;
@@ -121,6 +122,32 @@ class DataViewService
                 'studentTemplates' => $studentTemplates,
                 'teachingPeriods' => $teachingPeriodsOfYear
             ];
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    public function getAssessmentDataSet($writingTaskId): array
+    {
+        try
+        {
+            $studentsOfAssessment = $this->studentRepositoryInterface->getStudentsOfWritingTaskWithClassInfo($writingTaskId);
+            $studentTemplates = $this->createStudentAssessmentSkillTemplate($studentsOfAssessment, $writingTaskId);
+            $studentIds =  $this->extractIdValues($studentsOfAssessment);
+            $results = DB::table('task_skill_student_result')
+                ->where('writing_task_id', $writingTaskId)
+                ->whereIn('student_id', $studentIds)
+                ->get()
+                ->toArray();
+            $resultCount = count($results);
+
+            for ($i = 0; $i < $resultCount; $i++)
+            {
+                $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
+            }
+            return $studentTemplates;
         }
         catch (Exception $e)
         {
@@ -166,6 +193,38 @@ class DataViewService
         catch (Exception $e)
         {
             return null;
+        }
+    }
+
+    protected function createStudentAssessmentSkillTemplate($students, $writingTaskId): array
+    {
+        try
+        {
+            $skillHashMap = [];
+            $templates = [];
+            $skillIds = $this->skillRepositoryInterface->getSkillsIdsOfWritingTask($writingTaskId);
+            $skillCount = count($skillIds);
+            for ($i = 0; $i < $skillCount; $i++)
+            {
+                $skillHashMap[$skillIds[$i]] = null;
+            }
+            $studentCount = count($students);
+            for ($j = 0; $j < $studentCount; $j++)
+            {
+                $templates[$students[$j]['id']] =
+                    [
+                        'name' => $students[$j]['first_name'] . ' ' . $students[$j]['last_name'],
+                        'class' => !empty($students[$j]['classes']) ? $students[$j]['classes'][0]['name'] : null,
+                        'gradeLevel' => $students[$j]['grade_level_id'],
+                        'assessedLevel' => $students[$j]['assessed_level_id'],
+                        'skills' => $skillHashMap
+                    ];
+            }
+            return $templates;
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 

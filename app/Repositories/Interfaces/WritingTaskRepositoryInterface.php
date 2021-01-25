@@ -103,6 +103,22 @@ interface WritingTaskRepositoryInterface
      * @return bool
      */
     public function restoreSoftDeletedWritingTasks($writingTaskId): bool;
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $schoolId
+     * @return array
+     */
+    public function getWritingTasksOfSchool($schoolId): array;
+
+    /**
+     * Find and restore a specified writing task resource instance
+     * writing task
+     * @param $classId
+     * @return array
+     */
+    public function getWritingTasksOfClass($classId): array;
 }
 
 ?>

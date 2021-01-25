@@ -97,20 +97,12 @@
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
-                <a href="/trait-view" class="card extra-card-style list-group-item-action mt-2">
+                <a href="/growth-view" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center home-goal-icon" src="/images/goal-setting.png" alt="data-view">
                         <span class="align-self-center">View Student Data and</br> Generate Goal Sheets</span>
                     </div>
                 </a>
-                <!-- Data View btn
-                <a href="/data-view" class="card extra-card-style list-group-item-action mt-2">
-                    <div class="d-flex justify-content-between h-100 mx-4">
-                        <img class="align-self-center home-data-icon" src="/images/data-view.png" alt="data-view">
-                        <span class="align-self-center">View Student Data</span>
-                    </div>
-                </a>
-                -->
             </div>
         </div>
 

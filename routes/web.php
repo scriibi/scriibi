@@ -14,14 +14,11 @@ use App\Services\UserService;
 
 Route::group(['middleware' => ['auth']], function () {
 
-    //the following routes are for viewing assessment data. this functionality has not been implemented fully.
+    //the following routes are for viewing student data.
 
     Route::get('/trait-view/{selection?}/{subselection?}', 'DataViewController@getTraitView');
     Route::get('/growth-view/{selection?}/{subselection?}', 'DataViewController@getGrowthView');
-
-    // Route::get('/student-data-view', 'DataViewController@studentView');
-
-    Route::get('/assessment-data-view/{assessmentId}', 'DataViewController@assessmentView');
+    Route::get('/assessment-view/{selection?}/{subselection?}/{assessment?}', 'DataViewController@getAssessmentView');
 
     Route::get('/home', function(UserService $userService){
         try{

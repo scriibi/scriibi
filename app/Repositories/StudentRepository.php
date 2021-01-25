@@ -207,6 +207,30 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
+     * Return all students associated with a specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getStudentsOfWritingTaskWithClassInfo($writingTaskId): array
+    {
+        try
+        {
+            return $this->student
+                ->whereHas('writingTasks', function ($query) use($writingTaskId)
+                {
+                    $query->where('writing_task.id', $writingTaskId);
+                })
+                ->with('classes')
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Return all students of the specified school
      * @param $schoolId
      * @return array
