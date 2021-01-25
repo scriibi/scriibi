@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit'); // done
     Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');  // done
     Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList'); // done
-    Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');
+    Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete'); // done
 
     // fetch
     Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel'); // done (do data validation)
     Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment'); // done (sanitize data later)
     Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment'); // done (try to refactor the function in the writing task service)
-    Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam');
+    Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam'); // done
     Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange'); // done (needs refactoring and optimization for the global and local criteria selection)
     Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel'); // done

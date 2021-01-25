@@ -170,7 +170,7 @@ class DataViewController extends Controller
                     $temp = $classRepository->getClassesOfScriibiLevel($subselection, $userSchool['id']);
                     $writingTaskList = $writingTaskRepository->getWritingTasksOfClasses($this->extractIdValues($temp));
                 }
-//                dd('cat');
+
                 if(!empty($writingTaskList))
                 {
                     $writingTask = $writingTaskList[0]['id'];
@@ -234,24 +234,6 @@ class DataViewController extends Controller
         catch (Exception $e)
         {
             throw $e;
-        }
-    }
-
-    public function assessmentView($assessmentId){
-        $teacherAssessment = writing_tasks::teacherTasks(Auth::user()->user_Id);
-        $temp = array();
-        foreach($teacherAssessment as $ta){
-            array_push($temp, $ta->writing_task_Id);
-        }
-        if(in_array($assessmentId, $temp)){
-            $assessmentView = new App\DataViewWrittingTask($assessmentId);
-            $assessmentView->generateDataTable();
-            $dataTable = $assessmentView->getDataTable();
-            $skills = $assessmentView->getSkills();
-            $writingTask = $assessmentView->getWritingTasks();
-            return view('assessment-data-view', ['dataTable' => $dataTable, 'skills' => $skills, 'writingTask' => $writingTask]);
-        }else{
-            abort(403, 'You Cannot View This Assessment!');
         }
     }
 

@@ -123,8 +123,10 @@
                         </div>
                     </div>
                     <div class="col-6 pl-5">
-                        <a class="ml-auto d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
-                        <a class="ml-auto d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >Generate All Goal Sheets</button></a>
+                        <a href="/single-assessment/{{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
+                        <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-block assignment-action-button assessment-goals-gen-btn" >Generate All Goal Sheets
+                            <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -196,41 +198,50 @@
     @endif
     <!-- the container for the table holding student data -->
     @if($dataset !== null)
-        <table id="overall-assessment-table" class="table row-border order-column cell-border hover nowrap" style="width: 100%; border-bottom: 1px solid #D2D2D2">
-            <!-- Table headers -->
-            <thead class="header-style">
-            <tr class="header-style text-center">
-                <th  id="fullName" class="text-wrap align-middle" style="width:200px">Full Name</th>
-                <th id="class" class="text-wrap align-middle">Class</th>
-                <th id="grade" class="text-wrap align-middle" style="width: 50px; padding: 25px !important">Grade Level</th>
-                <th id="assessed" class="text-wrap align-middle" style="width: 50px; padding: 20px !important">Assessed Level</th>
-                <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
-                <?php $count = 1;?>
-                @foreach($skills as $skill)
-                    <th id="skill{{$count}}" class="assessment-skills text-center skill-column text-wrap align-middle" style="width:100px">{{$skill['name']}}</th>
-                    <?php $count++;?>
-                @endforeach
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Student data goes down here -->
-            @foreach($dataset as $key => $value)
-                <tr class="student-row" data-grade="{{$scriibiLevels[$value['gradeLevel']]}}" data-assessed="{{$scriibiLevels[$value['assessedLevel']]}}" >
-                    <td headers="fullName" class="fname" style="width:200px">
-                        {{$value['name']}}
-                    </td>
-                    <td class="justify-content-center student-grade-level" headers="class" style="width:100px">{{$value['class']}}</td>
-                    <td class="justify-content-center student-grade-level" headers="grade" style="width:100px" >{{$scriibiLevels[$value['gradeLevel']]}}</td>
-                    <td class="student-assessed-level" headers="assessed" style="width:100px">{{$scriibiLevels[$value['assessedLevel']]}}</td>
+        <form method="get" action="/goal-sheets" id="student-marks-form" target="_blank">
+        @csrf
+            <table id="overall-assessment-table" class="table row-border order-column cell-border hover nowrap" style="width: 100%; border-bottom: 1px solid #D2D2D2">
+                <!-- Table headers -->
+                <thead class="header-style">
+                <tr class="header-style text-center">
+                    <th  id="fullName" class="text-wrap align-middle" style="width:200px">Full Name</th>
+                    <th id="class" class="text-wrap align-middle">Class</th>
+                    <th id="grade" class="text-wrap align-middle" style="width: 50px; padding: 25px !important">Grade Level</th>
+                    <th id="assessed" class="text-wrap align-middle" style="width: 50px; padding: 20px !important">Assessed Level</th>
+                    <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
                     <?php $count = 1;?>
-                    @foreach($value['skills'] as $key => $value)
-                        <td class="trait-skill-result text-center skill-column" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}  " style="width:100px;">{{ array_key_exists($value, $scriibiLevels) ? $scriibiLevels[$value] : ''}}</td>
+                    @foreach($skills as $skill)
+                        <th id="skill{{$count}}" class="assessment-skills text-center skill-column text-wrap align-middle" style="width:100px">{{$skill['name']}}</th>
                         <?php $count++;?>
                     @endforeach
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <!-- Student data goes down here -->
+                @foreach($dataset as $key => $value)
+                    <tr class="student-row" data-grade="{{$scriibiLevels[$value['gradeLevel']]}}" data-assessed="{{$scriibiLevels[$value['assessedLevel']]}}" >
+                        <td headers="fullName" class="fname" style="width:200px">
+                            <button class="testSheet float-right" value="{{$value['name']}}"></button>
+                            <?php ((strlen(substr($value['name'], 0, 20))) < (strlen($value['name']))) ? $name = substr($value['name'], 0, 20) . '...' : $name = $value['name']; echo($name) ?>
+                        </td>
+                        <td class="justify-content-center student-grade-level" headers="class" style="width:100px">{{$value['class']}}</td>
+                        <td class="justify-content-center student-grade-level" headers="grade" style="width:100px" >{{$scriibiLevels[$value['gradeLevel']]}}</td>
+                        <td class="student-assessed-level" headers="assessed" style="width:100px">{{$scriibiLevels[$value['assessedLevel']]}}</td>
+                        <?php $count = 1;?>
+                        @foreach($value['skills'] as $k => $v)
+                            <td class="student-skill-result trait-skill-result text-center skill-column" headers="skill{{$count}}" data-skillId="{{$k}}" data-mark="{{array_key_exists($v, $scriibiLevels) ? $scriibiLevels[$v] : ' '}}" style="width:100px;">{{ array_key_exists($v, $scriibiLevels) ? $scriibiLevels[$v] : ''}}
+                                @if(strval($v) != "")
+                                    <input class="student-goal-sheet-info" type="checkbox" value= '{{$k . "?" . $scriibiLevels[$v] . "?" . $value['name'] }}' name="checkbox[]" hidden>
+                                @endif
+                            </td>
+                            <?php $count++;?>
+                        @endforeach
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <input type="text" class="hiddenArea" name="individual-student" hidden/>
+        </form>
     @else
         <div class="no-assessments-notice">There Are No Assessments Available</div>
     @endif
@@ -334,3 +345,36 @@
     </style>
 
 @endsection
+
+<div class="modal fade bd-example-modal-lg no-strategies-warning" id="no-strategies-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="rubric-edit-warning-image-content">
+                                <img src="/images/info.png" alt="more information" class="info-image">
+                            </div>
+                        </div>
+                        <div class="col-sm-11">
+                            <div>
+                                <p>There are no strategies for this skill because:</p>
+                                <p>1.  The <strong>minimum</strong> requirement for this skill is at a higher level, <strong>or</strong></p>
+                                <p>2.  The <strong>maximum</strong> level of accomplishment for this skill has been achieved.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -87,15 +87,37 @@ $(function(){
          },
         select: {
             items : 'cell'
-        },
-        "drawCallback": function( settings ) {
-            let value = $('select[name="data-view-trait-filter-select"]').val();
-            if(value === 'assessed')
-                enableTraitViewAssessedFilter();
-            if(value === 'grade')
-                enableTraitViewGradeFilter()
         }
     });
+
+    // methods adds the goalAvailability check on once the assessment data view page loads for the first time
+    checkGoalSheetStudentSelect();
+    // clean this out and reduce the eventlistner usage
+    table.on( 'draw', function () {
+        console.log( 'Redraw occurred at: '+new Date().getTime() );
+        let value = $('select[name="data-view-trait-filter-select"]').val();
+        if(value === 'assessed')
+            enableTraitViewAssessedFilter();
+        if(value === 'grade')
+            enableTraitViewGradeFilter();
+        $(".student-row").each(function(){
+            $(this).find(".student-skill-result").each(function(){
+                $(this).off("click");
+            });
+        });
+        checkGoalSheetStudentSelect();
+
+        $(".student-row").each(function(){
+            $(this).find('.testSheet').off("click", function(){
+                $(this).off("click");
+            });
+        });
+        $(".student-row").each(function(){
+            $(this).find('.testSheet').on("click", function(){
+                listenForIndividualStudentGoalGen($(this));
+            });
+        });
+    } );
 
     $('select[name="data-view-trait-filter-select"]').on('change', function (event){
         let value = $(this).val();
@@ -189,19 +211,14 @@ $(function(){
         }
         window.location = url_origin;
     });
-//========== OVERALL ASSESSMENT
-    function enableDataTableFilters(){
-
-    }
+//========== OVERALL ASSESSMENT =============
 
     function enableTraitViewAssessedFilter(){
         $(".student-row").each(function(){
             var assessed = $(this).data('assessed');
             let student_grade = parseFloat(assessed);
 
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".trait-skill-result").each(function(){
-
                 //before applying these classes, we need to remove any existing shading class
                 $(this).removeClass("green-fill");
                 $(this).removeClass("light-green-fill");
@@ -233,7 +250,6 @@ $(function(){
         $(".student-row").each(function(){
             var grade = $(this).data('grade');
             let student_grade = parseFloat(grade);
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".trait-skill-result").each(function(){
                 //before applying these classes, we need to remove any existing shading class
                 $(this).removeClass("green-fill");
@@ -349,129 +365,64 @@ $(function(){
 //========== ASSESSEMNT STUDENT ASSESS DATA
 
     $(".student-row").each(function(){
-    $(this).find('.testSheet').on("click", function(){
-        let studentName = $(this).val();
+        $(this).find('.testSheet').on("click", function(){
+            listenForIndividualStudentGoalGen($(this));
+        });
+    });
+
+    function listenForIndividualStudentGoalGen(param){
+        let studentName = param.val();
         $('.hiddenArea').val(studentName);
-        $("#form").submit();
-    })
-    });
+        $("#student-marks-form").submit();
+    }
 
-    $(".assessment-btn").on("click", function(){
-        let studentName = $(this).val();
+    $(".assessment-goals-gen-btn").on("click", function(){
+        let submitInput = $(this).find('.goals-gen-submit-input');
+        let studentName = submitInput.val();
         $('.hiddenArea').val(studentName);
-        $("#form").submit();
+        $("#student-marks-form").submit();
     });
 
-    //if a user clicks the grade filter
-    $("#assessment-grade-filter").on("click", function(){
-        //loop through each grade in each student row
+    function checkGoalSheetStudentSelect() {
         $(".student-row").each(function(){
-           var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade);
-
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
-
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 1) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade < student_grade && current_grade > student_grade - 1) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 1) {
-                    $(this).addClass("orange-fill");
-                }
+                $(this).on("click", function() {
+                    checkGoalAvailability($(this));
+                });
             });
         });
-    });
+    }
 
-    //if a user clicks the assessment grade filter
-    $("#assessment-assessed-filter").on("click", function(){
-        console.log("work");
-
-        //loop through each grade in each student row
-        $(".student-row").each(function(){
-           var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed);
-
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
-            $(this).find(".student-skill-result").each(function(){
-
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 1) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade < student_grade && current_grade > student_grade - 1) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 1) {
-                    $(this).addClass("orange-fill");
-                }
+    function checkGoalAvailability(param){
+        let skillId = param.attr("data-skillId");
+        let mark = param.attr("data-mark");
+        if(mark !== ' ')
+        {
+            let url_origin = window.location.origin;
+            url_origin += '/skill-level-availability/';
+            url_origin += skillId;
+            url_origin += '/';
+            url_origin += mark;
+            fetch(url_origin)
+            .then(data => {
+                return data.json();
+            })
+            .then(availability => {
+                console.log(availability);
+                if(availability.length !== 0)
+                    param.toggleClass("circle");
+                else
+                    $("#no-strategies-warning-modal").modal("show");
+                if(param.hasClass("circle"))
+                    param.find(".student-goal-sheet-info").attr("checked", true);
+                else
+                    param.find(".student-goal-sheet-info").attr("checked", false);
+            })
+            .catch(err => {
+                console.log(err);
             });
-        });
-    });
-
-    $(".student-row").each(function(){
-        $(this).find(".student-skill-result").each(function(){
-            $(this).on("click", function() {
-                if($(this).html()){
-                    let skillId = $(this).attr("data-skillId");
-                    let mark = $(this).attr("data-mark");
-                    let url_origin = window.location.origin;
-                    url_origin += '/skill-level-availability/';
-                    url_origin += skillId;
-                    url_origin += '/';
-                    url_origin += mark;
-                    fetch(url_origin)
-                    .then(data => {
-                        return data.json();
-                    })
-                    .then(availability => {
-                        // $(this).find(".student-goal-sheet-info").attr("checked", false);
-                        if(availability.length !== 0)
-                            $(this).toggleClass("circle");
-                        else
-                            $("#no-strategies-warning-modal").modal("show");
-                        if($(this).hasClass("circle"))
-                            $(this).find(".student-goal-sheet-info").attr("checked", true);
-                        else
-                            $(this).find(".student-goal-sheet-info").attr("checked", false);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                }
-            });
-        });
-    });
-
+        }
+    }
 
 //======================== ASSESSMENT MARKING =======================================
 

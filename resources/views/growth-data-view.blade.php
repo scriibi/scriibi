@@ -92,7 +92,7 @@
         @foreach($dataset as $key => $value)
             <tr class="student-row" data-grade="{{$scriibiLevels[$value['gradeLevel']]}}" data-assessed="{{$scriibiLevels[$value['assessedLevel']]}}" >
                 <td headers="fullName" class="fname align-middle" style="width:200px">
-                    {{$value['name']}}
+                    <?php ((strlen(substr($value['name'], 0, 20))) < (strlen($value['name']))) ? $name = substr($value['name'], 0, 20) . '...' : $name = $value['name']; echo($name) ?>
                 </td>
                 <td class="justify-content-center student-grade-level align-middle" headers="class">{{$value['class']}}</td>
                 <td class="justify-content-center student-grade-level align-middle" headers="grade">{{$scriibiLevels[$value['gradeLevel']]}}</td>

@@ -1715,12 +1715,11 @@ table.dataTable.no-footer {
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
-    width: 25px;
-    height: 25px;
-    margin:auto;
-    z-index: 1000;
+    width: 15px;
+    height: 15px;
+    margin: 0;
     margin-left: 10px;
-    margin-top: 9px;
+    z-index: 1000;
     border:none;
 }
 .testSheet:focus, .textSheet:active, .textSheet:after{
