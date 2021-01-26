@@ -133,12 +133,12 @@
                     <span class="align-self-center mx-2">Other Learning Material</span>
                 </a>
 
-                <a href="https://www.scriibi.com/creative-writing/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
+                <a href="https://www.scriibi.com/creative-writing/" target="_blank" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/creative-writing-homless.png" alt="logo4">
                     <span class="align-self-center mx-2">Creative Writing Module</span>
                 </a>
 
-                <a href="https://www.scriibi.com/writing-challenge/" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
+                <a href="https://www.scriibi.com/writing-challenge/" target="_blank" class="teaching-lessons-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start" >
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/creative-writing-homless.png" alt="logo5">
                     <span class="align-self-center mx-2">Homelessness Writing Challenge</span>
                 </a>
@@ -184,7 +184,7 @@
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/contact-us.png" alt="logo8">
                     <span class="align-self-center mx-2 text-nowrap">Contact Us</span>
                 </a>
-                <a href="staged.scriibi.com" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
+                <a href="https://staged.scriibi.com" target="_blank" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1 d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/Creative_Writing_Module.png" alt="logo9">
                     <span class="align-self-center mx-2 text-nowrap">Onboarding Demo</span>
                 </a>
