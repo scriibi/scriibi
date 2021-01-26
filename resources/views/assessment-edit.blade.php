@@ -27,7 +27,7 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <h5 class="Assessment-Studentlist-title">Date :</h5>
-                    <p><input class="form-control" type="date" name="assessment_date" value="{{$writingTask['assessed_date']}}"></p>
+                    <p><input class="form-control" id="assessment_date" type="date" name="assessment_date" value="{{$writingTask['assessed_date']}}"></p>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -54,3 +54,7 @@
 </div>
 
 @endsection
+
+<div class="date-not-in-period-flash" hidden="hidden">
+    <strong>The date is not within a valid teaching period</strong>
+</div>
