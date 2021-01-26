@@ -217,9 +217,10 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
      * @param $name
      * @param $description
      * @param $assessedDate
+     * @param $teachingPeriod
      * @return bool
      */
-    public function updateWritingTask($id, $name, $description, $assessedDate): bool
+    public function updateWritingTask($id, $name, $description, $assessedDate, $teachingPeriod): bool
     {
         try
         {
@@ -230,6 +231,7 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
                         'name' => $name,
                         'description' => $description,
                         'assessed_date' => $assessedDate,
+                        'teaching_period_id' => $teachingPeriod
                     ]
                 );
             return true;

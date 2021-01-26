@@ -165,9 +165,10 @@ class WritingTasksController extends Controller
      * the existing assessmentt details
      * @param Request $request
      * @param WritingTaskService $writingTaskService
+     * @param UserRepositoryInterface $userRepository
      * @return RedirectResponse
      */
-    public function editAssessment(Request $request, WritingTaskService $writingTaskService)
+    public function editAssessment(Request $request, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository)
     {
         try
         {
@@ -175,12 +176,14 @@ class WritingTasksController extends Controller
             $assessmentTitle = $request->input('assessment_name');
             $assessmentDate = $request->input('assessment_date');
             $assessmentDescription = $request->input('assessment_description');
+            $school = $userRepository->getTeacherSchool(Auth::user()->id)[0];
             $updatedDetails =
                 [
                     'id' => $assessmentId,
                     'name' => $assessmentTitle,
                     'description' => $assessmentDescription,
-                    'assessedDate' => $assessmentDate
+                    'assessedDate' => $assessmentDate,
+                    'curriculumSchoolType' => $school['curriculum_school_type_id']
                 ];
             $writingTaskService->updateWritingTask($updatedDetails);
             return redirect()->action('WritingTasksController@ShowWritingTask',

@@ -75,9 +75,10 @@ interface WritingTaskRepositoryInterface
      * @param $name
      * @param $description
      * @param $assessedDate
+     * @param $teachingPeriod
      * @return bool
      */
-    public function updateWritingTask($id, $name, $description, $assessedDate): bool;
+    public function updateWritingTask($id, $name, $description, $assessedDate, $teachingPeriod): bool;
 
     /**
      * Set the timestamp for the soft delete column of the specified
