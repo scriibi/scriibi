@@ -65,6 +65,7 @@ class TraitRepository implements TraitRepositoryInterface
                 {
                     $skills[$skill->id] =
                         [
+                            'id' => $skill->id,
                             'name' => $skill->name,
                             'description' => $skill->description,
                             'flag' => false

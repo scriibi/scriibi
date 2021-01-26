@@ -772,6 +772,10 @@ $(function(){
         attachAssessmentStudentDeleteCheckboxListener();
     }
 
+    $('.complete-assessment-confirm-btn').on('click', function (event){
+        $('#cannot-complete-assessment-yet').modal('show');
+    });
+
     function attachAssessmentStudentDeleteCheckboxListener(){
         $('input[name="assessment-delete-students[]"]').on('change', function(event){
            if($('input[name="assessment-delete-students[]"]:checkbox:checked').length > 0){
@@ -1124,6 +1128,38 @@ $(function(){
         $(this).addClass("rubric-list-option-current-style");
         let url_origin = window.location.origin;
         url_origin += 'rubric-list-build';
+    });
+
+    $('#assessment_date').on('change', function(event){
+        let url_origin = window.location.origin;
+        url_origin += '/get-all-teaching-periods';
+        fetch(url_origin)
+        .then(data => {
+            return data.json();
+        })
+        .then(teachingPeriods => {
+            let status = false;
+            let selectedDate = new Date($(this).val());
+            for(let tp of teachingPeriods){
+                let startDate = new Date(tp.start_date);
+                let endDate = new Date(tp.end_date);
+                if(selectedDate.getTime() > startDate.getTime() && selectedDate.getTime() < endDate.getTime()){
+                    status = true;
+                    break;
+                }
+            }
+            if(!status){
+                let currentDate = new Date();
+                $(this).val(`${currentDate.getFullYear()}-0${currentDate.getMonth()+1}-${currentDate.getDate()}`);
+                $('.date-not-in-period-flash').prop('hidden', false);
+                setTimeout(function () {
+                    $('.date-not-in-period-flash').prop('hidden', true);
+                }, 2000);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
     });
 
 }); //===== /END OF JQUERY =======

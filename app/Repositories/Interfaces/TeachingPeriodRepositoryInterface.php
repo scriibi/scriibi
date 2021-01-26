@@ -4,6 +4,14 @@ namespace App\Repositories\Interfaces;
 
 interface TeachingPeriodRepositoryInterface
 {
+
+    /**
+     * Return all teaching periods that belong to a specific teaching period
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getAllPeriodsForCurriculumSchoolType($curriculumSchoolTypeId): array;
+
     /**
      * Returns the teaching period that a specified day belongs to, to do
      * this the given date should be greater than the start_date and lesser

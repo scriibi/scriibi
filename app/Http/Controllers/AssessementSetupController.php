@@ -11,6 +11,7 @@ use App\Services\RubricListingService;
 use App\Repositories\Interfaces\ClassRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
+use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface;
 
 class AssessementSetupController extends Controller
 {
@@ -54,6 +55,19 @@ class AssessementSetupController extends Controller
         catch (Exception $e)
         {
             // todo
+        }
+    }
+
+    public function getAllTeachingPeriods( UserRepositoryInterface $userRepository,TeachingPeriodRepositoryInterface $teachingPeriodRepository)
+    {
+        try
+        {
+            $curriculumSchoolTypeId = $userRepository->getTeacherSchool(Auth::user()->id)[0]['curriculum_school_type_id'];
+            return json_encode($teachingPeriodRepository->getAllPeriodsForCurriculumSchoolType($curriculumSchoolTypeId));
+        }
+        catch (Exception $e)
+        {
+            return json_encode([]);
         }
     }
 }
