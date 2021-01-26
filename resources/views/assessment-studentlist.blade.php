@@ -125,8 +125,8 @@
                     <div>
                         <div class="d-flex flex-column">
                             <a href="/assessment-edit/{{$writingTask[0]['id']}}" class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" >Edit Assessment</button></a>
-                            <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Complete Assessment</button></a>
-                            <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Data and Goal Sheets</button></a>
+                            <a class="ml-auto"><button type="button" name="button" class="complete-assessment-confirm-btn btn assignment-action-button mt-2 pt-1 pb-1">Complete Assessment</button></a>
+{{--                            <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Data and Goal Sheets</button></a>--}}
                         </div>
                     </div>
                 </div>
@@ -243,6 +243,27 @@
             </div>
             <div class="modal-body">
                 <p>Please note that you cannot remove all students from the assessment. Minimum of <strong>ONE</strong> student must remain.</p>
+            </div>
+            <div class="modal-footer">
+                <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="cannot-complete-assessment-yet" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-justify"><strong>Attention!</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="width: fit-content; margin: auto !important;">
+                    This feature is Not Active.
+                </div>
             </div>
             <div class="modal-footer">
                 <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Close</button>

@@ -19,6 +19,26 @@ class TeachingPeriodRepository implements TeachingPeriodRepositoryInterface
     }
 
     /**
+     * Return all teaching periods that belong to a specific teaching period
+     * @param $curriculumSchoolTypeId
+     * @return array
+     */
+    public function getAllPeriodsForCurriculumSchoolType($curriculumSchoolTypeId): array
+    {
+        try
+        {
+            return $this->teachingPeriod
+                ->where('curriculum_school_type_id', $curriculumSchoolTypeId)
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Returns the teaching period that a specified day belongs to, to do
      * this the given date should be greater than the start_date and lesser
      * than the end_date along with year and curriculum school type match

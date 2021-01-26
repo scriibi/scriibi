@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability'); // done
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange'); // done (needs refactoring and optimization for the global and local criteria selection)
     Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel'); // done
+    Route::get('/get-all-teaching-periods', 'AssessementSetupController@getAllTeachingPeriods'); // done
 
     //goal sheets
     Route::get('/goal-sheets', "GoalsController@generateGoalSheets"); // done (needs reworking - still using old code)
