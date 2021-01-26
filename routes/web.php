@@ -11,25 +11,38 @@
 */
 
 use App\Services\UserService;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\ClassRepositoryInterface;
+use App\Repositories\Interfaces\StudentRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 Route::group(['middleware' => ['auth']], function () {
 
     //the following routes are for viewing student data.
-
     Route::get('/trait-view/{selection?}/{subselection?}', 'DataViewController@getTraitView');
     Route::get('/growth-view/{selection?}/{subselection?}', 'DataViewController@getGrowthView');
     Route::get('/assessment-view/{selection?}/{subselection?}/{assessment?}', 'DataViewController@getAssessmentView');
 
-    Route::get('/home', function(UserService $userService){
+    Route::get('/home', function(UserService $userService, ClassRepositoryInterface $classRepository, StudentRepositoryInterface $studentRepository, UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository){
         try{
             $stdController = new App\Http\Controllers\StudentsController();
-            $students = $stdController->indexStudentsByClass();
+            $dataset = $stdController->indexStudentsByClass($classRepository, $studentRepository, $userRepository, $gradeLabelRepository, $assessedLabelRepository);
             $memberships = $userService->getUserMemberships(Auth::user()->id);
             $privilagedUser = false;
              if(array_key_exists(3, $memberships[0])){
                  $privilagedUser = true;
              }
-            return view('home', ['students' => $students, 'user' => Auth::user()->name, 'userID' => Auth::user()->user_Id, 'privilagedUser' => $privilagedUser]);
+            return view('home',
+                [
+                    'students' => $dataset['students'],
+                    'gradeLabels' => $dataset['gradeLabels'],
+                    'assessedLabels' => $dataset['assessedLabels'],
+                    'user' => Auth::user()->name,
+                    'userID' => Auth::user()->id,
+                    'privilagedUser' => $privilagedUser
+                ]
+            );
         }catch(Exception $ex){
             throw $ex;
         }
@@ -43,21 +56,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mixpanel-update', 'MixpanelController@UpdateMixpanelUserDetails');
 
     Route::get('/assessment-setup', function(){
-        $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
-
-        $mp->identify(Auth::user()->user_Id);
-        $mp->track("Page Viewed", array(
-                "Page Id"           => "P034",
-                "Page Name"         => "Assessment Setup",
-                "Page URL"          => "",
-                "Check Email"       => ""
-            )
-        );
         return view('assessment-setup');
     });
 
     Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');  // done
-
     Route::get('/traits', 'RubricBuilder@test');
 
     //auth0 routes
@@ -103,12 +105,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment'); // done (sanitize data later)
     Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment'); // done (try to refactor the function in the writing task service)
     Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam'); // done
-    Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');
+    Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability'); // done
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange'); // done (needs refactoring and optimization for the global and local criteria selection)
     Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel'); // done
 
     //goal sheets
-    Route::get('/goal-sheets', "GoalsController@generateGoalSheets");
+    Route::get('/goal-sheets', "GoalsController@generateGoalSheets"); // done (needs reworking - still using old code)
     Route::view('/goal-sheet-preview','preview');
 
     Route::get('/rubric', function(){

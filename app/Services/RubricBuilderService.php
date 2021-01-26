@@ -5,6 +5,7 @@ namespace App\Services;
 use Exception;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\CurriculumRepositoryInterface;
 use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
 
@@ -26,13 +27,18 @@ class RubricBuilderService
      * @var ScriibiLevelRepositoryInterface
      */
     protected $scriibiLevelRepositoryInterface;
+    /**
+     * @var CurriculumRepositoryInterface
+     */
+    protected $curriculumRepositoryInterface;
 
-    public function __construct(TraitRepositoryInterface $traitRepoInt, UserRepositoryInterface $userRepoInt, AssessedLabelRepositoryInterface $assessedLabelRepoInt, ScriibiLevelRepositoryInterface $scriibiLevelRepoInt)
+    public function __construct(TraitRepositoryInterface $traitRepoInt, UserRepositoryInterface $userRepoInt, AssessedLabelRepositoryInterface $assessedLabelRepoInt, ScriibiLevelRepositoryInterface $scriibiLevelRepoInt, CurriculumRepositoryInterface $curriculumRepoInt)
     {
         $this->traitRepositoryInterface = $traitRepoInt;
         $this->userRepositoryInterface = $userRepoInt;
         $this->assessedLabelRepositoryInterface = $assessedLabelRepoInt;
         $this->scriibiLevelRepositoryInterface = $scriibiLevelRepoInt;
+        $this->curriculumRepositoryInterface = $curriculumRepoInt;
     }
 
     /**
@@ -70,7 +76,14 @@ class RubricBuilderService
         try
         {
             $traitsWithSkills = $this->traitRepositoryInterface->getSkillsInScriibiLevelRange(RubricBuilderService::getScriibiRange($level));
-            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($this->userRepositoryInterface->getTeacherSchool($teacherId)[0]->curriculum_school_type_id);
+            $curriculumSchoolType = $this->userRepositoryInterface->getTeacherSchool($teacherId)[0]['curriculum_school_type_id'];
+//            $curriculumId = $this->curriculumRepositoryInterface->getCurriculumFromCurriculumSchoolType($curriculumSchoolType);
+//            if(!empty($curriculumId))
+//            {
+//                $flaggedSkills = $this->setStatusFlag($traitsWithSkills, $level, $curriculumId[0]);
+//            }
+//            dd($flaggedSkills);
+            $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($curriculumSchoolType);
 
             if(empty($traitsWithSkills))
             {
@@ -85,6 +98,24 @@ class RubricBuilderService
         catch(Exception $e)
         {
             return null;
+        }
+    }
+
+    protected function setStatusFlag($traitsWithSkills, $currentLevel, $curriculumId): array
+    {
+        try
+        {
+            $skills = [];
+            $traitsWithSkillsCount = count($traitsWithSkills);
+            for ($i = 0; $i < $traitsWithSkillsCount; $i++)
+            {
+                $skills = array_merge($skills, $traitsWithSkills[$i]['skills']);
+            }
+            dd($skills);
+        }
+        catch (Exception $e)
+        {
+            return [];
         }
     }
 
