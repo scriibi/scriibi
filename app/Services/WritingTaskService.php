@@ -314,7 +314,7 @@ class WritingTaskService
         }
         catch (Exception $e)
         {
-            throw $e;
+            return false;
         }
     }
 

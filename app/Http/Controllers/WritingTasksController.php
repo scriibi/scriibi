@@ -193,7 +193,7 @@ class WritingTasksController extends Controller
             );
         }
         catch(Exception $e){
-            throw $e;
+            // todo
         }
     }
 

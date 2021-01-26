@@ -238,7 +238,7 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
         }
         catch (Exception $e)
         {
-            throw $e;
+            return false;
         }
     }
 
