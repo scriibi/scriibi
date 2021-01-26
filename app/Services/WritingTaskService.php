@@ -307,12 +307,14 @@ class WritingTaskService
     {
         try
         {
-            $this->writingTaskRepositoryInterface->updateWritingTask($updatedDetails['id'], $updatedDetails['name'], $updatedDetails['description'], $updatedDetails['assessedDate']);
+            $assessedYear = $this->extractYearFromDate($updatedDetails['assessedDate']);
+            $newTeachingPeriod = $this->teachingPeriodRepositoryInterface->getTeachingPeriodOfDate($assessedYear,$updatedDetails['assessedDate'], $updatedDetails['curriculumSchoolType']);
+            $this->writingTaskRepositoryInterface->updateWritingTask($updatedDetails['id'], $updatedDetails['name'], $updatedDetails['description'], $updatedDetails['assessedDate'], $newTeachingPeriod[0]['id']);
             return true;
         }
         catch (Exception $e)
         {
-            return false;
+            throw $e;
         }
     }
 
