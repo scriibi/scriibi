@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.ebextensions/01-setup.config" beforeDir="false" afterPath="$PROJECT_DIR$/.ebextensions/01-setup.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scriibi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scriibi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +175,7 @@
       <workItem from="1609284106315" duration="4225000" />
       <workItem from="1609290733520" duration="27962000" />
       <workItem from="1609465556286" duration="261825000" />
-      <workItem from="1610663436190" duration="324724000" />
+      <workItem from="1610663436190" duration="325460000" />
     </task>
     <servers />
   </component>
