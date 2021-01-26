@@ -53,7 +53,7 @@
                 @auth
                     <p class="float-right">You are logged in. <a href="{{ route('home') }}">Go Home</a></p>
                     @else
-                    <p class="float-right">Welcome to Scriibi. <a href="{{ route('login') }}">Log In</a></p>
+                    <p class="float-right">Welcome to Scriibi staging. <a href="{{ route('login') }}">Log In</a></p>
                 @endauth
             </div>
         </div>

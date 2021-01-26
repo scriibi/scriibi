@@ -29,11 +29,11 @@
             </div>
            <div class="generate-button assessment-btn-styling p-2">
                 <input type="submit" form="student-marks-form" target="_blank" value= "Generate All Goal Sheets" class="generate-button1 assessment-btn">
-                <img class="generate-image">  
+                <img class="generate-image">
             </div>
         </div>
     </div>
-    
+
     <div class="view-by-container">
     <div class="d-inline-block">
     <strong><span>Analyse student data by:</span></strong>
@@ -51,12 +51,12 @@
                     <input type="radio" name="data-filter" class="assess-input" id="assessment-grade-filter" />
                     <p class="pl-1 pt-1">Grade</p>
                 </label>
-            </div>  
+            </div>
             <div class="moreInfo-button" id="myBtn-more-info">
                 <strong><span>More Info</span></strong>
                 <i class="fas fa-info-circle"></i>
             </div>
-        </div>  
+        </div>
     </div>
 </div>
 ​
@@ -69,8 +69,6 @@
         <thead class="header-style" >
             <tr class="header-style text-center">
                 <th name="name" id="fullName" style="width:250px" >Full Name</th>
-                <!-- <th name="levels" colspan="2"><p class="text-center">Levels</p></th> -->
-                <!-- IMPORTANT!!!!!!!!! REPLACE ID WITH UNIQUE IDENTIFIER & INNERHTML WITH THE RELATED TITLE-->
                 <th id="grade" class="text-center">Grade</th>
                 <th id="assessed" class="text-center">Assessed</th>
                 <th class="assessment-date text-center" id="average" >Average</th>
@@ -79,51 +77,36 @@
                     <th id="skill{{$count}}" class="assessment-skills text-center" style="width:100px">{{$s->skill_Name}}</th>
                     <?php $count++;?>
                 @endforeach
-                <!-- Implement a foreach loop for each skill and assign it with a unique identifier
-                        foreach (skills a s)
-                            <th id="student-id-skill2" class="assessment-skills"><p class="text-center">Skill 2</p></th>
-                        endforeach
-                -->
             </tr>
         </thead>
-        <tbody >
-            <!-- Student data goes down here -->
-            <!-- Implement a foreach loop for each student and assign headers with the unique identifier -->
-                @foreach ($dataTable as $dt)
-                    <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}  >
-                        <td headers="fullName" class="fname" style="width:200px">
-                            <a href="#" class="fullname order-row text-truncate" style="width:200px"><?php ((strlen(substr($dt[1], 0, 20))) < (strlen($dt[1]))) ? $name = substr($dt[1], 0, 20) . '...' : $name = $dt[1]; echo($name) ?></a>
-                            <button class="testSheet" value="{{$dt[1]}}"></button>
-                            <!-- <input type="radio" class="testSheet" value="{{$dt[1]}}"> -->
+        <tbody>
+            @foreach ($dataTable as $dt)
+                <tr class="student-row" data-grade={{$dt[3]}} data-assessed={{$dt[5]}}  >
+                    <td headers="fullName" class="fname" style="width:200px">
+                        <a href="#" class="fullname order-row text-truncate" style="width:200px"><?php ((strlen(substr($dt[1], 0, 20))) < (strlen($dt[1]))) ? $name = substr($dt[1], 0, 20) . '...' : $name = $dt[1]; echo($name) ?></a>
+                        <button class="testSheet" value="{{$dt[1]}}"></button>
+                        <!-- <input type="radio" class="testSheet" value="{{$dt[1]}}"> -->
+                    </td>
+                    <td class="justify-content-center student-grade-level" headers="grade" style="width:100px">{{$dt[2]}}</td>
+                    <td class="student-assessed-level" headers="assessed" style="width:100px">{{$dt[4]}}</td>
+                    <td headers="progerssion-point"  style="width:100px">{{$dt[6]}}</td>
+                    <?php $count = 1;?>
+                    @foreach($dt[7] as $key => $value)
+                        <td class="student-skill-result text-center" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}  " style="width:100px;">{{$value}}
+                        @if(strval($value) != "")
+                            <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" hidden>
+                        @endif                                                          // skill id   // actual mark   //student name
                         </td>
-                        <td class="justify-content-center student-grade-level" headers="grade" style="width:100px">{{$dt[2]}}</td>
-                        <td class="student-assessed-level" headers="assessed" style="width:100px">{{$dt[4]}}</td>
-                        <td headers="progerssion-point"  style="width:100px">{{$dt[6]}}</td>
-                        <?php $count = 1;?>
-                        @foreach($dt[7] as $key => $value)
-                            <td class="student-skill-result text-center" headers="skill{{$count}}" data-skillId="{{$key}}" data-mark="{{$value}}  " style="width:100px;">{{$value}}
-                            @if(strval($value) != "")
-                                <input class="student-goal-sheet-info" type="checkbox" value= '{{$key . "?" . $value . "?" . $dt[1] }}' name="checkbox[]" hidden>
-                            @endif
-                            </td>
-                            <?php $count++;?>
-                        @endforeach
-                    </tr>
-                @endforeach
-            <!-- <tr class="student-row">
-                <td headers="Full Name">
-                Jacob Jacobsonmeister
-                </td>
-                <td class="justify-content-center student-grade-level" headers="grade">3</td>
-                <td class="student-assessed-level" headers="assessed">5</td>
-                <td headers="progerssion-point">4.2</td>
-                <td class="student-skill-result" headers="skill1">4</td>
-            </tr> -->
-            
+                        <?php $count++;?>
+                    @endforeach
+                </tr>
+            @endforeach
         </tbody>
     </table>
     <input type="text" class="hiddenArea" name="individual-student" hidden/>
 </form>
+
+
 <div id="generate-goal-sheets-modal" class="generate-gs-modal">
   <div class="generate-gs-modal-content">
     <span class="close-goal-sheet-modal">&times;</span>
@@ -188,7 +171,7 @@
                  <p>
                     <ul>
                         <li>
-                            Your students’ performance is colour coded to show their progression and highlight areas that need improvement.     
+                            Your students’ performance is colour coded to show their progression and highlight areas that need improvement.
                         </li>
                     </ul>
                  </p>
@@ -261,7 +244,7 @@ window.onclick = function(event) {
   }
   if (event.target == modal1) {
         modal1.style.display = "none";
-    }
+  }
 }
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -306,19 +289,19 @@ function showSlides(n) {
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">       
+        <div class="row">
             <div class="col-sm-1">
                 <div class="rubric-edit-warning-image-content">
                     <img src="/images/info.png" alt="more information" class="info-image">
                 </div>
-            </div>       
+            </div>
             <div class="col-sm-11">
                 <div>
                     <p>There are no strategies for this skill because:</p>
                     <p>1.  The <strong>minimum</strong> requirement for this skill is at a higher level, <strong>or</strong></p>
                     <p>2.  The <strong>maximum</strong> level of accomplishment for this skill has been achieved.</p>
                 </div>
-            </div>     
+            </div>
         </div>
         <div style="text-align:center">
             <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>

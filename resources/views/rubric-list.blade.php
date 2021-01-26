@@ -21,10 +21,11 @@
     </div>
     
     <!-- section for my rubrics to be done through js-->
-    <div class="row @if(count(json_decode($rubrics))===0){{"temporary-page-height-fix"}}@endif pb-5 pl-3 pr-4 pt-3" id="rubric-list-rubrics-view">    
+    <?php $response = json_decode($rubrics) ?>
+    <div class="row @if(empty($response)){{"temporary-page-height-fix"}}@endif pb-5 pl-3 pr-4 pt-3" id="rubric-list-rubrics-view">    
         <div class="d-none d-sm-block col-sm-1 col-md-1"></div>
         <div class="col-10 col-sm-10 col-md-10 student-list-scroll" id="rubric-list-skills-section">
-            @if(count(json_decode($rubrics)) === 0)
+            @if(empty($response))
                 <div class="notice-styling mt-5" id="no-rubrics-available">
                     <p>You currently do not have any rubric templates.</p>
                 </div>
@@ -33,11 +34,11 @@
             @else
             <!-- populate more cells as per rubric -->
                 <div class="row " id="rubric-list-skill-cards">
-                    @foreach(json_decode($rubrics) as $r)
+                    @foreach($response as $key => $value)
                         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                            <a href="/rubric-details/{{$r->id}}" class="card rubric-box btn-block rubric-list-card-single">
+                            <a href="/rubric-details/{{$key}}" class="card rubric-box btn-block rubric-list-card-single">
                                 <div class="rubric-list-text-title text-left">
-                                    {{$r->name}}
+                                    {{$value->name}}
                                 </div>
                                 <div class="rubric-box-small rubric-list-skills text-left align-middle">
                                     <p class="rubric-skills-para">Skills</p>
@@ -45,16 +46,20 @@
                                     <!-- get each skill from the rubric and display it into the p tag -->
                                         <?php
                                             $count = 0;
-                                            $skillsCount = count($r->skills);
-                                            foreach($r->skills as $s){
-                                                if($count < 20){                                       
-                                        ?>   
-                                                    <li>
-                                                        <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($s->color); ?>"></span>
-                                                        <span>{{$s->name}}</span>
-                                                    </li>
-                                        <?php
-                                                $count++;
+                                            $skillsCount = 0;
+                                            foreach($value->traits as $tKey => $tValue){
+                                                $skills = $tValue->skills;
+                                                foreach($skills as $s){
+                                                    if($count < 20){                                                                                                               
+                                        ?>             
+                                                        <li>
+                                                            <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($tValue->color); ?>"></span>
+                                                            <span>{{$s->name}}</span>
+                                                        </li>
+                                        <?php       
+                                                    $count++;
+                                                    }
+                                                    $skillsCount++;
                                                 }
                                             }
                                         ?>
@@ -71,7 +76,7 @@
                                     </div>
                                     <form method="post" action="/rubricDelete">
                                     @csrf
-                                        <input type="hidden" name="rubricId" value={{$r->id}} />
+                                        <input type="hidden" name="rubricId" value={{$key}} />
                                         <button class="rubric-remove-button-styling" type="submit">
                                             <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
                                         </button>

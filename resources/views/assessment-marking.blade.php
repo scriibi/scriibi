@@ -16,66 +16,59 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <!-- This is quick and dirty way implemented to diable the left arrow on page load if the lowest value on the scale is level D/-0.5 -->
-                        <button style=" background-color:white;border:none" class="left-shift-scale {{ $rubrics[0]->scriibi_Level_Id !== 119 ? '' : ' d-none'}}" data-left-extreme="{{$rubrics[0]->scriibi_Level_Id}}">
+                        <button style=" background-color:white;border:none" class="left-shift-scale {{ $rubrics[0]['id'] !== 119 ? '' : ' d-none'}}" data-left-extreme="{{$rubrics[0]['id']}}">
                             <img src="/images/close-up-arrow.png" alt="leftshiftBTN" class="left-shift-scale-arrow">
                         </button>
                 </div>
                 <!-- pop each score point(calculated) in the value attribute (5 times) -->
                 <div>
-                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[0]->scriibi_Level}}</p>
+                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[0]['scriibi_level']}}</p>
                 </div>
-                <div >
-                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[1]->scriibi_Level}}</p>
-                </div>
-                <div class="text-center">
-                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[2]->scriibi_Level}}</p>
+                <div>
+                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[1]['scriibi_level']}}</p>
                 </div>
                 <div class="text-center">
-                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[3]->scriibi_Level}}</p>
+                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[2]['scriibi_level']}}</p>
                 </div>
                 <div class="text-center">
-                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[4]->scriibi_Level}}</p>
+                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[3]['scriibi_level']}}</p>
+                </div>
+                <div class="text-center">
+                    <p class="w-100 text-center lable-input marking-scale">{{$rubrics[4]['scriibi_level']}}</p>
                 </div>
                 <div class="d-flex justify-content-center">
                      <!-- This is quick and dirty way implemented to diable the right arrow on page load if the highest value on the scale is level 7 -->
-                        <button style=" background-color:white;border:none" class="right-shift-scale {{ $rubrics[4]->scriibi_Level_Id !== 149 ? '' : ' d-none'}}" data-right-extreme="{{$rubrics[4]->scriibi_Level_Id}}">
+                        <button style=" background-color:white;border:none" class="right-shift-scale {{ $rubrics[4]['id'] !== 149 ? '' : ' d-none'}}" data-right-extreme="{{$rubrics[4]['id']}}">
                             <img src="/images/close-up-arrow.png" alt="rightshiftBTN" class="right-shift-scale-arrow">
                         </button>
                 </div>
                 <!-- end of score points -->
             </div>
             <div class="scroll-panel mx-0 px-0">
-
                 <!-- pop the first skill card -->
-
                 <?php
                     $counter = 0;
                 ?>
-                @foreach($skillCards as $sc)
                     <?php
+                        foreach($skillCards as $key => $value){
                         $counter++;
-                        $global = $sc->getGlobalCriteria();
-                        $local = $sc->getLocalCriteria();
+                        $global = (array) $value['globalCriteria'];
+                        $local = (array)$value['localCriteria'];
                         $skillResults = [];
                         $previousMark = "";
                         $previousMarkScriibiLevel = "-";
                         $markOnLeft = false;
                         $markOnRight = false;
                         for($i = 0; $i <= 4; $i++){
-                            $marking = $rubrics[$i]->scriibi_Level_Id."/".$sc->getId();
+                            $marking = $rubrics[$i]['id']."/".$key;
                             array_push($skillResults, $marking);
                             if(in_array($marking, $results)){
                                 $previousMark = $marking;
-                                $previousMarkScriibiLevel = $rubrics[$i]->scriibi_Level;
+                                $previousMarkScriibiLevel = $rubrics[$i]['scriibi_level'];
                             }
                             if($i === 0){
                                 foreach($results as $result){
-                                    // if(intval(explode("/", $result)[0]) < intval($rubrics[$i]->scriibi_Level_Id)){
-                                    //     $markOnLeft = true;
-                                    // }elseif(intval(explode("/", $result)[0]) > intval($rubrics[4]->scriibi_Level_Id)){
-                                    //     $markOnRight = true;
-                                    // }
-                                    if(intval(explode("/", $result)[1]) === $sc->getId()){
+                                    if(intval(explode("/", $result)[1]) === $key){
                                         $previousMark = $result;
                                         $previousMarkScriibiLevel = $fullScriibiRange[intval(explode("/", $result)[0])];
                                     }
@@ -83,15 +76,14 @@
                             }
                         }
                     ?>
-                    <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0 skill-tab">
+                    <div class="card px-0 mx-0 mt-3 ml-1 mr-1 mb-1 border-0 skill-tab" data-skill-card-id="{{$key}}">
                         <div class="card-body p-0">
                             <!-- if the global criterias are not empty, display a css that makes it look like a button. Else, display the card like it is a disabled button -->
-                            <div class="card-title score-items mb-0 @if($global[0] != "" || $global[1] != "" || $global[2] != "") {{"radioBTNs-section"}} @else {{"na-skill-container"}} @endif">
+                            <div class="card-title score-items mb-0 radioBTNs-section">
                                 <div class="w-100 d-flex justify-content-between">
                                     <!-- load the first trait name -->
-                                    <span class="align-self-center ml-3">{{$sc->getName()}}</span>
+                                    <span class="align-self-center ml-3">{{$value['name']}}</span>
                                     <!-- if the global isnt empty then display the drop down button -->
-                                    @if ($global[0] != "" || $global[1] != "" || $global[2] != "")
                                     <div class="d-flex justify-content-between">
                                         <span class="align-self-center assesible-skill-mark-value" style="margin-right: 10px; color: #33A849; font-weight: 900">{{$previousMarkScriibiLevel}}</span>
                                         <input class="assesible-skill-mark" type="radio" name="skill_mark_{{$counter}}" value="{{$previousMark}}" hidden checked>
@@ -99,7 +91,6 @@
                                             <img src="/images/close-up-arrow.png" alt="closeBTN" class="collapsable-arrow">
                                         </a>
                                     </div>
-                                    @endif
                                 </div>
                                 <div class="text-center">
                                     @if($markOnLeft)
@@ -107,55 +98,48 @@
                                     @endif
                                 </div>
                                 <!-- display radio buttons if global arrays are not empty -->
-                                @if (($global[0] != "") || ($global[1] != "") || ($global[2] != ""))
-                                <div class="w-100 text-center align-self-center">
-                                    <label class="score-radio m-0 p-0 ">
-                                        <!-- please load skill id in the name attribute -->
-                                        <input class="m-0 p-0 marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[0]}} @if(in_array($skillResults[0], $results)) {{"checked"}} @endif><span></span>
-                                    </label>
+                                    <div class="w-100 text-center align-self-center">
+                                        <label class="score-radio m-0 p-0 ">
+                                            <!-- please load skill id in the name attribute -->
+                                            <input class="m-0 p-0 marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[0]}} @if(in_array($skillResults[0], $results)) {{"checked"}} @endif><span></span>
+                                        </label>
+                                    </div>
+                                    <div class="w-100 text-center align-self-center">
+                                        <label class="score-radio m-0 p-0">
+                                            <!-- please load skill id in the name attribute -->
+                                            <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[1]}} @if(in_array($skillResults[1], $results)) {{"checked"}} @endif><span></span>
+                                        </label>
+                                    </div>
+                                    <div class="w-100 text-center align-self-center">
+                                        <label class="score-radio m-0 p-0">
+                                            <!-- please load skill id in the name attribute -->
+                                            <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[2]}} @if(in_array($skillResults[2], $results)) {{"checked"}} @endif><span></span>
+                                        </label>
+                                    </div>
+                                    <div class="w-100 text-center align-self-center">
+                                        <label class="score-radio m-0 p-0">
+                                            <!-- please load skill id in the name attribute -->
+                                            <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[3]}} @if(in_array($skillResults[3], $results)) {{"checked"}} @endif><span></span>
+                                        </label>
+                                    </div>
+                                    <div class="w-100 text-center align-self-center">
+                                        <label class="score-radio m-0 p-0">
+                                            <!-- please load skill id in the name attribute -->
+                                            <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[4]}} @if(in_array($skillResults[4], $results)) {{"checked"}} @endif><span></span>
+                                        </label>
+                                    </div>
+                                    <div class="text-center">
+                                        @if($markOnLeft)
+                                            <img src="/images/arrow_right.png" alt="Right Arrrow" style="width: 30px; height: 20px">
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="w-100 text-center align-self-center">
-                                    <label class="score-radio m-0 p-0">
-                                        <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[1]}} @if(in_array($skillResults[1], $results)) {{"checked"}} @endif><span></span>
-                                    </label>
-                                </div>
-                                <div class="w-100 text-center align-self-center">
-                                    <label class="score-radio m-0 p-0">
-                                        <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[2]}} @if(in_array($skillResults[2], $results)) {{"checked"}} @endif><span></span>
-                                    </label>
-                                </div>
-                                <div class="w-100 text-center align-self-center">
-                                    <label class="score-radio m-0 p-0">
-                                        <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[3]}} @if(in_array($skillResults[3], $results)) {{"checked"}} @endif><span></span>
-                                    </label>
-                                </div>
-                                <div class="w-100 text-center align-self-center">
-                                    <label class="score-radio m-0 p-0">
-                                        <!-- please load skill id in the name attribute -->
-                                        <input class="marking-radio" type="radio" name="skill_{{$counter}}" value={{$skillResults[4]}} @if(in_array($skillResults[4], $results)) {{"checked"}} @endif><span></span>
-                                    </label>
-                                </div>
-                                <div class="text-center">
-                                    @if($markOnLeft)
-                                        <img src="/images/arrow_right.png" alt="Right Arrrow" style="width: 30px; height: 20px">
-                                    @endif
-                                </div>
-                                @else
-                                <div class="w-100 text-center align-self-center">
-                                    <input type='radio' name="skill_{{$counter}}" value='na' hidden checked>
-                                    <p class="na-skill-message">Not Applicable at student's level</p>
-                                </div>
-                                @endif
-                            </div>
                             <!-- criteria details section-->
                             <div class="card-text score-items criteria-section skill-accordion-{{$counter}}">
                                 <div></div>
                                 <div></div>
                                 <?php
-                                
+
                                 //the following segment retrieves the correct curriculum code and description, but the loop is incorrect.
                                 //it is appearing three times on the front end.
                                 $i = 0;
@@ -172,17 +156,17 @@
                                                         foreach($local[$i] as $l){
                                                         ?>
                                                             <div class="local-criteria mr-2">
-                                                                <span class='local-curriculum'><u><?php echo $l[0]["curriculum_code"]; ?></u></span>
-                                                                <span class='curriculum-tooltip'><?php echo $l[0]["description_elaboration"]; ?></span>
+                                                                <span class='local-curriculum'><u><?php echo $l[0]["code"] ?></u></span>
+                                                                <span class='curriculum-tooltip'><?php echo  $l[0]["elaboration"] ?></span>
                                                             </div>
                                                         <?php
                                                         }
-                                                    } 
-                                                    $i++;        
-                                                ?>  
+                                                    }
+                                                    $i++;
+                                                ?>
                                                 </div>
                                             </div>
-                                        <div></div>  
+                                        <div></div>
                                 <?php
                                         }else{
                                             ?>
@@ -196,13 +180,13 @@
                                                                 //access nested array values
                                                                 ?>
                                                                     <div class="local-criteria mr-2">
-                                                                        <span class='local-curriculum'><u><?php echo $l[0]["curriculum_code"]; ?></u></span>
-                                                                        <span class='curriculum-tooltip'><?php echo $l[0]["description_elaboration"]; ?></span>
+                                                                        <span class='local-curriculum'><u><?php echo  $l[0]["code"] ?></u></span>
+                                                                        <span class='curriculum-tooltip'><?php echo   $l[0]["elaboration"] ?></span>
                                                                     </div>
                                                                 <?php
                                                                 }
-                                                            }        
-                                                        ?>  
+                                                            }
+                                                        ?>
                                                         </div>
                                                     </div>
                                                     <div></div>
@@ -213,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php } ?>
                 <!-- /end of first skill card -->
             </div>
         </div>
@@ -230,7 +214,7 @@
                 <p class="student-table-label mb-0">Status:</p>
                 <!-- value attribute: Status -->
                 <p class="w-100 incomplete-style mb-0 @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
-                <p class="w-100 complete-style mb-0 @if($status != 'completed') {{'d-none'}} @endif">Completed</p>
+                <p class="w-100 complete-style mb-0 @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
                 <input type="hidden" name="status" value="0" />
             </div>
             <div class="mt-2">
@@ -241,7 +225,7 @@
 
             <div class="mt-2">
                 <p class="student-table-label w-100 mb-0">Assessed Level:</p>
-                <p>{{$assessed_level[0]->assessed_level_label}}</p>
+                <p>{{$assessed_level}}</p>
                 <p id="marking-level" class="d-none">{{$assessed_level_scriibi_id}}</p>
             </div>
             <div class="d-flex">

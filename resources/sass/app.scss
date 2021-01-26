@@ -367,7 +367,7 @@ header {
     height: 70px;
     width: auto;
     margin-left: 10px;
-    
+
 }
 
 .home-rubric-icon {
@@ -394,13 +394,13 @@ header {
     margin-left: 5px;
 }
 
-.desc-home {  
+.desc-home {
     display:grid;
     grid-template-columns:repeat(1,1fr);
     height:3cm;
     padding-top: 10px;
 }
-  
+
 .box{
     padding-top:10px;
     align-self:right;
@@ -411,7 +411,7 @@ header {
     font-size:1rem;
     text-align:right;
 }
-  
+
 .b{
     font-size:.725rem;
     align-self:baseline;
@@ -495,13 +495,28 @@ header {
     outline: none;
 }
 
+.current-active-view{
+    color: #FFFFFF !important;
+    background-color: #33A849;
+    border-radius: 5px;
+    color: #33A849;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.current-active-view:hover{
+    color: #FFFFFF;
+    background-color: #33A849;
+}
+
 .radio-circle {
-    display: block;
+    display: inline-block;
     border: 1px solid #33A849;
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    margin-top: 13px;
+    margin-top: 5px;
     margin-left: 10px;
 }
 
@@ -510,7 +525,21 @@ header {
     transition: 0.2s;
 }
 
-.back-btn{
+.assessment-builder-class-select {
+    border: 2px solid #D2D2D2;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.my-class-select{
+    width: 156px;
+}
+
+.other-class-select{
+    width: 187px;
+}
+
+.back-btn {
     border: 2px solid #D2D2D2;
     box-sizing: border-box;
     border-radius: 7px;
@@ -578,9 +607,26 @@ header {
     font-family: Raleway;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 18px;
+    line-height: 18px;
     color: #000000;
+}
+
+.Assessment-details-date{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 13px;
+    line-height: 13px;
+    color: #000000;
+}
+
+.Assessment-details-description{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 11px;
 }
 
 .Assessment-Studentlist-heading{
@@ -592,10 +638,47 @@ header {
     color: #33A849;
 }
 
+.assignment-action-button{
+    background-color: #FFFFFF;
+    border: 1px solid #33A849;
+    border-radius: 5px;
+    color: #33A849;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.assignment-action-button:hover{
+    background-color: #33A849;
+    color: #FFFFFF;
+}
+
+.assignment-action-button-delete{
+    background-color: rgba(218,74,84);
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 200px;
+}
+
+.assignment-action-button-delete:hover{
+    color: #FFFFFF;
+}
+
+.assessment-details-card{
+    border: 1px solid #C4C4C4;
+    border-radius: 7px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    color: black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 .Assessment-Student-list-cell{
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
-    height: 50px;
+    height: 70px;
     padding: 12px 0px;
     border: 2px solid #FBFBFB;
     color: black;
@@ -609,10 +692,44 @@ header {
 
 }
 
+.assessment-delete-student-checkbox{
+    width: 25px;
+    height: 25px;
+}
+
+.add-students-modal-selected{
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 30px;
+    width: 98%;
+}
+
+.add-students-modal-list{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.add-student-modal-name-tag{
+    background-color: rgb(189, 252, 206);
+    border-radius: 25px;
+    color: #33A849;
+    flex-basis: content;
+    padding: 2px 4px;
+}
+
 .save-exit-btn{
     background-color: #33A849;
     border-radius: 7px;
     color: #FFFFFF;
+    transition: 0.2s;
+}
+
+.save-exit-btn:hover{
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .rubric-tooltip {
@@ -622,7 +739,7 @@ header {
     position: absolute;
     background-color: #e8e8e8;
     border-radius: 7px;
-    bottom: 45px;
+    top: 40px;
     left: 0;
     padding: 2px;
     z-index: 2;
@@ -634,6 +751,13 @@ header {
 .rubric-tooltip-skills{
     border-radius: 7px;
     background-color: #FFFFFF;
+}
+
+.assessment-studentlist-rubric{
+    border: 2px solid #C4C4C4;
+    border-radius: 5px;
+    height: 37px;
+    width: 170px;
 }
 
 .assessment-studentlist-rubric:hover .rubric-tooltip {
@@ -1290,7 +1414,7 @@ $skillset-colors-map: (
     padding-top:0.5em;
     padding-right:0.5em;
     padding-bottom:0.5em;
-    margin-top:1.5em;   
+    margin-top:1.5em;
     max-width:350px;
     height:auto;
     font-size: 14px;
@@ -1405,7 +1529,7 @@ $skillset-colors-map: (
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     text-align:left;
     padding-left:17px;
-    height:40px;  
+    height:40px;
 }
 
 .rubric-assessment > a {
@@ -1446,7 +1570,7 @@ table {
   }
 
 
-  
+
 td{
     padding:5px;
     //border:solid 1px #ccc;
@@ -1481,10 +1605,10 @@ td{
 
 table.dataTable.no-footer {
     border-bottom: 0;
-    
+
   }
-  
-  .dataTables_wrapper.no-footer .dataTables_scrollBody 
+
+  .dataTables_wrapper.no-footer .dataTables_scrollBody
   {
       border-bottom:0;
   }
@@ -1591,12 +1715,11 @@ table.dataTable.no-footer {
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
-    width: 25px;
-    height: 25px;
-    margin:auto;
-    z-index: 1000;
+    width: 15px;
+    height: 15px;
+    margin: 0;
     margin-left: 10px;
-    margin-top: 9px;
+    z-index: 1000;
     border:none;
 }
 .testSheet:focus, .textSheet:active, .textSheet:after{
@@ -1741,9 +1864,9 @@ table.dataTable.no-footer {
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
-    background-color: #33A849;
-}
+//.active, .dot:hover {
+//    background-color: #33A849;
+//}
 
 /* Fading animation */
 .modal-fade-image {
@@ -2179,7 +2302,7 @@ box-sizing: border-box;
 }
 
 .assessment-list-card-assessment-page{
-    width: 430px;
+    width: 200px;
     height: 32px;
     background: #dfdfdf;
     padding-top: 5px;
@@ -2247,3 +2370,26 @@ box-sizing: border-box;
         margin-top: 22%;
     }
   }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    box-shadow: inset 0 0 1px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #AAAAAA;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #AAAAAA;
+}

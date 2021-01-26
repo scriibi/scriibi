@@ -4,37 +4,32 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-/*
-curriculum refers to a particular school curriculum defined by name, state, and country.
-*/
-
-
-class curriculum extends Model
+class Curriculum extends Model
 {
-    protected $primaryKey = 'curriculum_Id';
-
     /**
-     *  migration name for curriculum is different from query name
-     *  explicit table name declaration is done to equate everything
+     * The table associated with the model.
+     *
+     * @var string
      */
-
     protected $table = 'curriculum';
 
-    public function curriculum_scriibi_levels(){
-        return $this->hasMany('App\curriculum_scriibi_levels', 'curriculum_Id', 'curriculum_Id');
+    /**
+     * The school types that belong to the curriculum.
+     */
+    public function schoolTypes()
+    {
+        return $this->belongsToMany('App\SchoolType', 'curriculum_school_type', 'curriculum_id', 'school_type_id')
+                    ->using('App\CurriculumSchoolType')
+                    ->withPivot(['id', 'curriculum_id', 'school_type_id', 'created_at', 'updated_at']);
     }
 
-    public function curriculum_scriibi_levels_skills(){
-        return $this->hasMany('App\curriculum-scriibi_levels-skills', 'curriculum-scriibi_level-skills-Id', 'curriculum_Id');
-    }
-
-    public function schools(){
-        return $this->hasMany('App\schools', 'curriculum_details_curriculum_details_Id', 'curriculum_Id');
-    }
-
-    public function school_type(){
-        return $this->hasMany('App\school_type', 'fk_curriculum_id', 'curriculum_Id');
+    /**
+     * The skill levels that belong to the curriculum.
+     */
+    public function skillLevels()
+    {
+        return $this->belongsToMany('App\SkillLevel', 'curriculum_skill_level', 'curriculum_id', 'skill_level_id')
+                    ->using('App\CurriculumSkillLevel')
+                    ->withPivot(['id', 'skill_level_id', 'curriculum_skill_level', 'created_at', 'updated_at']);
     }
 }
-
-

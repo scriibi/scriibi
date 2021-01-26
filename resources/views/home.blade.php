@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Hi {{$user}}, </h3>
+                <h3>Welcome {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
@@ -27,22 +27,22 @@
                                 <ul class="d-flex justify-content-between row mb-2 mt-2">
                                     <div class="col-7 row d-flex justify-content-start px-0">
                                         <div class="col-4 align-self-center text-truncate pl-1">
-                                            <span>{{$student->student_First_Name}}</span>
+                                            <span>{{$student['first_name']}}</span>
                                         </div>
                                         <div class="col-5 align-self-center text-truncate pl-1">
-                                            <span>{{$student->student_Last_Name}}</span>
+                                            <span>{{$student['last_name']}}</span>
                                         </div>
                                         <div class="col-3 align-self-center text-truncate pl-1">
-                                            <span>{{$student->Student_Gov_Id}}</span>
+                                            <span>{{$student['school_mgt_sys_id']}}</span>
                                         </div>
 
                                     </div>
                                     <div class="col-5 row d-flex justify-content-start px-0">
                                         <div class="col-4 align-self-center text-truncate px-0">
-                                            <span>{{$student->grade_label}}</span>
+                                            <span>{{$gradeLabels[$student['grade_level_id']]}}</span>
                                         </div>
                                         <div class="col-4 align-self-center text-nowrap px-0">
-                                            <span>{{$student->assessed_level_label}}</span>
+                                            <span>{{$assessedLabels[$student['assessed_level_id']]}}</span>
                                         </div>
                                     </div>
 
@@ -54,9 +54,9 @@
                 </div>
                 <div class="card-footer put-full-width-bottom student-list-footer-style d-flex justify-content-between p-2">
                         <p class="align-self-center p-0 m-0">Your student count: <span></span><strong>{{count($students)}}</strong></p>
-                        <a href="/studentlist">
-                            <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>
-                        </a>
+{{--                        <a href="/studentlist">--}}
+{{--                            <div class="btn px-4 text-white go-to-student-btn align-self-center">Go to Student List</div>--}}
+{{--                        </a>--}}
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
             <div class="btn-panel">
                 <!-- assessments btn link-->
                 <a href="/assessment-list" class="card extra-card-style list-group-item-action ">
-                    <div class="d-flex justify-content-between h-100 mx-4 p-0">                    
+                    <div class="d-flex justify-content-between h-100 mx-4 p-0">
                         <img class="align-self-center home-assessment-icon" src="/images/assessment-logo.png" alt="assessment">
                         <div class="desc-home">
                             <div class="box a">
@@ -72,13 +72,13 @@
                             </div>
                             <div class="box b" >
                                 View/edit your assessments.</br>
-                                For new assessments, populate details                           
-                                (title, date, notes) and attach a rubric                       
-                            </div>                
-                        </div> 
-                    </div> 
-                   
-                    
+                                For new assessments, populate details
+                                (title, date, notes) and attach a rubric
+                            </div>
+                        </div>
+                    </div>
+
+
                 </a>
                 <!-- rubric template btn link -->
                 <a href="/rubric-list" class="card extra-card-style list-group-item-action mt-2">
@@ -86,31 +86,23 @@
                         <img class="align-self-center home-rubric-icon" src="/images/rubric-template.png" alt="rubric-template">
                         <div class="desc-home">
                             <div class="box a">
-                            <span class="align-self-center">My Rubrics</span>                   
+                            <span class="align-self-center">My Rubrics</span>
                         </div>
                         <div class="box b">
-                            Plan and build rubrics with criteria (skills) that 
-                            you can use for future assessments 
+                            Plan and build rubrics with criteria (skills) that
+                            you can use for future assessments
                             (eg. moderation, report, text type)
                         </div>
                     </div>
                     </div>
                 </a>
                 <!-- Goal setting btn link-->
-                <a href="/data-view" class="card extra-card-style list-group-item-action mt-2">
+                <a href="/growth-view" class="card extra-card-style list-group-item-action mt-2">
                     <div class="d-flex justify-content-between h-100 mx-4">
                         <img class="align-self-center home-goal-icon" src="/images/goal-setting.png" alt="data-view">
                         <span class="align-self-center">View Student Data and</br> Generate Goal Sheets</span>
                     </div>
                 </a>
-                <!-- Data View btn 
-                <a href="/data-view" class="card extra-card-style list-group-item-action mt-2">
-                    <div class="d-flex justify-content-between h-100 mx-4">
-                        <img class="align-self-center home-data-icon" src="/images/data-view.png" alt="data-view">
-                        <span class="align-self-center">View Student Data</span>
-                    </div>
-                </a>
-                -->
             </div>
         </div>
 

@@ -7,17 +7,17 @@ const { filter, forEach } = require("lodash");
 $(function(){
 
 //======================== GLOBAL SCRIPTS ================================================
-    
+
     //error notificiation UNFINISHED!
     //Count if the list has more than one error, if yes then display the error pop up. if they click the close button, add hide-error class
     if($("#error-content").length > 0) {
         $("#error-pop-up").removeClass("hide-error");
     }
-    
+
     $("#error-close").on("click", function(){
-       $("#error-pop-up").addClass("hide-error"); 
+       $("#error-pop-up").addClass("hide-error");
     });
-    
+
     //navbar hide on scroll
     var prevScrollPos = $(document).scrollTop();
     //home page navbar scrolling function
@@ -33,7 +33,7 @@ $(function(){
     });
 
 //======================== STUDENT LIST ================================================
-    
+
     //AJAX display students jquery
    //loads the list of students and displays it onto the listDisplay Div
    $.ajax({
@@ -60,36 +60,225 @@ $(function(){
            console.log(data);
        }
 
-   });    
-    
+   });
+
 //======================== DATA VIEW ================================================
-    
+
     //Table to display student grade data
     let greaterThanTen = false;
-    
+
     //tests if there are more than 10 columns before enabling scrolling
     if (($(".assessment-date").length >= 9) || ($(".assessment-skills").length >= 9)){
         greaterThanTen = true;
-    }    
-        
+    }
+
     //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
-        //scrollX: greaterThanTen,
         scrollX: true,
-        scrollY: 460,
+        scrollY: '418px',
         scrollCollapse: true,
-       
-        paging:         false,
-         fixedColumns:   {
-            leftColumns: 3,
+        paging: true,
+        "autoWidth": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+         fixedColumns: {
+            leftColumns: 4,
          },
         select: {
-            // style : 'os',
             items : 'cell'
         }
-    }); 
-    
-//========== OVERALL ASSESSMENT
+    });
+
+    // methods adds the goalAvailability check on once the assessment data view page loads for the first time
+    checkGoalSheetStudentSelect();
+    // clean this out and reduce the eventlistner usage
+    table.on( 'draw', function () {
+        console.log( 'Redraw occurred at: '+new Date().getTime() );
+        let value = $('select[name="data-view-trait-filter-select"]').val();
+        if(value === 'assessed')
+            enableTraitViewAssessedFilter();
+        if(value === 'grade')
+            enableTraitViewGradeFilter();
+        $(".student-row").each(function(){
+            $(this).find(".student-skill-result").each(function(){
+                $(this).off("click");
+            });
+        });
+        checkGoalSheetStudentSelect();
+
+        $(".student-row").each(function(){
+            $(this).find('.testSheet').off("click", function(){
+                $(this).off("click");
+            });
+        });
+        $(".student-row").each(function(){
+            $(this).find('.testSheet').on("click", function(){
+                listenForIndividualStudentGoalGen($(this));
+            });
+        });
+    } );
+
+    $('select[name="data-view-trait-filter-select"]').on('change', function (event){
+        let value = $(this).val();
+        if(value === 'assessed')
+            enableTraitViewAssessedFilter();
+        if(value === 'grade')
+            enableTraitViewGradeFilter()
+    });
+
+    $('#data-view-range-school').on('click', function() {
+        let  url_origin = window.location.origin;
+        let currentView = $('input[name="current-view"]').val();
+        url_origin += '/' + currentView + '-view/school';
+        window.location = url_origin;
+    });
+
+    $('select[name="data-view-grade-select"]').on('change', function(event){
+        let currentView = $('input[name="current-view"]').val();
+        let  url_origin = window.location.origin + '/' + currentView + '-view/grade/';
+        let value = $(this).val();
+        url_origin += value;
+        window.location = url_origin;
+    });
+
+    $('select[name="data-view-class-select"]').on('change', function(event){
+        let currentView = $('input[name="current-view"]').val();
+        let  url_origin = window.location.origin + '/' + currentView + '-view/class/';
+        let value = $(this).val();
+        url_origin += value;
+        window.location = url_origin;
+    });
+
+    $('input[name="data-view-range-setting"]').on('change', function (event){
+       let value = $(this).val();
+       if(value === 'grade'){
+           $('select[name="data-view-grade-select"]').prop('hidden', false);
+           $('select[name="data-view-class-select"]').prop('hidden', true);
+           $('.trait-view-grade').addClass('fill-circle');
+           $('.trait-view-class').removeClass('fill-circle');
+       }
+       if(value === 'class'){
+           $('select[name="data-view-class-select"]').prop('hidden', false);
+           $('select[name="data-view-grade-select"]').prop('hidden', true);
+           $('.trait-view-class').addClass('fill-circle');
+           $('.trait-view-grade').removeClass('fill-circle');
+       }
+        $('.trait-view-school').removeClass('fill-circle');
+    });
+
+    $('#assessment-data-view-assessment-select').on('change', function (event){
+        let url_origin = window.location.origin + '/assessment-view/';
+        let schoolCheck = $('.trait-view-school').hasClass('fill-circle');
+        let classCheck = $('.trait-view-class').hasClass('fill-circle');
+        let gradeCheck = $('.trait-view-grade').hasClass('fill-circle');
+        console.log('classC', gradeCheck)
+        if(schoolCheck)
+        {
+            url_origin += 'school/null/' + $(this).val();
+        }
+        if(classCheck)
+        {
+            let subselection = $('select[name="data-view-class-select"]').val();
+            if(subselection)
+            {
+                url_origin += 'class/' + subselection + "/" + $(this).val();
+            }
+            else
+            {
+                let subselection = $('select[name="data-view-grade-select"]').val();
+                if(subselection)
+                {
+                    url_origin += 'grade/' + subselection + "/" + $(this).val();
+                }
+            }
+        }
+        if(gradeCheck)
+        {
+            let subselection = $('select[name="data-view-grade-select"]').val();
+            if(subselection)
+            {
+                url_origin += 'grade/' + subselection + "/" + $(this).val();
+            }
+            else
+            {
+                let subselection = $('select[name="data-view-class-select"]').val();
+                if(subselection)
+                {
+                    url_origin += 'class/' + subselection + "/" + $(this).val();
+                }
+            }
+        }
+        window.location = url_origin;
+    });
+//========== OVERALL ASSESSMENT =============
+
+    function enableTraitViewAssessedFilter(){
+        $(".student-row").each(function(){
+            var assessed = $(this).data('assessed');
+            let student_grade = parseFloat(assessed);
+
+            $(this).find(".trait-skill-result").each(function(){
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+
+                let current_grade = parseFloat($(this).html());
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade >= student_grade + 0.3) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                if (current_grade >= student_grade + 0.8) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                if (current_grade <= student_grade - 0.3) {
+                    $(this).addClass("light-orange-fill");
+                }
+                if (current_grade <= student_grade - 0.8) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    }
+
+    function enableTraitViewGradeFilter(){
+        $(".student-row").each(function(){
+            var grade = $(this).data('grade');
+            let student_grade = parseFloat(grade);
+            $(this).find(".trait-skill-result").each(function(){
+                //before applying these classes, we need to remove any existing shading class
+                $(this).removeClass("green-fill");
+                $(this).removeClass("light-green-fill");
+                $(this).removeClass("orange-fill");
+                $(this).removeClass("light-orange-fill");
+
+                let current_grade = parseFloat($(this).html());
+                console.log(current_grade)
+
+                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
+                if (current_grade >= student_grade + 0.3) {
+                    $(this).addClass("light-green-fill");
+                }
+                //if the student's result is greater than their max grade
+                if (current_grade >= student_grade + 0.8) {
+                    $(this).addClass("green-fill");
+                }
+                //vice versa from the top half
+                if (current_grade <= student_grade - 0.3) {
+                    $(this).addClass("light-orange-fill");
+                }
+                if (current_grade <= student_grade - 0.8) {
+                    $(this).addClass("orange-fill");
+                }
+            });
+        });
+    }
+
     $(".assessed-button-filter").on("click", function () {
         $(".grade-button-filter").find(".radio-circle").removeClass("fill-circle");
         $(this).find(".radio-circle").addClass("fill-circle");
@@ -100,12 +289,12 @@ $(function(){
     });
     //if a user clicks the overall grade filter
     $("#overall-grade-filter").on("click", function(){
-        
+
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade); 
-            
+           let student_grade = parseFloat(grade);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){
 
@@ -114,7 +303,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -135,14 +324,14 @@ $(function(){
             });
         });
     });
-    
+
     $("#overall-assessed-filter").on("click", function(){
-        
+
         //loop through each grade in each student row
         $(".student-row").each(function(){
            var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed); 
-            
+           let student_grade = parseFloat(assessed);
+
             //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".assessment-result").each(function(){
 
@@ -151,7 +340,7 @@ $(function(){
                 $(this).removeClass("light-green-fill");
                 $(this).removeClass("orange-fill");
                 $(this).removeClass("light-orange-fill");
-                
+
                 let current_grade = parseFloat($(this).html());
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
@@ -176,132 +365,67 @@ $(function(){
 //========== ASSESSEMNT STUDENT ASSESS DATA
 
     $(".student-row").each(function(){
-    $(this).find('.testSheet').on("click", function(){
-        let studentName = $(this).val();
+        $(this).find('.testSheet').on("click", function(){
+            listenForIndividualStudentGoalGen($(this));
+        });
+    });
+
+    function listenForIndividualStudentGoalGen(param){
+        let studentName = param.val();
         $('.hiddenArea').val(studentName);
-        $("#form").submit();
-    })
-    });
+        $("#student-marks-form").submit();
+    }
 
-    $(".assessment-btn").on("click", function(){
-        let studentName = $(this).val();
+    $(".assessment-goals-gen-btn").on("click", function(){
+        let submitInput = $(this).find('.goals-gen-submit-input');
+        let studentName = submitInput.val();
         $('.hiddenArea').val(studentName);
-        $("#form").submit();
+        $("#student-marks-form").submit();
     });
-    
-    //if a user clicks the grade filter
-    $("#assessment-grade-filter").on("click", function(){
-        //loop through each grade in each student row
+
+    function checkGoalSheetStudentSelect() {
         $(".student-row").each(function(){
-           var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade); 
-            
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
             $(this).find(".student-skill-result").each(function(){
-
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-                
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 1) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade < student_grade && current_grade > student_grade - 1) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 1) {
-                    $(this).addClass("orange-fill");
-                }
+                $(this).on("click", function() {
+                    checkGoalAvailability($(this));
+                });
             });
         });
-    });
-    
-    //if a user clicks the assessment grade filter
-    $("#assessment-assessed-filter").on("click", function(){
-        console.log("work");
-        
-        //loop through each grade in each student row
-        $(".student-row").each(function(){
-           var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed); 
-            
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
-            $(this).find(".student-skill-result").each(function(){
+    }
 
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-                
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade > student_grade && current_grade < student_grade + 1 && current_grade != student_grade) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 1) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade < student_grade && current_grade > student_grade - 1) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 1) {
-                    $(this).addClass("orange-fill");
-                }
+    function checkGoalAvailability(param){
+        let skillId = param.attr("data-skillId");
+        let mark = param.attr("data-mark");
+        if(mark !== ' ')
+        {
+            let url_origin = window.location.origin;
+            url_origin += '/skill-level-availability/';
+            url_origin += skillId;
+            url_origin += '/';
+            url_origin += mark;
+            fetch(url_origin)
+            .then(data => {
+                return data.json();
+            })
+            .then(availability => {
+                console.log(availability);
+                if(availability.length !== 0)
+                    param.toggleClass("circle");
+                else
+                    $("#no-strategies-warning-modal").modal("show");
+                if(param.hasClass("circle"))
+                    param.find(".student-goal-sheet-info").attr("checked", true);
+                else
+                    param.find(".student-goal-sheet-info").attr("checked", false);
+            })
+            .catch(err => {
+                console.log(err);
             });
-        });
-    });
+        }
+    }
 
-    $(".student-row").each(function(){
-        $(this).find(".student-skill-result").each(function(){
-            $(this).on("click", function() {
-                if($(this).html()){
-                    let skillId = $(this).attr("data-skillId"); 
-                    let mark = $(this).attr("data-mark"); 
-                    let url_origin = window.location.origin;
-                    url_origin += '/skill-level-availability/';
-                    url_origin += skillId;
-                    url_origin += '/';
-                    url_origin += mark;
-                    fetch(url_origin)
-                    .then(data => {
-                        return data.json();
-                    })
-                    .then(availability => {
-                        // $(this).find(".student-goal-sheet-info").attr("checked", false);
-                        if(availability.length !== 0)
-                            $(this).toggleClass("circle");   
-                        else
-                            $("#no-strategies-warning-modal").modal("show");                          
-                        if($(this).hasClass("circle"))
-                            $(this).find(".student-goal-sheet-info").attr("checked", true);
-                        else 
-                            $(this).find(".student-goal-sheet-info").attr("checked", false);                   
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                }
-            });
-        });
-    });
-
-    
 //======================== ASSESSMENT MARKING =======================================
-    
+
     //assessment-marking script to check whether all radio buttons have been selected before displaying a completed text
     // side-bar collapse function
     $('#sidebar-collapse').on('click', function () {
@@ -317,11 +441,11 @@ $(function(){
         console.log(criteria_section);
         criteria_section.toggleClass("accordion-display");
     });
-    
+
     //setting the default examples for the assessment-marking-page blade
     const assessed_level = $("#marking-level").html();
     $("#level-examples div").addClass("d-none");
-    
+
     if (assessed_level != null) {
         if (assessed_level == "121"){
         $("#level-examples div").addClass("d-none");
@@ -350,14 +474,13 @@ $(function(){
         else if (assessed_level == "145"){
             $("#level-examples div").addClass("d-none");
             $("#level-6").removeClass("d-none");
-        }   
+        }
     }
 
     $('.left-shift-scale').on('click', function(event){
         event.preventDefault();
         let leftShift = $(this);
         let leftShiftValue = $(this).attr('data-left-extreme');
-        console.log(leftShiftValue)
         let writingTask = $('input[name=writingTask]').val();
         let studentId = $('input[name="studentId"]').val();
         let url_origin = window.location.origin;
@@ -367,30 +490,29 @@ $(function(){
         urlParams.append('task', writingTask);
         urlParams.append('student', studentId);
         url_origin += "/get-shifted-criteria?" + urlParams.toString();
-        console.log(url_origin);
         fetch(url_origin)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            console.log(data)
+            console.log(data.skillCards)
             let count = 0;
             $('.marking-scale').each(function(){
-                $(this).text(data.rubrics[count].scriibi_Level);
+                $(this).text(data.rubrics[count].scriibi_level);
                 if(count == 0){
                     // This check for level 119 is done to ensure that the user cannot go beyond level -0.5 (Level D)
-                    if(data.rubrics[count].scriibi_Level_Id != 119){
-                        leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
+                    if(data.rubrics[count].id != 119){
+                        leftShift.attr('data-left-extreme', data.rubrics[count].id)
                         leftShift.removeClass('d-none')
                     }
-                    else{ 
+                    else{
                         leftShift.addClass('d-none')
                     }
                 }
                 if(count == 4){
                     let rightShift = $('.right-shift-scale');
-                    if(data.rubrics[count].scriibi_Level_Id != 149){
-                        rightShift.attr('data-right-extreme', data.rubrics[count].scriibi_Level_Id)
+                    if(data.rubrics[count].id != 149){
+                        rightShift.attr('data-right-extreme', data.rubrics[count].id)
                         rightShift.removeClass('d-none')
                     }
                     else {
@@ -399,16 +521,16 @@ $(function(){
                 }
                 count++;
             })
-            count = 0;
             let skillCard;
             let globalCounter;
             $('.skill-tab').each(function(){
                 globalCounter = 0;
                 let markingCounter = 0;
-                skillCard = data.skillCards[count];
+                let skillId = $(this).data('skill-card-id');
+                skillCard = data.skillCards[skillId];
                 let availableMark = $(this).find('.assesible-skill-mark').val();
                 $(this).find('.marking-radio').each(function(){
-                    let mark = data.rubrics[markingCounter].scriibi_Level_Id + "/" + skillCard.name;
+                    let mark = data.rubrics[markingCounter].id + "/" + skillId;
                     $(this).val(mark);
                     if(availableMark == mark) $(this).prop('checked', true);
                     else $(this).prop('checked', false);
@@ -416,24 +538,25 @@ $(function(){
                 })
                 $(this).find('.global-local-criteria').each(function(){
                     let main = $(this);
-                    $(this).find('.global-def').text(skillCard.global[globalCounter]);
+                    $(this).find('.global-def').text(skillCard.globalCriteria[globalCounter]);
                     $(this).find('.local-def').empty();
-                    if(Array.isArray(skillCard.local[globalCounter]) && skillCard.local[globalCounter].length){
-                        let localCriteria = document.createElement('div');
-                        let localCurriculum = document.createElement('span');
-                        let curriculumTooltip = document.createElement('span');
-                        localCriteria.classList.add('local-criteria', 'mr-2');
-                        localCurriculum.classList.add('local-curriculum');
-                        curriculumTooltip.classList.add('curriculum-tooltip');
-                        localCurriculum.innerHTML = "<u>" + skillCard.local[globalCounter][0][0].curriculum_code + "</u>";
-                        curriculumTooltip.innerHTML = skillCard.local[globalCounter][0][0].description_elaboration;
-                        localCriteria.appendChild(localCurriculum);
-                        localCriteria.appendChild(curriculumTooltip);
-                        main.find('.local-def').append(localCriteria);
+                    if(Array.isArray(skillCard.localCriteria[globalCounter]) && skillCard.localCriteria[globalCounter].length !== 0){
+                        for(let val of skillCard.localCriteria[globalCounter]){
+                            let localCriteria = document.createElement('div');
+                            let localCurriculum = document.createElement('span');
+                            let curriculumTooltip = document.createElement('span');
+                            localCriteria.classList.add('local-criteria', 'mr-2');
+                            localCurriculum.classList.add('local-curriculum');
+                            curriculumTooltip.classList.add('curriculum-tooltip');
+                            localCurriculum.innerHTML = "<u>" + val[0].code + "</u>";
+                            curriculumTooltip.innerHTML = val[0].elaboration;
+                            localCriteria.appendChild(localCurriculum);
+                            localCriteria.appendChild(curriculumTooltip);
+                            main.find('.local-def').append(localCriteria);
+                        }
                     }
                     globalCounter++;
                 })
-                count++;
             });
         })
         .catch(err => {
@@ -454,30 +577,29 @@ $(function(){
         urlParams.append('task', writingTask);
         urlParams.append('student', studentId);
         url_origin += "/get-shifted-criteria?" + urlParams.toString();
-        console.log(url_origin);
         fetch(url_origin)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            console.log(data.skillCards)
             let count = 0;
             $('.marking-scale').each(function(){
-                $(this).text(data.rubrics[count].scriibi_Level);
+                $(this).text(data.rubrics[count].scriibi_level);
                 if(count == 0){
                     let leftShift = $('.left-shift-scale');
                     // This check for level 119 is done to ensure that the user cannot go beyond level -0.5 (Level D)
-                    if(data.rubrics[count].scriibi_Level_Id != 119){
-                        leftShift.attr('data-left-extreme', data.rubrics[count].scriibi_Level_Id)
+                    if(data.rubrics[count].id != 119){
+                        leftShift.attr('data-left-extreme', data.rubrics[count].id)
                         leftShift.removeClass('d-none')
                     }
-                    else{ 
+                    else{
                         leftShift.addClass('d-none')
                     }
                 }
                 if(count == 4){
-                    if(data.rubrics[count].scriibi_Level_Id != 149){
-                        rightShift.attr('data-right-extreme', data.rubrics[count].scriibi_Level_Id)
+                    if(data.rubrics[count].id != 149){
+                        rightShift.attr('data-right-extreme', data.rubrics[count].id)
                         rightShift.removeClass('d-none')
                     }
                     else {
@@ -486,16 +608,16 @@ $(function(){
                 }
                 count++;
             })
-            count = 0;
             let skillCard;
             let globalCounter;
             $('.skill-tab').each(function(){
                 globalCounter = 0;
                 let markingCounter = 0;
-                skillCard = data.skillCards[count];
+                let skillId = $(this).data('skill-card-id');
+                skillCard = data.skillCards[skillId];
                 let availableMark = $(this).find('.assesible-skill-mark').val();
                 $(this).find('.marking-radio').each(function(){
-                    let mark = data.rubrics[markingCounter].scriibi_Level_Id + "/" + skillCard.name;
+                    let mark = data.rubrics[markingCounter].id + "/" + skillId;
                     $(this).val(mark);
                     if(availableMark == mark) $(this).prop('checked', true);
                     else $(this).prop('checked', false);
@@ -503,24 +625,25 @@ $(function(){
                 })
                 $(this).find('.global-local-criteria').each(function(){
                     let main = $(this);
-                    $(this).find('.global-def').text(skillCard.global[globalCounter]);
+                    $(this).find('.global-def').text(skillCard.globalCriteria[globalCounter]);
                     $(this).find('.local-def').empty();
-                    if(Array.isArray(skillCard.local[globalCounter]) && skillCard.local[globalCounter].length){
-                        let localCriteria = document.createElement('div');
-                        let localCurriculum = document.createElement('span');
-                        let curriculumTooltip = document.createElement('span');
-                        localCriteria.classList.add('local-criteria', 'mr-2');
-                        localCurriculum.classList.add('local-curriculum');
-                        curriculumTooltip.classList.add('curriculum-tooltip');
-                        localCurriculum.innerHTML = "<u>" + skillCard.local[globalCounter][0][0].curriculum_code + "</u>";
-                        curriculumTooltip.innerHTML = skillCard.local[globalCounter][0][0].description_elaboration;
-                        localCriteria.appendChild(localCurriculum);
-                        localCriteria.appendChild(curriculumTooltip);
-                        main.find('.local-def').append(localCriteria);
+                    if(Array.isArray(skillCard.localCriteria[globalCounter]) && skillCard.localCriteria[globalCounter].length){
+                        for(let val of skillCard.localCriteria[globalCounter]) {
+                            let localCriteria = document.createElement('div');
+                            let localCurriculum = document.createElement('span');
+                            let curriculumTooltip = document.createElement('span');
+                            localCriteria.classList.add('local-criteria', 'mr-2');
+                            localCurriculum.classList.add('local-curriculum');
+                            curriculumTooltip.classList.add('curriculum-tooltip');
+                            localCurriculum.innerHTML = "<u>" + val[0].code + "</u>";
+                            curriculumTooltip.innerHTML = val[0].elaboration;
+                            localCriteria.appendChild(localCurriculum);
+                            localCriteria.appendChild(curriculumTooltip);
+                            main.find('.local-def').append(localCriteria);
+                        }
                     }
                     globalCounter++;
                 })
-                count++;
             });
         })
         .catch(err => {
@@ -539,7 +662,8 @@ $(function(){
             return response.json();
         })
         .then(data => {
-            $(this).parent().parent().parent().find('.assesible-skill-mark-value').text(data[0].scriibi_Level);
+            console.log(data);
+            $(this).parent().parent().parent().find('.assesible-skill-mark-value').text(data);
             let check = true;
             $(".assesible-skill-mark").each(function(){
                 if(!$(this).val()){
@@ -547,7 +671,7 @@ $(function(){
                 }
                 console.log(check);
             });
-            
+
             //if check is still true, then display the completed text
             if (check === true) {
                 $("#assessment-status").find(".complete-style").removeClass("d-none");
@@ -555,12 +679,168 @@ $(function(){
                 $("#assessment-status").find("input").val("1");
             }
         })
-    })
+    });
 
+    //=================== ASSESSMENT STUDENTLIST ===================================
 
-    
+    $('.assessment-add-students-btn').on('click', function ($event){
+        let url_origin = window.location.origin;
+        url_origin += '/get-team-students/' + $(this).data('task-id');
+        fetch(url_origin)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(data){
+            let length = data.length;
+            let parent = $('.add-students-modal-list');
+            let template = $('.add-students-row').first();
+            $('.add-students-modal-selected').empty();
+            parent.empty();
+            for(let i = 0; i < length; i++)
+            {
+                let newRow = template.clone();
+                let fullName = data[i].first_name + ' ' + data[i].last_name;
+                newRow.find('input').val(data[i].id);
+                newRow.find('input').attr('data-stu-name', fullName);
+                newRow.find('input').prop('checked', false);
+                newRow.find('label').text(fullName);
+                newRow.removeAttr('hidden');
+                parent.append(newRow);
+            }
+            $('#add-students-modal').modal('show');
+            $('.add-students-check').on('change', function($event){
+                let parent = $('.add-students-modal-selected');
+                let name = $(this).attr('data-stu-name');
+                if($(this).is(':checked')){
+                    parent.append(`<div class="add-student-modal-name-tag m-1" data-tag-name=${name.replace(' ', '_')}>` + name + `</div>`)
+                }else{
+                    parent.find(`[data-tag-name=${name.replace(' ', '_')}]`).remove();
+                }
+            });
+        });
+    });
+
+    $('.add-students-confirm-btn').on('click', function ($event){
+        let set = [];
+        $('.add-students-check:checkbox:checked').each(function (index){
+            set.push($(this).val());
+        })
+        if(typeof set !== 'undefined' && set.length > 0){
+            let writingTaskId = $('.writing-task-id').attr('data-writing-task-id');
+            let url_origin = window.location.origin;
+            url_origin += '/add-students-to-task';
+            let body = new FormData();
+            body.append('writingTaskId', writingTaskId);
+            body.append('students', set);
+            let options = {
+                method: 'POST',
+                credentials: 'same-origin',
+                mode: 'same-origin',
+                body: body
+            };
+            fetch(url_origin, options)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function (data){
+                console.log(data);
+                let parent = $('.assessment-student-list');
+                let studentRow = $('.student-list-cell-template');
+                let studentCount = data.students.length;
+                for(let i = 0; i < studentCount; i++){
+                    let newStudent = studentRow.clone();
+                    newStudent.attr('href', `/assessment-marking/${data.students[i].id}/${data.writingTaskId}`);
+                    newStudent.attr('data-student-card-id', data.students[i].id);
+                    newStudent.find('.student-list-name').text(data.students[i].first_name + ' ' + data.students[i].last_name);
+                    newStudent.find('.student-list-status').text(data.taskStatus);
+                    newStudent.find('.student-list-status').addClass('incomplete-style');
+                    newStudent.find('.student-list-scl-mgmt-id').text(data.students[i].school_mgt_sys_id);
+                    newStudent.find('.student-list-grade').text(data.gradeLabels[data.students[i].grade_level_id]);
+                    newStudent.find('.student-list-assessed').text(data.assessedLabels[data.students[i].assessed_level_id]);
+                    newStudent.find('input[name="assessment-delete-students[]"]').val(data.students[i].id);
+                    newStudent.removeClass('student-list-cell-template');
+                    newStudent.prop('hidden', false);
+                    parent.prepend(newStudent);
+                }
+                attachAssessmentStudentDeleteCheckboxListener();
+                $('#add-students-modal').modal('hide');
+            });
+        }
+    });
+
+    if(window.location.pathname.includes('/single-assessment/')){
+        attachAssessmentStudentDeleteCheckboxListener();
+    }
+
+    function attachAssessmentStudentDeleteCheckboxListener(){
+        $('input[name="assessment-delete-students[]"]').on('change', function(event){
+           if($('input[name="assessment-delete-students[]"]:checkbox:checked').length > 0){
+               $('.asmnt-rmv-stu-btn').prop('disabled', false);
+           }
+           else{
+               $('.asmnt-rmv-stu-btn').prop('disabled', true);
+           }
+        });
+    }
+
+    $('.asmnt-rmv-stu-btn').on('click', function (event){
+        let allStudents = [];
+        let deleteStudents  = [];
+        $('.assessment-student-list').find('input[name="assessment-delete-students[]"]').each(function (index){
+            allStudents.push($(this).val());
+        });
+        $('input[name="assessment-delete-students[]"]:checkbox:checked').each(function (index){
+            deleteStudents.push($(this).val());
+        });
+        console.log(allStudents);
+        if(allStudents.length === deleteStudents.length)
+        {
+            $('#cannot-delete-all-students-modal').modal('show');
+        }
+        else
+        {
+            $('#delete-students-modal').modal('show');
+        }
+    });
+
+    $('.asmnt-rmv-stu-confmr-btn').on('click', function (event){
+        let set  = [];
+        let url_origin = window.location.origin;
+        url_origin += '/delete-students-from-task';
+        let writingTaskId = $('.writing-task-id').attr('data-writing-task-id');
+        $('input[name="assessment-delete-students[]"]:checkbox:checked').each(function (index){
+            set.push($(this).val());
+        });
+        let body = {
+            writingTask: writingTaskId,
+            students: set
+        }
+        let options = {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }
+        fetch(url_origin, options)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function (data){
+           if(data)
+           {
+                for(let s of set){
+                    let selector = `[data-student-card-id="${s}"]`
+                    $(selector).remove();
+                }
+           }
+            $('#delete-students-modal').modal('hide');
+        });
+    });
 //======================== ASSESSMENT SETUP =========================================
-    
+
      //If assessment form is incomplete, display the assessment form again
     $("#createAxBTN").on("click", function(event){
         event.preventDefault();
@@ -574,15 +854,15 @@ $(function(){
             document.getElementById('assessment-setup-form').submit();
         }
     });
-    
+
     //assessment-setup rubric selection radio script
     $(".assessment-rubric-item").on("click", function(){
         $(".assessment-rubric-item").find(".radio-circle").removeClass("fill-circle");
         $(this).find(".radio-circle").addClass("fill-circle");
     });
-    
+
 //======================== RUBRIC FORM ==============================================
-    
+
     //on change of the drop down, redirect the user to the page with the value appeneded to the url
     $("#select_curriculum_code").change(function(){
         //getting the curriculum level value
@@ -628,21 +908,6 @@ $(function(){
         $('body').addClass("noselect");
     }
 
-    // check for rubric-details page
-    if(url.includes('rubric-details')){
-        // add onlick event for the edit rubric link
-        document.getElementById("edit-rubric-link").addEventListener("click", function(event){
-            let rubric_edit_button = document.getElementById("edit-rubric-link");
-            // retrieve the assessment count for this rubric
-            let assessment_count = rubric_edit_button.getAttribute("data-assessment-count");
-            if(assessment_count != "0"){
-                // if assessment count is 0 then display a modal and prevent redirect
-                event.preventDefault();
-                $("#multiple-assessments-warning-modal").modal("show");
-            }  
-        });
-    }
-
     // warning for deleting an assessment
     if(url.includes('assessment-list')){
         // add onlick event for the edit rubric link
@@ -651,8 +916,8 @@ $(function(){
             let assessment_id = $(this).attr("data-assessement-id");
             console.log(assessment_id);
             document.getElementById("assessment-delete-warning-modal-form").value = assessment_id;
-            $("#delete-assessment-warning-modal").modal("show"); 
-        });     
+            $("#delete-assessment-warning-modal").modal("show");
+        });
     }
 
     $("#rubric-edit-submit").on("click", function(event){
@@ -679,16 +944,16 @@ $(function(){
                     rootnode.innerHTML = "";
                     skills.forEach(skill => {
                         if(!(checked.includes(skill.skill_Id.toString()))){
-                            let node = document.createElement("LI");                
-                            let textnode = document.createElement("SPAN");                
-                            let colornode = document.createElement("SPAN");            
+                            let node = document.createElement("LI");
+                            let textnode = document.createElement("SPAN");
+                            let colornode = document.createElement("SPAN");
                             let text = document.createTextNode('  ' + skill.skill_Name);
                             let color = 'colored-dot-color-' + skill.colour;
                             textnode.appendChild(text);
-                            colornode.classList.add(color);          
-                            colornode.classList.add('colored-dot-dimensions');          
-                            node.appendChild(colornode);                              
-                            node.appendChild(textnode);                              
+                            colornode.classList.add(color);
+                            colornode.classList.add('colored-dot-dimensions');
+                            node.appendChild(colornode);
+                            node.appendChild(textnode);
                             rootnode.appendChild(node);
                         }
                     });
@@ -712,11 +977,22 @@ $(function(){
     if(url.includes('/rubric-edit')){
         $("#edit-rubric-warning-modal-yes-button").on("click", function(){
             document.getElementById("rubricform").submit();
-        });   
+        });
+    }
+
+    if(url.includes('/assessment-setup')){
+        $('input[value=my-class]').on('click', function (event){
+            $('.my-class-select').prop('disabled', false);
+            $('.other-class-select').prop( 'disabled', true);
+        });
+        $('input[value=other-class]').on('click', function (event){
+            $('.other-class-select').prop('disabled', false);
+            $('.my-class-select').prop( 'disabled', true);
+        });
     }
 
     //======================== RUBRIC LIST PAGE ==============================================
-    
+
     $("#rubric-list-option-my-rubrics").on("click", function(){
         $(".rubric-list-option-current-style").removeClass("rubric-list-option-current-style");
         $(this).addClass("rubric-list-option-current-style");
@@ -727,28 +1003,28 @@ $(function(){
             return data.json();
         })
         .then(rubrics => {
+            console.log(rubrics);
             let currentUrl = window.location.href;
             let assessLevelParentDelete = document.getElementById('scriibi_rubrics_select');
             if (assessLevelParentDelete !== null)
                 assessLevelParentDelete.remove();
             let rootNode = document.getElementById('rubric-list-skill-cards');
             rootNode.innerHTML = "";
-            let rubricCount = rubrics.length;
             let currentSelected = $('.hidden-rubric-radio').val();
-            if(rubricCount !== 0){
-                for(let i = 0; i < rubricCount; i++){
+            if(Object.keys(rubrics).length !== 0){
+                for(let key in rubrics){
                     let skillCardNode = document.createElement("DIV");
                     skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
                     let linkNode;
                     if(currentUrl.includes('/assessment-setup')){
                         linkNode = document.createElement("div");
                         linkNode.classList.add('assessment-setup-rubric-select-radio-link');
-                        linkNode.setAttribute('data-rubric-id', rubrics[i].id);
-                        if(currentSelected == rubrics[i].id)
+                        linkNode.setAttribute('data-rubric-id', key);
+                        if(currentSelected == key)
                             linkNode.classList.add('assessment-setup-rubric-selected');
                     }else{
                         linkNode = document.createElement("a");
-                        linkNode.href = '/rubric-details/' + rubrics[i].id;
+                        linkNode.href = '/rubric-details/' + key;
                         linkNode.target = '_self';
                     }
                     linkNode.classList.add('card', 'rubric-box', 'btn-block', 'rubric-list-card-single');
@@ -756,7 +1032,7 @@ $(function(){
                     let rubricTitleNode = document.createElement("DIV");
                     rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
                     linkNode.appendChild(rubricTitleNode);
-                    rubricTitleNode.innerHTML = rubrics[i].name;
+                    rubricTitleNode.innerHTML = rubrics[key].name;
                     let rubricSkillsNode = document.createElement("DIV");
                     rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
                     let rubricSkillsTitleNode = document.createElement("p");
@@ -767,26 +1043,31 @@ $(function(){
                     let rubricsSkillsDetailsNode = document.createElement('ul');
                     rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
                     rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
-                    rubrics[i].skills.forEach((skill, index) => {
-                        if(index < 20){
-                            let skillItem = document.createElement('li');
-                            let skillNameNode = document.createElement('SPAN');
-                            let skillColorNode = document.createElement('SPAN');
-                            skillNameNode.innerHTML = ' ' + skill.name;
-                            let colorClass = 'colored-dot-color-' + skill.color;
-                            skillColorNode.classList.add('colored-dot-dimensions', colorClass);
-                            skillItem.appendChild(skillColorNode);
-                            skillItem.appendChild(skillNameNode);
-                            rubricsSkillsDetailsNode.appendChild(skillItem);
+                    let counter = 0;
+                    for(const trait in rubrics[key].traits) {
+                        for (const skill in rubrics[key].traits[trait].skills) {
+                            if(counter < 20){
+                                let skillItem = document.createElement('li');
+                                let skillNameNode = document.createElement('SPAN');
+                                let skillColorNode = document.createElement('SPAN');
+                                skillNameNode.innerHTML = ' ' + rubrics[key].traits[trait].skills[skill].name;
+                                let colorClass = 'colored-dot-color-' + rubrics[key].traits[trait].color;
+                                skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                                skillItem.appendChild(skillColorNode);
+                                skillItem.appendChild(skillNameNode);
+                                rubricsSkillsDetailsNode.appendChild(skillItem);
+                            }
+                            counter++;
                         }
-                    });
+                    }
                     let skillCardFooterNode = document.createElement('DIV');
                     linkNode.appendChild(skillCardFooterNode);
                     let moreSkillsNode = document.createElement('DIV');
                     moreSkillsNode.classList.add('rubric-more-skills');
                     skillCardFooterNode.appendChild(moreSkillsNode);
-                    if(rubrics[i].skills.length > 20){
-                        moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+                    let remainingSkills = counter - 20;
+                    if(remainingSkills > 0){
+                        moreSkillsNode.innerHTML = (remainingSkills) + ' more';
                     }
                     if(!currentUrl.includes('/assessment-setup')){
                         let rubricDeleteNode = document.createElement('form');
@@ -796,7 +1077,7 @@ $(function(){
                         let rubricDeletehiddenInputNode = document.createElement('input');
                         rubricDeletehiddenInputNode.type = "hidden";
                         rubricDeletehiddenInputNode.name = "rubricId";
-                        rubricDeletehiddenInputNode.value = rubrics[i].id;
+                        rubricDeletehiddenInputNode.value = key;
                         let rubricDeleteButtonNode = document.createElement('button');
                         rubricDeleteButtonNode.classList.add('rubric-remove-button-styling');
                         rubricDeleteButtonNode.type = 'submit';
@@ -996,7 +1277,7 @@ function check_input_filled(e){
         curriculum_code = document.getElementById("select_curriculum_code").value,
         skill_error = false,
         title_error = false;
-    
+
     if (curriculum_code === ""){
         error += "you need to select a curriculum code. \n";
     }
@@ -1045,7 +1326,7 @@ function assessmentRubricSelectListener(){
             previouslySelected.removeClass('assessment-setup-rubric-selected');
         }
         $(this).addClass('assessment-setup-rubric-selected');
-    }); 
+    });
 }
 
 function updateRubricsGrid(dataSet){
@@ -1062,7 +1343,7 @@ function updateRubricsGrid(dataSet){
         assessLevelParentDelete.remove();
     innerNode.innerHTML = "";
     let assessLevelParent = document.createElement('DIV');
-    assessLevelParent.classList.add('col-4', 'mb-4');
+    assessLevelParent.classList.add('col-4', 'mb-4', 'pl-0');
     assessLevelParent.setAttribute('id', 'scriibi_rubrics_select');
     let assessmentLeveltitle = document.createElement('label');
     assessmentLeveltitle.innerText = 'Show Scriibi Rubrics for:';
@@ -1076,9 +1357,9 @@ function updateRubricsGrid(dataSet){
     assessmentLevelSelect.classList.add('select-input');
     assessedLabels.forEach((label) => {
         let option = document.createElement('option');
-        option.setAttribute('value', label.school_scriibi_level_id);
-        option.innerText = label.assessed_level_label;
-        if(teacherLevel == label.school_scriibi_level_id)
+        option.setAttribute('value', label.scriibi_level_id);
+        option.innerText = label.label;
+        if(teacherLevel == label.scriibi_level_id)
             option.selected = true;
         assessmentLevelSelect.appendChild(option);
     });
@@ -1086,18 +1367,17 @@ function updateRubricsGrid(dataSet){
     let assessLevelDelimeter = document.createElement('SPAN');
     assessLevelDelimeter.classList.add('bar');
     assessLevelParent.appendChild(assessLevelDelimeter);
-    let rubricCount = rubrics.length;
     let currentSelected = $('.hidden-rubric-radio').val();
-    if(rubricCount !== 0){
-        for(let i = 0; i < rubricCount; i++){
+    if(Object.keys(rubrics).length !== 0){
+        for(const key in rubrics){
             let skillCardNode = document.createElement("DIV");
             skillCardNode.classList.add('col-sm-6', 'col-md-6', 'col-lg-3', 'col-xl-3');
             let linkNode;
             if(currentUrl.includes('/assessment-setup')){
                 linkNode = document.createElement("div");
                 linkNode.classList.add('assessment-setup-rubric-select-radio-link');
-                linkNode.setAttribute('data-rubric-id', rubrics[i].id);
-                if(currentSelected == rubrics[i].id)
+                linkNode.setAttribute('data-rubric-id', key);
+                if(currentSelected == key)
                     linkNode.classList.add('assessment-setup-rubric-selected');
             }else{
                 linkNode = document.createElement("a");
@@ -1108,7 +1388,7 @@ function updateRubricsGrid(dataSet){
             let rubricTitleNode = document.createElement("DIV");
             rubricTitleNode.classList.add('rubric-list-text-title', 'text-left');
             linkNode.appendChild(rubricTitleNode);
-            rubricTitleNode.innerHTML = rubrics[i].name;
+            rubricTitleNode.innerHTML = rubrics[key].name;
             let rubricSkillsNode = document.createElement("DIV");
             rubricSkillsNode.classList.add('rubric-box-small', 'rubric-list-skills', 'text-left', 'align-middle');
             let rubricSkillsTitleNode = document.createElement("p");
@@ -1119,26 +1399,31 @@ function updateRubricsGrid(dataSet){
             let rubricsSkillsDetailsNode = document.createElement('ul');
             rubricsSkillsDetailsNode.style.cssText = "list-style: none;padding-left:10px;";
             rubricSkillsNode.appendChild(rubricsSkillsDetailsNode);
-            rubrics[i].skills.forEach((skill, index) => {
-                if(index < 20){
-                    let skillItem = document.createElement('li');
-                    let skillNameNode = document.createElement('SPAN');
-                    let skillColorNode = document.createElement('SPAN');
-                    skillNameNode.innerHTML = ' ' + skill.name;
-                    let colorClass = 'colored-dot-color-' + skill.color;
-                    skillColorNode.classList.add('colored-dot-dimensions', colorClass);
-                    skillItem.appendChild(skillColorNode);
-                    skillItem.appendChild(skillNameNode);
-                    rubricsSkillsDetailsNode.appendChild(skillItem);
+            let counter = 0;
+            for(const trait in rubrics[key].traits){
+                for(const skill in rubrics[key].traits[trait].skills){
+                    if(counter < 20){
+                        let skillItem = document.createElement('li');
+                        let skillNameNode = document.createElement('SPAN');
+                        let skillColorNode = document.createElement('SPAN');
+                        skillNameNode.innerHTML = ' ' + rubrics[key].traits[trait].skills[skill].name;
+                        let colorClass = 'colored-dot-color-' + rubrics[key].traits[trait].color;
+                        skillColorNode.classList.add('colored-dot-dimensions', colorClass);
+                        skillItem.appendChild(skillColorNode);
+                        skillItem.appendChild(skillNameNode);
+                        rubricsSkillsDetailsNode.appendChild(skillItem);
+                    }
+                    counter++;
                 }
-            });
+            }
             let skillCardFooterNode = document.createElement('DIV');
             linkNode.appendChild(skillCardFooterNode);
             let moreSkillsNode = document.createElement('DIV');
             moreSkillsNode.classList.add('rubric-more-skills');
             skillCardFooterNode.appendChild(moreSkillsNode);
-            if(rubrics[i].skills.length > 20){
-                moreSkillsNode.innerHTML = (rubrics[i].skills.length - 20) + ' more'; 
+            let remainingSkills = counter - 20;
+            if(remainingSkills > 0){
+                moreSkillsNode.innerHTML = (counter - 20) + ' more';
             }
             innerNode.appendChild(skillCardNode);
         }

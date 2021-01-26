@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class skillObject
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $id;
     private $name;
     private $definition;

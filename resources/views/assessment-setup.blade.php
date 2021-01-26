@@ -19,7 +19,7 @@
             </div>
             <!-- accordion for assessment setup -->
             <!-- step 1: assessment detail -->
-        
+
             <div class="card card-assessment-style" id="assessment-template">
                 <div class="card-body">
                     <div class="card-title mb-5 mt-3">
@@ -39,14 +39,35 @@
                     </div>
                     <h5 class="assessment-settings-title mt-3">Fill in details for your assessement.</h5>
                     <div class="d-flex mt-3 mb-5">
-                        <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
-                            <input type="radio" id="assess-class" class="assess-input" name="assess" value="mine" checked required />
-                            <span class="btn"></span>
-                        </label>
-                        <label for="assess-grade" class="assessment-settings-btn ml-4">Assess <strong>whole grade level</strong>
-                            <input type="radio" id="assess-grade" class="assess-input" name="assess" value="all" required />
-                            <span class="btn"></span>
-                        </label>
+                        <div class="row no-gutters" style="width: 100%">
+                            <div class="col-md-4 col-lg-4 col-xl-3">
+                                <div>
+                                    <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
+                                        <input type="radio" id="assess-class" class="assess-input" name="assess" value="my-class" checked required />
+                                        <span class="btn"></span>
+                                    </label>
+                                </div>
+                                <select name="my-class" class="assessment-builder-class-select my-class-select">
+                                    @foreach($userClasses as $class)
+                                        <option value="{{$class['id']}}">{{$class['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-xl-4">
+                                <div>
+                                    <label for="assess-grade" class="assessment-settings-btn">Assess <strong>another class</strong>
+                                        <input type="radio" id="assess-grade" class="assess-input" name="assess" value="other-class" required />
+                                        <span class="btn"></span>
+                                    </label>
+                                </div>
+                                <select name="other-class" class="assessment-builder-class-select other-class-select" disabled="true">
+                                    @foreach($otherClasses as $class)
+                                        <option value="{{$class['id']}}">{{$class['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-5"></div>
+                        </div>
                     </div>
                     <div class="mt-3">
                         <label for="assessment_description" class="col-sm-12 m-0 p-0">Additional Notes</label>
@@ -68,24 +89,24 @@
                                     Scriibi Rubrics
                                 </div>
                                 <!-- <div class="col-3 rubric-list-option" id="rubric-list-option-shared-rubrics">
-                                    Shared with Me             
+                                    Shared with Me
                                 </div> -->
                                 <div class="col-6 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
-                                    My Saved Rubrics   
+                                    My Saved Rubrics
                                 </div>
                                 <!-- <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
                                     Build a new Rubric
                                 </a> -->
-                            </div>                 
+                            </div>
                         </div>
                         <div class="student-list-scroll" id="rubric-list-skills-section">
                             <div class="row" id="rubric-list-skill-cards">
                                 @if (count($rubrics) > 0)
-                                    @foreach($rubrics as $r)
+                                    @foreach($rubrics as $key => $value)
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                                    <div class="card rubric-box btn-block rubric-list-card-single assessment-setup-rubric-select-radio-link" data-rubric-id={{$r->getId()}}>
+                                    <div class="card rubric-box btn-block rubric-list-card-single assessment-setup-rubric-select-radio-link" data-rubric-id={{$key}}>
                                         <div class="rubric-list-text-title text-left">
-                                            {{$r->getName()}}
+                                            {{$value['name']}}
                                         </div>
                                         <div class="rubric-box-small rubric-list-skills text-left align-middle">
                                             <p class="rubric-skills-para">Skills</p>
@@ -94,23 +115,19 @@
                                                 <?php
                                                     $count = 0;
                                                     $skills_array = array();
-                                                    $traits_skills = $r->getRubricTraitSkills();
+                                                    $traits_skills = $value['traits'];
                                                     foreach($traits_skills as $ts){
-                                                        $skillObjects = $ts->getSkills();
+                                                        $skillObjects = $ts['skills'];
                                                         foreach($skillObjects as $so){
-                                                            $skills_array[$so->getName()] = $ts->getColor();
-                                                        }
-                                                    };
-                                                    $skillsCount = count($skills_array);
-                                                    foreach($skills_array as $k => $v){
-                                                        if($count < 20){                                       
-                                                ?>   
+                                                            if($count < 20){
+                                                ?>
                                                             <li>
-                                                                <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($v); ?>"></span>
-                                                                <span>{{$k}}</span>
+                                                                <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts['color']); ?>"></span>
+                                                                <span>{{$so['name']}}</span>
                                                             </li>
                                                 <?php
-                                                        $count++;
+                                                            }
+                                                            $count++;
                                                         }
                                                     }
                                                 ?>
@@ -118,10 +135,10 @@
                                         </div>
                                         <div>
                                             <div class="rubric-more-skills">
-                                                <?php 
-                                                    if($skillsCount > 20)
+                                                <?php
+                                                    if($count > 20)
                                                     {
-                                                        echo ($skillsCount-20)." more";
+                                                        echo ($count-20)." more";
                                                     }
                                                 ?>
                                             </div>
@@ -131,7 +148,7 @@
                                 @endforeach
                             @endif
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             </div>

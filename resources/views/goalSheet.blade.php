@@ -6,15 +6,15 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 
 </head>
-<body>	
+<body>
 	<div id="container" class="container page-break">
-	
-	@foreach($arr as $gs)    
+
+	@foreach($arr as $gs)
 		<div class="golasheet-header">
 			<h1 class="goalsheet-header-heading">
 				<span class="heading-name">{{$gs["student_name"]}}</span>{{substr($gs["student_name"], -1) == 's' ? "' " : "'s "}} Writing Goal
 			</h1>
-			<img src="images/GoalSheetLogo.png" alt="scriibi" class="goalsheet-header-logo">	
+			<img src="images/GoalSheetLogo.png" alt="scriibi" class="goalsheet-header-logo">
 		</div>
 			<div class="finding-ideas">
 				<h3>{{$gs["skill_name"]}}</h3>
@@ -22,33 +22,16 @@
 				<?php echo($gs["student_definiton"]) ?>
 				</p>
 			</div>
-	
+
 			<div class="goal-heading-purpose">
-			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="width:695px;height:73px">	
-			
+			<img src="images/goal-sheet-heading.png" alt="goal-sheet-heading" style="width:695px;height:73px">
+
 			</div>
-			<!--
 			<div class="goal-heading">
-				<h5>My Progress</h5>
-			</div>
-	
-			<div class="strategies">
-				<div class="progress-one">
-					<strong> Can you confidently use this skill in your writing?</strong>
-				</div>
-
-				<div class="progress-two">
-					<img src="images/goal-sheet.png">
-				</div>
-			</div>
-			-->
-
-
-			<div class="goal-heading">
-				<h5>Strategies to help me</h5>	
+				<h5>Strategies to help me</h5>
 			</div>
 
-			<div class="strats">	
+			<div class="strats">
 				<div class="">
 					<?php echo($gs["strategy"]) ?>
 				</div>
@@ -73,19 +56,6 @@
 					<p>&nbsp;</p>
 					<p>&nbsp;  </p>
 				</div>
-				<!--
-				<div class="sign">
-					<div class="checked-peer cp1">
-						<strong><p>Checked by Peer</p></strong>
-						<p class="signature">&nbsp;</p>
-					</div>
-	
-					<div class="checked-peer cp2">
-						<strong><p>Checked by Teacher</p></strong>
-						<p class="signature">&nbsp;</p>
-					</div>
-				</div>
-				-->	
 			</div>
 			&nbsp;
 		@if($gs != end($arr))
@@ -93,12 +63,12 @@
 		@endif
 	@endforeach
 	</div>
-	
+
 	<div class="Print-btn-styling">
-		<input class="Print-button"  type="button" id="btn" onclick="printDiv('container')" value="Print or save as PDF" > 
-		<img class="generate-image">              
+		<input class="Print-button"  type="button" id="btn" onclick="printDiv('container')" value="Print or save as PDF" >
+		<img class="generate-image">
 	</div>
-	
+
 	<script>
 
 		// To select the div which you want to print on button click
@@ -116,7 +86,7 @@
 	</script>
 </body>
 </html>
-   
+
 
 
 

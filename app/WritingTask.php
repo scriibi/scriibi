@@ -2,139 +2,100 @@
 
 namespace App;
 
-use DB;
-use Auth;
-use App\Rubric;
-use App\Rubrics;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class WritingTask
+class WritingTask extends Model
 {
-    private $id;
-    private $name;
-    private $description;
-    private $created_at;
-    private $assessed_at;
-    private $teacher_created;
-    private $teaching_period;
-    private $rubric_id;
-    private $rubric;
-    private $status;
-    private $students = array();
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'writing_task';
 
-    public function __construct($id, $name, $desc, $created, $assessed, $teacher, $teaching_period, $rubric_id){
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $desc;
-        $this->created_at = date('d-m-Y', strtotime($created));
-        $this->assessed_at = date('Y-m-d', strtotime($assessed));
-        $this->teacher_created = $teacher;
-        $this->teaching_period = $teaching_period;
-        $rubricRecord = Rubrics::find($rubric_id)->toArray();
-        $this->rubric = new Rubric($rubricRecord["rubric_Id"], $rubricRecord["rubric_Name"]);
-        $this->rubric->populateTraits();
-        $this->rubric->getSkillsByWritingTask($this->id);
-        if ($this->assessed_at > date("Y-m-d")){
-            $this->status = 'In Progress';
-        }else if ($this->assessed_at <= date("Y-m-d")){
-            $this->status = 'Completed';
-        }
-    }
+    /**
+     * Enable soft deletes for a model
+     */
+    use SoftDeletes;
 
-    public function getId(){
-        return $this->id;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getDescription(){
-        return $this->description;
-    }
-
-    public function getCreatedAt(){
-        return $this->created_at;
-    }
-
-    public function getAssessedAt(){
-        return $this->assessed_at;
-    }
-
-    public function getTeacher(){
-        return $this->teacher_created;
-    }
-
-    public function getTeachingPeriod(){
-        return $this->teaching_period;
-    }
-
-    public function getRubric(){
-        return $this->rubric;
-    }
-
-    public function getStatus(){
-        return $this->status;
-    }
-
-    public function getStudents(){
-        return $this->students;
-    }
-
-    public function setName($name){
-        $this->name = $name;
-    }
-
-    public function setDescription($desc){
-        $this->description = $desc;
-    }
-
-    public function setCreatedAt($created_at){
-        $this->created_at = $created_at;
-    }
-
-    public function setAssessedAt($name){
-        $this->assessed_at = $assessed_at;
-    }
-
-    public function setTeacher($name){
-        $this->teacher_created = $teacher_created;
-    }
-
-    public function setTeachingPeriod($name){
-        $this->teaching_period = $teaching_period;
-    }
-
-    public function setRubricId($name){
-        $this->rubric_id = $rubric_id;
-    }
-
-    public function setRubric($name){
-        $this->rubric = $rubric;
-    }
-
-    public function setStatus($status){
-        $this->status = $status;
+    /**
+     * Get the status that owns the writing task.
+     */
+    public function status()
+    {
+        return $this->belongsTo('App\Status', 'status_id');
     }
 
     /**
-     * populate all the students who are taking the current writing test
+     * Get the school that owns the writing task.
      */
-    public function populateStudents(){
-        $students = DB::table('students')
-            ->join('writting_task_students', 'students.student_Id', 'writting_task_students.fk_student_id')
-            ->join('classes_students', 'students.student_Id', 'classes_students.students_student_Id')
-            ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
-            ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
-            ->select('students.*', 'writting_task_students.status', 'grade_labels.grade_label', 'assessed_level_labels.assessed_level_label')
-            ->where('writting_task_students.fk_writting_task_id', '=', $this->id)
-            ->get();
-        foreach($students as $s){
-            array_push($this->students, $s);
-        }
+    public function school()
+    {
+        return $this->belongsTo('App\School', 'school_id');
     }
 
-    public function populateStudentsInClass(){
-        // todo
+    /**
+     * Get the teaching period that owns the writing task.
+     */
+    public function teachingPeriod()
+    {
+        return $this->belongsTo('App\TeachingPeriod', 'teaching_period_id');
+    }
+
+    /**
+     * The rubrics that belong to the writing task.
+     */
+    public function rubrics()
+    {
+        return $this->belongsToMany('App\Rubric', 'rubric_writing_task', 'writing_task_id', 'rubric_id')
+                    ->using('App\RubricWritingTask')
+                    ->withPivot(['id', 'rubric_id', 'writing_task_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The classes that belong to the writing task.
+     */
+    public function classes()
+    {
+        return $this->belongsToMany('App\Clss', 'writing_task_class', 'writing_task_id', 'class_id')
+                    ->using('App\WritingTaskClass')
+                    ->withPivot(['id', 'class_id', 'writing_task_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The students that belong to the writing task.
+     */
+    public function students()
+    {
+        return $this->belongsToMany('App\Student', 'writing_task_student', 'writing_task_id', 'student_id')
+                    ->using('App\WritingTaskStudent')
+                    ->withPivot(['id', 'student_id', 'writing_task_id', 'comment', 'status_flag', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The skills that belong to the writing task.
+     */
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill', 'task_skill', 'writing_task_id', 'skill_id')
+                    ->using('App\TaskSkill')
+                    ->withPivot(['id', 'writing_task_id', 'skill_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * Get the writing task skill results for the writing task.
+     */
+    public function taskSkillStudentResults()
+    {
+        return $this->hasMany('App\TaskSkillStudentResult', 'writing_task_id');
+    }
+
+    /**
+     * Get the user/teacher that owns the writing task.
+     */
+    public function teacher()
+    {
+        return $this->belongsTo('App\User', 'primary_owner_id');
     }
 }

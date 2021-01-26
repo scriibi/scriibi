@@ -4,27 +4,56 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use App\RubricList;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\RubricListingService;
+use App\Repositories\Interfaces\ClassRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
 
 class AssessementSetupController extends Controller
 {
     /**
-     * creates a new RubricList instance, 
+     * creates a new RubricList instance,
      * populates it with the rubrics associated with the currently logged in user
      * and returns back an assessment-setup page
-     * 
+     *
      */
-    public function GenerateAssessmentSetup(){
-        $teacherLevel = DB::table('teachers_scriibi_levels')
-            ->select('scriibi_levels_scriibi_Level_Id')
-            ->where('teachers_user_Id', '=', Auth::user()->user_Id)
-            ->get();
-        $rubricList1 = new RubricList();
-        $returnList1 = $rubricList1->GenerateTeacherSpecificRubricList();
-        $rubricList2 = new RubricList();
-        $returnList2 = $rubricList2->GenerateScriibiSpecificRubricList($teacherLevel[0]->scriibi_levels_scriibi_Level_Id);
-        return view('assessment-setup', ['rubrics' => $returnList1, 'scriibiRubrics' => $returnList2]);
+    public function GenerateAssessmentSetup(RubricListingService $rubricListingService, ClassRepositoryInterface $classRepository, UserRepositoryInterface $userRepository, ScriibiLevelRepositoryInterface $scriibiLevelRepository){
+        try
+        {
+            $rubrics = $rubricListingService->getTeacherTemplates(Auth::user()->id);
+            $scriibiLevels = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
+            $schoolId = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['id'];
+            $userClasses = $classRepository->getClassesOfTeacher(Auth::user()->id, $schoolId);
+            $otherClasses = $classRepository->getClassesOfScriibiLevels($scriibiLevels, $schoolId);
+            $userClassHashMap = [];
+
+            $userClassCount = count($userClasses);
+            for ($i = 0; $i < $userClassCount; $i++)
+            {
+                $userClassHashMap[$userClasses[$i]['id']] = true;
+            }
+
+            $otherClassCount = count($otherClasses);
+            for ($j = 0; $j < $otherClassCount; $j++)
+            {
+                if(array_key_exists($otherClasses[$j]['id'], $userClassHashMap))
+                {
+                    unset($otherClasses[$j]);
+                }
+            }
+            return view('assessment-setup',
+                [
+                    'rubrics' => $rubrics,
+                    'userClasses' => $userClasses,
+                    'otherClasses' => $otherClasses
+                ]);
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
     }
 }

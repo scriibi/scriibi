@@ -14,6 +14,12 @@ use App\ScriibiLevels;
 use App\assessed_level_label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\StudentListingService;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\ClassRepositoryInterface;
+use App\Repositories\Interfaces\StudentRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 class StudentsController extends Controller
 {
@@ -76,7 +82,7 @@ class StudentsController extends Controller
 
             DB::table('students')->where('student_Id', $student_id)->update(['enrolled_Level_Id' => null]);
             DB::table('classes_students')->where('students_student_Id', '=', $student_id)->delete();
-            
+
             $mp = Mixpanel::getInstance("11fbca7288f25d9fb9288447fd51a424");
             $mp->identify(Auth::user()->user_Id);
             $mp->track("Student Deleted", array(
@@ -95,24 +101,51 @@ class StudentsController extends Controller
     /**
      * return all of the students of the currently logged in teachers class
      * note: for version 1 a teacher can have only one class
+     * @param ClassRepositoryInterface $classRepository
+     * @param StudentRepositoryInterface $studentRepository
+     * @param UserRepositoryInterface $userRepository
+     * @param GradeLabelRepositoryInterface $gradeLabelRepository
+     * @param AssessedLabelRepositoryInterface $assessedLabelRepository
+     * @return array
      */
-    public function indexStudentsByClass(){
-        $students = [];
-        try{
-            $class = DB::table('classes_teachers')->select('classes_teachers_classes_class_Id')->where('teachers_user_Id', '=', Auth::user()->user_Id)->first();
-
-            $students = DB::table('classes_students')
-                ->join('students', 'classes_students.students_student_Id', 'students.student_Id')
-                ->join('grade_labels', 'classes_students.student_grade_label_id', 'grade_labels.grade_label_id')
-                ->join('assessed_level_labels', 'classes_students.student_assessed_label_id', 'assessed_level_labels.assessed_level_label_id')
-                ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
-                ->where('classes_students.classes_class_Id', '=', $class->classes_teachers_classes_class_Id)
-                ->get();
+    public function indexStudentsByClass(ClassRepositoryInterface $classRepository, StudentRepositoryInterface $studentRepository, UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository)
+    {
+        try
+        {
+            $school =$userRepository->getTeacherSchool(Auth::user()->id)[0];
+            $gradeLabels = $this->formatLabels($gradeLabelRepository->getGradeLabels($school['curriculum_school_type_id']));
+            $assessedLabels = $this->formatLabels($assessedLabelRepository->getAssessedLabels($school['curriculum_school_type_id']));
+            $classes = $classRepository->getClassIdsOfTeacher(Auth::user()->id, $school['id']);
+            $students = $studentRepository->getStudentsOfClasses($classes);
+            return
+                [
+                    'students' => $students,
+                    'gradeLabels' => $gradeLabels,
+                    'assessedLabels' => $assessedLabels
+                ];
         }
-        catch(Exception $e){
+        catch(Exception $e)
+        {
             abort(403, 'Please log in to view this page!');
         }
-        return $students;
+    }
+
+    protected function formatLabels($labels): array
+    {
+        try
+        {
+            $result = [];
+            $length = count($labels);
+            for($i = 0; $i < $length; $i++)
+            {
+                $result[$labels[$i]['scriibi_level_id']] = $labels[$i]['label'];
+            }
+            return $result;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
     }
 
     public function indexStudentsByWritingTask($writingTask){
@@ -126,7 +159,7 @@ class StudentsController extends Controller
                 ->select('students.*', 'grade_labels.*', 'assessed_level_labels.*')
                 ->where('writting_task_students.fk_writting_task_id', '=', $writingTask)
                 ->get()
-                ->toArray();   
+                ->toArray();
         }catch(Exception $e){
             abort(403, 'Please log in to view this page!');
         }
@@ -134,53 +167,10 @@ class StudentsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function show(students $students)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(students $students)
-    {
-
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\students  $students
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
@@ -217,5 +207,17 @@ class StudentsController extends Controller
         }
 
         return redirect()->action('StudentInputController@ReturnStudentListPage');
+    }
+
+    public function getStudentsOfMyTeam($taskId, StudentListingService $studentListingService)
+    {
+        try
+        {
+            return $studentListingService->getStudentsOfTeam(Auth::user()->id, $taskId);
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
     }
 }

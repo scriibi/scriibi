@@ -32,24 +32,22 @@
                                         <select class="select-input" name="assessed_level" id="select_curriculum_code">
                                             <option value="" disabled selected hidden>Please select an option</option>
                                             @foreach($assessed_labels as $al)
-                                                <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
+                                                <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                             @endforeach
                                         </select>
-                                        <span class="bar"></span>                                       
+                                        <span class="bar"></span>
                                     </div>
-                                    <div  class="col-8 justify-content-between float-right" style="text-align:right" >                                   
-                                    <img  class="skill-flag-icon " src="/images/flag.png" />
-                                    <span >= This skill is a curriculum milestone for the selected level</span>
+                                    <div class="col-8 justify-content-between float-right" style="text-align:right">
+                                        <img  class="skill-flag-icon " src="/images/flag.png" />
+                                        <span>= This skill is a curriculum milestone for the selected level</span>
                                     </div>
                                 @else
-                                    <img style="margin-left:11cm" class="skill-flag-icon float-left" src="/images/flag.png" />
-                                    <span>= This skill is a curriculum milestone for the selected level</span>
                                     <div class="col-4">
                                         <br /><br />
                                         <label>Curriculum</label><br />
                                         <select class="select-input" name="curriculum">
                                         @foreach($curriculum as $c)
-                                            <option value={{$c->curriculum_Id}}>{{$c->state}}</option>
+                                            <option value={{$c['id']}}>{{$c['state']}}</option>
                                         @endforeach
                                         </select>
                                         <span class="bar"></span>
@@ -59,7 +57,7 @@
                                         <label>School Type</label><br />
                                         <select class="select-input" name="schoolType">
                                         @foreach($schoolTypes as $st)
-                                            <option value={{$st->school_type_identifier_id}}>{{$st->school_type_identifier_name}}</option>
+                                            <option value={{$st['id']}}>{{$st['name']}}</option>
                                         @endforeach
                                         </select>
                                         <span class="bar"></span>
@@ -70,48 +68,49 @@
                                         <select class="select-input" name="assessed_level" id="select_scriibi_curriculum_code">
                                             <option value="" disabled selected hidden>Please select an option</option>
                                             @foreach($assessed_labels as $al)
-                                                <option value={{$al->school_scriibi_level_id}} <?php if(isset($level) && $level == $al->school_scriibi_level_id) { echo "selected"; } ?>>{{$al->assessed_level_label}}</option>
+                                                <option value={{$al['scriibi_level_id']}} <?php if(isset($level) && $level == $al['scriibi_level_id']) { echo "selected"; } ?>>{{$al['label']}}</option>
                                             @endforeach
                                         </select>
                                         <span class="bar"></span>
                                     </div>
                                 <!-- use an else condition here when setting up the page for scriibi rubric building and delete this comment -->
-                                @endif                                
+                                @endif
                             </div>
 
                             <!-- skills cards deck-->
                             <div class="card-columns p-0 mt-3" id="check-array">
                                 @foreach($traitObjects as $to)
-                                    <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to->getColor()); ?> mt-1">
+                                    <div class="card border-0 p-0 mt-2 skillset-box skillset-box-<?php echo htmlentities($to['color']); ?> mt-1">
                                         <ul class="list-group list-group-flush ">
                                             <li class="text-white m-0 d-flex justify-content-start px-2">
                                                 <!-- load icon address-->
 
                                                 <!-- load trait title -->
                                                 <span class="skill-title w-100 pl-0 align-self-center px-2">
-                                                    <input type="text" name="trait_id" value={{$to->getId()}} hidden />
-                                                    {{$to->getName()}}
+                                                    <input type="text" name="trait_id" value={{$to['id']}} hidden />
+                                                    {{$to['name']}}
                                                 </span>
                                             </li>
-                                            <?php $skills = $to->getSkills()?>
                                             <div class="list-group-box">
-                                                @if(count($skills) > 0)
-                                                    @foreach($skills as $skill)
+                                                @if(isset($level))
+
+                                                    <?php $skills = $to['skills'] ?>
+                                                    @foreach($skills as $key => $value)
                                                         <li class="list-group-item">
                                                             <!-- load each skill item in the skills category;
                                                             the number of skills items in the skill category vary -->
                                                             <label class="frm_checkbox">
-                                                                <input type="checkbox" class="skill-checkbox" name="rubric_skills[]" value={{$skill->getId()}} />
-                                                                <span class="skill-name">{{$skill->getName()}}</span>
-                                                                @if ($skill->getFlag() === true)
+                                                                <input type="checkbox" class="skill-checkbox" name="rubric_skills[]" value={{$key}} />
+                                                                <span class="skill-name">{{$value['name']}}</span>
+                                                                @if ($value['flag'] === true)
                                                                     <img class="skill-flag-icon float-right" src="/images/flag.png" />
                                                                 @endif
                                                             </label>
-                                                            <span class="skill-tooltip">{!!$skill->getDefinition()!!}</span>
+                                                            <span class="skill-tooltip">{!!$value['description']!!}</span>
                                                         </li>
                                                     @endforeach
                                                 @else
-                                                    <li class="list-group-item">          
+                                                    <li class="list-group-item">
                                                         <label class="frm_checkbox"></label>
                                                 @endif
                                             </div>

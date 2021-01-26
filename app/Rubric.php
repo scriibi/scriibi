@@ -2,77 +2,62 @@
 
 namespace App;
 
-class Rubric
+use Illuminate\Database\Eloquent\Model;
+
+class Rubric extends Model
 {
-    private $id;
-    private $name;
-    private $dateCreated;
-    private $rubic_trait_skills = array();
-
-    public function __construct($id, $name, $date = '01/01/2020'){
-        $this->id = $id;
-        $this->name = $name;
-        $this->dateCreated = $date;
-    }
-
-    public function getId(){
-        return $this->id;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getDate(){
-        return $this->dateCreated;
-    }
-
-    public function getRubricTraitSkills(){
-        return $this->rubic_trait_skills;
-    }
-
-    public function setName($name){
-        $this->name = $name;
-    }  
-
-    public function setDate($date){
-        $this->dateCreated = $date; 
-    }
-    
-    public function setTraitSkills($trait_skills){
-        foreach($trait_skills as $ts){
-            array_push($this->rubic_trait_skills, $ts);
-        }
-    }
-
     /**
-     * return all the tratis for the rubric
+     * The table associated with the model.
+     *
+     * @var string
      */
-    public function populateTraits(){
-        $traits = traits::get();
-        foreach($traits as $trait){
-            array_push($this->rubic_trait_skills, new traitObject($trait->trait_Id, $trait->trait_Name, $trait->colour, $trait->icon));
-        }
+    protected $table = 'rubric';
+
+    /**
+     * Get the scriibi level that owns the rubric.
+     */
+    public function scriibiLevel()
+    {
+        return $this->belongsTo('App\ScriibiLevel', 'scriibi_level_id');
     }
 
     /**
-     * populates the private array with trait objects which contain rubric specific skills
-    */
-    public function getSkillsByRubric(){
-        foreach($this->rubic_trait_skills as $tsa){
-            $tsa->populateRubricSpecificSkills($this->id);
-        }
+     * The skills that belong to the rubric.
+     */
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill', 'rubric_skill', 'rubric_id', 'skill_id')
+                    ->using('App\RubricSkill')
+                    ->withPivot(['id', 'rubric_id', 'skill_id', 'created_at', 'updated_at']);
     }
 
-    public function getSkillsByScriibiSpecificRubrics(){
-        foreach($this->rubic_trait_skills as $tsa){
-            $tsa->populateScriibiRubricSpecificSkills($this->id);
-        }
+    /**
+     * The teachers that belong to the rubric.
+     */
+    public function teachers()
+    {
+        return $this->belongsToMany('App\User', 'rubric_teacher_template', 'rubric_id', 'teacher_id')
+                    ->using('App\RubricTeacherTemplate')
+                    ->withPivot(['id', 'rubric_id', 'teacher_id', 'created_at', 'updated_at']);
     }
 
-    public function getSkillsByWritingTask($taskId){
-        foreach($this->rubic_trait_skills as $tsa){
-            $tsa->populateWritingTaskSpecificSkills($taskId);
-        }
+    /**
+     * The writing tasks that belong to the rubric.
+     */
+    public function writingTasks()
+    {
+        return $this->belongsToMany('App\WritingTask', 'rubric_writing_task', 'rubric_id', 'writing_task_id')
+                    ->using('App\RubricWritingTask')
+                    ->withPivot(['id', 'rubric_id', 'writing_task_id', 'created_at', 'updated_at']);
+    }
+
+    /**
+     * The curriculum school types that belong to the rubric.
+     */
+    public function curriculumSchoolType()
+    {
+        return $this->belongsToMany('App\CurriculumSchoolType', 'rubric_scriibi', 'rubric_id', 'curriculum_school_type_id')
+            ->using('App\RubricScriibi')
+            ->withPivot(['id', 'rubric_id', 'curriculum_school_type_id', 'created_at', 'updated_at']);
     }
 }

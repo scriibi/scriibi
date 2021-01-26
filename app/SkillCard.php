@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SkillCard
 {
+    // ################################################################################# older model file (delete later) ########################################################################################
     private $writingTask;
     private $studentId;
     private $curriculumId;
