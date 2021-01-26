@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use DB;
 use Exception;
 use App\Repositories\Interfaces\TraitRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -77,18 +78,32 @@ class RubricBuilderService
         {
             $traitsWithSkills = $this->traitRepositoryInterface->getSkillsInScriibiLevelRange(RubricBuilderService::getScriibiRange($level));
             $curriculumSchoolType = $this->userRepositoryInterface->getTeacherSchool($teacherId)[0]['curriculum_school_type_id'];
-//            $curriculumId = $this->curriculumRepositoryInterface->getCurriculumFromCurriculumSchoolType($curriculumSchoolType);
-//            if(!empty($curriculumId))
-//            {
-//                $flaggedSkills = $this->setStatusFlag($traitsWithSkills, $level, $curriculumId[0]);
-//            }
-//            dd($flaggedSkills);
             $assessedLabels = $this->assessedLabelRepositoryInterface->getAssessedLabels($curriculumSchoolType);
-
             if(empty($traitsWithSkills))
             {
                 throw new Exception('Method getSkillsInScriibiLevelRange() returned an empty array');
             }
+            $curriculumId = $this->curriculumRepositoryInterface->getCurriculumFromCurriculumSchoolType($curriculumSchoolType);
+
+            if(!empty($curriculumId))
+            {
+                $flaggedSkills = $this->setStatusFlag($traitsWithSkills, $level, $curriculumId[0]);
+            }
+            if(!empty($flaggedSkills))
+            {
+                foreach ($flaggedSkills as $flag)
+                {
+                    $traitSkillCount = count($traitsWithSkills);
+                    for ($i = 0; $i < $traitSkillCount; $i++)
+                    {
+                        if(array_key_exists($flag['id'], $traitsWithSkills[$i]['skills']))
+                        {
+                            $traitsWithSkills[$i]['skills'][$flag['id']]['flag'] = $flag['flag'];
+                        }
+                    }
+                }
+            }
+
             return (object)
                 [
                     'traits' => $traitsWithSkills,
@@ -111,7 +126,43 @@ class RubricBuilderService
             {
                 $skills = array_merge($skills, $traitsWithSkills[$i]['skills']);
             }
-            dd($skills);
+            $skillCount = count($skills);
+//            dd($skills);
+            for ($j= 0;  $j < $skillCount; $j++)
+            {
+                $skillLevel = DB::table('skill_level')
+                    ->where('skill_id', $skills[$j]['id'])
+                    ->where('scriibi_level_id', $currentLevel)
+                    ->get()
+                    ->toArray();
+                if(!empty($skillLevel))
+                {
+                    $curriculumSkillLevels = DB::table('curriculum_skill_level')
+                        ->where('skill_level_id', $skillLevel[0]->id)
+                        ->where('curriculum_id', $curriculumId)
+                        ->get()
+                        ->toArray();
+                    if(!empty($curriculumSkillLevels))
+                    {
+                        foreach ($curriculumSkillLevels as $cSkillLevel)
+                        {
+                            $curriculumSkillLevelLocalCriteria = DB::table('curriculum_skill_level_local_criteria')
+                                ->where('curriculum_skill_level_id', $cSkillLevel->id)
+                                ->get()
+                                ->toArray();
+                            if(!empty($curriculumSkillLevelLocalCriteria))
+                            {
+                                $skills[$j]['flag'] = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return $skills;
         }
         catch (Exception $e)
         {

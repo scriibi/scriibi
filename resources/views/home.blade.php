@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Welcome {{$user}}, </h3>
+                <h3>Hi {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
