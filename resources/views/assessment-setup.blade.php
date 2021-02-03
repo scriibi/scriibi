@@ -3,81 +3,87 @@
 @section('content')
 
 <div class="row">
-   <div class="d-none d-sm-block col-sm-1 col-md-2">
+   <div class="d-none d-sm-block col-1">
    </div>
    <!-- main panel -->
-    <div class="col-12 col-sm-10 col-md-8">
+    <div class="col-10">
         <form class="mt-5" action="/assessment-submit" method="post" id="assessment-setup-form">
         @csrf
             <!-- create assessment title -->
             <div class="d-flex justify-content-between mt-2 mb-1">
                 <p class='mt-5' id='create-assessment-title'>Fill in details for your assessment</p>
-                <div>
-                    <button type='button' name='button' class='btn back-btn mt-5' id='backBTN' style="height: 40px; margin-right: 10px" hidden>back</button>
-                    <input type='submit' name='button' value='Create Assessment' class='btn assessment-btn border-0 mt-5' id='createAxBTN' style="height: 40px;" hidden>
+                <div class="assessment-setup-assessment-details-page-nav-btns">
+                    <input type='submit' name='button' value='Create Assessment' class='btn assessment-btn border-0 mt-5' id='createAxBTN' style="height: 40px;">
+                </div>
+                <div class="assessment-setup-rubric-details-page-nav-btns" hidden>
+                    <button type='button' name='button' class='btn back-btn mt-5' id='backBTN' style="height: 40px; margin-right: 10px">back</button>
+                    <button type='button' name='button' class='btn assessment-btn mt-5' id='addRubricToAssessment' style="height: 40px; margin-right: 10px" disabled>Add Skills To Assessment</button>
                 </div>
             </div>
             <!-- accordion for assessment setup -->
             <!-- step 1: assessment detail -->
-
             <div class="card card-assessment-style" id="assessment-template">
-                <div class="card-body">
-                    <div class="card-title mb-5 mt-3">
-                        <h5><strong>Assessment Details</strong></h5>
-                    </div>
-                    <div class="card-text mb-5 mt-4 row">
-                        <div class="col-sm-8">
-                            <input type="text" class="text-input" id="assessment_name" name="assessment_name" required />
-                            <span class="bar"></span>
-                            <label class="student-form-label ml-3" for="assessment_name">Title</label>
+                <div class="card-body row no-gutters">
+                    <div class="col-9 p-1">
+                        <div class="m-2 p-2">
+                            <h5 class="assessment-settings-title mt-3">Assessment Name</h5>
+                            <input type="text" class="new-text-input" id="assessment_name" name="assessment_name" required />
                         </div>
-                        <div class="col-sm-4">
-                            <input type="date" class="text-input" id="assessment_date" name="assessment_date" required/>
-                            <span class="bar"></span>
-                            <label class="student-form-label ml-3" for="assessment_date">Writing task completion date</label>
-                        </div>
-                    </div>
-                    <h5 class="assessment-settings-title mt-3">Fill in details for your assessement.</h5>
-                    <div class="d-flex mt-3 mb-5">
-                        <div class="row no-gutters" style="width: 100%">
-                            <div class="col-md-4 col-lg-4 col-xl-3">
-                                <div>
-                                    <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
-                                        <input type="radio" id="assess-class" class="assess-input" name="assess" value="my-class" checked required />
-                                        <span class="btn"></span>
-                                    </label>
-                                </div>
-                                <select name="my-class" class="assessment-builder-class-select my-class-select">
-                                    @foreach($userClasses as $class)
-                                        <option value="{{$class['id']}}">{{$class['name']}}</option>
-                                    @endforeach
-                                </select>
+                        <div class="d-flex flex-wrap justify-content-between ml-2 mr-2 mb-4 mt-4">
+                            <div class="p-2" style="width: 25%">
+                                <h5 class="assessment-settings-title">Task Date</h5>
+                                <p>Select a date when you expect the writing task to be completed. Note: this date can be changed later</p>
+                                <input type="date" class="text-input" id="assessment_date" name="assessment_date" required/>
                             </div>
-                            <div class="col-md-5 col-lg-5 col-xl-4">
-                                <div>
-                                    <label for="assess-grade" class="assessment-settings-btn">Assess <strong>another class</strong>
-                                        <input type="radio" id="assess-grade" class="assess-input" name="assess" value="other-class" required />
-                                        <span class="btn"></span>
-                                    </label>
+                            <div class="p-2" style="width: 70%">
+                                <h5 class="assessment-settings-title">Who do you want to assess?</h5>
+                                <p>Note: You will still be able to add and remove individual students after the assessment is created</p>
+                                <div class="d-flex flex-wrap m-3">
+                                    <div class="mr-3 mb-2">
+                                        <div>
+                                            <label for="assess-class" class="assessment-settings-btn checked">Assess <strong>my class</strong>
+                                                <input type="radio" id="assess-class" class="assess-input" name="assess" value="my-class" checked required />
+                                                <span class="btn"></span>
+                                            </label>
+                                        </div>
+                                        <select name="my-class" class="assessment-builder-class-select my-class-select">
+                                            @foreach($userClasses as $class)
+                                                <option value="{{$class['id']}}">{{$class['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mr-3">
+                                        <div>
+                                            <label for="assess-grade" class="assessment-settings-btn">Assess <strong>another class</strong>
+                                                <input type="radio" id="assess-grade" class="assess-input" name="assess" value="other-class" required />
+                                                <span class="btn"></span>
+                                            </label>
+                                        </div>
+                                        <select name="other-class" class="assessment-builder-class-select other-class-select" disabled="true">
+                                            @foreach($otherClasses as $class)
+                                                <option value="{{$class['id']}}">{{$class['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                                <select name="other-class" class="assessment-builder-class-select other-class-select" disabled="true">
-                                    @foreach($otherClasses as $class)
-                                        <option value="{{$class['id']}}">{{$class['name']}}</option>
-                                    @endforeach
-                                </select>
                             </div>
-                            <div class="col-md-3 col-lg-3 col-xl-5"></div>
+                        </div>
+                        <div class="m-2 pl-2 pr-2">
+                            <h5 class="assessment-settings-title mt-3">Additional notes about this assessment</h5>
+                            <textarea id="assessment_description" name="assessment_description" placeholder="e.g. Jason was absent, Over the holiday assessment, etc." class="assessment-description mt-1"></textarea>
                         </div>
                     </div>
-                    <div class="mt-3">
-                        <label for="assessment_description" class="col-sm-12 m-0 p-0">Additional Notes</label>
-                        <textarea id="assessment_description" name="assessment_description" placeholder="e.g. Jason was absent, Over the holiday assessment, etc." class="assessment-description mt-1"></textarea>
+                    <div class="col-3 d-flex flex-column flex-wrap">
+                        <h5 class="assessment-settings-title mt-3" style="width: fit-content; margin: auto">Skills</h5>
+                        <div class="assessment-settings-selected-rubric">
+                            <p style="position: relative; top: 35%; bottom: -65%; height: fit-content; text-align: center; color: #ff0000" class="text-wrap">There are currently no skills selected for this assessment</p>
+                        </div>
+                        <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn assessment-settings-rubric-select-btn border-0">Rubric Selection</button>
                     </div>
-                    <div class="d-flex justify-content-end mt-4 mb-2">
-                        <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn border-0">Rubric Selection</button>
-                    </div>
+
                 </div>
             </div>
+
             <!-- step 2:Rubric Template to select which rubric to use for assessment-->
             <div id="rubric-template" hidden>
                 <input type="radio" name="rubric" value="" class="hidden-rubric-radio" hidden/>
@@ -154,13 +160,13 @@
             </div>
         </form>
     </div>
-    <div class="d-none d-sm-block col-sm-1 col-md-2">
+    <div class="d-none d-sm-block col-1">
     </div>
 </div>
 
-<div class="date-not-in-period-flash" hidden="hidden">
+<div class="date-not-in-period-flash flash-warning-message" hidden="hidden">
     <strong>The date is not within a valid teaching period</strong>
 </div>
-
+<div class="assessment-build-form-incomplete-flash flash-warning-message" hidden="hidden"></div>
 @endsection
 
