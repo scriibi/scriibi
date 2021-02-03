@@ -525,25 +525,6 @@ header {
     transition: 0.2s;
 }
 
-.new-text-input{
-    border: 1px solid #AAAAAA;
-    border-radius: 7px;
-
-    width: 100%;
-}
-
-.assessment-settings-selected-rubric{
-    border: 1px solid #AAAAAA;
-    border-radius: 7px;
-    height: 80%;
-    padding: 20px;
-    width: 100%;
-}
-
-.assessment-settings-rubric-select-btn{
-    margin: auto;
-}
-
 .assessment-builder-class-select {
     border: 2px solid #D2D2D2;
     border-radius: 5px;
@@ -2214,7 +2195,7 @@ box-sizing: border-box;
     border: 2px solid #33a849;
 }
 
-.flash-warning-message{
+.date-not-in-period-flash{
     background-color: rgb(255, 77, 106);
     border: 1px solid rgb(255, 38, 74);
     border-radius: 7px;

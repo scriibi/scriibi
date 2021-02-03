@@ -848,32 +848,15 @@ $(function(){
      //If assessment form is incomplete, display the assessment form again
     $("#createAxBTN").on("click", function(event){
         event.preventDefault();
-        let warning = '';
-        if (document.getElementById("assessment_name").value === "") {
-            warning += '1) Please type in a name for the assessment<br>';
-        }
-        if(document.getElementsByClassName('hidden-rubric-radio').rubric.value == ""){
-            if(warning === ''){
-                warning += '1) Please select a rubric for the assessment';
-            }else{
-                warning += '<br>2) Please select a rubric for the assessment';
-            }
-        }
-        if(warning === ''){
-            document.getElementById('assessment-setup-form').submit();
+        if ((document.getElementById("assessment_name").value === "") || (document.getElementsByClassName('hidden-rubric-radio').rubric.value == "")) {
+            $("#assessment-template").addClass("d-block");
+            $("#assessment-template").removeClass("d-none");
+            $("#rubric-template").addClass("d-none");
+            $("#rubric-template").removeClass("d-block");
+            toggleAssessmentSetupHeader("details");
         }else{
-            let flash = $('.assessment-build-form-incomplete-flash');
-            flash.html('<strong>' + warning + '</strong>');
-            flash.prop('hidden', false);
-            setTimeout(function () {
-                flash.prop('hidden', true);
-            }, 3500);
+            document.getElementById('assessment-setup-form').submit();
         }
-            // $("#assessment-template").addClass("d-block");
-            // $("#assessment-template").removeClass("d-none");
-            // $("#rubric-template").addClass("d-none");
-            // $("#rubric-template").removeClass("d-block");
-            // toggleAssessmentSetupHeader("details");
     });
 
     //assessment-setup rubric selection radio script
@@ -1166,7 +1149,8 @@ $(function(){
                 }
             }
             if(!status){
-                $(this).val(formatDate());
+                let currentDate = new Date();
+                $(this).val(`${currentDate.getFullYear()}-0${currentDate.getMonth()+1}-${currentDate.getDate()}`);
                 $('.date-not-in-period-flash').prop('hidden', false);
                 setTimeout(function () {
                     $('.date-not-in-period-flash').prop('hidden', true);
@@ -1183,21 +1167,6 @@ $(function(){
 //######################################### VANILLA JS SCRIPTS #########################################
 
 //======================== STUDENT LIST =============================================
-
-// function to convert current date to yyyy-MM-dd format
-function formatDate() {
-    var d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-}
 
 //function to open the form
 function openEditForm(event) {
@@ -1244,12 +1213,12 @@ function closeEditForm(event) {
 function toggleAssessmentSetupHeader(page){
     let header, content, visibility;
     if(page === "details"){
-        document.querySelector(".assessment-setup-assessment-details-page-nav-btns").removeAttribute('hidden');
-        document.querySelector(".assessment-setup-rubric-details-page-nav-btns").setAttribute('hidden', 'true');
+        document.getElementById('backBTN').setAttribute('hidden', 'hidden');
+        document.getElementById('createAxBTN').setAttribute('hidden', 'hidden');
         content = `Fill in details for your assessment`;
     }else{
-        document.querySelector(".assessment-setup-assessment-details-page-nav-btns").setAttribute('hidden', 'true');
-        document.querySelector(".assessment-setup-rubric-details-page-nav-btns").removeAttribute('hidden');
+        document.getElementById('backBTN').removeAttribute('hidden');
+        document.getElementById('createAxBTN').removeAttribute('hidden');
         content = `Select a rubric`
     }
     document.getElementById('create-assessment-title').innerHTML = content;
@@ -1324,11 +1293,6 @@ if (backBTN) {
     backBTN.addEventListener('click', closeRubricForm, true);
 }
 
-var addRubricToAssessment = document.getElementById("addRubricToAssessment");
-if (addRubricToAssessment) {
-    addRubricToAssessment.addEventListener('click',openAssessmentForm, true);
-    addRubricToAssessment.addEventListener('click', closeRubricForm, true);
-}
 
 // rubric builder page
 
@@ -1398,10 +1362,6 @@ function assessmentRubricSelectListener(){
             previouslySelected.removeClass('assessment-setup-rubric-selected');
         }
         $(this).addClass('assessment-setup-rubric-selected');
-        let currentlySelected = $(this).clone();
-        currentlySelected.removeClass(['assessment-setup-rubric-select-radio-link', 'assessment-setup-rubric-selected']);
-        $('.assessment-settings-selected-rubric').empty().prepend(currentlySelected).css('border', 'none');
-        $('#addRubricToAssessment').prop('disabled', false);
     });
 }
 

@@ -7,13 +7,7 @@
     <list default="true" id="f0b6fbc9-435c-4065-ae79-3c66463b25a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assessment-setup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessment-setup.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assessments-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assessments-data-view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/growth-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/growth-data-view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/partials/rubric-builder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/partials/rubric-builder.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traits-data-view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +156,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -184,21 +177,11 @@
       <workItem from="1609290733520" duration="27962000" />
       <workItem from="1609465556286" duration="261825000" />
       <workItem from="1610663436190" duration="351447000" />
-      <workItem from="1611695945422" duration="13251000" />
-      <workItem from="1611804753474" duration="617000" />
-      <workItem from="1611893768493" duration="931000" />
-      <workItem from="1611895776333" duration="116000" />
-      <workItem from="1611895904030" duration="256000" />
-      <workItem from="1611896349696" duration="3377000" />
-      <workItem from="1612144388428" duration="48671000" />
+      <workItem from="1611695945422" duration="6833000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
