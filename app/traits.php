@@ -14,7 +14,7 @@ class Traits extends Model
     protected $table = 'trait';
 
     /**
-     * The skills that belong to the trait.
+     * The skills that belong to the trait..
      */
     public function skills()
     {
