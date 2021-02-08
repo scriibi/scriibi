@@ -41,9 +41,7 @@ class WritingTaskListingService
         try
         {
             $classes = $this->classRepositoryInterface->getClassIdsOfTeacher($teacherId, $schoolId);
-            dump($classes);
-            $temp = $this->getWritingTasks($classes);
-            dd($temp);
+            return $this->getWritingTasks($classes);
         }
         catch (Exception $e)
         {
@@ -62,7 +60,6 @@ class WritingTaskListingService
         try
         {
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds);
-            dd($writingTasks);
             return $this->populateWritingTasksWithRubricDetails($writingTasks);
         }
         catch (Exception $e)
