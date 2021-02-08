@@ -41,7 +41,9 @@ class WritingTaskListingService
         try
         {
             $classes = $this->classRepositoryInterface->getClassIdsOfTeacher($teacherId, $schoolId);
-            return $this->getWritingTasks($classes);
+            dump($classes);
+            $temp = $this->getWritingTasks($classes);
+            dd($temp);
         }
         catch (Exception $e)
         {
