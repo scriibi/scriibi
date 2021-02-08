@@ -33,7 +33,7 @@ interface WritingTaskRepositoryInterface
      * @param array $classes
      * @return array
      */
-    public function getWritingTasksOfClasses(array $classes): array;
+    public function getWritingTasksOfClasses(array $classes);
 
     /**
      * Return all the students who are associated with a given writing task

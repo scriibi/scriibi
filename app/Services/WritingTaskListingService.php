@@ -62,6 +62,7 @@ class WritingTaskListingService
         try
         {
             $writingTasks = $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds);
+            dd($writingTasks);
             return $this->populateWritingTasksWithRubricDetails($writingTasks);
         }
         catch (Exception $e)

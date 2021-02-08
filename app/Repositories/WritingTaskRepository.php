@@ -87,9 +87,9 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
      * Return all the assessments along with their rubrics,
      * classes and status associated with the specified classes
      * @param array $classes
-     * @return array
+     * @return array // undo later
      */
-    public function getWritingTasksOfClasses(array $classes): array
+    public function getWritingTasksOfClasses(array $classes)
     {
         try
         {
@@ -106,7 +106,7 @@ class WritingTaskRepository implements WritingTaskRepositoryInterface
         }
         catch (Exception $e)
         {
-            return [];
+            return $e;  // undo later
         }
     }
 
