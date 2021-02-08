@@ -4,11 +4,19 @@
         <form action={{$scriibi_user ? "/scriibi-rubric-confirm" : "/RubricConfirm"}} method="POST" class="mt-5 mb-0 p-0" id="rubricform">
         @csrf
             @if(!$scriibi_user)
-                <div class="row d-flex justify-content-between mb-3 ml-1">
-                    <h5 class="rubric-list-title">Rubric Builder</h5>
-                    <a href="/rubric-list" class="assessment-btn p-2"><strong>Return to Rubrics List</strong></a>
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="rubric-list-title m-2">Rubric Builder</h5>
+                    <a href="/rubric-list" class="assessment-btn p-2 m-2"><strong>Return to Rubrics List</strong></a>
                 </div>
             @endif
+            <div class="d-flex justify-content-end">
+                @if(!$scriibi_user)
+                    <input class="btn assessment-btn p-2 mt-2 mb-2 mr-1 font-weight-bold" type="submit" name="button" id="rubric-save" value="Save this rubric" />
+                @else
+                    <input class="btn assessment-btn p-2 mt-2 mb-2 mr-1 font-weight-bold" type="submit" name="button" id="scriibi-rubric-save" value="Save this rubric" />
+                @endif
+                    <button class="btn btn-danger p-2 mt-2 mb-2 ml-1 mr-2" type="reset" name="button-clear2" style="width: 120px; border-radius: 7px"><strong>Clear</strong></button>
+            </div>
             <div class="row mt-5 ">
                 <div class="col-12">
                     <h1 class="Assessment-Studentlist-title">Rubric Name :</h1>
@@ -129,18 +137,6 @@
         </div>
     </div>
     <br><br>
-    @if(!$scriibi_user)
-        <div class="col-12 d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
-            <input class="btn assessment-btn p-3" type="submit" name="button" id="rubric-save" value="Save this rubric" />
-        </div>
-    @else
-        <div class="col-12 d-flex row justify-content-end mt-3 mb-3 mx-0 px-0">
-            <input class="btn assessment-btn p-3" type="submit" name="button" id="scriibi-rubric-save" value="Save this rubric" />
-        </div>
-    @endif
-    <div class="col-12 row justify-content-end mx-0 mt-3 mb-3 px-0">
-            <button class="btn btn-clear" type="reset" name="button-clear2">Clear</button>
-    </div>
 </form>
 </div>
 </div>
