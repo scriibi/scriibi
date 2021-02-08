@@ -63,7 +63,7 @@
                 <div>
                     <input type="hidden" name="current-view" value="{{$currentView}}" />
                     <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                    <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Skills</button></a>
+                    <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Skills</button></a>
                     <a href="/assessment-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
                 </div>
             </div>
@@ -81,7 +81,7 @@
             <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
             <?php $count = 1;?>
             @foreach($teachingPeriods as $teachingPeriod)
-                <th id="period{{$count}}" class="assessment-skills text-center skill-column text-wrap align-middle">{{ ' Term ' . $count . ',  ' . $teachingPeriod['year']}}</th>
+                <th id="period{{$count}}" class="assessment-skills text-center skill-column text-wrap align-middle">{{ $teachingPeriod['year'] . ' Term ' . $count . ', Progression Point' }}</th>
                 <?php $count++;?>
             @endforeach
             <th id="growth-value" class="text-wrap align-middle">Growth</th>
