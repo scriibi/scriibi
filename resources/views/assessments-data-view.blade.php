@@ -54,7 +54,12 @@
                 </div>
                 <div class="col-8">
                     <div class="justify-content-end">
-                        <h6><strong>Analyse by</strong></h6>
+                        <div>
+                            <h6 class="d-inline-block"><strong>Analyse by</strong></h6>
+                            <div class="moreInfo-button d-inline-block" id="myBtn-more-info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
                         <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
                             <option value="" disabled="disabled" selected="selected">Select one</option>
                             <option value="assessed">Assessed Level</option>
@@ -124,9 +129,14 @@
                     </div>
                     <div class="col-6 pl-5">
                         <a href="/single-assessment/{{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
-                        <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-block assignment-action-button assessment-goals-gen-btn" >Generate All Goal Sheets
-                            <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">
-                        </button>
+                        <div>
+                            <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-inline-block assignment-action-button assessment-goals-gen-btn">Generate All Goal Sheets
+                                <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">
+                            </button>
+                            <div class="d-inline-block" id="myBtn-goal-sheets" style="position: relative; top: 5px; cursor: pointer">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,7 +189,12 @@
                 </div>
                 <div class="col-8">
                     <div class="justify-content-end">
-                        <h6><strong>Analyse by</strong></h6>
+                        <div>
+                            <h6 style="display: inline-block"><strong>Analyse by</strong></h6>
+                            <div class="moreInfo-button" id="myBtn-more-info" style="display:inline-block;">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
                         <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
                             <option value="" disabled="disabled" selected="selected">Select one</option>
                             <option value="assessed">Assessed Level</option>
@@ -344,6 +359,69 @@
         }
     </style>
 
+    <script>
+        // toggle the more info modal
+        let modal1 = document.getElementById("more-info-modal");
+        modal1.removeAttribute('hidden');
+        let btn1 = document.getElementById("myBtn-more-info");
+        let span1 = document.getElementsByClassName("close-more-info-modal")[0];
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+
+        // toggle the generate goal sheets modal
+        var modal = document.getElementById("generate-goal-sheets-modal");
+        modal.removeAttribute('hidden');
+        var btn = document.getElementById("myBtn-goal-sheets");
+        var span = document.getElementsByClassName("close-goal-sheet-modal")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+        }
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var text = document.getElementsByClassName("mytext");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                text[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            text[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
 @endsection
 
 <div class="modal fade bd-example-modal-lg no-strategies-warning" id="no-strategies-warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -374,6 +452,97 @@
                         <button class="assessment-delete-button delete-button-green" data-dismiss="modal" style="text-align:center;margin:0">OK</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="more-info-modal" class="more-info-modal" hidden>
+    <div class="more-info-modal-content">
+        <span class="close-more-info-modal">&times;</span>
+        <div class="more-info-row">
+            <p class="green-bold">More Information</p>
+            <div class="more-info-column" style="width:100%">
+                <p><strong>Your students’ data has been gathered and presented for each assessment.</strong></p>
+                <p>
+                <ul>
+                    <li>
+                        You can then further analyse the data by their <strong>Grade</strong>  or by their <strong>Assessed Level</strong>.
+                    </li>
+                </ul>
+                </p>
+                <p>
+                <ul>
+                    <li>
+                        Your students’ performance is colour coded to show their progression and highlight areas that need improvement.
+                    </li>
+                </ul>
+                </p>
+            </div>
+            <div class="more-info-column" style="width:100%">
+                <p><strong>Your student’s performance is:</strong></p>
+                <div>
+                    <p><span class="more-info-dot" style="background:#8AEA8B"></span><sup class="more-info-sup"><strong>1+</strong> years <strong>above</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#C3FEC3"></span><sup class="more-info-sup"><strong>0.5</strong> years <strong>above</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FFFFFF;border: 2px solid #c0c0c0;border-radius: 50%;"></span><sup class="more-info-sup">at the assessed level</sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FFD7B8"></span><sup class="more-info-sup"><strong>0.5</strong> years <strong>below</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FD9827"></span><sup class="more-info-sup"><strong>1+</strong> years <strong>below</strong></sup>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="generate-goal-sheets-modal" class="generate-gs-modal" hidden>
+    <div class="generate-gs-modal-content">
+        <span class="close-goal-sheet-modal">&times;</span>
+        <div class="slideshow-container" style="width:85%">
+            <p class="green-bold">How to generate Goal Sheets</p>
+            <div id="imgdiv">
+                <div class="mySlides modal-fade-image">
+                    <img src="https://media.giphy.com/media/Y3AbrXYYwtHHChK00a/giphy.gif" style="width: 320px" class="modal-image">
+                </div>
+                <div class="mySlides modal-fade-image">
+                    <img src="https://media.giphy.com/media/SXaQdkJxPHGGwXNEeY/giphy.gif" style="width:241px" class="modal-image">
+                </div>
+                <div class="mySlides modal-fade-image">
+                    <img src="https://media.giphy.com/media/WmiuaNK5ARbSIld4Y0/giphy.gif" style="width:285px" class="modal-image">
+                </div>
+                <div class="mySlides modal-fade-image">
+                    <img src="https://media.giphy.com/media/SVaJz9DQfv0xLXPSHm/giphy.gif" style="width:310px" class="modal-image">
+                </div>
+            </div>
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+            <div class="mytext">
+                <p><span>Step 1:</span> Analyse Students’ Data</p>
+                <p>Select ‘Assessed Level’ to view data based on your students’ current level.</p>
+                <p>To see where your students sit in relation to their grade, select ‘Grade’.</p>
+            </div>
+            <div class="mytext">
+                <p><span>Step 2:</span> Select Individual Cells for Goal Sheets</p>
+                <p>Select the skills you want your students to develop by clicking on the individual cells.  Skills highlighted in light or dark orange indicate students are working below their assessed level for these skills.  These are ‘growth opportunities’, so you may want to generate goals sheets for these particular skills. </p>
+            </div>
+            <div class="mytext">
+                <p><span>Step 3:</span> Generate all Goal Sheets</p>
+                <p>To generate all the student goal sheets as one PDF document, click on ‘Generate all Goal Sheets'. </p>
+            </div>
+            <div class="mytext">
+                <p><span>Step 4:</span> (Optional) Generate Individual Goal Sheets</p>
+                <p>To generate individual student goal sheets, click on the download button next to the student’s name. This will enable you to print or email goal sheets for individual students. </p>
             </div>
         </div>
     </div>
