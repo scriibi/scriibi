@@ -86,6 +86,13 @@ interface RubricRepositoryInterface
      * @return Rubric
      */
     public function updateRubric($id, $name, $scriibiLevel): ?Rubric;
+
+    /**
+     * Destroy a specified rubric resource
+     * @param $id
+     * @return bool
+     */
+    public function destroyRubric($id);
 }
 
 ?>
