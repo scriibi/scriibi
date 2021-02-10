@@ -1178,6 +1178,13 @@ $(function(){
         });
     });
 
+    $('.rubric-remove-button-styling').on('click', function (event){
+        event.preventDefault();
+        let rubricId = $(this).attr('data-delete-rubric-id');
+        document.getElementById("rubric-delete-warning-modal-form").value = rubricId;
+        $('#delete-rubric-warning-modal').modal("show");
+    });
+
 }); //===== /END OF JQUERY =======
 
 //######################################### VANILLA JS SCRIPTS #########################################

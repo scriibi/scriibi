@@ -92,7 +92,7 @@ interface RubricRepositoryInterface
      * @param $id
      * @return bool
      */
-    public function destroyRubric($id);
+    public function destroyRubric($id): bool;
 }
 
 ?>
