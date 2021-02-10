@@ -11,7 +11,7 @@
         <!-- greeting row -->
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Hi {{$user}}, </h3>
+                <h3>Welcome {{$user}}, </h3>
                 <p>What would you like to do today?</p>
             </div>
         </div>
@@ -178,7 +178,7 @@
                 </div>
                 <a href="https://writing.scriibi.com/classroom-support-material" target="_blank" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1  d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/talking.png" alt="logo7">
-                    <span class="align-self-center mx-2 text-nowrap">Classroom Support Material</span>
+                    <span class="align-self-center mx-2 text-nowrap">Classroom Support Materials</span>
                 </a>
                 <a href="https://calendly.com/scriibi/support" class="scriibi-support-list list-group-item list-group-item-action extra-support-card-list mt-2 p-1  d-flex justify-content-start">
                     <img class="align-self-center mx-2 px-3 home-etc-icons" src="/images/help.png" alt="logo7">

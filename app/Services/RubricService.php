@@ -163,5 +163,23 @@ class RubricService
             return false;
         }
     }
+
+    /**
+     * Destroys a specified rubric resource and detaches associated skills
+     * and teachers
+     * @param $rubricId
+     * @return bool
+     */
+    public function deleteRubric($rubricId): bool
+    {
+        try
+        {
+            return $this->rubricRepositoryInterface->destroyRubric($rubricId);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
 }
 ?>

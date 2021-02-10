@@ -53,7 +53,12 @@
         </div>
         <div class="col-8">
             <div class="justify-content-end">
-                <h6><strong>Analyse by</strong></h6>
+                <div>
+                    <h6 class="d-inline-block"><strong>Analyse by</strong></h6>
+                    <div class="moreInfo-button d-inline-block" id="myBtn-more-info">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </div>
                 <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
                     <option value="" disabled="disabled" selected="selected">Select one</option>
                     <option value="assessed">Assessed Level</option>
@@ -63,7 +68,7 @@
             <div>
                 <input type="hidden" name="current-view" value="{{$currentView}}" />
                 <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Skills</button></a>
+                <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Skills</button></a>
                 <a href="/assessment-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
             </div>
         </div>
@@ -178,4 +183,68 @@
        }
    </style>
 
+    <script>
+        // toggle the more info modal
+        let modal1 = document.getElementById("more-info-modal");
+        modal1.removeAttribute('hidden');
+        let btn1 = document.getElementById("myBtn-more-info");
+        let span1 = document.getElementsByClassName("close-more-info-modal")[0];
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+        }
+    </script>
+
 @endsection
+
+<div id="more-info-modal" class="more-info-modal" hidden>
+    <div class="more-info-modal-content">
+        <span class="close-more-info-modal">&times;</span>
+        <div class="more-info-row">
+            <p class="green-bold">More Information</p>
+            <div class="more-info-column" style="width:100%">
+                <p><strong>Your students’ data has been gathered and presented for each assessment.</strong></p>
+                <p>
+                <ul>
+                    <li>
+                        You can then further analyse the data by their <strong>Grade</strong>  or by their <strong>Assessed Level</strong>.
+                    </li>
+                </ul>
+                </p>
+                <p>
+                <ul>
+                    <li>
+                        Your students’ performance is colour coded to show their progression and highlight areas that need improvement.
+                    </li>
+                </ul>
+                </p>
+            </div>
+            <div class="more-info-column" style="width:100%">
+                <p><strong>Your student’s performance is:</strong></p>
+                <div>
+                    <p><span class="more-info-dot" style="background:#8AEA8B"></span><sup class="more-info-sup"><strong>1+</strong> years <strong>above</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#C3FEC3"></span><sup class="more-info-sup"><strong>0.5</strong> years <strong>above</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FFFFFF;border: 2px solid #c0c0c0;border-radius: 50%;"></span><sup class="more-info-sup">at the assessed level</sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FFD7B8"></span><sup class="more-info-sup"><strong>0.5</strong> years <strong>below</strong></sup></p>
+                </div>
+                <div>
+                    <p><span class="more-info-dot" style="background:#FD9827"></span><sup class="more-info-sup"><strong>1+</strong> years <strong>below</strong></sup>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

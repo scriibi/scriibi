@@ -54,7 +54,6 @@
 </div>
 
 @endsection
-
-<div class="date-not-in-period-flash" hidden="hidden">
+<div class="date-not-in-period-flash flash-warning-message" hidden="hidden">
     <strong>The date is not within a valid teaching period</strong>
 </div>

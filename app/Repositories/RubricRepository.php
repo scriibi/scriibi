@@ -281,6 +281,26 @@ class RubricRepository implements RubricRepositoryInterface
             return null;
         }
     }
+
+    /**
+     * Destroy a specified rubric resource
+     * @param $id
+     * @return bool
+     */
+    public function destroyRubric($id): bool
+    {
+        try
+        {
+            $this->rubric
+                ->where('id', $id)
+                ->delete();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
 }
 
 ?>
