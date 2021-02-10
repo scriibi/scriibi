@@ -169,4 +169,3 @@
 </div>
 <div class="assessment-build-form-incomplete-flash flash-warning-message" hidden="hidden"></div>
 @endsection
-
