@@ -9,4 +9,4 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/fc-3.3.0/fh-3.1.6/sc-2.0.1/sp-1.0.1/datatables.min.js"></script>
 
 <!-- site js file -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>

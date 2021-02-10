@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
 <!-- CSS link -->
-<link rel="stylesheet" type="text/css" href="/css/app.css">
+<link rel="stylesheet" type="text/css" href="{{mix('/css/app.css')}}">
 
 <!-- fontawesome link -->
 <script src="https://kit.fontawesome.com/773092a791.js" crossorigin="anonymous"></script>
