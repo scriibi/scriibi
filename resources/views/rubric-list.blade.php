@@ -74,13 +74,13 @@
                                             }
                                         ?>
                                     </div>
-{{--                                    <form method="post" action="/rubricDelete">--}}
-{{--                                    @csrf--}}
-{{--                                        <input type="hidden" name="rubricId" value={{$key}} />--}}
-{{--                                        <button class="rubric-remove-button-styling" type="submit">--}}
-{{--                                            <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />--}}
-{{--                                        </button>--}}
-{{--                                    </form>--}}
+                                    <form method="post" action="/rubricDelete">
+                                    @csrf
+                                        <input type="hidden" name="rubricId" value={{$key}} />
+                                        <button class="rubric-remove-button-styling" type="submit">
+                                            <img class="interaction-icon" src="images/delete.png" alt="Delete Rubric Icon" />
+                                        </button>
+                                    </form>
                                 </div>
                             </a>
                         </div>

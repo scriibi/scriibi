@@ -215,7 +215,7 @@
                 <!-- value attribute: Status -->
                 <p class="w-100 incomplete-style mb-0 @if($status != 'incomplete') {{'d-none'}} @endif">Incomplete</p>
                 <p class="w-100 complete-style mb-0 @if($status != 'complete') {{'d-none'}} @endif">Completed</p>
-                <input type="hidden" name="status" value="0" />
+                <input type="hidden" name="status" value="{{$status === 'complete' ? '1' : '0'}}" />
             </div>
             <div class="mt-2">
                 <!-- value attribute: Full name -->
