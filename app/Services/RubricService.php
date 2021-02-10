@@ -170,7 +170,7 @@ class RubricService
      * @param $rubricId
      * @return bool
      */
-    public function deleteRubric($rubricId)
+    public function deleteRubric($rubricId): bool
     {
         try
         {
@@ -178,7 +178,7 @@ class RubricService
         }
         catch (Exception $e)
         {
-            return $e;
+            return false;
         }
     }
 }

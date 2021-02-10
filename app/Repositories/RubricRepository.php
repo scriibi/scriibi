@@ -287,17 +287,18 @@ class RubricRepository implements RubricRepositoryInterface
      * @param $id
      * @return bool
      */
-    public function destroyRubric($id)
+    public function destroyRubric($id): bool
     {
         try
         {
             $this->rubric
                 ->where('id', $id)
                 ->delete();
+            return true;
         }
         catch (Exception $e)
         {
-            return $e;
+            return false;
         }
     }
 }
