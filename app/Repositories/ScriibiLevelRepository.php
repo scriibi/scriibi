@@ -164,6 +164,33 @@ class ScriibiLevelRepository implements ScriibiLevelRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all the scriibi levels (ids) of a specified class
+     * @param $id
+     * @return array
+     */
+    public function getScriibiLevelsOfClass($id): array
+    {
+        try
+        {
+            return $this->scriibiLevel
+                ->whereHas('classes', function ($query) use($id)
+                {
+                    $query->where('class.id', $id);
+                })
+                ->get()
+                ->map(function($scriibiLevel)
+                {
+                    return $scriibiLevel->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

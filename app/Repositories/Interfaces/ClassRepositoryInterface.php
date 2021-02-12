@@ -5,6 +5,13 @@ namespace App\Repositories\Interfaces;
 interface ClassRepositoryInterface
 {
     /**
+     * Return a resource for the specified class id
+     * @param $id
+     * @return array
+     */
+    public function getClass($id): array;
+
+    /**
      * Return all the currently active classes of a specified teacher
      * within a specified school
      * @param $teacherId

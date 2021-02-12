@@ -19,10 +19,10 @@ use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 Route::group(['middleware' => ['auth']], function () {
 
-    //the following routes are for viewing student data.
-    Route::get('/trait-view/{selection?}/{subselection?}', 'DataViewController@getTraitView');
-    Route::get('/growth-view/{selection?}/{subselection?}', 'DataViewController@getGrowthView');
-    Route::get('/assessment-view/{selection?}/{subselection?}/{assessment?}', 'DataViewController@getAssessmentView');
+    // data view routes
+    Route::get('/trait-view/{selection?}/{subselection?}', 'DataViewController@getTraitView')->middleware('dataViewAuth');
+    Route::get('/growth-view/{selection?}/{subselection?}', 'DataViewController@getGrowthView')->middleware('dataViewAuth');
+    Route::get('/assessment-view/{selection?}/{subselection?}/{assessment?}', 'DataViewController@getAssessmentView')->middleware('dataViewAuth');
 
     Route::get('/home', function(UserService $userService, ClassRepositoryInterface $classRepository, StudentRepositoryInterface $studentRepository, UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository){
         try{
@@ -59,7 +59,6 @@ Route::group(['middleware' => ['auth']], function () {
         return view('assessment-setup');
     });
 
-    Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');  // done
     Route::get('/traits', 'RubricBuilder@test');
 
     //auth0 routes
@@ -73,45 +72,46 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/studentlist', 'StudentsController@update');
 
     //rubric routes
-    Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');  // done (have to add the flags)
-    Route::get('/rubrics', 'RubricBuilder@generateRubricsView');  // done
-    Route::post('/RubricConfirm', 'RubricsController@store');   // done (do data validation and exception handling in the controller class)
+    Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');                                                     // done
+    Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');                                           // done (have to add the flags)
+    Route::get('/rubrics', 'RubricBuilder@generateRubricsView');                                                                // done
+    Route::post('/RubricConfirm', 'RubricsController@store');                                                                   // done (do data validation and exception handling in the controller class)
     Route::post('/rubricDelete', 'RubricsController@deleteRubric');
-    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails');  //  done  (remove the assessments attached check and let all rubrics to be editted)
-    Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricView');  // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
-    Route::post('/rubric-edit-confirm', 'RubricsController@update'); // done (clean request data)
+    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails')->middleware('rubricAuth');           //  done  (remove the assessments attached check and let all rubrics to be editted)
+    Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricView')->middleware('rubricAuth');   // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
+    Route::post('/rubric-edit-confirm', 'RubricsController@update');                                                            // done (clean request data)
     Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
-    Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');    // done (change the flow later so the curriculum->school->type->level cascade)
-    Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');// done (add flags and change the flow later as above)
-    Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric'); // done (clean request data and make sure all fields are !null)
+    Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');                                    // done (change the flow later so the curriculum->school->type->level cascade)
+    Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');                   // done (add flags and change the flow later as above)
+    Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric');                                              // done (clean request data and make sure all fields are !null)
 
     //assessment routes
-    Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup'); // done (needs improvement for js and css on client side also try to make a service for this without using the controller)
-    Route::post('/assessment-submit', 'WritingTasksController@store'); // done (check save speed once deployed onto AWS, sanitize the data)
-    Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList'); // done
-    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask'); // done
-    Route::get('/assessment-marking/{student_id}/{writing_task_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage'); // done (needs heavy optimization for the global and local criteria selection)
-    Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment'); // done
-    Route::get('/assessment-update', 'WritingTasksController@editAssessment'); // done
-    Route::get('/assessment-edit/{assessmentId}', 'AssessmentEditController@generateAssessmentEdit'); // done
-    Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');  // done
-    Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList'); // done
-    Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete'); // done
+    Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');                                                                      // done (needs improvement for js and css on client side also try to make a service for this without using the controller)
+    Route::post('/assessment-submit', 'WritingTasksController@store');                                                                                          // done (check save speed once deployed onto AWS, sanitize the data)
+    Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');                                                                          // done
+    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask')->middleware('assessmentAuth');                                   // done
+    Route::get('/assessment-marking/{student_id}/{assessment_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage')->middleware('assessmentAuth');;    // done (needs heavy optimization for the global and local criteria selection)
+    Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');                                                                              // done
+    Route::get('/assessment-update', 'WritingTasksController@editAssessment');                                                                                  // done
+    Route::get('/assessment-edit/{assessment_id}', 'AssessmentEditController@generateAssessmentEdit')->middleware('assessmentAuth');                            // done
+    Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');                                                                          // done
+    Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');                                                               // done
+    Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');                                                               // done
 
     // fetch
     Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
-    Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics'); // done
-    Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel'); // done (do data validation)
-    Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment'); // done (sanitize data later)
-    Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment'); // done (try to refactor the function in the writing task service)
-    Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam'); // done
-    Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability'); // done
-    Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange'); // done (needs refactoring and optimization for the global and local criteria selection)
-    Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel'); // done
-    Route::get('/get-all-teaching-periods', 'AssessementSetupController@getAllTeachingPeriods'); // done
+    Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics');                                // done
+    Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel');   // done (do data validation)
+    Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment');                     // done (sanitize data later)
+    Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment');         // done (try to refactor the function in the writing task service)
+    Route::get('/get-team-students/{taskId}', 'StudentsController@getStudentsOfMyTeam');                        // done
+    Route::get('/skill-level-availability/{skillId}/{mark}', 'GoalsController@CheckSkillLevelAvailability');    // done
+    Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');               // done (needs refactoring and optimization for the global and local criteria selection)
+    Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel');                            // done
+    Route::get('/get-all-teaching-periods', 'AssessementSetupController@getAllTeachingPeriods');                // done
 
     //goal sheets
-    Route::get('/goal-sheets', "GoalsController@generateGoalSheets"); // done (needs reworking - still using old code)
+    Route::get('/goal-sheets', "GoalsController@generateGoalSheets");       // done (needs reworking - still using old code)
     Route::view('/goal-sheet-preview','preview');
 
     Route::get('/rubric', function(){

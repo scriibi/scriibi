@@ -51,6 +51,13 @@ interface ScriibiLevelRepositoryInterface
      * @return array
      */
     public function getScriibiLevelsOfTeacher($id): array;
+
+    /**
+     * Return all the scriibi levels (ids) of a specified class
+     * @param $id
+     * @return array
+     */
+    public function getScriibiLevelsOfClass($id): array;
 }
 
 ?>
