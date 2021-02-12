@@ -149,7 +149,6 @@ class DataViewAuth
                     if($assessment === null)
                     {
                         $classScriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfClass($subSelection);
-                        $z = $this->teacherOwnsLevel(Auth::user()->id, $classScriibiLevels);
                         if($this->teacherOwnsLevel(Auth::user()->id, $classScriibiLevels))
                         {
                             return $next($request);
@@ -273,7 +272,8 @@ class DataViewAuth
     protected function teacherCanViewTask($teacherId, $schoolId, $writingTaskId): bool
     {
         $result = false;
-        $classIds = array_map(array($this, 'extractIdValues'), $this->classRepositoryInterface->getClassesOfTeacher($teacherId, $schoolId));
+        $teacherScriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfTeacher(Auth::user()->id);
+        $classIds = array_map(array($this, 'extractIdValues'), $this->classRepositoryInterface->getClassesOfScriibiLevels($teacherScriibiLevels, $schoolId));
         $taskIds = array_map(array($this, 'extractIdValues'), $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds));
 
         if(in_array($writingTaskId, $taskIds))

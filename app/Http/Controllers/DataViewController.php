@@ -38,7 +38,8 @@ class DataViewController extends Controller
             }
             else
             {
-                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+                $teacherScriibiLevels = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
+                $classes = $classRepository->getClassesOfScriibiLevels($teacherScriibiLevels, $userSchool['id']);
                 if($selection === null)
                 {
                     $selection ='class';
@@ -91,7 +92,8 @@ class DataViewController extends Controller
             }
             else
             {
-                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+                $teacherScriibiLevels = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
+                $classes = $classRepository->getClassesOfScriibiLevels($teacherScriibiLevels, $userSchool['id']);
                 if($selection === null)
                 {
                     $selection ='class';
@@ -145,7 +147,8 @@ class DataViewController extends Controller
             }
             else
             {
-                $classes = $classRepository->getClassesOfTeacher(Auth::user()->id, $userSchool['id']);
+                $teacherScriibiLevels = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
+                $classes = $classRepository->getClassesOfScriibiLevels($teacherScriibiLevels, $userSchool['id']);
                 if($selection === null)
                 {
                     $selection ='class';
