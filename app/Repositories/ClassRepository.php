@@ -21,6 +21,23 @@ class ClassRepository implements ClassRepositoryInterface
     }
 
     /**
+     * Return a resource for the specified class id
+     * @param $id
+     * @return array
+     */
+    public function getClass($id): array
+    {
+        try
+        {
+            return $this->class::findOrFail($id)->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Return all the currently active classes of a specified teacher
      * within a specified school
      * @param $teacherId

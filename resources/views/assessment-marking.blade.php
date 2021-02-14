@@ -59,6 +59,12 @@
                         $previousMarkScriibiLevel = "-";
                         $markOnLeft = false;
                         $markOnRight = false;
+                        $primarySpecialGrades = [
+                            "-0.5"  => 'D',
+                            "-0.25" => '0.5',
+                            "0"     => 'F',
+                            "0.5"   => 'F.5'
+                        ];
                         for($i = 0; $i <= 4; $i++){
                             $marking = $rubrics[$i]['id']."/".$key;
                             array_push($skillResults, $marking);
@@ -70,7 +76,9 @@
                                 foreach($results as $result){
                                     if(intval(explode("/", $result)[1]) === $key){
                                         $previousMark = $result;
-                                        $previousMarkScriibiLevel = $fullScriibiRange[intval(explode("/", $result)[0])];
+                                        $scriibiValue = (string)$fullScriibiRange[intval(explode("/", $result)[0])];
+                                        $scriibiValue = ($primarySpecialGrades[$scriibiValue]) ? $primarySpecialGrades[$scriibiValue] : $scriibiValue;
+                                        $previousMarkScriibiLevel = $scriibiValue;
                                     }
                                 }
                             }
