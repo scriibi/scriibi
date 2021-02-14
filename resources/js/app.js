@@ -663,6 +663,15 @@ $(function(){
         })
         .then(data => {
             console.log(data);
+            let primarySpecialGrades = {
+                "-0.5"    : 'D',
+                "-0.25"   : '0.5',
+                "0"       : 'F',
+                "0.5"     : 'F.5'
+            };
+            if(primarySpecialGrades[data.toString()]){
+                data = primarySpecialGrades[data.toString()];
+            }
             $(this).parent().parent().parent().find('.assesible-skill-mark-value').text(data);
             let check = true;
             $(".assesible-skill-mark").each(function(){
