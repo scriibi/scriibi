@@ -56,6 +56,7 @@ class DataViewAuth
             $selection = $request->route('selection');
             $subSelection = $request->route('subselection');
             $assessment = $request->route('assessment');
+            $isPermitted = false;
             if($selection === null && $subSelection === null && $assessment === null)
             {
                 return $next($request);
@@ -65,155 +66,89 @@ class DataViewAuth
             $userPosition = $this->userRepositoryInterface->getUserPosition(Auth::user()->id, $position);
             if(!empty($userPosition))   // if school leader
             {
-                if($selection === 'school')
+                if($selection === 'school' || $selection === 'grade')
                 {
                     if($assessment === null)
                     {
-                        return $next($request);
+                        $isPermitted = true;
                     }
                     else
                     {
-                        $result = $this->taskInSchool($assessment, $userSchool['id']);
-                        if(!$result)
+                        if($this->taskInSchool($assessment, $userSchool['id']))
                         {
-                            return redirect('/growth-view');
-                        }
-                        else
-                        {
-                            return $next($request);
+                            $isPermitted = true;
                         }
                     }
                 }
                 else if($selection === 'class')
-                {
-                    if($assessment === null)
+                { 
+                    if($this->classInSchool($subSelection, $userSchool['id']))
                     {
-                        if($this->classInSchool($subSelection, $userSchool['id']))
+                        if($assessment === null)
                         {
-                            return $next($request);
+                            $isPermitted = true;
                         }
                         else
                         {
-                            return redirect('/growth-view');
-                        }
-                    }
-                    else
-                    {
-                        if($this->classInSchool($subSelection, $userSchool['id']))
-                        {
-                            $result = $this->taskInSchool($assessment, $userSchool['id']);
-                            if(!$result)
+                            if($this->taskInSchool($assessment, $userSchool['id']))
                             {
-                                return redirect('/growth-view');
-                            }
-                            else
-                            {
-                                return $next($request);
+                                $isPermitted = true;
                             }
                         }
-                        else
-                        {
-                            return redirect('/growth-view');
-                        }
                     }
-
-                }
-                else if ($selection === 'grade')
-                {
-                    if($assessment === null)
-                    {
-                        return $next($request);
-                    }
-                    else
-                    {
-                        $result = $this->taskInSchool($assessment, $userSchool['id']);
-                        if(!$result)
-                        {
-                            return redirect('/growth-view');
-                        }
-                        else
-                        {
-                            return $next($request);
-                        }
-                    }
-                }
-                else
-                {
-                    return redirect('/growth-view');
                 }
             }
-            else    //  if teacher
+            else    // if teacher
             {
                 if($selection === 'class')
                 {
-                    if($assessment === null)
+                    $classScriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfClass($subSelection);
+                    if($this->teacherOwnsLevel(Auth::user()->id, $classScriibiLevels))
                     {
-                        $classScriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfClass($subSelection);
-                        if($this->teacherOwnsLevel(Auth::user()->id, $classScriibiLevels))
+                        if($this->classInSchool($subSelection, $userSchool['id']))
                         {
-                            return $next($request);
-                        }
-                        else
-                        {
-                            return redirect('/growth-view');
-                        }
-                    }
-                    else
-                    {
-                        $classScriibiLevels = $this->scriibiLevelRepositoryInterface->getScriibiLevelsOfClass($subSelection);
-                        if($this->teacherOwnsLevel(Auth::user()->id, $classScriibiLevels))
-                        {
-                            if($this->teacherCanViewTask(Auth::user()->id, $userSchool['id'], $assessment))
+                            if($assessment === null)
                             {
-                                return $next($request);
+                                $isPermitted = true;
                             }
                             else
                             {
-                                return redirect('/growth-view');
+                                if($this->teacherCanViewTask(Auth::user()->id, $userSchool['id'], $assessment))
+                                {
+                                    $isPermitted = true;
+                                }
                             }
-                        }
-                        else
-                        {
-                            return redirect('/growth-view');
                         }
                     }
                 }
                 else if ($selection === 'grade')
                 {
-                    if($assessment === null)
                     {
                         if($this->teacherOwnsLevel(Auth::user()->id, [$subSelection]))
                         {
-                            return $next($request);
-                        }
-                        else
-                        {
-                            return redirect('/growth-view');
-                        }
-                    }
-                    else
-                    {
-                        if($this->teacherOwnsLevel(Auth::user()->id, [$subSelection]))
-                        {
-                            if($this->teacherCanViewTask(Auth::user()->id, $userSchool['id'], $assessment))
+                            if($assessment === null)
                             {
-                                return $next($request);
+                                $isPermitted = true;
                             }
                             else
                             {
-                                return redirect('/growth-view');
+                                if($this->teacherCanViewTask(Auth::user()->id, $userSchool['id'], $assessment))
+                                {
+                                    $isPermitted = true;
+                                }
                             }
-                        }
-                        else
-                        {
-                            return redirect('/growth-view');
                         }
                     }
                 }
-                else
-                {
-                    return redirect('/growth-view');
-                }
+            }
+
+            if($isPermitted)
+            {
+                return $next($request);
+            }
+            else
+            {
+                return redirect('/growth-view');
             }
         }
         catch (Exception $e)
