@@ -805,7 +805,7 @@ $(function(){
         $('input[name="assessment-delete-students[]"]:checkbox:checked').each(function (index){
             deleteStudents.push($(this).val());
         });
-        console.log(allStudents);
+        console.log(deleteStudents);
         if(allStudents.length === deleteStudents.length)
         {
             $('#cannot-delete-all-students-modal').modal('show');
@@ -842,6 +842,7 @@ $(function(){
             return response.json();
         })
         .then(function (data){
+           console.log(data);
            if(data)
            {
                 for(let s of set){

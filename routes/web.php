@@ -76,8 +76,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rubricsFlag/{level}', 'RubricBuilder@generateRubricsViewWithFlags');                                           // done (have to add the flags)
     Route::get('/rubrics', 'RubricBuilder@generateRubricsView');                                                                // done
     Route::post('/RubricConfirm', 'RubricsController@store');                                                                   // done (do data validation and exception handling in the controller class)
-    Route::post('/rubricDelete', 'RubricsController@deleteRubric');
-    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails')->middleware('rubricAuth');           //  done  (remove the assessments attached check and let all rubrics to be editted)
+    Route::post('/rubricDelete', 'RubricsController@deleteRubric');                                                             // done
+    Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails')->middleware('rubricAuth');           // done  (remove the assessments attached check and let all rubrics to be editted)
     Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricView')->middleware('rubricAuth');   // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
     Route::post('/rubric-edit-confirm', 'RubricsController@update');                                                            // done (clean request data)
     Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/assessment-submit', 'WritingTasksController@store');                                                                                          // done (check save speed once deployed onto AWS, sanitize the data)
     Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');                                                                          // done
     Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask')->middleware('assessmentAuth');                                   // done
-    Route::get('/assessment-marking/{student_id}/{assessment_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage')->middleware('assessmentAuth');;    // done (needs heavy optimization for the global and local criteria selection)
+    Route::get('/assessment-marking/{student_id}/{assessment_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage')->middleware('assessmentAuth');     // done (needs heavy optimization for the global and local criteria selection)
     Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');                                                                              // done
     Route::get('/assessment-update', 'WritingTasksController@editAssessment');                                                                                  // done
     Route::get('/assessment-edit/{assessment_id}', 'AssessmentEditController@generateAssessmentEdit')->middleware('assessmentAuth');                            // done
