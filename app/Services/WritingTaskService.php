@@ -245,28 +245,25 @@ class WritingTaskService
             }
 
             $filteredClasses = [];
-            $postFilterCount = count($existingStudents);
-            for ($j = 0; $j < $postFilterCount; $j++)
+            foreach ($existingStudents as $existingStudent)
             {
-                if(array_key_exists($j, $existingStudents))
+                if(!array_key_exists($existingStudent['classes'][0]['id'], $filteredClasses))
                 {
-                    if(!array_key_exists($existingStudents[$j]['classes'][0]['id'], $filteredClasses))
-                    {
-                        $filteredClasses[$existingStudents[$j]['classes'][0]['id']] = true;
-                    }
+                    $filteredClasses[$existingStudent['classes'][0]['id']] = true;
                 }
             }
 
             $existingClassesCount = count($classesOfWritingTask);
+            $classesToDetach = [];
             for ($k = 0; $k < $existingClassesCount; $k++)
             {
-                if(array_key_exists($classesOfWritingTask[$k], $filteredClasses))
+                if(!array_key_exists($classesOfWritingTask[$k], $filteredClasses))
                 {
-                    unset($classesOfWritingTask[$k]);
+                    array_push($classesToDetach, $classesOfWritingTask[$k]);
                 }
             }
             DB::beginTransaction();
-            $writingTaskInstance->classes()->detach($classesOfWritingTask);
+            $writingTaskInstance->classes()->detach($classesToDetach);
             $writingTaskInstance->students()->detach($students);
             DB::table('task_skill_student_result')->where('writing_task_id', $writingTaskId)->whereIn('student_id', $students)->delete();
             DB::commit();

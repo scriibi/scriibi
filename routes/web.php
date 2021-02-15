@@ -89,11 +89,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/assessment-setup', 'AssessementSetupController@GenerateAssessmentSetup');                                                                      // done (needs improvement for js and css on client side also try to make a service for this without using the controller)
     Route::post('/assessment-submit', 'WritingTasksController@store');                                                                                          // done (check save speed once deployed onto AWS, sanitize the data)
     Route::get('/assessment-list', 'AssessmentListController@GenerateAssessmentList');                                                                          // done
-    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask');                                   // done
-    Route::get('/assessment-marking/{student_id}/{assessment_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage');     // done (needs heavy optimization for the global and local criteria selection)
+    Route::get('/single-assessment/{assessment_id}', 'WritingTasksController@ShowWritingTask')->middleware('assessmentAuth');                                   // done
+    Route::get('/assessment-marking/{student_id}/{assessment_id}', 'AssessmentMarkingController@GenerateStudentMarkingPage')->middleware('assessmentAuth');     // done (needs heavy optimization for the global and local criteria selection)
     Route::post('/assessment-save', 'AssessmentMarkingController@saveAssessment');                                                                              // done
     Route::get('/assessment-update', 'WritingTasksController@editAssessment');                                                                                  // done
-    Route::get('/assessment-edit/{assessment_id}', 'AssessmentEditController@generateAssessmentEdit');                            // done
+    Route::get('/assessment-edit/{assessment_id}', 'AssessmentEditController@generateAssessmentEdit')->middleware('assessmentAuth');                            // done
     Route::post('/asssessment-delete', 'WritingTasksController@softDeleteAssessment');                                                                          // done
     Route::get('/deleted-assessments', 'AssessmentListController@GenerateDeletedAssessmentList');                                                               // done
     Route::get('/assessment-restore/{assessmentId}', 'WritingTasksController@restoreSoftDelete');                                                               // done
