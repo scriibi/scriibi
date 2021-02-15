@@ -77,7 +77,11 @@
                                     if(intval(explode("/", $result)[1]) === $key){
                                         $previousMark = $result;
                                         $scriibiValue = (string)$fullScriibiRange[intval(explode("/", $result)[0])];
-                                        $scriibiValue = ($primarySpecialGrades[$scriibiValue]) ? $primarySpecialGrades[$scriibiValue] : $scriibiValue;
+                                        //$scriibiValue = ($primarySpecialGrades[$scriibiValue]) ? $primarySpecialGrades[$scriibiValue] : $scriibiValue;
+                                        if(isset($primarySpecialGrades[$scriibiValue]))
+                                        {
+                                            $scriibiValue = $primarySpecialGrades[$scriibiValue];
+                                        }
                                         $previousMarkScriibiLevel = $scriibiValue;
                                     }
                                 }
