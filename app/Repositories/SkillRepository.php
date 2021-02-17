@@ -112,6 +112,28 @@ class SkillRepository implements SkillRepositoryInterface
     }
 
     /**
+     * Return the number of skills associated with a writing task
+     * @param $writingTaskId
+     * @return int|null
+     */
+    public function getSkillCountOfWritingTask($writingTaskId): ?int
+    {
+        try
+        {
+            return $this->skill
+                ->whereHas('writingTasks', function($query) use($writingTaskId)
+                {
+                    $query->where('writing_task.id', $writingTaskId);
+                })
+                ->count();
+        }
+        catch (Exception $e)
+        {
+            return null;
+        }
+    }
+
+    /**
      * Return all specified skill details along with the associated
      * traits
      * @param $skillIds

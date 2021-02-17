@@ -13,11 +13,13 @@ use Illuminate\Http\Request;
 use App\Services\WritingTaskService;
 use App\Http\Controllers\Controller;
 use App\Services\RubricListingService;
+use App\Services\RubricService;
 use App\Repositories\RubricRepository;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
 use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
 use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
+use App\Repositories\Interfaces\SkillRepositoryInterface;
 
 class WritingTasksController extends Controller
 {
@@ -235,17 +237,50 @@ class WritingTasksController extends Controller
 
     }
 
-    public function retrieveAssessedSkills($taskId){
-        $skills = DB::table('traits')
-            ->join('skills_traits', 'traits.trait_Id', '=', 'skills_traits.skills_traits_traits_trait_Id')
-            ->join('skills', 'skills_traits.skills_traits_skills_skill_Id', '=', 'skills.skill_Id')
-            ->join('tasks_skills', 'skills.skill_Id', '=', 'tasks_skills.skills_skill_Id')
-            ->join('tasks_students', 'tasks_skills.tasks_skills_Id', '=', 'tasks_students.tasks_skills_Id')
-            ->where('tasks_skills.writing_tasks_writing_task_Id', '=', $taskId)
-            ->select('traits.colour', 'skills.skill_Id', 'skills.skill_Name')
-            ->distinct()
-            ->get()
-            ->toArray();
-        return response()->json($skills);
+    public function retrieveAssessedSkills($taskId, SkillRepositoryInterface $skillRepository, WritingTaskService $writingTaskService)
+    {
+        try
+        {
+            $assessedSkills = $writingTaskService->getAssessedSkills($taskId);
+            return response()->json($skillRepository->getSkillsWithTraits($assessedSkills));
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
+    }
+
+    public function updateAssessmentSkills(Request $request, WritingTaskService $writingTaskService, RubricService $rubricService)
+    {
+        try
+        {
+            $taskId = $request->input('task_id');
+            $rubricId = $request->input('rubric_id');
+            $updatedName = $request->input('rubric_name');
+            $updatedAssessedLevel = $request->input('assessed_level');
+            $updatedSkills = $request->input('rubric_skills');
+
+            DB::beginTransaction();
+
+            $rubricService->updateTeacherTemplate($rubricId, $updatedName, $updatedAssessedLevel, $updatedSkills);
+            $object =
+                [
+                    'writingTaskId' => $taskId,
+                    'skills' => $updatedSkills
+                ];
+            $result = $writingTaskService->updateSkills($object);
+
+            DB::commit();
+            return redirect()->action('WritingTasksController@ShowWritingTask', 
+                [
+                'assessment_id' => $taskId
+                ]
+            );
+        }
+        catch (Exception $e)
+        {
+            DB::rollBack();
+            // todo
+        }
     }
 }

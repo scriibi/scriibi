@@ -10,6 +10,7 @@ use App\Repositories\Interfaces\WritingTaskRepositoryInterface as TaskRepository
 use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface as TeachingPeriodRepository;
 use App\Repositories\Interfaces\StudentRepositoryInterface as StudentRepository;
 use App\Repositories\Interfaces\ClassRepositoryInterface as ClassRepository;
+use App\Repositories\Interfaces\SkillRepositoryInterface as SkillRepository;
 
 class WritingTaskService
 {
@@ -33,14 +34,19 @@ class WritingTaskService
      * @var ClassRepository
      */
     protected $classRepositoryInterface;
+    /**
+     * @var SkillRepository
+     */
+    protected $skillRepositoryInterface;
 
-    public function __construct(TaskRepository $writingTaskRepoInt, TeachingPeriodRepository $teachingPeriodRepoInt, RubricRepository $rubricRepoInt, StudentRepository $studentRepoInt, ClassRepository $classRepoInt)
+    public function __construct(TaskRepository $writingTaskRepoInt, TeachingPeriodRepository $teachingPeriodRepoInt, RubricRepository $rubricRepoInt, StudentRepository $studentRepoInt, ClassRepository $classRepoInt, SkillRepository $skillRepoInt)
     {
         $this->writingTaskRepositoryInterface = $writingTaskRepoInt;
         $this->rubricRepositoryInterface = $rubricRepoInt;
         $this->teachingPeriodRepositoryInterface = $teachingPeriodRepoInt;
         $this->studentRepositoryInterface = $studentRepoInt;
         $this->classRepositoryInterface = $classRepoInt;
+        $this->skillRepositoryInterface = $skillRepoInt;
     }
 
     /**
@@ -315,6 +321,11 @@ class WritingTaskService
         }
     }
 
+    /**
+     * Add the deletedAt timestamp to a specified writing task
+     * @param $writingTaskId
+     * @return bool
+     */
     public function softDeleteWritingTask($writingTaskId): bool
     {
         try
@@ -335,11 +346,180 @@ class WritingTaskService
         }
     }
 
+    /**
+     * Remove the deletedAt timestamp from a specified writing task
+     * @param $writingTaskId
+     * @return bool
+     */
     public function restoreSoftDeletedWritingTask($writingTaskId): bool
     {
         try
         {
             return $this->writingTaskRepositoryInterface->restoreSoftDeletedWritingTasks($writingTaskId);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Returns all skills which have already been assessed for a
+     * specified writing task
+     * @param $writingTaskId
+     * @return array
+     */
+    public function getAssessedSkills($writingTaskId): array
+    {
+        try
+        {
+            $results = [];
+            $assessedSkillsHashMap = [];
+            $results = DB::table('task_skill_student_result')->where('writing_task_id', $writingTaskId)->get()->toArray();
+
+            foreach ($results as $result)
+            {
+                if(!array_key_exists($result->skill_id, $assessedSkillsHashMap))
+                {
+                    $assessedSkillsHashMap[$result->skill_id] = true;
+                }
+            }
+            return array_keys($assessedSkillsHashMap);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Update the skills of an existing writing task and also remove any
+     * results of removed skills (if marks are available)
+     * @param $object
+     * @return bool
+     */
+    public function updateSkills($object): bool
+    {
+        try
+        {
+            $skillsToRemove = [];
+            $updatedSkillsHashMap = [];
+            $writingTask = $this->writingTaskRepositoryInterface->getWritingTaskInstance($object['writingTaskId']);
+            $existingSkills = $this->skillRepositoryInterface->getSkillsIdsOfWritingTask($object['writingTaskId']);
+
+            foreach ($object['skills'] as $skill)
+            {
+                $updatedSkillsHashMap[$skill] = true;
+            }
+
+            foreach ($existingSkills as $existingSkill)
+            {
+                if(!array_key_exists($existingSkill, $updatedSkillsHashMap))
+                {
+                    array_push($skillsToRemove, $existingSkill);
+                }
+                else
+                {
+                    unset($updatedSkillsHashMap[$existingSkill]);
+                }
+            }
+            $skillsToAdd = array_keys($updatedSkillsHashMap);
+            DB::table('task_skill_student_result')
+                ->where('writing_task_id', $object['writingTaskId'])
+                ->whereIn('skill_id', $skillsToRemove)
+                ->delete();
+            $writingTask->skills()->detach($skillsToRemove);
+            $writingTask->skills()->attach($skillsToAdd);
+
+            $status = 'change';
+            if(!empty($skillsToAdd))
+            {
+                $status = 'all incomplete';
+            }
+            elseif (empty($skillsToAdd) && empty($skillsToRemove))
+            {
+                $status = 'no change';
+            }
+            if(!$this->updateStudentStatus($object['writingTaskId'], $status))
+            {
+                throw new Exception('Unable to update student status');
+            }
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Updates the student status for an updated writing task
+     * @param $writingTaskId
+     * @param $status
+     * @return bool
+     */
+    protected function updateStudentStatus($writingTaskId, $status): bool
+    {
+        try
+        {
+            if(isset($status))
+            {
+                if($status === 'no change')
+                {
+                    return true;
+                }
+                else if($status === 'all incomplete')
+                {
+                    DB::table('writing_task_student')
+                        ->where('writing_task_id', $writingTaskId)
+                        ->update(['status_flag' => 'incomplete']);
+                }
+                else
+                {
+                    $studentResultHashMap = $studentsToSetComplete  = $studentsToSetIncomplete = [];
+                    $skillCount = $this->skillRepositoryInterface->getSkillCountOfWritingTask($writingTaskId);
+
+                    $results = DB::table('task_skill_student_result')->where('writing_task_id', $writingTaskId)->get()->toArray();
+                    foreach ($results as $result)
+                    {
+                        if(!array_key_exists($result->student_id, $studentResultHashMap))
+                        {
+                            $studentResultHashMap[$result->student_id] = 1;
+                        }
+                        else
+                        {
+                            $studentResultHashMap[$result->student_id]++;
+                        }
+                    }
+
+                    foreach ($studentResultHashMap as $key => $value)
+                    {
+                        if($value < $skillCount)
+                        {
+                            array_push($studentsToSetIncomplete, $key);
+                        }
+                        else
+                        {
+                            array_push($studentsToSetComplete, $key);
+                        }
+                    }
+                    if(!empty($studentsToSetComplete))
+                    {
+                        DB::table('writing_task_student')
+                            ->where('writing_task_id', $writingTaskId)
+                            ->whereIn('student_id', $studentsToSetComplete)
+                            ->update(['status_flag' => 'complete']);
+                    }
+                    if(!empty($studentsToSetIncomplete))
+                    {
+                        DB::table('writing_task_student')
+                            ->where('writing_task_id', $writingTaskId)
+                            ->whereIn('student_id', $studentsToSetIncomplete)
+                            ->update(['status_flag' => 'incomplete']);
+                    }
+                }
+                return true;
+            }
         }
         catch (Exception $e)
         {

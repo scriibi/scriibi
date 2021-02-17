@@ -33,10 +33,13 @@ class RubricAuth
         {
             $userId = Auth::user()->id;
             $rubricIds = $this->rubricRepositoryInterface->getTeacherTemplateIds($userId);
-
-            if(!in_array($request->route('rubricId'), $rubricIds))
+            $taskId = $request->route('taskId');
+            if(!isset($taskId))
             {
-                return redirect('/rubric-list');
+                if(!in_array($request->route('rubricId'), $rubricIds))
+                {
+                    return redirect('/rubric-list');
+                }
             }
             return $next($request);
         }

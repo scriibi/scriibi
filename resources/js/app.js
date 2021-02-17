@@ -956,8 +956,7 @@ $(function(){
         let task_id = $(this).attr("data-task-id");
         if(task_id !== 'NA'){
             let url_origin = window.location.origin;
-            url_origin += '/fetch/assessed_skills/';
-            url_origin += task_id;
+            url_origin += `/fetch/assessed_skills/${task_id}`;
             fetch(url_origin)
             .then(data => {
                 return data.json()
@@ -974,12 +973,12 @@ $(function(){
                     }
                     rootnode.innerHTML = "";
                     skills.forEach(skill => {
-                        if(!(checked.includes(skill.skill_Id.toString()))){
+                        if(!(checked.includes(skill.id.toString()))){
                             let node = document.createElement("LI");
                             let textnode = document.createElement("SPAN");
                             let colornode = document.createElement("SPAN");
-                            let text = document.createTextNode('  ' + skill.skill_Name);
-                            let color = 'colored-dot-color-' + skill.colour;
+                            let text = document.createTextNode('  ' + skill.name);
+                            let color = 'colored-dot-color-' + skill.traits[0].color;
                             textnode.appendChild(text);
                             colornode.classList.add(color);
                             colornode.classList.add('colored-dot-dimensions');
