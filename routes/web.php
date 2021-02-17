@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rubric-details/{rubricId}', 'RubricListController@GenerateRubricDetails')->middleware('rubricAuth');           // done  (remove the assessments attached check and let all rubrics to be editted)
     Route::get('/rubric-edit/{rubricId}/{level}/{taskId}', 'RubricBuilder@generateEditRubricView')->middleware('rubricAuth');   // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
     Route::post('/rubric-edit-confirm', 'RubricsController@update');                                                            // done (clean request data)
-    Route::post('/assessment-rubric-edit-confirm', 'RubricsController@updateAssessmentRubric');
+    Route::post('/assessment-rubric-edit-confirm', 'WritingTasksController@updateAssessmentSkills');
     Route::get('/scriibi-rubric-builder', 'RubricBuilder@generateScribiiRubricBuilderView');                                    // done (change the flow later so the curriculum->school->type->level cascade)
     Route::get('/scriibi-rubric-builder/{level}', 'RubricBuilder@generateScribiiRubricBuilderViewWithFlags');                   // done (add flags and change the flow later as above)
     Route::post('/scriibi-rubric-confirm', 'RubricsController@saveScriibiRubric');                                              // done (clean request data and make sure all fields are !null)

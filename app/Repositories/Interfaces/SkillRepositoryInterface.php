@@ -31,6 +31,13 @@ interface SkillRepositoryInterface
     public function getSkillsIdsOfWritingTask($writingTaskId): array;
 
     /**
+     * Return the number of skills associated with a writing task
+     * @param $writingTaskId
+     * @return int|null
+     */
+    public function getSkillCountOfWritingTask($writingTaskId): ?int;
+
+    /**
      * Return all specified skill details along with the associated
      * traits
      * @param $skillIds
