@@ -5,7 +5,6 @@
     <div class="col-10">
         <br><br>
     </div>
-    @if($assessmentList !== null)
     <div>
         <div class="data-view-settings">
             <div class="row">
@@ -23,7 +22,7 @@
                         <div>
                             <label for="data-view-range-grade">
                                 <span class="trait-view-grade radio-circle {{ $selection == 'grade' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-grade" type="radio" name="data-view-range-setting" value="grade" style="display: none">&nbsp;Grade
+                                <input id="data-view-range-grade" type="radio" name="data-view-range-setting" value="grade" style="display: none" {{ $selection == 'grade' ? 'checked' : '' }}>&nbsp;Grade
                             </label>
                         </div>
                         <div>
@@ -39,7 +38,7 @@
                         <div>
                             <label for="data-view-range-class">
                                 <span class="trait-view-class radio-circle {{ $selection == 'class' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-class" type="radio" name="data-view-range-setting" value="class" style="display: none">&nbsp;Class
+                                <input id="data-view-range-class" type="radio" name="data-view-range-setting" value="class" style="display: none" {{ $selection == 'class' ? 'checked' : '' }}>&nbsp;Class
                             </label>
                         </div>
                         <div>
@@ -52,165 +51,105 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
-                    <div class="justify-content-end">
-                        <div>
-                            <h6 class="d-inline-block"><strong>Analyse by</strong></h6>
-                            <div class="moreInfo-button d-inline-block" id="myBtn-more-info">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                        </div>
-                        <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
-                            <option value="" disabled="disabled" selected="selected">Select one</option>
-                            <option value="assessed">Assessed Level</option>
-                            <option value="grade">Grade Level</option>
-                        </select>
+                <div class="col-4">
+                    <h6 class="ml-2"><strong>Data View</strong></h6>
+                    <input type="hidden" name="current-view" value="{{$currentView}}" />
+                    <label for="data-view-range-growth">
+                        <span class="radio-circle {{ $currentView == 'growth' ? 'fill-circle' : '' }}"></span>
+                        <input id="data-view-range-growth" type="radio" name="data-view-range" value="growth" style="display: none">&nbsp;Growth
+                    </label>
+                    <label for="data-view-range-trait">
+                        <span class="radio-circle {{ $currentView == 'trait' ? 'fill-circle' : '' }}"></span>
+                        <input id="data-view-range-trait" type="radio" name="data-view-range" value="trait" style="display: none">&nbsp;Skills
+                    </label>
+                    <label for="data-view-range-assessment">
+                        <span class="radio-circle {{ $currentView == 'assessment' ? 'fill-circle' : '' }}"></span>
+                        <input id="data-view-range-assessment" type="radio" name="data-view-range" value="assessment" style="display: none">&nbsp;Assessments
+                    </label>
+                </div>
+                <div class="col-4">
+                    <h6 class="d-inline-block"><strong>Analyse by</strong></h6>
+                    <div class="moreInfo-button d-inline-block" id="myBtn-more-info" style="padding-top: 0; padding-bottom: 0">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-                    <div>
-                        <input type="hidden" name="current-view" value="{{$currentView}}" />
-                        <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                        <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Skills</button></a>
-                        <a href="/assessment-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
-                    </div>
+                    <label for="data-view-filter-assessed">
+                        <span class="radio-circle assessed-filter-radio-circle"></span>
+                        <input id="data-view-filter-assessed" type="radio" name="data-view-filter-select" value="assessed" style="display: none">&nbsp;Assessed
+                    </label>
+                    <label for="data-view-filter-grade">
+                        <span class="radio-circle grade-filter-radio-circle"></span>
+                        <input id="data-view-filter-grade" type="radio" name="data-view-filter-select" value="grade" style="display: none">&nbsp;Grade
+                    </label>
                 </div>
             </div>
         </div>
-            <div class="data-view-assessment-settings">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-7">
-                                <h6>Assessment Name</h6>
-                                <select id="assessment-data-view-assessment-select" class="filter-select" style="width: 150px">
-                                    <?php
-                                        $assessmentDetails = null;
-                                        foreach($assessmentList as $assessment)
-                                        {
-                                                if($assessment['id'] == $currentAssessment)
-                                                {
-                                                    $assessmentDetails = $assessment;
-                                                }
-                                                $selected = $assessment['id'] == $currentAssessment ? "selected" : "";
-                                                $id = $assessment['id'];
-                                                $name = $assessment['name'];
-                                                $string = '<option value="' . $id . '"' . $selected . '>' . $name . '</option>';
-                                            echo $string;
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-5">
-                                <h6>Date</h6>
-                                <p>{{$assessmentDetails['assessed_date']}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="assessment-list-card px-0 mt-2 ml-2" style="max-width: 200px">
+        @if($assessmentList !== null)
+        <div class="data-view-assessment-settings">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-7">
+                            <h6>Assessment Name</h6>
+                            <select id="assessment-data-view-assessment-select" class="filter-select" style="width: 150px">
                                 <?php
-                                    $counter = 0;
-                                    $set = [];
-                                foreach($skills as $skill){
-                                    $counter++;
-                                    if(!array_key_exists($skill['traits'][0]['color'], $set)){
-                                        $set[$skill['traits'][0]['color']] = true;
+                                    $assessmentDetails = null;
+                                    foreach($assessmentList as $assessment)
+                                    {
+                                            if($assessment['id'] == $currentAssessment)
+                                            {
+                                                $assessmentDetails = $assessment;
+                                            }
+                                            $selected = $assessment['id'] == $currentAssessment ? "selected" : "";
+                                            $id = $assessment['id'];
+                                            $name = $assessment['name'];
+                                            $string = '<option value="' . $id . '"' . $selected . '>' . $name . '</option>';
+                                        echo $string;
                                     }
-                                }
                                 ?>
-                                <div class="assessment-list-skill-colors">
-                                    <span class="text-left-skills-colors"> <?php echo $counter;?> Skills </span>
-                                    <div class="aligh-dots-assessment-list">
-                                        @foreach($set as $key => $value)
-                                            <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($key); ?>"></span>
-                                        @endforeach
-                                    </div>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <h6>Date</h6>
+                            <p>{{$assessmentDetails['assessed_date']}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="assessment-list-card px-0 mt-2 ml-2" style="max-width: 200px">
+                            <?php
+                                $counter = 0;
+                                $set = [];
+                            foreach($skills as $skill){
+                                $counter++;
+                                if(!array_key_exists($skill['traits'][0]['color'], $set)){
+                                    $set[$skill['traits'][0]['color']] = true;
+                                }
+                            }
+                            ?>
+                            <div class="assessment-list-skill-colors">
+                                <span class="text-left-skills-colors"> <?php echo $counter;?> Skills </span>
+                                <div class="aligh-dots-assessment-list">
+                                    @foreach($set as $key => $value)
+                                        <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($key); ?>"></span>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 pl-5">
-                        <a href="/single-assessment/{{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
-                        <div>
-                            <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-inline-block assignment-action-button assessment-goals-gen-btn">Generate All Goal Sheets
-                                <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">
-                            </button>
-                            <div class="d-inline-block" id="myBtn-goal-sheets" style="position: relative; top: 5px; cursor: pointer">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
+                </div>
+                <div class="col-6 pl-5">
+                    <a href="/single-assessment/{{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
+                    <div>
+                        <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-inline-block assignment-action-button assessment-goals-gen-btn">Generate All Goal Sheets
+                            <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">
+                        </button>
+                        <div class="d-inline-block" id="myBtn-goal-sheets" style="position: relative; top: 5px; cursor: pointer">
+                            <i class="fas fa-info-circle"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @else
-        <div class="data-view-settings">
-            <div class="row">
-                <div class="col-4">
-                    <h6 class="ml-2"><strong>Cohort</strong></h6>
-                    @if($privilage === 'Leader')
-                        <div>
-                            <label for="data-view-range-school">
-                                <span class="trait-view-school radio-circle {{$selection == 'school' ? 'fill-circle' : ''}}"></span>
-                                <input id="data-view-range-school" type="radio" name="data-view-range-setting-school" value="school" style="display: none">&nbsp;School
-                            </label>
-                        </div>
-                    @endif
-                    <div>
-                        <div>
-                            <label for="data-view-range-grade">
-                                <span class="trait-view-grade radio-circle {{ $selection == 'grade' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-grade" type="radio" name="data-view-range-setting" value="grade" style="display: none">&nbsp;Grade
-                            </label>
-                        </div>
-                        <div>
-                            <select class="data-view-dropdown" name="data-view-grade-select" {{ $selection == 'grade' ? '' : 'hidden' }}>
-                                <option value="none" disabled="disabled" {{ $selection == 'grade' && isset($subselection) ? '' : 'selected' }}>Select one</option>
-                                @foreach($grades as $grade)
-                                    <option value="{{$grade['scriibi_level_id']}}" <?php if($selection == 'grade' && $subselection == $grade['scriibi_level_id']){echo 'selected';} ?>>{{$grade['label']}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <label for="data-view-range-class">
-                                <span class="trait-view-class radio-circle {{ $selection == 'class' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-class" type="radio" name="data-view-range-setting" value="class" style="display: none">&nbsp;Class
-                            </label>
-                        </div>
-                        <div>
-                            <select class="data-view-dropdown" name="data-view-class-select" {{ $selection == 'class' ? '' : 'hidden' }}>
-                                <option value="none" disabled="disabled" {{ $selection == 'class' && isset($subselection) ? '' : 'selected' }}>Select one</option>
-                                @foreach($classes as $class)
-                                    <option value="{{$class['id']}}" <?php if($selection == 'class' && $subselection == $class['id']){echo 'selected';} ?>>{{$class['name']}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-8">
-                    <div class="justify-content-end">
-                        <div>
-                            <h6 style="display: inline-block"><strong>Analyse by</strong></h6>
-                            <div class="moreInfo-button" id="myBtn-more-info" style="display:inline-block;">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                        </div>
-                        <select class="filter-select" name="data-view-trait-filter-select" style="width: 200px">
-                            <option value="" disabled="disabled" selected="selected">Select one</option>
-                            <option value="assessed">Assessed Level</option>
-                            <option value="grade">Grade Level</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="hidden" name="current-view" value="{{$currentView}}" />
-                        <a href="/growth-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'growth' ? 'current-active-view' : 'assignment-action-button'}}" >Growth</button></a>
-                        <a href="/trait-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'trait' ? 'current-active-view' : 'assignment-action-button'}}" >Traits Skills</button></a>
-                        <a href="/assessment-view" class="ml-auto"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 {{$currentView == 'assessment' ? 'current-active-view' : 'assignment-action-button'}}" >Assessment</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+        @endif
     <!-- the container for the table holding student data -->
     @if($dataset !== null)
         <form method="get" action="/goal-sheets" id="student-marks-form" target="_blank">
@@ -263,8 +202,8 @@
     <style>
         .data-view-settings{
             display: inline-block;
-            min-width: 300px;
-            max-width: 380px;
+            min-width: 400px;
+            max-width: 480px;
             margin-bottom: 10px;
             background: #FFFFFF;
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
