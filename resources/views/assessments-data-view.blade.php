@@ -14,7 +14,7 @@
                         <div>
                             <label for="data-view-range-school">
                                 <span class="trait-view-school radio-circle {{$selection == 'school' ? 'fill-circle' : ''}}"></span>
-                                <input id="data-view-range-school" type="radio" name="data-view-range-setting-school" value="school" style="display: none">&nbsp;School
+                                <input id="data-view-range-school" type="radio" name="data-view-range-setting-school" value="school" style="display: none">&nbsp;<span class="data-view-control-panel-labels">School</span>
                             </label>
                         </div>
                     @endif
@@ -22,7 +22,7 @@
                         <div>
                             <label for="data-view-range-grade">
                                 <span class="trait-view-grade radio-circle {{ $selection == 'grade' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-grade" type="radio" name="data-view-range-setting" value="grade" style="display: none" {{ $selection == 'grade' ? 'checked' : '' }}>&nbsp;Grade
+                                <input id="data-view-range-grade" type="radio" name="data-view-range-setting" value="grade" style="display: none" {{ $selection == 'grade' ? 'checked' : '' }}>&nbsp;<span class="data-view-control-panel-labels">Grade</span>
                             </label>
                         </div>
                         <div>
@@ -38,7 +38,7 @@
                         <div>
                             <label for="data-view-range-class">
                                 <span class="trait-view-class radio-circle {{ $selection == 'class' ? 'fill-circle' : '' }}"></span>
-                                <input id="data-view-range-class" type="radio" name="data-view-range-setting" value="class" style="display: none" {{ $selection == 'class' ? 'checked' : '' }}>&nbsp;Class
+                                <input id="data-view-range-class" type="radio" name="data-view-range-setting" value="class" style="display: none" {{ $selection == 'class' ? 'checked' : '' }}>&nbsp;<span class="data-view-control-panel-labels">Class</span>
                             </label>
                         </div>
                         <div>
@@ -56,29 +56,29 @@
                     <input type="hidden" name="current-view" value="{{$currentView}}" />
                     <label for="data-view-range-growth">
                         <span class="radio-circle {{ $currentView == 'growth' ? 'fill-circle' : '' }}"></span>
-                        <input id="data-view-range-growth" type="radio" name="data-view-range" value="growth" style="display: none">&nbsp;Growth
+                        <input id="data-view-range-growth" type="radio" name="data-view-range" value="growth" style="display: none">&nbsp;<span class="data-view-control-panel-labels">Growth</span>
                     </label>
                     <label for="data-view-range-trait">
                         <span class="radio-circle {{ $currentView == 'trait' ? 'fill-circle' : '' }}"></span>
-                        <input id="data-view-range-trait" type="radio" name="data-view-range" value="trait" style="display: none">&nbsp;Skills
+                        <input id="data-view-range-trait" type="radio" name="data-view-range" value="trait" style="display: none">&nbsp;<span class="data-view-control-panel-labels">Skills</span>
                     </label>
                     <label for="data-view-range-assessment">
                         <span class="radio-circle {{ $currentView == 'assessment' ? 'fill-circle' : '' }}"></span>
-                        <input id="data-view-range-assessment" type="radio" name="data-view-range" value="assessment" style="display: none">&nbsp;Assessments
+                        <input id="data-view-range-assessment" type="radio" name="data-view-range" value="assessment" style="display: none">&nbsp;<span class="data-view-control-panel-labels">Assessments</span>
                     </label>
                 </div>
                 <div class="col-4">
-                    <h6 class="d-inline-block"><strong>Analyse by</strong></h6>
+                    <h6 class="d-inline-block ml-2"><strong>Analyse by</strong></h6>
                     <div class="moreInfo-button d-inline-block" id="myBtn-more-info" style="padding-top: 0; padding-bottom: 0">
                         <i class="fas fa-info-circle"></i>
                     </div>
                     <label for="data-view-filter-assessed">
                         <span class="radio-circle assessed-filter-radio-circle"></span>
-                        <input id="data-view-filter-assessed" type="radio" name="data-view-filter-select" value="assessed" style="display: none">&nbsp;Assessed
+                        <input id="data-view-filter-assessed" type="radio" name="data-view-filter-select" value="assessed" style="display: none">&nbsp;<span class="data-view-control-panel-labels">Assessed</span>
                     </label>
                     <label for="data-view-filter-grade">
                         <span class="radio-circle grade-filter-radio-circle"></span>
-                        <input id="data-view-filter-grade" type="radio" name="data-view-filter-select" value="grade" style="display: none">&nbsp;Grade
+                        <input id="data-view-filter-grade" type="radio" name="data-view-filter-select" value="grade" style="display: none">&nbsp;<span class="data-view-control-panel-labels">Grade</span>
                     </label>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                 <thead class="header-style">
                 <tr class="header-style text-center">
                     <th  id="fullName" class="text-wrap align-middle" style="width:200px">Full Name</th>
-                    <th id="class" class="text-wrap align-middle">Class</th>
+                    <th id="class" class="text-wrap align-middle" style="width: 50px">Class</th>
                     <th id="grade" class="text-wrap align-middle" style="width: 50px; padding: 25px !important">Grade Level</th>
                     <th id="assessed" class="text-wrap align-middle" style="width: 50px; padding: 20px !important">Assessed Level</th>
                     <!-- IMPORTANT!!!!!!!!! REPLACE ID & INNERHTML WITH THE ASSESSMENT DATE OR A UNIQUE IDENTIFIER-->
@@ -295,6 +295,10 @@
             margin-left: -100px;
             font-weight: bold;
             color: #4e555b;
+        }
+
+        .data-view-control-panel-labels{
+            vertical-align: 4px;
         }
     </style>
 
