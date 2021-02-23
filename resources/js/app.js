@@ -95,7 +95,7 @@ $(function(){
     // clean this out and reduce the eventlistner usage
     table.on( 'draw', function () {
         console.log( 'Redraw occurred at: '+new Date().getTime() );
-        let value = $('select[name="data-view-trait-filter-select"]').val();
+        let value = $('input[name="data-view-filter-select"]:checked').val();
         if(value === 'assessed')
             enableTraitViewAssessedFilter();
         if(value === 'grade')
@@ -119,12 +119,18 @@ $(function(){
         });
     } );
 
-    $('select[name="data-view-trait-filter-select"]').on('change', function (event){
+    $('input[name="data-view-filter-select"]').on('change', function (event){
         let value = $(this).val();
-        if(value === 'assessed')
+        if(value === 'assessed'){
             enableTraitViewAssessedFilter();
-        if(value === 'grade')
-            enableTraitViewGradeFilter()
+            $('.assessed-filter-radio-circle').addClass('fill-circle');
+            $('.grade-filter-radio-circle').removeClass('fill-circle');
+        }
+        if(value === 'grade'){
+            enableTraitViewGradeFilter();
+            $('.grade-filter-radio-circle').addClass('fill-circle');
+            $('.assessed-filter-radio-circle').removeClass('fill-circle');
+        }
     });
 
     $('#data-view-range-school').on('click', function() {
@@ -165,6 +171,29 @@ $(function(){
            $('.trait-view-grade').removeClass('fill-circle');
        }
         $('.trait-view-school').removeClass('fill-circle');
+    });
+
+    $('input[name="data-view-range"]').on('change', function (event){
+        let subselection = '';
+        let currentView = $(this).val();
+        let selection = $('input[name="data-view-range-setting"]:checked').val();
+        let url = window.location.origin + '/' + currentView + '-view/';
+        if(selection === 'grade'){
+            subselection = $('select[name="data-view-grade-select"]').val();
+            if(!subselection){
+                selection = 'class';
+                subselection = $('select[name="data-view-class-select"]').val();
+            }
+        }
+        else if(selection === 'class'){
+            subselection = $('select[name="data-view-class-select"]').val();
+            if(!subselection){
+                selection = 'grade';
+                subselection = $('select[name="data-view-grade-select"]').val();
+            }
+        }
+        url += selection + '/' + subselection;
+        window.location = url;
     });
 
     $('#assessment-data-view-assessment-select').on('change', function (event){
@@ -258,7 +287,6 @@ $(function(){
                 $(this).removeClass("light-orange-fill");
 
                 let current_grade = parseFloat($(this).html());
-                console.log(current_grade)
 
                 //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
                 if (current_grade >= student_grade + 0.3) {
@@ -278,89 +306,6 @@ $(function(){
             });
         });
     }
-
-    $(".assessed-button-filter").on("click", function () {
-        $(".grade-button-filter").find(".radio-circle").removeClass("fill-circle");
-        $(this).find(".radio-circle").addClass("fill-circle");
-    });
-     $(".grade-button-filter").on("click", function () {
-        $(".assessed-button-filter").find(".radio-circle").removeClass("fill-circle");
-        $(this).find(".radio-circle").addClass("fill-circle");
-    });
-    //if a user clicks the overall grade filter
-    $("#overall-grade-filter").on("click", function(){
-
-        //loop through each grade in each student row
-        $(".student-row").each(function(){
-           var grade = $(this).data('grade');
-           let student_grade = parseFloat(grade);
-
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
-            $(this).find(".assessment-result").each(function(){
-
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade >= student_grade + 0.3) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 0.8) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade <= student_grade - 0.3) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 0.8) {
-                    $(this).addClass("orange-fill");
-                }
-            });
-        });
-    });
-
-    $("#overall-assessed-filter").on("click", function(){
-
-        //loop through each grade in each student row
-        $(".student-row").each(function(){
-           var assessed = $(this).data('assessed');
-           let student_grade = parseFloat(assessed);
-
-            //loop through each cell with the .student-skill-result identifier in the current .student-row
-            $(this).find(".assessment-result").each(function(){
-
-                //before applying these classes, we need to remove any existing shading class
-                $(this).removeClass("green-fill");
-                $(this).removeClass("light-green-fill");
-                $(this).removeClass("orange-fill");
-                $(this).removeClass("light-orange-fill");
-
-                let current_grade = parseFloat($(this).html());
-
-                //if the result is greater than the student's result but less than their max grade but also their current grade does not equal their student grade
-                if (current_grade >= student_grade + 0.3) {
-                    $(this).addClass("light-green-fill");
-                }
-                //if the student's result is greater than their max grade
-                if (current_grade >= student_grade + 0.8) {
-                    $(this).addClass("green-fill");
-                }
-                //vice versa from the top half
-                if (current_grade <= student_grade - 0.3) {
-                    $(this).addClass("light-orange-fill");
-                }
-                if (current_grade <= student_grade - 0.8) {
-                    $(this).addClass("orange-fill");
-                }
-            });
-        });
-    });
 
 //========== ASSESSEMNT STUDENT ASSESS DATA
 

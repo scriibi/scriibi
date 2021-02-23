@@ -5,10 +5,6 @@
     <div class="row">
         <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
         <div class="col-12 col-sm-10 col-md-8"><br>
-            <h1 class="Assessment-Studentlist-title">Edit Rubric</h1>
-            <p>We love your student data as much as you do! Therefore in order to keep your students’ records, you can
-                edit this rubric and save a new copy with a new name, however it can’t be a name that is already being
-                used. </p>
             <form action="{{$currentAssessment != null ? '/assessment-rubric-edit-confirm' : '/rubric-edit-confirm'}}"
                   method="POST" class="mt-5 mb-0 p-0" id="rubricform">
             @csrf
