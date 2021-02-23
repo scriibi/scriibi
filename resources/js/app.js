@@ -176,23 +176,31 @@ $(function(){
     $('input[name="data-view-range"]').on('change', function (event){
         let subselection = '';
         let currentView = $(this).val();
-        let selection = $('input[name="data-view-range-setting"]:checked').val();
         let url = window.location.origin + '/' + currentView + '-view/';
-        if(selection === 'grade'){
-            subselection = $('select[name="data-view-grade-select"]').val();
-            if(!subselection){
-                selection = 'class';
-                subselection = $('select[name="data-view-class-select"]').val();
-            }
+        let selection = $('input[name="data-view-range-setting"]:checked').val();
+
+        if(!selection){
+            selection = $('#data-view-range-school').val();
+            url += selection;
         }
-        else if(selection === 'class'){
-            subselection = $('select[name="data-view-class-select"]').val();
-            if(!subselection){
-                selection = 'grade';
+        else
+        {
+            if(selection === 'grade'){
                 subselection = $('select[name="data-view-grade-select"]').val();
+                if(!subselection){
+                    selection = 'class';
+                    subselection = $('select[name="data-view-class-select"]').val();
+                }
             }
+            else if(selection === 'class'){
+                subselection = $('select[name="data-view-class-select"]').val();
+                if(!subselection){
+                    selection = 'grade';
+                    subselection = $('select[name="data-view-grade-select"]').val();
+                }
+            }
+            url += selection + '/' + subselection;
         }
-        url += selection + '/' + subselection;
         window.location = url;
     });
 
