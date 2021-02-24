@@ -43,7 +43,18 @@ class DataViewController extends Controller
                 if($selection === null)
                 {
                     $selection ='class';
-                    $subselection = $classes[0]['id'];
+                    $firstClass = $this->getFirstClassOfTeacher(Auth::user()->id, $userSchool['id'], $classRepository);
+                    foreach ($classes as $class)
+                    {
+                        if ((int)$class['id'] === $firstClass)
+                        {
+                            $subselection = $class['id'];
+                        }
+                    }
+                    if(!isset($subselection))
+                    {
+                        $subselection = $classes[0]['id'];
+                    }
                 }
                 $privilage = 'Teacher';
                 $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
@@ -97,7 +108,18 @@ class DataViewController extends Controller
                 if($selection === null)
                 {
                     $selection ='class';
-                    $subselection = $classes[0]['id'];
+                    $firstClass = $this->getFirstClassOfTeacher(Auth::user()->id, $userSchool['id'], $classRepository);
+                    foreach ($classes as $class)
+                    {
+                        if ((int)$class['id'] === $firstClass)
+                        {
+                            $subselection = $class['id'];
+                        }
+                    }
+                    if(!isset($subselection))
+                    {
+                        $subselection = $classes[0]['id'];
+                    }
                 }
                 $privilage = 'Teacher';
                 $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
@@ -152,7 +174,18 @@ class DataViewController extends Controller
                 if($selection === null)
                 {
                     $selection ='class';
-                    $subselection = $classes[0]['id'];
+                    $firstClass = $this->getFirstClassOfTeacher(Auth::user()->id, $userSchool['id'], $classRepository);
+                    foreach ($classes as $class)
+                    {
+                        if ((int)$class['id'] === $firstClass)
+                        {
+                            $subselection = $class['id'];
+                        }
+                    }
+                    if(!isset($subselection))
+                    {
+                        $subselection = $classes[0]['id'];
+                    }
                 }
                 $privilage = 'Teacher';
                 $scriibiLevelsOfUser = $scriibiLevelRepository->getScriibiLevelsOfTeacher(Auth::user()->id);
@@ -237,6 +270,22 @@ class DataViewController extends Controller
         catch (Exception $e)
         {
             throw $e;
+        }
+    }
+
+    protected function getFirstClassOfTeacher($teacherId, $schoolId, ClassRepositoryInterface $classRepository): ?int
+    {
+        try
+        {
+            $teacherClasses = $classRepository->getClassesOfTeacher($teacherId, $schoolId);
+            usort($teacherClasses, function ($a,$b){
+                return $a['name'] > $b['name'];
+            });
+            return (int)$teacherClasses[0]['id'];
+        }
+        catch (Exception $e)
+        {
+            return null;
         }
     }
 

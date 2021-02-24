@@ -13,6 +13,7 @@ use App\Services\RubricBuilderService;
 use App\Repositories\Interfaces\SkillRepositoryInterface;
 use App\Repositories\Interfaces\CurriculumRepositoryInterface;
 use App\Repositories\Interfaces\SchoolTypeRepositoryInterface;
+use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
 
 
 class RubricBuilder extends Controller
@@ -66,13 +67,13 @@ class RubricBuilder extends Controller
      * and the level below and calculates the flags for all of the skills in the skills collection
      * and also retirves the pre-selected skills for the existing rubric and returns a rubric edit page
      */
-    public function generateEditRubricView($rubricId, $level, $taskId, RubricBuilderService $rubricBuilderService, SkillRepositoryInterface $skillRepositoryInterface, RubricService $rubricService)
+    public function generateEditRubricView($rubricId, $level, $taskId, RubricBuilderService $rubricBuilderService, SkillRepositoryInterface $skillRepositoryInterface, RubricService $rubricService, WritingTaskRepositoryInterface $writingTaskRepository)
     {
         try{
             $rubric = $rubricService->getRubric($rubricId);
             $scriibiLevel = $level === 'NA' ? $rubric['scriibi_level_id'] : $level;
             $response = $rubricBuilderService->getPopulatedUserRubricBuilder($scriibiLevel, Auth::user()->id);
-            $currentAssessment = $taskId === 'NA' ? null : writing_tasks::find($taskId)->toArray();
+            $currentAssessment = $taskId === 'NA' ? null : $writingTaskRepository->getWritingTask($taskId);
             $selectedSkills = $skillRepositoryInterface->getSkillIdsOfRubric($rubricId);
             return view('rubric-edit',
                 [
@@ -81,7 +82,6 @@ class RubricBuilder extends Controller
                     'traitObjects' => $response->traits,
                     'assessedLabels' => $response->assessedLabels,
                     'selectedSkills' => $selectedSkills,
-                    'assessmentCount' => [],
                     'currentAssessment' => $currentAssessment
                 ]
             );

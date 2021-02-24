@@ -16,7 +16,7 @@
                             <span class="writing-task-id" data-writing-task-id="{{$writingTask[0]['id']}}" hidden="hidden"></span>
                             <h5 class="Assessment-Studentlist-title">{{$writingTask[0]['name']}}</h5>
                             <h5 class="Assessment-details-date"><strong><?php echo (date("d-m-Y", strtotime($writingTask[0]['assessed_date']))); ?></strong></h5>
-                            <div class="row no-gutters mt-4">
+                            <div class="row no-gutters mt-4 d-inline-block">
                                 <div class="col-sm-auto assessment-studentlist-rubric mt-2">
                                     <?php $counter = 0;?>
                                     @foreach($rubric['traits'] as $key => $value)
@@ -25,93 +25,94 @@
                                         @endforeach
                                     @endforeach
                                     <div class="single-assessment-rubric-tab pt-1 pl-2">
-                                    <span class="aligh-dots-assessment-list-assessment-page">
-                                        <span class="text-left-skills-colors-assessment-page">
-                                            <?php echo $counter; $count = 0; ?> Skills
+                                        <span class="aligh-dots-assessment-list-assessment-page">
+                                            <span class="text-left-skills-colors-assessment-page">
+                                                <?php echo $counter; $count = 0; ?> Skills
+                                            </span>
+                                            @foreach($rubric['traits'] as $key => $value)
+                                                @if(!empty($value['skills']))
+                                                    <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
+                                                @else
+                                                    <?php $count++; ?>
+                                                @endif
+                                            @endforeach
+                                            <?php
+                                            while($count > 0){
+                                            ?>
+                                                    <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
+                                            <?php
+                                            $count--;
+                                            }
+                                            ?>
                                         </span>
-                                        @foreach($rubric['traits'] as $key => $value)
-                                            @if(!empty($value['skills']))
-                                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
-                                            @else
-                                                <?php $count++; ?>
-                                            @endif
-                                        @endforeach
-                                        <?php
-                                        while($count > 0){
-                                        ?>
-                                                <span class="color-span-assessment-list colored-dot-dimensions colored-dot-color-white"></span>
-                                        <?php
-                                        $count--;
-                                        }
-                                        ?>
-                                    </span>
                                     </div>
 
                                     <span class="rubric-tooltip">
-                                    <div class="rubric-tooltip-skills">
-                                        <h6 style="padding: 5px 0 0 5px">Skills</h6>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="rubric-box-small rubric-list-skills text-left align-middle">
-                                                    <ul style="list-style: none;padding-left:10px;">
-                                                    <!-- get each skill from the rubric and display it into the p tag -->
-                                                        <?php
-                                                        $targetSkill;
-                                                        $count = 0;
-                                                        foreach($rubric['traits'] as $key => $value){
-                                                        foreach($value['skills'] as $s){
-                                                        if($count < 10){
-                                                        $targetSkill = $s['id'];
-                                                        ?>
-                                                            <li>
-                                                                <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
-                                                                <span>{{$s['name']}}</span>
-                                                            </li>
-                                                        <?php
-                                                        $count++;
-                                                        }
-                                                        }
-                                                        }
-                                                        ?>
-                                                    </ul>
+                                        <div class="rubric-tooltip-skills">
+                                            <h6 style="padding: 5px 0 0 5px">Skills</h6>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="rubric-box-small rubric-list-skills text-left align-middle">
+                                                        <ul style="list-style: none;padding-left:10px;">
+                                                        <!-- get each skill from the rubric and display it into the p tag -->
+                                                            <?php
+                                                            $targetSkill;
+                                                            $count = 0;
+                                                            foreach($rubric['traits'] as $key => $value){
+                                                            foreach($value['skills'] as $s){
+                                                            if($count < 10){
+                                                            $targetSkill = $s['id'];
+                                                            ?>
+                                                                <li>
+                                                                    <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
+                                                                    <span>{{$s['name']}}</span>
+                                                                </li>
+                                                            <?php
+                                                            $count++;
+                                                            }
+                                                            }
+                                                            }
+                                                            ?>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="rubric-box-small rubric-list-skills text-left align-middle">
-                                                    <ul style="list-style: none;padding-left:10px;">
-                                                        <?php
-                                                        $targetReached = false;
-                                                        $totalSkillCount = 0;
-                                                        $count = 0;
-                                                        foreach($rubric['traits'] as $key => $value){
-                                                        foreach($value['skills'] as $s){
-                                                        if($count < 9){
-                                                        if($targetReached){
-                                                        ?>
-                                                            <li>
-                                                                <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
-                                                                <span>{{$s['name']}}</span>
-                                                            </li>
-                                                        <?php
-                                                        $count++;
-                                                        }
-                                                        if($s['id'] === $targetSkill){
-                                                            $targetReached = true;
-                                                        }
-                                                        }
-                                                        $totalSkillCount++;
-                                                        }
-                                                        }
-                                                        ?>
-                                                        <li>{{$totalSkillCount > 19 ? $totalSkillCount - 19 . " more" : ""}}</li>
-                                                    </ul>
+                                                <div class="col">
+                                                    <div class="rubric-box-small rubric-list-skills text-left align-middle">
+                                                        <ul style="list-style: none;padding-left:10px;">
+                                                            <?php
+                                                            $targetReached = false;
+                                                            $totalSkillCount = 0;
+                                                            $count = 0;
+                                                            foreach($rubric['traits'] as $key => $value){
+                                                            foreach($value['skills'] as $s){
+                                                            if($count < 9){
+                                                            if($targetReached){
+                                                            ?>
+                                                                <li>
+                                                                    <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($value['color']); ?>"></span>
+                                                                    <span>{{$s['name']}}</span>
+                                                                </li>
+                                                            <?php
+                                                            $count++;
+                                                            }
+                                                            if($s['id'] === $targetSkill){
+                                                                $targetReached = true;
+                                                            }
+                                                            }
+                                                            $totalSkillCount++;
+                                                            }
+                                                            }
+                                                            ?>
+                                                            <li>{{$totalSkillCount > 19 ? $totalSkillCount - 19 . " more" : ""}}</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </span>
+                                    </span>
                                 </div>
                             </div>
+                            <span><a href="/rubric-edit/{{$rubric['id']}}/NA/{{$writingTask[0]['id']}}"><img src="/images/edit.png" class="home-etc-icons"></a></span>
                         </div>
                         <div class="col-6">
                             <div class="mt-xl-4 mt-sm-4 mt-md-4 mt-lg-4">
