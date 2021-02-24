@@ -395,40 +395,10 @@ $(function(){
         criteria_section.toggleClass("accordion-display");
     });
 
-    //setting the default examples for the assessment-marking-page blade
-    const assessed_level = $("#marking-level").html();
-    $("#level-examples div").addClass("d-none");
-
-    if (assessed_level != null) {
-        if (assessed_level == "121"){
-        $("#level-examples div").addClass("d-none");
-        $("#level-f").removeClass("d-none");
-        }
-        else if (assessed_level == "125"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-1").removeClass("d-none");
-        }
-        else if (assessed_level == "129"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-2").removeClass("d-none");
-        }
-        else if (assessed_level == "133"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-3").removeClass("d-none");
-        }
-        else if (assessed_level == "137"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-4").removeClass("d-none");
-        }
-        else if (assessed_level == "141"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-5").removeClass("d-none");
-        }
-        else if (assessed_level == "145"){
-            $("#level-examples div").addClass("d-none");
-            $("#level-6").removeClass("d-none");
-        }
-    }
+    //event listner for default examples for the assessment-marking-page blade
+    $('#level-examples').on('change', function (event){
+        window.open($(this).val());
+    });
 
     $('.left-shift-scale').on('click', function(event){
         event.preventDefault();

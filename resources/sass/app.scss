@@ -524,23 +524,23 @@ header {
     background-color: #33A849;
     transition: 0.2s;
 }
-		
-.new-text-input{	
-    border: 1px solid #AAAAAA;	
-    border-radius: 7px;	
-    width: 100%;	
+
+.new-text-input{
+    border: 1px solid #AAAAAA;
+    border-radius: 7px;
+    width: 100%;
 }
 
-.assessment-settings-selected-rubric{	
-    border: 1px solid #AAAAAA;	
-    border-radius: 7px;	
-    height: 80%;	
-    padding: 20px;	
-    width: 100%;	
+.assessment-settings-selected-rubric{
+    border: 1px solid #AAAAAA;
+    border-radius: 7px;
+    height: 80%;
+    padding: 20px;
+    width: 100%;
 }
 
-.assessment-settings-rubric-select-btn{	
-    margin: auto;	
+.assessment-settings-rubric-select-btn{
+    margin: auto;
 }
 
 .assessment-builder-class-select {
@@ -894,6 +894,13 @@ header {
     to {
         height: 100%;
     }
+}
+
+.level-work-examples{
+    width: 100%;
+    border: 1px solid #DFDFDF;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .marking-text-area{
