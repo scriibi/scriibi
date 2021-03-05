@@ -101,6 +101,59 @@ class UserRepository implements UserRepositoryInterface
             return [];
         }
     }
+
+    /**
+     * Return all teachers of a specified school
+     * @param $schoolId
+     * @return arrray
+     */
+    public function getAllTeachersOfSchool($schoolId): array
+    {
+        try
+        {
+            return $this->user
+                ->whereHas('schools', function ($query) use($schoolId)
+                {
+                    $query->where('school.id', $schoolId);
+                })
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Return all teachers of a specified school under the
+     * specified grades (time consuming query)
+     * @param $grades
+     * @param $schoolId
+     * @return array
+     */
+    public function getAllTeacherOfSpecifiedGrades($grades, $schoolId): array
+    {
+        try
+        {
+            return $this->user
+                ->select('user.id')
+                ->whereHas('schools', function ($query) use($schoolId)
+                {
+                    $query->where('school.id', $schoolId);
+                })
+                ->whereHas('scriibiLevels', function ($query) use($grades)
+                {
+                    $query->whereIn('scriibi_level.id', $grades);
+                })
+                ->get()
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
 }
 
 ?>

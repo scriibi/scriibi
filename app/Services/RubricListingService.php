@@ -104,6 +104,25 @@ class RubricListingService
     }
 
     /**
+     * Return a list of all rubrics and their skills grouped by traits which were
+     * shared with a specified teacher(user)
+     * @param $teacherId
+     * @return array
+     */
+    public function getSharedRubrics($teacherId): array
+    {
+        try
+        {
+            $rubrics = $this->rubricRepositoryInterface->getSharedRubricIds($teacherId);
+            return $this->getRubricsWithSkills($rubrics);
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
      * Accepts a list of rubric ids and returns an array of rubrics
      * with associated skills grouped by traits
      * @param $rubricIds
