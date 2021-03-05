@@ -24,6 +24,13 @@ interface SkillRepositoryInterface
     public function getAllSkills(): array;
 
     /**
+     * Return all specified skill details
+     * @param $skillIds
+     * @return array
+     */
+    public function getSkills($skillIds): array;
+
+    /**
      * Return all skill Ids that are associated with a writing task
      * @param $writingTaskId
      * @return array
