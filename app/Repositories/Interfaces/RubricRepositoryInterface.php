@@ -64,6 +64,14 @@ interface RubricRepositoryInterface
     public function getScriibiRubricIds($level, $curriculumSchoolTypeId): array;
 
     /**
+     * Returns all shared rubrics (ids) that are associated with a
+     * specified teacher(user)
+     * @param $teacherId
+     * @return array
+     */
+    public function getSharedRubricIds($teacherId): array;
+
+    /**
      * Returns the rubric associated with a specified writing task
      * @param $taskId
      * @return array

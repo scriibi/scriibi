@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth']], function () {
     // fetch
     Route::get('/fetch/assessed_skills/{taskId}', 'WritingTasksController@retrieveAssessedSkills');
     Route::get('/rubric-list-mine', 'RubricListController@GenerateUserRubrics');                                // done
+    Route::get('/rubric-list-shared', 'RubricListController@GenerateSharedRubrics');
     Route::get('/rubric-list-scriibi/{teacherLevel}', 'RubricListController@GenerateScriibiRubricsForLevel');   // done (do data validation)
     Route::post('/add-students-to-task', 'WritingTasksController@addStudentsToAssessment');                     // done (sanitize data later)
     Route::delete('/delete-students-from-task', 'WritingTasksController@deleteStudentsFromAssessment');         // done (try to refactor the function in the writing task service)
@@ -109,6 +110,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-shifted-criteria', 'AssessmentMarkingController@getMarkingCriteriaOfRange');               // done (needs refactoring and optimization for the global and local criteria selection)
     Route::get('/get-scriibi-level', 'AssessmentMarkingController@getScriibiLevel');                            // done
     Route::get('/get-all-teaching-periods', 'AssessementSetupController@getAllTeachingPeriods');                // done
+    Route::get('/get-individual-teachers-with-rubric-shares/{rubricId}', 'RubricsController@getIndividualRubricSharees');
+    Route::get('/get-team-with-rubric-shares', 'RubricsController@getTeamRubricSharees');
+    Route::post('/share-rubric-confirm', 'RubricsController@shareRubric');
 
     //goal sheets
     Route::get('/goal-sheets', "GoalsController@generateGoalSheets");       // done (needs reworking - still using old code)

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use DB;
 use Exception;
 use App\Rubric;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
@@ -204,6 +205,31 @@ class RubricRepository implements RubricRepositoryInterface
                 ->map(function ($rubric)
                 {
                     return $rubric->id;
+                })
+                ->toArray();
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Returns all shared rubrics (ids) that are associated with a
+     * specified teacher(user)
+     * @param $teacherId
+     * @return array
+     */
+    public function getSharedRubricIds($teacherId): array
+    {
+        try
+        {
+            return DB::table('rubric_shared')
+                ->where('sharee_teacher_id', $teacherId)
+                ->get()
+                ->map(function ($rubric)
+                {
+                    return $rubric->rubric_id;
                 })
                 ->toArray();
         }

@@ -5,6 +5,7 @@ namespace App\Services;
 use DB;
 use Exception;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\SkillRepositoryInterface;
 
 class RubricService
@@ -17,11 +18,16 @@ class RubricService
      * @var SkillRepositoryInterface
      */
     protected $skillRepositoryInterface;
+    /**
+     * @var UserRepositoryInterface
+     */
+    protected $userRepositoryInterface;
 
-    public function __construct(RubricRepositoryInterface $rubricRepoInt, SkillRepositoryInterface $skillRepoInt)
+    public function __construct(RubricRepositoryInterface $rubricRepoInt, SkillRepositoryInterface $skillRepoInt, UserRepositoryInterface $userRepoInt)
     {
         $this->rubricRepositoryInterface = $rubricRepoInt;
         $this->skillRepositoryInterface = $skillRepoInt;
+        $this->userRepositoryInterface = $userRepoInt;
     }
 
     /**
@@ -178,7 +184,152 @@ class RubricService
         }
         catch (Exception $e)
         {
+            throw $e;
+        }
+    }
+
+    /**
+     * Accept a list of school teachers and a rubric id and add a shared
+     * flag to all users who already have been associated with the rubric
+     * as sharees
+     * @param $rubricId
+     * @param $teachers
+     * @return array
+     */
+    public function markSharedUsers($rubricId, $teachers): array
+    {
+        try
+        {
+            $sharees = $this->getShareeHashMap($rubricId);
+            $teacherCount = count($teachers);
+            for($i = 0; $i < $teacherCount; $i++)
+            {
+                if(array_key_exists($teachers[$i]['id'], $sharees))
+                {
+                    $teachers[$i]['shared'] = true;
+                }
+                else
+                {
+                    $teachers[$i]['shared'] = false;
+                }
+            }
+            return $teachers;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    protected function getShareeHashMap($rubricId): array
+    {
+        try
+        {
+            $sharedTeachersHashMap = [];
+            $sharedTeacherIds = DB::table('rubric_shared')
+                ->select('sharee_teacher_id')
+                ->where('rubric_id', $rubricId)
+                ->get()
+                ->toArray();
+
+            foreach ($sharedTeacherIds as $teacherId)
+            {
+                $sharedTeachersHashMap[$teacherId->sharee_teacher_id] = true;
+            }
+            return $sharedTeachersHashMap;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    /**
+     * Share a specified rubric with all specified teachers or remove
+     * prexisting teachers no longer available
+     * @param $rubricId
+     * @param $sharerId
+     * @param $teachers
+     * @return bool
+     */
+    public function shareRubricWithIndividuals($rubricId, $sharerId, $teachers)
+    {
+        try
+        {
+            $attach = [];
+            $detach = [];
+            $teacherCount = count($teachers);
+            $existingSharees = $this->getShareeHashMap($rubricId);
+            for ($i = 0; $i < $teacherCount; $i++)
+            {
+                if(array_key_exists($teachers[$i], $existingSharees))
+                {
+                    unset($existingSharees[$teachers[$i]]);
+                }
+                else
+                {
+                    array_push($attach,
+                    [
+                        'rubric_id' => $rubricId,
+                        'sharer_teacher_id' => $sharerId,
+                        'sharee_teacher_id' => $teachers[$i]
+                    ]);
+                }
+            }
+            $detach = array_keys($existingSharees);
+
+            DB::table('rubric_shared')
+                ->insert($attach);
+            DB::table('rubric_shared')
+                ->where('sharer_teacher_id',  $sharerId)
+                ->where('rubric_id', $rubricId)
+                ->whereIn('sharee_teacher_id', $detach)
+                ->delete();
+            return true;
+        }
+        catch (Exception $e)
+        {
             return false;
+        }
+    }
+
+    /**
+     * Share a specified rubric with all teachers of all specified
+     * grades(teams) of a given school
+     * @param $rubricId
+     * @param $sharerId
+     * @param $schoolId
+     * @param $grades
+     * @return bool
+     */
+    public function shareRubricWithTeams($rubricId, $sharerId, $schoolId, $grades)
+    {
+        try
+        {
+            $attach = [];
+            $teachersOfGrades = $this->userRepositoryInterface->getAllTeacherOfSpecifiedGrades($grades, $schoolId);
+            $existingSharees = $this->getShareeHashMap($rubricId);
+            $teacherCount = count($teachersOfGrades);
+
+            for($i = 0; $i < $teacherCount; $i++)
+            {
+                if(!array_key_exists($teachersOfGrades[$i]['id'], $existingSharees))
+                {
+                    array_push($attach,
+                    [
+                        'rubric_id' => $rubricId,
+                        'sharer_teacher_id' => $sharerId,
+                        'sharee_teacher_id' => $teachersOfGrades[$i]['id']
+                    ]);
+                }
+            }
+            DB::table('rubric_shared')
+                ->insert($attach);
+            return true;
+        }
+        catch (Exception $e)
+        {
+            return $e;
         }
     }
 }

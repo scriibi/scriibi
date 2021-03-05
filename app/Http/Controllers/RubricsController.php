@@ -17,7 +17,8 @@ use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
-
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
 
 class RubricsController extends Controller
 {
@@ -106,6 +107,74 @@ class RubricsController extends Controller
         {
             // todo
             return redirect('/scriibi-rubric-builder');
+        }
+    }
+
+    public function getIndividualRubricSharees($rubricId, UserRepositoryInterface $userRepository, RubricService $rubricService)
+    {
+        try
+        {
+            $teacherSchoolId = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['id'];
+            $allTeachers = $userRepository->getAllTeachersOfSchool($teacherSchoolId);
+            $response = $rubricService->markSharedUsers($rubricId, $allTeachers);
+            return json_encode($response);
+        }
+        catch (Exception $e)
+        {
+            return json_encode($e);
+        }
+    }
+
+    public function getTeamRubricSharees(UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository)
+    {
+        try
+        {
+            $curriculumSchoolTypeId = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['curriculum_school_type_id'];
+            $gradeLabels = $gradeLabelRepository->getGradeLabels($curriculumSchoolTypeId);
+
+            return json_encode($gradeLabels);
+        }
+        catch (Exception $e)
+        {
+            // todo
+        }
+    }
+
+    public function shareRubric(Request $request, RubricService $rubricService, UserRepositoryInterface $userRepository)
+    {
+        try
+        {
+            $response = null;
+            $teacherId = Auth::user()->id;
+            $rubricId = $request->input('rubricId');
+            $shareType = $request->input('shareType');
+            $associates = $request->input('teachers');
+
+            if(gettype($associates) == 'array')
+            {
+                if($shareType === 'individual')
+                {
+                    $response = $rubricService->shareRubricWithIndividuals($rubricId, $teacherId, $associates);
+                }
+                else if($shareType === 'team')
+                {
+                    $schoolId = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['id'];
+                    $response = $rubricService->shareRubricWithTeams($rubricId, $teacherId, $schoolId, $associates);
+                }
+                else
+                {
+                    throw new Exception('Unrecognized share type');
+                }
+                return json_encode($response);
+            }
+            else
+            {
+                throw new Exception('Invalid data type passed in');
+            }
+        }
+        catch (Exception $e)
+        {
+            return false;
         }
     }
 }
