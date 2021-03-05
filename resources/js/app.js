@@ -74,17 +74,15 @@ $(function(){
 
     //dataTables configuration
     let table = $("#overall-assessment-table").DataTable({
+        fixedHeader: true,
         scrollX: true,
         scrollY: '418px',
         scrollCollapse: true,
-        paging: true,
+        paging: false,
         "autoWidth": true,
         "bLengthChange": false,
         "bFilter": true,
         "bInfo": false,
-         fixedColumns: {
-            leftColumns: 4,
-         },
         select: {
             items : 'cell'
         }
