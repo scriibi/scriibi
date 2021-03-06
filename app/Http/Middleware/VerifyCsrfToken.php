@@ -22,6 +22,9 @@ class VerifyCsrfToken extends Middleware
         '/assessment-submit',
         '/rubricDelete',
         '/add-students-to-task',
-        '/delete-students-from-task'
+        '/delete-students-from-task',
+        '/share-rubric-confirm',
+        '/rubric-list-shared',
+        '/copy-rubric-confirm'
     ];
 }

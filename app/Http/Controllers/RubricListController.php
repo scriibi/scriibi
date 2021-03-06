@@ -70,4 +70,16 @@ class RubricListController extends Controller
             //todo
         }
     }
+
+    public function GenerateSharedRubrics(RubricListingService $rubricListingServiceInstance)
+    {
+        try
+        {
+            return json_encode($rubricListingServiceInstance->getSharedRubrics(Auth::user()->id));
+        }
+        catch (Exception $e)
+        {
+            return json_encode([]);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 @extends('layout.mainlayout')
 @section('title', 'Asssessment setup')
 @section('content')
+@include('layout.partials.rubric-card')
 
 <div class="row">
    <div class="d-none d-sm-block col-1">
@@ -89,24 +90,28 @@
                 <input type="radio" name="rubric" value="" class="hidden-rubric-radio" hidden/>
                 <div class="pt-1 pb-0">
                     <div>
-                        <div class="rubric-list-parent-cont" style="margin: 5% auto">
+                        <div class="rubric-list-parent-cont">
                             <div class="row no-gutters rubric-list-options-row">
-                                <div class="col-6 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
+                                <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
                                     Scriibi Rubrics
                                 </div>
-                                <!-- <div class="col-3 rubric-list-option" id="rubric-list-option-shared-rubrics">
-                                    Shared with Me
-                                </div> -->
-                                <div class="col-6 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
+                                <div class="col-4 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
                                     My Saved Rubrics
                                 </div>
-                                <!-- <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
-                                    Build a new Rubric
-                                </a> -->
+                                <div class="col-4 rubric-list-option" id="rubric-list-option-shared-rubrics">
+                                    Shared with Me
+                                </div>
                             </div>
                         </div>
-                        <div class="student-list-scroll" id="rubric-list-skills-section">
-                            <div class="row" id="rubric-list-skill-cards">
+                        <div id="rubric-list-skills-section">
+                            {{--      grade selector for the scriibi rubrics view      --}}
+                            <div class="col-4 mb-4 pl-0" id="scriibi_rubrics_select" hidden>
+                                <label>Show Scriibi Rubrics for:</label>
+                                <br>
+                                <select name="assessed_level" id="select_curriculum_code_for_scriibi_rubrics" class="select-input"></select>
+                                <span class="bar"></span>
+                            </div>
+                            <div class="row student-list-scroll" id="rubric-list-skill-cards">
                                 @if (count($rubrics) > 0)
                                     @foreach($rubrics as $key => $value)
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -125,7 +130,7 @@
                                                     foreach($traits_skills as $ts){
                                                         $skillObjects = $ts['skills'];
                                                         foreach($skillObjects as $so){
-                                                            if($count < 20){
+                                                            if($count < 15){
                                                 ?>
                                                             <li>
                                                                 <span class="colored-dot-dimensions colored-dot-color-<?php echo htmlentities($ts['color']); ?>"></span>
@@ -138,14 +143,12 @@
                                                     }
                                                 ?>
                                             </ul>
-                                        </div>
-                                        <div>
                                             <div class="rubric-more-skills">
                                                 <?php
-                                                    if($count > 20)
-                                                    {
-                                                        echo ($count-20)." more";
-                                                    }
+                                                if($count > 15)
+                                                {
+                                                    echo ($count-15)." more";
+                                                }
                                                 ?>
                                             </div>
                                         </div>
@@ -169,3 +172,4 @@
 </div>
 <div class="assessment-build-form-incomplete-flash flash-warning-message" hidden="hidden"></div>
 @endsection
+

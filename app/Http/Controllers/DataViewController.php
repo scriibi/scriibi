@@ -62,7 +62,15 @@ class DataViewController extends Controller
             }
             $dataset = $dataViewService->getTraitsOfWritingDataSet($selection, $subselection, $userSchool);
             $scriibiLevels = $this->getscriibiLevelHashMap($scriibiLevelRepository);
-            $skills = $skillRepository->getAllSkills();
+            if(!empty($dataset))
+            {
+                $skillIds = array_keys(reset($dataset)['skills']);
+                $skills = $skillRepository->getSkills($skillIds);
+            }
+            else
+            {
+                $skills = $skillRepository->getAllSkills();
+            }
             return view('traits-data-view',
                 [
                     'dataset' => $dataset,

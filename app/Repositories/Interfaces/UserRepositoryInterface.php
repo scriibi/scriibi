@@ -26,6 +26,22 @@ interface UserRepositoryInterface
      * @return array
      */
     public function getUserPosition($id, $position): array;
+
+    /**
+     * Return all teachers of a specified school
+     * @param $schoolId
+     * @return arrray
+     */
+    public function getAllTeachersOfSchool($schoolId): array;
+
+    /**
+     * Return all teachers of a specified school under the
+     * specified grades (time consuming query)
+     * @param $grades
+     * @param $schoolId
+     * @return array
+     */
+    public function getAllTeacherOfSpecifiedGrades($grades, $schoolId): array;
 }
 
 ?>

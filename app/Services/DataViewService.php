@@ -60,15 +60,39 @@ class DataViewService
                 ->whereIn('student_id', $studentIds)
                 ->get()
                 ->toArray();
+            $uniqueSkills = $this->filterUniqueSkills($results);
+            ksort($uniqueSkills);
             $this->sortResults($results, $writingTaskIds);
-            $studentTemplates = $this->createStudentSkillDataTemplates($students);
-            $resultCount = count($results);
+            $studentTemplates = $this->createStudentDataTemplates($students, $uniqueSkills);
 
+            $resultCount = count($results);
             for ($i = 0; $i < $resultCount; $i++)
             {
                 $studentTemplates[$results[$i]->student_id]['skills'][$results[$i]->skill_id] = $results[$i]->result;
             }
             return $studentTemplates;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    protected function filterUniqueSkills($marks): array
+    {
+        try
+        {
+            $uniqueSkillsHashMap = [];
+            $count = count($marks);
+
+            for ($i = 0; $i < $count; $i++)
+            {
+                if(!array_key_exists($marks[$i]->skill_id, $uniqueSkillsHashMap))
+                {
+                    $uniqueSkillsHashMap[$marks[$i]->skill_id] = null;
+                }
+            }
+            return $uniqueSkillsHashMap;
         }
         catch (Exception $e)
         {
@@ -283,6 +307,31 @@ class DataViewService
                         'gradeLevel' => $students[$j]['grade_level_id'],
                         'assessedLevel' => $students[$j]['assessed_level_id'],
                         'skills' => $skillHashMap
+                    ];
+            }
+            return $templates;
+        }
+        catch (Exception $e)
+        {
+            return [];
+        }
+    }
+
+    protected function createStudentDataTemplates($students, $skills): array
+    {
+        try
+        {
+            $templates = [];
+            $studentCount = count($students);
+            for ($j = 0; $j < $studentCount; $j++)
+            {
+                $templates[$students[$j]['id']] =
+                    [
+                        'name' => $students[$j]['first_name'] . ' ' . $students[$j]['last_name'],
+                        'class' => !empty($students[$j]['classes']) ? $students[$j]['classes'][0]['name'] : null,
+                        'gradeLevel' => $students[$j]['grade_level_id'],
+                        'assessedLevel' => $students[$j]['assessed_level_id'],
+                        'skills' => $skills
                     ];
             }
             return $templates;

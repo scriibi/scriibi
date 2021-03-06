@@ -264,6 +264,18 @@ header {
     margin-top: 11px;
 }
 
+.interaction-icon-medium{
+    width: 55px;
+    height: 20px;
+    margin-top: 11px;
+}
+
+.interaction-icon-large{
+    width: 100px;
+    height: 20px;
+    margin-top: 11px;
+}
+
 .remove-button-styling {
     border: none;
     background-color: transparent;
@@ -715,7 +727,7 @@ header {
     height: 25px;
 }
 
-.add-students-modal-selected{
+.add-students-modal-selected, .rubric-share-modal-selected{
     border: 1px solid #C4C4C4;
     border-radius: 5px;
     display: flex;
@@ -725,7 +737,7 @@ header {
     width: 98%;
 }
 
-.add-students-modal-list{
+.add-students-modal-list, .rubric-share-modal-list{
     height: 200px;
     overflow-y: scroll;
 }
@@ -1194,7 +1206,7 @@ input:focus {
     background: #FFFFFF;
     border-radius: 7px;
     border: 2px solid #DFDFDF;
-    margin: 120px auto 50px auto;
+    margin: 20px auto 50px auto;
     width: 80%;
 }
 
@@ -1233,6 +1245,11 @@ input:focus {
     line-height: 35px;
     text-align: center;
     color: #000000;
+}
+
+.share-rubric-option-btns{
+    padding: 5px;
+    text-align: center;
 }
 
 .new-rubric{
@@ -1306,10 +1323,8 @@ input:focus {
 .rubric-list-skills{
     font-style: normal;
     font-weight: normal;
-    // font-size: 14px;
     line-height: 16px;
     color: #909090;
-    // height: 100%;
     overflow: hidden;
 }
 
@@ -2112,17 +2127,15 @@ box-sizing: border-box;
 
 .rubric-list-card-single{
     background: #FFFFFF;
-    // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
     border-radius: 7px;
     border: none;
-    // padding-top: 10px;
     position: relative;
     border: 1px solid #DFDFDF;
     overflow: hidden;
     text-overflow: ellipsis;
     text-decoration: none;
     transition: 0.3s;
-    height: 500px;
+    height: 450px;
     width: 100%;
     margin:0.5%;
     margin-bottom: 20px;
@@ -2136,7 +2149,6 @@ box-sizing: border-box;
     }
 
     .rubric-list-text-title {
-        // height: 55px;
         overflow: hidden;
         padding: 5px 0px 5px 5px;
         font-weight: bold;
@@ -2162,13 +2174,13 @@ box-sizing: border-box;
     .rubric-box-small{
         border-radius: 7px;
         background-color: white;
-        height: 480px;
+        height: 375px;
     }
 
     .rubric-more-skills {
         left: 10px;
         bottom  : 10px;
-        position: absolute;
+        position: relative;
         color: #00000050;
     }
 
@@ -2178,6 +2190,18 @@ box-sizing: border-box;
         right: 10px;
         bottom  : 10px;
         position: absolute;
+    }
+
+    .rubric-card-controls{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+    }
+
+    .rubric-card-control-icons{
+        background-color: transparent;
+        border: none;
+        margin: 0 5px !important;
     }
 }
 
