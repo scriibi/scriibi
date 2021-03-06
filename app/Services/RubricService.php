@@ -4,6 +4,7 @@ namespace App\Services;
 
 use DB;
 use Exception;
+use App\Rubric;
 use App\Repositories\Interfaces\RubricRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\SkillRepositoryInterface;
@@ -330,6 +331,70 @@ class RubricService
         catch (Exception $e)
         {
             return $e;
+        }
+    }
+
+    /**
+     * Return all details of a specified rubric
+     * @param $rubricId
+     * @return array|null
+     */
+    public function getRubricDetails($rubricId): ?array
+    {
+        try
+        {
+            return $this->rubricRepositoryInterface->getRubric($rubricId);
+        }
+        catch (Exception $e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Creates a new rubric and associates it with the provided skills
+     * @param $rubricName
+     * @param $scriibiLevelId
+     * @param $skills
+     * @return Rubric|null
+     */
+    protected function createNewRubric($rubricName, $scriibiLevelId, $skills): ?Rubric
+    {
+        try
+        {
+            $newRubric = $this->rubricRepositoryInterface->addRubric($rubricName, $scriibiLevelId);
+            $newRubric->skills()->attach($skills);
+            return $newRubric;
+        }
+        catch (Exception $e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Create a copy of a specified rubric and associate it with the
+     * specified teacher
+     * @param $rubricId
+     * @param $newRubricName
+     * @param $teacherId
+     * @return bool
+     */
+    public function copyRubric($rubricId, $newRubricName, $teacherId): bool
+    {
+        try
+        {
+            DB::beginTransaction();
+            $selectedRubric = $this->rubricRepositoryInterface->getRubricWithSkillIds($rubricId);
+            $newRubric = $this->createNewRubric($newRubricName, $selectedRubric[0]['scriibi_level_id'], $selectedRubric[0]['skills']);
+            $newRubric->teachers()->attach($teacherId);
+            DB::commit();
+            return true;
+        }
+        catch (Exception $e)
+        {
+            DB::rollBack();
+            return false;
         }
     }
 }

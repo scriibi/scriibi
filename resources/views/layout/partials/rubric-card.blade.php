@@ -19,6 +19,9 @@
             <button class="rubric-card-control-icons teacher-template-share" hidden>
                 <img class="interaction-icon-medium" src="images/share_icon_with_text.png" alt="Share Rubric Icon" />
             </button>
+            <button class="rubric-card-control-icons copy-rubric-template" hidden>
+                <img class="interaction-icon-large" src="images/copy-template.png" alt="Copy Template Icon" />
+            </button>
         </div>
     </div>
 </div>

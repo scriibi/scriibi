@@ -1,20 +1,20 @@
 @extends('layout.mainlayout')
 @section('title', 'Rubric-List')
 @section('content')
+    <div class="d-flex flex-row-reverse" style="margin: 120px auto 20px auto; width: 80%;">
+        <a href="/rubrics" class="assessment-btn p-2"><strong>Build a new Rubric +</strong></a>
+    </div>
     <div class="rubric-list-parent-cont">
         <div class="row no-gutters rubric-list-options-row">
             <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
                 Scriibi Rubrics
             </div>
-            <!-- <div class="col-3 rubric-list-option" id="rubric-list-option-shared-rubrics">
-                Shared with Me
-            </div> -->
             <div class="col-4 rubric-list-option rubric-list-option-current-style" id="rubric-list-option-my-rubrics">
                 My Saved Rubrics
             </div>
-            <a href="/rubrics" class="col-4 rubric-list-option" id="rubric-list-option-build-rubrics" style="text-decoration:none; color:#000000">
-                Build a new Rubric
-            </a>
+            <div class="col-4 rubric-list-option" id="rubric-list-option-shared-rubrics">
+                Shared with Me
+            </div>
         </div>
 
     </div>
@@ -171,6 +171,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" name="button" class="btn btn rubric-share-confirm-btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Share</button>
+                <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="copy-rubric-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>Copy Template</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="rubric-copy-id" />
+                <p>The following Rubric Template will be added to your  My saved Rubrics folder You can rename this now if you like.</p>
+                <input type="text" name="copy-rubric-custom-name" style="width: 100%" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="button" class="btn btn rubric-copy-confirm-btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Copy</button>
                 <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Cancel</button>
             </div>
         </div>

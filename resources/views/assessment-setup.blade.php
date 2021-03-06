@@ -90,7 +90,7 @@
                 <input type="radio" name="rubric" value="" class="hidden-rubric-radio" hidden/>
                 <div class="pt-1 pb-0">
                     <div>
-                        <div class="rubric-list-parent-cont" style="margin: 5% auto">
+                        <div class="rubric-list-parent-cont">
                             <div class="row no-gutters rubric-list-options-row">
                                 <div class="col-4 rubric-list-option" id="rubric-list-option-scriibi-rubrics">
                                     Scriibi Rubrics

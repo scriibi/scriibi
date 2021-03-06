@@ -177,4 +177,31 @@ class RubricsController extends Controller
             return false;
         }
     }
+
+    public function copyRubric(Request $request, RubricService $rubricService)
+    {
+        try
+        {
+            $teacherId = Auth::user()->id;
+            $rubricId = $request->input('rubricId');
+            $customName = $request->input('customName');
+            $result = $rubricService->copyRubric($rubricId, $customName, $teacherId);
+            return json_encode($result);
+        }
+        catch (Exception $e)
+        {
+            return json_encode(false);
+        }
+    }
+
+    public function getRubricDetails($rubricId, RubricService $rubricService){
+        try
+        {
+            return json_encode($rubricService->getRubricDetails($rubricId));
+        }
+        catch (Exception $e)
+        {
+            return json_encode([]);
+        }
+    }
 }

@@ -954,7 +954,7 @@ $(function(){
             return data.json();
         })
         .then(rubrics => {
-            updateToTeacherTemplates(rubrics);
+            updateToPersonalTemplates(rubrics, 'mine');
         })
         .catch(err => {
             console.log(err);
@@ -988,7 +988,7 @@ $(function(){
             return data.json();
         })
         .then(rubrics => {
-            updateToTeacherTemplates(rubrics);
+            updateToPersonalTemplates(rubrics, 'shared');
         })
         .catch(err => {
             console.log(err);
@@ -1066,6 +1066,32 @@ $(function(){
         })
         .then(response => {
             console.log('response', response);
+        });
+    });
+
+    $('.rubric-copy-confirm-btn').on('click',  function (event){
+        let url_origin = window.location.origin + '/copy-rubric-confirm';
+        let rubricId = $('input[name="rubric-copy-id"]').val();
+        let customName = $('input[name="copy-rubric-custom-name"]').val();
+        let body = {
+            rubricId: rubricId,
+            customName: customName,
+        }
+        let options = {
+            method: 'POST',
+            credentials: 'same-origin',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }
+        fetch(url_origin, options)
+        .then(data => {
+            return data.json();
+        })
+        .then(response => {
+            $('#copy-rubric-modal').modal('hide');
         });
     });
 
@@ -1415,7 +1441,7 @@ function updateToScriibiRubrics(dataSet) {
     }
 }
 
-function updateToTeacherTemplates(dataSet) {
+function updateToPersonalTemplates(dataSet, type) {
     let currentUrl = window.location.href;
     let rubrics = dataSet;
     document.getElementById('scriibi_rubrics_select').setAttribute('hidden', 'hidden');
@@ -1460,26 +1486,38 @@ function updateToTeacherTemplates(dataSet) {
                 skillCard.querySelector('.rubric-more-skills').innerHTML = (counter - 15) + ' more';
             }
 
-            if(currentUrl.includes('/rubric-list')){
-                let deleteControl = skillCard.querySelector('.teacher-template-delete');
-                let editControl = skillCard.querySelector('.teacher-template-edit');
-                let shareControl = skillCard.querySelector('.teacher-template-share');
-                deleteControl.removeAttribute('hidden');
-                editControl.removeAttribute('hidden');
-                shareControl.removeAttribute('hidden');
-                deleteControl.setAttribute('data-delete-rubric-id', key);
-                editControl.setAttribute('data-edit-rubric-id', key);
-                shareControl.setAttribute('data-share-rubric-id', key);
-            }
+            setControlButtons(skillCard, currentUrl, type, key);
             skillCardsSection.appendChild(skillCard);
         }
         if(currentUrl.includes('/assessment-setup')){
             assessmentRubricSelectListener();
         }
-        if(currentUrl.includes('/rubric-list')){
+        if(currentUrl.includes('/rubric-list') && type == 'mine'){
             addRubricListTeacherTemplatesListners();
             addRubricShareEventListner();
         }
+        if(currentUrl.includes('/rubric-list') && type == 'shared'){
+            addRubricCopyEventListner();
+        }
+    }
+}
+
+function setControlButtons(skillCard, currentUrl, type, rubricId){
+    if(currentUrl.includes('/rubric-list') && type == 'mine'){
+        let deleteControl = skillCard.querySelector('.teacher-template-delete');
+        let editControl = skillCard.querySelector('.teacher-template-edit');
+        let shareControl = skillCard.querySelector('.teacher-template-share');
+        deleteControl.removeAttribute('hidden');
+        editControl.removeAttribute('hidden');
+        shareControl.removeAttribute('hidden');
+        deleteControl.setAttribute('data-delete-rubric-id', rubricId);
+        editControl.setAttribute('data-edit-rubric-id', rubricId);
+        shareControl.setAttribute('data-share-rubric-id', rubricId);
+    }
+    if(currentUrl.includes('/rubric-list') && type == 'shared'){
+        let shareControl = skillCard.querySelector('.copy-rubric-template');
+        shareControl.removeAttribute('hidden');
+        shareControl.setAttribute('data-copy-rubric-id', rubricId);
     }
 }
 
@@ -1488,6 +1526,22 @@ function addRubricShareEventListner(){
         let rubricId = $(this).attr('data-share-rubric-id');
         $('input[name="rubric-share-id"]').val(rubricId);
         openRubricShareModal(rubricId);
+    });
+}
+
+function addRubricCopyEventListner(){
+    $('.copy-rubric-template').on('click', function (event){
+        let rubricId = $(this).attr('data-copy-rubric-id');
+        $('input[name="rubric-copy-id"]').val(rubricId);
+        let url_origin =  window.location.origin + '/rubric-details/' + rubricId;
+        fetch(url_origin)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            $('input[name="copy-rubric-custom-name"]').val(data.name);
+            $('#copy-rubric-modal').modal("show");
+        });
     });
 }
 
