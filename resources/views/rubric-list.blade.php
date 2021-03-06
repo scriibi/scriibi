@@ -154,8 +154,8 @@
                 <input type="hidden" name="share-type" />
                 <input type="hidden" name="rubric-share-id" />
                 <div class="share-rubric-option-btns">
-                    <button id="rubric-share-specific" type="button" name="button" class="btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Specific People</button>
-                    <button id="rubric-share-team" type="button" name="button" class="btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Team</button>
+                    <button id="rubric-share-specific" type="button" name="button" class="btn save-exit-btn mt-2 pt-1 pb-1 mr-2" style="width: fit-content">Specific People</button>
+                    <button id="rubric-share-team" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1 mr-2" style="width: fit-content">Team</button>
                 </div>
                 <div class="rubric-share-modal-selected p-1"></div>
                 <div class="rubric-share-modal-list">
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" name="button" class="btn btn rubric-share-confirm-btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Share</button>
+                <button type="button" name="button" class="btn btn rubric-share-confirm-btn save-exit-btn mt-2 pt-1 pb-1 mr-2">Save</button>
                 <button style="width: fit-content" type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -188,7 +188,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="rubric-copy-id" />
-                <p>The following Rubric Template will be added to your  My saved Rubrics folder You can rename this now if you like.</p>
+                <p>The following Rubric Template will be added to your  My Saved Rubrics folder You can rename this now if you like.</p>
                 <input type="text" name="copy-rubric-custom-name" style="width: 100%" />
             </div>
             <div class="modal-footer">
