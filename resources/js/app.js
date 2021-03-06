@@ -1024,10 +1024,20 @@ $(function(){
     }
 
     $('#rubric-share-specific').on('click', function (event){
+        let btn = $('#rubric-share-team');
+        $(this).removeClass('assignment-action-button');
+        $(this).addClass('save-exit-btn');
+        btn.removeClass('save-exit-btn');
+        btn.addClass('assignment-action-button');
         updateRubricShareesToIndividual();
     });
 
     $('#rubric-share-team').on('click', function (event){
+        let btn = $('#rubric-share-specific');
+        $(this).removeClass('assignment-action-button');
+        $(this).addClass('save-exit-btn');
+        btn.removeClass('save-exit-btn');
+        btn.addClass('assignment-action-button');
         updateRubricShareesToTeam();
     });
 
@@ -1065,7 +1075,7 @@ $(function(){
             return data.json();
         })
         .then(response => {
-            console.log('response', response);
+            $('#share-rubric-modal').modal("hide");
         });
     });
 
