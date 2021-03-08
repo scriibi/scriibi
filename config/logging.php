@@ -89,6 +89,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+        'reqlog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/RequestLog.log'),
+            'level' => 'info'
+        ]
     ],
 
 ];
