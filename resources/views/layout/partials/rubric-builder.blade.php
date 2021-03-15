@@ -1,7 +1,7 @@
 <div class="row" id="rubric-builder">
     <div class="d-none d-sm-block col-sm-1 col-md-2"></div>
     <div class="col-12 col-sm-10 col-md-8"><br>
-        <form action={{$scriibi_user ? "/scriibi-rubric-confirm" : "/RubricConfirm"}} method="POST" class="mt-5 mb-0 p-0" id="rubricform">
+        <form action={{$scriibi_user ? "/save-scriibi-template" : "/save-teacher-template"}} method="POST" class="mt-5 mb-0 p-0" id="rubricform">
         @csrf
             @if(!$scriibi_user)
                 <div class="d-flex justify-content-between mb-3">

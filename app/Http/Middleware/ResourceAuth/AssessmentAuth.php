@@ -5,6 +5,7 @@ namespace App\Http\Middleware\ResourceAuth;
 use Auth;
 use Closure;
 use Exception;
+use App\Utils\Sanitize;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
 use App\Repositories\Interfaces\ClassRepositoryInterface as ClassRepository;
@@ -25,6 +26,10 @@ class AssessmentAuth
      */
     private $writingTaskRepositoryInterface;
 
+    private const POSSIBLESTATUS = [
+        'NA' => true
+    ];
+
     public function __construct(ClassRepository $classRepoInt, UserRepository $userRepoInt, WritingTaskRepository $writingTaskRepoInt)
     {
         $this->userRepositoryInterface = $userRepoInt;
@@ -43,20 +48,60 @@ class AssessmentAuth
     {
         try
         {
-            $userId = Auth::user()->id;
-            $school = $this->userRepositoryInterface->getTeacherSchool($userId)->toArray()[0];
-            $classIds = array_map(array($this, 'extractIdValues'), $this->classRepositoryInterface->getClassesOfTeacher($userId, $school['id']));
-            $taskIds = array_map(array($this, 'extractIdValues'), $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds));
-
-            if(!in_array($request->route('assessment_id'), $taskIds))
+            $isValidTask = true;
+            $error = '';
+            // check if query string contains a task id
+            if($request->has('task'))
             {
-                return redirect('/assessment-list');
+                $taskId = null;
+                // Check the request method to determine where to retrieve the task id from
+                if($request->isMethod('post'))
+                {
+                    $taskId = Sanitize::htmlSpecialChars(Sanitize::stripTags($request->input('task')));
+                }
+                else
+                {
+                    $taskId = Sanitize::htmlSpecialChars(Sanitize::stripTags($request->input('task')));
+                }
+
+                if(is_numeric($taskId))
+                {
+                    $userId = Auth::user()->id;
+                    $school = $this->userRepositoryInterface->getTeacherSchool($userId)->toArray()[0];
+                    $classIds = array_map(array($this, 'extractIdValues'), $this->classRepositoryInterface->getClassesOfTeacher($userId, $school['id']));
+                    $taskIds = array_map(array($this, 'extractIdValues'), $this->writingTaskRepositoryInterface->getWritingTasksOfClasses($classIds));
+
+                    if(!in_array($taskId, $taskIds))
+                    {
+                        $isValidTask = false;
+                        $error = 'Writing Task does not belong to current user';
+                    }
+                }
+                else
+                {
+                    // check if the task is a known string
+                    if(!array_key_exists($taskId, self::POSSIBLESTATUS))
+                    {
+                        $isValidTask = false;
+                        $error = 'Invalid Writing Task';
+                    }
+                }
+            }
+            else
+            {
+                $isValidTask = false;
+                $error = 'No Writing Task provided';
+            }
+
+            if(!$isValidTask)
+            {
+                return redirect()->back()->withErrors($error);
             }
             return $next($request);
         }
         catch (Exception $e)
         {
-            return redirect('/assessment-list');
+            return redirect()->back()->withErrors('Oops! Something went wrong');
         }
     }
 

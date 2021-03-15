@@ -679,7 +679,7 @@ $(function(){
                 let studentCount = data.students.length;
                 for(let i = 0; i < studentCount; i++){
                     let newStudent = studentRow.clone();
-                    newStudent.attr('href', `/assessment-marking/${data.students[i].id}/${data.writingTaskId}`);
+                    newStudent.attr('href', `/assessment-marking?student=${data.students[i].id}&task=${data.writingTaskId}`);
                     newStudent.attr('data-student-card-id', data.students[i].id);
                     newStudent.find('.student-list-name').text(data.students[i].first_name + ' ' + data.students[i].last_name);
                     newStudent.find('.student-list-status').text(data.taskStatus);
@@ -698,7 +698,7 @@ $(function(){
         }
     });
 
-    if(window.location.pathname.includes('/single-assessment/')){
+    if(window.location.pathname.includes('/single-assessment')){
         attachAssessmentStudentDeleteCheckboxListener();
     }
 
@@ -821,8 +821,10 @@ $(function(){
         let curriculum_level = $(this).val();
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
-        url_origin += "/rubricsFlag/";
-        url_origin += curriculum_level;
+        url_origin += "/rubric-builder?";
+        let searchParams = new URLSearchParams();
+        searchParams.append('level', curriculum_level);
+        url_origin += searchParams.toString();
         window.location.href = url_origin;
     });
 
@@ -831,8 +833,10 @@ $(function(){
         let curriculum_level = $(this).val();
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
-        url_origin += "/scriibi-rubric-builder/";
-        url_origin += curriculum_level;
+        url_origin += "/scriibi-rubric-builder?";
+        let searchParams = new URLSearchParams();
+        searchParams.append('level', curriculum_level);
+        url_origin += searchParams.toString();
         window.location.href = url_origin;
     });
     //on change of the drop down in the rubric edit page, redirect the user to the page with the value appeneded to the url
@@ -843,12 +847,12 @@ $(function(){
         let task_id = $(this).attr("data-task-id");
         //get the origin url and apply the rubrics page to it and the value
         let url_origin = window.location.origin;
-        url_origin += "/rubric-edit/";
-        url_origin += rubric_id;
-        url_origin += '/';
-        url_origin += curriculum_level;
-        url_origin += '/';
-        url_origin += task_id;
+        url_origin += "/rubric-edit?";
+        let searchParams = new URLSearchParams();
+        searchParams.append('rubric', rubric_id);
+        searchParams.append('level', curriculum_level);
+        searchParams.append('task', task_id);
+        url_origin += searchParams.toString();
         window.location.href = url_origin;
     });
 
@@ -1382,7 +1386,12 @@ function addRubricListTeacherTemplatesListners(){
         event.preventDefault();
         let rubricId = $(this).attr('data-edit-rubric-id');
         let url_origin = window.location.origin;
-        url_origin += `/rubric-edit/${rubricId}/NA/NA`;
+        url_origin += '/rubric-edit?';
+        let searchParams = new URLSearchParams();
+        searchParams.append('rubric', rubricId);
+        searchParams.append('level', 'NA');
+        searchParams.append('task', 'NA');
+        url_origin += searchParams.toString();
         window.location.href = url_origin;
     });
 }
@@ -1543,14 +1552,23 @@ function addRubricCopyEventListner(){
     $('.copy-rubric-template').on('click', function (event){
         let rubricId = $(this).attr('data-copy-rubric-id');
         $('input[name="rubric-copy-id"]').val(rubricId);
-        let url_origin =  window.location.origin + '/rubric-details/' + rubricId;
+        let url_origin =  window.location.origin + '/rubric-details?';
+        let searchParams = new URLSearchParams();
+        searchParams.append('rubric', rubricId);
+        url_origin += searchParams.toString();
         fetch(url_origin)
         .then(response => {
+            if(response.redirected){
+                return null;
+            }
             return response.json();
         })
         .then(data => {
-            $('input[name="copy-rubric-custom-name"]').val(data.name);
-            $('#copy-rubric-modal').modal("show");
+            if(data !== null && typeof data === 'object')
+            {
+                $('input[name="copy-rubric-custom-name"]').val(data.name);
+                $('#copy-rubric-modal').modal("show");
+            }
         });
     });
 }

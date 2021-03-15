@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Utils\Sanitize;
 use Illuminate\Http\Request;
 use App\Services\WritingTaskService;
 
 class AssessmentEditController extends Controller
 {
-    public function generateAssessmentEdit($assessment_id, WritingTaskService $writingTaskService)
+    public function generateAssessmentEdit(Request $request, WritingTaskService $writingTaskService)
     {
         try
         {
-            $writingTask = $writingTaskService->getWritingTask($assessment_id)[0];
-            return view('assessment-edit',
-                [
+            $writingTaskId = Sanitize::sanitizeInteger($request->query('task'));
+            $writingTask = $writingTaskService->getWritingTask($writingTaskId)[0];
+            return view('assessment-edit', [
                     'writingTask' => $writingTask
                 ]);
         }
         catch (Exception $e)
         {
-            // todo
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 }

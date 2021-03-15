@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 <div class="col-6 pl-5">
-                    <a href="/single-assessment/{{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
+                    <a href="/single-assessment?task={{$assessmentDetails['id']}}" class="d-block"><button type="button" name="button" class="btn mt-2 pt-1 pb-1 assignment-action-button" >View Assessment</button></a>
                     <div>
                         <button type="button" name="button" class="btn mt-2 pt-1 pb-1 mr-0 d-inline-block assignment-action-button assessment-goals-gen-btn">Generate All Goal Sheets
                             <input type="submit" form="student-marks-form" target="_blank" value="Generate All Goal Sheets" class="goals-gen-submit-input" style="display: none">

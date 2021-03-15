@@ -241,7 +241,7 @@
                 <p id="marking-level" class="d-none">{{$assessed_level_scriibi_id}}</p>
             </div>
             <div class="d-flex">
-                <p class="student-table-label mb-0">Student Leveled Samples</p>
+                <p class="student-table-label mb-0">Student Levelled Samples</p>
             </div>
             <select id="level-examples" class="level-work-examples" name="level-examples">
                 <option selected disabled>Select Levelled Student Sample</option>

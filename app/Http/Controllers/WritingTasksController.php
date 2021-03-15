@@ -5,61 +5,51 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use Exception;
-use App\Rubric;
-use App\WritingTask;
-use App\writing_tasks;
-use Illuminate\Http\RedirectResponse;
+use App\Utils\Sanitize;
 use Illuminate\Http\Request;
+use App\Services\RubricService;
 use App\Services\WritingTaskService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Services\RubricListingService;
-use App\Services\RubricService;
 use App\Repositories\RubricRepository;
+use Illuminate\Support\Facades\Validator;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
-use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
-use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 use App\Repositories\Interfaces\SkillRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
+use App\Repositories\Interfaces\WritingTaskRepositoryInterface;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 class WritingTasksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.created_By_Teacher_User_Id', '=', Auth::user()->user_Id)->where('deleted_at', '=', null)->get();
-    }
-
-    public function indexSingleTask($taskId){
-        return DB::table('writing_tasks')->select('writing_tasks.*')->where('writing_tasks.writing_task_Id', '=', $taskId)->get()->toArray();
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
      * @param WritingTaskService $writingTaskService
      * @param UserRepositoryInterface $userRepository
+     * @return RedirectResponse
      */
     public function store(Request $request, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository)
     {
-        $students_list = array();
-        try{
-            $name = $request->input('assessment_name');
-            $description = $request->input('assessment_description');
+        try
+        {
+            $error = [];
+            $name = Sanitize::htmlSpecialChars($request->input('assessment_name'));
+            $description = Sanitize::htmlSpecialChars($request->input('assessment_description'));
             $date = $request->input('assessment_date');
-            $classType = $request->input('assess');
-            $class = $request->input($classType);
-            $rubric = $request->input('rubric');
+            $classType = Sanitize::htmlSpecialChars(Sanitize::stripTags($request->input('assess')));
+            $class = Sanitize::sanitizeInteger($request->input($classType));
+            $rubric = Sanitize::sanitizeInteger($request->input('rubric'));
             $school = $userRepository->getTeacherSchool(Auth::user()->id)->toArray();
             $status = DB::table('status')
                 ->where('name', 'active')
                 ->get()
                 ->toArray();
-            $input =
+            $messages = [
+                'regex' => 'Assessment name can only include alphanumeric characters and spaces'
+            ];
+            $data =
                 [
                     'name' => $name,
                     'description' => $description,
@@ -70,35 +60,66 @@ class WritingTasksController extends Controller
                     'class' => $class,
                     'rubric' => $rubric,
                 ];
+            $rules = [
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'description' => 'bail|nullable',
+                'date' => 'bail|date',
+                'owner_id' => 'bail|integer',
+                'class' => 'bail|integer',
+                'rubric' => 'bail|integer',
+            ];
+            $validator = Validator::make($data, $rules, $messages);
 
-            $result = $writingTaskService->saveWritingTask($input);
-            return redirect()->action('AssessmentListController@GenerateAssessmentList');
-        }catch(Exception $e){
-            //todo
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$writingTaskService->saveWritingTask($data))
+                array_push($error, 'Couldn\'t create Assessment, please try again');
+
+            return redirect()
+                ->action('AssessmentListController@GenerateAssessmentList')
+                ->withErrors($error);
+        }
+        catch(Exception $e)
+        {
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 
-    public function ShowWritingTask($assessment_id, WritingTaskService $writingTaskService, UserRepositoryInterface $userRepository, RubricListingService $rubricListingService, RubricRepository $rubricRepository, WritingTaskRepositoryInterface $writingTaskRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository){
+    public function ShowWritingTask(
+        Request $request,
+        WritingTaskService $writingTaskService,
+        UserRepositoryInterface $userRepository,
+        RubricListingService $rubricListingService,
+        RubricRepository $rubricRepository,
+        WritingTaskRepositoryInterface $writingTaskRepository,
+        GradeLabelRepositoryInterface $gradeLabelRepository,
+        AssessedLabelRepositoryInterface $assessedLabelRepository
+    ){
         try
         {
-            $writingTask = $writingTaskService->getWritingTask($assessment_id);
+            $writingTask = $writingTaskService->getWritingTask(Sanitize::sanitizeInteger($request->query('task')));
             $rubricId = $rubricRepository->getRubricOfWritingTask($writingTask[0]['id'])[0]['id'];
             $rubric = $rubricListingService->getRubricDetails($rubricId);
             $students = $writingTaskRepository->getStudentsOfWritingTask($writingTask[0]['id']);
             $curriculumSchoolType = $userRepository->getTeacherSchool(Auth::user()->id)->toArray()[0]['curriculum_school_type_id'];
             $assessedLabels = $this->formatLabels($assessedLabelRepository->getAssessedLabels($curriculumSchoolType));
             $gradeLabels = $this->formatLabels($gradeLabelRepository->getGradeLabels($curriculumSchoolType));
-            return view('assessment-studentlist',
-                [
+            return view('assessment-studentlist', [
                     'writingTask' => $writingTask,
                     'rubric' => $rubric,
                     'students' => $students,
                     'assessedLabels' => $assessedLabels,
                     'gradeLabels' => $gradeLabels
-                ]
-            );
-        }catch(Exception $ex){
-            //todo
+                ]);
+        }
+        catch(Exception $e)
+        {
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 
@@ -164,7 +185,7 @@ class WritingTasksController extends Controller
 
     /**
      * take in post data for the assessment details and update
-     * the existing assessmentt details
+     * the existing assessment details
      * @param Request $request
      * @param WritingTaskService $writingTaskService
      * @param UserRepositoryInterface $userRepository
@@ -174,65 +195,110 @@ class WritingTasksController extends Controller
     {
         try
         {
-            $assessmentId = $request->input('assessment_id');
-            $assessmentTitle = $request->input('assessment_name');
-            $assessmentDate = $request->input('assessment_date');
-            $assessmentDescription = $request->input('assessment_description');
+            $error = [];
+            $assessmentId = Sanitize::sanitizeInteger($request->input('task'));
+            $assessmentTitle = Sanitize::htmlSpecialChars($request->input('assessment_name'));
+            $assessmentDate = ($request->input('assessment_date'));
+            $assessmentDescription = $request->input('assessment_description') === null ? null
+                : Sanitize::htmlSpecialChars(Sanitize::stripTags($request->input('assessment_description')));
             $school = $userRepository->getTeacherSchool(Auth::user()->id)[0];
-            $updatedDetails =
-                [
-                    'id' => $assessmentId,
-                    'name' => $assessmentTitle,
-                    'description' => $assessmentDescription,
-                    'assessedDate' => $assessmentDate,
-                    'curriculumSchoolType' => $school['curriculum_school_type_id']
-                ];
-            $writingTaskService->updateWritingTask($updatedDetails);
-            return redirect()->action('WritingTasksController@ShowWritingTask',
-                [
-                    'id' => $assessmentId
-                ]
-            );
+            $messages = [
+                'regex' => 'Assessment name can only include alphanumeric characters and spaces',
+                'required' => 'Please select at least one skill'
+            ];
+            $data = [
+                'id' => $assessmentId,
+                'name' => $assessmentTitle,
+                'description' => $assessmentDescription,
+                'assessedDate' => $assessmentDate,
+                'curriculumSchoolType' => $school['curriculum_school_type_id']
+            ];
+            $rules = [
+                'id' => 'bail|integer',
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'description' => 'bail|nullable',
+                'assessedDate' => 'bail|date',
+                'curriculumSchoolType' => 'bail|integer'
+            ];
+
+            $validator = Validator::make($data, $rules, $messages);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$writingTaskService->updateWritingTask($data))
+                array_push($error, 'Couldn\'t update writing task, please try again');
+
+            return redirect()->action('WritingTasksController@ShowWritingTask', [
+                    'task' => $assessmentId
+                ])
+                ->withErrors($error);
         }
-        catch(Exception $e){
-            // todo
+        catch(Exception $e)
+        {
+            return redirect()->back()->withErrors('Oops! Something went wrong');
         }
     }
 
     /**
      * sets the deleted_at field of a writing task once deleted by the user
+     * @param Request $request
+     * @param WritingTaskService $writingTaskService
+     * @return RedirectResponse
      */
     public function softDeleteAssessment(Request $request, WritingTaskService $writingTaskService)
     {
         try
         {
-            $assessmentId = $request->input('assessmentId');
-            $writingTaskService->softDeleteWritingTask($assessmentId);
-            return redirect()->action('AssessmentListController@GenerateAssessmentList');
+            $error = [];
+            $writingTaskId = Sanitize::sanitizeInteger($request->input('task'));
+            $data = [
+                'writingTask' => $writingTaskId
+            ];
+            $rules = [
+                'writingTask' => 'bail|integer'
+            ];
+            $validator = Validator::make($data, $rules);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$writingTaskService->softDeleteWritingTask($writingTaskId))
+                array_push($error,  'Couldn\'t delete Assessment, please try again');
+
+            return redirect()
+                ->action('AssessmentListController@GenerateAssessmentList')
+                ->withErrors($error);
         }
         catch (Exception $e)
         {
-            // todo
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 
     /**
      * reset the deleted_at field for a specific writing task back to null indicating
      * that the assessment has been restored
-     * @param $assessmentId
+     * @param Request $request
      * @param WritingTaskService $writingTaskService
      * @return RedirectResponse
      */
-    public function restoreSoftDelete($assessmentId, WritingTaskService $writingTaskService)
+    public function restoreSoftDelete(Request $request, WritingTaskService $writingTaskService)
     {
         try
         {
-            $writingTaskService->restoreSoftDeletedWritingTask($assessmentId);
+            $writingTaskId = Sanitize::sanitizeInteger($request->query('task'));
+            $writingTaskService->restoreSoftDeletedWritingTask($writingTaskId);
             return redirect()->action('AssessmentListController@GenerateDeletedAssessmentList');
         }
         catch (Exception $e)
         {
-            // todo
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
 
     }
@@ -250,37 +316,66 @@ class WritingTasksController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param WritingTaskService $writingTaskService
+     * @param RubricService $rubricService
+     * @return RedirectResponse
+     */
     public function updateAssessmentSkills(Request $request, WritingTaskService $writingTaskService, RubricService $rubricService)
     {
         try
         {
-            $taskId = $request->input('task_id');
-            $rubricId = $request->input('rubric_id');
-            $updatedName = $request->input('rubric_name');
-            $updatedAssessedLevel = $request->input('assessed_level');
-            $updatedSkills = $request->input('rubric_skills');
+            $error = [];
+            $taskId = Sanitize::sanitizeInteger($request->input('task_id'));
+            $rubricId = Sanitize::sanitizeInteger($request->input('rubric'));
+            $updatedName = Sanitize::htmlSpecialChars($request->input('rubric_name'));
+            $updatedAssessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
+            $updatedSkills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
+            $messages = [
+                'regex' => 'Rubric name can only include alphanumeric characters and spaces',
+                'required' => 'Please select at least one skill'
+            ];
+            $data = [
+                'writingTaskId' => $taskId,
+                'id' => $rubricId,
+                'name' => $updatedName,
+                'level' => $updatedAssessedLevel,
+                'skills' => $updatedSkills
+            ];
+            $rules = [
+                'writingTaskId' => 'bail|integer',
+                'id' => 'bail|integer',
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'level' => 'bail|integer',
+                'skills' => 'bail|array|required'
+            ];
+
+            $validator = Validator::make($data, $rules, $messages);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
 
             DB::beginTransaction();
-
-            $rubricService->updateTeacherTemplate($rubricId, $updatedName, $updatedAssessedLevel, $updatedSkills);
-            $object =
-                [
-                    'writingTaskId' => $taskId,
-                    'skills' => $updatedSkills
-                ];
-            $result = $writingTaskService->updateSkills($object);
-
+            $rubricUpdated = $rubricService->updateTeacherTemplate($data);
+            $taskUpdated = $writingTaskService->updateSkills($data);
             DB::commit();
-            return redirect()->action('WritingTasksController@ShowWritingTask', 
-                [
-                'assessment_id' => $taskId
-                ]
-            );
+
+            if(!($rubricUpdated && $taskUpdated))
+                array_push($error, 'Couldn\'t update writing task, please try again');
+
+            return redirect()
+                ->action('WritingTasksController@ShowWritingTask', [
+                    'task' => $taskId
+                ])
+                ->withErrors($error);
         }
         catch (Exception $e)
         {
             DB::rollBack();
-            // todo
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 }

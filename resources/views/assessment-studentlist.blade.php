@@ -112,7 +112,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <span><a href="/rubric-edit/{{$rubric['id']}}/NA/{{$writingTask[0]['id']}}"><img src="/images/edit.png" class="home-etc-icons"></a></span>
+                            <span><a href="/rubric-edit?rubric={{$rubric['id']}}&level=NA&task={{$writingTask[0]['id']}}"><img src="/images/edit.png" class="home-etc-icons"></a></span>
                         </div>
                         <div class="col-6">
                             <div class="mt-xl-4 mt-sm-4 mt-md-4 mt-lg-4">
@@ -125,7 +125,7 @@
                 <div class="col-4">
                     <div>
                         <div class="d-flex flex-column">
-                            <a href="/assessment-edit/{{$writingTask[0]['id']}}" class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" >Edit Assessment</button></a>
+                            <a href="/assessment-edit?task={{$writingTask[0]['id']}}" class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1" >Edit Assessment</button></a>
                             <a class="ml-auto"><button type="button" name="button" class="complete-assessment-confirm-btn btn assignment-action-button mt-2 pt-1 pb-1">Complete Assessment</button></a>
 {{--                            <a class="ml-auto"><button type="button" name="button" class="btn assignment-action-button mt-2 pt-1 pb-1">Data and Goal Sheets</button></a>--}}
                         </div>
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-12 assessment-student-list">
                     @foreach($students as $s)
-                        <a href="/assessment-marking/{{$s['id']}}/{{$writingTask[0]['id']}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button" data-student-card-id="{{$s['id']}}">
+                        <a href="/assessment-marking?student={{$s['id']}}&task={{$writingTask[0]['id']}}" class="row btn-block Assessment-Student-list-cell d-flex justify-content-start px-0" role="button" data-student-card-id="{{$s['id']}}">
                             <p class="col-3 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['first_name']}} {{$s['last_name']}}</p>
                             <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0 @if($s['pivot']['status_flag'] == "complete") {{"complete-style"}} @else {{"incomplete-style"}} @endif">{{$s['pivot']['status_flag']}}</p>
                             <p class="col-2 rubric-list-text text-truncate align-self-center text-left mt-2 pl-3 mb-0">{{$s['school_mgt_sys_id']}}</p>
