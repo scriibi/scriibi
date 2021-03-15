@@ -98,22 +98,19 @@ class RubricService
 
     /**
      * Update a specified teacher rubric template and its associated skills
-     * @param $id
-     * @param $name
-     * @param $scriibiLevel
-     * @param $skills
+     * @param $data
      * @return bool
      */
-    public function updateTeacherTemplate($id, $name, $scriibiLevel, $skills): bool
+    public function updateTeacherTemplate($data): bool
     {
         try
         {
-            $updatedRubric = $this->rubricRepositoryInterface->updateRubric($id, $name, $scriibiLevel);
+            $updatedRubric = $this->rubricRepositoryInterface->updateRubric($data['id'], $data['name'], $data['level']);
             if($updatedRubric === null)
             {
                 throw new Exception('Rubric could not be updated');
             }
-            $skillsUpdated = RubricService::updateRubricSkills($updatedRubric, $skills);
+            $skillsUpdated = RubricService::updateRubricSkills($updatedRubric, $data['skills']);
             if($skillsUpdated)
             {
                 return true;
@@ -185,7 +182,7 @@ class RubricService
         }
         catch (Exception $e)
         {
-            throw $e;
+            return false;
         }
     }
 

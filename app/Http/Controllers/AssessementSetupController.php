@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use Exception;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Services\RubricListingService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
 use App\Repositories\Interfaces\ClassRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\ScriibiLevelRepositoryInterface;
@@ -16,10 +20,13 @@ use App\Repositories\Interfaces\TeachingPeriodRepositoryInterface;
 class AssessementSetupController extends Controller
 {
     /**
-     * creates a new RubricList instance,
-     * populates it with the rubrics associated with the currently logged in user
-     * and returns back an assessment-setup page
-     *
+     * Creates a new RubricList instance, populates it with the rubrics associated
+     * with the currently logged in user and returns back an assessment-setup page
+     * @param RubricListingService $rubricListingService
+     * @param ClassRepositoryInterface $classRepository
+     * @param UserRepositoryInterface $userRepository
+     * @param ScriibiLevelRepositoryInterface $scriibiLevelRepository
+     * @return Application|Factory|View|RedirectResponse
      */
     public function GenerateAssessmentSetup(RubricListingService $rubricListingService, ClassRepositoryInterface $classRepository, UserRepositoryInterface $userRepository, ScriibiLevelRepositoryInterface $scriibiLevelRepository){
         try
@@ -30,8 +37,8 @@ class AssessementSetupController extends Controller
             $userClasses = $classRepository->getClassesOfTeacher(Auth::user()->id, $schoolId);
             $otherClasses = $classRepository->getClassesOfScriibiLevels($scriibiLevels, $schoolId);
             $userClassHashMap = [];
-
             $userClassCount = count($userClasses);
+
             for ($i = 0; $i < $userClassCount; $i++)
             {
                 $userClassHashMap[$userClasses[$i]['id']] = true;
@@ -45,8 +52,7 @@ class AssessementSetupController extends Controller
                     unset($otherClasses[$j]);
                 }
             }
-            return view('assessment-setup',
-                [
+            return view('assessment-setup', [
                     'rubrics' => $rubrics,
                     'userClasses' => $userClasses,
                     'otherClasses' => $otherClasses
@@ -54,7 +60,9 @@ class AssessementSetupController extends Controller
         }
         catch (Exception $e)
         {
-            // todo
+            return redirect()
+                ->back()
+                ->withErrors('Oops! Something went wrong');
         }
     }
 

@@ -6,9 +6,7 @@ use DB;
 use Auth;
 use Mixpanel;
 use Exception;
-use App\Rubrics;
-use App\ScriibiLevels;
-use App\skills_levels;
+use App\Utils\Sanitize;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\RubricService;
@@ -16,6 +14,7 @@ use AssessmentMarkingController;
 use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Foundation\Application;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
@@ -27,22 +26,41 @@ class RubricsController extends Controller
      * @param Request $request
      * @param RubricService $rubricService
      */
-    public function store(Request $request, RubricService $rubricService)
-    {   // do exception handling and data cleaning here later
+    public function saveTeacherTemplate(Request $request, RubricService $rubricService)
+    {
         try
         {
-            $template = array(
-                'name' => $request->input('rubric_name'),
-                'level' => $request->input('assessed_level'),
-                'skills' => $request->input('rubric_skills'),
-            );
-            $rubricService->saveTeacherTemplate(Auth::user()->id, $template);
-            return redirect('/rubric-list');
+            $error = [];
+            $name = Sanitize::htmlSpecialChars($request->input('rubric_name'));
+            $assessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
+            $skills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
+            $messages = [
+                'regex' => 'Rubric name can only include alphanumeric characters and spaces'
+            ];
+            $data = [
+                'name' => $name,
+                'level' => $assessedLevel,
+                'skills' => $skills,
+            ];
+            $rules = [
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'level' => 'bail|integer',
+                'skills' => 'bail|array|required'
+            ];
+
+            $validator = Validator::make($data, $rules, $messages);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$rubricService->saveTeacherTemplate(Auth::user()->id, $data))
+                array_push($error, 'Couldn\t save rubric, please try again');
+
+            return redirect('/rubric-list')->withErrors($error);
         }
         catch (Exception $e)
         {
-            // todo
-            return redirect('/rubric-list');
+            return redirect()->back()->withErrors('Oops! Something went wrong');
         }
     }
 
@@ -56,12 +74,18 @@ class RubricsController extends Controller
     {
         try
         {
-            $rubricService->deleteRubric($request->input('rubricId'));
-            return redirect('/rubric-list');
+            $error = [];
+            $rubricId = Sanitize::sanitizeInteger($request->input('rubric'));
+
+            if(!$rubricService->deleteRubric($rubricId))
+                array_push($error, 'Couldn\'t delete Rubric, please try again later');
+
+            return redirect('/rubric-list')->withErrors($error);
         }
         catch(Exception $e)
         {
-            return redirect('/rubric-list');
+            return redirect('/rubric-list')
+                ->withErrors('Oops! Something went wrong');
         }
     }
 
@@ -69,18 +93,45 @@ class RubricsController extends Controller
      * Update the specified resource in storage
      * @param Request $request
      * @param RubricService $rubricService
-     * @return Response
+     * @return Response|RedirectResponse
      */
-    public function update(Request $request, RubricService $rubricService)
+    public function updateRubric(Request $request, RubricService $rubricService)
     {
         try
         {
-            // todo - add a check for the number of skills (it cannot be zero) and sanitize data
-            $rubricService->updateTeacherTemplate($request->input('rubric_id'), $request->input('rubric_name'), $request->input('assessed_level'), $request->input('rubric_skills'));
-            return redirect('/rubric-list');
+            $error = [];
+            $rubricId = Sanitize::sanitizeInteger($request->input('rubric'));
+            $rubricName = Sanitize::htmlSpecialChars($request->input('rubric_name'));
+            $assessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
+            $skills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
+            $messages = [
+                'regex' => 'Rubric name can only include alphanumeric characters and spaces',
+                'required' => 'Please select at least one skill'
+            ];
+            $data = [
+                'id' => $rubricId,
+                'name' => $rubricName,
+                'level' => $assessedLevel,
+                'skills' => $skills
+            ];
+            $rules = [
+                'id' => 'bail|integer',
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'level' => 'bail|integer',
+                'skills' => 'bail|array|required'
+            ];
+            $validator = Validator::make($data, $rules, $messages);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$rubricService->updateTeacherTemplate($data))
+                array_push($error, 'Couldn\'t update Rubric, please try again');
+
+            return redirect('/rubric-list')->withErrors($error);
         }
         catch(Exception $e){
-            // todo
+            return redirect()->back()->withErrors('Oops! Something went wrong');
         }
     }
 
@@ -93,20 +144,44 @@ class RubricsController extends Controller
     {
         try
         {
-            $rubric = array(
-                'name' => $request->input('rubric_name'),
-                'level' => $request->input('assessed_level'),
-                'skills' => $request->input('rubric_skills'),
-                'curriculum' => $request->input('curriculum'),
-                'schoolType' => $request->input('schoolType')
-            );
-            $rubricService->saveScriibiRubric($rubric);
-            return redirect('/scriibi-rubric-builder');
+            $error = [];
+            $rubricName = Sanitize::htmlSpecialChars($request->input('rubric_name'));
+            $assessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
+            $curriculum = Sanitize::sanitizeInteger($request->input('curriculum'));
+            $schoolType = Sanitize::sanitizeInteger($request->input('schoolType'));
+            $skills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
+            $messages = [
+                'regex' => 'Rubric name can only include alphanumeric characters and spaces',
+                'required' => 'Please select at least one skill'
+            ];
+            $data = [
+                'name' => $rubricName,
+                'level' => $assessedLevel,
+                'curriculum' => $curriculum,
+                'schoolType' => $schoolType,
+                'skills' => $skills
+            ];
+
+            $rules = [
+                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'level' => 'bail|integer',
+                'curriculum' => 'bail|integer',
+                'schoolType' => 'bail|integer',
+                'skills' => 'bail|array|required'
+            ];
+            $validator = Validator::make($data, $rules,$messages);
+
+            if($validator->fails())
+                return redirect()->back()->withErrors($validator);
+
+            if(!$rubricService->saveScriibiRubric($data))
+                array_push($error, 'Couldn\' save scriibi rubric, please try again');
+
+            return redirect('/scriibi-rubric-builder')->withErrors($error);
         }
         catch (Exception $e)
         {
-            // todo
-            return redirect('/scriibi-rubric-builder');
+            return redirect('/scriibi-rubric-builder')->withErrors('Oops! Something went wrong');
         }
     }
 
@@ -194,14 +269,22 @@ class RubricsController extends Controller
         }
     }
 
-    public function getRubricDetails($rubricId, RubricService $rubricService){
+    public function getRubricDetails(Request $request, RubricService $rubricService)
+    {
         try
         {
-            return json_encode($rubricService->getRubricDetails($rubricId));
+            if($request->has('rubric') && is_numeric($request->query('rubric')))
+            {
+                return json_encode($rubricService->getRubricDetails($request->query('rubric')));
+            }
+            else
+            {
+                throw new Exception('Invalid RubricId passed');
+            }
         }
         catch (Exception $e)
         {
-            return json_encode([]);
+            return json_encode(null);
         }
     }
 }

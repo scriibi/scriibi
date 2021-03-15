@@ -12,8 +12,8 @@
                 <div class="row mt-5 ">
                     <div class="col-10">
                         <h1 class="Assessment-Studentlist-title">Edit Rubric Name :</h1>
-                        <p><input class="form-control" type="text" name="rubric_name" value="{{$rubric['name']}}"></p>
-                        <input type="text" name="rubric_id" value="{{$rubric['id']}}" hidden>
+                        <p><input class="form-control" type="text" name="rubric_name" value="{{html_entity_decode($rubric['name'])}}"></p>
+                        <input type="text" name="rubric" value="{{$rubric['id']}}" hidden>
                     </div>
                 </div>
 

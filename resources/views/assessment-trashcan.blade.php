@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-4">
                                 </div>
-                                @php $path = '/assessment-restore/' . $assessment['id'] @endphp
+                                @php $path = '/assessment-restore?task=' . $assessment['id'] @endphp
                                 <button class="rubric-remove-button-styling" id="assessment-rubric-remove-button-styling" onclick="location.href='{{ url($path) }}'">
                                     <img class="interaction-icon" src="images/restore.png" alt="Restore Assessment Icon" style="margin:0"/>
                                 </button>

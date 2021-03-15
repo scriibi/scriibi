@@ -2,27 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth;
+use App\Services\UserService;
+use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\StudentsController;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\ClassRepositoryInterface;
+use App\Repositories\Interfaces\StudentRepositoryInterface;
+use App\Repositories\Interfaces\GradeLabelRepositoryInterface;
+use App\Repositories\Interfaces\AssessedLabelRepositoryInterface;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param UserService $userService
+     * @param ClassRepositoryInterface $classRepository
+     * @param StudentRepositoryInterface $studentRepository
+     * @param UserRepositoryInterface $userRepository
+     * @param GradeLabelRepositoryInterface $gradeLabelRepository
+     * @param AssessedLabelRepositoryInterface $assessedLabelRepository
+     * @return Renderable
      */
-    public function index()
+    public function index(UserService $userService, ClassRepositoryInterface $classRepository, StudentRepositoryInterface $studentRepository, UserRepositoryInterface $userRepository, GradeLabelRepositoryInterface $gradeLabelRepository, AssessedLabelRepositoryInterface $assessedLabelRepository)
     {
-        return view('home');
+        try
+        {
+            $stdController = new StudentsController();
+            $dataset = $stdController->indexStudentsByClass($classRepository, $studentRepository, $userRepository, $gradeLabelRepository, $assessedLabelRepository);
+            $memberships = $userService->getUserMemberships(Auth::user()->id);
+            $privilagedUser = false;
+
+            if(array_key_exists(3, $memberships[0])){
+                $privilagedUser = true;
+            }
+
+            return view('home',
+                [
+                    'students' => $dataset['students'],
+                    'gradeLabels' => $dataset['gradeLabels'],
+                    'assessedLabels' => $dataset['assessedLabels'],
+                    'user' => Auth::user()->name,
+                    'userID' => Auth::user()->id,
+                    'privilagedUser' => $privilagedUser
+                ]
+            );
+        }
+        catch(Exception $ex)
+        {
+            throw $ex;
+        }
     }
 }

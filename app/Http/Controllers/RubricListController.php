@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use Mixpanel;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,14 +20,19 @@ class RubricListController extends Controller
 {
     /**
      * creates rubric objects for all rubrics of the currently logged in user
+     * @param Request $request
+     * @param RubricListingService $rubricListingServiceInstance
+     * @return false|Application|Factory|View|string
      */
     public function GenerateUserRubrics(Request $request, RubricListingService $rubricListingServiceInstance)
     {
         try
         {
             $rubrics = $rubricListingServiceInstance->getTeacherTemplates(Auth::user()->id);
+
             if($request->path() === 'rubric-list-mine')
                 return (json_encode($rubrics));
+
             if($request->path() === 'rubric-list')
                 return view('rubric-list', ['rubrics' => json_encode($rubrics)]);
         }

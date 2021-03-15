@@ -2,7 +2,7 @@
 @section('title', 'Rubric-List')
 @section('content')
     <div class="d-flex flex-row-reverse" style="margin: 120px auto 20px auto; width: 80%;">
-        <a href="/rubrics" class="assessment-btn p-2"><strong>Build a new Rubric +</strong></a>
+        <a href="/rubric-builder" class="assessment-btn p-2"><strong>Build a new Rubric +</strong></a>
     </div>
     <div class="rubric-list-parent-cont">
         <div class="row no-gutters rubric-list-options-row">
@@ -38,7 +38,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                             <div class="card rubric-box btn-block rubric-list-card-single">
                                 <div class="rubric-list-text-title text-left">
-                                    {{$value->name}}
+                                    {{htmlspecialchars_decode($value->name)}}
                                 </div>
                                 <div class="rubric-box-small rubric-list-skills text-left align-middle">
                                     <p class="rubric-skills-para">Skills</p>
@@ -128,9 +128,9 @@
                     <div class="col-sm-1">
                     </div>
                     <div class="col-sm-11" style="text-align: center">
-                        <form method="post" action="/rubricDelete">
+                        <form method="POST" action="/rubric-delete">
                             @csrf
-                            <input type="hidden" name="rubricId" value="" id="rubric-delete-warning-modal-form"/>
+                            <input type="hidden" name="rubric" value="" id="rubric-delete-warning-modal-form"/>
                             <button class="assessment-delete-button delete-button-red"  data-dismiss="modal">cancel</button>
                             <button class="assessment-delete-button delete-button-green" type='submit'>yes, move to trash</button>
                         </form>

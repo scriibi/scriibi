@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <input type="text" name="assessment_id" value="{{$writingTask['id']}}" hidden />
+                    <input type="text" name="task" value="{{$writingTask['id']}}" hidden />
                     <input type="submit" class="btn save-exit-btn col-2" value="Save Changes"></button>
                 </div>
                 <div class="col-1"></div>
