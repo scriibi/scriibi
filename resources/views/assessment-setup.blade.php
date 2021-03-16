@@ -117,7 +117,7 @@
                                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                                     <div class="card rubric-box btn-block rubric-list-card-single assessment-setup-rubric-select-radio-link" data-rubric-id={{$key}}>
                                         <div class="rubric-list-text-title text-left">
-                                            {{$value['name']}}
+                                            {{html_entity_decode($value['name'])}}
                                         </div>
                                         <div class="rubric-box-small rubric-list-skills text-left align-middle">
                                             <p class="rubric-skills-para">Skills</p>

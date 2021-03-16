@@ -74,7 +74,7 @@ class AssessmentAuth
                     if(!in_array($taskId, $taskIds))
                     {
                         $isValidTask = false;
-                        $error = 'Writing Task does not belong to current user';
+                        $error = 'Does not exist for user';
                     }
                 }
                 else
@@ -83,14 +83,14 @@ class AssessmentAuth
                     if(!array_key_exists($taskId, self::POSSIBLESTATUS))
                     {
                         $isValidTask = false;
-                        $error = 'Invalid Writing Task';
+                        $error = 'Not found for user';
                     }
                 }
             }
             else
             {
                 $isValidTask = false;
-                $error = 'No Writing Task provided';
+                $error = 'Not found';
             }
 
             if(!$isValidTask)

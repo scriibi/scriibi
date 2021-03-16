@@ -47,7 +47,7 @@ class WritingTasksController extends Controller
                 ->get()
                 ->toArray();
             $messages = [
-                'regex' => 'Assessment name can only include alphanumeric characters and spaces'
+                'regex' => 'Assessment name can only include alphanumeric characters, slash, ampersand and underscore'
             ];
             $data =
                 [
@@ -61,7 +61,7 @@ class WritingTasksController extends Controller
                     'rubric' => $rubric,
                 ];
             $rules = [
-                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'name' => 'regex:/^[a-z\d\_\\\&\;\s]+$/i',
                 'description' => 'bail|nullable',
                 'date' => 'bail|date',
                 'owner_id' => 'bail|integer',
@@ -203,7 +203,7 @@ class WritingTasksController extends Controller
                 : Sanitize::htmlSpecialChars(Sanitize::stripTags($request->input('assessment_description')));
             $school = $userRepository->getTeacherSchool(Auth::user()->id)[0];
             $messages = [
-                'regex' => 'Assessment name can only include alphanumeric characters and spaces',
+                'regex' => 'Assessment name can only include alphanumeric characters, slash, ampersand and underscore',
                 'required' => 'Please select at least one skill'
             ];
             $data = [
@@ -215,7 +215,7 @@ class WritingTasksController extends Controller
             ];
             $rules = [
                 'id' => 'bail|integer',
-                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'name' => 'regex:/^[a-z\d\_\\\&\;\s]+$/i',
                 'description' => 'bail|nullable',
                 'assessedDate' => 'bail|date',
                 'curriculumSchoolType' => 'bail|integer'
