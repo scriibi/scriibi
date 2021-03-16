@@ -14,7 +14,7 @@
                     <div class="row no-gutters">
                         <div class="col-6">
                             <span class="writing-task-id" data-writing-task-id="{{$writingTask[0]['id']}}" hidden="hidden"></span>
-                            <h5 class="Assessment-Studentlist-title">{{$writingTask[0]['name']}}</h5>
+                            <h5 class="Assessment-Studentlist-title">{{html_entity_decode($writingTask[0]['name'])}}</h5>
                             <h5 class="Assessment-details-date"><strong><?php echo (date("d-m-Y", strtotime($writingTask[0]['assessed_date']))); ?></strong></h5>
                             <div class="row no-gutters mt-4 d-inline-block">
                                 <div class="col-sm-auto assessment-studentlist-rubric mt-2">
@@ -117,7 +117,7 @@
                         <div class="col-6">
                             <div class="mt-xl-4 mt-sm-4 mt-md-4 mt-lg-4">
                                 <span><strong>Additional Notes:</strong></span><br>
-                                <p class="Assessment-details-description">{{$writingTask[0]['description']}}</p>
+                                <p class="Assessment-details-description">{{html_entity_decode($writingTask[0]['description'])}}</p>
                             </div>
                         </div>
                     </div>

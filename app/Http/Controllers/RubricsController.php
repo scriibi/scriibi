@@ -35,7 +35,7 @@ class RubricsController extends Controller
             $assessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
             $skills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
             $messages = [
-                'regex' => 'Rubric name can only include alphanumeric characters and spaces'
+                'regex' => 'Rubric name can only include alphanumeric characters, slash, ampersand and underscore'
             ];
             $data = [
                 'name' => $name,
@@ -43,7 +43,7 @@ class RubricsController extends Controller
                 'skills' => $skills,
             ];
             $rules = [
-                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'name' => 'regex:/^[a-z\d\_\\\&\;\s]+$/i',
                 'level' => 'bail|integer',
                 'skills' => 'bail|array|required'
             ];
@@ -54,7 +54,7 @@ class RubricsController extends Controller
                 return redirect()->back()->withErrors($validator);
 
             if(!$rubricService->saveTeacherTemplate(Auth::user()->id, $data))
-                array_push($error, 'Couldn\t save rubric, please try again');
+                array_push($error, 'Couldn\'t save rubric, please try again');
 
             return redirect('/rubric-list')->withErrors($error);
         }
@@ -105,7 +105,7 @@ class RubricsController extends Controller
             $assessedLevel = Sanitize::sanitizeInteger($request->input('assessed_level'));
             $skills = Sanitize::sanitizeInteger($request->input('rubric_skills'));
             $messages = [
-                'regex' => 'Rubric name can only include alphanumeric characters and spaces',
+                'regex' => 'Rubric name can only include alphanumeric characters, slash, ampersand and underscore',
                 'required' => 'Please select at least one skill'
             ];
             $data = [
@@ -116,7 +116,7 @@ class RubricsController extends Controller
             ];
             $rules = [
                 'id' => 'bail|integer',
-                'name' => 'regex:/^[a-z\d\_\s]+$/i',
+                'name' => 'regex:/^[a-z\d\_\\\&\;\s]+$/i',
                 'level' => 'bail|integer',
                 'skills' => 'bail|array|required'
             ];
@@ -175,7 +175,7 @@ class RubricsController extends Controller
                 return redirect()->back()->withErrors($validator);
 
             if(!$rubricService->saveScriibiRubric($data))
-                array_push($error, 'Couldn\' save scriibi rubric, please try again');
+                array_push($error, 'Couldn\'t save scriibi rubric, please try again');
 
             return redirect('/scriibi-rubric-builder')->withErrors($error);
         }

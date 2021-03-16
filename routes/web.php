@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Rubric routes
     Route::get('/rubric-builder', 'RubricBuilder@getRubricBuilder');
     Route::get('/rubric-list', 'RubricListController@GenerateUserRubrics');
-    Route::get('/rubric-details', 'RubricsController@getRubricDetails')->middleware('rubricAuth');
+    Route::get('/rubric-details', 'RubricsController@getRubricDetails');
     Route::get('/scriibi-rubric-builder', 'RubricBuilder@getScriibiRubricBuilder');                                             // done (change the flow later so the curriculum->school->type->level cascade)
     Route::get('/rubric-edit', 'RubricBuilder@generateEditRubricView')->middleware('assessmentAuth')->middleware('rubricAuth'); // done (flag and also check the selected skills show up correct and check current selected level of rubric is correct)
     Route::post('/save-teacher-template', 'RubricsController@saveTeacherTemplate');

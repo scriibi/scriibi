@@ -58,7 +58,7 @@ class RubricAuth
                         if((int) $rubricOfTask[0]['id'] !== (int)$rubricId)
                         {
                             $isValidRubric = false;
-                            $error = 'Rubric does not match Writing Task';
+                            $error = 'No task match';
                         }
                     }
                     // If no writing task is found then check if the rubric is owned by the current user
@@ -70,20 +70,20 @@ class RubricAuth
                         if(!in_array($rubricId, $rubricIds))
                         {
                             $isValidRubric = false;
-                            $error = 'Rubric does not belong to current user';
+                            $error = 'Not found for user';
                         }
                     }
                 }
                 else
                 {
                     $isValidRubric = false;
-                    $error = 'Invalid Type: rubric';
+                    $error = 'Not found for user';
                 }
             }
             else
             {
                 $isValidRubric = false;
-                $error = 'No Rubric value found';
+                $error = 'Not found';
             }
 
             if(!$isValidRubric)

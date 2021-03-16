@@ -57,7 +57,7 @@
                     @foreach($assessmentList as $al)
                         <div class="body-cells row mb-2">
                             <a href="{{ url('/single-assessment?task=' . $al['id']) }}" class="row btn-block assessment-rubric-list-row d-flex justify-content-between pl-3 m-0">
-                                <p class="col-3 rubric-list-text text-truncate text-left px-0 mt-2" style="font-size:16px">{{$al['name']}}</p>
+                                <p class="col-3 rubric-list-text text-truncate text-left px-0 mt-2" style="font-size:16px">{{html_entity_decode($al['name'])}}</p>
                                 <p class="col-1 rubric-list-text text-truncate text-left px-0 mt-2" style="font-size:16px"><img src="images/{{$al['status']['name'] === 'active' ? 'status_active.png' : 'status_completed.png'}}" class="interaction-icon" style="margin-top:3px !important;"></p>
                                 <p class="col-2 rubric-list-text text-truncate text-left px-1 mt-2" style="font-size:14px">
                                     @foreach($al['classes'] as $class)
