@@ -85,7 +85,19 @@ $(function(){
         "bInfo": false,
         select: {
             items : 'cell'
-        }
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'collection',
+                className: 'dt-export-custom-btn dt-export-collection-custom-btn',
+                text: 'Export',
+                buttons: [
+                    { extend: 'csv', className: 'dt-export-custom-btn' },
+                    { extend: 'excel', className: 'dt-export-custom-btn' }
+                ]
+            }
+        ]
     });
 
     // methods adds the goalAvailability check on once the assessment data view page loads for the first time
@@ -780,15 +792,21 @@ $(function(){
     $("#createAxBTN").on("click", function(event){
         event.preventDefault();
         let warning = '';
-        if (document.getElementById("assessment_name").value === "") {
-            warning += '1) Please type in a name for the assessment<br>';
+        let counter = 1;
+
+        if (document.getElementById("assessment_name").value === ""){
+            warning += `${counter}) Please type in a name for the assessment<br>`;
+            counter++;
         }
+
+        if(document.getElementById('assessment_date').value === ""){
+            warning += `${counter}) Please select a date for the assessment<br>`;
+            counter++;
+        }
+
         if(document.getElementsByClassName('hidden-rubric-radio').rubric.value == ""){
-            if(warning === ''){
-                warning += '1) Please select a rubric for the assessment';
-            }else{
-                warning += '<br>2) Please select a rubric for the assessment';
-            }
+                warning += `${counter}) Please select a rubric for the assessment</br>`;
+                counter++;
         }
         if(warning === ''){
             document.getElementById('assessment-setup-form').submit();
@@ -800,11 +818,6 @@ $(function(){
                 flash.prop('hidden', true);
             }, 3500);
         }
-            // $("#assessment-template").addClass("d-block");
-            // $("#assessment-template").removeClass("d-none");
-            // $("#rubric-template").addClass("d-none");
-            // $("#rubric-template").removeClass("d-block");
-            // toggleAssessmentSetupHeader("details");
     });
 
     //assessment-setup rubric selection radio script
@@ -1668,11 +1681,6 @@ function updateShareeList(sharees, type){
 }
 
 //init function (only executes when onload)
-function init() {
-    var assessmentDateField = document.getElementById("assessment_date");
-    if (assessmentDateField) {
-        addDefaultDate(assessmentDateField);
-    }
-}
+function init() {}
 
 window.onload = init();

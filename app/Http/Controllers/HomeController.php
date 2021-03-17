@@ -38,6 +38,10 @@ class HomeController extends Controller
                 $privilagedUser = true;
             }
 
+            usort($dataset['students'], function ($a, $b){
+                return strcmp($a['first_name'], $b['first_name']);
+            });
+
             return view('home',
                 [
                     'students' => $dataset['students'],
