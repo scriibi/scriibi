@@ -79,7 +79,7 @@
                         <div class="assessment-settings-selected-rubric">
                             <p style="position: relative; top: 35%; bottom: -65%; height: fit-content; text-align: center; color: #ff0000" class="text-wrap">There are currently no skills selected for this assessment</p>
                         </div>
-                        <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn assessment-settings-rubric-select-btn border-0">Rubric Selection</button>
+                        <button id="rubricSelectionBTN" type="button" name="button" class="btn btn-link assessment-btn assignment-action-button assessment-settings-rubric-select-btn">Rubric Selection</button>
                     </div>
 
                 </div>

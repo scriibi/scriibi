@@ -1683,7 +1683,22 @@ table.dataTable.no-footer {
     }
 }
 
+.dt-export-custom-btn{
+    background-color: #FFFFFF !important;
+    border: 1px solid  #33A849 !important;
+    border-radius: 7px !important;
+    color: #33A849 !important;
+    width: 100px;
+}
 
+.dt-export-custom-btn:hover{
+    background-color: #33A849 !important;
+    color: #FFFFFF !important;
+}
+
+.dt-export-collection-custom-btn{
+    margin-top: 16px;
+}
 
 
 .assignment-result {

@@ -9,7 +9,13 @@
                   method="POST" class="mt-5 mb-0 p-0" id="rubricform">
             @csrf
             <!-- Assessment Title and edit/delete img-->
-                <div class="row mt-5 ">
+                <div class="d-flex flex-row-reverse">
+                    <input type="submit" class="btn assessment-btn"
+                           value="{{$currentAssessment != null ? 'Update Assessment Rubric' : 'Update Rubric'}}"
+                           id="rubric-edit-submit" style="float:right;margin-right:15%"
+                           data-task-id="{{$currentAssessment != null ? $currentAssessment[0]['id'] : 'NA'}}">
+                </div>
+                <div class="row mt-5">
                     <div class="col-10">
                         <h1 class="Assessment-Studentlist-title">Edit Rubric Name :</h1>
                         <p><input class="form-control" type="text" name="rubric_name" value="{{html_entity_decode($rubric['name'])}}"></p>
@@ -102,10 +108,6 @@
                     @if($currentAssessment != null)
                         <input type="hidden" name="task_id" value="{{$currentAssessment[0]['id']}}">
                     @endif
-                    <input type="submit" class="btn save-exit-btn col-3"
-                           value="{{$currentAssessment != null ? 'Update Assessment Rubric' : 'Update Rubric'}}"
-                           id="rubric-edit-submit" style="float:right;margin-right:15%"
-                           data-task-id="{{$currentAssessment != null ? $currentAssessment[0]['id'] : 'NA'}}"></button>
             </form>
         </div>
     </div>

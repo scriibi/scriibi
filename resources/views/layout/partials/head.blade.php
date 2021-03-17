@@ -13,13 +13,13 @@
 
 <!-- DataTables link -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
 
 <!-- Google font 'Raleway' link -->
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
 <!-- CSS link -->
 <link rel="stylesheet" type="text/css" href="{{mix('/css/app.css')}}">
-
 <!-- fontawesome link -->
 <script src="https://kit.fontawesome.com/773092a791.js" crossorigin="anonymous"></script>
 
